@@ -1,0 +1,17 @@
+﻿button,input,select,textarea{font-family:inherit;font-size:100%}
+body{font-family:Verdana, Arial, lucida, sans-serif;text-align:center}
+input{font-size:16px}
+#wrap{margin:6px 6px 12px;padding:0 3px}
+.outwrap{margin-top:12px}
+#wrapper{background-color:#E3E7FF;border-radius:1em;margin:auto;padding:0 3px;}
+.inptext{margin-left:-3px;margin-top:4px;margin-bottom:4px;width:100%;padding:3px;}
+.theSubmit{width:50%;height:3em;border-radius:1em;margin-top:12px}
+.border{border:1px #909090 solid}
+.noborder{border:none;border:1px #909090 solid}
+p{padding-bottom:6px;margin:0}
+.lblchk{padding-top:6px;text-align:left}
+label{display:none}
+label.lblchk{display:inline}
+.ptit{font-weight:700;font-size:120%}
+#pmess{color:red}
+.cblue{color:blue}

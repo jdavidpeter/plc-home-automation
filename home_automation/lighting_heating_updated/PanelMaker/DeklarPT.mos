@@ -1,0 +1,250 @@
+;*******************************************************************************
+;Warning
+;File is automatically regenerated and all manual changes will be lost.
+
+#ifndef _DeklarPT_
+  #def _DeklarPT_
+  #def  Bit0        0
+  #def  Bit1        1
+  #def  Bit2        2
+  #def  Bit3        3
+  #def  Bit4        4
+  #def  Bit5        5
+  #def  Bit6        6
+  #def  Bit7        7
+  #def  sizeByte    8
+  #def  sizeWord    9
+  #def  sizeLong    10
+  #def  dispDec     1
+  #def  dispSignDec 2
+  #def  dispHexa    3
+  #def  dispMes     4
+  #def  dispMenu    5
+  #def  dispList    6
+  #def  readOnly    0
+  #def  readWrite   $10
+  #def  AlignLeft   $20
+  #def  LeadZero    $40
+  #def  secretDisp  $80
+  #def  des         +16*
+  #def  disableUpDown  8
+  #def  enableRing     4
+  #def  enableList     2
+  #def  enableEdit     1
+  #def  OffsetAddr     $80
+
+  ;virtual key codes
+  #def UP    $18
+  #def DOWN  $19
+  #def LEFT  $1B
+  #def RIGHT $1A
+  #def ENTER $0D
+  #def ESC   $7F
+  #def PLUS  $2B
+  #def MINUS $2D
+  #def POINT $2E
+  #def SLASH $2F
+  #def fceF1 $F1
+  #def fceF2 $F2
+  #def fceF3 $F3
+  #def fceF4 $F4
+  #def fceF5 $F5
+  #def fceF6 $F6
+
+  #struct _TTS_PM_TVarDesc
+          udint  adrVar,
+          usint  typVar,
+          usint  sizeVar,
+          usint  type_ID,
+          usint  poz,
+          usint  form,
+          usint  numCif,
+          uint   tabMes
+
+  #struct _TTS_PM_TDisplayHEAD80
+          usint  ver,
+          usint  modulID,
+          usint  dispSize,
+          usint  numVar,
+          usint  display[80]
+
+  #struct _TTS_PM_D80_V0
+          _TTS_PM_TDisplayHEAD80 head
+
+  #struct _TTS_PM_D80_V1
+          _TTS_PM_TDisplayHEAD80 head,
+          _TTS_PM_TVarDesc       varDesc[1]
+
+  #struct _TTS_PM_D80_V2
+          _TTS_PM_TDisplayHEAD80 head,
+          _TTS_PM_TVarDesc       varDesc[2]
+
+  #struct _TTS_PM_D80_V3
+          _TTS_PM_TDisplayHEAD80 head,
+          _TTS_PM_TVarDesc       varDesc[3]
+
+  #struct _TTS_PM_D80_V4
+          _TTS_PM_TDisplayHEAD80 head,
+          _TTS_PM_TVarDesc       varDesc[4]
+
+  #struct _TTS_PM_D80_V5
+          _TTS_PM_TDisplayHEAD80 head,
+          _TTS_PM_TVarDesc       varDesc[5]
+
+  #struct _TTS_PM_D80_V6
+          _TTS_PM_TDisplayHEAD80 head,
+          _TTS_PM_TVarDesc       varDesc[6]
+
+  #struct _TTS_PM_D80_V7
+          _TTS_PM_TDisplayHEAD80 head,
+          _TTS_PM_TVarDesc       varDesc[7]
+
+  #struct _TTS_PM_D80_V8
+          _TTS_PM_TDisplayHEAD80 head,
+          _TTS_PM_TVarDesc       varDesc[8]
+
+  #struct _TTS_PM_D80_V9
+          _TTS_PM_TDisplayHEAD80 head,
+          _TTS_PM_TVarDesc       varDesc[9]
+
+  #struct _TTS_PM_D80_V10
+          _TTS_PM_TDisplayHEAD80 head,
+          _TTS_PM_TVarDesc       varDesc[10]
+
+  #struct _TTS_PM_D80_V11
+          _TTS_PM_TDisplayHEAD80 head,
+          _TTS_PM_TVarDesc       varDesc[11]
+
+  #struct _TTS_PM_D80_V12
+          _TTS_PM_TDisplayHEAD80 head,
+          _TTS_PM_TVarDesc       varDesc[12]
+
+  #struct _TTS_PM_D80_V13
+          _TTS_PM_TDisplayHEAD80 head,
+          _TTS_PM_TVarDesc       varDesc[13]
+
+  #struct _TTS_PM_D80_V14
+          _TTS_PM_TDisplayHEAD80 head,
+          _TTS_PM_TVarDesc       varDesc[14]
+
+  #struct _TTS_PM_D80_V15
+          _TTS_PM_TDisplayHEAD80 head,
+          _TTS_PM_TVarDesc       varDesc[15]
+
+  #struct _TTS_PM_D80_V16
+          _TTS_PM_TDisplayHEAD80 head,
+          _TTS_PM_TVarDesc       varDesc[16]
+
+  #struct _TTS_PM_D80_V17
+          _TTS_PM_TDisplayHEAD80 head,
+          _TTS_PM_TVarDesc       varDesc[17]
+
+  #struct _TTS_PM_D80_V18
+          _TTS_PM_TDisplayHEAD80 head,
+          _TTS_PM_TVarDesc       varDesc[18]
+
+  #struct _TTS_PM_D80_V19
+          _TTS_PM_TDisplayHEAD80 head,
+          _TTS_PM_TVarDesc       varDesc[19]
+
+  #struct _TTS_PM_D80_V20
+          _TTS_PM_TDisplayHEAD80 head,
+          _TTS_PM_TVarDesc       varDesc[20]
+
+  #struct _TTS_PM_TDisplayHEAD32
+          usint  ver,
+          usint  modulID,
+          usint  dispSize,
+          usint  numVar,
+          usint  display[32]
+
+  #struct _TTS_PM_D32_V0
+          _TTS_PM_TDisplayHEAD32 head
+
+  #struct _TTS_PM_D32_V1
+          _TTS_PM_TDisplayHEAD32 head,
+          _TTS_PM_TVarDesc       varDesc[1]
+
+  #struct _TTS_PM_D32_V2
+          _TTS_PM_TDisplayHEAD32 head,
+          _TTS_PM_TVarDesc       varDesc[2]
+
+  #struct _TTS_PM_D32_V3
+          _TTS_PM_TDisplayHEAD32 head,
+          _TTS_PM_TVarDesc       varDesc[3]
+
+  #struct _TTS_PM_D32_V4
+          _TTS_PM_TDisplayHEAD32 head,
+          _TTS_PM_TVarDesc       varDesc[4]
+
+  #struct _TTS_PM_D32_V5
+          _TTS_PM_TDisplayHEAD32 head,
+          _TTS_PM_TVarDesc       varDesc[5]
+
+  #struct _TTS_PM_D32_V6
+          _TTS_PM_TDisplayHEAD32 head,
+          _TTS_PM_TVarDesc       varDesc[6]
+
+  #struct _TTS_PM_D32_V7
+          _TTS_PM_TDisplayHEAD32 head,
+          _TTS_PM_TVarDesc       varDesc[7]
+
+  #struct _TTS_PM_D32_V8
+          _TTS_PM_TDisplayHEAD32 head,
+          _TTS_PM_TVarDesc       varDesc[8]
+
+  #struct _TTS_PM_D32_V9
+          _TTS_PM_TDisplayHEAD32 head,
+          _TTS_PM_TVarDesc       varDesc[9]
+
+  #struct _TTS_PM_D32_V10
+          _TTS_PM_TDisplayHEAD32 head,
+          _TTS_PM_TVarDesc       varDesc[10]
+
+  #struct _TTS_PM_D32_V11
+          _TTS_PM_TDisplayHEAD32 head,
+          _TTS_PM_TVarDesc       varDesc[11]
+
+  #struct _TTS_PM_D32_V12
+          _TTS_PM_TDisplayHEAD32 head,
+          _TTS_PM_TVarDesc       varDesc[12]
+
+  #struct _TTS_PM_D32_V13
+          _TTS_PM_TDisplayHEAD32 head,
+          _TTS_PM_TVarDesc       varDesc[13]
+
+  #struct _TTS_PM_D32_V14
+          _TTS_PM_TDisplayHEAD32 head,
+          _TTS_PM_TVarDesc       varDesc[14]
+
+  #struct _TTS_PM_D32_V15
+          _TTS_PM_TDisplayHEAD32 head,
+          _TTS_PM_TVarDesc       varDesc[15]
+
+  #struct _TTS_PM_D32_V16
+          _TTS_PM_TDisplayHEAD32 head,
+          _TTS_PM_TVarDesc       varDesc[16]
+
+  #struct _TTS_PM_D32_V17
+          _TTS_PM_TDisplayHEAD32 head,
+          _TTS_PM_TVarDesc       varDesc[17]
+
+  #struct _TTS_PM_D32_V18
+          _TTS_PM_TDisplayHEAD32 head,
+          _TTS_PM_TVarDesc       varDesc[18]
+
+  #struct _TTS_PM_D32_V19
+          _TTS_PM_TDisplayHEAD32 head,
+          _TTS_PM_TVarDesc       varDesc[19]
+
+  #struct _TTS_PM_D32_V20
+          _TTS_PM_TDisplayHEAD32 head,
+          _TTS_PM_TVarDesc       varDesc[20]
+
+#endif
+
+;*******************************************************************************
+;Last changes : 2017.09.05. 22:52:44
+;Generated by MOSAIC
+;© 2001-2013 Teco a.s.
+;Version : 1.4

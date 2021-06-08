@@ -1,0 +1,178 @@
+﻿<?xml version="1.0"?>
+<TecoDescriptor xmlns="http://www.tecomat.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.tecomat.com Teco_Default.xsd">
+	<Header>
+		<File>
+			<FileName>1000_CP-1000.tdd</FileName>
+			<FileCreator>Jan Martinec</FileCreator>
+			<FileCreationDate>2011-10-05</FileCreationDate>
+			<FileModifiedBy>Jan Martinec</FileModifiedBy>
+			<FileModificationDate>2019-08-22</FileModificationDate>
+			<SupportedLanguages>en cz</SupportedLanguages>
+			<FileVersion>1.9</FileVersion>
+		</File>
+		<Vendor>
+			<VendorID>00000000</VendorID>    
+			<VendorName>Teco a.s</VendorName>
+			<VendorText>
+				<label lang="en">Controllers for machine, process, building and transport</label>
+				<label lang="cz">Řídící systémy pro stroje, procesy, budovy a dopravu</label>
+			</VendorText>
+			<VendorImage>                                                            
+				<ImageData>424D760200000000000036000000280000000C0000000C000000010020000000000040020000120B0000120B00000000000000000000735300E9755500FF6E4E00FC684A00FD634500FD5E4200FD5A3D00FD583D01FD543901FD4C3101FC583D02FF4D3400E58F6800FF8F6800FF886200FF7F5C00FF7A5500FF725100FF6E4E01FF664500FF664806FF7A6133FF563600FF5D4203FF9B7000FD9C7000FF946A00FF8C6500FF855E00FF7F5C02FF765304FF674400FFD0C6ACFFF7F5F3FF7A6030FF4F3000FDA87B02FDAC7C00FFA37600FF9C7100FF956C01FF8B6301FF7C5501FFD4C9ABFFFFFFFFFFE9E7E0FFEEEAE2FF796234FDB37F00FDBB8901FFB38200FFAC7E01FFA47501FF956800FFD6C8A2FFFFFFFFFFA49067FF795A16FFE8E5DDFFE5E3DEFDCEA94AFDC58A00FFC19005FFBD8704FFAC7900FFE0D1A6FFFEFFFFFFB39C6BFF885B00FF875C00FF876A27FFDADADAFBFBF9F2FDD7B24FFFCB8B00FFC18A03FFE7D8ABFFFFFFFFFFBEA467FFA16C00FFA67905FF9D7202FF916600FF81641EFCDFD8C2FDFEFCF5FFDAB252FFE8D49EFFFBFFFFFFC9AE6EFFB97F00FFBD8A02FFB28101FFAA7B00FFA67802FF906701FDC2900FFDE5DCC1FFFFFFFFFFF8F9F9FFD0B36BFFCC8C00FFD09804FFC79100FFC18D00FFB98700FFB48300FF9F7502FDDF9F00FDD49C15FFE1DBC2FFD9BB71FFD89400FFDCA005FFD59B00FFD29700FFCD9400FFC69100FFC28E00FFAC8002FDDEA301FFF2AC00FFDA9E0AFFE29E01FFE7A701FFE1A301FFDEA000FFD99C00FFD69A00FFD19700FFCF9600FFB88701FEDEA404DDEBAD06F3EDAE04F0EAAD07F1E5A805F1E4A605F1E0A405F1DEA205F1DA9F05F1D69D05F0D69C06F4BF8D02D8</ImageData>
+			</VendorImage>
+			<ProductCode>1000</ProductCode>
+			<ProductName>CP-1000</ProductName>
+			<OrderNumber>TXN 110 00</OrderNumber>         
+		</Vendor>
+	</Header>
+	<Device>
+		<DeviceGroup>CPU</DeviceGroup>
+		<DeviceFamily>FOXTROT</DeviceFamily>
+		<DeviceName>CP-1000</DeviceName>
+    <DeviceAlias>
+      <label lang="en">Central Unit</label>
+      <label lang="cz">Centrální jednotka</label>            
+    </DeviceAlias>    
+		<DeviceText>
+			<label lang="en">Foxtrot Central Device</label>
+			<label lang="cz">Centrální jednotka Foxtrot</label>
+		</DeviceText>
+		<DeviceImage>
+			<ImageData>424DE60100000000000036000000280000000C0000000C0000000100180000000000B001000000000000000000000000000000000000FFFFFF3883184CB1223883184CB122388318A0A0A03883184CB1223883184CB122388318FFFFFF4CB1224CB1224CB1224CB1224CB122A0A0A04CB1224CB1224CB1224CB1224CB122FFFFFF7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7FFFFFFFC3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3FFFFFFC3C3C3C3C3C3C3C3C3C3C3C382B4FFC3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3FFFFFFC3C3C37F7F7F7F7F7F82B4FF277FFF82B4FFC3C3C3C3C3C3C3C3C3C3C3C3C3C3C3FFFFFFC3C3C37F7F7F7F7F7F82B4FF277FFF82B4FFC3C3C3C3C3C3C3C3C3C3C3C3C3C3C3FFFFFFC3C3C3C3C3C3C3C3C3C3C3C382B4FFC3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3FFFFFFC3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3FFFFFF7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7FFFFFFF4CB1224CB1224CB1224CB1224CB122A0A0A04CB1224CB1224CB1224CB1224CB122FFFFFF3883184CB1223883184CB122388318A0A0A03883184CB1223883184CB122388318</ImageData>
+			<ImageFile URI="IMAGES\190_127_FOXTROT_CP-1000_02.jpg"/>
+		</DeviceImage>
+    <SerialChannels Expandable="3">
+      <Channel Options="PC PLC UNI MPC MDB PFB"/>       
+    </SerialChannels>
+    <Ethernets>
+      <Ethernet>
+        <Channel Options="PC"/>     
+        <Channel Options="PLC"/>
+        <Channel Options="PLCx"/>
+        <Channel Options="BAC"/>
+        <Channel Options="UNI" Total="8"/>
+      </Ethernet>     
+    </Ethernets> 
+    <Piggybacks Slots="1"/>            
+		<Interfaces>
+			<Interface Class="TCL2" SubClass="INTERN" RackRange="1" PositionRange="8" StartRack="0" StartPosition="1" EndRack="0" EndPosition="7">
+        <InterfaceAlias>
+          <label lang="en">Internal bus</label>
+          <label lang="cz">Interní sběrnice</label>            
+        </InterfaceAlias>
+				<InterfaceImage>
+					<ImageData>424DE60100000000000036000000280000000C0000000C0000000100180000000000B001000000000000000000000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF241CED241CED241CED241CED241CED241CED241CED241CED241CED241CED241CED241CED241CED241CEDE8E8E8241CED241CEDE8E8E8E8E8E8E8E8E8241CEDE8E8E8E8E8E8241CED241CED241CEDE8E8E8241CED241CEDE8E8E8241CEDE8E8E8241CEDE8E8E8241CED241CED241CED241CEDE8E8E8241CED241CEDE8E8E8241CED241CED241CEDE8E8E8241CED241CED241CED241CEDE8E8E8241CED241CEDE8E8E8241CED241CED241CEDE8E8E8241CED241CED241CED241CEDE8E8E8241CED241CEDE8E8E8241CED241CED241CEDE8E8E8241CED241CED241CED241CEDE8E8E8241CED241CEDE8E8E8241CEDE8E8E8241CEDE8E8E8241CED241CED241CEDE8E8E8E8E8E8E8E8E8241CEDE8E8E8E8E8E8E8E8E8241CEDE8E8E8241CED241CED241CED241CED241CED241CED241CED241CED241CED241CED241CED241CED241CED241CEDFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF</ImageData>
+				</InterfaceImage>
+				<Sockets>
+					<Socket DeviceGroup="CFM" Rack="0" Position="2" Length="1" Total="2" RackOffset="0"/>
+					<Socket DeviceGroup="IO" Rack="0" Position="5" Length="1"/>
+				</Sockets>
+        <DefaultModules>
+          <DefaultModule Rack="0" Position="2">
+            <Variant>
+              <ProductCode>1141</ProductCode>
+              <ProductName>CF-1140</ProductName>
+              <Descriptor>1141_CF-1140.tdd</Descriptor>
+            </Variant>  
+            <Variant>
+              <ProductCode>3128</ProductCode>
+              <ProductName>MI2-01M</ProductName>
+              <Descriptor>3128_MI2-01M.tdd</Descriptor>
+            </Variant>            
+          </DefaultModule>      
+          <DefaultModule Rack="0" Position="3">
+            <Variant>
+              <ProductCode>1141</ProductCode>
+              <ProductName>CF-1140</ProductName>
+              <Descriptor>1141_CF-1140.tdd</Descriptor>
+            </Variant>  
+            <Variant>
+              <ProductCode>3128</ProductCode>
+              <ProductName>MI2-01M</ProductName>
+              <Descriptor>3128_MI2-01M.tdd</Descriptor>
+            </Variant>            
+          </DefaultModule> 
+          <DefaultModule Rack="0" Position="5">
+            <Variant>
+              <ProductCode>1061</ProductCode>
+              <ProductName>IR-1061</ProductName>
+              <Descriptor>1061_IR-1061.tdd</Descriptor>
+            </Variant>            
+          </DefaultModule>   
+        </DefaultModules>        
+			</Interface>
+			<Interface Class="TCL2" SubClass="EXTERN" RackRange="4" PositionRange="16" StartRack="0" StartPosition="8" EndRack="3" EndPosition="15" CompatibleBusID="1020">
+				<InterfaceAlias>
+          <label lang="en">External bus</label>
+          <label lang="cz">Externí sběrnice</label>            
+        </InterfaceAlias>
+        <InterfaceImage>
+					<ImageData>424DE60100000000000036000000280000000C0000000C0000000100180000000000B001000000000000000000000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF241CED241CED241CED241CED241CED241CED241CED241CED241CED241CED241CED241CED241CED241CEDE8E8E8241CED241CEDE8E8E8E8E8E8E8E8E8241CEDE8E8E8E8E8E8241CED241CED241CEDE8E8E8241CED241CEDE8E8E8241CEDE8E8E8241CEDE8E8E8241CED241CED241CED241CEDE8E8E8241CED241CEDE8E8E8241CED241CED241CEDE8E8E8241CED241CED241CED241CEDE8E8E8241CED241CEDE8E8E8241CED241CED241CEDE8E8E8241CED241CED241CED241CEDE8E8E8241CED241CEDE8E8E8241CED241CED241CEDE8E8E8241CED241CED241CED241CEDE8E8E8241CED241CEDE8E8E8241CEDE8E8E8241CEDE8E8E8241CED241CED241CEDE8E8E8E8E8E8E8E8E8241CEDE8E8E8E8E8E8E8E8E8241CEDE8E8E8241CED241CED241CED241CED241CED241CED241CED241CED241CED241CED241CED241CED241CED241CEDFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF</ImageData>
+				</InterfaceImage>
+				<Sockets>
+					<Socket DeviceGroup="DISP" Rack="0" Position="8" Length="1" Total="4"/>
+					<Socket DeviceGroup="IO" Rack="1" Position="0" Length="1" Total="16"/>
+					<Socket DeviceGroup="CFM" Rack="3" Position="0" Length="1" Total="8" RackOffset="2"/>               
+					<Socket DeviceGroup="RFM" Rack="3" Position="0" Length="1" RackOffset="2"/>
+					<Socket DeviceGroup="RFM" Rack="3" Position="2" Length="1" RackOffset="4"/>
+					<Socket DeviceGroup="RFM" Rack="3" Position="4" Length="1" RackOffset="6"/>
+					<Socket DeviceGroup="RFM" Rack="3" Position="6" Length="1" RackOffset="8"/>
+					<Socket DeviceGroup="SC" Rack="3" Position="8" Length="1" Total="6"/>
+          <Socket DeviceGroup="SC_DISP" Rack="3" Position="8" Length="1" Total="6"/>
+				</Sockets>
+			</Interface>
+      <Interface Class="RF2" BusID="40" PositionRange="64" StartPosition="0" EndPosition="64" Icon="rf2_interface" ChannelRefOnly="true">
+        <InterfaceAlias>
+          <label lang="en">RFox2 bus</label>
+			    <label lang="cz">RFox2 sběrnice</label>
+        </InterfaceAlias>
+				<Sockets>
+					<Socket DeviceGroup="RFOX2" Position="0" Total="64"/>
+				</Sockets>
+			</Interface>
+		</Interfaces>
+		<Firmwares>
+			<Firmware KeyName="CP-1000">
+				<File>teco1000.tfw</File>
+				<History>CP_class_K.txt</History>
+			</Firmware>
+			<Firmware KeyName="system_WWW">
+				<File>www1000.tfw</File>
+				<History>CP_class_K.txt</History>
+			</Firmware>
+		</Firmwares>
+    <HelpFiles>
+      <HelpFile key="CP1000" lang="cz">CSY_CP1000.chm</HelpFile>    
+      <HelpFile key="CP1000" lang="en">ENU_CP1000.chm</HelpFile>
+    </HelpFiles>    
+    <!-- Hardware description -->
+    <Hardware>
+      <Specification>
+        <SystemID>17</SystemID> <!-- tsTC1000 -->
+        <CpmID>9</CpmID> <!-- cpm700K -->
+        <DataboxLen>524288</DataboxLen>
+        <ProgCodeLen>196608</ProgCodeLen>                                
+      </Specification>      
+    </Hardware>
+    <Dictionary> 
+      <Include>CommonDataTypes.tod</Include> 
+      <Objects>
+        <Object index="#x0000" name="CPU_TYPE" type="USINT" access="rw">
+          <Comment>
+            <label lang="en">CPU type</label>
+            <label lang="cz">Typ CPU</label>            
+          </Comment>          
+          <DefaultValue>75</DefaultValue>
+        </Object>
+        
+        <Object index="#x0001" name="CPU_CODE" type="UINT" access="rw">
+          <Comment>
+            <label lang="en">CPU code</label>   
+            <label lang="cz">Kód CPU</label>         
+          </Comment> 
+          <DefaultValue>1000</DefaultValue>
+        </Object>
+      </Objects>
+    </Dictionary>
+  </Device>
+</TecoDescriptor>   

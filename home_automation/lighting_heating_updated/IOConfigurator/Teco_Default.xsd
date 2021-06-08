@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.tecomat.com" xmlns="http://www.tecomat.com" elementFormDefault="qualified">     
+  
+  <xsd:include schemaLocation="Teco_CommonTypes.xsd"/>
+  <xsd:include schemaLocation="Teco_Dictionary.xsd"/>
+  <!-- <xsd:include schemaLocation="Teco_Process.xsd"/> -->
+  <xsd:include schemaLocation="Teco_Hardware.xsd"/>
+              
+  <!-- Base element -->
+  <xsd:element name="TecoDescriptor" type="TDescriptor"/>
+   
+  <!-- TDescriptor -->
+  <xsd:complexType name="TDescriptor">
+    <xsd:sequence>
+      <xsd:element name="Header" type="THeader" maxOccurs="1" minOccurs="1"/>   
+      <xsd:choice>
+        <xsd:element name="Device" type="TDeviceDescriptor" maxOccurs="1" minOccurs="0"/>
+        <xsd:element name="SerialChannel" type="TSerialChannelDescriptor" maxOccurs="1" minOccurs="0"/>
+        <xsd:element name="EthernetChannel" type="TEthernetChannelDescriptor" maxOccurs="1" minOccurs="0"/>  
+        <xsd:element name="Piggyback" type="TDeviceDescriptor" maxOccurs="1" minOccurs="0"/>      
+      </xsd:choice>      
+    </xsd:sequence>
+  </xsd:complexType>
+  
+  <!-- HeaderType -->
+  <xsd:complexType name="THeader">
+    <xsd:all>
+      <xsd:element name="File" type="TFile" maxOccurs="1" minOccurs="1"/> 
+      <xsd:element name="Vendor" type="TVendor" maxOccurs="1" minOccurs="0"/>
+    </xsd:all>
+  </xsd:complexType>
+  
+  <!-- TFile -->
+  <xsd:complexType name="TFile">
+    <xsd:all>
+      <xsd:element name="FileName" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="FileCreator" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="FileCreationDate" type="xsd:date" minOccurs="0"/>
+      <xsd:element name="FileModifiedBy" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="FileModificationDate" type="xsd:date" minOccurs="0"/>
+      <xsd:element name="SupportedLanguages" default="en">
+        <xsd:simpleType>
+          <xsd:list itemType="xsd:language"/>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element name="FileVersion" type="xsd:string"/>
+    </xsd:all>
+  </xsd:complexType>
+  
+  <!-- TVendor -->
+  <xsd:complexType name="TVendor">
+    <xsd:all>
+      <xsd:element name="VendorID" type="xsd:hexBinary" minOccurs="1"/>
+      <xsd:element name="VendorName" type="xsd:string" minOccurs="1"/>
+      <xsd:element name="VendorText" type="TLabels" minOccurs="0"/>
+      <xsd:element name="VendorImage" type="TImages" minOccurs="0"/>
+      <xsd:element name="ProductCode" type="xsd:unsignedInt" minOccurs="1"/>
+      <xsd:element name="ProductName" type="xsd:string" minOccurs="1"/>
+      <xsd:element name="OrderNumber" type="xsd:string" minOccurs="0"/>
+    </xsd:all>
+  </xsd:complexType> 
+  
+  <!-- TDeviceDescriptor -->
+  <xsd:complexType name="TDeviceDescriptor">
+    <xsd:all>
+      <xsd:element name="DeviceGroup" type="TDeviceGroupEnum"/>    
+      <xsd:element name="DeviceFamily" type="TDeviceFamilyEnum" minOccurs="0"/>
+      <xsd:element name="DeviceName" type="xsd:string"/>
+      <xsd:element name="Distribution" type="TDeviceDistributionEnum" minOccurs="0" default="PUBLIC"/>
+      <xsd:element name="DeviceAlias" type="TLabels" minOccurs="0"/>
+      <xsd:element name="DeviceText" type="TLabels" minOccurs="0"/>
+      <xsd:element name="DeviceImage" type="TImages" minOccurs="0"/>
+      <xsd:element name="SerialChannels" type="TSerialChannels" minOccurs="0"/>
+      <xsd:element name="Ethernets" type="TEthernets" minOccurs="0"/>
+      <xsd:element name="Piggybacks" type="TPiggybacks" minOccurs="0"/>
+      <xsd:element name="Interfaces" type="TInterfaces" minOccurs="0"/> 
+      <xsd:element name="InterfacePlugs" type="TInterfacePlugs" minOccurs="0"/>
+      <xsd:element name="Firmwares" type="TFirmwares" minOccurs="0"/>
+      <xsd:element name="Dictionary" type="TDictionary" minOccurs="0"/>    
+      <xsd:element name="Hardware" type="THardware" minOccurs="0"/> 
+      <xsd:element name="HelpFiles" type="THelpFiles" minOccurs="0"/> 
+      <xsd:element name="DisplayInfo" type="TDisplayInfo" minOccurs="0"/>
+      <xsd:element name="Mounts" type="TMounts" minOccurs="0"/>
+    </xsd:all>
+  </xsd:complexType>
+  
+  <!-- TSerialChannelDescriptor -->
+  <xsd:complexType name="TSerialChannelDescriptor">
+    <xsd:all>
+      <xsd:element name="Mode" type="TSerialChannelModeEnum"/>
+      <xsd:element name="Distribution" type="TDeviceDistributionEnum" minOccurs="0" default="PUBLIC"/>
+      <xsd:element name="Alias" type="TLabels" minOccurs="0"/>    
+      <xsd:element name="Description" type="TLabels" minOccurs="0"/>
+      <xsd:element name="Image" type="TImages" minOccurs="0"/>
+      <xsd:element name="Interfaces" type="TInterfaces" minOccurs="0"/> 
+      <xsd:element name="Dictionary" type="TDictionary" minOccurs="0"/>
+      <xsd:element name="HelpFiles" type="THelpFiles" minOccurs="0"/>    
+    </xsd:all>
+  </xsd:complexType>
+  
+  <!-- TEthernetChannelDescriptor -->
+  <xsd:complexType name="TEthernetChannelDescriptor">
+    <xsd:all>
+      <xsd:element name="Mode" type="TEthernetChannelModeEnum"/> 
+      <xsd:element name="Distribution" type="TDeviceDistributionEnum" minOccurs="0" default="PUBLIC"/>
+      <xsd:element name="Alias" type="TLabels" minOccurs="0"/>   
+      <xsd:element name="Description" type="TLabels" minOccurs="0"/>
+      <xsd:element name="Image" type="TImages" minOccurs="0"/>
+      <xsd:element name="Interfaces" type="TInterfaces" minOccurs="0"/> 
+      <xsd:element name="Dictionary" type="TDictionary" minOccurs="0"/>
+      <xsd:element name="HelpFiles" type="THelpFiles" minOccurs="0"/>    
+    </xsd:all>
+  </xsd:complexType>
+  
+</xsd:schema> 

@@ -1,0 +1,578 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.tecomat.com" xmlns="http://www.tecomat.com" elementFormDefault="qualified">
+  
+  <!-- Common types -->
+  <!-- TLabels -->
+  <xsd:complexType name="TLabels">
+    <xsd:group ref="GLabels"/>
+    <xsd:attribute name="fixed" type="xsd:boolean" use="optional" default="false"/>
+    <xsd:attribute name="warn" type="xsd:boolean" use="optional" default="false"/>
+  </xsd:complexType>
+  
+  <!-- TImages -->
+  <xsd:complexType name="TImages">
+    <xsd:group ref="GImages"/>
+  </xsd:complexType>
+  
+  <!-- TDeviceGroupEnum -->
+  <xsd:simpleType name="TDeviceGroupEnum">
+    <xsd:restriction base="xsd:NMTOKEN">
+      <xsd:enumeration value="UNDEF"/>
+      <xsd:enumeration value="CPU"/>
+      <xsd:enumeration value="DISP"/>
+      <xsd:enumeration value="IO"/>
+      <xsd:enumeration value="CFM"/>
+      <xsd:enumeration value="RFM"/>
+      <xsd:enumeration value="CFOX"/>
+      <xsd:enumeration value="RFOX"/>
+      <xsd:enumeration value="SC"/>
+      <xsd:enumeration value="SC_DISP"/>
+      <xsd:enumeration value="IOP"/>
+      <xsd:enumeration value="USB"/>
+      <xsd:enumeration value="CPU_DISP"/>
+      <xsd:enumeration value="PGB"/>
+      <xsd:enumeration value="GWTCL3"/>
+      <xsd:enumeration value="GWTCL2"/>
+      <xsd:enumeration value="GWTCIB"/>
+      <xsd:enumeration value="RFOX2"/>
+    </xsd:restriction>
+  </xsd:simpleType>     
+  
+  <!-- TDeviceFamilyEnum -->
+  <xsd:simpleType name="TDeviceFamilyEnum">
+    <xsd:restriction base="xsd:NMTOKEN">
+      <xsd:enumeration value="UNKNOWN"/>
+      <xsd:enumeration value="FOXTROT"/>
+      <xsd:enumeration value="FOXTROT2"/>
+      <xsd:enumeration value="TC700"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  
+  <!-- TDeviceDistributionEnum -->
+  <xsd:simpleType name="TDeviceDistributionEnum">
+    <xsd:restriction base="xsd:NMTOKEN">
+      <xsd:enumeration value="PUBLIC"/>
+      <xsd:enumeration value="OEM"/>       
+      <xsd:enumeration value="BOOT"/>
+      <xsd:enumeration value="OBSOLETE"/>
+      <xsd:enumeration value="HIDDEN"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  
+  <!-- TInterfaceClassEnum -->
+  <xsd:simpleType name="TInterfaceClassEnum">
+    <xsd:restriction base="xsd:NMTOKEN">
+      <xsd:enumeration value="UNDEF"/>
+      <xsd:enumeration value="IBUS"/>
+      <xsd:enumeration value="TCL1"/>
+      <xsd:enumeration value="TCL2"/>
+      <xsd:enumeration value="TCL3"/>
+      <xsd:enumeration value="TC600"/>
+      <xsd:enumeration value="EXPAND"/>
+      <xsd:enumeration value="CIB"/>
+      <xsd:enumeration value="RF"/>
+      <xsd:enumeration value="RF2"/>
+      <xsd:enumeration value="USB"/>
+      <xsd:enumeration value="EBUS"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  
+  <!-- TInterfaceSubClassEnum -->
+  <xsd:simpleType name="TInterfaceSubClassEnum">
+    <xsd:restriction base="xsd:NMTOKEN">
+      <xsd:enumeration value="UNDEF"/>
+      <xsd:enumeration value="INTERN"/>
+      <xsd:enumeration value="EXTERN"/>
+      <xsd:enumeration value="A"/>
+      <xsd:enumeration value="B"/>
+      <xsd:enumeration value="ETH1"/>
+      <xsd:enumeration value="ETH2"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  
+  <!-- TChannelModeEnum -->
+  <xsd:simpleType name="TSerialChannelModeEnum">
+    <xsd:restriction base="xsd:NMTOKEN">
+      <xsd:enumeration value="PC"/>
+      <xsd:enumeration value="PLC"/>
+      <xsd:enumeration value="UNI"/>
+      <xsd:enumeration value="MPC"/>
+      <xsd:enumeration value="MDB"/>
+      <xsd:enumeration value="PFB"/>
+      <xsd:enumeration value="ID-COM"/>
+      <xsd:enumeration value="UPD"/>
+      <xsd:enumeration value="CSJ"/>
+      <xsd:enumeration value="CSJ2"/>
+      <xsd:enumeration value="PLD"/>
+      <xsd:enumeration value="PLCx"/>
+      <xsd:enumeration value="RF2"/>
+    </xsd:restriction>    
+  </xsd:simpleType> 
+  
+  <!-- TDisplayModeEnum -->
+  <xsd:simpleType name="TDisplayModeEnum">
+    <xsd:restriction base="xsd:NMTOKEN">
+      <xsd:enumeration value="TEXT"/>
+      <xsd:enumeration value="GRAPHIC"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  
+  <!-- TSerialChannelModeList -->
+  <xsd:simpleType name="TSerialChannelModeList">
+    <xsd:list itemType="TSerialChannelModeEnum"/>
+  </xsd:simpleType>   
+  
+  <!-- TStringList -->
+  <xsd:simpleType name="TStringList">
+    <xsd:list itemType="xsd:string"/>
+  </xsd:simpleType>
+  
+  <!-- TEthSocketModeEnum -->
+  <xsd:simpleType name="TEthernetChannelModeEnum">
+    <xsd:restriction base="xsd:NMTOKEN">
+      <xsd:enumeration value="PC"/>
+      <xsd:enumeration value="PLC"/>
+      <xsd:enumeration value="UNI"/>
+      <xsd:enumeration value="BAC"/>     
+      <xsd:enumeration value="TCL3OE"/>
+      <xsd:enumeration value="PLD"/>
+      <xsd:enumeration value="PLCx"/>
+    </xsd:restriction>    
+  </xsd:simpleType>
+  
+  <!-- TSerialChannelModeList -->
+  <xsd:simpleType name="TEthernetChannelModeList">
+    <xsd:list itemType="TEthernetChannelModeEnum"/>
+  </xsd:simpleType>
+  
+  <!-- THexDecValue -->
+  <xsd:simpleType name="THexDecValue">
+    <xsd:restriction base="xsd:string">
+      <xsd:pattern value="[+-]?[0-9]{1,}([.,]?[0-9]{1,}){0,1}"/>
+      <xsd:pattern value="#x[0-9|a-f|A-F]{1,}"/>
+      <xsd:pattern value="0x[0-9|a-f|A-F]{1,}"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  
+  <xsd:simpleType name="TRange">
+    <xsd:restriction base="xsd:string">
+      <xsd:pattern value="[0-9]{1,}..[0-9]{1,}"/>
+    </xsd:restriction>
+  </xsd:simpleType>  
+        
+  <!-- TInterfaces -->
+  <xsd:complexType name="TInterfaces">
+    <xsd:group ref="GInterfaces"/>  
+  </xsd:complexType>
+  
+  <!-- GInterfaces group -->
+  <xsd:group name="GInterfaces">
+    <xsd:sequence>
+      <xsd:element name="Interface" type="TInterface" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:group>
+  
+  <!-- TInterface -->
+  <xsd:complexType name="TInterface">
+    <xsd:all>
+      <xsd:element name="InterfaceAlias" type="TLabels" minOccurs="0"/>
+      <xsd:element name="InterfaceImage" type="TImages" minOccurs="0"/>
+      <xsd:element name="Sockets" type="TSockets"/>
+      <xsd:element name="DefaultModules" type="TDefaultModules" minOccurs="0"/>
+    </xsd:all>
+    <xsd:attribute name="Class" type="TInterfaceClassEnum" use="required"/>
+    <xsd:attribute name="SubClass" type="TInterfaceSubClassEnum" use="optional" default="UNDEF"/>
+    <xsd:attribute name="RackRange" type="xsd:nonNegativeInteger" use="optional" default="1"/>
+    <xsd:attribute name="PositionRange" type="xsd:nonNegativeInteger" use="required"/>
+    <xsd:attribute name="StartRack" type="xsd:nonNegativeInteger" use="optional"/>
+    <xsd:attribute name="StartPosition" type="xsd:nonNegativeInteger" use="required"/>
+    <xsd:attribute name="EndRack" type="xsd:nonNegativeInteger" use="optional"/>
+    <xsd:attribute name="EndPosition" type="xsd:nonNegativeInteger" use="required"/>
+    <xsd:attribute name="Port" type="xsd:nonNegativeInteger" use="optional" default="0"/>
+    <xsd:attribute name="Plug" type="xsd:nonNegativeInteger" use="optional"/>
+    <xsd:attribute name="BusID" type="xsd:hexBinary" use="optional"/>
+    <xsd:attribute name="CompatibleBusID" type="xsd:string" use="optional"/>
+    <xsd:attribute name="System" type="xsd:string" use="optional"/>
+    <xsd:attribute name="Mount" type="xsd:string" use="optional"/>
+    <xsd:attribute name="Icon" type="xsd:string" use="optional"/>
+    <xsd:attribute name="StatObject" type="xsd:string" use="optional"/>
+    <xsd:attribute name="ErrObject" type="xsd:string" use="optional"/>
+    <xsd:attribute name="ValidStat" type="xsd:hexBinary" use="optional"/>
+    <xsd:attribute name="ChannelRefOnly" type="xsd:boolean" use="optional" default="false"/>
+    <xsd:attribute name="DefaultExcluded" type="xsd:boolean" use="optional" default="false"/> 
+    <xsd:attribute name="ExcludedObject" type="xsd:string" use="optional"/>
+  </xsd:complexType>           
+  
+  <!-- TSockets -->
+  <xsd:complexType name="TSockets">
+    <xsd:group ref="GSockets"/>
+  </xsd:complexType>
+  
+  <!-- GSockets -->
+  <xsd:group name="GSockets">
+    <xsd:sequence>
+      <xsd:element name="Socket" type="TSocket" minOccurs="1" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:group>
+  
+  <!-- TSocket -->
+  <xsd:complexType name="TSocket">
+    <xsd:attribute name="DeviceGroup" type="TDeviceGroupEnum" use="required"/>
+    <xsd:attribute name="Rack" type="xsd:nonNegativeInteger" use="optional"/>
+    <xsd:attribute name="Position" type="xsd:nonNegativeInteger" use="required"/>
+    <xsd:attribute name="Length" type="xsd:nonNegativeInteger" use="optional" default="1"/>   
+    <xsd:attribute name="Total" type="xsd:nonNegativeInteger" use="optional" default="1"/>
+    <xsd:attribute name="CIBOffset" type="xsd:nonNegativeInteger" use="optional"/>
+    <xsd:attribute name="RackOffset" type="xsd:nonNegativeInteger" use="optional" default="0"/>
+    <xsd:attribute name="Segmentation" use="optional" default="1">
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:unsignedInt">
+          <xsd:minInclusive value="1"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:attribute>
+  </xsd:complexType>
+  
+  <!-- TDefaultModules -->
+  <xsd:complexType name="TDefaultModules">
+    <xsd:group ref="GDefaultModules"/>
+  </xsd:complexType>
+  
+  <!-- GDefaultModules -->
+  <xsd:group name="GDefaultModules">
+    <xsd:sequence>
+      <xsd:element name="DefaultModule" type="TDefaultModule" minOccurs="1" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:group>
+  
+  <!-- TDefaultModule -->
+  <xsd:complexType name="TDefaultModule">
+    <xsd:sequence>
+      <xsd:element name="Variant" type="TVariant" minOccurs="1" maxOccurs="unbounded"/>
+    </xsd:sequence>
+    <xsd:attribute name="Rack" type="xsd:nonNegativeInteger" use="required"/>
+    <xsd:attribute name="Position" type="xsd:nonNegativeInteger" use="required"/>
+    <xsd:attribute name="AskForVariant" type="xsd:boolean" use="optional" default="false"/>
+  </xsd:complexType>
+  
+  <!-- TVariants -->
+  <xsd:complexType name="TVariants">
+    <xsd:group ref="GVariants"/>
+  </xsd:complexType>
+  
+  <!-- GVariants -->
+  <xsd:group name="GVariants">
+    <xsd:sequence>
+      <xsd:element name="Variant" type="TVariant" minOccurs="1" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:group>
+  
+  <!-- TVariant -->
+  <xsd:complexType name="TVariant">
+    <xsd:sequence>
+      <xsd:element name="ProductCode" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="ProductName" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="Descriptor" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+    <xsd:attribute name="name" type="xsd:string" use="optional"/>
+  </xsd:complexType>
+  
+  <!-- TInterfacePlugs -->
+  <xsd:complexType name="TInterfacePlugs">
+    <xsd:group ref="GInterfacePlugs"/>  
+  </xsd:complexType>
+  
+  <!-- GInterfacePlugs group -->
+  <xsd:group name="GInterfacePlugs">
+    <xsd:sequence>
+      <xsd:element name="Plug" type="TPlug" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:group>
+  
+  <!-- TPlug -->
+  <xsd:complexType name="TPlug">
+    <xsd:attribute name="index" type="xsd:nonNegativeInteger" use="optional"/>
+    <xsd:attribute name="InterfaceClass" type="TInterfaceClassEnum" use="required"/>
+    <xsd:attribute name="InterfaceSubClass" type="TInterfaceSubClassEnum" use="optional" default="UNDEF"/>
+    <xsd:attribute name="Length" type="xsd:nonNegativeInteger" use="required"/>
+    <xsd:attribute name="Grouped" type="xsd:nonNegativeInteger" use="optional" default="1"/>
+    <xsd:attribute name="minAddr" type="xsd:nonNegativeInteger" use="optional"/>
+    <xsd:attribute name="maxAddr" type="xsd:nonNegativeInteger" use="optional"/>
+    <xsd:attribute name="System" type="xsd:string" use="optional"/>
+  </xsd:complexType>
+  
+  <!-- TSerialChannels -->
+  <xsd:complexType name="TSerialChannels">
+    <xsd:group ref="GSerialChannels"/>
+    <xsd:attribute name="Expandable" type="xsd:unsignedInt" use="optional"/>
+  </xsd:complexType>
+  
+  <!-- GSerialChannels group -->
+  <xsd:group name="GSerialChannels">
+    <xsd:sequence>
+      <xsd:element name="Channel" type="TSerialChannel" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>    
+  </xsd:group>  
+  
+  <!-- TSerialChannel -->
+  <xsd:complexType name="TSerialChannel">   
+    <xsd:sequence>
+      <xsd:element name="DefaultModes" type="TDefaultModes" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence> 
+    <xsd:attribute name="Options" type="TSerialChannelModeList" use="optional"/> 
+    <xsd:attribute name="Ports" type="TStringList" use="optional"/>   
+    <xsd:attribute name="DefaultName" type="xsd:string" use="optional"/>
+    <xsd:attribute name="DefaultSysMap" type="TStringList" use="optional"/>
+    <xsd:attribute name="DefaultSysMapCode" type="TStringList" use="optional"/>
+    <xsd:attribute name="SysMapObject" type="TStringList" use="optional"/>
+    <xsd:attribute name="System" type="xsd:string" use="optional"/>
+    <xsd:attribute name="Mount" type="xsd:string" use="optional"/>
+    <xsd:attribute name="Icon" type="xsd:string" use="optional"/>
+    <xsd:attribute name="DefaultExcluded" type="xsd:boolean" use="optional" default="false"/> 
+    <xsd:attribute name="ExcludedObject" type="xsd:string" use="optional"/>
+  </xsd:complexType>  
+  
+  <!-- TDefaultModes -->
+  <xsd:complexType name="TDefaultModes">
+    <xsd:group ref="GDefaultModes"/>
+    <xsd:attribute name="AskForVariant" type="xsd:boolean" use="optional" default="false"/>
+  </xsd:complexType>
+  
+  <!-- GDefaultModes -->
+  <xsd:group name="GDefaultModes">
+    <xsd:sequence>
+      <xsd:element name="DefaultMode" type="TDefaultMode" minOccurs="1" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:group>
+  
+  <!-- TDefaultMode -->
+  <xsd:complexType name="TDefaultMode">
+    <xsd:sequence>
+      <xsd:element name="Mode" type="TSerialChannelModeEnum" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="Descriptor" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+    <xsd:attribute name="Port" type="xsd:unsignedInt" use="optional" default="0"/>
+  </xsd:complexType>
+  
+  <!-- TEthernets -->
+  <xsd:complexType name="TEthernets">
+    <xsd:group ref="GEthernets"/>
+    <xsd:attribute name="Expandable" type="xsd:unsignedInt" use="optional"/>
+  </xsd:complexType>
+  
+  <!-- GEthernets group -->
+  <xsd:group name="GEthernets">
+    <xsd:sequence>
+      <xsd:element name="Ethernet" type="TEthernet" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>   
+  </xsd:group>  
+  
+  <!-- TEthernet -->
+  <xsd:complexType name="TEthernet">
+    <xsd:group ref="GEthernet"/>
+    <xsd:attribute name="DefaultName" type="xsd:string" use="optional"/>
+    <xsd:attribute name="DefaultSysMap" type="TStringList" use="optional"/>
+    <xsd:attribute name="DefaultSysMapCode" type="TStringList" use="optional"/>
+    <xsd:attribute name="SysMapObject" type="TStringList" use="optional"/>
+    <xsd:attribute name="System" type="xsd:string" use="optional"/> 
+    <xsd:attribute name="Mount" type="xsd:string" use="optional"/>
+    <xsd:attribute name="Icon" type="xsd:string" use="optional"/>
+    <xsd:attribute name="DefaultExcluded" type="xsd:boolean" use="optional" default="false"/> 
+    <xsd:attribute name="ExcludedObject" type="xsd:string" use="optional"/>
+  </xsd:complexType>
+  
+  <!-- GEthernet group -->
+  <xsd:group name="GEthernet">
+    <xsd:sequence>
+      <xsd:element name="Channel" type="TEthernetChannel" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>    
+  </xsd:group>
+  
+  <!-- TEthernetChannel -->
+  <xsd:complexType name="TEthernetChannel">     
+    <xsd:sequence>
+      <xsd:element name="DefaultModes" type="TDefaultModes" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+    <xsd:attribute name="Options" type="TEthernetChannelModeList" use="optional"/>
+    <xsd:attribute name="Ports" type="TStringList" use="optional"/>   
+    <xsd:attribute name="DefaultName" type="xsd:string" use="optional"/>
+    <xsd:attribute name="DefaultSysMap" type="TStringList" use="optional"/>
+    <xsd:attribute name="DefaultSysMapCode" type="TStringList" use="optional"/>
+    <xsd:attribute name="SysMapObject" type="TStringList" use="optional"/> 
+    <xsd:attribute name="Total" type="xsd:nonNegativeInteger" use="optional" default="1"/>
+    <xsd:attribute name="System" type="xsd:string" use="optional"/>     
+    <xsd:attribute name="DefaultExcluded" type="xsd:boolean" use="optional" default="false"/> 
+    <xsd:attribute name="ExcludedObject" type="xsd:string" use="optional"/> 
+  </xsd:complexType>
+  
+  <!-- TPiggybacks -->
+  <xsd:complexType name="TPiggybacks">     
+    <xsd:attribute name="Slots" type="xsd:unsignedInt" use="required"/>  
+  </xsd:complexType>
+  
+  <!-- TFirmwares -->
+  <xsd:complexType name="TFirmwares">
+    <xsd:group ref="GFirmwares"/>
+  </xsd:complexType>
+  
+  <!-- GFirmwares -->
+  <xsd:group name="GFirmwares">
+    <xsd:sequence>
+      <xsd:element name="Firmware" type="TFirmware" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:group>
+  
+  <!-- TFirmware -->
+  <xsd:complexType name="TFirmware">
+    <xsd:all>
+      <xsd:element name="History" type="xsd:string" maxOccurs="1" minOccurs="0"/> 
+      <xsd:element name="File" type="xsd:string" maxOccurs="1" minOccurs="1"/>   
+      <xsd:element name="HWDependent" type="TFirmwareDependency" maxOccurs="1" minOccurs="0"/>
+      <xsd:element name="SWDependent" type="TFirmwareDependency" maxOccurs="1" minOccurs="0"/>
+      <xsd:element name="Warning" type="TWarning" maxOccurs="1" minOccurs="0"/>
+    </xsd:all>                                                         
+    <xsd:attribute name="KeyName" type="xsd:string" use="required"/>
+    <xsd:attribute name="Flashable" type="xsd:string" use="optional" default="0.0"/>
+  </xsd:complexType>
+  
+  <xsd:complexType name="TWarning">
+    <xsd:group ref="GLabels"/>
+    <xsd:attribute name="fromVersion" type="xsd:string" use="optional"/>
+    <xsd:attribute name="toVersion" type="xsd:string" use="optional"/>
+  </xsd:complexType>
+  
+  <!-- THelpFiles -->
+  <xsd:complexType name="THelpFiles">
+    <xsd:group ref="GHelpFiles"/>
+  </xsd:complexType>
+  
+  <!-- GHelpFiles -->
+  <xsd:group name="GHelpFiles">
+    <xsd:sequence>
+      <xsd:element name="HelpFile" minOccurs="0" maxOccurs="unbounded">
+        <xsd:complexType>
+          <xsd:simpleContent>
+            <xsd:extension base="xsd:string">
+              <xsd:attribute name="lang" type="xsd:language" use="required"/>
+              <xsd:attribute name="key" type="xsd:string" use="optional"/>
+            </xsd:extension>
+          </xsd:simpleContent>
+        </xsd:complexType>
+      </xsd:element>         
+    </xsd:sequence>    
+  </xsd:group> 
+  
+  <!-- TDisplayInfo -->
+  <xsd:complexType name="TDisplayInfo">
+    <xsd:all>
+      <xsd:element name="Mode" type="TDisplayModeEnum" minOccurs="0" maxOccurs="1" default="GRAPHIC"/>
+      <xsd:element name="Size" minOccurs="0" maxOccurs="1">
+        <xsd:complexType>
+          <xsd:simpleContent>
+            <xsd:extension base="xsd:nonNegativeInteger">
+              <xsd:attribute name="rows" type="xsd:nonNegativeInteger" use="optional"/>
+              <xsd:attribute name="cols" type="xsd:nonNegativeInteger" use="optional"/>
+            </xsd:extension>
+          </xsd:simpleContent>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="InputData" type="xsd:string" minOccurs="0" maxOccurs="1" default=""/>
+      <xsd:element name="OutputData" type="xsd:string" minOccurs="0" maxOccurs="1" default=""/>
+      <xsd:element name="CharSet" type="xsd:string" minOccurs="0" maxOccurs="1" default=""/>
+      <xsd:element name="DynamicSize" type="xsd:string" minOccurs="0" maxOccurs="1" default=""/>
+      <xsd:element name="PanelType" type="xsd:integer" minOccurs="0" maxOccurs="1" default="-1"/>
+    </xsd:all>                                                         
+  </xsd:complexType> 
+  
+  <!-- THWDependent -->
+  <xsd:complexType name="TFirmwareDependency">
+    <xsd:sequence>
+      <xsd:element name="FromVersion" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ToVersion" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>    
+  </xsd:complexType>   
+        
+  <!-- Common groups -->
+  <!-- GLabels -->
+  <xsd:group name="GLabels">
+    <xsd:sequence>
+      <xsd:element name="label" minOccurs="0" maxOccurs="unbounded">
+        <xsd:complexType>
+          <xsd:simpleContent>
+            <xsd:extension base="xsd:string">
+              <xsd:attribute name="lang" type="xsd:language" use="optional"/>
+            </xsd:extension>
+          </xsd:simpleContent>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:group>
+   
+  <!-- GImages --> 
+  <xsd:group name="GImages">
+    <xsd:sequence>
+      <xsd:choice minOccurs="0" maxOccurs="unbounded">
+        <xsd:element name="Icon" type="xsd:string"/>
+        <xsd:element name="ImageData" type="xsd:string"/>
+        <xsd:element name="ImageFile">
+          <xsd:complexType>
+            <xsd:attribute name="URI" type="xsd:anyURI" use="required"/>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:choice>
+    </xsd:sequence>
+  </xsd:group>
+  
+  <!-- TMounts -->
+  <xsd:complexType name="TMounts">
+    <xsd:group ref="GMounts"/>
+    <xsd:attribute name="default" type="xsd:string" use="required"/>
+    <xsd:attribute name="allowed" type="TStringList" use="optional"/>
+    <xsd:attribute name="notAllowed" type="TStringList" use="optional"/>
+  </xsd:complexType>
+  
+  <!-- GMounts -->
+  <xsd:group name="GMounts">
+    <xsd:sequence>
+      <xsd:element name="Mount" type="TMount" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>    
+  </xsd:group>
+  
+  <!-- TMount -->
+  <xsd:complexType name="TMount">
+    <xsd:all>
+      <xsd:element name="Name" type="TLabels" minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="Options" type="TMountOptions" minOccurs="0" maxOccurs="1"/>
+    </xsd:all>                                                         
+  </xsd:complexType>
+  
+  <!-- TMountOptions -->
+  <xsd:complexType name="TMountOptions">
+    <xsd:group ref="GMountOptions"/>
+  </xsd:complexType>
+  
+  <!-- GMountOptions -->
+  <xsd:group name="GMountOptions">
+    <xsd:sequence>
+      <xsd:element name="Option" type="TMountOption" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>    
+  </xsd:group>
+  
+  <!-- TMountOption -->
+  <xsd:complexType name="TMountOption">
+    <xsd:all>
+      <xsd:element name="Description" type="TLabels" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="Value" type="TCharacter" minOccurs="1" maxOccurs="1"/>
+    </xsd:all>                                                         
+  </xsd:complexType>
+  
+  <!-- TCharacter -->
+  <xsd:simpleType name="TCharacter">
+    <xsd:restriction base="xsd:string">
+      <xsd:length fixed="true" value="1"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  
+</xsd:schema>
+
+ 

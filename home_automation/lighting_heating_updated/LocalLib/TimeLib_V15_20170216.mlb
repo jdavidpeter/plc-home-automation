@@ -1,0 +1,3100 @@
+(*` {CSY}Knihovna vývojového systému Mosaic{ENU}Mosaic IDE library *)
+(*` {CSY}Jméno souboru{ENU}File name{} : D:\TecoUserLibs\TimeLib_V15_20170216.mlb *)
+(*` {CSY}Knihovna : TimeLib{ENU}Library : TimeLib{} 1.5 *)
+(*` {CSY}Autor{ENU}Author{} : Teco a.s. *)
+(*` {CSY}Autorská práva{ENU}Copyright{} : (c) 2010 - 2017 Teco a.s. *)
+(*` {CSY}Verze IEC pøekladaèe{ENU}IEC compiler version{} : 3.12.10.2 *)
+(*` {CSY}Verze assembleru{ENU}Assembler version{} : 4.3.00 *)
+
+//{Knihovna : TimeLib 1.5  }
+(*` {CSY}Historie{ENU}History{}: *)
+(*`
+{CSY}
+v1.0 18.11.2010 Nem Úvodni verze knihovny
+v1.1 20.01.2011 Nem Oprava fce Year_of_DT()
+v1.2 10.06.2011 Nem Pøidaná funkce GetDateAndTime_RFC2822()
+v1.3 30.11.2012 Nem Pøidané funkce WeekNumber() a TIME_TO_REALsec()
+v1.4 24.07.2013 Byd Pøidány funkce pro LONG_TIME
+v1.5 16.02.2017 Byd Upravena funkce GetDateAndTime_RFC2822() pro záporné posuny èasového pásma
+
+{ENU}
+v1.0 2010-11-18 Nem First edition
+v1.1 2011-01-20 Nem Corrected function Year_of_DT()
+v1.2 2011-06-10 Nem New function GetDateAndTime_RFC2822()
+v1.3 2012-11-30 Nem Added new function WeekNumber() and TIME_TO_REALsec()
+v1.4 2013-07-24 Byd Added functions for LONG_TIME
+v1.5 2017-02-16 Byd Modified GetDateAndTime_RFC2822() function for negative UTC time offsets
+*)
+
+(*----------------------------------------------------------------------------*)
+{LIBRARY="LOCALLIB\STDLIB_V21_20140514.MLB"}
+{LIBRARY="LOCALLIB\SYSLIB_V38_20170104.MLB"}
+{LIBRARY="LOCALLIB\TOSTRINGLIB_V13_20110203.MLB"}
+
+TYPE LONGTIME :
+  STRUCT  (*`{CSY}Typ pro popis dlouhých èasových úsekù*)
+    Days             : dint;  (*`{CSY}Poèet dnù{ENU}Number of days*)
+    TimeOfDay        : time;  (*`{CSY}Èas ve dni{ENU}Time in day*)
+  END_STRUCT;
+END_TYPE
+
+__DECL FUNCTION DATE_OF_DT : date
+(*`{CSY} Vrací datum z promìnné DATE_AND_TIME
+   {ENU} Get DATE from variable DATE_AND_TIME*)
+  VAR_INPUT
+    in               : dt;  (*`{CSY}Vstupní promìnná{ENU}Input variable*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION TIME_OF_DT : time
+(*`{CSY} Vrací èas z promìnné DATE_AND_TIME
+   {ENU} Get DATE from variable DATE_AND_TIME*)
+  VAR_INPUT
+    in               : dt;  (*`{CSY}Vstupní promìnná{ENU}Input variable*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION YEAR_OF_DT : uint
+(*`{CSY} Vrací rok z promìnné DATE_AND_TIME
+   {ENU} Get year from variable DATE_AND_TIME*)
+  VAR_INPUT
+    in               : dt;  (*`{CSY}Vstupní promìnná{ENU}Input variable*)
+  END_VAR
+  VAR
+    s                : string [30];
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION MONTH_OF_DT : usint
+(*`{CSY} Vrací mìsíc z promìnné DATE_AND_TIME
+   {ENU} Get month from variable DATE_AND_TIME*)
+  VAR_INPUT
+    in               : dt;  (*`{CSY}Vstupní promìnná{ENU}Input variable*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION DAY_OF_DT : usint
+(*`{CSY} Vrací den z promìnné DATE_AND_TIME
+   {ENU} Get day from variable DATE_AND_TIME*)
+  VAR_INPUT
+    in               : dt;  (*`{CSY}Vstupní promìnná{ENU}Input variable*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION HOUR_OF_DT : usint
+(*`{CSY} Vrací hodiny z promìnné DATE_AND_TIME
+   {ENU} Get hours from variable DATE_AND_TIME*)
+  VAR_INPUT
+    in               : dt;  (*`{CSY}Vstupní promìnná{ENU}Input variable*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION MIN_OF_DT : usint
+(*`{CSY} Vrací minuty z promìnné DATE_AND_TIME
+   {ENU} Get minutes from variable DATE_AND_TIME*)
+  VAR_INPUT
+    in               : dt;  (*`{CSY}Vstupní promìnná{ENU}Input variable*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION SEC_OF_DT : usint
+(*`{CSY} Vrací sekundy z promìnné DATE_AND_TIME
+   {ENU} Get seconds from variable DATE_AND_TIME*)
+  VAR_INPUT
+    in               : dt;  (*`{CSY}Vstupní promìnná{ENU}Input variable*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION MSEC_OF_DT : uint
+(*`{CSY} Vrací milisekundy z promìnné DATE_AND_TIME
+   {ENU} Get milliseconds from variable DATE_AND_TIME*)
+  VAR_INPUT
+    in               : dt;  (*`{CSY}Vstupní promìnná{ENU}Input variable*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION CutMSec_From_DT : dt
+(*`{CSY} Odøízne milisekundy z promìnné DATE_AND_TIME
+   {ENU} Cut milliseconds from variable DATE_AND_TIME*)
+  VAR_INPUT
+    in               : dt;  (*`{CSY}Vstupní promìnná{ENU}Input variable*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION CutSec_From_DT : dt
+(*`{CSY} Odøízne sekundy z promìnné DATE_AND_TIME
+   {ENU} Cut seconds from variable DATE_AND_TIME*)
+  VAR_INPUT
+    in               : dt;  (*`{CSY}Vstupní promìnná{ENU}Input variable*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION YEAR_OF_DATE : uint
+(*`{CSY} Vrací rok z promìnné DATE
+   {ENU} Get year from variable DATE*)
+  VAR_INPUT
+    in               : date;  (*`{CSY}Vstupní promìnná{ENU}Input variable*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION MONTH_OF_DATE : usint
+(*`{CSY} Vrací mìsíc z promìnné DATE
+   {ENU} Get month from variable DATE*)
+  VAR_INPUT
+    in               : date;  (*`{CSY}Vstupní promìnná{ENU}Input variable*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION DAY_OF_DATE : usint
+(*`{CSY} Vrací den z promìnné DATE
+   {ENU} Get day from variable DATE*)
+  VAR_INPUT
+    in               : date;  (*`{CSY}Vstupní promìnná{ENU}Input variable*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION DAY_OF_YEAR : uint
+(*`{CSY} Vrací den v roce z promìnné DATE
+   {ENU} Get day of year from variable DATE*)
+  VAR_INPUT
+    in               : date;  (*`{CSY}Vstupní promìnná{ENU}Input variable*)
+  END_VAR
+  VAR
+    year             : uint;
+    tmp              : string [80];
+    yearD            : date;
+    secOfYear        : lreal;
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION HOUR_OF_TIME : usint
+(*`{CSY} Vrací hodiny z promìnné TIME
+   {ENU} Get hours from variable TIME*)
+  VAR_INPUT
+    in               : time;  (*`{CSY}Vstupní promìnná{ENU}Input variable*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION MIN_OF_TIME : usint
+(*`{CSY} Vrací minuty z promìnné TIME
+   {ENU} Get minutes from variable TIME*)
+  VAR_INPUT
+    in               : time;  (*`{CSY}Vstupní promìnná{ENU}Input variable*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION SEC_OF_TIME : usint
+(*`{CSY} Vrací sekundy z promìnné TIME
+   {ENU} Get seconds from variable TIME*)
+  VAR_INPUT
+    in               : time;  (*`{CSY}Vstupní promìnná{ENU}Input variable*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION MSEC_OF_TIME : uint
+(*`{CSY} Vrací milisekundy z promìnné TIME
+   {ENU} Get milliseconds from variable TIME*)
+  VAR_INPUT
+    in               : time;  (*`{CSY}Vstupní promìnná{ENU}Input variable*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION DecodeTime : bool
+(*`{CSY} Pøevede TIME na hodiny, minuty, sekundy a milisekundy
+   {ENU} Convert TIME to hours, minutes, seconds and milliseconds*)
+  VAR_INPUT
+    in               : time;  (*`{CSY}Vstupní promìnná{ENU}Input variable*)
+  END_VAR
+  VAR_IN_OUT
+    H                : usint;  (*`{CSY}Hodiny{ENU}Hours*)
+    M                : usint;  (*`{CSY}Minuty{ENU}Minutes*)
+    S                : usint;  (*`{CSY}Sekundy{ENU}Seconds*)
+    Ms               : uint;  (*`{CSY}Milisekundy{ENU}Milliseconds*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION EncodeTime : time
+(*`{CSY} Pøevede hodiny, minuty, sekundy a milisekundy na TIME
+   {ENU} Convert hours, minutes, seconds and milliseconds to TIME*)
+  VAR_INPUT
+    H                : usint;  (*`{CSY}Hodiny{ENU}Hours*)
+    M                : usint;  (*`{CSY}Minuty{ENU}Minutes*)
+    S                : usint;  (*`{CSY}Sekundy{ENU}Seconds*)
+    Ms               : uint;  (*`{CSY}Milisekundy{ENU}Milliseconds*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION MUL_TIME_REAL : time
+(*`{CSY} Vrací výsledek násobení èasu IN1, èíslem IN2
+   {ENU} Returns result of multiplication of time IN1 by number IN2*)
+  VAR_INPUT
+    IN1              : time;  (*`{CSY} Èase k vynásobení {ENU} Time to be multiplied*)
+    IN2              : real;  (*`{CSY} Násobitel {ENU} Multiplier*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION MUL_TIME_LREAL : time
+(*`{CSY} Vrací výsledek násobení èasu IN1, èíslem IN2
+   {ENU} Returns result of multiplication of time IN1 by number IN2*)
+  VAR_INPUT
+    IN1              : time;  (*`{CSY} Èase k vynásobení {ENU} Time to be multiplied*)
+    IN2              : lreal;  (*`{CSY} Násobitel {ENU} Multiplier*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION DIV_TIME_REAL : time
+(*`{CSY} Vrací výsledek dìlení èasu IN1, èíslem IN2
+   {ENU} Returns result of division of time IN1 by number IN2*)
+  VAR_INPUT
+    IN1              : time;  (*`{CSY} Èase k vydìlení {ENU} Time to be divided*)
+    IN2              : real;  (*`{CSY} Dìlitel {ENU} Divisor*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION DIV_TIME_LREAL : time
+(*`{CSY} Vrací výsledek dìlení èasu IN1, èíslem IN2
+   {ENU} Returns result of division of time IN1 by number IN2*)
+  VAR_INPUT
+    IN1              : time;  (*`{CSY} Èase k vydìlení {ENU} Time to be divided*)
+    IN2              : lreal;  (*`{CSY} Dìlitel {ENU} Divisor*)
+  END_VAR
+END_FUNCTION
+
+VAR_GLOBAL CONSTANT
+ MonthsNamesRFC2822 : ARRAY [1..12] OF string [3] :=   ['Jan', 'Feb', 'Mar', 'Apr',
+                                                       'May', 'Jun', 'Jul', 'Aug',
+                                                       'Sep', 'Oct', 'Nov', 'Dec'];
+
+END_VAR
+
+__DECL FUNCTION GetDateAndTime_RFC2822 : string [26]
+(*`{ENU} returns date and time according to RFC2822
+
+  date time
+
+  date            =       day month year
+  year            =       4 DIGIT
+  month           =       month-name
+  month-name      =       "Jan" / "Feb" / "Mar" / "Apr" /
+                          "May" / "Jun" / "Jul" / "Aug" /
+                          "Sep" / "Oct" / "Nov" / "Dec"
+  day             =       1-2 DIGIT
+  time            =       time-of-day zone
+  time-of-day     =       hour ":" minute ":" second
+  hour            =       2 DIGIT
+  minute          =       2 DIGIT
+  second          =       2 DIGIT
+  zone            =       (( "+" / "-" ) 4 DIGIT)
+
+  {CSY} vrací datum a èas dle RFC2822
+
+  datum èas
+
+  datum           =       den mìsíc rok
+  rok             =       4 èísla
+  mìsíc           =       jméno-mìsíce
+  jméno-mìsíce    =       "Jan" / "Feb" / "Mar" / "Apr" /
+                          "May" / "Jun" / "Jul" / "Aug" /
+                          "Sep" / "Oct" / "Nov" / "Dec"
+  den             =       1-2 èísla
+  èas             =       èas-ve-dni zóna
+  èas-ve-dni      =       hodina ":" minuta ":" sekunda
+  hodina          =       2 èísla
+  minuta          =       2 èísla
+  sekunda         =       2 èísla
+  zóna            =       (( "+" / "-" ) 4 èísla)*)
+  VAR_INPUT
+    UtcOff           : int;  (*`{ENU} Offset from UTC in minutes {CSY} Posun èasového pásma v minutách*)
+  END_VAR
+  VAR
+    Format           : string [80];
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION WeekNumber : usint
+(*`{CSY}Èísla týdnù podle ISO-8601, týdny zaèínají pondìlím
+  {ENU}Week number according to the ISO-8601 standard, weeks starting on Monday*)
+  VAR_INPUT
+    IN               : dt;  (*`{CSY}Èas ke kterému se vypoète èíslo týdnu{ENU}Time for calculation of week number*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION TIME_TO_REALsec : real
+(*`{CSY}Pøevod èasu na sekundy
+{ENU}Conversion of time to seconds*)
+  VAR_INPUT
+    IN               : time;  (*`{CSY}Èas{ENU}Time*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION LONGTIME_TO_LREAL : lreal
+(*`{CSY}Pøevod typu LONGTIME na sekundy
+{ENU}Conversion of LONGTIME type to seconds*)
+  VAR_INPUT
+    IN               : LONGTIME;
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION LREAL_TO_LONGTIME : LONGTIME
+(*`{CSY}Pøevod sekund na typ LONGTIME
+{ENU}Conversion of seconds to LONGTIME type*)
+  VAR_INPUT
+    IN               : lreal;
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION ADD_DT_LONGTIME : dt
+(*`{CSY} Vrací souèet IN1 a IN2 jako DATE_AND_TIME
+   {ENU} Returns sum of IN1 and IN2 as DATE_AND_TIME*)
+  VAR_INPUT
+    IN1              : dt;  (*`{CSY}První èas k seètení{ENU}First time to sum*)
+    IN2              : LONGTIME;  (*`{CSY}Druhý èas k seètení{ENU}Second time to sum*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION ADD_LONGTIME : LONGTIME
+(*`{CSY} Vrací souèet IN1 a IN2 jako LONGTIME
+   {ENU} Returns sum of IN1 and IN2 as LONGTIME*)
+  VAR_INPUT
+    IN1              : LONGTIME;  (*`{CSY}První èas k seètení{ENU}First time to sum*)
+    IN2              : LONGTIME;
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION ADD_LONGTIME_TIME : LONGTIME
+(*`LONGTIME := LONGTIME + TIME;*)
+  VAR_INPUT
+    IN1              : LONGTIME;  (*`{CSY}První èas k seètení{ENU}First time to sum*)
+    IN2              : time;  (*`{CSY}Druhý èas k seètení{ENU}Second time to sum*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION DIV_LONGTIME : LONGTIME
+(*`{CSY} Vrací výsledek dìlení èasu IN1, èíslem IN2
+   {ENU} Returns result of division of time IN1 by number IN2*)
+  VAR_INPUT
+    IN1              : LONGTIME;  (*`{CSY} Èase k vydìlení {ENU} Time to be divided*)
+    IN2              : real;  (*`{CSY} Dìlitel {ENU} Divisor*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION EQ_LONGTIME : bool
+(*`{CSY}Rovnost, vrací TRUE, když IN1 = IN2
+{ENU}Equality, returns TRUE if IN1 = IN2*)
+  VAR_INPUT
+    IN1              : LONGTIME;  (*`{CSY}První èas k porovnání{ENU}First time for comparison*)
+    IN2              : LONGTIME;  (*`{CSY}Druhý èas k porovnání{ENU}Second time for comparison*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION GE_LONGTIME : bool
+(*`{CSY}Vìtší než nebo rovno, vrací TRUE, když IN1 >= IN2
+{ENU}Greater than or equal, returns TRUE if IN1 >= IN2*)
+  VAR_INPUT
+    IN1              : LONGTIME;  (*`{CSY}První èas k porovnání{ENU}First time for comparison*)
+    IN2              : LONGTIME;  (*`{CSY}Druhý èas k porovnání{ENU}Second time for comparison*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION GT_LONGTIME : bool
+(*`{CSY}Vìtší než, vrací TRUE, když IN1 > IN2
+{ENU}Greater than, returns TRUE if IN1 > IN2*)
+  VAR_INPUT
+    IN1              : LONGTIME;  (*`{CSY}První èas k porovnání{ENU}First time for comparison*)
+    IN2              : LONGTIME;  (*`{CSY}Druhý èas k porovnání{ENU}Second time for comparison*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION LE_LONGTIME : bool
+(*`{CSY}Menší než nebo rovno, vrací TRUE, když IN1 <= IN2
+{ENU}Lesser than or equal, returns TRUE if IN1 <= IN2*)
+  VAR_INPUT
+    IN1              : LONGTIME;  (*`{CSY}První èas k porovnání{ENU}First time for comparison*)
+    IN2              : LONGTIME;  (*`{CSY}Druhý èas k porovnání{ENU}Second time for comparison*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION LT_LONGTIME : bool
+(*`{CSY}Menší než, vrací TRUE, když IN1 < IN2
+{ENU}Lesser than, returns TRUE if IN1 < IN2*)
+  VAR_INPUT
+    IN1              : LONGTIME;  (*`{CSY}První èas k porovnání{ENU}First time for comparison*)
+    IN2              : LONGTIME;  (*`{CSY}Druhý èas k porovnání{ENU}Second time for comparison*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION MUL_LONGTIME : LONGTIME
+(*`{CSY} Vrací výsledek násobení èasu IN1, èíslem IN2
+   {ENU} Returns result of multiplication of time IN1 by number IN2*)
+  VAR_INPUT
+    IN1              : LONGTIME;  (*`{CSY} Èase k vynásobení {ENU} Time to be multiplied*)
+    IN2              : real;  (*`{CSY} Násobitel {ENU} Multiplier*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION NE_LONGTIME : bool
+(*`{CSY}Nerovnost, vrací TRUE, když IN1 <> IN2
+{ENU}Inequality, returns TRUE if IN1 <> IN2*)
+  VAR_INPUT
+    IN1              : LONGTIME;  (*`{CSY}První èas k porovnání{ENU}First time for comparison*)
+    IN2              : LONGTIME;  (*`{CSY}Druhý èas k porovnání{ENU}Second time for comparison*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION SUB_DATE_DATE_LONG : LONGTIME
+(*`{CSY} Vrací rozdíl IN1 a IN2 jako LONGTIME
+   {ENU} Returns difference of IN1 and IN2 as LONGTIME*)
+  VAR_INPUT
+    IN1              : date;  (*`{CSY} Datum od kterého se odeèítá{ENU} Date from which is subtracted*)
+    IN2              : date;  (*`{CSY} Datum které se odeèítá{ENU} Date to be subtracted*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION SUB_DT_DT_LONG : LONGTIME
+(*`{CSY} Vrací rozdíl IN1 a IN2 jako LONGTIME
+   {ENU} Returns difference of IN1 and IN2 as LONGTIME*)
+  VAR_INPUT
+    IN1              : dt;  (*`{CSY} Datum a èas od kterého se odeèítá{ENU} Date and time from which is subtracted*)
+    IN2              : dt;  (*`{CSY} Datum a èas který se odeèítá{ENU} Date and time to be subtracted*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION SUB_DT_LONGTIME : dt
+(*`{CSY} Vrací rozdíl IN1 a IN2 jako LONGTIME
+   {ENU} Returns difference of IN1 and IN2 as LONGTIME*)
+  VAR_INPUT
+    IN1              : dt;  (*`{CSY} Datum a èas od kterého se odeèítá{ENU} Date and time from which is subtracted*)
+    IN2              : LONGTIME;  (*`{CSY} Èas který se odeèítá{ENU} Time to be subtracted*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION SUB_LONGTIME : LONGTIME
+(*`{CSY} Vrací rozdíl IN1 a IN2
+   {ENU} Returns difference of IN1 and IN2*)
+  VAR_INPUT
+    IN1              : LONGTIME;  (*`{CSY} Èas od kterého se odeèítá{ENU} Time from which is subtracted*)
+    IN2              : LONGTIME;  (*`{CSY} Èas který se odeèítá{ENU} Time to be subtracted*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION SUB_LONGTIME_TIME : LONGTIME
+(*`{CSY} Vrací rozdíl IN1 a IN2
+   {ENU} Returns difference of IN1 and IN2*)
+  VAR_INPUT
+    IN1              : LONGTIME;  (*`{CSY} Èas od kterého se odeèítá{ENU} Time from which is subtracted*)
+    IN2              : time;  (*`{CSY} Èas který se odeèítá{ENU} Time to be subtracted*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION_BLOCK AbsoluteTON
+(*`{ENU} On-delay Timer for long times
+      Timer can continue even after power off, if the timestamp TS is defined as RETAIN and signal IN is still TRUE after power on
+{CSY} Èasovaè TON (zpoždìní nábìžné hrany) pro dlouhé èasy
+      Èasovaè mùže pokraèovat i po vypnutí systému, pokud je èasová znaèka TS definována jako RETAIN a signál IN je po zapnutí stále TRUE*)
+  VAR_INPUT
+    IN               : bool;  (*`{ENU} input   {CSY} vstup èasovaèe*)
+    PT               : LONGTIME;  (*`{ENU} preset  {CSY} pøedvolba èasovaèe*)
+  END_VAR
+  VAR_IN_OUT
+    TS               : dt;  (*`{ENU} time stamp (must be RETAIN) {CSY} èasová znaèka (musí být RETAIN)*)
+  END_VAR
+  VAR_OUTPUT
+    Q                : bool;  (*`{ENU} output  {CSY} výstup èasovaèe*)
+    ET               : LONGTIME;  (*`{ENU} value   {CSY} aktuální hodnota èasovaèe*)
+  END_VAR
+  VAR
+    RT               : R_TRIG;
+  END_VAR
+END_FUNCTION_BLOCK
+
+
+
+{USES=MONTH_OF_DT:DT_TO_TecoDT}
+{USES=DAY_OF_DT:DT_TO_TecoDT}
+{USES=HOUR_OF_DT:DT_TO_TecoDT}
+{USES=MIN_OF_DT:DT_TO_TecoDT}
+{USES=SEC_OF_DT:DT_TO_TecoDT}
+{USES=MSEC_OF_DT:DT_TO_TecoDT}
+{USES=YEAR_OF_DATE:YEAR_OF_DT}
+{USES=MONTH_OF_DATE:MONTH_OF_DT}
+{USES=DAY_OF_DATE:DAY_OF_DT}
+{USES=DAY_OF_YEAR:YEAR_OF_DATE}
+{USES=GetDateAndTime_RFC2822:GetTime,TIME_TO_STRINGF,INT_TO_STRINGF}
+{USES=WeekNumber:DT_TO_TecoDT,TecoDT_TO_DT}
+{USES=ADD_DT_LONGTIME:LONGTIME_TO_LREAL}
+{USES=ADD_LONGTIME:LONGTIME_TO_LREAL,LREAL_TO_LONGTIME}
+{USES=ADD_LONGTIME_TIME:LONGTIME_TO_LREAL,LREAL_TO_LONGTIME}
+{USES=DIV_LONGTIME:LONGTIME_TO_LREAL,LREAL_TO_LONGTIME}
+{USES=EQ_LONGTIME:LONGTIME_TO_LREAL}
+{USES=GE_LONGTIME:LONGTIME_TO_LREAL}
+{USES=GT_LONGTIME:LONGTIME_TO_LREAL}
+{USES=LE_LONGTIME:LONGTIME_TO_LREAL}
+{USES=LT_LONGTIME:LONGTIME_TO_LREAL}
+{USES=MUL_LONGTIME:LONGTIME_TO_LREAL,LREAL_TO_LONGTIME}
+{USES=NE_LONGTIME:LONGTIME_TO_LREAL}
+{USES=SUB_DATE_DATE_LONG:LREAL_TO_LONGTIME}
+{USES=SUB_DT_DT_LONG:LREAL_TO_LONGTIME}
+{USES=SUB_DT_LONGTIME:LONGTIME_TO_LREAL}
+{USES=SUB_LONGTIME:LONGTIME_TO_LREAL,LREAL_TO_LONGTIME}
+{USES=SUB_LONGTIME_TIME:LONGTIME_TO_LREAL,LREAL_TO_LONGTIME}
+{USES=AbsoluteTON:GetDateTime,SUB_DT_DT_LONG}
+#srcfile 'C:\TECOLIBSRC\TIMELIB\TIMELIB\LONGTIME.ST'
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\TIMELIB\TIMELIB\TIMELIB_V11.ST'
+#pou DATE_OF_DT
+#srcline 2 ;function DATE_OF_DT : DATE
+P     61
+DATE_OF_DT_L0:
+ LINK 0
+ NXT
+#srcline 11 ;  DATE_OF_DT := DT_TO_DATE( in);
+ LDX  in
+#debug dt in
+ SCNV $3231;  IEC_DT _TO_ IEC_DATE
+ WRX  __fc__DATE_OF_DT
+#debug_left date DATE_OF_DT
+#srcline 12 ;end_function
+ PRV  
+ LDX  __fc__DATE_OF_DT
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou TIME_OF_DT
+#srcline 15 ;function TIME_OF_DT : TIME
+P     61
+TIME_OF_DT_L0:
+ LINK 0
+ NXT
+#srcline 24 ;  TIME_OF_DT := DT_TO_TIME( in);
+ LDX  in
+#debug dt in
+ SCNV $3233;  IEC_DT _TO_ IEC_TIME
+ WRX  __fc__TIME_OF_DT
+#debug_left time TIME_OF_DT
+#srcline 25 ;end_function
+ PRV  
+ LDX  __fc__TIME_OF_DT
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou YEAR_OF_DT
+#srcline 28 ;function YEAR_OF_DT : uint
+
+#struct YEAR_OF_DT__temp__
+  uint tmp,
+  pointer ps,
+  string[32] PS0__st__,
+  string[82] PSC__st__
+P     61
+YEAR_OF_DT_L0:
+ LINK __SizeOf(YEAR_OF_DT__temp__)
+ NXT
+; Initialize - variables
+ LD   0
+ WRX  __fc__YEAR_OF_DT
+ WRX  s
+; End initialize - variables
+; Initialize - dynamic variables
+ LD   udint $FFFFFFFF    ; nil
+ WRY  ps
+; End initialize - dynamic variables
+#srcline 44 ;  tmp := 0;
+ LD   uint 0
+ WRY  tmp
+#debug_left uint tmp
+#srcline 45 ;  s  := DT_TO_STRING( in);
+ LD   0   ; null string
+ WRY  PS0__st__[0]
+ LEAY PS0__st__[0]
+ LD   30
+ DST    ; Level 1
+ LD   0   ; null string
+ WRY  PSC__st__[0]
+ LEAY PSC__st__[0]
+ LD   30
+ DST    ; Level 2
+ LDX  in
+#debug dt in
+ SCNV $3230;  IEC_DT _TO_ IEC_STRING
+ PDST   ; Level 2
+ LEAY PSC__st__[0]
+
+ SCON 
+ PDST   ; Level 1
+ LD   0   ; null string
+ LEAX s
+ WRI  
+ LEAX s
+ LD   30
+ DST    ; Level 1
+ LEAY PS0__st__[0]
+ SCON 
+#debug_left string s
+ PDST   ; Level 1
+#srcline 46 ;  ps := ADR( s);
+ LEAX s
+#debug pointer s
+ LEAY ps
+ WRIL 
+#debug_left pointer ps
+#srcline 47 ;  if ps^ = 16#44 then     // D
+ LEAY ps
+ LDIL    ; dereference 
+ LDI  
+#debug byte ps^
+ LD   byte $44
+ EQ
+ JMC  YEAR_OF_DT_L1
+#srcline 48 ;    ps := ps +1;
+ LEAY ps
+ LDIL 
+#debug pointer ps
+ LD   udint 1
+ ADD
+ LEAY ps
+ WRIL 
+#debug_left pointer ps
+#srcline 49 ;    if ps^ = 16#54 then   // T
+ LEAY ps
+ LDIL    ; dereference 
+ LDI  
+#debug byte ps^
+ LD   byte $54
+ EQ
+ JMC  YEAR_OF_DT_L3
+#srcline 50 ;      ps := ps + 2;
+ LEAY ps
+ LDIL 
+#debug pointer ps
+ LD   udint 2
+ ADD
+ LEAY ps
+ WRIL 
+#debug_left pointer ps
+#srcline 51 ;      tmp := BYTE_TO_UINT(ps^ AND 16#0F); ps := ps + 1;
+ LEAY ps
+ LDIL    ; dereference 
+ LDI  
+#debug byte ps^
+ LD   byte $0F
+ AND
+ WRY  tmp
+#debug_left uint tmp
+ LEAY ps
+ LDIL 
+#debug pointer ps
+ LD   udint 1
+ ADD
+ LEAY ps
+ WRIL 
+#debug_left pointer ps
+#srcline 52 ;      tmp := tmp * 10 + BYTE_TO_UINT(ps^ AND 16#0F); ps := ps + 1;
+ LDY  tmp
+#debug uint tmp
+ LD   uint 10
+ MUL
+ AND  $FFFF
+ LEAY ps
+ LDIL    ; dereference 
+ LDI  
+#debug byte ps^
+ LD   byte $0F
+ AND
+ ADD
+ AND  $FFFF
+ WRY  tmp
+#debug_left uint tmp
+ LEAY ps
+ LDIL 
+#debug pointer ps
+ LD   udint 1
+ ADD
+ LEAY ps
+ WRIL 
+#debug_left pointer ps
+#srcline 53 ;      tmp := tmp * 10 + BYTE_TO_UINT(ps^ AND 16#0F); ps := ps + 1;
+ LDY  tmp
+#debug uint tmp
+ LD   uint 10
+ MUL
+ AND  $FFFF
+ LEAY ps
+ LDIL    ; dereference 
+ LDI  
+#debug byte ps^
+ LD   byte $0F
+ AND
+ ADD
+ AND  $FFFF
+ WRY  tmp
+#debug_left uint tmp
+ LEAY ps
+ LDIL 
+#debug pointer ps
+ LD   udint 1
+ ADD
+ LEAY ps
+ WRIL 
+#debug_left pointer ps
+#srcline 54 ;      tmp := tmp * 10 + BYTE_TO_UINT(ps^ AND 16#0F);
+ LDY  tmp
+#debug uint tmp
+ LD   uint 10
+ MUL
+ AND  $FFFF
+ LEAY ps
+ LDIL    ; dereference 
+ LDI  
+#debug byte ps^
+ LD   byte $0F
+ AND
+ ADD
+ AND  $FFFF
+ WRY  tmp
+#debug_left uint tmp
+#srcline 55 ;    end_if;
+YEAR_OF_DT_L3:
+#srcline 56 ;  end_if;
+YEAR_OF_DT_L1:
+#srcline 57 ;  YEAR_OF_DT := tmp;
+ LDY  tmp
+#debug uint tmp
+ WRX  __fc__YEAR_OF_DT
+#debug_left uint YEAR_OF_DT
+#srcline 58 ;end_function
+ PRV  
+ LDX  __fc__YEAR_OF_DT
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou MONTH_OF_DT
+#srcline 61 ;function MONTH_OF_DT : usint
+
+#struct MONTH_OF_DT__temp__
+  TTecoDateTime B
+P     61
+MONTH_OF_DT_L0:
+ LINK __SizeOf(MONTH_OF_DT__temp__)
+ NXT
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 73 ;  B := DT_TO_TecoDT( in);
+ NXT
+ LDX  in
+#debug dt in
+ WR   __Instance__DT_TO_TecoDT~IEC_DT
+#debug_left dt __Instance__DT_TO_TecoDT~IEC_DT
+ PRV
+ LEA  __Instance__DT_TO_TecoDT
+ CAL  DT_TO_TecoDT_L0
+ LEAY B
+#debug_left pointer B
+ LD   9   ;SizeOf() 
+ MOV  %IB0
+#srcline 74 ;  MONTH_OF_DT := B.month;
+ LDY  B~month
+#debug usint B.month
+ WRX  __fc__MONTH_OF_DT
+#debug_left usint MONTH_OF_DT
+#srcline 75 ;end_function
+ PRV  
+ LDX  __fc__MONTH_OF_DT
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou DAY_OF_DT
+#srcline 78 ;function DAY_OF_DT : usint
+
+#struct DAY_OF_DT__temp__
+  TTecoDateTime B
+P     61
+DAY_OF_DT_L0:
+ LINK __SizeOf(DAY_OF_DT__temp__)
+ NXT
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 90 ;  B := DT_TO_TecoDT( in);
+ NXT
+ LDX  in
+#debug dt in
+ WR   __Instance__DT_TO_TecoDT~IEC_DT
+#debug_left dt __Instance__DT_TO_TecoDT~IEC_DT
+ PRV
+ LEA  __Instance__DT_TO_TecoDT
+ CAL  DT_TO_TecoDT_L0
+ LEAY B
+#debug_left pointer B
+ LD   9   ;SizeOf() 
+ MOV  %IB0
+#srcline 91 ;  DAY_OF_DT := B.day;
+ LDY  B~day
+#debug usint B.day
+ WRX  __fc__DAY_OF_DT
+#debug_left usint DAY_OF_DT
+#srcline 92 ;end_function
+ PRV  
+ LDX  __fc__DAY_OF_DT
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou HOUR_OF_DT
+#srcline 95 ;function HOUR_OF_DT : usint
+
+#struct HOUR_OF_DT__temp__
+  TTecoDateTime B
+P     61
+HOUR_OF_DT_L0:
+ LINK __SizeOf(HOUR_OF_DT__temp__)
+ NXT
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 107 ;  B := DT_TO_TecoDT( in);
+ NXT
+ LDX  in
+#debug dt in
+ WR   __Instance__DT_TO_TecoDT~IEC_DT
+#debug_left dt __Instance__DT_TO_TecoDT~IEC_DT
+ PRV
+ LEA  __Instance__DT_TO_TecoDT
+ CAL  DT_TO_TecoDT_L0
+ LEAY B
+#debug_left pointer B
+ LD   9   ;SizeOf() 
+ MOV  %IB0
+#srcline 108 ;  HOUR_OF_DT := B.hour;
+ LDY  B~hour
+#debug usint B.hour
+ WRX  __fc__HOUR_OF_DT
+#debug_left usint HOUR_OF_DT
+#srcline 109 ;end_function
+ PRV  
+ LDX  __fc__HOUR_OF_DT
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou MIN_OF_DT
+#srcline 112 ;function MIN_OF_DT : usint
+
+#struct MIN_OF_DT__temp__
+  TTecoDateTime B
+P     61
+MIN_OF_DT_L0:
+ LINK __SizeOf(MIN_OF_DT__temp__)
+ NXT
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 124 ;  B := DT_TO_TecoDT( in);
+ NXT
+ LDX  in
+#debug dt in
+ WR   __Instance__DT_TO_TecoDT~IEC_DT
+#debug_left dt __Instance__DT_TO_TecoDT~IEC_DT
+ PRV
+ LEA  __Instance__DT_TO_TecoDT
+ CAL  DT_TO_TecoDT_L0
+ LEAY B
+#debug_left pointer B
+ LD   9   ;SizeOf() 
+ MOV  %IB0
+#srcline 125 ;  MIN_OF_DT := B.min;
+ LDY  B~min
+#debug usint B.min
+ WRX  __fc__MIN_OF_DT
+#debug_left usint MIN_OF_DT
+#srcline 126 ;end_function
+ PRV  
+ LDX  __fc__MIN_OF_DT
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou SEC_OF_DT
+#srcline 129 ;function SEC_OF_DT : usint
+
+#struct SEC_OF_DT__temp__
+  TTecoDateTime B
+P     61
+SEC_OF_DT_L0:
+ LINK __SizeOf(SEC_OF_DT__temp__)
+ NXT
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 141 ;  B := DT_TO_TecoDT( in);
+ NXT
+ LDX  in
+#debug dt in
+ WR   __Instance__DT_TO_TecoDT~IEC_DT
+#debug_left dt __Instance__DT_TO_TecoDT~IEC_DT
+ PRV
+ LEA  __Instance__DT_TO_TecoDT
+ CAL  DT_TO_TecoDT_L0
+ LEAY B
+#debug_left pointer B
+ LD   9   ;SizeOf() 
+ MOV  %IB0
+#srcline 142 ;  SEC_OF_DT := B.sec;
+ LDY  B~sec
+#debug usint B.sec
+ WRX  __fc__SEC_OF_DT
+#debug_left usint SEC_OF_DT
+#srcline 143 ;end_function
+ PRV  
+ LDX  __fc__SEC_OF_DT
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou MSEC_OF_DT
+#srcline 146 ;function MSEC_OF_DT : uint
+
+#struct MSEC_OF_DT__temp__
+  TTecoDateTime B
+P     61
+MSEC_OF_DT_L0:
+ LINK __SizeOf(MSEC_OF_DT__temp__)
+ NXT
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 158 ;  B := DT_TO_TecoDT( in);
+ NXT
+ LDX  in
+#debug dt in
+ WR   __Instance__DT_TO_TecoDT~IEC_DT
+#debug_left dt __Instance__DT_TO_TecoDT~IEC_DT
+ PRV
+ LEA  __Instance__DT_TO_TecoDT
+ CAL  DT_TO_TecoDT_L0
+ LEAY B
+#debug_left pointer B
+ LD   9   ;SizeOf() 
+ MOV  %IB0
+#srcline 159 ;  MSEC_OF_DT := B.milisec;
+ LDY  B~milisec
+#debug uint B.milisec
+ WRX  __fc__MSEC_OF_DT
+#debug_left uint MSEC_OF_DT
+#srcline 160 ;end_function
+ PRV  
+ LDX  __fc__MSEC_OF_DT
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou CutMSec_From_DT
+#srcline 163 ;function CutMSec_From_DT : DT
+
+#struct CutMSec_From_DT__temp__
+  date_and_time B
+P     61
+CutMSec_From_DT_L0:
+ LINK __SizeOf(CutMSec_From_DT__temp__)
+ NXT
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 175 ;begin
+#srcline 176 ;  {asm}
+#srcline 177
+  LDX in
+#srcline 178
+  FLOD
+#srcline 179
+  WRY B
+#srcline 180 ;  {end_asm}
+#srcline 181 ;  CutMSec_From_DT := B;
+ LDY  B
+#debug dt B
+ WRX  __fc__CutMSec_From_DT
+#debug_left dt CutMSec_From_DT
+#srcline 182 ;end_function
+ PRV  
+ LDX  __fc__CutMSec_From_DT
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou CutSec_From_DT
+#srcline 185 ;function CutSec_From_DT : DT
+
+#struct CutSec_From_DT__temp__
+  lreal B
+P     61
+CutSec_From_DT_L0:
+ LINK __SizeOf(CutSec_From_DT__temp__)
+ NXT
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 197 ;  B := DT_TO_LREAL( in) / 60.0;
+ LDX  in
+#debug dt in
+ LDQ  lreal 60.0
+ DIDF
+ WRY  B
+#debug_left lreal B
+#srcline 198 ;  {asm}
+#srcline 199
+  LDY B
+#srcline 200
+  FLOD
+#srcline 201
+  WRY B
+#srcline 202 ;  {end_asm}
+#srcline 203 ;  CutSec_From_DT := LREAL_TO_DT( B * 60.0);
+ LDY  B
+#debug lreal B
+ LDQ  lreal 60.0
+ MUDF
+ WRX  __fc__CutSec_From_DT
+#debug_left dt CutSec_From_DT
+#srcline 204 ;end_function
+ PRV  
+ LDX  __fc__CutSec_From_DT
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou YEAR_OF_DATE
+#srcline 207 ;function YEAR_OF_DATE : uint
+P     61
+YEAR_OF_DATE_L0:
+ LINK 0
+ NXT
+#srcline 216 ;  YEAR_OF_DATE := YEAR_OF_DT( DATE_TO_DT( in));
+ NXT
+ LDX  in
+#debug date in
+ WR   __Instance__YEAR_OF_DT~in
+#debug_left dt __Instance__YEAR_OF_DT~in
+ PRV
+ LEA  __Instance__YEAR_OF_DT
+ CAL  YEAR_OF_DT_L0
+ WRX  __fc__YEAR_OF_DATE
+#debug_left uint YEAR_OF_DATE
+#srcline 217 ;end_function
+ PRV  
+ LDX  __fc__YEAR_OF_DATE
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou MONTH_OF_DATE
+#srcline 220 ;function MONTH_OF_DATE : usint
+P     61
+MONTH_OF_DATE_L0:
+ LINK 0
+ NXT
+#srcline 229 ;  MONTH_OF_DATE := MONTH_OF_DT( DATE_TO_DT( in));
+ NXT
+ LDX  in
+#debug date in
+ WR   __Instance__MONTH_OF_DT~in
+#debug_left dt __Instance__MONTH_OF_DT~in
+ PRV
+ LEA  __Instance__MONTH_OF_DT
+ CAL  MONTH_OF_DT_L0
+ WRX  __fc__MONTH_OF_DATE
+#debug_left usint MONTH_OF_DATE
+#srcline 230 ;end_function
+ PRV  
+ LDX  __fc__MONTH_OF_DATE
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou DAY_OF_DATE
+#srcline 233 ;function DAY_OF_DATE : usint
+P     61
+DAY_OF_DATE_L0:
+ LINK 0
+ NXT
+#srcline 242 ;  DAY_OF_DATE := DAY_OF_DT( DATE_TO_DT( in));
+ NXT
+ LDX  in
+#debug date in
+ WR   __Instance__DAY_OF_DT~in
+#debug_left dt __Instance__DAY_OF_DT~in
+ PRV
+ LEA  __Instance__DAY_OF_DT
+ CAL  DAY_OF_DT_L0
+ WRX  __fc__DAY_OF_DATE
+#debug_left usint DAY_OF_DATE
+#srcline 243 ;end_function
+ PRV  
+ LDX  __fc__DAY_OF_DATE
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou DAY_OF_YEAR
+#srcline 246 ;FUNCTION DAY_OF_YEAR : UINT
+
+#struct DAY_OF_YEAR__temp__
+  string[82] PS0__st__,
+  string[82] PSC__st__
+#data byte _str_DAY_OF_YEAR_0 = 
+  'D','#',0
+#data byte _str_DAY_OF_YEAR_1 = 
+  '-','0','1','-','0','1',0
+P     61
+DAY_OF_YEAR_L0:
+ LINK __SizeOf(DAY_OF_YEAR__temp__)
+ NXT
+; Initialize - variables
+ LD   0
+ WRX  __fc__DAY_OF_YEAR
+ WRX  year
+ WRX  tmp
+ WRX  yearD
+ LDQ  0.0
+ WRX  secOfYear
+; End initialize - variables
+#srcline 261 ;  year :=  YEAR_OF_DATE( in);
+ NXT
+ LDX  in
+#debug date in
+ WR   __Instance__YEAR_OF_DATE~in
+#debug_left date __Instance__YEAR_OF_DATE~in
+ PRV
+ LEA  __Instance__YEAR_OF_DATE
+ CAL  YEAR_OF_DATE_L0
+ WRX  year
+#debug_left uint year
+#srcline 262 ;  tmp  := 'D#' + UINT_TO_STRING(year) + '-01-01';
+ LD   0   ; null string
+ WRY  PS0__st__[0]
+ LEAY PS0__st__[0]
+ LD   80
+ DST    ; Level 1
+ LEA  _str_DAY_OF_YEAR_0
+ SCON 
+ LD   0   ; null string
+ WRY  PSC__st__[0]
+ LEAY PSC__st__[0]
+ LD   80
+ DST    ; Level 2
+ LDX  year
+#debug uint year
+ SCNV $0A30;  IEC_UINT _TO_ IEC_STRING
+ PDST   ; Level 2
+ LEAY PSC__st__[0]
+
+ SCON 
+ LEA  _str_DAY_OF_YEAR_1
+ SCON 
+ PDST   ; Level 1
+ LD   0   ; null string
+ LEAX tmp
+ WRI  
+ LEAX tmp
+ LD   80
+ DST    ; Level 1
+ LEAY PS0__st__[0]
+ SCON 
+#debug_left string tmp
+ PDST   ; Level 1
+#srcline 263 ;  yearD := STRING_TO_DATE(tmp);
+ LEAX tmp
+#debug string tmp
+ SCNV $3031;  IEC_STRING _TO_ IEC_DATE
+ WRX  yearD
+#debug_left date yearD
+#srcline 264 ;  secOfYear := DATE_TO_LREAL(in) - DATE_TO_LREAL(yearD);
+ LDX  in
+#debug date in
+ LDX  yearD
+#debug date yearD
+ SUDF
+ WRX  secOfYear
+#debug_left lreal secOfYear
+#srcline 265 ;  DAY_OF_YEAR := DINT_TO_UINT(( LREAL_TO_DINT(secOfYear) / 86400) + 1);
+ LDX  secOfYear
+#debug lreal secOfYear
+ RNDD
+ IDFL
+ LD   dint 86400
+ DIVS
+ LD   dint 1
+ ADD
+ AND  $FFFF
+ WRX  __fc__DAY_OF_YEAR
+#debug_left uint DAY_OF_YEAR
+#srcline 266 ;END_FUNCTION
+ PRV  
+ LDX  __fc__DAY_OF_YEAR
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou HOUR_OF_TIME
+#srcline 270 ;function HOUR_OF_TIME : usint
+P     61
+HOUR_OF_TIME_L0:
+ LINK 0
+ NXT
+#srcline 279 ;  HOUR_OF_TIME := DINT_TO_USINT( TIME_TO_DINT( in)/3600000 mod 60);
+ LDX  in
+#debug time in
+ LD   dint 3600000
+ DIVS
+ LD   dint 60
+ MODS
+ AND  $FF
+ WRX  __fc__HOUR_OF_TIME
+#debug_left usint HOUR_OF_TIME
+#srcline 280 ;end_function
+ PRV  
+ LDX  __fc__HOUR_OF_TIME
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou MIN_OF_TIME
+#srcline 283 ;function MIN_OF_TIME : usint
+P     61
+MIN_OF_TIME_L0:
+ LINK 0
+ NXT
+#srcline 292 ;  MIN_OF_TIME := DINT_TO_USINT( TIME_TO_DINT(in)/60000 mod 60);
+ LDX  in
+#debug time in
+ LD   dint 60000
+ DIVS
+ LD   dint 60
+ MODS
+ AND  $FF
+ WRX  __fc__MIN_OF_TIME
+#debug_left usint MIN_OF_TIME
+#srcline 293 ;end_function
+ PRV  
+ LDX  __fc__MIN_OF_TIME
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou SEC_OF_TIME
+#srcline 296 ;function SEC_OF_TIME : usint
+P     61
+SEC_OF_TIME_L0:
+ LINK 0
+ NXT
+#srcline 305 ;  SEC_OF_TIME := DINT_TO_USINT( TIME_TO_DINT(in)/1000 mod 60);
+ LDX  in
+#debug time in
+ LD   dint 1000
+ DIVS
+ LD   dint 60
+ MODS
+ AND  $FF
+ WRX  __fc__SEC_OF_TIME
+#debug_left usint SEC_OF_TIME
+#srcline 306 ;end_function
+ PRV  
+ LDX  __fc__SEC_OF_TIME
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou MSEC_OF_TIME
+#srcline 309 ;function MSEC_OF_TIME : uint
+P     61
+MSEC_OF_TIME_L0:
+ LINK 0
+ NXT
+#srcline 318 ;  MSEC_OF_TIME := DINT_TO_UINT( TIME_TO_DINT(in) mod (1000));
+ LDX  in
+#debug time in
+ LD   dint 1000
+ MODS
+ AND  $FFFF
+ WRX  __fc__MSEC_OF_TIME
+#debug_left uint MSEC_OF_TIME
+#srcline 319 ;end_function
+ PRV  
+ LDX  __fc__MSEC_OF_TIME
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou DecodeTime
+#srcline 322 ;function DecodeTime : bool
+
+#struct DecodeTime__temp__
+  dint td
+P     61
+DecodeTime_L0:
+ LINK __SizeOf(DecodeTime__temp__)
+ NXT
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 340 ;  td := TIME_TO_DINT(in);
+ LDX  in
+#debug time in
+ WRY  td
+#debug_left dint td
+#srcline 341 ;  MS := DINT_TO_UINT(td mod 1000);
+ LDY  td
+#debug dint td
+ LD   dint 1000
+ MODS
+ AND  $FFFF
+ LDX  MS
+ WRIW 
+#debug_left uint MS
+#srcline 342 ;  td := td / 1000;
+ LDY  td
+#debug dint td
+ LD   dint 1000
+ DIVS
+ WRY  td
+#debug_left dint td
+#srcline 343 ;  S  := DINT_TO_USINT(td mod 60);
+ LDY  td
+#debug dint td
+ LD   dint 60
+ MODS
+ AND  $FF
+ LDX  S
+ WRI 
+#debug_left usint S
+#srcline 344 ;  td := td / 60;
+ LDY  td
+#debug dint td
+ LD   dint 60
+ DIVS
+ WRY  td
+#debug_left dint td
+#srcline 345 ;  M  := DINT_TO_USINT(td mod 60);
+ LDY  td
+#debug dint td
+ LD   dint 60
+ MODS
+ AND  $FF
+ LDX  M
+ WRI 
+#debug_left usint M
+#srcline 346 ;  td := td / 60;
+ LDY  td
+#debug dint td
+ LD   dint 60
+ DIVS
+ WRY  td
+#debug_left dint td
+#srcline 347 ;  H  := DINT_TO_USINT(td mod 60);
+ LDY  td
+#debug dint td
+ LD   dint 60
+ MODS
+ AND  $FF
+ LDX  H
+ WRI 
+#debug_left usint H
+#srcline 348 ;  DecodeTime := True;
+ LD   bool -1       ; true
+ WRX  __fc__DecodeTime
+#debug_left bool DecodeTime
+#srcline 349 ;end_function
+ PRV  
+ LDX  __fc__DecodeTime
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou EncodeTime
+#srcline 352 ;function EncodeTime : TIME
+P     61
+EncodeTime_L0:
+ LINK 0
+ NXT
+#srcline 364 ;  EncodeTime := DINT_TO_TIME( UINT_TO_DINT(Ms) + USINT_TO_DINT(S)*1000 + USINT_TO_DINT(M)*60000 + USINT_TO_DINT(H)*3600000);
+ LDX  Ms
+#debug uint Ms
+ LDX  S
+#debug usint S
+ LD   dint 1000
+ MULS
+ ADD
+ LDX  M
+#debug usint M
+ LD   dint 60000
+ MULS
+ ADD
+ LDX  H
+#debug usint H
+ LD   dint 3600000
+ MULS
+ ADD
+ WRX  __fc__EncodeTime
+#debug_left time EncodeTime
+#srcline 365 ;end_function
+ PRV  
+ LDX  __fc__EncodeTime
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\TIMELIB\TIMELIB\MUL_DIV_TIME.ST'
+#pou MUL_TIME_REAL
+#srcline 2 ;FUNCTION MUL_TIME_REAL : TIME
+P     61
+MUL_TIME_REAL_L0:
+ LINK 0
+ NXT
+#srcline 11 ;begin
+#srcline 12 ;     {asm}
+#srcline 13
+     LDX   IN1
+#srcline 14
+     LDX   IN2
+#srcline 15
+     IFL
+#srcline 16
+     MULS
+#srcline 17
+     WRX   __fc__MUL_TIME_REAL
+#srcline 18 ;     {end_asm}
+#srcline 19 ;END_FUNCTION
+ PRV  
+ LDX  __fc__MUL_TIME_REAL
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou MUL_TIME_LREAL
+#srcline 22 ;FUNCTION MUL_TIME_LREAL : TIME
+P     61
+MUL_TIME_LREAL_L0:
+ LINK 0
+ NXT
+#srcline 31 ;begin
+#srcline 32 ;     {asm}
+#srcline 33
+     LDX   IN1
+#srcline 34
+     LDX   IN2
+#srcline 35
+     IDFL
+#srcline 36
+     MULS
+#srcline 37
+     WRX   __fc__MUL_TIME_LREAL
+#srcline 38 ;     {end_asm}
+#srcline 39 ;END_FUNCTION
+ PRV  
+ LDX  __fc__MUL_TIME_LREAL
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou DIV_TIME_REAL
+#srcline 42 ;FUNCTION DIV_TIME_REAL : TIME
+P     61
+DIV_TIME_REAL_L0:
+ LINK 0
+ NXT
+#srcline 51 ;begin
+#srcline 52 ;     {asm}
+#srcline 53
+     LDX   IN1
+#srcline 54
+     LDX   IN2
+#srcline 55
+     IFL
+#srcline 56
+     DIVS
+#srcline 57
+     WRX   __fc__DIV_TIME_REAL
+#srcline 58 ;     {end_asm}
+#srcline 59 ;END_FUNCTION
+ PRV  
+ LDX  __fc__DIV_TIME_REAL
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou DIV_TIME_LREAL
+#srcline 62 ;FUNCTION DIV_TIME_LREAL : TIME
+P     61
+DIV_TIME_LREAL_L0:
+ LINK 0
+ NXT
+#srcline 71 ;begin
+#srcline 72 ;     {asm}
+#srcline 73
+     LDX   IN1
+#srcline 74
+     LDX   IN2
+#srcline 75
+     IDFL
+#srcline 76
+     DIVS
+#srcline 77
+     WRX   __fc__DIV_TIME_LREAL
+#srcline 78 ;     {end_asm}
+#srcline 79 ;END_FUNCTION
+ PRV  
+ LDX  __fc__DIV_TIME_LREAL
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\TIMELIB\TIMELIB\GETDATEANDTIME_RFC2822.ST'
+#pou GetDateAndTime_RFC2822
+#srcline 7 ;FUNCTION GetDateAndTime_RFC2822 : STRING[26]
+
+#struct GetDateAndTime_RFC2822__temp__
+  usint S11,
+  string[82] PS0__st__,
+  string[82] PS1__st__,
+  string[82] PSC__st__
+#data byte _str_GetDateAndTime_RFC2822_0 = 
+  ' ','-','%','0','2','i',0
+#data byte _str_GetDateAndTime_RFC2822_1 = 
+  ' ','+','%','0','2','i',0
+#data byte _str_GetDateAndTime_RFC2822_2 = 
+  ' ',0
+#data byte _str_GetDateAndTime_RFC2822_3 = 
+  ' ','2','0',0
+#data byte _str_GetDateAndTime_RFC2822_4 = 
+  ' ',0
+#data byte _str_GetDateAndTime_RFC2822_5 = 
+  '%','T','h','h',':','m','m',':','s','s',0
+#data byte _str_GetDateAndTime_RFC2822_6 = 
+  '%','0','2','i',0
+P     61
+GetDateAndTime_RFC2822_L0:
+ LINK __SizeOf(GetDateAndTime_RFC2822__temp__)
+ NXT
+; Initialize - variables
+ LD   0
+ WRX  __fc__GetDateAndTime_RFC2822
+ WRX  Format
+; End initialize - variables
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 64 ;  IF UtcOff < 0 THEN
+ LDX  UtcOff
+#debug int UtcOff
+ EXTW 
+ LD   int 0
+ LTS
+ JMC  GetDateAndTime_RFC2822_L1
+#srcline 65 ;    Format := ' -%02i';
+ LD   0   ; null string
+ LEAX Format
+ WRI  
+ LEAX Format
+ LD   80
+ DST    ; Level 1
+ LEA  _str_GetDateAndTime_RFC2822_0
+ SCON 
+#debug_left string Format
+ PDST   ; Level 1
+#srcline 66 ;  ELSE
+ JMP  GetDateAndTime_RFC2822_L2
+GetDateAndTime_RFC2822_L1:
+#srcline 67 ;    Format := ' +%02i';
+ LD   0   ; null string
+ LEAX Format
+ WRI  
+ LEAX Format
+ LD   80
+ DST    ; Level 1
+ LEA  _str_GetDateAndTime_RFC2822_1
+ SCON 
+#debug_left string Format
+ PDST   ; Level 1
+#srcline 68 ;  END_IF;
+GetDateAndTime_RFC2822_L2:
+#srcline 70 ;  UtcOff := ABS(UtcOff + BOOL_TO_INT(%S35.6 AND %S35.7)*60);
+ LDX  UtcOff
+#debug int UtcOff
+ EXTW 
+ LD   %S35.6
+ LD   %S35.7
+ AND
+ AND  1
+ LD   int 60
+ MULS
+ EXTW
+ ADD
+ EXTW
+ ABSL
+ WRX  UtcOff
+#debug_left int UtcOff
+#srcline 72 ;  S11 := %S11;
+ LD   %S11
+ WRY  S11
+#debug_left usint S11
+#srcline 74 ;  GetDateAndTime_RFC2822 := USINT_TO_STRING(%S10)
+ LD   0   ; null string
+ WRY  PS0__st__[0]
+ LEAY PS0__st__[0]
+ LD   26
+ DST    ; Level 1
+ LD   0   ; null string
+ WRY  PSC__st__[0]
+ LEAY PSC__st__[0]
+ LD   26
+ DST    ; Level 2
+ LD   %S10
+ SCNV $0830;  IEC_USINT _TO_ IEC_STRING
+ PDST   ; Level 2
+ LEAY PSC__st__[0]
+#srcline 75 ;                            + ' '   + MonthsNamesRFC2822[S11]
+
+ SCON 
+ LEA  _str_GetDateAndTime_RFC2822_2
+ SCON 
+#srcline 76 ;                            + ' 20' + USINT_TO_STRING(%S12)
+ LEA  MonthsNamesRFC2822
+ LDY  S11
+#debug usint S11
+ SUB  1   ; Low range[1]
+ RCHK 11   ; Range Check
+ MUL  4   ; SizeOf(...)
+ ADD     ; + offset 
+ SCON 
+ LEA  _str_GetDateAndTime_RFC2822_3
+ SCON 
+ LD   0   ; null string
+ WRY  PSC__st__[0]
+ LEAY PSC__st__[0]
+ LD   26
+ DST    ; Level 2
+ LD   %S12
+ SCNV $0830;  IEC_USINT _TO_ IEC_STRING
+ PDST   ; Level 2
+ LEAY PSC__st__[0]
+#srcline 77 ;                            + ' ' + TIME_TO_STRINGF(in := GetTime(), format := '%Thh:mm:ss')
+
+ SCON 
+ LEA  _str_GetDateAndTime_RFC2822_4
+ SCON 
+ NXT
+ LEA  __Instance__GetTime
+ CAL  GetTime_L0
+ WR   __Instance__TIME_TO_STRINGF~in
+#debug_left time __Instance__TIME_TO_STRINGF~in
+ LD   0   ; null string
+ LEA  __Instance__TIME_TO_STRINGF~format
+ WRI 
+ LEA  __Instance__TIME_TO_STRINGF~format
+ LD   80
+ DST    ; Level 2
+ LEA  _str_GetDateAndTime_RFC2822_5
+ SCON 
+#debug_left string __Instance__TIME_TO_STRINGF~format
+ PDST   ; Level 2
+ PRV
+ LEA  __Instance__TIME_TO_STRINGF
+ CAL  TIME_TO_STRINGF_L0
+#srcline 78 ;                            + INT_TO_STRINGF(in := UtcOff / 60 , format := Format)
+
+ SCON 
+ NXT
+ LDX  UtcOff
+#debug int UtcOff
+ EXTW 
+ LD   int 60
+ DIVS
+ EXTW
+ WR   __Instance__INT_TO_STRINGF~in
+#debug_left int __Instance__INT_TO_STRINGF~in
+ LD   0   ; null string
+ LEA  __Instance__INT_TO_STRINGF~format
+ WRI 
+ LEA  __Instance__INT_TO_STRINGF~format
+ LD   80
+ DST    ; Level 2
+ LEAX Format
+#debug string Format
+ SCON 
+#debug_left string __Instance__INT_TO_STRINGF~format
+ PDST   ; Level 2
+ PRV
+ LEA  __Instance__INT_TO_STRINGF
+ CAL  INT_TO_STRINGF_L0
+#srcline 79 ;                            + INT_TO_STRINGF(in := MOD(UtcOff, 60) , format := '%02i');
+
+ SCON 
+ NXT
+ LDX  UtcOff
+#debug int UtcOff
+ EXTW 
+ LD   int 60
+ MODS
+ EXTW
+ WR   __Instance__INT_TO_STRINGF~in
+#debug_left int __Instance__INT_TO_STRINGF~in
+ LD   0   ; null string
+ LEA  __Instance__INT_TO_STRINGF~format
+ WRI 
+ LEA  __Instance__INT_TO_STRINGF~format
+ LD   80
+ DST    ; Level 2
+ LEA  _str_GetDateAndTime_RFC2822_6
+ SCON 
+#debug_left string __Instance__INT_TO_STRINGF~format
+ PDST   ; Level 2
+ PRV
+ LEA  __Instance__INT_TO_STRINGF
+ CAL  INT_TO_STRINGF_L0
+
+ SCON 
+ PDST   ; Level 1
+ LD   0   ; null string
+ LEAX __fc__GetDateAndTime_RFC2822
+ WRI  
+ LEAX __fc__GetDateAndTime_RFC2822
+ LD   26
+ DST    ; Level 1
+ LEAY PS0__st__[0]
+ SCON 
+#debug_left string GetDateAndTime_RFC2822
+ PDST   ; Level 1
+#srcline 80 ;END_FUNCTION
+ PRV  
+ LEAX  __fc__GetDateAndTime_RFC2822
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\TIMELIB\TIMELIB\WEEKNUMBER.ST'
+#pou WeekNumber
+#srcline 1 ;FUNCTION WeekNumber : USINT
+#table byte __Init___WeekNumber_SOY = 
+      0,  1,  1;
+
+#struct WeekNumber__temp__
+  TTecoDateTime Now,
+  TTecoDateTime SOY,
+  date_and_time NowDT,
+  date_and_time SOYDT
+P     61
+WeekNumber_L0:
+ LINK __SizeOf(WeekNumber__temp__)
+ NXT
+; Initialize - dynamic variables
+ LD   0
+ SRC  byte __Init___WeekNumber_SOY
+ LEAY byte SOY
+ LD   9
+ MOV  %X0
+; End initialize - dynamic variables
+#srcline 16 ;  NowDT    := IN;
+ LDX  IN
+#debug dt IN
+ WRY  NowDT
+#debug_left dt NowDT
+#srcline 17 ;  Now      := DT_TO_TecoDT(NowDT);
+ NXT
+ LDY  NowDT
+#debug dt NowDT
+ WR   __Instance__DT_TO_TecoDT~IEC_DT
+#debug_left dt __Instance__DT_TO_TecoDT~IEC_DT
+ PRV
+ LEA  __Instance__DT_TO_TecoDT
+ CAL  DT_TO_TecoDT_L0
+ LEAY Now
+#debug_left pointer Now
+ LD   9   ;SizeOf() 
+ MOV  %IB0
+#srcline 18 ;  SOY.year := Now.year;
+ LDY  Now~year
+#debug usint Now.year
+ WRY  SOY~year
+#debug_left usint SOY.year
+#srcline 19 ;  SOYDT    := TecoDT_TO_DT(SOY);
+ NXT
+ LEAY SOY
+#debug pointer SOY
+ SRC  %IB0
+ LEA  __Instance__TecoDT_TO_DT~Teco_DT
+#debug_left pointer __Instance__TecoDT_TO_DT~Teco_DT
+ LD   9   ;SizeOf() 
+ MOV  %IB0
+ PRV
+ LEA  __Instance__TecoDT_TO_DT
+ CAL  TecoDT_TO_DT_L0
+ WRY  SOYDT
+#debug_left dt SOYDT
+#srcline 20 ;  SOY      := DT_TO_TecoDT(SOYDT);
+ NXT
+ LDY  SOYDT
+#debug dt SOYDT
+ WR   __Instance__DT_TO_TecoDT~IEC_DT
+#debug_left dt __Instance__DT_TO_TecoDT~IEC_DT
+ PRV
+ LEA  __Instance__DT_TO_TecoDT
+ CAL  DT_TO_TecoDT_L0
+ LEAY SOY
+#debug_left pointer SOY
+ LD   9   ;SizeOf() 
+ MOV  %IB0
+#srcline 21 ;  IF SOY.dayOfWeek < 5 THEN
+ LDY  SOY~dayOfWeek
+#debug usint SOY.dayOfWeek
+ LD   usint 5
+ LT
+ JMC  WeekNumber_L1
+#srcline 22 ;    SOYDT    := LREAL_TO_DATE_AND_TIME(DATE_AND_TIME_TO_LREAL(SOYDT) -
+ LDY  SOYDT
+#debug dt SOYDT
+#srcline 23 ;                        USINT_TO_LREAL(SOY.dayOfWeek-1)*86400.0);
+ LDY  SOY~dayOfWeek
+#debug usint SOY.dayOfWeek
+ LD   usint 1
+ SUB
+ AND  $FF
+ ULDF
+ LDQ  lreal 86400.0
+ MUDF
+ SUDF
+ WRY  SOYDT
+#debug_left dt SOYDT
+#srcline 24 ;  ELSE
+ JMP  WeekNumber_L2
+WeekNumber_L1:
+#srcline 25 ;    SOYDT    := LREAL_TO_DATE_AND_TIME(DATE_AND_TIME_TO_LREAL(SOYDT) +
+ LDY  SOYDT
+#debug dt SOYDT
+#srcline 26 ;                        USINT_TO_LREAL(8-SOY.dayOfWeek)*86400.0);
+ LD   usint 8
+ LDY  SOY~dayOfWeek
+#debug usint SOY.dayOfWeek
+ SUB
+ AND  $FF
+ ULDF
+ LDQ  lreal 86400.0
+ MUDF
+ ADDF
+ WRY  SOYDT
+#debug_left dt SOYDT
+#srcline 27 ;  END_IF;
+WeekNumber_L2:
+#srcline 29 ;  IF IN < SOYDT THEN
+ LDX  IN
+#debug dt IN
+ LDY  SOYDT
+#debug dt SOYDT
+ LTDF
+ JMC  WeekNumber_L3
+#srcline 30 ;    Now.year := Now.year - 1;
+ LDY  Now~year
+#debug usint Now.year
+ LD   usint 1
+ SUB
+ AND  $FF
+ WRY  Now~year
+#debug_left usint Now.year
+#srcline 31 ;    Now.month := 12;
+ LD   usint 12
+ WRY  Now~month
+#debug_left usint Now.month
+#srcline 32 ;    Now.day := 31;
+ LD   usint 31
+ WRY  Now~day
+#debug_left usint Now.day
+#srcline 33 ;    NowDT := TecoDT_TO_DT(Now);
+ NXT
+ LEAY Now
+#debug pointer Now
+ SRC  %IB0
+ LEA  __Instance__TecoDT_TO_DT~Teco_DT
+#debug_left pointer __Instance__TecoDT_TO_DT~Teco_DT
+ LD   9   ;SizeOf() 
+ MOV  %IB0
+ PRV
+ LEA  __Instance__TecoDT_TO_DT
+ CAL  TecoDT_TO_DT_L0
+ WRY  NowDT
+#debug_left dt NowDT
+#srcline 34 ;    SOY.year := Now.year;
+ LDY  Now~year
+#debug usint Now.year
+ WRY  SOY~year
+#debug_left usint SOY.year
+#srcline 35 ;    SOYDT    := TecoDT_TO_DT(SOY);
+ NXT
+ LEAY SOY
+#debug pointer SOY
+ SRC  %IB0
+ LEA  __Instance__TecoDT_TO_DT~Teco_DT
+#debug_left pointer __Instance__TecoDT_TO_DT~Teco_DT
+ LD   9   ;SizeOf() 
+ MOV  %IB0
+ PRV
+ LEA  __Instance__TecoDT_TO_DT
+ CAL  TecoDT_TO_DT_L0
+ WRY  SOYDT
+#debug_left dt SOYDT
+#srcline 36 ;    SOY      := DT_TO_TecoDT(SOYDT);
+ NXT
+ LDY  SOYDT
+#debug dt SOYDT
+ WR   __Instance__DT_TO_TecoDT~IEC_DT
+#debug_left dt __Instance__DT_TO_TecoDT~IEC_DT
+ PRV
+ LEA  __Instance__DT_TO_TecoDT
+ CAL  DT_TO_TecoDT_L0
+ LEAY SOY
+#debug_left pointer SOY
+ LD   9   ;SizeOf() 
+ MOV  %IB0
+#srcline 37 ;    IF SOY.dayOfWeek < 5 THEN
+ LDY  SOY~dayOfWeek
+#debug usint SOY.dayOfWeek
+ LD   usint 5
+ LT
+ JMC  WeekNumber_L5
+#srcline 38 ;      SOYDT    := LREAL_TO_DATE_AND_TIME(DATE_AND_TIME_TO_LREAL(SOYDT) -
+ LDY  SOYDT
+#debug dt SOYDT
+#srcline 39 ;                          USINT_TO_LREAL(SOY.dayOfWeek-1)*86400.0);
+ LDY  SOY~dayOfWeek
+#debug usint SOY.dayOfWeek
+ LD   usint 1
+ SUB
+ AND  $FF
+ ULDF
+ LDQ  lreal 86400.0
+ MUDF
+ SUDF
+ WRY  SOYDT
+#debug_left dt SOYDT
+#srcline 40 ;    ELSE
+ JMP  WeekNumber_L6
+WeekNumber_L5:
+#srcline 41 ;      SOYDT    := LREAL_TO_DATE_AND_TIME(DATE_AND_TIME_TO_LREAL(SOYDT) +
+ LDY  SOYDT
+#debug dt SOYDT
+#srcline 42 ;                          USINT_TO_LREAL(8-SOY.dayOfWeek)*86400.0);
+ LD   usint 8
+ LDY  SOY~dayOfWeek
+#debug usint SOY.dayOfWeek
+ SUB
+ AND  $FF
+ ULDF
+ LDQ  lreal 86400.0
+ MUDF
+ ADDF
+ WRY  SOYDT
+#debug_left dt SOYDT
+#srcline 43 ;    END_IF;
+WeekNumber_L6:
+#srcline 44 ;  END_IF;
+WeekNumber_L3:
+#srcline 46 ;  WeekNumber := LREAL_TO_USINT((DATE_AND_TIME_TO_LREAL(NowDT) -
+ LDY  NowDT
+#debug dt NowDT
+#srcline 47 ;                  DATE_AND_TIME_TO_LREAL(SOYDT)) / 604800.0 - 0.5)+1;
+ LDY  SOYDT
+#debug dt SOYDT
+ SUDF
+ LDQ  lreal 604800.0
+ DIDF
+ LDQ  lreal 0.5
+ SUDF
+ RNDD
+ UDFL
+ AND  $FF
+ LD   usint 1
+ ADD
+ AND  $FF
+ WRX  __fc__WeekNumber
+#debug_left usint WeekNumber
+#srcline 49 ;  SOY.year := Now.year+1;
+ LDY  Now~year
+#debug usint Now.year
+ LD   usint 1
+ ADD
+ AND  $FF
+ WRY  SOY~year
+#debug_left usint SOY.year
+#srcline 50 ;  SOYDT    := TecoDT_TO_DT(SOY);
+ NXT
+ LEAY SOY
+#debug pointer SOY
+ SRC  %IB0
+ LEA  __Instance__TecoDT_TO_DT~Teco_DT
+#debug_left pointer __Instance__TecoDT_TO_DT~Teco_DT
+ LD   9   ;SizeOf() 
+ MOV  %IB0
+ PRV
+ LEA  __Instance__TecoDT_TO_DT
+ CAL  TecoDT_TO_DT_L0
+ WRY  SOYDT
+#debug_left dt SOYDT
+#srcline 51 ;  SOY      := DT_TO_TecoDT(SOYDT);
+ NXT
+ LDY  SOYDT
+#debug dt SOYDT
+ WR   __Instance__DT_TO_TecoDT~IEC_DT
+#debug_left dt __Instance__DT_TO_TecoDT~IEC_DT
+ PRV
+ LEA  __Instance__DT_TO_TecoDT
+ CAL  DT_TO_TecoDT_L0
+ LEAY SOY
+#debug_left pointer SOY
+ LD   9   ;SizeOf() 
+ MOV  %IB0
+#srcline 53 ;  IF SOY.dayOfWeek > 1 AND SOY.dayOfWeek < 5 THEN
+ LDY  SOY~dayOfWeek
+#debug usint SOY.dayOfWeek
+ LD   usint 1
+ GT
+ LDY  SOY~dayOfWeek
+#debug usint SOY.dayOfWeek
+ LD   usint 5
+ LT
+ AND
+ JMC  WeekNumber_L7
+#srcline 54 ;    IF LREAL_TO_USINT((DATE_AND_TIME_TO_LREAL(SOYDT) -
+ LDY  SOYDT
+#debug dt SOYDT
+#srcline 55 ;       DATE_AND_TIME_TO_LREAL(NowDT)) / 86400.0 - 0.5) < SOY.dayOfWeek - 1 THEN
+ LDY  NowDT
+#debug dt NowDT
+ SUDF
+ LDQ  lreal 86400.0
+ DIDF
+ LDQ  lreal 0.5
+ SUDF
+ RNDD
+ UDFL
+ AND  $FF
+ LDY  SOY~dayOfWeek
+#debug usint SOY.dayOfWeek
+ LD   usint 1
+ SUB
+ AND  $FF
+ LT
+ JMC  WeekNumber_L9
+#srcline 56 ;       WeekNumber := 1;
+ LD   usint 1
+ WRX  __fc__WeekNumber
+#debug_left usint WeekNumber
+#srcline 57 ;    END_IF;
+WeekNumber_L9:
+#srcline 58 ;  END_IF;
+WeekNumber_L7:
+#srcline 60 ;END_FUNCTION
+ PRV  
+ LDX  __fc__WeekNumber
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\TIMELIB\TIMELIB\TIME_TO_REALSEC.ST'
+#pou TIME_TO_REALsec
+#srcline 1 ;FUNCTION TIME_TO_REALsec : REAL
+P     61
+TIME_TO_REALsec_L0:
+ LINK 0
+ NXT
+#srcline 10 ;  TIME_TO_REALsec := TIME_TO_REAL(IN)*0.001;
+ LDX  IN
+#debug time IN
+ ILF
+ LD   real 0.001
+ MUF
+ WRX  __fc__TIME_TO_REALsec
+#debug_left real TIME_TO_REALsec
+#srcline 12 ;END_FUNCTION
+ PRV  
+ LDX  __fc__TIME_TO_REALsec
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\TIMELIB\TIMELIB\LONGTIME_TO_LREAL.ST'
+#pou LONGTIME_TO_LREAL
+#srcline 1 ;FUNCTION LONGTIME_TO_LREAL : LREAL
+P     61
+LONGTIME_TO_LREAL_L0:
+ LINK 0
+ NXT
+#srcline 10 ;  LONGTIME_TO_LREAL := (DINT_TO_LREAL(IN.Days) * 86400.0 + TIME_TO_LREAL(IN.TimeOfDay)* 0.001);
+ LDX  IN~Days
+#debug dint IN.Days
+ ILDF
+ LDQ  lreal 86400.0
+ MUDF
+ LDX  IN~TimeOfDay
+#debug time IN.TimeOfDay
+ ILDF
+ LDQ  lreal 0.001
+ MUDF
+ ADDF
+ WRX  __fc__LONGTIME_TO_LREAL
+#debug_left lreal LONGTIME_TO_LREAL
+#srcline 11 ;//  LONGTIME_TO_LREAL := (DINT_TO_LREAL(IN.Days) * 86400.0 + TIME_OF_DAY_TO_LREAL(IN.TimeOfDay)* 0.001);
+#srcline 13 ;END_FUNCTION
+ PRV  
+ LDX  __fc__LONGTIME_TO_LREAL
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\TIMELIB\TIMELIB\LREAL_TO_LONGTIME.ST'
+#pou LREAL_TO_LONGTIME
+#srcline 1 ;FUNCTION LREAL_TO_LONGTIME : LONGTIME
+
+#struct LREAL_TO_LONGTIME__temp__
+  lreal LR
+P     61
+LREAL_TO_LONGTIME_L0:
+ LINK __SizeOf(LREAL_TO_LONGTIME__temp__)
+ NXT
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 13 ;  IF IN > 0.0 THEN
+ LDX  IN
+#debug lreal IN
+ LDQ  lreal 0.0
+ GTDF
+ JMC  LREAL_TO_LONGTIME_L1
+#srcline 14 ;    LR := FLOOR(IN / 86400.0);
+ LDX  IN
+#debug lreal IN
+ LDQ  lreal 86400.0
+ DIDF
+ FLOD
+ WRY  LR
+#debug_left lreal LR
+#srcline 15 ;  ELSE
+ JMP  LREAL_TO_LONGTIME_L2
+LREAL_TO_LONGTIME_L1:
+#srcline 16 ;    LR := CEIL(IN / 86400.0);
+ LDX  IN
+#debug lreal IN
+ LDQ  lreal 86400.0
+ DIDF
+ CEID
+ WRY  LR
+#debug_left lreal LR
+#srcline 17 ;  END_IF;
+LREAL_TO_LONGTIME_L2:
+#srcline 18 ;  LREAL_TO_LONGTIME.Days := LREAL_TO_DINT(LR);
+ LDY  LR
+#debug lreal LR
+ RNDD
+ IDFL
+ WRX  __fc__LREAL_TO_LONGTIME~Days
+#debug_left dint LREAL_TO_LONGTIME.Days
+#srcline 19 ;  LREAL_TO_LONGTIME.TimeOfDay := LREAL_TO_TIME((IN - LR * 86400.0)*1000.0);
+ LDX  IN
+#debug lreal IN
+ LDY  LR
+#debug lreal LR
+ LDQ  lreal 86400.0
+ MUDF
+ SUDF
+ LDQ  lreal 1000.0
+ MUDF
+ RNDD
+ IDFL
+ WRX  __fc__LREAL_TO_LONGTIME~TimeOfDay
+#debug_left time LREAL_TO_LONGTIME.TimeOfDay
+#srcline 20 ;//  LREAL_TO_LONGTIME.TimeOfDay := LREAL_TO_TIME_OF_DAY((IN - LR * 86400.0)*1000.0);
+#srcline 22 ;END_FUNCTION
+ PRV  
+ LEAX  __fc__LREAL_TO_LONGTIME
+ SRC   %X0
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\TIMELIB\TIMELIB\ADD_DT_LONGTIME.ST'
+#pou ADD_DT_LONGTIME
+#srcline 1 ;FUNCTION ADD_DT_LONGTIME : DATE_AND_TIME
+P     61
+ADD_DT_LONGTIME_L0:
+ LINK 0
+ NXT
+#srcline 11 ;  ADD_DT_LONGTIME := LREAL_TO_DATE_AND_TIME(DATE_AND_TIME_TO_LREAL(IN1) + LONGTIME_TO_LREAL(IN2));
+ LDX  IN1
+#debug dt IN1
+ NXT
+ LEAX IN2
+#debug pointer IN2
+ SRC  %IB0
+ LEA  __Instance__LONGTIME_TO_LREAL~IN
+#debug_left pointer __Instance__LONGTIME_TO_LREAL~IN
+ LD   8   ;SizeOf() 
+ MOV  %IB0
+ PRV
+ LEA  __Instance__LONGTIME_TO_LREAL
+ CAL  LONGTIME_TO_LREAL_L0
+ ADDF
+ WRX  __fc__ADD_DT_LONGTIME
+#debug_left dt ADD_DT_LONGTIME
+#srcline 13 ;END_FUNCTION
+ PRV  
+ LDX  __fc__ADD_DT_LONGTIME
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\TIMELIB\TIMELIB\ADD_LONGTIME.ST'
+#pou ADD_LONGTIME
+#srcline 1 ;FUNCTION ADD_LONGTIME : LONGTIME
+P     61
+ADD_LONGTIME_L0:
+ LINK 0
+ NXT
+#srcline 11 ;  ADD_LONGTIME := LREAL_TO_LONGTIME(LONGTIME_TO_LREAL(IN1) + LONGTIME_TO_LREAL(IN2));
+ NXT
+ NXT
+ LEAX IN1
+#debug pointer IN1
+ SRC  %IB0
+ LEA  __Instance__LONGTIME_TO_LREAL~IN
+#debug_left pointer __Instance__LONGTIME_TO_LREAL~IN
+ LD   8   ;SizeOf() 
+ MOV  %IB0
+ PRV
+ LEA  __Instance__LONGTIME_TO_LREAL
+ CAL  LONGTIME_TO_LREAL_L0
+ NXT
+ LEAX IN2
+#debug pointer IN2
+ SRC  %IB0
+ LEA  __Instance__LONGTIME_TO_LREAL~IN
+#debug_left pointer __Instance__LONGTIME_TO_LREAL~IN
+ LD   8   ;SizeOf() 
+ MOV  %IB0
+ PRV
+ LEA  __Instance__LONGTIME_TO_LREAL
+ CAL  LONGTIME_TO_LREAL_L0
+ ADDF
+ WR   __Instance__LREAL_TO_LONGTIME~IN
+#debug_left lreal __Instance__LREAL_TO_LONGTIME~IN
+ PRV
+ LEA  __Instance__LREAL_TO_LONGTIME
+ CAL  LREAL_TO_LONGTIME_L0
+ LEAX __fc__ADD_LONGTIME
+#debug_left pointer ADD_LONGTIME
+ LD   8   ;SizeOf() 
+ MOV  %IB0
+#srcline 13 ;END_FUNCTION
+ PRV  
+ LEAX  __fc__ADD_LONGTIME
+ SRC   %X0
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\TIMELIB\TIMELIB\ADD_LONGTIME_TIME.ST'
+#pou ADD_LONGTIME_TIME
+#srcline 1 ;FUNCTION ADD_LONGTIME_TIME : LONGTIME
+P     61
+ADD_LONGTIME_TIME_L0:
+ LINK 0
+ NXT
+#srcline 8 ;  ADD_LONGTIME_TIME := LREAL_TO_LONGTIME(LONGTIME_TO_LREAL(IN1) + TIME_TO_LREAL(IN2)*0.001);
+ NXT
+ NXT
+ LEAX IN1
+#debug pointer IN1
+ SRC  %IB0
+ LEA  __Instance__LONGTIME_TO_LREAL~IN
+#debug_left pointer __Instance__LONGTIME_TO_LREAL~IN
+ LD   8   ;SizeOf() 
+ MOV  %IB0
+ PRV
+ LEA  __Instance__LONGTIME_TO_LREAL
+ CAL  LONGTIME_TO_LREAL_L0
+ LDX  IN2
+#debug time IN2
+ ILDF
+ LDQ  lreal 0.001
+ MUDF
+ ADDF
+ WR   __Instance__LREAL_TO_LONGTIME~IN
+#debug_left lreal __Instance__LREAL_TO_LONGTIME~IN
+ PRV
+ LEA  __Instance__LREAL_TO_LONGTIME
+ CAL  LREAL_TO_LONGTIME_L0
+ LEAX __fc__ADD_LONGTIME_TIME
+#debug_left pointer ADD_LONGTIME_TIME
+ LD   8   ;SizeOf() 
+ MOV  %IB0
+#srcline 10 ;END_FUNCTION
+ PRV  
+ LEAX  __fc__ADD_LONGTIME_TIME
+ SRC   %X0
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\TIMELIB\TIMELIB\DIV_LONGTIME.ST'
+#pou DIV_LONGTIME
+#srcline 1 ;FUNCTION DIV_LONGTIME : LONGTIME
+
+#struct DIV_LONGTIME__temp__
+  lreal LR,
+  lreal LR2
+P     61
+DIV_LONGTIME_L0:
+ LINK __SizeOf(DIV_LONGTIME__temp__)
+ NXT
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 20 ;  DIV_LONGTIME := LREAL_TO_LONGTIME(LONGTIME_TO_LREAL(IN1) / REAL_TO_LREAL(IN2));
+ NXT
+ NXT
+ LEAX IN1
+#debug pointer IN1
+ SRC  %IB0
+ LEA  __Instance__LONGTIME_TO_LREAL~IN
+#debug_left pointer __Instance__LONGTIME_TO_LREAL~IN
+ LD   8   ;SizeOf() 
+ MOV  %IB0
+ PRV
+ LEA  __Instance__LONGTIME_TO_LREAL
+ CAL  LONGTIME_TO_LREAL_L0
+ LDX  IN2
+#debug real IN2
+ FDF
+ DIDF
+ WR   __Instance__LREAL_TO_LONGTIME~IN
+#debug_left lreal __Instance__LREAL_TO_LONGTIME~IN
+ PRV
+ LEA  __Instance__LREAL_TO_LONGTIME
+ CAL  LREAL_TO_LONGTIME_L0
+ LEAX __fc__DIV_LONGTIME
+#debug_left pointer DIV_LONGTIME
+ LD   8   ;SizeOf() 
+ MOV  %IB0
+#srcline 23 ;END_FUNCTION
+ PRV  
+ LEAX  __fc__DIV_LONGTIME
+ SRC   %X0
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\TIMELIB\TIMELIB\EQ_LONGTIME.ST'
+#pou EQ_LONGTIME
+#srcline 1 ;FUNCTION EQ_LONGTIME : BOOL
+P     61
+EQ_LONGTIME_L0:
+ LINK 0
+ NXT
+#srcline 11 ;  EQ_LONGTIME := EQ(LONGTIME_TO_LREAL(IN1),LONGTIME_TO_LREAL(IN2));
+ NXT
+ LEAX IN1
+#debug pointer IN1
+ SRC  %IB0
+ LEA  __Instance__LONGTIME_TO_LREAL~IN
+#debug_left pointer __Instance__LONGTIME_TO_LREAL~IN
+ LD   8   ;SizeOf() 
+ MOV  %IB0
+ PRV
+ LEA  __Instance__LONGTIME_TO_LREAL
+ CAL  LONGTIME_TO_LREAL_L0
+ NXT
+ LEAX IN2
+#debug pointer IN2
+ SRC  %IB0
+ LEA  __Instance__LONGTIME_TO_LREAL~IN
+#debug_left pointer __Instance__LONGTIME_TO_LREAL~IN
+ LD   8   ;SizeOf() 
+ MOV  %IB0
+ PRV
+ LEA  __Instance__LONGTIME_TO_LREAL
+ CAL  LONGTIME_TO_LREAL_L0
+ EQDF
+ WRX  __fc__EQ_LONGTIME
+#debug_left bool EQ_LONGTIME
+#srcline 13 ;END_FUNCTION
+ PRV  
+ LDX  __fc__EQ_LONGTIME
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\TIMELIB\TIMELIB\GE_LONGTIME.ST'
+#pou GE_LONGTIME
+#srcline 1 ;FUNCTION GE_LONGTIME : BOOL
+P     61
+GE_LONGTIME_L0:
+ LINK 0
+ NXT
+#srcline 11 ;  GE_LONGTIME := GE(LONGTIME_TO_LREAL(IN1),LONGTIME_TO_LREAL(IN2));
+ NXT
+ LEAX IN1
+#debug pointer IN1
+ SRC  %IB0
+ LEA  __Instance__LONGTIME_TO_LREAL~IN
+#debug_left pointer __Instance__LONGTIME_TO_LREAL~IN
+ LD   8   ;SizeOf() 
+ MOV  %IB0
+ PRV
+ LEA  __Instance__LONGTIME_TO_LREAL
+ CAL  LONGTIME_TO_LREAL_L0
+ NXT
+ LEAX IN2
+#debug pointer IN2
+ SRC  %IB0
+ LEA  __Instance__LONGTIME_TO_LREAL~IN
+#debug_left pointer __Instance__LONGTIME_TO_LREAL~IN
+ LD   8   ;SizeOf() 
+ MOV  %IB0
+ PRV
+ LEA  __Instance__LONGTIME_TO_LREAL
+ CAL  LONGTIME_TO_LREAL_L0
+ LTDF
+ NEG
+ WRX  __fc__GE_LONGTIME
+#debug_left bool GE_LONGTIME
+#srcline 13 ;END_FUNCTION
+ PRV  
+ LDX  __fc__GE_LONGTIME
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\TIMELIB\TIMELIB\GT_LONGTIME.ST'
+#pou GT_LONGTIME
+#srcline 1 ;FUNCTION GT_LONGTIME : BOOL
+P     61
+GT_LONGTIME_L0:
+ LINK 0
+ NXT
+#srcline 11 ;  GT_LONGTIME := GT(LONGTIME_TO_LREAL(IN1),LONGTIME_TO_LREAL(IN2));
+ NXT
+ LEAX IN1
+#debug pointer IN1
+ SRC  %IB0
+ LEA  __Instance__LONGTIME_TO_LREAL~IN
+#debug_left pointer __Instance__LONGTIME_TO_LREAL~IN
+ LD   8   ;SizeOf() 
+ MOV  %IB0
+ PRV
+ LEA  __Instance__LONGTIME_TO_LREAL
+ CAL  LONGTIME_TO_LREAL_L0
+ NXT
+ LEAX IN2
+#debug pointer IN2
+ SRC  %IB0
+ LEA  __Instance__LONGTIME_TO_LREAL~IN
+#debug_left pointer __Instance__LONGTIME_TO_LREAL~IN
+ LD   8   ;SizeOf() 
+ MOV  %IB0
+ PRV
+ LEA  __Instance__LONGTIME_TO_LREAL
+ CAL  LONGTIME_TO_LREAL_L0
+ GTDF
+ WRX  __fc__GT_LONGTIME
+#debug_left bool GT_LONGTIME
+#srcline 13 ;END_FUNCTION
+ PRV  
+ LDX  __fc__GT_LONGTIME
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\TIMELIB\TIMELIB\LE_LONGTIME.ST'
+#pou LE_LONGTIME
+#srcline 1 ;FUNCTION LE_LONGTIME : BOOL
+P     61
+LE_LONGTIME_L0:
+ LINK 0
+ NXT
+#srcline 11 ;  LE_LONGTIME := LE(LONGTIME_TO_LREAL(IN1),LONGTIME_TO_LREAL(IN2));
+ NXT
+ LEAX IN1
+#debug pointer IN1
+ SRC  %IB0
+ LEA  __Instance__LONGTIME_TO_LREAL~IN
+#debug_left pointer __Instance__LONGTIME_TO_LREAL~IN
+ LD   8   ;SizeOf() 
+ MOV  %IB0
+ PRV
+ LEA  __Instance__LONGTIME_TO_LREAL
+ CAL  LONGTIME_TO_LREAL_L0
+ NXT
+ LEAX IN2
+#debug pointer IN2
+ SRC  %IB0
+ LEA  __Instance__LONGTIME_TO_LREAL~IN
+#debug_left pointer __Instance__LONGTIME_TO_LREAL~IN
+ LD   8   ;SizeOf() 
+ MOV  %IB0
+ PRV
+ LEA  __Instance__LONGTIME_TO_LREAL
+ CAL  LONGTIME_TO_LREAL_L0
+ GTDF
+ NEG
+ WRX  __fc__LE_LONGTIME
+#debug_left bool LE_LONGTIME
+#srcline 13 ;END_FUNCTION
+ PRV  
+ LDX  __fc__LE_LONGTIME
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\TIMELIB\TIMELIB\LT_LONGTIME.ST'
+#pou LT_LONGTIME
+#srcline 1 ;FUNCTION LT_LONGTIME : BOOL
+P     61
+LT_LONGTIME_L0:
+ LINK 0
+ NXT
+#srcline 11 ;  LT_LONGTIME := LT(LONGTIME_TO_LREAL(IN1),LONGTIME_TO_LREAL(IN2));
+ NXT
+ LEAX IN1
+#debug pointer IN1
+ SRC  %IB0
+ LEA  __Instance__LONGTIME_TO_LREAL~IN
+#debug_left pointer __Instance__LONGTIME_TO_LREAL~IN
+ LD   8   ;SizeOf() 
+ MOV  %IB0
+ PRV
+ LEA  __Instance__LONGTIME_TO_LREAL
+ CAL  LONGTIME_TO_LREAL_L0
+ NXT
+ LEAX IN2
+#debug pointer IN2
+ SRC  %IB0
+ LEA  __Instance__LONGTIME_TO_LREAL~IN
+#debug_left pointer __Instance__LONGTIME_TO_LREAL~IN
+ LD   8   ;SizeOf() 
+ MOV  %IB0
+ PRV
+ LEA  __Instance__LONGTIME_TO_LREAL
+ CAL  LONGTIME_TO_LREAL_L0
+ LTDF
+ WRX  __fc__LT_LONGTIME
+#debug_left bool LT_LONGTIME
+#srcline 13 ;END_FUNCTION
+ PRV  
+ LDX  __fc__LT_LONGTIME
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\TIMELIB\TIMELIB\MUL_LONGTIME.ST'
+#pou MUL_LONGTIME
+#srcline 1 ;FUNCTION MUL_LONGTIME : LONGTIME
+P     61
+MUL_LONGTIME_L0:
+ LINK 0
+ NXT
+#srcline 11 ;  MUL_LONGTIME := LREAL_TO_LONGTIME(LONGTIME_TO_LREAL(IN1) * REAL_TO_LREAL(IN2));
+ NXT
+ NXT
+ LEAX IN1
+#debug pointer IN1
+ SRC  %IB0
+ LEA  __Instance__LONGTIME_TO_LREAL~IN
+#debug_left pointer __Instance__LONGTIME_TO_LREAL~IN
+ LD   8   ;SizeOf() 
+ MOV  %IB0
+ PRV
+ LEA  __Instance__LONGTIME_TO_LREAL
+ CAL  LONGTIME_TO_LREAL_L0
+ LDX  IN2
+#debug real IN2
+ FDF
+ MUDF
+ WR   __Instance__LREAL_TO_LONGTIME~IN
+#debug_left lreal __Instance__LREAL_TO_LONGTIME~IN
+ PRV
+ LEA  __Instance__LREAL_TO_LONGTIME
+ CAL  LREAL_TO_LONGTIME_L0
+ LEAX __fc__MUL_LONGTIME
+#debug_left pointer MUL_LONGTIME
+ LD   8   ;SizeOf() 
+ MOV  %IB0
+#srcline 13 ;END_FUNCTION
+ PRV  
+ LEAX  __fc__MUL_LONGTIME
+ SRC   %X0
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\TIMELIB\TIMELIB\NE_LONGTIME.ST'
+#pou NE_LONGTIME
+#srcline 1 ;FUNCTION NE_LONGTIME : BOOL
+P     61
+NE_LONGTIME_L0:
+ LINK 0
+ NXT
+#srcline 11 ;  NE_LONGTIME := NE(LONGTIME_TO_LREAL(IN1),LONGTIME_TO_LREAL(IN2));
+ NXT
+ LEAX IN1
+#debug pointer IN1
+ SRC  %IB0
+ LEA  __Instance__LONGTIME_TO_LREAL~IN
+#debug_left pointer __Instance__LONGTIME_TO_LREAL~IN
+ LD   8   ;SizeOf() 
+ MOV  %IB0
+ PRV
+ LEA  __Instance__LONGTIME_TO_LREAL
+ CAL  LONGTIME_TO_LREAL_L0
+ NXT
+ LEAX IN2
+#debug pointer IN2
+ SRC  %IB0
+ LEA  __Instance__LONGTIME_TO_LREAL~IN
+#debug_left pointer __Instance__LONGTIME_TO_LREAL~IN
+ LD   8   ;SizeOf() 
+ MOV  %IB0
+ PRV
+ LEA  __Instance__LONGTIME_TO_LREAL
+ CAL  LONGTIME_TO_LREAL_L0
+ EQDF
+ NEG
+ WRX  __fc__NE_LONGTIME
+#debug_left bool NE_LONGTIME
+#srcline 13 ;END_FUNCTION
+ PRV  
+ LDX  __fc__NE_LONGTIME
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\TIMELIB\TIMELIB\SUB_DATE_DATE_LONG.ST'
+#pou SUB_DATE_DATE_LONG
+#srcline 1 ;FUNCTION SUB_DATE_DATE_LONG : LONGTIME
+P     61
+SUB_DATE_DATE_LONG_L0:
+ LINK 0
+ NXT
+#srcline 11 ;  SUB_DATE_DATE_LONG := LREAL_TO_LONGTIME(DATE_TO_LREAL(IN1) - DATE_TO_LREAL(IN2));
+ NXT
+ LDX  IN1
+#debug date IN1
+ LDX  IN2
+#debug date IN2
+ SUDF
+ WR   __Instance__LREAL_TO_LONGTIME~IN
+#debug_left lreal __Instance__LREAL_TO_LONGTIME~IN
+ PRV
+ LEA  __Instance__LREAL_TO_LONGTIME
+ CAL  LREAL_TO_LONGTIME_L0
+ LEAX __fc__SUB_DATE_DATE_LONG
+#debug_left pointer SUB_DATE_DATE_LONG
+ LD   8   ;SizeOf() 
+ MOV  %IB0
+#srcline 13 ;END_FUNCTION
+ PRV  
+ LEAX  __fc__SUB_DATE_DATE_LONG
+ SRC   %X0
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\TIMELIB\TIMELIB\SUB_DT_DT_LONG.ST'
+#pou SUB_DT_DT_LONG
+#srcline 1 ;FUNCTION SUB_DT_DT_LONG : LONGTIME
+P     61
+SUB_DT_DT_LONG_L0:
+ LINK 0
+ NXT
+#srcline 11 ;  SUB_DT_DT_LONG := LREAL_TO_LONGTIME(DATE_AND_TIME_TO_LREAL(IN1) - DATE_AND_TIME_TO_LREAL(IN2));
+ NXT
+ LDX  IN1
+#debug dt IN1
+ LDX  IN2
+#debug dt IN2
+ SUDF
+ WR   __Instance__LREAL_TO_LONGTIME~IN
+#debug_left lreal __Instance__LREAL_TO_LONGTIME~IN
+ PRV
+ LEA  __Instance__LREAL_TO_LONGTIME
+ CAL  LREAL_TO_LONGTIME_L0
+ LEAX __fc__SUB_DT_DT_LONG
+#debug_left pointer SUB_DT_DT_LONG
+ LD   8   ;SizeOf() 
+ MOV  %IB0
+#srcline 13 ;END_FUNCTION
+ PRV  
+ LEAX  __fc__SUB_DT_DT_LONG
+ SRC   %X0
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\TIMELIB\TIMELIB\SUB_DT_LONGTIME.ST'
+#pou SUB_DT_LONGTIME
+#srcline 1 ;FUNCTION SUB_DT_LONGTIME : DATE_AND_TIME
+P     61
+SUB_DT_LONGTIME_L0:
+ LINK 0
+ NXT
+#srcline 11 ;  SUB_DT_LONGTIME := LREAL_TO_DATE_AND_TIME(DATE_AND_TIME_TO_LREAL(IN1) - LONGTIME_TO_LREAL(IN2));
+ LDX  IN1
+#debug dt IN1
+ NXT
+ LEAX IN2
+#debug pointer IN2
+ SRC  %IB0
+ LEA  __Instance__LONGTIME_TO_LREAL~IN
+#debug_left pointer __Instance__LONGTIME_TO_LREAL~IN
+ LD   8   ;SizeOf() 
+ MOV  %IB0
+ PRV
+ LEA  __Instance__LONGTIME_TO_LREAL
+ CAL  LONGTIME_TO_LREAL_L0
+ SUDF
+ WRX  __fc__SUB_DT_LONGTIME
+#debug_left dt SUB_DT_LONGTIME
+#srcline 13 ;END_FUNCTION
+ PRV  
+ LDX  __fc__SUB_DT_LONGTIME
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\TIMELIB\TIMELIB\SUB_LONGTIME.ST'
+#pou SUB_LONGTIME
+#srcline 1 ;FUNCTION SUB_LONGTIME : LONGTIME
+P     61
+SUB_LONGTIME_L0:
+ LINK 0
+ NXT
+#srcline 11 ;  SUB_LONGTIME := LREAL_TO_LONGTIME(LONGTIME_TO_LREAL(IN1) - LONGTIME_TO_LREAL(IN2));
+ NXT
+ NXT
+ LEAX IN1
+#debug pointer IN1
+ SRC  %IB0
+ LEA  __Instance__LONGTIME_TO_LREAL~IN
+#debug_left pointer __Instance__LONGTIME_TO_LREAL~IN
+ LD   8   ;SizeOf() 
+ MOV  %IB0
+ PRV
+ LEA  __Instance__LONGTIME_TO_LREAL
+ CAL  LONGTIME_TO_LREAL_L0
+ NXT
+ LEAX IN2
+#debug pointer IN2
+ SRC  %IB0
+ LEA  __Instance__LONGTIME_TO_LREAL~IN
+#debug_left pointer __Instance__LONGTIME_TO_LREAL~IN
+ LD   8   ;SizeOf() 
+ MOV  %IB0
+ PRV
+ LEA  __Instance__LONGTIME_TO_LREAL
+ CAL  LONGTIME_TO_LREAL_L0
+ SUDF
+ WR   __Instance__LREAL_TO_LONGTIME~IN
+#debug_left lreal __Instance__LREAL_TO_LONGTIME~IN
+ PRV
+ LEA  __Instance__LREAL_TO_LONGTIME
+ CAL  LREAL_TO_LONGTIME_L0
+ LEAX __fc__SUB_LONGTIME
+#debug_left pointer SUB_LONGTIME
+ LD   8   ;SizeOf() 
+ MOV  %IB0
+#srcline 13 ;END_FUNCTION
+ PRV  
+ LEAX  __fc__SUB_LONGTIME
+ SRC   %X0
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\TIMELIB\TIMELIB\SUB_LONGTIME_TIME.ST'
+#pou SUB_LONGTIME_TIME
+#srcline 1 ;FUNCTION SUB_LONGTIME_TIME : LONGTIME
+P     61
+SUB_LONGTIME_TIME_L0:
+ LINK 0
+ NXT
+#srcline 11 ;  SUB_LONGTIME_TIME := LREAL_TO_LONGTIME(LONGTIME_TO_LREAL(IN1) - TIME_TO_LREAL(IN2)*0.001);
+ NXT
+ NXT
+ LEAX IN1
+#debug pointer IN1
+ SRC  %IB0
+ LEA  __Instance__LONGTIME_TO_LREAL~IN
+#debug_left pointer __Instance__LONGTIME_TO_LREAL~IN
+ LD   8   ;SizeOf() 
+ MOV  %IB0
+ PRV
+ LEA  __Instance__LONGTIME_TO_LREAL
+ CAL  LONGTIME_TO_LREAL_L0
+ LDX  IN2
+#debug time IN2
+ ILDF
+ LDQ  lreal 0.001
+ MUDF
+ SUDF
+ WR   __Instance__LREAL_TO_LONGTIME~IN
+#debug_left lreal __Instance__LREAL_TO_LONGTIME~IN
+ PRV
+ LEA  __Instance__LREAL_TO_LONGTIME
+ CAL  LREAL_TO_LONGTIME_L0
+ LEAX __fc__SUB_LONGTIME_TIME
+#debug_left pointer SUB_LONGTIME_TIME
+ LD   8   ;SizeOf() 
+ MOV  %IB0
+#srcline 13 ;END_FUNCTION
+ PRV  
+ LEAX  __fc__SUB_LONGTIME_TIME
+ SRC   %X0
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\TIMELIB\TIMELIB\ABSOLUTETON.ST'
+#pou AbsoluteTON
+#srcline 1 ;FUNCTION_BLOCK AbsoluteTON
+P     61
+AbsoluteTON_L0:
+ LINK 0
+#srcline 23 ;  RT(CLK := IN);
+ LDX  IN
+#debug bool IN
+ WRX  RT~CLK
+#debug_left bool RT~CLK
+ LEAX RT
+ CAL  R_TRIG_L0
+#srcline 25 ;  IF NOT(System_S.S2_3 OR System_S.S2_4) AND RT.Q THEN
+ LD   System_S~S2_3
+#debug bool System_S.S2_3
+ LD   System_S~S2_4
+#debug bool System_S.S2_4
+ OR  
+ NEG
+ LDX  RT~Q
+#debug bool RT.Q
+ AND
+ JMC  AbsoluteTON_L1
+#srcline 26 ;    TS := GetDateTime();
+ LEA  __Instance__GetDateTime
+ CAL  GetDateTime_L0
+ LDX  TS
+ WRIQ 
+#debug_left dt TS
+#srcline 27 ;  END_IF;
+AbsoluteTON_L1:
+#srcline 29 ;  IF IN THEN
+ LDX  IN
+#debug bool IN
+ JMC  AbsoluteTON_L3
+#srcline 30 ;    ET := SUB_DT_DT_LONG(IN1 := GetDateTime(), IN2 := TS);
+ NXT
+ LEA  __Instance__GetDateTime
+ CAL  GetDateTime_L0
+ WR   __Instance__SUB_DT_DT_LONG~IN1
+#debug_left dt __Instance__SUB_DT_DT_LONG~IN1
+ LDX  TS
+ LDIQ 
+#debug dt TS
+ WR   __Instance__SUB_DT_DT_LONG~IN2
+#debug_left dt __Instance__SUB_DT_DT_LONG~IN2
+ PRV
+ LEA  __Instance__SUB_DT_DT_LONG
+ CAL  SUB_DT_DT_LONG_L0
+ LEAX ET
+#debug_left pointer ET
+ LD   8   ;SizeOf() 
+ MOV  %IB0
+#srcline 31 ;    Q := ET >= PT;
+ LEAX ET
+ LEAX PT
+ LD   8   ; SizeOf()
+ BCMP 
+ LTS  0
+ NEG
+ WRX  Q
+#debug_left bool Q
+#srcline 32 ;  ELSE
+ JMP  AbsoluteTON_L4
+AbsoluteTON_L3:
+#srcline 33 ;    Q  := 0;
+ LD   bool 0       ; false
+ WRX  Q
+#debug_left bool Q
+#srcline 34 ;  END_IF;
+AbsoluteTON_L4:
+#srcline 36 ;END_FUNCTION_BLOCK
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+‹M  ­  ¯

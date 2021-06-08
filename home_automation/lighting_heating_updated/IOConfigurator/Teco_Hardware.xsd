@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.tecomat.com" xmlns="http://www.tecomat.com" elementFormDefault="qualified">
+  
+  <xsd:include schemaLocation="Teco_CommonTypes.xsd"/>
+    
+  <!-- THardware -->
+  <xsd:complexType name="THardware">
+    <xsd:all>
+      <xsd:element name="Specification" type="TSpecification" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="Terminals" type="TTerminals" minOccurs="0" maxOccurs="1"/>
+    </xsd:all>
+  </xsd:complexType>
+  
+  <xsd:complexType name="TSpecification">
+    <xsd:all>
+      <xsd:element name="SystemID" type="TSystemID" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="CpmID" type="TCpmID" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="DataboxLen" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ProgCodeLen" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="DataboxSize" type="xsd:integer" minOccurs="0" maxOccurs="1"/> <!-- Mozna nahrada za DataboxLen -->
+      <xsd:element name="ProgMemSize" type="xsd:integer" minOccurs="0" maxOccurs="1"/> <!-- Mozna nahrada za ProgCodeLen -->
+      <xsd:element name="RetainSize" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="NoteRSize" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="MaxCycleTime" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="IniFile" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="Datalogger" type="TDatalogger" minOccurs="0" maxOccurs="1"/>
+    </xsd:all>    
+  </xsd:complexType>  
+  
+  <!-- TSystemID -->
+  <xsd:simpleType name="TSystemID">
+    <xsd:restriction base="xsd:integer">
+      <xsd:enumeration value="-1"/>    <!-- tsSystemUnknown -->
+      <xsd:enumeration value="1"/>     <!-- tsTR100 -->
+      <xsd:enumeration value="2"/>     <!-- tsTR200 -->
+      <xsd:enumeration value="3"/>     <!-- tsTR300 -->
+      <xsd:enumeration value="10"/>    <!-- tsNS950 -->
+      <xsd:enumeration value="11"/>    <!-- tsTC400 -->
+      <xsd:enumeration value="12"/>    <!-- tsTC500 -->
+      <xsd:enumeration value="13"/>    <!-- tsTC600 -->
+      <xsd:enumeration value="14"/>    <!-- tsTC700 -->
+      <xsd:enumeration value="15"/>    <!-- tsTC800 -->
+      <xsd:enumeration value="16"/>    <!-- tsTC650 -->
+      <xsd:enumeration value="17"/>    <!-- tsTC1000 -->
+      <xsd:enumeration value="18"/>    <!-- tsTC2000 -->
+      <xsd:enumeration value="100"/>   <!-- tsAll -->
+    </xsd:restriction>
+  </xsd:simpleType>
+  
+  <!-- TCpmID -->
+  <xsd:simpleType name="TCpmID">
+    <xsd:restriction base="xsd:integer">
+      <xsd:enumeration value="-1"/>    <!-- cpmTypeUnknown -->
+      <xsd:enumeration value="0"/>     <!-- cpm950A -->
+      <xsd:enumeration value="1"/>     <!-- cpm950S -->
+      <xsd:enumeration value="2"/>     <!-- cpm950M -->
+      <xsd:enumeration value="3"/>     <!-- cpm950E -->
+      <xsd:enumeration value="4"/>     <!-- cpm950D -->
+      <xsd:enumeration value="5"/>     <!-- cpm950B -->
+      <xsd:enumeration value="6"/>     <!-- cpm700C -->
+      <xsd:enumeration value="7"/>     <!-- cpm700G -->
+      <xsd:enumeration value="8"/>     <!-- cpm700H -->
+      <xsd:enumeration value="9"/>     <!-- cpm700K -->
+      <xsd:enumeration value="10"/>    <!-- cpm700L -->
+      <xsd:enumeration value="11"/>    <!-- cpm700I -->
+      <xsd:enumeration value="12"/>    <!-- cpm700J -->
+      <xsd:enumeration value="12"/>    <!-- cpmMAX_TYPE -->
+    </xsd:restriction>
+  </xsd:simpleType>
+  
+  <!-- TDatalogger -->
+  <xsd:complexType name="TDatalogger">
+    <xsd:all>
+      <xsd:element name="MaxSessions" type="xsd:nonNegativeInteger" minOccurs="0" maxOccurs="1" default="1"/>
+      <xsd:element name="MaxCollections" type="xsd:nonNegativeInteger" minOccurs="0" maxOccurs="1" default="4"/>
+      <xsd:element name="MaxSignals" type="xsd:nonNegativeInteger" minOccurs="0" maxOccurs="1" default="16"/> 
+      <xsd:element name="MaxData" type="xsd:nonNegativeInteger" minOccurs="0" maxOccurs="1" default="4"/> 
+    </xsd:all>
+  </xsd:complexType>
+
+  <!-- TTerminals -->
+  <xsd:complexType name="TTerminals">
+    <xsd:group ref="GTerminals"/>
+  </xsd:complexType>
+  
+  <!-- GTerminals -->
+  <xsd:group name="GTerminals">
+    <xsd:sequence>
+      <xsd:element name="Terminal" type="TTerminal" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:group>
+  
+  <!-- TTerminal -->
+  <xsd:complexType name="TTerminal">
+    <xsd:sequence>
+      <xsd:element name="Description" type="TLabels" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="InConnectionWith" minOccurs="0" maxOccurs="1">
+        <xsd:simpleType>
+          <xsd:list itemType="xsd:string"/>
+        </xsd:simpleType>
+      </xsd:element>      
+    </xsd:sequence>
+    <xsd:attribute name="label" type="xsd:string" use="required"/>
+    <xsd:attribute name="purpose" type="xsd:string" use="optional"/>
+  </xsd:complexType>
+  
+</xsd:schema>

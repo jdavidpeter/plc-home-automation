@@ -1,0 +1,411 @@
+﻿<?xml version="1.0"?>
+<TecoDescriptor xmlns="http://www.tecomat.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.tecomat.com Teco_Default.xsd">
+	<Header>
+		<File>
+			<FileName>1204_UC-1204.tdd</FileName>
+			<FileCreator>Jan Martinec</FileCreator>
+			<FileCreationDate>2014-01-13</FileCreationDate>
+			<FileModifiedBy>Milan Bydžovský</FileModifiedBy>
+      <FileModificationDate>2020-01-10</FileModificationDate>
+      <SupportedLanguages>en cz</SupportedLanguages>
+      <FileVersion>2.4</FileVersion>
+		</File>
+		<Vendor>
+			<VendorID>00000000</VendorID>
+			<VendorName>Teco a.s</VendorName>
+			<VendorText>
+				<label lang="cz">Řídící systémy pro stroje, procesy, budovy a dopravu</label>
+				<label lang="en">Controllers for machine, process, building and transport</label>
+			</VendorText>
+			<VendorImage>
+				<ImageData>424D760200000000000036000000280000000C0000000C000000010020000000000040020000120B0000120B00000000000000000000735300E9755500FF6E4E00FC684A00FD634500FD5E4200FD5A3D00FD583D01FD543901FD4C3101FC583D02FF4D3400E58F6800FF8F6800FF886200FF7F5C00FF7A5500FF725100FF6E4E01FF664500FF664806FF7A6133FF563600FF5D4203FF9B7000FD9C7000FF946A00FF8C6500FF855E00FF7F5C02FF765304FF674400FFD0C6ACFFF7F5F3FF7A6030FF4F3000FDA87B02FDAC7C00FFA37600FF9C7100FF956C01FF8B6301FF7C5501FFD4C9ABFFFFFFFFFFE9E7E0FFEEEAE2FF796234FDB37F00FDBB8901FFB38200FFAC7E01FFA47501FF956800FFD6C8A2FFFFFFFFFFA49067FF795A16FFE8E5DDFFE5E3DEFDCEA94AFDC58A00FFC19005FFBD8704FFAC7900FFE0D1A6FFFEFFFFFFB39C6BFF885B00FF875C00FF876A27FFDADADAFBFBF9F2FDD7B24FFFCB8B00FFC18A03FFE7D8ABFFFFFFFFFFBEA467FFA16C00FFA67905FF9D7202FF916600FF81641EFCDFD8C2FDFEFCF5FFDAB252FFE8D49EFFFBFFFFFFC9AE6EFFB97F00FFBD8A02FFB28101FFAA7B00FFA67802FF906701FDC2900FFDE5DCC1FFFFFFFFFFF8F9F9FFD0B36BFFCC8C00FFD09804FFC79100FFC18D00FFB98700FFB48300FF9F7502FDDF9F00FDD49C15FFE1DBC2FFD9BB71FFD89400FFDCA005FFD59B00FFD29700FFCD9400FFC69100FFC28E00FFAC8002FDDEA301FFF2AC00FFDA9E0AFFE29E01FFE7A701FFE1A301FFDEA000FFD99C00FFD69A00FFD19700FFCF9600FFB88701FEDEA404DDEBAD06F3EDAE04F0EAAD07F1E5A805F1E4A605F1E0A405F1DEA205F1DA9F05F1D69D05F0D69C06F4BF8D02D8</ImageData>
+			</VendorImage>
+			<ProductCode>1204</ProductCode>
+			<ProductName>UC-1204</ProductName>
+			<OrderNumber>TXN 112 04</OrderNumber>
+		</Vendor>
+	</Header>
+	<Device>
+		<DeviceGroup>IO</DeviceGroup>
+		<DeviceFamily>FOXTROT</DeviceFamily>
+		<DeviceName>UC-1204</DeviceName>
+		<DeviceText>
+			<label lang="cz">OpenTherm komunikační modul</label>
+			<label lang="en">OpenTherm communication module</label>
+		</DeviceText>
+		<DeviceImage>
+			<ImageData>424DE60100000000000036000000280000000C0000000C0000000100180000000000B001000000000000000000000000000000000000FFFFFFA0A0A03883184CB1223883184CB1223883184CB122388318A0A0A0FFFFFFFFFFFFFFFFFFA0A0A04CB1224CB1224CB1224CB1224CB1224CB1224CB122A0A0A0FFFFFFFFFFFFFFFFFF7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7FFFFFFFFFFFFFFFFFFFC3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3FFFFFFFFFFFFFFFFFFC3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3FFFFFFFFFFFFFFFFFFC3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3FFFFFFFFFFFFFFFFFFC3C3C3C3C3C382B4FFC3C3C3C3C3C3C3C3C31DE6B5C3C3C3C3C3C3FFFFFFFFFFFFFFFFFFC3C3C382B4FF277FFF82B4FFC3C3C31DE6B500FF801DE6B5C3C3C3FFFFFFFFFFFFFFFFFFC3C3C3C3C3C382B4FFC3C3C3C3C3C3C3C3C31DE6B5C3C3C3C3C3C3FFFFFFFFFFFFFFFFFF7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7FFFFFFFFFFFFFFFFFFFA0A0A04CB1224CB1224CB1224CB1224CB1224CB1224CB122A0A0A0FFFFFFFFFFFFFFFFFFA0A0A03883184CB1223883184CB1223883184CB122388318A0A0A0FFFFFFFFFFFF</ImageData>
+      <ImageFile URI="IMAGES\190_127_FOXTROT_UC-1204_02.png"/>
+		</DeviceImage>
+		<InterfacePlugs>
+			<Plug InterfaceClass="TCL2" InterfaceSubClass="EXTERN" Length="1" maxAddr="9"/>
+      <Plug InterfaceClass="TCL2" Length="1" maxAddr="25"/>
+      <Plug InterfaceClass="TCL2" InterfaceSubClass="A" Length="1" maxAddr="25"/>
+      <Plug InterfaceClass="TCL2" InterfaceSubClass="B" Length="1" maxAddr="25"/>
+		</InterfacePlugs>
+		<Firmwares>
+			<Firmware KeyName="UC-1204">
+				<File>UC1204.tfw</File>
+				<History>TXD11204_list81.txt</History>
+			</Firmware>
+		</Firmwares>
+    <HelpFiles>
+        <HelpFile key="UC1204" lang="cz">CSY_FOXTROT.chm</HelpFile>
+        <HelpFile key="UC1204" lang="en">ENU_FOXTROT.chm</HelpFile>
+    </HelpFiles>
+
+    <Dictionary>
+      <Include>CommonDataTypes.tod</Include>      <!-- zakladni datove typy -->
+      <Include>Modules.tod</Include>              <!-- zakladni datove typy pro deklaraci #module -->
+      <Include>DT_cfg_TCL.tod</Include>           <!-- zakladni datove typy konfiguracnich dialogu TCL modulu -->  
+      <Include>DT_ini_TCL.tod</Include>           <!-- zakladni datove typy inicializacnich tabulek TCL modulu -->                                                                  
+ 
+      <DataTypes>
+<!-- struktury konfiguracniho dialogu modulu -->
+<!-- vyctova struktura typu OT obsluhy  -->                
+        <DataType>
+          <Name>TOTModeEnum</Name>
+          <BaseType>USINT</BaseType>
+          <EnumInfo>
+            <Text>
+              <label lang="cz">OpenTherm Lite (OT/-)</label>
+              <label lang="en">OpenTherm Lite (OT/-)</label>
+            </Text>
+            <Enum>0</Enum>
+          </EnumInfo>
+          <EnumInfo>
+            <Text>
+              <label lang="cz">OpenTherm Plus (OT/+)</label>
+              <label lang="en">OpenTherm Plus (OT/+)</label>
+            </Text>
+            <Enum>1</Enum>
+          </EnumInfo>
+        </DataType>     
+
+<!-- nastaveni OpenThermu -->
+        <DataType>
+          <Name>TOT</Name>
+          <SubItems>
+            <SubItem>
+              <Name>MODE</Name>                                                 <!-- vyjmuti modulu za chodu -->
+              <Type>TOTModeEnum</Type>
+            </SubItem>
+          </SubItems>
+        </DataType>
+
+<!-- obecne nastaveni modulu -->
+        <DataType>
+          <Name>TOth</Name>
+          <SubItems>
+            <SubItem>
+              <Name>REM</Name>                                                  <!-- vyjmuti modulu za chodu -->
+              <Type>BOOL</Type>
+            </SubItem>
+          </SubItems>
+        </DataType>
+
+<!-- struktura inicializacni tabulky modulu -->                
+        <DataType>
+          <Name>_TTS_UC1204_init</Name>
+          <SubItems>
+            <SubItem>
+              <Name>Head</Name>                                                <!-- hlavicka tabulky -->
+              <Type>_TTS_Head</Type>
+            </SubItem>
+            <SubItem>
+              <Name>EVARI</Name>                                              <!-- povoleni vstupnich promennych --> 
+              <Type>BYTE</Type>
+            </SubItem>
+            <SubItem>
+              <Name>EVARO</Name>                                              <!-- povoleni vystupnich promennych --> 
+              <Type>BYTE</Type>
+            </SubItem>
+            <SubItem>
+              <Name>MODE</Name>                                               <!-- konfigurace OT --> 
+              <Type>BYTE</Type>
+            </SubItem>
+          </SubItems>
+        </DataType>   
+
+<!-- i/o struktury modulu -->
+<!-- struktura stavoveho slova komunikace -->                
+        <DataType>
+          <Name>TUC1204_Stat</Name>
+          <SubItems>
+            <SubItem>
+              <Name>LITE</Name>
+              <Type>BOOL</Type>
+              <BitOffs>5</BitOffs>
+            </SubItem>
+            <SubItem>
+              <Name>COMERR</Name>
+              <Type>BOOL</Type>
+            </SubItem>
+            <SubItem>
+              <Name>ACN</Name>
+              <Type>BOOL</Type>
+            </SubItem>
+          </SubItems>      
+        </DataType>
+
+<!-- struktura ridiciho slova komunikace -->                
+        <DataType>
+          <Name>TUC1204_Cont</Name>
+          <SubItems>
+            <SubItem>
+              <Name>ACN</Name>
+              <Type>BOOL</Type>
+              <BitOffs>7</BitOffs>
+            </SubItem>
+          </SubItems>      
+        </DataType>
+
+<!-- struktura vstupnich dat modulu -->                
+        <DataType>
+          <Name>TUC1204_IN</Name>
+          <SubItems>
+            <SubItem>
+              <Name>STAT</Name>                                                 <!-- status -->
+              <Type>TUC1204_Stat</Type>
+            </SubItem>
+            <SubItem>
+              <Name>MSG_TYPE</Name>                                             <!-- typ zpravy -->  
+              <Type>USINT</Type>
+            </SubItem>
+            <SubItem hidden="true">
+              <Name>SPARE</Name>                                          
+              <Type>USINT</Type>
+            </SubItem>
+            <SubItem>
+              <Name>DATA_ID</Name>                                              <!-- identifikator dat -->
+              <Type>USINT</Type>
+            </SubItem>
+            <SubItem>
+              <Name>DATA_VAL</Name>                                             <!-- datove telo zpravy -->
+              <Type>UINT</Type>
+            </SubItem>
+          </SubItems>      
+        </DataType>
+
+<!-- struktura vystupnich dat modulu -->                
+        <DataType>
+          <Name>TUC1204_OUT</Name>
+          <SubItems>
+            <SubItem>
+              <Name>CONT</Name>                                                 <!-- control -->
+              <Type>TUC1204_Cont</Type>
+            </SubItem>
+            <SubItem>
+              <Name>MSG_TYPE</Name>                                             <!-- typ zpravy -->  
+              <Type>USINT</Type>
+            </SubItem>
+            <SubItem hidden="true">
+              <Name>SPARE</Name>                                          
+              <Type>USINT</Type>
+            </SubItem>
+            <SubItem>
+              <Name>DATA_ID</Name>                                              <!-- identifikator dat -->
+              <Type>USINT</Type>
+            </SubItem>
+            <SubItem>
+              <Name>DATA_VAL</Name>                                             <!-- datove telo zpravy -->
+              <Type>UINT</Type>
+            </SubItem>
+          </SubItems>      
+        </DataType>
+        
+      </DataTypes>
+
+      <Objects>
+<!-- konfiguracni dialog modulu (objekty #x8000 ...) -->
+        <Object index="#x8000" name="OT" type="TOT" access="rw">   
+          <DisplayName>
+            <label lang="cz">OpenTherm</label>
+            <label lang="en">OpenTherm</label>
+          </DisplayName>
+          <SubObjects>
+            <SubObject name="MODE" access="rw">
+              <DisplayName>
+                <label lang="cz">Režim</label>
+                <label lang="en">Mode</label>
+              </DisplayName>
+              <DefaultValue>1</DefaultValue>                                    <!-- defaultne rezim OT/+--> 
+            </SubObject>
+          </SubObjects>
+        </Object>
+ 
+        <Object index="#x8001" name="General" type="TOth" access="rw">
+          <DisplayName>
+            <label lang="cz">Obecné</label>
+            <label lang="en">General</label>
+          </DisplayName>
+          <SubObjects>
+            <SubObject name="REM" access="rw">
+              <DisplayName>
+                <label lang="cz">Povolit ignorování chyb modulu</label>
+                <label lang="en">Enable ignoring module errors</label>
+              </DisplayName>
+            </SubObject>
+          </SubObjects>
+        </Object>
+
+<!-- inicializacni tabulka modulu (objekty #x9000 ...) -->    
+        <Object index="#x9000" name="r{RACK}_p{POSITION}_Table" type="_TTS_UC1204_init" access="rw">
+          <SubObjects>
+            <SubObject name="Head" access="rw">
+              <SubObjects>
+                <SubObject name="ModulID" access="const">
+                  <DefaultValue>1204</DefaultValue>
+                </SubObject>
+                <SubObject name="Stat0" access="rw">
+                  <ValueDependency>
+                    <When condition="@General.REM == 1"> <Value>0x02</Value> </When> <!-- povoleni ignorovani chyb modulu -->
+                  </ValueDependency>
+                </SubObject>
+                <SubObject name="Stat1" access="const">
+                  <DefaultValue>0x00</DefaultValue>
+                </SubObject> 
+              </SubObjects>
+            </SubObject>
+            
+            <SubObject name="EVARI" access="rw">                                <!-- povoleni prenosu vstupnich promennych -->
+              <DefaultValue>0x80</DefaultValue>                                 <!-- povolit vzdy --> 
+            </SubObject>
+ 
+            <SubObject name="EVARO" access="rw">                                <!-- povoleni prenosu vystupnich promennych -->
+              <DefaultValue>0x80</DefaultValue>                                 <!-- povolit vzdy -->
+            </SubObject>
+
+            <SubObject name="MODE" access="rw">                                 <!-- rezim OT -->
+              <ValueDependency>
+                <ValueOf>OT.MODE</ValueOf>                    	
+              </ValueDependency>                     
+            </SubObject>
+          </SubObjects>
+        </Object>  
+
+<!-- i/o data modulu -->  
+<!-- vstupni data modulu (objekty #x6000 ...) --> 
+<!-- open therm -->
+        <Object index="#x6000" name="r{RACK}_p{POSITION}_IN" type="TUC1204_IN" access="rw">
+          <DisplayName>
+            <label lang="cz">IN</label>                     
+            <label lang="en">IN</label>   
+          </DisplayName>  
+        </Object>
+
+<!-- vystupni data modulu (objekty #x7000 ...) -->
+<!-- open therm -->
+        <Object index="#x7000" name="r{RACK}_p{POSITION}_OUT" type="TUC1204_OUT" access="rw">
+          <DisplayName>
+            <label lang="cz">OUT</label>                     
+            <label lang="en">OUT</label>   
+          </DisplayName>  
+        </Object>
+
+<!-- deklarace periferniho modulu (objekty #xA000 ...) -->
+        <Object index="#xA000" name="r{RACK}_p{POSITION}_ModulE1" type="TModulE1" access="rw"> <!-- if="_PLCTYPE_ &lt; 11" -->
+          <Comment>
+            <label lang="en">UC-1204 device declaration</label>
+            <label lang="cz">Deklarace desky UC-1204</label>
+          </Comment>
+          <Excluded>&quot;{SYSTEM}&quot; != &quot;FOXTROT&quot;</Excluded>
+          <SubObjects> 
+            <SubObject name="version" access="rw">   
+              <DefaultValue>1</DefaultValue>
+            </SubObject>  
+            <SubObject name="rack" access="rw">
+              <MacroValue>{RACK}</MacroValue>
+            </SubObject>
+            <SubObject name="address" access="rw">
+              <MacroValue>{POSITION}</MacroValue>
+            </SubObject>
+            <SubObject name="LogAddress" access="rw">
+              <DefaultValue>0</DefaultValue>
+            </SubObject>
+            <SubObject name="LenInputs" access="rw">
+              <DefaultValue>0</DefaultValue>
+            </SubObject>
+            <SubObject name="LenOutputs" access="rw">
+              <DefaultValue>0</DefaultValue>
+            </SubObject>
+            <SubObject name="OffsetInputs" access="rw">
+              <MacroValue>__offset(r{RACK}_p{POSITION}_IN)</MacroValue>
+            </SubObject>  
+            <SubObject name="OffsetOutputs" access="rw">
+              <MacroValue>__offset(r{RACK}_p{POSITION}_OUT)</MacroValue>
+            </SubObject>
+            <SubObject name="InitTable" access="rw">
+              <MacroValue>__indx(r{RACK}_p{POSITION}_Table)</MacroValue>
+            </SubObject>
+          </SubObjects>
+        </Object> 
+        
+<!-- =============================================================== -->
+<!-- Module declaration for CP-2xxx --> 
+<!-- =============================================================== -->
+
+        <!-- inicializacni tabulka driveru                           -->
+        <!-- Indexy inicializacnich objektu:                         -->
+        <!-- $01 - Nazev zarizeni {PRODUCT_NAME_LEN}{PRODUCT_NAME}   -->
+        <!-- $02 - Alias zarizeni {DEVICE_ALIAS_LEN}{DEVICE_ALIAS}   -->
+        <!-- $03 - Konverze vstupu {CONV_IN_LEN},{$CONV_IN_ARRAY}    -->
+        <!-- $04 - Konverze vystupu {CONV_OUT_LEN},{$CONV_OUT_ARRAY} -->
+        
+        <Object index="#x9001" name="r{RACK}_p{POSITION}_DriverInit" type="BYTE" access="rw">
+          <Comment>
+            <label lang="cz">Inicializacni tabulka driveru</label>
+            <label lang="en">Initialization table of driver</label>
+          </Comment>
+          <Excluded>&quot;{SYSTEM}&quot; != &quot;FOXTROT2&quot;</Excluded>
+          <MacroValue>$01,{PRODUCT_NAME_LEN},'{PRODUCT_NAME}',\n$02,{DEVICE_ALIAS_LEN},'{DEVICE_ALIAS}',\n$00</MacroValue>
+        </Object>
+                
+        <Object index="#xA001" name="r{RACK}_p{POSITION}_ModulE2" type="TModulE2" access="rw"> <!-- if="_PLCTYPE_ &gt; 10" -->
+          <Comment>
+            <label lang="en">UC-1204 device declaration</label>
+            <label lang="cz">Deklarace desky UC-1204</label>
+          </Comment>
+          <Excluded>&quot;{SYSTEM}&quot; != &quot;FOXTROT2&quot;</Excluded>
+          <SubObjects> 
+            <SubObject name="version" access="rw">   
+              <DefaultValue>2</DefaultValue>
+            </SubObject>  
+            <SubObject name="hwCode" access="ro">   
+              <DefaultValue>1204</DefaultValue>            
+            </SubObject>
+            <SubObject name="busId" access="ro">   
+              <MacroValue>${$RACK}</MacroValue>
+            </SubObject>
+            <SubObject name="address" access="rw">
+              <MacroValue>{POSITION}</MacroValue>
+            </SubObject>
+            <SubObject name="port" access="rw">
+              <DefaultValue>9</DefaultValue>
+            </SubObject>
+            <SubObject name="lenInputs" access="rw">
+              <DefaultValue>0</DefaultValue>
+            </SubObject>
+            <SubObject name="lenOutputs" access="rw">
+              <DefaultValue>0</DefaultValue>
+            </SubObject>
+            <SubObject name="offsetInputs" access="rw">
+              <MacroValue>__offset(r{RACK}_p{POSITION}_IN)</MacroValue>
+            </SubObject>  
+            <SubObject name="offsetOutputs" access="rw">
+              <MacroValue>__offset(r{RACK}_p{POSITION}_OUT)</MacroValue>
+            </SubObject>
+            <SubObject name="initTable" access="rw">
+              <MacroValue>__indx(r{RACK}_p{POSITION}_Table)</MacroValue>
+            </SubObject>
+            <SubObject name="driverInitTable" access="ro">
+              <MacroValue>__indx(r{RACK}_p{POSITION}_DriverInit)</MacroValue>
+            </SubObject>
+          </SubObjects>
+        </Object>
+               
+      </Objects>
+
+    </Dictionary>
+	</Device>
+</TecoDescriptor>

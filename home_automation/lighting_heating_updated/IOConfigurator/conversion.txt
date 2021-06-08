@@ -1,0 +1,52 @@
+09:43:20 Preparation          : Reading hardware list
+09:43:21 Preparation          : Reading CIB informations
+         Preparation          : Export hwc
+         Preparation          : loading '1000_CP-1000.tdd'
+         CP-1000              : adding module at r0_p0
+         CP-1000              : loading 'UNI_SC.tdd'
+         CH1 UNI              : adding CH1 at r0_p0
+         CH1 UNI              : configuring CH1 r0_p0
+09:43:23 MR-0114              : loading '0114_MR-0114.tdd'
+         MR-0114              : adding submodule at r0_p0
+         MR-0114              : loading 'UNI_SC.tdd'
+         CH2 UNI              : adding CH2 at r0_p0
+         CH2 UNI              : configuring CH2 r0_p0
+09:43:24 CH1                  : setting aliases CH1 r0_p0
+         CH2                  : setting aliases CH2 r0_p0
+09:43:25 MI2-01M              : loading '1141_CF-1140.tdd'
+         MI2-01M              : adding module at r0_p2
+         MI2-01M              : adding module at r0_p3
+         C-HM-1113M           : loading '3310_C-HM-1113M.tdd'
+         C-HM-1113M           : adding module at r8_p0
+         C-HM-1113M           : configuring module r8_p0
+         C-HM-1113M           : loading '3310_C-HM-1113M.tdd'
+         C-HM-1113M           : adding module at r8_p1
+09:43:26 C-HM-1113M           : configuring module r8_p1
+         C-HM-1113M           : loading '3310_C-HM-1113M.tdd'
+         C-HM-1113M           : adding module at r8_p2
+09:43:27 C-HM-1113M           : configuring module r8_p2
+         ID0                  : setting aliases r8_p0
+         ID1                  : setting aliases r8_p1
+         ID2                  : setting aliases r8_p2
+         MI2-01M              : setting aliases r0_p2
+         MI2-01M              : setting aliases r0_p3
+         IR-1061              : loading '1061_IR-1061.tdd'
+         IR-1061              : adding module at r0_p5
+09:43:28 IR-1061              : configuring module r0_p5
+09:43:29 IR-1061              : setting aliases r0_p5
+         IB-1301              : loading '1301_IB-1301.tdd'
+         IB-1301              : adding module at r1_p0
+         IB-1301              : configuring module r1_p0
+09:43:30 IB-1301              : setting aliases r1_p0
+         OS-1401              : loading '1401_OS-1401.tdd'
+         OS-1401              : adding module at r1_p1
+         OS-1401              : configuring module r1_p1
+         OS-1401              : setting aliases r1_p1
+         OS-1401              : loading '1401_OS-1401.tdd'
+         OS-1401              : adding module at r1_p2
+         OS-1401              : configuring module r1_p2
+09:43:31 OS-1401              : setting aliases r1_p2
+         UC-1204              : loading '1204_UC-1204.tdd'
+         UC-1204              : adding module at r1_p9
+         UC-1204              : configuring module r1_p9
+         UC-1204              : setting aliases r1_p9

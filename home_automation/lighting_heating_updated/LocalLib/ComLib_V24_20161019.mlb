@@ -1,0 +1,4295 @@
+(*` {CSY}Knihovna vývojového systému Mosaic{ENU}Mosaic IDE library *)
+(*` {CSY}Jméno souboru{ENU}File name{} : C:\TecoLib\ComLib_V24_20161019.mlb *)
+(*` {CSY}Knihovna : ComLib{ENU}Library : ComLib{} 2.4 *)
+(*` {CSY}Autor{ENU}Author{} : Teco a.s. *)
+(*` {CSY}Autorská práva{ENU}Copyright{} : (c) 2016 Teco a.s. *)
+(*` {CSY}Verze IEC pøekladaèe{ENU}IEC compiler version{} : 3.12.3.1 *)
+(*` {CSY}Verze assembleru{ENU}Assembler version{} : 4.3.00 *)
+
+//{Knihovna : ComLib 2.4  }
+(*` {CSY}Historie{ENU}History{}: *)
+(*`
+{CSY}
+v1.0 23.03.2009 Nem první verze knihovny
+v1.1 27.03.2009 Nem doplnìna chyba, pokud je nulova délka vysilaných dat 
+v1.2 24.06.2009 Nem doplnìn pøíjem a vysílání pro ETH2_uni 
+v1.3 24.09.2009 Nem funkce GetMACaddress povolena i pro ETH2, doplnìny funkce 
+                    SetDHCPsupport(), STRING_TO_IPADR() a IPADR_TO_STRING()
+v1.4 08.02.2010 Nem doplnìna funkce GetChanStat() 18.02.2010 doplnìny funkce 
+                    GetChanSettings() a SetChanSettings() 
+v1.5 02.08.2010 Nem zkompletovány komentáøe pro èeskou a anglickou verzi
+v1.6 08.08.2011 Nem ve fbSendTo() ošetøeno pøeplnìní bufferu TCP socketu 
+v1.7 23.01.2012 Nem doplnìny funkce SetDNS_IP(), GetDNS_IP() a fbRecvTxt()
+v1.8 18.04.2012 Nem do funkèního bloku fbRecvTxt() doplnìn výstup error
+                    doplnìny deklarace ETH3_uni0,...,ETH4_uni7
+                Byd doplnìn funkèní blok fbRecvTxtChar()
+v2.0 14.03.2013 Nem doplnìna deklarace link do struktury TEthStat
+		    (síový kabel pøipojen)
+v2.1 28.05.2013 Nem doplnìny globální promìnné ETH3_STAT a ETH4_STAT
+                    doplnìna funkce GetWebServerAccess() 
+                    a funkèní blok fbKeepAliveTCP() - požadovaná 
+                    verze FW centrální jednotky je 7.7 nebo vyšší
+     22.08.2013 Nem v bloku fbSendTo() oprava kontroly max. délky vysílaných dat 
+v2.2 03.07.2015 Nem doplnìny funkce SetRTS() a GetRTS()
+v2.3 19.10.2016 Nem doplnìna funkce CheckGatewayIP()
+v2.4 12.12.2016 Nem doplnìna funkce MACADR_TO_STRING()
+
+{ENU}
+v1.0 2009-03-23 Nem first edition
+v1.1 2009-03-27 Nem corrected error when length of sending data is zero
+v1.2 2009-06-24 Nem fbSendTo() and fbReceivedFrom() extended for ETH2
+v1.3 2009-09-24 Nem function GetMACaddress is available for ETH2, added functions 
+                    SetDHCPsupport(), STRING_TO_IPADR() a IPADR_TO_STRING() 
+v1.4 2010-02-08 Nem added function GetChanStat() 18.02.2010 Nem added functions 
+                    GetChanSettings() and SetChanSettings()
+v1.5 2010-08-02 Nem all comments are in Czech and English version
+v1.6 2011-08-08 Nem corrected TCP buffer overflow in fbSenfTo() 
+v1.7 2012-01-23 Nem added functions SetDNS_IP(), GetDNS_IP() and fbRecvTxt()
+v1.8 2012-04-18 Nem error output added to function block fbRecvTxt()
+v1.9 2012-06-14 Nem added constants ETH3_uni0,...,ETH4_uni7 
+		Byd added function block fbRecvTxtChar()
+v2.0 2013-03-14 Nem added item link in structure TEthStat
+                    (network cable connected)
+v2.1 2013-05-28 Nem added global variables ETH3_STAT and ETH4_STAT
+                    added function GetWebServerAccess()
+                    and function block fbKeepAliveTCP() - required
+                    version of firmware CPU is 7.7 or higher
+     2013-08-22 Nem in block fb SendTo() max. length of sending data is checked 
+                    correctly
+v2.2 2015-07-03 Nem added functions SetRTS() and GetRTS()
+v2.3 2016-10-19 Nem added function CheckGatewayIP()
+v2.4 2016-12-12 Nem added function MACADR_TO_STRING()
+
+*)
+
+(*----------------------------------------------------------------------------*)
+{LIBRARY="LOCALLIB\STDLIB_V21_20140514.MLB"}
+{LIBRARY="LOCALLIB\SYSLIB_V37_20160627.MLB"}
+
+TYPE TUniDesc :
+  STRUCT  (*`{ENG} description of channel in uni mode {CSY} popis kanálu v univerzálním režimu*)
+    modeChan         : byte;  (*`{ENG} channel mode {CSY} režim kanálu*)
+    res              : byte;  (*`{ENG} reserved {CSY} rezerva*)
+    adrUniStat       : udint;  (*`{ENG} address of status {CSY} adresa stavové zóny*)
+    lenUniStat       : uint;  (*`{ENG} length of status {CSY} délka stavové zóny*)
+    adrUniCont       : udint;  (*`{ENG} address of control {CSY} adresa øídící zóny*)
+    lenUniCont       : uint;  (*`{ENG} length of control {CSY} délka øídící zóny*)
+    adrUniIn         : udint;  (*`{ENG} address of receiving buffer {CSY} adresa pøijímací zóny*)
+    lenUniIn         : uint;  (*`{ENG} length of receiving buffer {CSY} délka pøijímací zóny*)
+    adrUniOut        : udint;  (*`{ENG} address of sending buffer {CSY} adresa vysílací zony*)
+    lenUniOut        : uint;  (*`{ENG} length of sending buffer {CSY} délka vysílací zony*)
+  END_STRUCT;
+END_TYPE
+
+TYPE  TIPadr : ARRAY [0..3] OF usint;  (*`{ENG} IP address {CSY} IP adresa*)
+END_TYPE
+
+TYPE TLocalEthAdr :
+  STRUCT  (*`{ENG} structure of local IP address {CSY} struktura lokální IP adresy*)
+    IP               : TIPadr;  (*`{ENG} IP address {CSY} IP adresa*)
+    IM               : TIPadr;  (*`{ENG} subnet mask {CSY} maska sítì*)
+    GW               : TIPadr;  (*`{ENG} gateway address {CSY} adresa brány*)
+  END_STRUCT;
+END_TYPE
+
+TYPE TRemoteEthAdr :
+  STRUCT  (*`{ENG} structure of remote IP address {CSY} struktura vzdálené IP adresy*)
+    remoteIP         : TIPadr;  (*`{ENG} remote IP address {CSY} vzdálená IP adresa*)
+    remotePort       : uint;  (*`{ENG} remote port {CSY} vzdálený port*)
+    localPort        : uint;  (*`{ENG} local port  {CSY} lokální port*)
+  END_STRUCT;
+END_TYPE
+
+TYPE  TMacAdr : ARRAY [0..5] OF byte;  (*`{ENG} MAC address {CSY} MAC adresa*)
+END_TYPE
+
+TYPE TChanSettings :
+  STRUCT  (*`{ENG} structure of parameters for serial channel (uni mode only!){CSY}struktura parametru pro seriovy kanal v rezimu UNI*)
+    modeChan         : usint;  (*`{ENG} channel mode {CSY} režim kanálu (uni = 5)*)
+    address          : usint;  (*`{ENG} address {CSY} adresa kanálu*)
+    speed            : usint;  (*`{ENG} speed {CSY} komunikaèní rychlost*)
+    rxTimeout        : usint;  (*`{ENG} receiver timeout {CSY} timeout pøíjmu*)
+    txTimeout        : usint;  (*`{ENG} transmitter timeout {CSY} timeout vysílání*)
+    lineControl      : usint;  (*`{ENG} parity control {CSY} nastavení parity*)
+    modemControl     : usint;  (*`{ENG} modem control {CSY} modemové signály*)
+    rez              : usint;  (*`{ENG} reserved {CSY} rezerva*)
+  END_STRUCT;
+END_TYPE
+
+VAR_GLOBAL CONSTANT
+ MODE_OFF : usint :=  16#00;  (*`{ENG} channel is off {CSY} kanál je vypnutý*)
+ MODE_PC : usint :=  16#02;  (*`{ENG} EPSNET slave {CSY} režim EPSNET slave*)
+ MODE_UNI : usint :=  16#05;  (*`{ENG} universal mode {CSY} univerzální režim*)
+ MODE_MPC : usint :=  16#06;  (*`{ENG} EPSNET multimaster {CSY} režim EPSNET multimaster*)
+ MODE_MDB : usint :=  16#07;  (*`{ENG} MODBUS slave {CSY} režim MODBUS slave*)
+ MODE_PFB : usint :=  16#08;  (*`{ENG} PROFIBUS DP master {CSY} režim PROFIBUS DP master*)
+ BAUD_50 : usint :=  16#01;  (*`50 Baud*)
+ BAUD_100 : usint :=  16#02;  (*`100 Baud*)
+ BAUD_200 : usint :=  16#03;  (*`200 Baud*)
+ BAUD_300 : usint :=  16#04;  (*`300 Baud*)
+ BAUD_600 : usint :=  16#05;  (*`600 Baud*)
+ BAUD_1200 : usint :=  16#06;  (*`1200 Baud*)
+ BAUD_2400 : usint :=  16#07;  (*`2400 Baud*)
+ BAUD_4800 : usint :=  16#08;  (*`4800 Baud*)
+ BAUD_9600 : usint :=  16#0A;  (*`9600 Baud*)
+ BAUD_14400 : usint :=  16#0B;  (*`14400 Baud*)
+ BAUD_19200 : usint :=  16#0C;  (*`19200 Baud*)
+ BAUD_28800 : usint :=  16#0D;  (*`28800 Baud*)
+ BAUD_38400 : usint :=  16#0E;  (*`38400 Baud*)
+ BAUD_57600 : usint :=  16#10;  (*`57600 Baud*)
+ BAUD_76800 : usint :=  16#12;  (*`76800 Baud*)
+ BAUD_93750 : usint :=  16#13;  (*`937500 Baud*)
+ BAUD_115200 : usint :=  16#14;  (*`115200 Baud*)
+ NO_PARITY : usint :=  16#00;  (*`{ENG} no parity (lineControl code) {CSY} bez parity (lineControl kod)*)
+ PARITY_ODD : usint :=  16#08;  (*`{ENG} odd parity (lineControl code) {CSY} lichá parita (lineControl kod)*)
+ PARITY_EVEN : usint :=  16#18;  (*`{ENG} even parity (lineControl code) {CSY} sudá parita (lineControl kod)*)
+ PARITY_0 : usint :=  16#28;  (*`{ENG} fixed parity 0 (lineControl code) {CSY} parita pevnì 0 (lineControl kod)*)
+ PARITY_1 : usint :=  16#38;  (*`{ENG} fixed parity 1 (lineControl code) {CSY} parita pevnì 1 (lineControl kod)*)
+ SEVEN_BITS : usint :=  16#40;  (*`{ENG} 7 bits in byte (lineControl code) {CSY} 7 datových bitù (lineControl kod)*)
+ EIGHT_BITS : usint :=  16#00;  (*`{ENG} 8 bits in byte (lineControl code) {CSY} 8 datových bitù (lineControl kod)*)
+ ONE_STOP_BIT : usint :=  16#00;  (*`{ENG} 1 stop bit (lineControl code) {CSY} 1 stop bit*)
+ TWO_STOP_BITS : usint :=  16#80;  (*`{ENG} 2 stop bits (lineControl code) {CSY} 2 stop bity*)
+ RTS_0 : usint :=  16#00;  (*`{ENG} RTS fixed 0 (modemControl code) {CSY} RTS pevnì 0 (modemControl kod)*)
+ RTS_1 : usint :=  16#02;  (*`{ENG} RTS fixed 1 (modemControl code) {CSY} RTS pevnì 1 (modemControl kod)*)
+ RTS_MAN : usint :=  16#40;  (*`{ENG} RTS manual from user program (modemControl code) {CSY} RTS øízené z uživatelského programu (modemControl kod)*)
+ RTS_AUTO : usint :=  16#80;  (*`{ENG} RTS auto (modemControl code) {CSY} automatická hodnota RTS (modemControl kod)*)
+ RTS_CTS_AUTO : usint :=  16#C0;  (*`{ENG} RTS auto + condition CTS (modemControl code) {CSY} RTS auto + pøíjem podmínìn signálem CTS (modemControl kod)*)
+ HALF_DUPLEX : usint :=  16#08;  (*`{ENG} receiver is disabled during transmitting (modemControl code) {CSY} zákaz pøíjmu bìhem vysílání (modemControl kod)*)
+
+END_VAR
+
+TYPE TCHxStatistic {HIDDEN} :
+  STRUCT
+    STAT             : usint;
+    ERR              : usint;
+    trueMes          : udint;
+    falseMes         : udint;
+  END_STRUCT;
+END_TYPE
+
+TYPE TCHxControl {HIDDEN} :
+  STRUCT
+    CONTROL          : uint;
+  END_STRUCT;
+END_TYPE
+
+TYPE TUni_STAT :
+  STRUCT
+    DSR              : bool;
+    CTS              : bool;
+    dummy1           : bool;
+    TRO              : bool;
+    RCF              : bool;
+    ROV              : bool;
+    TRF              : bool;
+    ARC              : bool;
+  END_STRUCT;
+END_TYPE
+
+TYPE TUni_CONT {HIDDEN} :
+  STRUCT
+    dummy0           : bool;
+    dummy1           : bool;
+    dummy2           : bool;
+    dummy3           : bool;
+    dummy4           : bool;
+    TRG              : bool;
+    CLR              : bool;
+    ACN              : bool;
+  END_STRUCT;
+END_TYPE
+
+TYPE TUni_SIGN {HIDDEN} :
+  STRUCT
+    DTR              : bool;
+    RTS              : bool;
+  END_STRUCT;
+END_TYPE
+
+TYPE  TUni_BUFF : ARRAY [0..1400] OF usint;
+END_TYPE
+
+TYPE TUni_IN {HIDDEN} :
+  STRUCT  (*`{ENG} receiving data structure of channel in uni mode {CSY} pøijímací datová struktura kanálu v univerzálním režimu*)
+    STAT             : TUni_STAT;  (*`{ENG} status of receving {CSY} stav pøíjmu*)
+    ERR              : usint;  (*`{ENG} error code {CSY} chybový kód*)
+    NUMR             : uint;  (*`{ENG} number of received bytes {CSY} poèet pøijatých bytù*)
+    DATA             : TUni_BUFF;  (*`{ENG} received data {CSY} pøijatá data*)
+  END_STRUCT;
+END_TYPE
+
+TYPE TUni_OUT {HIDDEN} :
+  STRUCT  (*`{ENG} sending data structure of channel in uni mode {CSY} vysílací datová struktura kanálu v univerzálním režimu*)
+    CONT             : TUni_CONT;  (*`{ENG} control of transmitting {CSY} øízení vysílání*)
+    SIGN             : TUni_SIGN;  (*`{ENG} control of modem signals {CSY} øízení modemových signálù*)
+    NUMT             : uint;  (*`{ENG} mumber of transmitted bytes {CSY} poèet vysílaných bytù*)
+    DATA             : TUni_BUFF;  (*`{ENG} transmitted data {CSY} vysílaná data*)
+  END_STRUCT;
+END_TYPE
+
+TYPE TEthStat :
+  STRUCT  (*`{ENG} status of Ethernet channel {CSY} status Ethernet kanálu*)
+    chan_present     : bool;  (*`{ENG} channel is present {CSY} kanál pøítomen*)
+    DHCP_enabled     : bool;  (*`{ENG} DHCP on {CSY} požadováno automatické pøidelení IP adresy DHCP serverem*)
+    IP_obtained      : bool;  (*`{ENG} IP address obtained from DHCP server {CSY} IP adresa získána od DHCP serveru*)
+    IP_expired       : bool;  (*`{ENG} IP address expired {CSY} platnost automaticky pøidìlené IP adresy vypršela*)
+    link             : bool;  (*`{ENG} network cable connected {CSY} síový kabel pøipojen*)
+    reserved         : usint;  (*`{ENG} reserved {CSY} rezerva*)
+    trueMes          : udint;  (*`{ENG} suma of good messages {CSY} celkový poèet dobrých zpráv*)
+    falseMes         : udint;  (*`{ENG} suma of bad messages {CSY} celkový poèet špatných zpráv*)
+  END_STRUCT;
+END_TYPE
+
+VAR_GLOBAL
+ ETH1_STAT AT %S356 : TEthStat;  (*`{ENG} status of Ethernet channel ETH1 {CSY} status Ethernet kanálu ETH1*)
+ ETH2_STAT AT %S368 : TEthStat;  (*`{ENG} status of Ethernet channel ETH2 {CSY} status Ethernet kanálu ETH2*)
+ ETH3_STAT AT %S380 : TEthStat;  (*`{ENG} status of Ethernet channel ETH3 {CSY} status Ethernet kanálu ETH3*)
+ ETH4_STAT AT %S392 : TEthStat;  (*`{ENG} status of Ethernet channel ETH4 {CSY} status Ethernet kanálu ETH4*)
+
+END_VAR
+
+VAR_GLOBAL CONSTANT
+ ANY_IP : TIPadr :=  [0];  (*`{ENG} IP address 0.0.0.0 {CSY} IP adresa 0.0.0.0*)
+ ETH1_uni0 : uint :=  16#07E1;  (*`{ENG} Ethernet ETH1, mode uni, connection uni0 {CSY} Ethernet ETH1, režim uni, spojení uni0*)
+ ETH1_uni1 : uint :=  16#17E1;  (*`{ENG} Ethernet ETH1, mode uni, connection uni1 {CSY} Ethernet ETH1, režim uni, spojení uni1*)
+ ETH1_uni2 : uint :=  16#27E1;  (*`{ENG} Ethernet ETH1, mode uni, connection uni2 {CSY} Ethernet ETH1, režim uni, spojení uni2*)
+ ETH1_uni3 : uint :=  16#37E1;  (*`{ENG} Ethernet ETH1, mode uni, connection uni3 {CSY} Ethernet ETH1, režim uni, spojení uni3*)
+ ETH1_uni4 : uint :=  16#47E1;  (*`{ENG} Ethernet ETH1, mode uni, connection uni4 {CSY} Ethernet ETH1, režim uni, spojení uni4*)
+ ETH1_uni5 : uint :=  16#57E1;  (*`{ENG} Ethernet ETH1, mode uni, connection uni5 {CSY} Ethernet ETH1, režim uni, spojení uni5*)
+ ETH1_uni6 : uint :=  16#67E1;  (*`{ENG} Ethernet ETH1, mode uni, connection uni6 {CSY} Ethernet ETH1, režim uni, spojení uni6*)
+ ETH1_uni7 : uint :=  16#77E1;  (*`{ENG} Ethernet ETH1, mode uni, connection uni7 {CSY} Ethernet ETH1, režim uni, spojení uni7*)
+ ETH2_uni0 : uint :=  16#07E2;  (*`{ENG} Ethernet ETH2, mode uni, connection uni0 {CSY} Ethernet ETH2, režim uni, spojení uni0*)
+ ETH2_uni1 : uint :=  16#17E2;  (*`{ENG} Ethernet ETH2, mode uni, connection uni1 {CSY} Ethernet ETH2, režim uni, spojení uni1*)
+ ETH2_uni2 : uint :=  16#27E2;  (*`{ENG} Ethernet ETH2, mode uni, connection uni2 {CSY} Ethernet ETH2, režim uni, spojení uni2*)
+ ETH2_uni3 : uint :=  16#37E2;  (*`{ENG} Ethernet ETH2, mode uni, connection uni3 {CSY} Ethernet ETH2, režim uni, spojení uni3*)
+ ETH2_uni4 : uint :=  16#47E2;  (*`{ENG} Ethernet ETH2, mode uni, connection uni4 {CSY} Ethernet ETH2, režim uni, spojení uni4*)
+ ETH2_uni5 : uint :=  16#57E2;  (*`{ENG} Ethernet ETH2, mode uni, connection uni5 {CSY} Ethernet ETH2, režim uni, spojení uni5*)
+ ETH2_uni6 : uint :=  16#67E2;  (*`{ENG} Ethernet ETH2, mode uni, connection uni6 {CSY} Ethernet ETH2, režim uni, spojení uni6*)
+ ETH2_uni7 : uint :=  16#77E2;  (*`{ENG} Ethernet ETH2, mode uni, connection uni7 {CSY} Ethernet ETH2, režim uni, spojení uni7*)
+ ETH3_uni0 : uint :=  16#07E3;  (*`{ENG} Ethernet ETH3, mode uni, connection uni0 {CSY} Ethernet ETH3, režim uni, spojení uni0*)
+ ETH3_uni1 : uint :=  16#17E3;  (*`{ENG} Ethernet ETH3, mode uni, connection uni1 {CSY} Ethernet ETH3, režim uni, spojení uni1*)
+ ETH3_uni2 : uint :=  16#27E3;  (*`{ENG} Ethernet ETH3, mode uni, connection uni2 {CSY} Ethernet ETH3, režim uni, spojení uni2*)
+ ETH3_uni3 : uint :=  16#37E3;  (*`{ENG} Ethernet ETH3, mode uni, connection uni3 {CSY} Ethernet ETH3, režim uni, spojení uni3*)
+ ETH3_uni4 : uint :=  16#47E3;  (*`{ENG} Ethernet ETH3, mode uni, connection uni4 {CSY} Ethernet ETH3, režim uni, spojení uni4*)
+ ETH3_uni5 : uint :=  16#57E3;  (*`{ENG} Ethernet ETH3, mode uni, connection uni5 {CSY} Ethernet ETH3, režim uni, spojení uni5*)
+ ETH3_uni6 : uint :=  16#67E3;  (*`{ENG} Ethernet ETH3, mode uni, connection uni6 {CSY} Ethernet ETH3, režim uni, spojení uni6*)
+ ETH3_uni7 : uint :=  16#77E3;  (*`{ENG} Ethernet ETH3, mode uni, connection uni7 {CSY} Ethernet ETH3, režim uni, spojení uni7*)
+ ETH4_uni0 : uint :=  16#07E4;  (*`{ENG} Ethernet ETH4, mode uni, connection uni0 {CSY} Ethernet ETH4, režim uni, spojení uni0*)
+ ETH4_uni1 : uint :=  16#17E4;  (*`{ENG} Ethernet ETH4, mode uni, connection uni1 {CSY} Ethernet ETH4, režim uni, spojení uni1*)
+ ETH4_uni2 : uint :=  16#27E4;  (*`{ENG} Ethernet ETH4, mode uni, connection uni2 {CSY} Ethernet ETH4, režim uni, spojení uni2*)
+ ETH4_uni3 : uint :=  16#37E4;  (*`{ENG} Ethernet ETH4, mode uni, connection uni3 {CSY} Ethernet ETH4, režim uni, spojení uni3*)
+ ETH4_uni4 : uint :=  16#47E4;  (*`{ENG} Ethernet ETH4, mode uni, connection uni4 {CSY} Ethernet ETH4, režim uni, spojení uni4*)
+ ETH4_uni5 : uint :=  16#57E4;  (*`{ENG} Ethernet ETH4, mode uni, connection uni5 {CSY} Ethernet ETH4, režim uni, spojení uni5*)
+ ETH4_uni6 : uint :=  16#67E4;  (*`{ENG} Ethernet ETH4, mode uni, connection uni6 {CSY} Ethernet ETH4, režim uni, spojení uni6*)
+ ETH4_uni7 : uint :=  16#77E4;  (*`{ENG} Ethernet ETH4, mode uni, connection uni7 {CSY} Ethernet ETH4, režim uni, spojení uni7*)
+ CH1_uni : uint :=  16#0101;  (*`{ENG} Serial channel CH1, mode uni {CSY} Sériový kanál CH1, režim uni*)
+ CH2_uni : uint :=  16#0202;  (*`{ENG} Serial channel CH2, mode uni {CSY} Sériový kanál CH2, režim uni*)
+ CH3_uni : uint :=  16#0103;  (*`{ENG} Serial channel CH3, mode uni {CSY} Sériový kanál CH3, režim uni*)
+ CH4_uni : uint :=  16#0204;  (*`{ENG} Serial channel CH4, mode uni {CSY} Sériový kanál CH4, režim uni*)
+ CH5_uni : uint :=  16#0105;  (*`{ENG} Serial channel CH5, mode uni {CSY} Sériový kanál CH5, režim uni*)
+ CH6_uni : uint :=  16#0206;  (*`{ENG} Serial channel CH6, mode uni {CSY} Sériový kanál CH6, režim uni*)
+ CH7_uni : uint :=  16#0107;  (*`{ENG} Serial channel CH7, mode uni {CSY} Sériový kanál CH7, režim uni*)
+ CH8_uni : uint :=  16#0208;  (*`{ENG} Serial channel CH8, mode uni {CSY} Sériový kanál CH8, režim uni*)
+ CH9_uni : uint :=  16#0109;  (*`{ENG} Serial channel CH9, mode uni {CSY} Sériový kanál CH9, režim uni*)
+ CH10_uni : uint :=  16#020A;  (*`{ENG} Serial channel CH10, mode uni {CSY} Sériový kanál CH10, režim uni*)
+ ETH1 : usint :=  16#E1;  (*`Ethernet ETH1*)
+ ETH2 : usint :=  16#E2;  (*`Ethernet ETH2*)
+ ETH3 : usint :=  16#E3;  (*`Ethernet ETH3*)
+ ETH4 : usint :=  16#E4;  (*`Ethernet ETH4*)
+ SCH1 : usint :=  16#01;  (*`{ENG} serial channel CH1 {CSY} Sériový kanál CH1*)
+ SCH2 : usint :=  16#02;  (*`{ENG} serial channel CH2 {CSY} Sériový kanál CH2*)
+ SCH3 : usint :=  16#03;  (*`{ENG} serial channel CH3 {CSY} Sériový kanál CH3*)
+ SCH4 : usint :=  16#04;  (*`{ENG} serial channel CH4 {CSY} Sériový kanál CH4*)
+ SCH5 : usint :=  16#05;  (*`{ENG} serial channel CH5 {CSY} Sériový kanál CH5*)
+ SCH6 : usint :=  16#06;  (*`{ENG} serial channel CH6 {CSY} Sériový kanál CH6*)
+ SCH7 : usint :=  16#07;  (*`{ENG} serial channel CH7 {CSY} Sériový kanál CH7*)
+ SCH8 : usint :=  16#08;  (*`{ENG} serial channel CH8 {CSY} Sériový kanál CH8*)
+ SCH9 : usint :=  16#09;  (*`{ENG} serial channel CH9 {CSY} Sériový kanál CH9*)
+ SCH10 : usint :=  16#0A;  (*`{ENG} serial channel CH10 {CSY} Sériový kanál CH10*)
+ COM_OK : usint :=  0;  (*`{ENG} no error {CSY} bez chyby*)
+ COM_ERR1 : usint :=  1;  (*`{ENG} channel is not in uni mode {CSY} kanál není v režimu uni*)
+ COM_ERR2 : usint :=  2;  (*`{ENG} sending data are too long {CSY} vysílaná data jsou pøíliš dlouhá*)
+ COM_ERR3 : usint :=  3;  (*`{ENG} received data are too long {CSY} pøijatá data jsou pøíliš dlouhá*)
+ COM_ERR4 : usint :=  4;  (*`{ENG} channel is not supported (wrong channel code) {CSY} chybný kód kanálu*)
+ COM_ERR5 : usint :=  5;  (*`{ENG} previous message is not sent yet {CSY} pøedchozí zpráva není ještì odvysílaná*)
+ COM_ERR6 : usint :=  6;  (*`{ENG} no data for sending {CSY} nulová délka vysílanych dat*)
+ COM_ERR7 : usint :=  7;  (*`{ENG} invalid communication speed {CSY} chybná pøenosová rychlost*)
+ COM_ERR8 : usint :=  8;  (*`{ENG} channel is disabled {CSY} kanál je vypnutý*)
+ COM_ERR16 : usint :=  16#10;  (*`{ENG} Invalid start delimiter {CSY} chybný poèáteèní znak*)
+ COM_ERR17 : usint :=  16#11;  (*`{ENG} Parity error {CSY} chyba parity*)
+ COM_ERR18 : usint :=  16#12;  (*`{ENG} Maximum message length exceeded {CSY} pøekroèena maximální délka zprávy*)
+ COM_ERR19 : usint :=  16#13;  (*`{ENG} Invalid second byte of acknowledgment {CSY} chybný druhý byte potvrzení*)
+ COM_ERR20 : usint :=  16#14;  (*`{ENG} Invalid second byte of end delimiter {CSY} chybný druhý byte koncového znaku*)
+ COM_ERR24 : usint :=  16#18;  (*`{ENG} Check sum error {CSY} chyba kontrolního souètu*)
+ COM_ERR25 : usint :=  16#19;  (*`{ENG} Invalid end delimiter {CSY} chybný koncový znak*)
+ COM_ERR49 : usint :=  16#31;  (*`{ENG} Invalid length of sent data {CSY} chybná délka vysílaných dat*)
+ COM_ERR50 : usint :=  16#32;  (*`{ENG} Sent data zero length {CSY} nulová délka vysílaných dat*)
+ COM_ERR64 : usint :=  16#40;  (*`{ENG} Timeout not held {CSY} nedodržen timeout*)
+ COM_ERRc6 : usint :=  16#C6;  (*`{ENG} Invalid channel mode {CSY} seriový kanál neni v požadovaném režimu*)
+
+END_VAR
+
+__DECL FUNCTION GetChanDesc : TUniDesc
+(*`{ENG} Get a descriptor of the serial channel
+
+     Function tests memory mapping of com channel.
+     This function is for internal using in library.
+
+     Function returns channel descriptor (TUniDesc).
+
+     {CSY} Získat popisovaè sériového kanálu
+
+     Funkce testuje aktuální namapování sériového kanálu do pamìti PLC.
+     Tato funkce je urèena pro vnitøní použití v knihovnì.
+
+     Funkce vrací popisovaè kanálu (strukturu TUniDesc).*)
+  VAR_INPUT
+    chanCode         : uint;  (*`channel code (ETH1_uni0, ..., ETH1_uni7, ETH2_uni0, ..., ETH2_uni7)*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION GetChanIndex : int
+(*`{ENG} Test the existence of a communication channel
+
+   Function checks validity of chanCode.
+   This function is for internal using in library.
+
+   Function returns positive channel index
+   when chanCode is valid, otherwise result is -1.
+
+   {CSY} Test existence komunikaèního kanálu
+
+   Funkce kontroluje platnost promìnné chanCode.
+   Tato funkce je urèena pro vnitøní použití v knihovnì.
+
+   Pokud je hodnota promìnné chanCode platná, vrací funkce
+   index kanálu (kladné èíslo), jinak vrací -1.*)
+  VAR_INPUT
+    chanCode         : uint;  (*`{ENG} channel code {CSY} kód kanálu*)
+  END_VAR
+END_FUNCTION
+
+VAR_GLOBAL CONSTANT
+ ComErrorString : ARRAY [0..20] OF string [40] :=  [
+       'No error                                ',
+       'Channel is not in uni mode              ',
+       'Sending data are too long               ',
+       'Received data are too long              ',
+       'Wrong channel code                      ',
+       'Previous message is not sent yet        ',
+       'Zero message length                     ',
+       'Invalid communication speed             ',
+       'Channel is disabled                     ',
+       'Invalid start delimiter                 ',
+       'Parity error                            ',
+       'Maximum message length exceeded         ',
+       'Invalid second byte of acknowledgment   ',
+       'Invalid second byte of end delimiter    ',
+       'Check sum error                         ',
+       'Invalid end delimiter                   ',
+       'Invalid length of sent data             ',
+       'Sent data zero length                   ',
+       'Timeout not held                        ',
+       'Invalid channel mode                    ',
+       'Unknown error                           '];
+
+END_VAR
+
+__DECL FUNCTION GetLastComErrTxt : string
+(*`errCode : USINT;         {ENG} error code {CSY} chybový kód
+  END_VAR*)
+  VAR_INPUT
+    errCode          : usint;  (*`{ENG} error code {CSY} chybový kód*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION GetChanSettings : bool
+(*`{ENG} The test configuration of the serial channel
+
+   Function tests actual settings of serial channel
+   (channel must be in uni mode!).
+
+   Function returns TRUE when successful and
+   actual channels settings are set to variable chanSet.
+
+   {CSY} Test nastavení sériového kanálu
+
+   Funkce testuje aktuální nastavení sériového kanálu
+   (Pozor ! Kanál musí být v univerzálním režimu).
+
+   Funkce vrací TRUE, pokud se podaøí zjistit nastavení
+   sériového kanálu (nastavení je uloženo v promìnné chanSet),
+   jinak vrací FALSE.*)
+  VAR_INPUT
+    serChan          : usint;  (*`{ENG} number of serial channel (SCH1, ..., SCH10){CSY} èíslo sériového kanálu (SCH1, ..., SCH10)*)
+  END_VAR
+  VAR_IN_OUT
+    chanSet          : TChanSettings;  (*`{ENG} actual settings for serial channel {CSY} aktuální nastavení sériového kanálu*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION SetChanSettings : usint
+(*`{ENG} Set serial port parameters
+
+   Function sets new parameters for serial channel
+   (communication speed, parity, ...).
+
+   Function returns 0 when successful,
+   in other case function returns error number.
+
+   {CSY} Nastavení parametrù sériového kanálu
+
+   Funkce nastavuje nové parametry sériového kanálu
+   (rychlost komunikace, paritu, ...).
+
+   Funkce vrací 0, pokud se podaøí nastavit nové parametry (bez chyby).
+   V pøípadì, že se nepodaøí parametry nastavit, vrací funkce chybový kód.*)
+  VAR_INPUT
+    rq               : bool;  (*`{ENG} request for new settings {CSY} Žádost o nové nastavení*)
+    serChan          : usint;  (*`{ENG} number of serial channel (SCH1, ..., SCH10) {CSY} èíslo sériového kanálu (SCH1, ..., SCH10)*)
+  END_VAR
+  VAR_IN_OUT
+    chanSet          : TChanSettings;  (*`{ENG} new settings for serial channel {CSY} Nové natavení sériového kanálu*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION GetChanStat : TUni_STAT
+(*`{ENG} Test status of the communication channel
+
+   Function returns TUni_STAT structure.
+
+   {CSY} Test stavu komunikaèního kanálu
+
+   Funkce vrací strukturu TUni_STAT s informacemi o stavu kanálu.*)
+  VAR CONSTANT
+    initStat         : TUni_STAT :=  ( DSR := false,  CTS := false,  dummy1 := false,  TRO := false,
+                              RCF := false,  ROV := false,  TRF := false,  ARC := false);
+  END_VAR
+  VAR_INPUT
+    chanCode         : uint;  (*`{ENG} channel code (CH1_uni, ..., CH10_uni, ETH1_uni0, ..., ETH1_uni7, ETH2_uni0, ..., ETH2_uni7) {CSY} kód kanálu (CH1_uni, ..., CH10_uni, ETH1_uni0, ..., ETH1_uni7, ETH2_uni0, ..., ETH2_uni7)*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION EstabTCPconnection : usint
+(*`{ENG} Establish a TCP connection
+
+   Function starts to establish TCP connection.
+   This operation takes some time.
+
+   Function returns 0 when successful.
+   If it is fails function returns error code.
+
+   {CSY}  Navázat TCP spojení
+
+   Funkce zahájí proces navazání TCP spojení.
+   Tento proces mùže nìjakou dobu trvat.
+
+   Funkce vrací 0, pokud se podaøilo zahájit navazování spojení.
+   Jinak funkce vrací chybový kód.*)
+  VAR_INPUT
+    chanCode         : uint;  (*`{ENG} channel code (ETH1_uni0, ..., ETH1_uni7, ETH2_uni0, ..., ETH2_uni7)  {CSY} kód kanálu (ETH1_uni0, ..., ETH1_uni7, ETH2_uni0, ..., ETH2_uni7)*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION CloseTCPconnection : usint
+(*`{ENG} Close TCP connection
+
+   Function starts to close TCP connection.
+   This operation takes some time.
+
+   Function returns 0 when successful.
+   If it is fails function returns error code.
+
+   {CSY} Ukonèit TCP spojení
+
+   Funkce zahájí proces uzavøení TCP spojení.
+   Tato operace mùže nìjakou dobu trvat.
+
+   Funkce vrací 0 pokud se podaøí zahájit uzavøení spojení.
+   Jinak vrací chybový kód.*)
+  VAR_INPUT
+    chanCode         : uint;  (*`{ENG} channel code (ETH1_uni0, ..., ETH1_uni7, ETH2_uni0, ..., ETH2_uni7) {CSY} kód kanálu (ETH1_uni0, ..., ETH1_uni7, ETH2_uni0, ..., ETH2_uni7)*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION IsEstabTCPconnection : bool
+(*`{ENG} Test the state of TCP connections
+
+   Function returns TRUE when TCP connection is established,
+   in other case function returns FALSE.
+
+   {CSY} Test stavu TCP spojení
+
+   Funkce vrací TRUE, pokud je spojení navázáno.
+   Jinak vrací FALSE.*)
+  VAR_INPUT
+    chanCode         : uint;  (*`{ENG} channel code (ETH1_uni0, ..., ETH1_uni7, ETH2_uni0, ..., ETH2_uni7) {CSY} kód kanálu (ETH1_uni0, ..., ETH1_uni7, ETH2_uni0, ..., ETH2_uni7)*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION SetRemoteIPaddress : bool
+(*`{ENG} Set the destination IP address
+
+   Function sets new remote IP address,
+   remote port and local port of chanCode.
+
+   Function returns TRUE when successful,
+   in other case function returns FALSE.
+
+   {CSY} Nastavení cílové IP adresy
+
+   Funkce nastaví novou cílovou IP adresu,
+   cílový port a zdrojový port pro zadaný kanál.
+   Nové hodnoty definuje promìnná ethAdr.
+
+   Funkce vrací TRUE, pokud se nové hodnoty podaøí nastavit.*)
+  VAR_INPUT
+    rq               : bool;  (*`{ENG} request for new settings {CSY} žádost o nové nastavení*)
+    chanCode         : uint;  (*`{ENG} channel code (ETH1_uni0, ..., ETH1_uni7) {CSY} kód kanálu (ETH1_uni0, ..., ETH1_uni7)*)
+  END_VAR
+  VAR_IN_OUT
+    ethAdr           : TRemoteEthAdr;  (*`{ENG} new settings {CSY} nové nastavení*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION GetRemoteIPaddress : bool
+(*`{ENG} Test the destination IP address
+
+   Function tests actual remote IP address,
+   remote port and local port of chanCode.
+
+   Function returns TRUE when successful.
+   Actual remote IP address, remote port and
+   local port are set to variable ethAdr.
+
+   {CSY} Test cílové IP adresy
+
+   Funkce zjišuje aktuálnì nastavenou cílovou IP adresu,
+   cílový port a zdrojový port pro zadaný kanál.
+
+   Funkce vrací TRUE, pokud se nové hodnoty podaøí zjistit.
+   Zjištené hodnoty jsou uloženy do promìnné ethAdr.*)
+  VAR_INPUT
+    chanCode         : uint;  (*`{ENG} channel code (ETH1_uni0, ..., ETH1_uni7) {CSY} kód kanálu (ETH1_uni0, ..., ETH1_uni7)*)
+  END_VAR
+  VAR_IN_OUT
+    ethAdr           : TRemoteEthAdr;  (*`{ENG} actual settings {CSY} aktuální nastavení*)
+  END_VAR
+END_FUNCTION
+
+VAR_GLOBAL CONSTANT
+ MAX_LENGHT_OF_WEB_USER_NAME : usint :=  10;
+ HTTP_URI_SIZE : usint :=  65;
+
+END_VAR
+
+TYPE T_SESSION_STATE : 
+  (SESSION_EMPTY,
+   SESSION_LOGIN,
+   SESSION_LOGIN_RUN,
+   SESSION_ACTIVE,
+   SESSION_LOGOUT 
+  );
+END_TYPE
+
+TYPE TWebServerAccess :
+  STRUCT
+    state            : T_SESSION_STATE;  (*`{ENU} session state               {CSY} stav pøihlášení*)
+    user             : string [10];  (*`{ENU} user name                   {CSY} jméno uživatele*)
+    level            : usint;  (*`{ENU} level of access             {CSY} úroveò pøihlášení*)
+    error            : usint;  (*`{ENU} error code                  {CSY} kód chyby*)
+    IP               : TIPadr;  (*`{ENU} IP address of user          {CSY} IP adresa uživatele*)
+    lastFile         : string [65];  (*`{ENU} name of last requested file {CSY} název posledního požadovaného souboru*)
+  END_STRUCT;
+END_TYPE
+
+TYPE  TWebServerAccessTable : ARRAY [0..7] OF TWebServerAccess;  (*`{ENU} access table of web server  {CSY} pøístupová tabulka web serveru PLC*)
+END_TYPE
+
+__DECL FUNCTION GetWebServerAccess : bool
+(*`{ENU} Get information about access to web server
+  {CSY} Vrací informace o pøístupech k web serveru PLC*)
+  VAR_IN_OUT
+    accessTable      : TWebServerAccessTable;
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION SetRTS : bool
+(*`{ENG} Set of RTS signal (for serial channel)
+   Function returns TRUE when successful
+   !!! Option "depends on SIGN.1" have to be selected
+    for Control mode of RTS signal in HW configuration
+   
+   {CSY} Nastavit signál RTS (pro sériový kanál)
+   Funkce vrací TRUE pokud se podaøilo signál nastavit,
+   v opaèném pøípadì vrací FALSE
+   !!! Režim øízení signálu RTS musí být v HW konfiguraci
+   nastaven na volbu "podle SIGN.1"*)
+  VAR_INPUT
+    chanCode         : uint;  (*`{ENG} channel code (CH1_uni, ..., CH10_uni) {CSY} kód kanálu (CH1_uni, ..., CH10_uni)*)
+    value            : bool;  (*`{ENG} RTS value {CSY} hodnota RTS*)
+  END_VAR
+  VAR
+    pUniOut          : PTR_TO TUni_OUT;
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION GetRTS : bool
+(*`{ENG} Get state of RTS signal (for serial channel)
+   Function returns state of RTS signal
+   
+   {CSY} Testovat stav signálu RTS (pro sériový kanál)
+   Funkce vrací stav signál RTS*)
+  VAR_INPUT
+    chanCode         : uint;  (*`{ENG} channel code (CH1_uni, ..., CH10_uni) {CSY} kód kanálu (CH1_uni, ..., CH10_uni)*)
+  END_VAR
+  VAR
+    pUniOut          : PTR_TO TUni_OUT;
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION MACADR_TO_STRING : string [18]
+(*`{ENG} Convert MAC addresses to a text string
+   {CSY} Pøevod MAC adresy na textový øetìzec*)
+  VAR_INPUT
+    macAdr           : TMacAdr;  (*`{ENG} MAC address array {CSY} pole s MAC adresou*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION_BLOCK fbSendTo
+(*`{ENG} Transmit data over the communication channel
+
+   Function block sends array data[] to communication
+   channel specified by chanCode. Data length is specified
+   by variable lenTx.
+
+   Function block returns information about
+   sending message. If there is no error,
+   variable error is 0.
+
+   {CSY} Vysílání dat komunikaèním kanálem
+
+   Funkèní blok vysílá obsah pole data[] komunikaèním kanálem,
+   který je specifikován promìnnou chanCode. Poèet vysílaných
+   bytù urèuje promìnná lenTx.
+
+   Funkèní blok vrací informace o stavu vysílání.
+   Pokud pøi vysílání nedojde k chybì, výstupní promìnná
+   error je 0, jinak obsahuje kód chyby.*)
+  VAR_INPUT
+    rq               : bool;  (*`{ENG} request to send  {CSY} žádost o vysílání*)
+    chanCode         : uint;  (*`{ENG} channel code (CH1_uni, ..., CH10_uni, ETH1_uni0, ..., ETH1_uni7, ETH2_uni0, ..., ETH4_uni7) {CSY} kód kanálu (CH1_uni, ..., CH10_uni, ETH1_uni0, ..., ETH1_uni7, ETH2_uni0, ..., ETH4_uni7)*)
+    lenTx            : uint;  (*`{ENG} message size (number of bytes) {CSY} velikost zprávy (poèet bytù)*)
+  END_VAR
+  VAR_IN_OUT
+    data             : TUni_BUFF;  (*`{ENG} buffer for send message {CSY} buffer pro vysílanou zprávu*)
+  END_VAR
+  VAR_OUTPUT
+    mesSent          : bool;  (*`{ENG} sending of message was started {CSY} vysílání zprávy bylo zahájeno*)
+    error            : usint;  (*`{ENG} error code {CSY} chybový kód*)
+    lenData          : uint;  (*`{ENG} size of sending message {CSY} velikost skuteènì odvysílané zprávy*)
+  END_VAR
+  VAR
+    pUniOut          : PTR_TO TUni_OUT;
+    pUniIn           : PTR_TO TUni_IN;
+    pUniOutData      : PTR_TO usint;
+  END_VAR
+END_FUNCTION_BLOCK
+
+__DECL FUNCTION_BLOCK fbRecvFrom
+(*`{ENG} Receiving data from the communication channel
+
+   Function block receives message from communication
+   channel specified by chanCode. Received data are
+   saved to array data[]. Length of received message
+   is specified by variable lenData.
+
+   Function block returns information about
+   received message. If there is no error,
+   variable error is 0.
+
+   {CSY} Pøíjem dat z komunikaèního kanálu
+
+   Funkèní blok pøijímá data z komunikaèního kanálu,
+   který je specifikován promìnnou chanCode.
+   Pøijatá data jsou uložena do pole data[].
+   Délku pøijatých dat udává promìnná lenData.
+
+   Funkèní blok vrací informace o stavu pøíjmu.
+   Pokud pøi pøíjmu nedojde k chybì, výstupní promìnná
+   error je 0, jinak obsahuje kód chyby.*)
+  VAR_INPUT
+    rq               : bool;  (*`{ENG} request to receive {CSY} žádost o pøíjem*)
+    chanCode         : uint;  (*`{ENG} channel code (CH1_uni, ..., CH10_uni, ETH1_uni0, ..., ETH1_uni7, ETH2_uni0, ..., ETH4_uni7) {CSY} kód kanálu (CH1_uni, ..., CH10_uni, ETH1_uni0, ..., ETH1_uni7, ETH2_uni0, ..., ETH4_uni7)*)
+    lenRx            : uint;  (*`{ENG} max. data size (number of bytes) {CSY} max. možná délka pøijatých dat*)
+  END_VAR
+  VAR_IN_OUT
+    data             : TUni_BUFF;  (*`{ENG} buffer for received message {CSY} buffer pro pøijatou zprávu*)
+  END_VAR
+  VAR_OUTPUT
+    mesRec           : bool;  (*`{ENG} new message flag {CSY} pøíznak novì pøijaté zprávy*)
+    error            : usint;  (*`{ENG} error code {CSY} chybový kód*)
+    lenData          : uint;  (*`{ENG} number of received bytes {CSY} velikost skuteènì pøijaté zprávy (poèet bytù)*)
+  END_VAR
+  VAR
+    pUniIn           : PTR_TO TUni_IN;
+    pUniInData       : PTR_TO usint;
+    oldARC           : bool;  (*`ARRAY[0..39] OF BOOL;*)
+  END_VAR
+END_FUNCTION_BLOCK
+
+__DECL FUNCTION_BLOCK fbRecvTxt
+(*`{CSY} Pøijímá data z komunikaèního kanálu konèící znaky CR LF
+{ENU} Receives data from communication channel delimited by CR LF*)
+  VAR_INPUT
+    getMes           : bool;  (*`{CSY} Vybere zprávu z bufferu {ENU} Gets message from buffer*)
+    reset            : bool;  (*`{CSY} Vymaže buffer {ENU} Flushes buffer*)
+    chanCode         : uint;  (*`{CSY} Kód kanálu (CH1_uni, ..., CH10_uni, ETH1_uni0, ..., ETH1_uni7, ETH2_uni0, ..., ETH4_uni7){ENU}Channel code (CH1_uni, ..., CH10_uni, ETH1_uni0, ..., ETH1_uni7, ETH2_uni0, ..., ETH4_uni7)*)
+    lenBuf           : uint;  (*`{CSY} Délka pracovniho bufferu {ENU}Lenght of buffer*)
+    lenTxt           : uint;  (*`{CSY} Délka txtMes {ENU} Lenght of txtMes*)
+  END_VAR
+  VAR_OUTPUT
+    full             : bool;  (*`{CSY} Buffer je plný, zprávy nebyly odebírány dostateènì rychle {ENU}Buffer is full, messages were not taken fast enought*)
+    lenMes           : uint;  (*`{CSY} Délka pøijatého textu {ENU} Message length*)
+    error            : usint;  (*`{CSY} chybový kód {ENG} error code*)
+  END_VAR
+  VAR
+    actPos           : uint;
+    RecvFrom         : fbRecvFrom;
+  END_VAR
+  VAR_IN_OUT
+    buffer           : usint;  (*`{CSY}První byte pracovniho bufferu{ENU}First byte of working buffer*)
+    txtMes           : usint;  (*`{CSY}První znak pøijatého textu {ENU}First byte of received text*)
+  END_VAR
+END_FUNCTION_BLOCK
+
+__DECL FUNCTION_BLOCK fbRecvTxtChar
+(*`{CSY} Pøijímá data z komunikaèního kanálu konèící znakem uvedeným na vstupu 'delimiter'
+{ENU} Receives data from communication channel delimited by charachter specified by input 'delimiter'*)
+  VAR_INPUT
+    getMes           : bool;  (*`{CSY} Vybere zprávu z bufferu {ENU} Gets message from buffer*)
+    reset            : bool;  (*`{CSY} Vymaže buffer {ENU} Flushes buffer*)
+    chanCode         : uint;  (*`{CSY} Kód kanálu (CH1_uni, ..., CH10_uni, ETH1_uni0, ..., ETH1_uni7, ETH2_uni0, ..., ETH4_uni7){ENU}Channel code (CH1_uni, ..., CH10_uni, ETH1_uni0, ..., ETH1_uni7, ETH2_uni0, ..., ETH4_uni7)*)
+    lenBuf           : uint;  (*`{CSY} Délka pracovniho bufferu {ENU}Lenght of buffer*)
+    lenTxt           : uint;  (*`{CSY} Délka txtMes {ENU} Lenght of txtMes*)
+    delimiter        : byte;  (*`{CSY} oddìlovací znak {ENU} delimiter*)
+  END_VAR
+  VAR_OUTPUT
+    full             : bool;  (*`{CSY} Buffer je plný, zprávy nebyly odebírány dostateènì rychle {ENU}Buffer is full, messages were not taken fast enought*)
+    lenMes           : uint;  (*`{CSY} Délka pøijatého textu {ENU} Message length*)
+    error            : usint;  (*`{CSY} chybový kód {ENG} error code*)
+  END_VAR
+  VAR
+    actPos           : uint;
+    RecvFrom         : fbRecvFrom;
+  END_VAR
+  VAR_IN_OUT
+    buffer           : usint;  (*`{CSY}První byte pracovniho bufferu{ENU}First byte of working buffer*)
+    txtMes           : usint;  (*`{CSY}První znak pøijatého textu {ENU}First byte of received text*)
+  END_VAR
+END_FUNCTION_BLOCK
+
+__DECL FUNCTION GetIPaddress : bool
+(*`{ENG} Test current IP address
+
+   Function tests actual IP address, subnet mask
+   and gateway of EthChan.
+
+   Function returns TRUE when successful and
+   actual IP address, subnet mask and gateway address
+   are set to variable EthAdr.
+
+   {CSY} Test aktuální IP adresy
+
+   Funkce zjišuje aktuálnì nastavenou IP adresu,
+   masku sítì a adresu brány pro zadaný kanál.
+
+   Funkce vrací TRUE, pokud se adresy podaøí zjistit.
+   Zjištené hodnoty jsou uloženy do promìnné ethAdr.*)
+  VAR_INPUT
+    ethChan          : usint;  (*`{ENG} number of Ethernet channel (ETH1, ETH2, ETH3) {CSY} èíslo Ethernet kanálu (ETH1, ETH2, ETH3)*)
+  END_VAR
+  VAR_IN_OUT
+    ethAdr           : TLocalEthAdr;  (*`{ENG} actual IP address, subnet mask and gateway address {CSY} aktuální IP adresa, maska a adresa brány sítì*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION SetIPaddress : bool
+(*`{ENG} Setting up your own IP address
+
+   Function sets new IP address, subnet mask
+   and gateway of ethChan.
+
+   Function returns TRUE when successful,
+   in other case function returns FALSE.
+
+   {CSY} Nastavení vlastní IP adresy
+
+   Funkce nastavuje novou IP adresu, masku sítì
+   a adresu brány pro zadaný kanál.
+
+   Funkce vrací TRUE, pokud se podaøí nastavit nové hodnoty.*)
+  VAR_INPUT
+    rq               : bool;  (*`{ENG} request for new settings {CSY} žádost o nastavení nových hodnot*)
+    ethChan          : usint;  (*`{ENG} number of Ethernet channel (ETH1, ETH2, ETH3) {CSY} èíslo Ethernet kanálu (ETH1, ETH2, ETH3)*)
+  END_VAR
+  VAR_IN_OUT
+    ethAdr           : TLocalEthAdr;  (*`{ENG} new IP address, subnet mask and gateway address {CSY} nová IP adresa, maska sítì a adresa brány*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION GetMACaddress : bool
+(*`{ENG} Test MAC address
+
+   Function tests actual MAC address of ethChan.
+
+   Function returns TRUE when successful and
+   actual MAC address is set to variable MacAdr.
+
+   {CSY} Test MAC adresy
+
+   Funkce zjišuje MAC adresu zadaného Ethernet kanálu.
+
+   Funkce vrací TRUE, pokud se MAC adresu podaøí zjistit.
+   MAC adresa je uložena v promìnné MacAdr.*)
+  VAR_INPUT
+    ethChan          : usint;  (*`{ENG} number of Ethernet channel (ETH1, ETH2, ETH3) {CSY} èíslo Ethernet kanálu (ETH1, ETH2, ETH3)*)
+  END_VAR
+  VAR_IN_OUT
+    MacAdr           : TMacAdr;  (*`{ENG} actual MAC address {CSY} aktuální MAC adresa*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION SetDHCPsupport : bool
+(*`{ENG} Turn on support for DHCP
+
+   Function sets DHCP support.
+   IP address will obtain from DHCP server automatically.
+
+   Function returns TRUE when successful,
+   in other case function returns FALSE.
+
+   {CSY} Zapnutí podpory pro DHCP
+
+   Funkce zapne podporu DHCP.
+   IP adresa bude pøidìlena DHCP serverem.
+
+   Funkce vratí TRUE, pokud se podaøí zapnou podporu DHCP,
+   jinak vrací FALSE.*)
+  VAR_INPUT
+    rq               : bool;  (*`{ENG} request for DHCP support {CSY} žádost o zapnutí podpory DHCP*)
+    ethChan          : usint;  (*`{ENG} number of Ethernet channel (ETH1 only) {CSY} èíslo Ethernet kanálu (pouze ETH1)*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION GetDNS_IP : TIPadr
+(*`{ENG} Function returns IP address of DNS server
+   {CSY} Funkce vrací IP adresu DNS serveru*)
+  VAR_INPUT
+    ethChan          : usint;  (*`{ENG} number of Ethernet channel (ETH1 only) {CSY} èíslo Ethernet kanálu (pouze ETH1)*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION SetDNS_IP : bool
+(*`{ENG} Function sets Ip address of DNS server
+
+   Function returns TRUE when successful,
+   in other case function returns FALSE.
+
+   {CSY} Nastavení IP adresy DNS serveru
+
+   Funkce vrátí TRUE, pokud se podaøí nastavit novou IP adresu DNS serveru,
+   jinak vrací FALSE.*)
+  VAR_INPUT
+    rq               : bool;  (*`{ENG} request for new settings of DNS IP {CSY} žádost o nastavení nové IP adresy DNS serveru*)
+    ethChan          : usint;  (*`{ENG} number of Ethernet channel (ETH1 only) {CSY} èíslo Ethernet kanálu (pouze ETH1)*)
+    DNS_IP           : TIPadr;  (*`{ENG} IP address of DNS server {CSY} IP adresa DNS serveru*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION STRING_TO_IPADR : TIPadr
+(*`{ENG} Convert text string to IP address
+   {CSY} Pøevod textového øetìzce na IP adresu*)
+  VAR_INPUT
+    IPAdr            : string [80];  (*`{ENG} IP address string {CSY} øetìzec s IP adresou*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION IPADR_TO_STRING : string
+  VAR_INPUT
+    IPAdr            : TIPadr;  (*`{ENG} IP address array {CSY} pole s IP adresou*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION_BLOCK fbKeepAliveTCP
+(*`{ENG} Keep alive TCP connection
+
+   In order to keep connection alive,
+   function block sends ACK packets
+   when TCP connection is established
+   and there are no data to transmit.
+
+   Function returns 0 when successful.
+   If it is fails function returns error code.
+
+   {CSY}  Udržovat TCP spojení
+
+   Pokud je navázané TCP spojení
+   a nejsou žádná data pro vysílání,
+   tak funkèní blok odesílá v zadaných
+   intervalech ACK pakety pro udržení spojení.
+
+   Funkce vrací 0, pokud pokud je vše v poøádku.
+   Jinak funkce vrací chybový kód.*)
+  VAR_INPUT
+    rq               : bool;  (*`{ENG} request to keep alive  {CSY} žádost o udržování spojení*)
+    chanCode         : uint;  (*`{ENG} channel code (ETH1_uni0, ..., ETH1_uni7, ETH2_uni0, ..., ETH2_uni7)  {CSY} kód kanálu (ETH1_uni0, ..., ETH1_uni7, ETH2_uni0, ..., ETH2_uni7)*)
+    PT               : time;  (*`{ENG} keep alive interval (T#5s...T#60s)  {CSY} interval odesílání udržovacích paketù (T#5s...T#60s)*)
+  END_VAR
+  VAR_OUTPUT
+    error            : usint;  (*`{ENG} error code {CSY} chybový kód*)
+  END_VAR
+  VAR
+    tick             : fbTick;
+  END_VAR
+END_FUNCTION_BLOCK
+
+__DECL FUNCTION CheckGatewayIP : bool
+(*`{CSY} Zkontroluje, jestli je dobøe nastavená IP adresa brány sítì v PLC
+  {ENU} Check if IP address of gateway in PLC is valid*)
+  VAR_INPUT
+    ethChan          : usint;  (*`{ENU} number of Ethernet channel (ETH1, ETH2, ETH3) {CSY} èíslo Ethernet kanálu (ETH1, ETH2, ETH3)*)
+  END_VAR
+END_FUNCTION
+
+
+
+{USES=SetChanSettings:GetChanSettings}
+{USES=GetChanStat:GetChanIndex,GetChanDesc}
+{USES=EstabTCPconnection:GetChanIndex,GetChanDesc}
+{USES=CloseTCPconnection:GetChanIndex,GetChanDesc}
+{USES=IsEstabTCPconnection:GetChanIndex,GetChanDesc}
+{USES=SetRemoteIPaddress:IsEstabTCPconnection}
+{USES=SetRTS:GetChanIndex,GetChanDesc}
+{USES=GetRTS:GetChanIndex,GetChanDesc}
+{USES=fbSendTo:GetChanIndex,GetChanDesc}
+{USES=fbRecvFrom:GetChanIndex,GetChanDesc}
+{USES=fbKeepAliveTCP:GetChanIndex,GetChanDesc}
+{USES=CheckGatewayIP:GetIPaddress}
+#srcfile 'C:\TECOLIBSRC\COMLIB\COMLIB\COMLIB.ST'
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\COMLIB\COMLIB\GETCHANDESC.ST'
+#pou GetChanDesc
+#srcline 47 ;FUNCTION GetChanDesc : TUniDesc
+P     61
+GetChanDesc_L0:
+ LINK 0
+ NXT
+#srcline 67 ;  begin
+#srcline 68 ;    {asm} (**)
+#srcline 69
+      LEAX  __fc__GetChanDesc
+#srcline 70
+      LDX   chanCode
+#srcline 71
+      SYS   26
+#srcline 72 ;    {end_asm}
+#srcline 73 ;    GetChanDesc.res := 1;
+ LD   byte 1
+ WRX  __fc__GetChanDesc~res
+#debug_left byte GetChanDesc.res
+#srcline 74 ; END_FUNCTION
+ PRV  
+ LEAX  __fc__GetChanDesc
+ SRC   %X0
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\COMLIB\COMLIB\GETCHANINDEX.ST'
+#pou GetChanIndex
+#srcline 1 ;FUNCTION GetChanIndex : INT
+P     61
+GetChanIndex_L0:
+ LINK 0
+ NXT
+#srcline 22 ;begin
+#srcline 23 ;  {asm} (**)
+#srcline 24
+    #table word channelCodeList =
+#srcline 25
+      $0101,  ; CH1_uni
+#srcline 26
+      $0202,  ; CH2_uni
+#srcline 27
+      $07E1,  ; ETH1_uni0
+#srcline 28
+      $17E1,  ; ETH1_uni1
+#srcline 29
+      $27E1,  ; ETH1_uni2
+#srcline 30
+      $37E1,  ; ETH1_uni3
+#srcline 31
+      $47E1,  ; ETH1_uni4
+#srcline 32
+      $57E1,  ; ETH1_uni5
+#srcline 33
+      $67E1,  ; ETH1_uni6
+#srcline 34
+      $77E1,  ; ETH1_uni7
+#srcline 35
+      $0103,  ; CH3_uni
+#srcline 36
+      $0204,  ; CH4_uni
+#srcline 37
+      $0105,  ; CH5_uni
+#srcline 38
+      $0206,  ; CH6_uni
+#srcline 39
+      $0107,  ; CH7_uni
+#srcline 40
+      $0208,  ; CH8_uni
+#srcline 41
+      $0109,  ; CH9_uni
+#srcline 42
+      $020A,  ; CH10_uni
+#srcline 43
+      $07E2,  ; ETH2_uni0
+#srcline 44
+      $17E2,  ; ETH2_uni1
+#srcline 45
+      $27E2,  ; ETH2_uni2
+#srcline 46
+      $37E2,  ; ETH2_uni3
+#srcline 47
+      $47E2,  ; ETH2_uni4
+#srcline 48
+      $57E2,  ; ETH2_uni5
+#srcline 49
+      $67E2,  ; ETH2_uni6
+#srcline 50
+      $77E2,  ; ETH2_uni7
+#srcline 51
+      $07E3,  ; ETH3_uni0
+#srcline 52
+      $17E3,  ; ETH3_uni1
+#srcline 53
+      $27E3,  ; ETH3_uni2
+#srcline 54
+      $37E3,  ; ETH3_uni3
+#srcline 55
+      $47E3,  ; ETH3_uni4
+#srcline 56
+      $57E3,  ; ETH3_uni5
+#srcline 57
+      $67E3,  ; ETH3_uni6
+#srcline 58
+      $77E3,  ; ETH4_uni7
+#srcline 59
+      $07E4,  ; ETH4_uni0
+#srcline 60
+      $17E4,  ; ETH4_uni1
+#srcline 61
+      $27E4,  ; ETH4_uni2
+#srcline 62
+      $37E4,  ; ETH4_uni3
+#srcline 63
+      $47E4,  ; ETH4_uni4
+#srcline 64
+      $57E4,  ; ETH4_uni5
+#srcline 65
+      $67E4,  ; ETH4_uni6
+#srcline 66
+      $77E4   ; ETH4_uni7
+#srcline 67
+    ;
+#srcline 68
+    LDX   chanCode
+#srcline 69
+    FTB   channelCodeList
+#srcline 70
+    WRX   __fc__GetChanIndex
+#srcline 71
+    LD    %S1.0
+#srcline 72
+    JMD   IndexFoundInChannelCodeList
+#srcline 73
+    LD    -1
+#srcline 74
+    WRX   __fc__GetChanIndex ; index not found
+#srcline 75
+IndexFoundInChannelCodeList:
+#srcline 76 ;  {end_asm}
+#srcline 77 ;END_FUNCTION
+ PRV  
+ LDX  __fc__GetChanIndex
+ EXTW 
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\COMLIB\COMLIB\COMMERRSTRING.ST'
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\COMLIB\COMLIB\GETLASTCOMERRTXT.ST'
+#pou GetLastComErrTxt
+#srcline 1 ;FUNCTION GetLastComErrTxt : STRING
+
+#struct GetLastComErrTxt__temp__
+  int index,
+  string[82] PS0__st__
+P     61
+GetLastComErrTxt_L0:
+ LINK __SizeOf(GetLastComErrTxt__temp__)
+ NXT
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 25 ;begin
+#srcline 26 ;  index := 0;
+ LD   int 0
+ WRY  index
+#debug_left int index
+#srcline 27 ;  {asm} (**)
+#srcline 28
+    #table byte errorCodeList =
+#srcline 29
+       0,       ;No error
+#srcline 30
+       1,       ;Channel is not in uni mode
+#srcline 31
+       2,       ;Sending data are too long
+#srcline 32
+       3,       ;Received data are too long
+#srcline 33
+       4,       ;Channel is not supported (wrong channel code)
+#srcline 34
+       5,       ;Previous message is not sent yet
+#srcline 35
+       6,       ;No data for sending
+#srcline 36
+       7,       ;invalid communication speed
+#srcline 37
+       8,       ;channel is disabled
+#srcline 38
+       $10,     ;Invalid start delimiter
+#srcline 39
+       $11,     ;Parity error
+#srcline 40
+       $12,     ;Maximum message length exceeded
+#srcline 41
+       $13,     ;Invalid second byte of acknowledgment
+#srcline 42
+       $14,     ;Invalid second byte of end delimiter
+#srcline 43
+       $18,     ;Check sum error
+#srcline 44
+       $19,     ;Invalid end delimiter
+#srcline 45
+       $31,     ;Invalid length of sent data
+#srcline 46
+       $32,     ;Sent data zero length
+#srcline 47
+       $40,     ;Timeout not held
+#srcline 48
+       $C6      ;Invalid channel mode
+#srcline 49
+    ;
+#srcline 50
+    LDX   errCode
+#srcline 51
+    FTB   errorCodeList
+#srcline 52
+    WRY   index
+#srcline 53 ;  {end_asm}
+#srcline 54 ;  GetLastComErrTxt := ComErrorString[index];
+ LD   0   ; null string
+ LEAX __fc__GetLastComErrTxt
+ WRI  
+ LEAX __fc__GetLastComErrTxt
+ LD   80
+ DST    ; Level 1
+ LEA  ComErrorString
+ LDY  index
+#debug int index
+ EXTW 
+ RCHK 20   ; Range Check
+ MUL  41   ; SizeOf(...)
+ ADD     ; + offset 
+ SCON 
+#debug_left string GetLastComErrTxt
+ PDST   ; Level 1
+#srcline 55 ;END_FUNCTION
+ PRV  
+ LEAX  __fc__GetLastComErrTxt
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\COMLIB\COMLIB\GETCHANSETTINGS.ST'
+#pou GetChanSettings
+#srcline 1 ;FUNCTION GetChanSettings : BOOL
+
+#struct GetChanSettings__temp__
+  byte tmp
+P     61
+GetChanSettings_L0:
+ LINK __SizeOf(GetChanSettings__temp__)
+ NXT
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 30 ;  GetChanSettings := 0;
+ LD   bool 0       ; false
+ WRX  __fc__GetChanSettings
+#debug_left bool GetChanSettings
+#srcline 31 ;  if SerChan > 10 then return; end_if;  // channel is not supported
+ LDX  SerChan
+#debug usint SerChan
+ LD   usint 10
+ GT
+ JMC  GetChanSettings_L1
+ JMP  GetChanSettings_RET
+GetChanSettings_L1:
+#srcline 32 ;  {asm}
+#srcline 33
+    LDX   chanSet             ; address of output structure
+#srcline 34
+    LDX   SerChan             ; channel number
+#srcline 35
+    SYS   11                  ; ChPar() - read parameters of serial channel
+#srcline 36
+    WRY   tmp                 ; result of SYS 11
+#srcline 37 ;  {end_asm}
+#srcline 38 ;  GetChanSettings := tmp = 1;
+ LDY  tmp
+#debug byte tmp
+ LD   byte 1
+ EQ
+ WRX  __fc__GetChanSettings
+#debug_left bool GetChanSettings
+#srcline 39 ;END_FUNCTION
+GetChanSettings_RET:
+ PRV  
+ LDX  __fc__GetChanSettings
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\COMLIB\COMLIB\SETCHANSETTINGS.ST'
+#pou SetChanSettings
+#srcline 1 ;FUNCTION SetChanSettings : USINT
+
+#struct SetChanSettings__temp__
+  TChanSettings actSet,  ; {ENG} actual settings of serial channel {CSY} Aktuální natavení sériového kanálu
+  dword tmp
+P     61
+SetChanSettings_L0:
+ LINK __SizeOf(SetChanSettings__temp__)
+ NXT
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 31 ;  SetChanSettings := COM_OK;
+ LD   usint 0
+ WRX  __fc__SetChanSettings
+#debug_left usint SetChanSettings
+#srcline 32 ;  IF rq THEN
+ LDX  rq
+#debug bool rq
+ JMC  SetChanSettings_L1
+#srcline 33 ;    GetChanSettings(SerChan := SerChan, chanSet := actSet);
+ NXT
+ LDX  SerChan
+#debug usint SerChan
+ WR   __Instance__GetChanSettings~SerChan
+#debug_left usint __Instance__GetChanSettings~SerChan
+ LEAY actSet
+ WR   __Instance__GetChanSettings~chanSet
+#debug_left pointer __Instance__GetChanSettings.chanSet
+ PRV
+ LEA  __Instance__GetChanSettings
+ CAL  GetChanSettings_L0
+#srcline 34 ;    IF actSet.modeChan = 0 THEN
+ LDY  actSet~modeChan
+#debug usint actSet.modeChan
+ LD   usint 0
+ EQ
+ JMC  SetChanSettings_L3
+#srcline 35 ;      SetChanSettings := COM_ERR8; // seriovy kanál je vypnuty, neni inic. tabulka
+ LD   usint 8
+ WRX  __fc__SetChanSettings
+#debug_left usint SetChanSettings
+#srcline 36 ;      return;
+ JMP  SetChanSettings_RET
+#srcline 37 ;    END_IF;
+SetChanSettings_L3:
+#srcline 38 ;    IF actSet.modeChan <> chanSet.modeChan THEN
+ LDY  actSet~modeChan
+#debug usint actSet.modeChan
+ LDX  chanSet
+ LDI  
+#debug usint chanSet.modeChan
+ EQ
+ NEG
+ JMC  SetChanSettings_L5
+#srcline 39 ;      SetChanSettings := COM_ERRc6; // seriovy kanál neni v pozadovanem režimu
+ LD   usint 198
+ WRX  __fc__SetChanSettings
+#debug_left usint SetChanSettings
+#srcline 40 ;      return;
+ JMP  SetChanSettings_RET
+#srcline 41 ;    END_IF;
+SetChanSettings_L5:
+#srcline 42 ;    {asm}
+#srcline 43
+      LDX   chanSet               ; address of input structure
+#srcline 44
+      LDX   SerChan               ; channel number
+#srcline 45
+      SYS   28                    ; set new CHx parameters
+#srcline 46
+      WRY   tmp                   ; SYS 28 result (0 .. vse OK, jinak napr. chyba 70 C6 RR MM)
+#srcline 47 ;    {end_asm}
+#srcline 48 ;    IF tmp <> 0 THEN
+ LDY  tmp
+#debug dword tmp
+ LD   dword 0
+ EQ
+ NEG
+ JMC  SetChanSettings_L7
+#srcline 49 ;      IF tmp AND 16#FF000000 = 16#73000000 THEN
+ LDY  tmp
+#debug dword tmp
+ LD   dword $FF000000
+ AND
+ LD   dword $73000000
+ EQ
+ JMC  SetChanSettings_L9
+#srcline 50 ;        if DWORD_TO_UINT(tmp) = 16#3801 THEN
+ LDY  tmp
+#debug dword tmp
+ AND  $FFFF
+ LD   uint $3801
+ EQ
+ JMC  SetChanSettings_L11
+#srcline 51 ;          SetChanSettings := COM_ERR7; // Invalid speed
+ LD   usint 7
+ WRX  __fc__SetChanSettings
+#debug_left usint SetChanSettings
+#srcline 52 ;        ELSE
+ JMP  SetChanSettings_L12
+SetChanSettings_L11:
+#srcline 53 ;          SetChanSettings := DWORD_TO_USINT( SHR( tmp, 8)); // unknown error
+ LDY  tmp
+#debug dword tmp
+ LD   uint 8
+ SHR
+ AND  $FF
+ WRX  __fc__SetChanSettings
+#debug_left usint SetChanSettings
+#srcline 54 ;        END_IF;
+SetChanSettings_L12:
+#srcline 55 ;      ELSE
+ JMP  SetChanSettings_L10
+SetChanSettings_L9:
+#srcline 56 ;        SetChanSettings := DWORD_TO_USINT( SHR( tmp, 16));
+ LDY  tmp
+#debug dword tmp
+ LD   uint 16
+ SHR
+ AND  $FF
+ WRX  __fc__SetChanSettings
+#debug_left usint SetChanSettings
+#srcline 57 ;      END_IF;
+SetChanSettings_L10:
+#srcline 58 ;    END_IF;
+SetChanSettings_L7:
+#srcline 59 ;  END_IF;
+SetChanSettings_L1:
+#srcline 60 ;END_FUNCTION
+SetChanSettings_RET:
+ PRV  
+ LDX  __fc__SetChanSettings
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\COMLIB\COMLIB\GETCHANSTAT.ST'
+#pou GetChanStat
+#srcline 1 ;FUNCTION GetChanStat : TUni_STAT
+
+#struct GetChanStat__temp__
+  pointer pUniIn,  ; {ENG} receiving data structure of channel in uni mode {CSY} pøijímací datová struktura kanálu v univerzálním režimu
+  TUniDesc uniDesc  ; {ENG} description of channel in uni mode {CSY} popis kanálu v univerzálním režimu
+P     61
+GetChanStat_L0:
+ LINK __SizeOf(GetChanStat__temp__)
+ NXT
+; Initialize - variables
+ LD  0
+ WRX  usint __fc__GetChanStat
+; End initialize - variables
+; Initialize - dynamic variables
+ LD   udint $FFFFFFFF    ; nil
+ WRY  pUniIn
+; End initialize - dynamic variables
+#srcline 23 ;  GetChanStat := initStat;
+ LEA  __Const__GetChanStat_initStat
+#debug pointer initStat
+ SRC  %IB0
+ LEAX __fc__GetChanStat
+#debug_left pointer GetChanStat
+ LD   1   ;SizeOf() 
+ MOV  %IB0
+#srcline 24 ;  if -1 = GetChanIndex( chanCode) then             // if index not found
+ LD   -1
+ NXT
+ LDX  chanCode
+#debug uint chanCode
+ WR   __Instance__GetChanIndex~chanCode
+#debug_left uint __Instance__GetChanIndex~chanCode
+ PRV
+ LEA  __Instance__GetChanIndex
+ CAL  GetChanIndex_L0
+ EQ
+ JMC  GetChanStat_L1
+#srcline 25 ;    return;                                        // channel is not supported
+ JMP  GetChanStat_RET
+#srcline 26 ;  end_if;
+GetChanStat_L1:
+#srcline 27 ;  uniDesc := GetChanDesc( chanCode);               // get channel descriptor
+ NXT
+ LDX  chanCode
+#debug uint chanCode
+ WR   __Instance__GetChanDesc~chanCode
+#debug_left uint __Instance__GetChanDesc~chanCode
+ PRV
+ LEA  __Instance__GetChanDesc
+ CAL  GetChanDesc_L0
+ LEAY uniDesc
+#debug_left pointer uniDesc
+ LD   26   ;SizeOf() 
+ MOV  %IB0
+#srcline 28 ;  if uniDesc.modeChan <> 5 then
+ LDY  uniDesc~modeChan
+#debug byte uniDesc.modeChan
+ LD   byte 5
+ EQ
+ NEG
+ JMC  GetChanStat_L3
+#srcline 29 ;    return;                                        // channel mode <> UNI
+ JMP  GetChanStat_RET
+#srcline 30 ;  end_if;
+GetChanStat_L3:
+#srcline 31 ;  pUniIn := UDINT_TO_PTR( uniDesc.adrUniIn);
+ LDY  uniDesc~adrUniIn
+#debug udint uniDesc.adrUniIn
+; UDINT -> PTR
+ LEAY pUniIn
+ WRIL 
+#debug_left pointer pUniIn
+#srcline 32 ;  GetChanStat := pUniIn^.STAT;
+ LEAY pUniIn
+ LDIL    ; dereference 
+#debug pointer pUniIn^.STAT
+ SRC  %IB0
+ LEAX __fc__GetChanStat
+#debug_left pointer GetChanStat
+ LD   1   ;SizeOf() 
+ MOV  %IB0
+#srcline 33 ;END_FUNCTION
+GetChanStat_RET:
+ PRV  
+ LEAX  __fc__GetChanStat
+ SRC   %X0
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\COMLIB\COMLIB\ESTABTCPCONNECTION.ST'
+#pou EstabTCPconnection
+#srcline 1 ;FUNCTION EstabTCPconnection : USINT
+
+#struct EstabTCPconnection__temp__
+  pointer pUniCon,
+  TUniDesc uniDesc  ; {ENG} description of channel in uni mode {CSY} popis kanálu v univerzálním režimu
+P     61
+EstabTCPconnection_L0:
+ LINK __SizeOf(EstabTCPconnection__temp__)
+ NXT
+; Initialize - dynamic variables
+ LD   udint $FFFFFFFF    ; nil
+ WRY  pUniCon
+; End initialize - dynamic variables
+#srcline 27 ;  EstabTCPconnection := 0;
+ LD   usint 0
+ WRX  __fc__EstabTCPconnection
+#debug_left usint EstabTCPconnection
+#srcline 28 ;  // check channel code
+#srcline 29 ;  if -1 = GetChanIndex( chanCode) then             // if index not found
+ LD   -1
+ NXT
+ LDX  chanCode
+#debug uint chanCode
+ WR   __Instance__GetChanIndex~chanCode
+#debug_left uint __Instance__GetChanIndex~chanCode
+ PRV
+ LEA  __Instance__GetChanIndex
+ CAL  GetChanIndex_L0
+ EQ
+ JMC  EstabTCPconnection_L1
+#srcline 30 ;    EstabTCPconnection := COM_ERR4; return;        // channel is not supported
+ LD   usint 4
+ WRX  __fc__EstabTCPconnection
+#debug_left usint EstabTCPconnection
+ JMP  EstabTCPconnection_RET
+#srcline 31 ;  end_if;
+EstabTCPconnection_L1:
+#srcline 32 ;  uniDesc := GetChanDesc( chanCode);               // get channel descriptor
+ NXT
+ LDX  chanCode
+#debug uint chanCode
+ WR   __Instance__GetChanDesc~chanCode
+#debug_left uint __Instance__GetChanDesc~chanCode
+ PRV
+ LEA  __Instance__GetChanDesc
+ CAL  GetChanDesc_L0
+ LEAY uniDesc
+#debug_left pointer uniDesc
+ LD   26   ;SizeOf() 
+ MOV  %IB0
+#srcline 33 ;  if uniDesc.modeChan <> 5 then
+ LDY  uniDesc~modeChan
+#debug byte uniDesc.modeChan
+ LD   byte 5
+ EQ
+ NEG
+ JMC  EstabTCPconnection_L3
+#srcline 34 ;    EstabTCPconnection := COM_ERR1; return;        // channel mode <> UNI
+ LD   usint 1
+ WRX  __fc__EstabTCPconnection
+#debug_left usint EstabTCPconnection
+ JMP  EstabTCPconnection_RET
+#srcline 35 ;  end_if;
+EstabTCPconnection_L3:
+#srcline 36 ;  pUniCon := UDINT_TO_PTR(uniDesc.adrUniCont);
+ LDY  uniDesc~adrUniCont
+#debug udint uniDesc.adrUniCont
+; UDINT -> PTR
+ LEAY pUniCon
+ WRIL 
+#debug_left pointer pUniCon
+#srcline 37 ;  // navazat spojeni : r0_p0_Control_ETH1_UNI0.CONTROL.0 := 0;
+#srcline 38 ;  pUniCon^.CONTROL := WORD_TO_UINT(UINT_TO_WORD(pUniCon^.CONTROL) AND 16#FFFE);
+ LEAY pUniCon
+ LDIL    ; dereference 
+ LDIW 
+#debug uint pUniCon^.CONTROL
+ LD   word $FFFE
+ AND
+ LEAY pUniCon
+ LDIL    ; dereference 
+ WRIW 
+#debug_left uint pUniCon^.CONTROL
+#srcline 39 ;END_FUNCTION
+EstabTCPconnection_RET:
+ PRV  
+ LDX  __fc__EstabTCPconnection
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\COMLIB\COMLIB\CLOSETCPCONNECTION.ST'
+#pou CloseTCPconnection
+#srcline 1 ;FUNCTION CloseTCPconnection : USINT
+
+#struct CloseTCPconnection__temp__
+  pointer pUniCon,
+  TUniDesc uniDesc  ; {ENG} description of channel in uni mode {CSY} popis kanálu v univerzálním režimu
+P     61
+CloseTCPconnection_L0:
+ LINK __SizeOf(CloseTCPconnection__temp__)
+ NXT
+; Initialize - dynamic variables
+ LD   udint $FFFFFFFF    ; nil
+ WRY  pUniCon
+; End initialize - dynamic variables
+#srcline 27 ;  CloseTCPconnection := 0;
+ LD   usint 0
+ WRX  __fc__CloseTCPconnection
+#debug_left usint CloseTCPconnection
+#srcline 28 ;  // check channel code
+#srcline 29 ;  if -1 = GetChanIndex( chanCode) then             // if index not found
+ LD   -1
+ NXT
+ LDX  chanCode
+#debug uint chanCode
+ WR   __Instance__GetChanIndex~chanCode
+#debug_left uint __Instance__GetChanIndex~chanCode
+ PRV
+ LEA  __Instance__GetChanIndex
+ CAL  GetChanIndex_L0
+ EQ
+ JMC  CloseTCPconnection_L1
+#srcline 30 ;    CloseTCPconnection := COM_ERR4; return;        // channel is not supported
+ LD   usint 4
+ WRX  __fc__CloseTCPconnection
+#debug_left usint CloseTCPconnection
+ JMP  CloseTCPconnection_RET
+#srcline 31 ;  end_if;
+CloseTCPconnection_L1:
+#srcline 32 ;  uniDesc := GetChanDesc( chanCode);               // get channel descriptor
+ NXT
+ LDX  chanCode
+#debug uint chanCode
+ WR   __Instance__GetChanDesc~chanCode
+#debug_left uint __Instance__GetChanDesc~chanCode
+ PRV
+ LEA  __Instance__GetChanDesc
+ CAL  GetChanDesc_L0
+ LEAY uniDesc
+#debug_left pointer uniDesc
+ LD   26   ;SizeOf() 
+ MOV  %IB0
+#srcline 33 ;  if uniDesc.modeChan <> 5 then
+ LDY  uniDesc~modeChan
+#debug byte uniDesc.modeChan
+ LD   byte 5
+ EQ
+ NEG
+ JMC  CloseTCPconnection_L3
+#srcline 34 ;    CloseTCPconnection := COM_ERR1; return;        // channel mode <> UNI
+ LD   usint 1
+ WRX  __fc__CloseTCPconnection
+#debug_left usint CloseTCPconnection
+ JMP  CloseTCPconnection_RET
+#srcline 35 ;  end_if;
+CloseTCPconnection_L3:
+#srcline 36 ;  pUniCon := UDINT_TO_PTR(uniDesc.adrUniCont);
+ LDY  uniDesc~adrUniCont
+#debug udint uniDesc.adrUniCont
+; UDINT -> PTR
+ LEAY pUniCon
+ WRIL 
+#debug_left pointer pUniCon
+#srcline 37 ;  // ukoncit spojeni : r0_p0_Control_ETH1_UNI0.CONTROL.0 := 1;
+#srcline 38 ;  pUniCon^.CONTROL := WORD_TO_UINT(UINT_TO_WORD(pUniCon^.CONTROL) OR 16#0001);
+ LEAY pUniCon
+ LDIL    ; dereference 
+ LDIW 
+#debug uint pUniCon^.CONTROL
+ LD   word $0001
+ OR  
+ LEAY pUniCon
+ LDIL    ; dereference 
+ WRIW 
+#debug_left uint pUniCon^.CONTROL
+#srcline 39 ;END_FUNCTION
+CloseTCPconnection_RET:
+ PRV  
+ LDX  __fc__CloseTCPconnection
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\COMLIB\COMLIB\ISESTABTCPCONNECTION.ST'
+#pou IsEstabTCPconnection
+#srcline 1 ;FUNCTION IsEstabTCPconnection : BOOL
+
+#struct IsEstabTCPconnection__temp__
+  pointer pUniCon,
+  TUniDesc uniDesc  ; {ENG} description of channel in uni mode {CSY} popis kanálu v univerzálním režimu
+P     61
+IsEstabTCPconnection_L0:
+ LINK __SizeOf(IsEstabTCPconnection__temp__)
+ NXT
+; Initialize - dynamic variables
+ LD   udint $FFFFFFFF    ; nil
+ WRY  pUniCon
+; End initialize - dynamic variables
+#srcline 21 ;  IsEstabTCPconnection := 0;
+ LD   bool 0       ; false
+ WRX  __fc__IsEstabTCPconnection
+#debug_left bool IsEstabTCPconnection
+#srcline 22 ;  // check channel code
+#srcline 23 ;  if -1 = GetChanIndex( chanCode) then             // if index not found
+ LD   -1
+ NXT
+ LDX  chanCode
+#debug uint chanCode
+ WR   __Instance__GetChanIndex~chanCode
+#debug_left uint __Instance__GetChanIndex~chanCode
+ PRV
+ LEA  __Instance__GetChanIndex
+ CAL  GetChanIndex_L0
+ EQ
+ JMC  IsEstabTCPconnection_L1
+#srcline 24 ;    return;                                        // channel is not supported
+ JMP  IsEstabTCPconnection_RET
+#srcline 25 ;  end_if;
+IsEstabTCPconnection_L1:
+#srcline 26 ;  uniDesc := GetChanDesc( chanCode);               // get channel descriptor
+ NXT
+ LDX  chanCode
+#debug uint chanCode
+ WR   __Instance__GetChanDesc~chanCode
+#debug_left uint __Instance__GetChanDesc~chanCode
+ PRV
+ LEA  __Instance__GetChanDesc
+ CAL  GetChanDesc_L0
+ LEAY uniDesc
+#debug_left pointer uniDesc
+ LD   26   ;SizeOf() 
+ MOV  %IB0
+#srcline 27 ;  if uniDesc.modeChan <> 5 then
+ LDY  uniDesc~modeChan
+#debug byte uniDesc.modeChan
+ LD   byte 5
+ EQ
+ NEG
+ JMC  IsEstabTCPconnection_L3
+#srcline 28 ;    return;                                        // channel mode <> UNI
+ JMP  IsEstabTCPconnection_RET
+#srcline 29 ;  end_if;
+IsEstabTCPconnection_L3:
+#srcline 30 ;  pUniCon := UDINT_TO_PTR(uniDesc.adrUniStat);
+ LDY  uniDesc~adrUniStat
+#debug udint uniDesc.adrUniStat
+; UDINT -> PTR
+ LEAY pUniCon
+ WRIL 
+#debug_left pointer pUniCon
+#srcline 31 ;  // otestovat spojeni :
+#srcline 32 ;  IsEstabTCPconnection := (USINT_TO_BYTE(pUniCon^.STAT) AND 16#01) = 16#01;
+ LEAY pUniCon
+ LDIL    ; dereference 
+ LDI  
+#debug usint pUniCon^.STAT
+ AND  $FF
+ LD   byte $01
+ AND
+ LD   byte $01
+ EQ
+ WRX  __fc__IsEstabTCPconnection
+#debug_left bool IsEstabTCPconnection
+#srcline 33 ;END_FUNCTION
+IsEstabTCPconnection_RET:
+ PRV  
+ LDX  __fc__IsEstabTCPconnection
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\COMLIB\COMLIB\SETREMOTEIPADDRESS.ST'
+#pou SetRemoteIPaddress
+#srcline 1 ;FUNCTION SetRemoteIPaddress : BOOL
+
+#struct SetRemoteIPaddress__temp__
+  bool tmp
+P     61
+SetRemoteIPaddress_L0:
+ LINK __SizeOf(SetRemoteIPaddress__temp__)
+ NXT
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 29 ;  SetRemoteIPaddress := FALSE;
+ LD   bool 0       ; false
+ WRX  __fc__SetRemoteIPaddress
+#debug_left bool SetRemoteIPaddress
+#srcline 30 ;  IF rq THEN
+ LDX  rq
+#debug bool rq
+ JMC  SetRemoteIPaddress_L1
+#srcline 31 ;    tmp := IsEstabTCPconnection( chanCode);
+ NXT
+ LDX  chanCode
+#debug uint chanCode
+ WR   __Instance__IsEstabTCPconnection~chanCode
+#debug_left uint __Instance__IsEstabTCPconnection~chanCode
+ PRV
+ LEA  __Instance__IsEstabTCPconnection
+ CAL  IsEstabTCPconnection_L0
+ WRY  tmp
+#debug_left bool tmp
+#srcline 32 ;    IF not tmp THEN
+ LDY  tmp
+#debug bool tmp
+ NEG
+ JMC  SetRemoteIPaddress_L3
+#srcline 33 ;      {asm}
+#srcline 34
+        LDX   ethAdr                ; address of struct TRemoteEthAdr
+#srcline 35
+        LDX   chanCode              ; channel code
+#srcline 36
+        SYS   29                    ; set remote IP address
+#srcline 37
+        WRY   tmp                   ; SYS 29 result
+#srcline 38 ;      {end_asm}
+#srcline 39 ;      SetRemoteIPaddress := tmp = 1;
+ LDY  tmp
+#debug bool tmp
+ LD   bool -1      ; true
+ XOR
+ NEG
+ WRX  __fc__SetRemoteIPaddress
+#debug_left bool SetRemoteIPaddress
+#srcline 40 ;    END_IF;
+SetRemoteIPaddress_L3:
+#srcline 41 ;  END_IF;
+SetRemoteIPaddress_L1:
+#srcline 42 ;END_FUNCTION
+ PRV  
+ LDX  __fc__SetRemoteIPaddress
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\COMLIB\COMLIB\GETREMOTEIPADDRESS.ST'
+#pou GetRemoteIPaddress
+#srcline 1 ;FUNCTION GetRemoteIPaddress : BOOL
+
+#struct GetRemoteIPaddress__temp__
+  bool tmp
+P     61
+GetRemoteIPaddress_L0:
+ LINK __SizeOf(GetRemoteIPaddress__temp__)
+ NXT
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 29 ;  GetRemoteIPaddress := FALSE;
+ LD   bool 0       ; false
+ WRX  __fc__GetRemoteIPaddress
+#debug_left bool GetRemoteIPaddress
+#srcline 30 ;  IF not tmp THEN
+ LDY  tmp
+#debug bool tmp
+ NEG
+ JMC  GetRemoteIPaddress_L1
+#srcline 31 ;    {asm}
+#srcline 32
+      LDX   ethAdr                ; address of struct TRemoteEthAdr
+#srcline 33
+      LDX   chanCode              ; channel code
+#srcline 34
+      SYS   39                    ; get remote IP address
+#srcline 35
+      WRY   tmp                   ; SYS 39 result
+#srcline 36 ;    {end_asm}
+#srcline 37 ;    GetRemoteIPaddress := tmp = 1;
+ LDY  tmp
+#debug bool tmp
+ LD   bool -1      ; true
+ XOR
+ NEG
+ WRX  __fc__GetRemoteIPaddress
+#debug_left bool GetRemoteIPaddress
+#srcline 38 ;  END_IF;
+GetRemoteIPaddress_L1:
+#srcline 39 ;END_FUNCTION
+ PRV  
+ LDX  __fc__GetRemoteIPaddress
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\COMLIB\COMLIB\GETWEBSERVERACCESS.ST'
+#pou GetWebServerAccess
+#srcline 22 ;FUNCTION GetWebServerAccess : BOOL
+
+#struct GetWebServerAccess__temp__
+  bool tmp
+P     61
+GetWebServerAccess_L0:
+ LINK __SizeOf(GetWebServerAccess__temp__)
+ NXT
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 33 ;begin
+#srcline 34 ;  {asm}
+#srcline 35
+      LD      0            ; pro pripadne vyuziti v budoucnu
+#srcline 36
+      LD      0            ; pro pripadne vyuziti v budoucnu
+#srcline 37
+      LDX     accessTable  ; adresa, kam funkce vrati informace z web serveru
+#srcline 38
+      LD      1            ; subkod SYS 83 : 1 = vratit stav tabulky pristupu k web serveru (viz TWebServerAccesssTable)
+#srcline 39
+      SYS     83
+#srcline 40
+      WRY     tmp
+#srcline 41 ;  {end_asm}
+#srcline 42 ;  GetWebServerAccess := tmp;
+ LDY  tmp
+#debug bool tmp
+ WRX  __fc__GetWebServerAccess
+#debug_left bool GetWebServerAccess
+#srcline 43 ;END_FUNCTION
+ PRV  
+ LDX  __fc__GetWebServerAccess
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\COMLIB\COMLIB\SETRTS.ST'
+#pou SetRTS
+#srcline 1 ;FUNCTION SetRTS : BOOL
+
+#struct SetRTS__temp__
+  TUniDesc uniDesc  ; {ENG} description of channel in uni mode {CSY} popis kanálu v univerzálním režimu
+P     61
+SetRTS_L0:
+ LINK __SizeOf(SetRTS__temp__)
+ NXT
+; Initialize - variables
+ LD   0
+ WRX  __fc__SetRTS
+ LD   -1
+ WRX  pUniOut
+; End initialize - variables
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 26 ;  if -1 = GetChanIndex( chanCode) then             // if index not found
+ LD   -1
+ NXT
+ LDX  chanCode
+#debug uint chanCode
+ WR   __Instance__GetChanIndex~chanCode
+#debug_left uint __Instance__GetChanIndex~chanCode
+ PRV
+ LEA  __Instance__GetChanIndex
+ CAL  GetChanIndex_L0
+ EQ
+ JMC  SetRTS_L1
+#srcline 27 ;    SetRTS := 0; return;                           // channel is not supported
+ LD   bool 0       ; false
+ WRX  __fc__SetRTS
+#debug_left bool SetRTS
+ JMP  SetRTS_RET
+#srcline 28 ;  end_if;
+SetRTS_L1:
+#srcline 29 ;  uniDesc := GetChanDesc( chanCode);               // get channel descriptor
+ NXT
+ LDX  chanCode
+#debug uint chanCode
+ WR   __Instance__GetChanDesc~chanCode
+#debug_left uint __Instance__GetChanDesc~chanCode
+ PRV
+ LEA  __Instance__GetChanDesc
+ CAL  GetChanDesc_L0
+ LEAY uniDesc
+#debug_left pointer uniDesc
+ LD   26   ;SizeOf() 
+ MOV  %IB0
+#srcline 30 ;  if uniDesc.modeChan <> 5 then
+ LDY  uniDesc~modeChan
+#debug byte uniDesc.modeChan
+ LD   byte 5
+ EQ
+ NEG
+ JMC  SetRTS_L3
+#srcline 31 ;    SetRTS := 0; return;                           // channel mode <> UNI
+ LD   bool 0       ; false
+ WRX  __fc__SetRTS
+#debug_left bool SetRTS
+ JMP  SetRTS_RET
+#srcline 32 ;  end_if;
+SetRTS_L3:
+#srcline 33 ;  pUniOut := UDINT_TO_PTR( uniDesc.adrUniOut);     // ptr to output struct of uni
+ LDY  uniDesc~adrUniOut
+#debug udint uniDesc.adrUniOut
+; UDINT -> PTR
+ LEAX pUniOut
+ WRIL 
+#debug_left pointer pUniOut
+#srcline 34 ;  pUniOut^.SIGN.RTS := value;
+ LDX  value
+#debug bool value
+ LEAX pUniOut
+ LDIL    ; dereference 
+ ADD  1  ; + offset 
+ MUL  8   ; -> bool pointer 
+ ADD  1   ; Bool offset 
+ WRIB 
+#debug_left bool pUniOut^.SIGN.RTS
+#srcline 35 ;  SetRTS := 1;                                     // nastaveno bez chyby
+ LD   bool -1      ; true
+ WRX  __fc__SetRTS
+#debug_left bool SetRTS
+#srcline 36 ;END_FUNCTION
+SetRTS_RET:
+ PRV  
+ LDX  __fc__SetRTS
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou GetRTS
+#srcline 39 ;FUNCTION GetRTS : BOOL
+
+#struct GetRTS__temp__
+  TUniDesc uniDesc  ; {ENG} description of channel in uni mode {CSY} popis kanálu v univerzálním režimu
+P     61
+GetRTS_L0:
+ LINK __SizeOf(GetRTS__temp__)
+ NXT
+; Initialize - variables
+ LD   0
+ WRX  __fc__GetRTS
+ LD   -1
+ WRX  pUniOut
+; End initialize - variables
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 58 ;  if -1 = GetChanIndex( chanCode) then             // if index not found
+ LD   -1
+ NXT
+ LDX  chanCode
+#debug uint chanCode
+ WR   __Instance__GetChanIndex~chanCode
+#debug_left uint __Instance__GetChanIndex~chanCode
+ PRV
+ LEA  __Instance__GetChanIndex
+ CAL  GetChanIndex_L0
+ EQ
+ JMC  GetRTS_L1
+#srcline 59 ;    GetRTS := 0; return;                           // channel is not supported
+ LD   bool 0       ; false
+ WRX  __fc__GetRTS
+#debug_left bool GetRTS
+ JMP  GetRTS_RET
+#srcline 60 ;  end_if;
+GetRTS_L1:
+#srcline 61 ;  uniDesc := GetChanDesc( chanCode);               // get channel descriptor
+ NXT
+ LDX  chanCode
+#debug uint chanCode
+ WR   __Instance__GetChanDesc~chanCode
+#debug_left uint __Instance__GetChanDesc~chanCode
+ PRV
+ LEA  __Instance__GetChanDesc
+ CAL  GetChanDesc_L0
+ LEAY uniDesc
+#debug_left pointer uniDesc
+ LD   26   ;SizeOf() 
+ MOV  %IB0
+#srcline 62 ;  if uniDesc.modeChan <> 5 then
+ LDY  uniDesc~modeChan
+#debug byte uniDesc.modeChan
+ LD   byte 5
+ EQ
+ NEG
+ JMC  GetRTS_L3
+#srcline 63 ;    GetRTS := 0; return;                           // channel mode <> UNI
+ LD   bool 0       ; false
+ WRX  __fc__GetRTS
+#debug_left bool GetRTS
+ JMP  GetRTS_RET
+#srcline 64 ;  end_if;
+GetRTS_L3:
+#srcline 65 ;  pUniOut := UDINT_TO_PTR( uniDesc.adrUniOut);     // ptr to output struct of uni
+ LDY  uniDesc~adrUniOut
+#debug udint uniDesc.adrUniOut
+; UDINT -> PTR
+ LEAX pUniOut
+ WRIL 
+#debug_left pointer pUniOut
+#srcline 66 ;  GetRTS := pUniOut^.SIGN.RTS;
+ LEAX pUniOut
+ LDIL    ; dereference 
+ ADD  1  ; + offset 
+ MUL  8   ; -> bool pointer 
+ ADD  1   ; Bool offset 
+ LDIB 
+#debug bool pUniOut^.SIGN.RTS
+ WRX  __fc__GetRTS
+#debug_left bool GetRTS
+#srcline 67 ;END_FUNCTION
+GetRTS_RET:
+ PRV  
+ LDX  __fc__GetRTS
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\COMLIB\COMLIB\MACADR_TO_STRING.ST'
+#pou MACADR_TO_STRING
+#srcline 1 ;FUNCTION MACADR_TO_STRING : STRING[18]
+
+#struct MACADR_TO_STRING__temp__
+  int i,
+  byte cif,
+  word asc,
+  pointer ptrw,
+  int P0__st__,
+  string[20] PS0__st__
+#data byte _str_MACADR_TO_STRING_0 = 
+  '0','0','-','0','0','-','0','0','-','0','0','-','0','0','-','0','0',0
+P     61
+MACADR_TO_STRING_L0:
+ LINK __SizeOf(MACADR_TO_STRING__temp__)
+ NXT
+; Initialize - dynamic variables
+ LD   udint $FFFFFFFF    ; nil
+ WRY  ptrw
+; End initialize - dynamic variables
+#srcline 16 ;  MACADR_TO_STRING := '00-00-00-00-00-00';
+ LD   0   ; null string
+ LEAX __fc__MACADR_TO_STRING
+ WRI  
+ LEAX __fc__MACADR_TO_STRING
+ LD   18
+ DST    ; Level 1
+ LEA  _str_MACADR_TO_STRING_0
+ SCON 
+#debug_left string MACADR_TO_STRING
+ PDST   ; Level 1
+#srcline 17 ;  ptrw := ADR( MACADR_TO_STRING);
+ LEAX __fc__MACADR_TO_STRING
+#debug pointer MACADR_TO_STRING
+ LEAY ptrw
+ WRIL 
+#debug_left pointer ptrw
+#srcline 18 ;  FOR i := 0 TO 5 DO
+ LD   int 0
+ WRY  i
+ LD   int 5
+ WRY  P0__st__
+MACADR_TO_STRING_L1:
+ LDY  i
+ EXTW 
+ LDY  P0__st__
+ EXTW 
+ GTS  
+ JMD  MACADR_TO_STRING_L2
+ DBG  
+#srcline 19 ;    cif := macAdr[i];
+ LEAX macAdr
+ LDY  i
+#debug int i
+ EXTW 
+ RCHK 5   ; Range Check
+ ADD     ; + offset 
+ LDI  
+#debug byte macAdr[i]
+ WRY  cif
+#debug_left byte cif
+#srcline 20 ;    {asm}
+#srcline 21
+      LDY   cif
+#srcline 22
+      BAS
+#srcline 23
+      SWL
+#srcline 24
+      WRY   asc
+#srcline 25 ;    {end_asm}
+#srcline 26 ;    ptrw^ := asc;
+ LDY  asc
+#debug word asc
+ LEAY ptrw
+ LDIL    ; dereference 
+ WRIW 
+#debug_left word ptrw^
+#srcline 27 ;    ptrw := ptrw + 3;
+ LEAY ptrw
+ LDIL 
+#debug pointer ptrw
+ LD   udint 3
+ ADD
+ LEAY ptrw
+ WRIL 
+#debug_left pointer ptrw
+#srcline 28 ;  END_FOR;
+ LDY  i
+ LD   1
+ ADD  
+ EXTW 
+ WRY  i
+ JMP  MACADR_TO_STRING_L1
+MACADR_TO_STRING_L2:
+#srcline 29 ;END_FUNCTION
+ PRV  
+ LEAX  __fc__MACADR_TO_STRING
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\COMLIB\COMLIB\FBSENDTO.ST'
+#pou fbSendTo
+#srcline 1 ;FUNCTION_BLOCK fbSendTo
+
+#struct fbSendTo__temp__
+  TUniDesc uniDesc  ; {ENG} description of channel in uni mode {CSY} popis kanálu v univerzálním režimu
+P     61
+fbSendTo_L0:
+ LINK __SizeOf(fbSendTo__temp__)
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 45 ;  mesSent := FALSE;
+ LD   bool 0       ; false
+ WRX  mesSent
+#debug_left bool mesSent
+#srcline 46 ;  error  := COM_OK; lenData := 0;                  // no error
+ LD   usint 0
+ WRX  error
+#debug_left usint error
+ LD   uint 0
+ WRX  lenData
+#debug_left uint lenData
+#srcline 47 ;  // check channel code
+#srcline 48 ;  if -1 = GetChanIndex( chanCode) then             // if index not found
+ LD   -1
+ NXT
+ LDX  chanCode
+#debug uint chanCode
+ WR   __Instance__GetChanIndex~chanCode
+#debug_left uint __Instance__GetChanIndex~chanCode
+ PRV
+ LEA  __Instance__GetChanIndex
+ CAL  GetChanIndex_L0
+ EQ
+ JMC  fbSendTo_L1
+#srcline 49 ;    error := COM_ERR4; return;                     // channel is not supported
+ LD   usint 4
+ WRX  error
+#debug_left usint error
+ JMP  fbSendTo_RET
+#srcline 50 ;  end_if;
+fbSendTo_L1:
+#srcline 51 ;  uniDesc := GetChanDesc( chanCode);               // get channel descriptor
+ NXT
+ LDX  chanCode
+#debug uint chanCode
+ WR   __Instance__GetChanDesc~chanCode
+#debug_left uint __Instance__GetChanDesc~chanCode
+ PRV
+ LEA  __Instance__GetChanDesc
+ CAL  GetChanDesc_L0
+ LEAY uniDesc
+#debug_left pointer uniDesc
+ LD   26   ;SizeOf() 
+ MOV  %IB0
+#srcline 52 ;  if uniDesc.modeChan <> 5 then
+ LDY  uniDesc~modeChan
+#debug byte uniDesc.modeChan
+ LD   byte 5
+ EQ
+ NEG
+ JMC  fbSendTo_L3
+#srcline 53 ;    error := COM_ERR1; return;                     // channel mode <> UNI
+ LD   usint 1
+ WRX  error
+#debug_left usint error
+ JMP  fbSendTo_RET
+#srcline 54 ;  end_if;
+fbSendTo_L3:
+#srcline 55 ;  pUniOut := UDINT_TO_PTR( uniDesc.adrUniOut);     // ptr to output struct of uni
+ LDY  uniDesc~adrUniOut
+#debug udint uniDesc.adrUniOut
+; UDINT -> PTR
+ LEAX pUniOut
+ WRIL 
+#debug_left pointer pUniOut
+#srcline 56 ;  if rq then                                       // send if requested
+ LDX  rq
+#debug bool rq
+ JMC  fbSendTo_L5
+#srcline 57 ;    if lenTx = 0 then
+ LDX  lenTx
+#debug uint lenTx
+ LD   uint 0
+ EQ
+ JMC  fbSendTo_L7
+#srcline 58 ;      error := COM_ERR6; return;                   // no data
+ LD   usint 6
+ WRX  error
+#debug_left usint error
+ JMP  fbSendTo_RET
+#srcline 59 ;    end_if;
+fbSendTo_L7:
+#srcline 60 ;    if lenTx > uniDesc.lenUniOut-4 then            // lenUniOut - (cont, sign, numt)
+ LDX  lenTx
+#debug uint lenTx
+ LDY  uniDesc~lenUniOut
+#debug uint uniDesc.lenUniOut
+ LD   uint 4
+ SUB
+ AND  $FFFF
+ GT
+ JMC  fbSendTo_L9
+#srcline 61 ;      error := COM_ERR2; return;                   // sent data are too long
+ LD   usint 2
+ WRX  error
+#debug_left usint error
+ JMP  fbSendTo_RET
+#srcline 62 ;    end_if;
+fbSendTo_L9:
+#srcline 63 ;    // is it possible to send ?
+#srcline 64 ;    pUniIn := UDINT_TO_PTR( uniDesc.adrUniIn);
+ LDY  uniDesc~adrUniIn
+#debug udint uniDesc.adrUniIn
+; UDINT -> PTR
+ LEAX pUniIn
+ WRIL 
+#debug_left pointer pUniIn
+#srcline 65 ;    if pUniIn^.STAT.TRO OR pUniIn^.STAT.TRF then
+ LEAX pUniIn
+ LDIL    ; dereference 
+ MUL  8   ; -> bool pointer 
+ ADD  3   ; Bool offset 
+ LDIB 
+#debug bool pUniIn^.STAT.TRO
+ LEAX pUniIn
+ LDIL    ; dereference 
+ MUL  8   ; -> bool pointer 
+ ADD  6   ; Bool offset 
+ LDIB 
+#debug bool pUniIn^.STAT.TRF
+ OR  
+ JMC  fbSendTo_L11
+#srcline 66 ;      pUniOut^.CONT.TRG := true;                   // try to send previous message
+ LD   bool -1       ; true
+ LEAX pUniOut
+ LDIL    ; dereference 
+ MUL  8   ; -> bool pointer 
+ ADD  5   ; Bool offset 
+ WRIB 
+#debug_left bool pUniOut^.CONT.TRG
+#srcline 67 ;      error := COM_ERR5; return;                   // previous message is not sent yet
+ LD   usint 5
+ WRX  error
+#debug_left usint error
+ JMP  fbSendTo_RET
+#srcline 68 ;    end_if;
+fbSendTo_L11:
+#srcline 69 ;    // ptr to tx buffer
+#srcline 70 ;    pUniOutData := ADR(pUniOut^.DATA[0]);
+ LEAX pUniOut
+ LDIL    ; dereference 
+ ADD  4  ; + offset 
+#debug pointer pUniOut^.DATA[0]
+ LEAX pUniOutData
+ WRIL 
+#debug_left pointer pUniOutData
+#srcline 71 ;    // copy data to tx buffer
+#srcline 72 ;    {asm}
+#srcline 73
+    	ldx	data         ;source
+#srcline 74
+    	src	%X0
+#srcline 75
+    	ldx	pUniOutData  ;dest
+#srcline 76
+    	ldx	lenTx        ;length
+#srcline 77
+    	mov	%X0
+#srcline 78 ;    {end_asm}
+#srcline 79 ;    mesSent           := TRUE;
+ LD   bool -1       ; true
+ WRX  mesSent
+#debug_left bool mesSent
+#srcline 80 ;    lenData           := lenTx;
+ LDX  lenTx
+#debug uint lenTx
+ WRX  lenData
+#debug_left uint lenData
+#srcline 81 ;    pUniOUT^.NUMT     := lenTx;                    // tx data length
+ LDX  lenTx
+#debug uint lenTx
+ LEAX pUniOUT
+ LDIL    ; dereference 
+ ADD  2  ; + offset 
+ WRIW 
+#debug_left uint pUniOUT^.NUMT
+#srcline 82 ;    pUniOut^.CONT.TRG := true;                     // request for send
+ LD   bool -1       ; true
+ LEAX pUniOut
+ LDIL    ; dereference 
+ MUL  8   ; -> bool pointer 
+ ADD  5   ; Bool offset 
+ WRIB 
+#debug_left bool pUniOut^.CONT.TRG
+#srcline 83 ;  else
+ JMP  fbSendTo_L6
+fbSendTo_L5:
+#srcline 84 ;    pUniIn := UDINT_TO_PTR( uniDesc.adrUniIn);
+ LDY  uniDesc~adrUniIn
+#debug udint uniDesc.adrUniIn
+; UDINT -> PTR
+ LEAX pUniIn
+ WRIL 
+#debug_left pointer pUniIn
+#srcline 85 ;    if pUniIn^.STAT.TRO OR pUniIn^.STAT.TRF then
+ LEAX pUniIn
+ LDIL    ; dereference 
+ MUL  8   ; -> bool pointer 
+ ADD  3   ; Bool offset 
+ LDIB 
+#debug bool pUniIn^.STAT.TRO
+ LEAX pUniIn
+ LDIL    ; dereference 
+ MUL  8   ; -> bool pointer 
+ ADD  6   ; Bool offset 
+ LDIB 
+#debug bool pUniIn^.STAT.TRF
+ OR  
+ JMC  fbSendTo_L13
+#srcline 86 ;      pUniOut^.CONT.TRG := true;                   // try to send previous message
+ LD   bool -1       ; true
+ LEAX pUniOut
+ LDIL    ; dereference 
+ MUL  8   ; -> bool pointer 
+ ADD  5   ; Bool offset 
+ WRIB 
+#debug_left bool pUniOut^.CONT.TRG
+#srcline 87 ;      return;                                      // previous message is not sent yet
+ JMP  fbSendTo_RET
+#srcline 88 ;    end_if;
+fbSendTo_L13:
+#srcline 89 ;    pUniOut^.CONT.TRG := false;                    // there is no rq to send
+ LD   bool 0       ; false
+ LEAX pUniOut
+ LDIL    ; dereference 
+ MUL  8   ; -> bool pointer 
+ ADD  5   ; Bool offset 
+ WRIB 
+#debug_left bool pUniOut^.CONT.TRG
+#srcline 90 ;  end_if;
+fbSendTo_L6:
+#srcline 91 ;  pUniOUT^.CONT.ACN := NOT pUniOUT^.CONT.ACN;      // change it for serial driver
+ LEAX pUniOUT
+ LDIL    ; dereference 
+ MUL  8   ; -> bool pointer 
+ ADD  7   ; Bool offset 
+ LDIB 
+#debug bool pUniOUT^.CONT.ACN
+ NEG
+ LEAX pUniOUT
+ LDIL    ; dereference 
+ MUL  8   ; -> bool pointer 
+ ADD  7   ; Bool offset 
+ WRIB 
+#debug_left bool pUniOUT^.CONT.ACN
+#srcline 92 ;END_FUNCTION_BLOCK
+fbSendTo_RET:
+ ULNK
+RET
+E     61
+
+; Initialize - variables
+P     61
+fbSendTo__InstanceInit__:
+ LINK 0
+ LD   udint $FFFFFFFF    ; nil
+ WRX  pUniOut
+ LD   udint $FFFFFFFF    ; nil
+ WRX  pUniIn
+ LD   udint $FFFFFFFF    ; nil
+ WRX  pUniOutData
+ ULNK
+RET
+E     61
+; End initialize - variables
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\COMLIB\COMLIB\FBRECVFROM.ST'
+#pou fbRecvFrom
+#srcline 1 ;FUNCTION_BLOCK fbRecvFrom
+
+#struct fbRecvFrom__temp__
+  TUniDesc uniDesc  ; {ENG} description of channel in uni mode {CSY} popis kanálu v univerzálním režimu
+P     61
+fbRecvFrom_L0:
+ LINK __SizeOf(fbRecvFrom__temp__)
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 47 ;  mesRec := FALSE;
+ LD   bool 0       ; false
+ WRX  mesRec
+#debug_left bool mesRec
+#srcline 48 ;  error  := COM_OK; lenData := 0;                  // no error
+ LD   usint 0
+ WRX  error
+#debug_left usint error
+ LD   uint 0
+ WRX  lenData
+#debug_left uint lenData
+#srcline 50 ;  // check channel code
+#srcline 51 ;  if -1 = GetChanIndex( chanCode) then             // if index not found
+ LD   -1
+ NXT
+ LDX  chanCode
+#debug uint chanCode
+ WR   __Instance__GetChanIndex~chanCode
+#debug_left uint __Instance__GetChanIndex~chanCode
+ PRV
+ LEA  __Instance__GetChanIndex
+ CAL  GetChanIndex_L0
+ EQ
+ JMC  fbRecvFrom_L1
+#srcline 52 ;    error := COM_ERR4; return;                     // channel is not supported
+ LD   usint 4
+ WRX  error
+#debug_left usint error
+ JMP  fbRecvFrom_RET
+#srcline 53 ;  end_if;
+fbRecvFrom_L1:
+#srcline 54 ;  uniDesc := GetChanDesc( chanCode);               // get channel descriptor
+ NXT
+ LDX  chanCode
+#debug uint chanCode
+ WR   __Instance__GetChanDesc~chanCode
+#debug_left uint __Instance__GetChanDesc~chanCode
+ PRV
+ LEA  __Instance__GetChanDesc
+ CAL  GetChanDesc_L0
+ LEAY uniDesc
+#debug_left pointer uniDesc
+ LD   26   ;SizeOf() 
+ MOV  %IB0
+#srcline 55 ;  if uniDesc.modeChan <> 5 then                    // check channel mode
+ LDY  uniDesc~modeChan
+#debug byte uniDesc.modeChan
+ LD   byte 5
+ EQ
+ NEG
+ JMC  fbRecvFrom_L3
+#srcline 56 ;    error := COM_ERR1; return;                     // channel mode <> UNI
+ LD   usint 1
+ WRX  error
+#debug_left usint error
+ JMP  fbRecvFrom_RET
+#srcline 57 ;  end_if;
+fbRecvFrom_L3:
+#srcline 59 ;  pUniIn  := UDINT_TO_PTR( uniDesc.adrUniIN);      // ptr to rx buffer
+ LDY  uniDesc~adrUniIN
+#debug udint uniDesc.adrUniIN
+; UDINT -> PTR
+ LEAX pUniIn
+ WRIL 
+#debug_left pointer pUniIn
+#srcline 60 ;  pUniInData := ADR(pUniIn^.DATA[0]);
+ LEAX pUniIn
+ LDIL    ; dereference 
+ ADD  4  ; + offset 
+#debug pointer pUniIn^.DATA[0]
+ LEAX pUniInData
+ WRIL 
+#debug_left pointer pUniInData
+#srcline 61 ;  if rq then                                       // receive if requested
+ LDX  rq
+#debug bool rq
+ JMC  fbRecvFrom_L5
+#srcline 62 ;    // test new message
+#srcline 63 ;    if pUniIn^.STAT.ARC <> oldARC then
+ LEAX pUniIn
+ LDIL    ; dereference 
+ MUL  8   ; -> bool pointer 
+ ADD  7   ; Bool offset 
+ LDIB 
+#debug bool pUniIn^.STAT.ARC
+ LDX  oldARC
+#debug bool oldARC
+ XOR 
+ JMC  fbRecvFrom_L7
+#srcline 64 ;      oldARC := pUniIn^.STAT.ARC;
+ LEAX pUniIn
+ LDIL    ; dereference 
+ MUL  8   ; -> bool pointer 
+ ADD  7   ; Bool offset 
+ LDIB 
+#debug bool pUniIn^.STAT.ARC
+ WRX  oldARC
+#debug_left bool oldARC
+#srcline 65 ;      mesRec  := TRUE;
+ LD   bool -1       ; true
+ WRX  mesRec
+#debug_left bool mesRec
+#srcline 66 ;      error   := pUniIn^.ERR;
+ LEAX pUniIn
+ LDIL    ; dereference 
+ ADD  1  ; + offset 
+ LDI  
+#debug usint pUniIn^.ERR
+ WRX  error
+#debug_left usint error
+#srcline 67 ;      lenData := pUniIn^.NUMR;
+ LEAX pUniIn
+ LDIL    ; dereference 
+ ADD  2  ; + offset 
+ LDIW 
+#debug uint pUniIn^.NUMR
+ WRX  lenData
+#debug_left uint lenData
+#srcline 68 ;      if lenData > lenRx then
+ LDX  lenData
+#debug uint lenData
+ LDX  lenRx
+#debug uint lenRx
+ GT
+ JMC  fbRecvFrom_L9
+#srcline 69 ;        error := COM_ERR3;                         // received data are too long
+ LD   usint 3
+ WRX  error
+#debug_left usint error
+#srcline 70 ;        lenData := lenRx;                          // max. data size
+ LDX  lenRx
+#debug uint lenRx
+ WRX  lenData
+#debug_left uint lenData
+#srcline 71 ;      end_if;
+fbRecvFrom_L9:
+#srcline 72 ;      // copy data from rx buffer
+#srcline 73 ;      {asm}
+#srcline 74
+      	ldx	pUniInData   ;source
+#srcline 75
+      	src	%X0
+#srcline 76
+      	ldx	data         ;dest
+#srcline 77
+      	ldx	lenData      ;length
+#srcline 78
+      	mov	%X0
+#srcline 79 ;      {end_asm}
+#srcline 80 ;    end_if;
+fbRecvFrom_L7:
+#srcline 81 ;  else
+ JMP  fbRecvFrom_L6
+fbRecvFrom_L5:
+#srcline 82 ;    oldARC := pUniIn^.STAT.ARC;
+ LEAX pUniIn
+ LDIL    ; dereference 
+ MUL  8   ; -> bool pointer 
+ ADD  7   ; Bool offset 
+ LDIB 
+#debug bool pUniIn^.STAT.ARC
+ WRX  oldARC
+#debug_left bool oldARC
+#srcline 83 ;  end_if;
+fbRecvFrom_L6:
+#srcline 84 ;END_FUNCTION_BLOCK
+fbRecvFrom_RET:
+ ULNK
+RET
+E     61
+
+; Initialize - variables
+P     61
+fbRecvFrom__InstanceInit__:
+ LINK 0
+ LD   udint $FFFFFFFF    ; nil
+ WRX  pUniIn
+ LD   udint $FFFFFFFF    ; nil
+ WRX  pUniInData
+ ULNK
+RET
+E     61
+; End initialize - variables
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\COMLIB\COMLIB\FBRECVTXT.ST'
+#pou fbRecvTxt
+#srcline 2 ;FUNCTION_BLOCK fbRecvTxt
+
+#struct fbRecvTxt__temp__
+  bool mmove,
+  pointer w,
+  pointer we,
+  uint lendata,
+  uint lenMesTmp
+P     61
+fbRecvTxt_L0:
+ LINK __SizeOf(fbRecvTxt__temp__)
+; Initialize - dynamic variables
+ LD   udint $FFFFFFFF    ; nil
+ WRY  w
+ LD   udint $FFFFFFFF    ; nil
+ WRY  we
+; End initialize - dynamic variables
+#srcline 35 ;  IF reset THEN actPos := 0; END_IF;
+ LDX  reset
+#debug bool reset
+ JMC  fbRecvTxt_L1
+ LD   uint 0
+ WRX  actPos
+#debug_left uint actPos
+fbRecvTxt_L1:
+#srcline 36 ;  lenMes := 0; txtMes := 0;            // empty text
+ LD   uint 0
+ WRX  lenMes
+#debug_left uint lenMes
+ LD   usint 0
+ LDX  txtMes
+ WRI 
+#debug_left usint txtMes
+#srcline 37 ;  w  := ADR(buffer);
+ LDX  buffer
+#debug pointer buffer
+ LEAY w
+ WRIL 
+#debug_left pointer w
+#srcline 38 ;  RecvFrom.lenRx := lenBuf-actPos;
+ LDX  lenBuf
+#debug uint lenBuf
+ LDX  actPos
+#debug uint actPos
+ SUB
+ AND  $FFFF
+ WRX  RecvFrom~lenRx
+#debug_left uint RecvFrom.lenRx
+#srcline 39 ;  full := RecvFrom.lenRx = 0;
+ LDX  RecvFrom~lenRx
+#debug uint RecvFrom.lenRx
+ LD   uint 0
+ EQ
+ WRX  full
+#debug_left bool full
+#srcline 40 ;  IF NOT full THEN
+ LDX  full
+#debug bool full
+ NEG
+ JMC  fbRecvTxt_L3
+#srcline 41 ;    {ASM}
+#srcline 42
+      LDX buffer
+#srcline 43
+      LDX actPos
+#srcline 44
+      ADD
+#srcline 45
+      WRX buffer
+#srcline 46 ;    {END_ASM}
+#srcline 47 ;    RecvFrom(rq := true, chanCode := chanCode, data := void(buffer), lenData => lendata);
+ LD   bool -1       ; true
+ WRX  RecvFrom~rq
+#debug_left bool RecvFrom~rq
+ LDX  chanCode
+#debug uint chanCode
+ WRX  RecvFrom~chanCode
+#debug_left uint RecvFrom~chanCode
+ LDX  buffer
+ WRX  RecvFrom~data
+#debug_left pointer RecvFrom.data
+ LEAX RecvFrom
+ CAL  fbRecvFrom_L0
+; output assigment 
+ LDX  RecvFrom~lenData
+#debug uint RecvFrom~lenData
+ WRY  lendata
+#debug_left uint lendata
+#srcline 48 ;    {ASM}
+#srcline 49
+      LDY w
+#srcline 50
+      WRX buffer
+#srcline 51 ;    {END_ASM}
+#srcline 53 ;    IF RecvFrom.mesRec THEN
+ LDX  RecvFrom~mesRec
+#debug bool RecvFrom.mesRec
+ JMC  fbRecvTxt_L5
+#srcline 54 ;      actPos := actPos + lendata;
+ LDX  actPos
+#debug uint actPos
+ LDY  lendata
+#debug uint lendata
+ ADD
+ AND  $FFFF
+ WRX  actPos
+#debug_left uint actPos
+#srcline 55 ;    END_IF;
+fbRecvTxt_L5:
+#srcline 56 ;  END_IF;
+fbRecvTxt_L3:
+#srcline 58 ;  IF actPos <> 0 THEN
+ LDX  actPos
+#debug uint actPos
+ LD   uint 0
+ EQ
+ NEG
+ JMC  fbRecvTxt_L7
+#srcline 59 ;    we := w + UINT_TO_UDINT(actPos) - 1;
+ LEAY w
+ LDIL 
+#debug pointer w
+ LDX  actPos
+#debug uint actPos
+ ADD
+ LD   udint 1
+ SUB
+ LEAY we
+ WRIL 
+#debug_left pointer we
+#srcline 60 ;    WHILE PTR_TO_UDINT(w) < PTR_TO_UDINT(we) DO
+fbRecvTxt_L9:
+ LEAY w
+ LDIL 
+#debug pointer w
+ LEAY we
+ LDIL 
+#debug pointer we
+ LT
+ JMC  fbRecvTxt_L10
+ DBG 
+#srcline 61 ;      IF (w^ = 16#0a0d) THEN
+ LEAY w
+ LDIL    ; dereference 
+ LDIW 
+#debug word w^
+ LD   word $0a0d
+ EQ
+ JMC  fbRecvTxt_L11
+#srcline 62 ;        lenMes := UDINT_TO_UINT(PTR_TO_UDINT(w) - PTR_TO_UDINT(ADR(buffer))) + 2;
+ LEAY w
+ LDIL 
+#debug pointer w
+ LDX  buffer
+#debug pointer buffer
+ SUB
+ AND  $FFFF
+ LD   uint 2
+ ADD
+ AND  $FFFF
+ WRX  lenMes
+#debug_left uint lenMes
+#srcline 63 ;        EXIT;
+ JMP  fbRecvTxt_L10
+#srcline 64 ;      END_IF;
+fbRecvTxt_L11:
+#srcline 65 ;      w := w + 1;
+ LEAY w
+ LDIL 
+#debug pointer w
+ LD   udint 1
+ ADD
+ LEAY w
+ WRIL 
+#debug_left pointer w
+#srcline 66 ;    END_WHILE;
+ JMP  fbRecvTxt_L9
+fbRecvTxt_L10:
+#srcline 67 ;  END_IF;
+fbRecvTxt_L7:
+#srcline 69 ;  mmove := getMes AND lenMes > 0;
+ LDX  getMes
+#debug bool getMes
+ LDX  lenMes
+#debug uint lenMes
+ LD   uint 0
+ GT
+ AND
+ WRY  mmove
+#debug_left bool mmove
+#srcline 70 ;  IF mmove THEN
+ LDY  mmove
+#debug bool mmove
+ JMC  fbRecvTxt_L13
+#srcline 71 ;    lenMesTmp := MIN( lenTxt, lenMes);
+ LDX  lenTxt
+#debug uint lenTxt
+ LDX  lenMes
+#debug uint lenMes
+ MIN
+ WRY  lenMesTmp
+#debug_left uint lenMesTmp
+#srcline 72 ;    // memcpy( source := void(buffer), dest := void(txtMes), length := lenMes+1); // including zero on the end
+#srcline 73 ;    {asm}
+#srcline 74
+    	ldx	buffer       ;source
+#srcline 75
+    	src	%X0
+#srcline 76
+    	ld  0
+#srcline 77
+      ldx	txtMes       ;dest
+#srcline 78
+    	ldy	lenMesTmp    ;length
+#srcline 79
+    	mov	%X0
+#srcline 80
+    	add
+#srcline 81
+      wri             ;zero on the end
+#srcline 82 ;    {end_asm}
+#srcline 83 ;    //  b := memmove(source := ADR(buffer) + UINT_TO_UDINT(lenMess), dest := ADR(buffer), length := UINT_TO_UDINT(actPos - lenMess));
+#srcline 84 ;    //  actPos := actPos - lenMess;
+#srcline 85 ;    {ASM}    // copy data to buffer
+#srcline 86
+    	ldx	buffer
+#srcline 87
+    	ldx lenMes
+#srcline 88
+    	add
+#srcline 89
+    	src	%X0
+#srcline 90
+    	ldx	buffer
+#srcline 91
+    	ldx	actPos
+#srcline 92
+    	ldx lenmes
+#srcline 93
+    	sub
+#srcline 94
+    	wrx actPos
+#srcline 95
+    	mov	%X0
+#srcline 96 ;    {END_ASM}
+#srcline 97 ;  END_IF;
+fbRecvTxt_L13:
+#srcline 99 ;  error := RecvFrom.error;        // kopirovat chybu pri komunikaci
+ LDX  RecvFrom~error
+#debug usint RecvFrom.error
+ WRX  error
+#debug_left usint error
+#srcline 100 ;END_FUNCTION_BLOCK
+ ULNK
+RET
+E     61
+
+; Initialize - variables
+P     61
+fbRecvTxt__InstanceInit__:
+ LINK 0
+ LEAX RecvFrom
+ CAL  fbRecvFrom__InstanceInit__
+ ULNK
+RET
+E     61
+; End initialize - variables
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\COMLIB\COMLIB\FBRECVTXTCHAR.ST'
+#pou fbRecvTxtChar
+#srcline 2 ;FUNCTION_BLOCK fbRecvTxtChar
+
+#struct fbRecvTxtChar__temp__
+  bool mmove,
+  pointer w,
+  pointer we,
+  uint lendata,
+  uint lenMesTmp
+P     61
+fbRecvTxtChar_L0:
+ LINK __SizeOf(fbRecvTxtChar__temp__)
+; Initialize - dynamic variables
+ LD   udint $FFFFFFFF    ; nil
+ WRY  w
+ LD   udint $FFFFFFFF    ; nil
+ WRY  we
+; End initialize - dynamic variables
+#srcline 36 ;  IF reset THEN actPos := 0; END_IF;   //reset nuluje pozici v bufferu
+ LDX  reset
+#debug bool reset
+ JMC  fbRecvTxtChar_L1
+ LD   uint 0
+ WRX  actPos
+#debug_left uint actPos
+fbRecvTxtChar_L1:
+#srcline 37 ;  lenMes := 0; txtMes := 0;            //prazdny text
+ LD   uint 0
+ WRX  lenMes
+#debug_left uint lenMes
+ LD   usint 0
+ LDX  txtMes
+ WRI 
+#debug_left usint txtMes
+#srcline 38 ;  w  := ADR(buffer);                   //nastavit pointer na zacatek textu
+ LDX  buffer
+#debug pointer buffer
+ LEAY w
+ WRIL 
+#debug_left pointer w
+#srcline 39 ;  RecvFrom.lenRx := lenBuf-actPos;     //delka prijimaciho bufferu je delka zbyvajici do konce bufferu
+ LDX  lenBuf
+#debug uint lenBuf
+ LDX  actPos
+#debug uint actPos
+ SUB
+ AND  $FFFF
+ WRX  RecvFrom~lenRx
+#debug_left uint RecvFrom.lenRx
+#srcline 40 ;  full := RecvFrom.lenRx = 0;          //pokud nezbyva zadna delka nastavit full
+ LDX  RecvFrom~lenRx
+#debug uint RecvFrom.lenRx
+ LD   uint 0
+ EQ
+ WRX  full
+#debug_left bool full
+#srcline 41 ;  IF NOT full THEN                     //pokud neni plny posuneme zacatek bufferu pro prijem na actPos
+ LDX  full
+#debug bool full
+ NEG
+ JMC  fbRecvTxtChar_L3
+#srcline 42 ;    {ASM}
+#srcline 43
+      LDX buffer
+#srcline 44
+      LDX actPos
+#srcline 45
+      ADD
+#srcline 46
+      WRX buffer
+#srcline 47 ;    {END_ASM}
+#srcline 48 ;    RecvFrom(rq := true, chanCode := chanCode, data := void(buffer), lenData => lendata); //prijmout data
+ LD   bool -1       ; true
+ WRX  RecvFrom~rq
+#debug_left bool RecvFrom~rq
+ LDX  chanCode
+#debug uint chanCode
+ WRX  RecvFrom~chanCode
+#debug_left uint RecvFrom~chanCode
+ LDX  buffer
+ WRX  RecvFrom~data
+#debug_left pointer RecvFrom.data
+ LEAX RecvFrom
+ CAL  fbRecvFrom_L0
+; output assigment 
+ LDX  RecvFrom~lenData
+#debug uint RecvFrom~lenData
+ WRY  lendata
+#debug_left uint lendata
+#srcline 49 ;    //vratit pozici na zacatek buferu
+#srcline 50 ;    {ASM}
+#srcline 51
+      LDY w
+#srcline 52
+      WRX buffer
+#srcline 53 ;    {END_ASM}
+#srcline 54 ;    //pokud jsou prijata data
+#srcline 55 ;    IF RecvFrom.mesRec THEN
+ LDX  RecvFrom~mesRec
+#debug bool RecvFrom.mesRec
+ JMC  fbRecvTxtChar_L5
+#srcline 56 ;      actPos := actPos + lendata; //posunout aktualni pozici o delku prijatych dat
+ LDX  actPos
+#debug uint actPos
+ LDY  lendata
+#debug uint lendata
+ ADD
+ AND  $FFFF
+ WRX  actPos
+#debug_left uint actPos
+#srcline 57 ;    END_IF;
+fbRecvTxtChar_L5:
+#srcline 58 ;  END_IF;
+fbRecvTxtChar_L3:
+#srcline 60 ;  IF actPos <> 0 THEN //pokud jsou nejaka prijata data
+ LDX  actPos
+#debug uint actPos
+ LD   uint 0
+ EQ
+ NEG
+ JMC  fbRecvTxtChar_L7
+#srcline 61 ;    we := w + UINT_TO_UDINT(actPos); //nastavit konec bufferu
+ LEAY w
+ LDIL 
+#debug pointer w
+ LDX  actPos
+#debug uint actPos
+ ADD
+ LEAY we
+ WRIL 
+#debug_left pointer we
+#srcline 62 ;    WHILE PTR_TO_UDINT(w) < PTR_TO_UDINT(we) DO //dokud je aktualni pointer mensi nez konec
+fbRecvTxtChar_L9:
+ LEAY w
+ LDIL 
+#debug pointer w
+ LEAY we
+ LDIL 
+#debug pointer we
+ LT
+ JMC  fbRecvTxtChar_L10
+ DBG 
+#srcline 63 ;      IF (w^ = delimiter) THEN  //pokud pointer ukazuje na delimiter
+ LEAY w
+ LDIL    ; dereference 
+ LDI  
+#debug byte w^
+ LDX  delimiter
+#debug byte delimiter
+ EQ
+ JMC  fbRecvTxtChar_L11
+#srcline 64 ;        lenMes := UDINT_TO_UINT(PTR_TO_UDINT(w) - PTR_TO_UDINT(ADR(buffer))) + 1; //vratit delka vcetne delimiteru
+ LEAY w
+ LDIL 
+#debug pointer w
+ LDX  buffer
+#debug pointer buffer
+ SUB
+ AND  $FFFF
+ LD   uint 1
+ ADD
+ AND  $FFFF
+ WRX  lenMes
+#debug_left uint lenMes
+#srcline 65 ;        EXIT;
+ JMP  fbRecvTxtChar_L10
+#srcline 66 ;      END_IF;
+fbRecvTxtChar_L11:
+#srcline 67 ;      w := w + 1;
+ LEAY w
+ LDIL 
+#debug pointer w
+ LD   udint 1
+ ADD
+ LEAY w
+ WRIL 
+#debug_left pointer w
+#srcline 68 ;    END_WHILE;
+ JMP  fbRecvTxtChar_L9
+fbRecvTxtChar_L10:
+#srcline 69 ;  END_IF;
+fbRecvTxtChar_L7:
+#srcline 71 ;  mmove := getMes AND lenMes > 0; //pokud je nastaven vstup getMes a je nalezen CR LF, posunout buffer
+ LDX  getMes
+#debug bool getMes
+ LDX  lenMes
+#debug uint lenMes
+ LD   uint 0
+ GT
+ AND
+ WRY  mmove
+#debug_left bool mmove
+#srcline 72 ;  IF mmove THEN
+ LDY  mmove
+#debug bool mmove
+ JMC  fbRecvTxtChar_L13
+#srcline 73 ;    lenMesTmp := MIN( lenTxt, lenMes); //vratit maximalne delku stringu nastavenou v lenTxt
+ LDX  lenTxt
+#debug uint lenTxt
+ LDX  lenMes
+#debug uint lenMes
+ MIN
+ WRY  lenMesTmp
+#debug_left uint lenMesTmp
+#srcline 74 ;    //kopirovani do stringu txtMes
+#srcline 75 ;    // memcpy( source := void(buffer), dest := void(txtMes), length := lenMes+1); // including zero on the end
+#srcline 76 ;    {asm}
+#srcline 77
+    	ldx	buffer       ;source
+#srcline 78
+    	src	%X0
+#srcline 79
+    	ld  0
+#srcline 80
+      ldx	txtMes       ;dest
+#srcline 81
+    	ldy	lenMesTmp    ;length
+#srcline 82
+    	mov	%X0
+#srcline 83
+    	add
+#srcline 84
+      wri             ;zero on the end
+#srcline 85 ;    {end_asm}
+#srcline 86 ;    //posun dat v bufferu o delku zkopirovanych dat
+#srcline 87 ;    //  b := memmove(source := ADR(buffer) + UINT_TO_UDINT(lenMess), dest := ADR(buffer), length := UINT_TO_UDINT(actPos - lenMess));
+#srcline 88 ;    //uprava pozice o delku odebranych dat
+#srcline 89 ;    //  actPos := actPos - lenMess;
+#srcline 90 ;    {ASM}    // copy data to buffer
+#srcline 91
+    	ldx	buffer
+#srcline 92
+    	ldx lenMes
+#srcline 93
+    	add
+#srcline 94
+    	src	%X0
+#srcline 95
+    	ldx	buffer
+#srcline 96
+    	ldx	actPos
+#srcline 97
+    	ldx lenmes
+#srcline 98
+    	sub
+#srcline 99
+    	wrx actPos
+#srcline 100
+    	mov	%X0
+#srcline 101 ;    {END_ASM}
+#srcline 102 ;  END_IF;
+fbRecvTxtChar_L13:
+#srcline 104 ;  error := RecvFrom.error;        // kopirovat chybu pri komunikaci
+ LDX  RecvFrom~error
+#debug usint RecvFrom.error
+ WRX  error
+#debug_left usint error
+#srcline 105 ;END_FUNCTION_BLOCK
+ ULNK
+RET
+E     61
+
+; Initialize - variables
+P     61
+fbRecvTxtChar__InstanceInit__:
+ LINK 0
+ LEAX RecvFrom
+ CAL  fbRecvFrom__InstanceInit__
+ ULNK
+RET
+E     61
+; End initialize - variables
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\COMLIB\COMLIB\GETIPADDRESS.ST'
+#pou GetIPaddress
+#srcline 1 ;FUNCTION GetIPaddress : BOOL
+
+#struct GetIPaddress__temp__
+  byte tmp
+P     61
+GetIPaddress_L0:
+ LINK __SizeOf(GetIPaddress__temp__)
+ NXT
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 29 ;begin
+#srcline 30 ;  {asm}
+#srcline 31
+    LDX   EthAdr              ; address of output structure
+#srcline 32
+    LDX   EthChan             ; channel number
+#srcline 33
+    SYS   11                  ; read ETH parameters
+#srcline 34
+    WRY   tmp                 ; result of SYS 11
+#srcline 35 ;  {end_asm}
+#srcline 36 ;  GetIPaddress := tmp = 1;
+ LDY  tmp
+#debug byte tmp
+ LD   byte 1
+ EQ
+ WRX  __fc__GetIPaddress
+#debug_left bool GetIPaddress
+#srcline 37 ;END_FUNCTION
+ PRV  
+ LDX  __fc__GetIPaddress
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\COMLIB\COMLIB\SETIPADDRESS.ST'
+#pou SetIPaddress
+#srcline 1 ;FUNCTION SetIPaddress : BOOL
+
+#struct SetIPaddress__temp__
+  byte tmp
+P     61
+SetIPaddress_L0:
+ LINK __SizeOf(SetIPaddress__temp__)
+ NXT
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 29 ;  SetIPaddress := FALSE;
+ LD   bool 0       ; false
+ WRX  __fc__SetIPaddress
+#debug_left bool SetIPaddress
+#srcline 30 ;  IF rq THEN
+ LDX  rq
+#debug bool rq
+ JMC  SetIPaddress_L1
+#srcline 31 ;    {asm}
+#srcline 32
+      LDX   EthAdr                ; address of input structure
+#srcline 33
+      LDX   EthChan               ; channel number
+#srcline 34
+      SYS   28                    ; set new ETH parameters
+#srcline 35
+      WRY   tmp                   ; SYS 28 result
+#srcline 36 ;    {end_asm}
+#srcline 37 ;    SetIPaddress := tmp = 1;
+ LDY  tmp
+#debug byte tmp
+ LD   byte 1
+ EQ
+ WRX  __fc__SetIPaddress
+#debug_left bool SetIPaddress
+#srcline 38 ;  END_IF;
+SetIPaddress_L1:
+#srcline 39 ;END_FUNCTION
+ PRV  
+ LDX  __fc__SetIPaddress
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\COMLIB\COMLIB\GETMACADDRESS.ST'
+#pou GetMACaddress
+#srcline 1 ;FUNCTION GetMACaddress : BOOL
+
+#struct GetMACaddress__temp__
+  byte tmp
+P     61
+GetMACaddress_L0:
+ LINK __SizeOf(GetMACaddress__temp__)
+ NXT
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 26 ;begin
+#srcline 27 ;  {asm}
+#srcline 28
+    LDX   MacAdr              ; address of output structure
+#srcline 29
+    LDX   EthChan             ; channel number
+#srcline 30
+    SYS   38                  ; read MAC address
+#srcline 31
+    WRY   tmp                 ; result of SYS 38
+#srcline 32 ;  {end_asm}
+#srcline 33 ;  GetMACaddress := tmp = 1;
+ LDY  tmp
+#debug byte tmp
+ LD   byte 1
+ EQ
+ WRX  __fc__GetMACaddress
+#debug_left bool GetMACaddress
+#srcline 34 ;END_FUNCTION
+ PRV  
+ LDX  __fc__GetMACaddress
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\COMLIB\COMLIB\SETDHCPSUPPORT.ST'
+#pou SetDHCPsupport
+#srcline 1 ;FUNCTION SetDHCPsupport : BOOL
+
+#struct SetDHCPsupport__temp__
+  byte tmp,
+  TLocalEthAdr EthAdr  ; if  mask = 16#0000_0000 AND gateway = 16#FFFF_FFFF then set DHCP
+P     61
+SetDHCPsupport_L0:
+ LINK __SizeOf(SetDHCPsupport__temp__)
+ NXT
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 28 ;  SetDHCPsupport := 0;
+ LD   bool 0       ; false
+ WRX  __fc__SetDHCPsupport
+#debug_left bool SetDHCPsupport
+#srcline 29 ;  IF rq THEN
+ LDX  rq
+#debug bool rq
+ JMC  SetDHCPsupport_L1
+#srcline 30 ;    IF EthChan = 16#E1 THEN
+ LDX  EthChan
+#debug usint EthChan
+ LD   usint $E1
+ EQ
+ JMC  SetDHCPsupport_L3
+#srcline 31 ;      EthAdr.GW[0] := 16#FF; EthAdr.GW[1] := 16#FF;
+ LD   usint $FF
+ WRY  EthAdr~GW[0]
+#debug_left usint EthAdr.GW[0]
+ LD   usint $FF
+ WRY  EthAdr~GW[1]
+#debug_left usint EthAdr.GW[1]
+#srcline 32 ;      EthAdr.GW[2] := 16#FF; EthAdr.GW[3] := 16#FF;
+ LD   usint $FF
+ WRY  EthAdr~GW[2]
+#debug_left usint EthAdr.GW[2]
+ LD   usint $FF
+ WRY  EthAdr~GW[3]
+#debug_left usint EthAdr.GW[3]
+#srcline 33 ;      {asm}
+#srcline 34
+        LEAY  EthAdr                ; address of input structure
+#srcline 35
+        LDX   EthChan               ; channel number
+#srcline 36
+        SYS   28                    ; set DHCP on
+#srcline 37
+        WRY   tmp                   ; SYS 28 result
+#srcline 38 ;      {end_asm}
+#srcline 39 ;      SetDHCPsupport := tmp = 1;
+ LDY  tmp
+#debug byte tmp
+ LD   byte 1
+ EQ
+ WRX  __fc__SetDHCPsupport
+#debug_left bool SetDHCPsupport
+#srcline 40 ;    END_IF;
+SetDHCPsupport_L3:
+#srcline 41 ;  END_IF;
+SetDHCPsupport_L1:
+#srcline 42 ;END_FUNCTION
+ PRV  
+ LDX  __fc__SetDHCPsupport
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\COMLIB\COMLIB\GETDNS_IP.ST'
+#pou GetDNS_IP
+#srcline 1 ;FUNCTION GetDNS_IP : TIPadr
+
+#struct GetDNS_IP__temp__
+  TIPadr tmp,  ; {ENG} IP address {CSY} IP adresa
+  TLocalEthAdr EthAdr  ; if IP = 16#FFFF_FFFF AND IM = 16#FFFF_FFFF AND GW = 16#FFFF_FFFF => get DNS IP
+P     61
+GetDNS_IP_L0:
+ LINK __SizeOf(GetDNS_IP__temp__)
+ NXT
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 14 ;  IF (USINT_TO_BYTE(ethChan) AND 16#F0) = 16#E0 THEN
+ LDX  ethChan
+#debug usint ethChan
+ AND  $FF
+ LD   byte $F0
+ AND
+ LD   byte $E0
+ EQ
+ JMC  GetDNS_IP_L1
+#srcline 15 ;    EthAdr.IP[0] := 16#FF; EthAdr.IP[1] := 16#FF;
+ LD   usint $FF
+ WRY  EthAdr~IP[0]
+#debug_left usint EthAdr.IP[0]
+ LD   usint $FF
+ WRY  EthAdr~IP[1]
+#debug_left usint EthAdr.IP[1]
+#srcline 16 ;    EthAdr.IP[2] := 16#FF; EthAdr.IP[3] := 16#FF;
+ LD   usint $FF
+ WRY  EthAdr~IP[2]
+#debug_left usint EthAdr.IP[2]
+ LD   usint $FF
+ WRY  EthAdr~IP[3]
+#debug_left usint EthAdr.IP[3]
+#srcline 17 ;    EthAdr.IM[0] := 16#FF; EthAdr.IM[1] := 16#FF;
+ LD   usint $FF
+ WRY  EthAdr~IM[0]
+#debug_left usint EthAdr.IM[0]
+ LD   usint $FF
+ WRY  EthAdr~IM[1]
+#debug_left usint EthAdr.IM[1]
+#srcline 18 ;    EthAdr.IM[2] := 16#FF; EthAdr.IM[3] := 16#FF;
+ LD   usint $FF
+ WRY  EthAdr~IM[2]
+#debug_left usint EthAdr.IM[2]
+ LD   usint $FF
+ WRY  EthAdr~IM[3]
+#debug_left usint EthAdr.IM[3]
+#srcline 19 ;    EthAdr.GW[0] := 16#FF; EthAdr.GW[1] := 16#FF;
+ LD   usint $FF
+ WRY  EthAdr~GW[0]
+#debug_left usint EthAdr.GW[0]
+ LD   usint $FF
+ WRY  EthAdr~GW[1]
+#debug_left usint EthAdr.GW[1]
+#srcline 20 ;    EthAdr.GW[2] := 16#FF; EthAdr.GW[3] := 16#FF;
+ LD   usint $FF
+ WRY  EthAdr~GW[2]
+#debug_left usint EthAdr.GW[2]
+ LD   usint $FF
+ WRY  EthAdr~GW[3]
+#debug_left usint EthAdr.GW[3]
+#srcline 21 ;    {asm}
+#srcline 22
+      LEAY  EthAdr                ; address of input structure
+#srcline 23
+      LDX   EthChan               ; channel number
+#srcline 24
+      SYS   28                    ; Get DNS IP
+#srcline 25
+      WRY   long tmp              ; SYS 28 result
+#srcline 26 ;    {end_asm}
+#srcline 27 ;    GetDNS_IP := tmp;
+ LEAY tmp
+#debug pointer tmp
+ SRC  %IB0
+ LEAX __fc__GetDNS_IP
+#debug_left pointer GetDNS_IP
+ LD   4   ;SizeOf() 
+ MOV  %IB0
+#srcline 28 ;  ELSE
+ JMP  GetDNS_IP_L2
+GetDNS_IP_L1:
+#srcline 29 ;    GetDNS_IP[0] := 0; GetDNS_IP[1] := 0;
+ LD   usint 0
+ WRX  __fc__GetDNS_IP[0]
+#debug_left usint GetDNS_IP[0]
+ LD   usint 0
+ WRX  __fc__GetDNS_IP[1]
+#debug_left usint GetDNS_IP[1]
+#srcline 30 ;    GetDNS_IP[2] := 0; GetDNS_IP[3] := 0;
+ LD   usint 0
+ WRX  __fc__GetDNS_IP[2]
+#debug_left usint GetDNS_IP[2]
+ LD   usint 0
+ WRX  __fc__GetDNS_IP[3]
+#debug_left usint GetDNS_IP[3]
+#srcline 31 ;  END_IF;
+GetDNS_IP_L2:
+#srcline 32 ;END_FUNCTION
+ PRV  
+ LEAX  __fc__GetDNS_IP
+ SRC   %X0
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\COMLIB\COMLIB\SETDNS_IP.ST'
+#pou SetDNS_IP
+#srcline 1 ;FUNCTION SetDNS_IP : BOOL
+
+#struct SetDNS_IP__temp__
+  byte tmp,
+  TLocalEthAdr EthAdr  ; if mask = 16#FFFF_FFFF AND gateway = 16#FFFF_FFFF then set DNS IP
+P     61
+SetDNS_IP_L0:
+ LINK __SizeOf(SetDNS_IP__temp__)
+ NXT
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 23 ;  SetDNS_IP := 0;
+ LD   bool 0       ; false
+ WRX  __fc__SetDNS_IP
+#debug_left bool SetDNS_IP
+#srcline 24 ;  IF rq THEN
+ LDX  rq
+#debug bool rq
+ JMC  SetDNS_IP_L1
+#srcline 25 ;    IF (USINT_TO_BYTE(ethChan) AND 16#F0) = 16#E0 THEN
+ LDX  ethChan
+#debug usint ethChan
+ AND  $FF
+ LD   byte $F0
+ AND
+ LD   byte $E0
+ EQ
+ JMC  SetDNS_IP_L3
+#srcline 26 ;      EthAdr.IP    := DNS_IP;
+ LEAX DNS_IP
+#debug pointer DNS_IP
+ SRC  %IB0
+ LEAY EthAdr~IP
+#debug_left pointer EthAdr.IP
+ LD   4   ;SizeOf() 
+ MOV  %IB0
+#srcline 27 ;      EthAdr.IM[0] := 16#FF; EthAdr.IM[1] := 16#FF;
+ LD   usint $FF
+ WRY  EthAdr~IM[0]
+#debug_left usint EthAdr.IM[0]
+ LD   usint $FF
+ WRY  EthAdr~IM[1]
+#debug_left usint EthAdr.IM[1]
+#srcline 28 ;      EthAdr.IM[2] := 16#FF; EthAdr.IM[3] := 16#FF;
+ LD   usint $FF
+ WRY  EthAdr~IM[2]
+#debug_left usint EthAdr.IM[2]
+ LD   usint $FF
+ WRY  EthAdr~IM[3]
+#debug_left usint EthAdr.IM[3]
+#srcline 29 ;      EthAdr.GW[0] := 16#FF; EthAdr.GW[1] := 16#FF;
+ LD   usint $FF
+ WRY  EthAdr~GW[0]
+#debug_left usint EthAdr.GW[0]
+ LD   usint $FF
+ WRY  EthAdr~GW[1]
+#debug_left usint EthAdr.GW[1]
+#srcline 30 ;      EthAdr.GW[2] := 16#FF; EthAdr.GW[3] := 16#FF;
+ LD   usint $FF
+ WRY  EthAdr~GW[2]
+#debug_left usint EthAdr.GW[2]
+ LD   usint $FF
+ WRY  EthAdr~GW[3]
+#debug_left usint EthAdr.GW[3]
+#srcline 31 ;      {asm}
+#srcline 32
+        LEAY  EthAdr                ; address of input structure
+#srcline 33
+        LDX   EthChan               ; channel number
+#srcline 34
+        SYS   28                    ; set DNS IP
+#srcline 35
+        WRY   tmp                   ; SYS 28 result
+#srcline 36 ;      {end_asm}
+#srcline 37 ;      SetDNS_IP := tmp = 1;
+ LDY  tmp
+#debug byte tmp
+ LD   byte 1
+ EQ
+ WRX  __fc__SetDNS_IP
+#debug_left bool SetDNS_IP
+#srcline 38 ;    END_IF;
+SetDNS_IP_L3:
+#srcline 39 ;  END_IF;
+SetDNS_IP_L1:
+#srcline 40 ;END_FUNCTION
+ PRV  
+ LDX  __fc__SetDNS_IP
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\COMLIB\COMLIB\STRING_TO_IPADR.ST'
+#pou STRING_TO_IPADR
+#srcline 2 ;FUNCTION STRING_TO_IPADR : TIPadr
+
+#struct STRING_TO_IPADR__temp__
+  TIPadr result,  ; {ENG} IP address {CSY} IP adresa
+  pointer p,
+  uint i
+P     61
+STRING_TO_IPADR_L0:
+ LINK __SizeOf(STRING_TO_IPADR__temp__)
+ NXT
+; Initialize - variables
+ LD  0
+ WRX  udint __fc__STRING_TO_IPADR
+; End initialize - variables
+; Initialize - dynamic variables
+ LD   udint $FFFFFFFF    ; nil
+ WRY  p
+; End initialize - dynamic variables
+#srcline 18 ;  p := ADR(IPAdr);
+ LEAX IPAdr
+#debug pointer IPAdr
+ LEAY p
+ WRIL 
+#debug_left pointer p
+#srcline 20 ;  WHILE i < 4 AND p^ <> 0 DO                         //dokud neni konec retezce nebo se neziskaji vsechny ctyri hodnoty
+STRING_TO_IPADR_L1:
+ LDY  i
+#debug uint i
+ LD   uint 4
+ LT
+ LEAY p
+ LDIL    ; dereference 
+ LDI  
+#debug usint p^
+ LD   usint 0
+ EQ
+ NEG
+ AND
+ JMC  STRING_TO_IPADR_L2
+ DBG 
+#srcline 21 ;    IF p^ <> 46 THEN                                 //pokud neni tecka
+ LEAY p
+ LDIL    ; dereference 
+ LDI  
+#debug usint p^
+ LD   usint 46
+ EQ
+ NEG
+ JMC  STRING_TO_IPADR_L3
+#srcline 22 ;      IF p^ < 48 OR p^ > 57 OR result[i] > 25 THEN   //pokud neni cislice nebo vysledna hodnota pretece USINT
+ LEAY p
+ LDIL    ; dereference 
+ LDI  
+#debug usint p^
+ LD   usint 48
+ LT
+ LEAY p
+ LDIL    ; dereference 
+ LDI  
+#debug usint p^
+ LD   usint 57
+ GT
+ OR  
+ LEAY result
+ LDY  i
+#debug uint i
+ RCHK 3   ; Range Check
+ ADD     ; + offset 
+ LDI  
+#debug usint result[i]
+ LD   usint 25
+ GT
+ OR  
+ JMC  STRING_TO_IPADR_L5
+#srcline 23 ;        STRING_TO_IPADR := ANY_IP;                   //vratit ANY IP
+ LEA  ANY_IP
+#debug pointer ANY_IP
+ SRC  %IB0
+ LEAX __fc__STRING_TO_IPADR
+#debug_left pointer STRING_TO_IPADR
+ LD   4   ;SizeOf() 
+ MOV  %IB0
+#srcline 24 ;        return;                                      //konec
+ JMP  STRING_TO_IPADR_RET
+#srcline 25 ;      END_IF;
+STRING_TO_IPADR_L5:
+#srcline 26 ;      result[i] := result[i] * 10 + (p^ - 48);       //vynasobit dosavadni cislo deseti a pricist dalsi ziskanou cislici
+ LEAY result
+ LDY  i
+#debug uint i
+ RCHK 3   ; Range Check
+ ADD     ; + offset 
+ LDI  
+#debug usint result[i]
+ LD   usint 10
+ MUL
+ AND  $FF
+ LEAY p
+ LDIL    ; dereference 
+ LDI  
+#debug usint p^
+ LD   usint 48
+ SUB
+ AND  $FF
+ ADD
+ AND  $FF
+ LEAY result
+ LDY  i
+#debug uint i
+ RCHK 3   ; Range Check
+ ADD     ; + offset 
+ WRI 
+#debug_left usint result[i]
+#srcline 27 ;    ELSE                                             //pokud byla tecka
+ JMP  STRING_TO_IPADR_L4
+STRING_TO_IPADR_L3:
+#srcline 28 ;      i := i + 1;                                    //presunout se na dalsi pole
+ LDY  i
+#debug uint i
+ LD   uint 1
+ ADD
+ AND  $FFFF
+ WRY  i
+#debug_left uint i
+#srcline 29 ;    END_IF;
+STRING_TO_IPADR_L4:
+#srcline 30 ;    p := p + 1;                                      //posunout se ve stringu dal
+ LEAY p
+ LDIL 
+#debug pointer p
+ LD   udint 1
+ ADD
+ LEAY p
+ WRIL 
+#debug_left pointer p
+#srcline 31 ;  END_WHILE;
+ JMP  STRING_TO_IPADR_L1
+STRING_TO_IPADR_L2:
+#srcline 33 ;  IF i < 3 THEN                                      //pokud nebyly tri tecky
+ LDY  i
+#debug uint i
+ LD   uint 3
+ LT
+ JMC  STRING_TO_IPADR_L7
+#srcline 34 ;    STRING_TO_IPADR := ANY_IP;                       //vratit nulu
+ LEA  ANY_IP
+#debug pointer ANY_IP
+ SRC  %IB0
+ LEAX __fc__STRING_TO_IPADR
+#debug_left pointer STRING_TO_IPADR
+ LD   4   ;SizeOf() 
+ MOV  %IB0
+#srcline 35 ;  ELSE                                               //pokud vse ok
+ JMP  STRING_TO_IPADR_L8
+STRING_TO_IPADR_L7:
+#srcline 36 ;    STRING_TO_IPADR := result;                       //vysunout vysledek
+ LEAY result
+#debug pointer result
+ SRC  %IB0
+ LEAX __fc__STRING_TO_IPADR
+#debug_left pointer STRING_TO_IPADR
+ LD   4   ;SizeOf() 
+ MOV  %IB0
+#srcline 37 ;  END_IF;
+STRING_TO_IPADR_L8:
+#srcline 39 ;END_FUNCTION
+STRING_TO_IPADR_RET:
+ PRV  
+ LEAX  __fc__STRING_TO_IPADR
+ SRC   %X0
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\COMLIB\COMLIB\IPADR_TO_STRING.ST'
+#pou IPADR_TO_STRING
+#srcline 1 ;FUNCTION IPADR_TO_STRING : STRING
+
+#struct IPADR_TO_STRING__temp__
+  string[82] PS0__st__,
+  string[102] PSC__st__
+#data byte _str_IPADR_TO_STRING_0 = 
+  '.',0
+#data byte _str_IPADR_TO_STRING_1 = 
+  '.',0
+#data byte _str_IPADR_TO_STRING_2 = 
+  '.',0
+P     61
+IPADR_TO_STRING_L0:
+ LINK __SizeOf(IPADR_TO_STRING__temp__)
+ NXT
+#srcline 10 ;  IPADR_TO_STRING := USINT_TO_STRING(IPAdr[0]) + '.' + USINT_TO_STRING(IPAdr[1]) + '.' +
+ LD   0   ; null string
+ WRY  PS0__st__[0]
+ LEAY PS0__st__[0]
+ LD   80
+ DST    ; Level 1
+ LD   0   ; null string
+ WRY  PSC__st__[0]
+ LEAY PSC__st__[0]
+ LD   80
+ DST    ; Level 2
+ LDX  IPAdr[0]
+#debug usint IPAdr[0]
+ SCNV $0830;  IEC_USINT _TO_ IEC_STRING
+ PDST   ; Level 2
+ LEAY PSC__st__[0]
+
+ SCON 
+ LEA  _str_IPADR_TO_STRING_0
+ SCON 
+ LD   0   ; null string
+ WRY  PSC__st__[0]
+ LEAY PSC__st__[0]
+ LD   80
+ DST    ; Level 2
+ LDX  IPAdr[1]
+#debug usint IPAdr[1]
+ SCNV $0830;  IEC_USINT _TO_ IEC_STRING
+ PDST   ; Level 2
+ LEAY PSC__st__[0]
+
+ SCON 
+ LEA  _str_IPADR_TO_STRING_1
+ SCON 
+#srcline 11 ;                     USINT_TO_STRING(IPAdr[2]) + '.' + USINT_TO_STRING(IPAdr[3]);
+ LD   0   ; null string
+ WRY  PSC__st__[0]
+ LEAY PSC__st__[0]
+ LD   80
+ DST    ; Level 2
+ LDX  IPAdr[2]
+#debug usint IPAdr[2]
+ SCNV $0830;  IEC_USINT _TO_ IEC_STRING
+ PDST   ; Level 2
+ LEAY PSC__st__[0]
+
+ SCON 
+ LEA  _str_IPADR_TO_STRING_2
+ SCON 
+ LD   0   ; null string
+ WRY  PSC__st__[0]
+ LEAY PSC__st__[0]
+ LD   80
+ DST    ; Level 2
+ LDX  IPAdr[3]
+#debug usint IPAdr[3]
+ SCNV $0830;  IEC_USINT _TO_ IEC_STRING
+ PDST   ; Level 2
+ LEAY PSC__st__[0]
+
+ SCON 
+ PDST   ; Level 1
+ LD   0   ; null string
+ LEAX __fc__IPADR_TO_STRING
+ WRI  
+ LEAX __fc__IPADR_TO_STRING
+ LD   80
+ DST    ; Level 1
+ LEAY PS0__st__[0]
+ SCON 
+#debug_left string IPADR_TO_STRING
+ PDST   ; Level 1
+#srcline 13 ;END_FUNCTION
+ PRV  
+ LEAX  __fc__IPADR_TO_STRING
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\COMLIB\COMLIB\FBKEEPALIVETCP.ST'
+#pou fbKeepAliveTCP
+#srcline 1 ;FUNCTION_BLOCK fbKeepAliveTCP
+
+#struct fbKeepAliveTCP__temp__
+  pointer pUniCon,
+  pointer pUniStat,
+  TUniDesc uniDesc  ; {ENG} description of channel in uni mode {CSY} popis kanálu v univerzálním režimu
+P     61
+fbKeepAliveTCP_L0:
+ LINK __SizeOf(fbKeepAliveTCP__temp__)
+; Initialize - dynamic variables
+ LD   udint $FFFFFFFF    ; nil
+ WRY  pUniCon
+ LD   udint $FFFFFFFF    ; nil
+ WRY  pUniStat
+; End initialize - dynamic variables
+#srcline 40 ;  error := 0;
+ LD   usint 0
+ WRX  error
+#debug_left usint error
+#srcline 41 ;  // check channel code
+#srcline 42 ;  if -1 = GetChanIndex( chanCode) then            // if index not found
+ LD   -1
+ NXT
+ LDX  chanCode
+#debug uint chanCode
+ WR   __Instance__GetChanIndex~chanCode
+#debug_left uint __Instance__GetChanIndex~chanCode
+ PRV
+ LEA  __Instance__GetChanIndex
+ CAL  GetChanIndex_L0
+ EQ
+ JMC  fbKeepAliveTCP_L1
+#srcline 43 ;    error := COM_ERR4; return;                    // channel is not supported
+ LD   usint 4
+ WRX  error
+#debug_left usint error
+ JMP  fbKeepAliveTCP_RET
+#srcline 44 ;  end_if;
+fbKeepAliveTCP_L1:
+#srcline 45 ;  uniDesc := GetChanDesc( chanCode);              // get channel descriptor
+ NXT
+ LDX  chanCode
+#debug uint chanCode
+ WR   __Instance__GetChanDesc~chanCode
+#debug_left uint __Instance__GetChanDesc~chanCode
+ PRV
+ LEA  __Instance__GetChanDesc
+ CAL  GetChanDesc_L0
+ LEAY uniDesc
+#debug_left pointer uniDesc
+ LD   26   ;SizeOf() 
+ MOV  %IB0
+#srcline 46 ;  if uniDesc.modeChan <> 5 then
+ LDY  uniDesc~modeChan
+#debug byte uniDesc.modeChan
+ LD   byte 5
+ EQ
+ NEG
+ JMC  fbKeepAliveTCP_L3
+#srcline 47 ;    error := COM_ERR1; return;                    // channel mode <> UNI
+ LD   usint 1
+ WRX  error
+#debug_left usint error
+ JMP  fbKeepAliveTCP_RET
+#srcline 48 ;  end_if;
+fbKeepAliveTCP_L3:
+#srcline 49 ;  pUniCon  := UDINT_TO_PTR(uniDesc.adrUniCont);
+ LDY  uniDesc~adrUniCont
+#debug udint uniDesc.adrUniCont
+; UDINT -> PTR
+ LEAY pUniCon
+ WRIL 
+#debug_left pointer pUniCon
+#srcline 50 ;  pUniStat := UDINT_TO_PTR(uniDesc.adrUniStat);
+ LDY  uniDesc~adrUniStat
+#debug udint uniDesc.adrUniStat
+; UDINT -> PTR
+ LEAY pUniStat
+ WRIL 
+#debug_left pointer pUniStat
+#srcline 52 ;  PT := LIMIT(MN := T#5s, IN := PT, MX := T#60s);
+ LDX  PT
+#debug time PT
+ LD   time 5000
+ MAXS
+ LD   time 60000
+ MINS
+ WRX  PT
+#debug_left time PT
+#srcline 53 ;  tick(IN := rq, PT := PT);
+ LDX  rq
+#debug bool rq
+ WRX  tick~IN
+#debug_left bool tick~IN
+ LDX  PT
+#debug time PT
+ WRX  tick~PT
+#debug_left time tick~PT
+ LEAX tick
+ CAL  fbTick_L0
+#srcline 54 ;  
+#srcline 55 ;  // when connection is established
+#srcline 56 ;  IF (USINT_TO_BYTE(pUniStat^.STAT) AND 16#01) = 16#01 THEN
+ LEAY pUniStat
+ LDIL    ; dereference 
+ LDI  
+#debug usint pUniStat^.STAT
+ AND  $FF
+ LD   byte $01
+ AND
+ LD   byte $01
+ EQ
+ JMC  fbKeepAliveTCP_L5
+#srcline 57 ;    IF tick.Q THEN
+ LDX  tick~Q
+#debug bool tick.Q
+ JMC  fbKeepAliveTCP_L7
+#srcline 58 ;      pUniCon^.CONTROL := WORD_TO_UINT(UINT_TO_WORD(pUniCon^.CONTROL) OR 16#0002);
+ LEAY pUniCon
+ LDIL    ; dereference 
+ LDIW 
+#debug uint pUniCon^.CONTROL
+ LD   word $0002
+ OR  
+ LEAY pUniCon
+ LDIL    ; dereference 
+ WRIW 
+#debug_left uint pUniCon^.CONTROL
+#srcline 59 ;    ELSE
+ JMP  fbKeepAliveTCP_L8
+fbKeepAliveTCP_L7:
+#srcline 60 ;      pUniCon^.CONTROL := WORD_TO_UINT(UINT_TO_WORD(pUniCon^.CONTROL) AND 16#FFFD);
+ LEAY pUniCon
+ LDIL    ; dereference 
+ LDIW 
+#debug uint pUniCon^.CONTROL
+ LD   word $FFFD
+ AND
+ LEAY pUniCon
+ LDIL    ; dereference 
+ WRIW 
+#debug_left uint pUniCon^.CONTROL
+#srcline 61 ;    END_IF;
+fbKeepAliveTCP_L8:
+#srcline 62 ;  ELSE
+ JMP  fbKeepAliveTCP_L6
+fbKeepAliveTCP_L5:
+#srcline 63 ;    pUniCon^.CONTROL := WORD_TO_UINT(UINT_TO_WORD(pUniCon^.CONTROL) AND 16#FFFD);
+ LEAY pUniCon
+ LDIL    ; dereference 
+ LDIW 
+#debug uint pUniCon^.CONTROL
+ LD   word $FFFD
+ AND
+ LEAY pUniCon
+ LDIL    ; dereference 
+ WRIW 
+#debug_left uint pUniCon^.CONTROL
+#srcline 64 ;  END_IF;
+fbKeepAliveTCP_L6:
+#srcline 65 ;END_FUNCTION_BLOCK
+fbKeepAliveTCP_RET:
+ ULNK
+RET
+E     61
+
+; Initialize - variables
+P     61
+fbKeepAliveTCP__InstanceInit__:
+ LINK 0
+ ULNK
+RET
+E     61
+; End initialize - variables
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\COMLIB\COMLIB\CHECKGATEWAYIP.ST'
+#pou CheckGatewayIP
+#srcline 1 ;FUNCTION CheckGatewayIP : BOOL
+
+#struct CheckGatewayIP__temp__
+  dword[4] myEthAdr  ; TLocalEthAdr ... myEthAdr[0] = myIP, myEthAdr[1] = myIM, myEthAdr[2] = myGW
+P     61
+CheckGatewayIP_L0:
+ LINK __SizeOf(CheckGatewayIP__temp__)
+ NXT
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 14 ;  GetIPaddress( ethChan := ethChan, ethAdr := void( myEthAdr));
+ NXT
+ LDX  ethChan
+#debug usint ethChan
+ WR   __Instance__GetIPaddress~ethChan
+#debug_left usint __Instance__GetIPaddress~ethChan
+ LEAY myEthAdr
+ WR   __Instance__GetIPaddress~ethAdr
+#debug_left pointer __Instance__GetIPaddress.ethAdr
+ PRV
+ LEA  __Instance__GetIPaddress
+ CAL  GetIPaddress_L0
+#srcline 15 ;  CheckGatewayIP := (myEthAdr[0] AND myEthAdr[1]) = (myEthAdr[2] AND myEthAdr[1]);
+ LDY  myEthAdr[0]
+#debug dword myEthAdr[0]
+ LDY  myEthAdr[1]
+#debug dword myEthAdr[1]
+ AND
+ LDY  myEthAdr[2]
+#debug dword myEthAdr[2]
+ LDY  myEthAdr[1]
+#debug dword myEthAdr[1]
+ AND
+ EQ
+ WRX  __fc__CheckGatewayIP
+#debug_left bool CheckGatewayIP
+#srcline 16 ;END_FUNCTION
+ PRV  
+ LDX  __fc__CheckGatewayIP
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+1¶  =  2

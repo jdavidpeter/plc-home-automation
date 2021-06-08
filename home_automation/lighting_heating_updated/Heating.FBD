@@ -1,0 +1,22 @@
+PROGRAM Heating
+  VAR_INPUT
+  END_VAR
+  VAR_OUTPUT
+  END_VAR
+  VAR
+  END_VAR
+  VAR_TEMP
+  END_VAR
+(*
+  Schema comment
+*)
+
+{NETWORK}
+(*
+  Network comment
+*)
+  LD ???
+{/NETWORK}
+
+END_PROGRAM
+

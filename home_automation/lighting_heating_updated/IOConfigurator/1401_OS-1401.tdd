@@ -1,0 +1,554 @@
+﻿<?xml version="1.0"?>
+<TecoDescriptor xmlns="http://www.tecomat.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.tecomat.com Teco_Default.xsd">
+  <Header>
+    <File>
+      <FileName>1401_OS-1401.tdd</FileName>
+      <FileCreator>Pavel Šedina</FileCreator>
+      <FileCreationDate>2014-10-10</FileCreationDate>
+      <FileModifiedBy>Jan Martinec</FileModifiedBy>
+      <FileModificationDate>2019-08-22</FileModificationDate>
+      <SupportedLanguages>en cz</SupportedLanguages>
+      <FileVersion>2.4</FileVersion>
+    </File>
+    <Vendor>
+      <VendorID>00000000</VendorID>
+      <VendorName>Teco a.s</VendorName>
+      <VendorText>
+        <label lang="en">Controllers for machine, process, building and transport</label>
+        <label lang="cz">Řídící systémy pro stroje, procesy, budovy a dopravu</label>
+      </VendorText>
+      <VendorImage>
+        <ImageData>424DF60000000000000076000000280000001000000010000000010004000000000080000000C40E0000C40E000010000000000000000000000000008000008000000080800080000000800080008080000080808000C0C0C0000000FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00FFFFFFFFFFFCFFFFFFFFFFFFFFFCFFFFFFFFFFFFFFCCCFFFFFFFFFFFFFCCCFFFFFFFFFFFFCCCCCFFFFFFFFFFFCCCCCFFFFFFFFFFCCCCCCCFFFFFFFFFCCCFFCCFCCFFFFCCFFFFFFFCCCCCCCCFFFFFFFFFFCCCCCCFFFFFFFFFFCCCCCFFFFFFFFFFFFCCCCFFFFFFFFFFFFCCCFFFFFFFFFFFFFFCCFFFFFFFFFFFFFFCFFFFFFFFFFFF</ImageData>
+      </VendorImage>
+      <ProductCode>1401</ProductCode>
+      <ProductName>OS-1401</ProductName>
+      <OrderNumber>TXN 114 01</OrderNumber>
+    </Vendor>
+  </Header>
+  <Device>
+    <DeviceGroup>IO</DeviceGroup>
+    <DeviceFamily>FOXTROT</DeviceFamily>
+    <DeviceName>OS-1401</DeviceName>
+    <DeviceText>
+      <label lang="en">Peripheral Module - 12 DO</label>
+      <label lang="cz">Periferní modul - 12 DO</label>
+    </DeviceText>
+    <DeviceImage>
+      <ImageFile URI="IMAGES\190_127_FOXTROT_OS-1401_02.jpg"/>
+      <ImageData>424DE60100000000000036000000280000000C0000000C0000000100180000000000B001000000000000000000000000000000000000FFFFFFA0A0A03883184CB1223883184CB1223883184CB122388318A0A0A0FFFFFFFFFFFFFFFFFFA0A0A04CB1224CB1224CB1224CB1224CB1224CB1224CB122A0A0A0FFFFFFFFFFFFFFFFFF7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7FFFFFFFFFFFFFFFFFFFC3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3FFFFFFFFFFFFFFFFFFC3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3FFFFFFFFFFFFFFFFFFC3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3FFFFFFFFFFFFFFFFFFC3C3C3C3C3C382B4FFC3C3C3C3C3C3C3C3C31DE6B5C3C3C3C3C3C3FFFFFFFFFFFFFFFFFFC3C3C382B4FF277FFF82B4FFC3C3C31DE6B500FF801DE6B5C3C3C3FFFFFFFFFFFFFFFFFFC3C3C3C3C3C382B4FFC3C3C3C3C3C3C3C3C31DE6B5C3C3C3C3C3C3FFFFFFFFFFFFFFFFFF7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7FFFFFFFFFFFFFFFFFFFA0A0A04CB1224CB1224CB1224CB1224CB1224CB1224CB122A0A0A0FFFFFFFFFFFFFFFFFFA0A0A03883184CB1223883184CB1223883184CB122388318A0A0A0FFFFFFFFFFFF</ImageData>
+    </DeviceImage>
+    <InterfacePlugs>
+      <Plug InterfaceClass="TCL2" InterfaceSubClass="EXTERN" Length="1" maxAddr="9"/>
+      <Plug InterfaceClass="TCL2" Length="1" maxAddr="25"/>
+      <Plug InterfaceClass="TCL2" InterfaceSubClass="A" Length="1" maxAddr="25"/>
+      <Plug InterfaceClass="TCL2" InterfaceSubClass="B" Length="1" maxAddr="25"/>
+    </InterfacePlugs>
+    <Firmwares>
+      <Firmware KeyName="OS-1401">
+				<File>ir1xxx.tfw</File>
+				<History>IR-1xxx.txt</History>
+				<HWDependent>
+					<FromVersion>0.1</FromVersion>
+					<ToVersion>0.5</ToVersion>
+				</HWDependent>
+			</Firmware>
+			<Firmware KeyName="OS-1401">
+				<File>ir1xxx2.tfw</File>
+				<History>IR-1xxx.txt</History>
+				<HWDependent>
+					<FromVersion>0.6</FromVersion>
+				</HWDependent>
+			</Firmware>
+    </Firmwares>
+    <HelpFiles>
+      <HelpFile key="OS1401IOC" lang="cz">CSY_FOXTROT.chm</HelpFile>
+      <HelpFile key="OS1401IOC" lang="en">ENU_FOXTROT.chm</HelpFile>
+    </HelpFiles>
+
+    <Dictionary>
+<!-- Basic datatypes -->
+      <Include>CommonDataTypes.tod</Include>
+<!-- Module directive datatype -->
+      <Include>Modules.tod</Include> 
+<!-- Global IO structures datatypes -->
+      <Include>DT_BIN_TCL.tod</Include>
+<!-- Global configuration parameters datatypes -->       
+      <Include>DT_cfg_TCL.tod</Include>
+<!-- Clobal initialization tables datatypes -->
+      <Include>DT_ini_TCL.tod</Include>
+
+      <DataTypes>
+<!-- Local configuration parameters datatypes -->       
+<!-- Binary outputs -->
+        <DataType>
+          <Name>DT_OS-1401_DO</Name>
+          <SubItems>
+            <SubItem>
+              <Name>EDO0</Name>
+              <Type>BOOL</Type>
+            </SubItem>
+            <SubItem>
+              <Name>EDO1</Name>
+              <Type>BOOL</Type>
+            </SubItem>
+          </SubItems>          
+        </DataType>
+
+<!-- General -->
+        <DataType>
+          <Name>DT_OS-1401_OTH</Name>
+          <SubItems>
+            <SubItem>
+              <Name>REM</Name>
+              <Type>BOOL</Type>
+            </SubItem>
+          </SubItems>
+        </DataType>
+
+<!-- Initialization table datatype -->
+        <DataType>
+          <Name>_TTS_OS1401</Name> 
+          <SubItems>
+            <SubItem>
+              <Name>Head</Name>
+              <Type>_TTS_Head</Type>
+            </SubItem>  
+            <SubItem>
+              <Name>EDO0</Name>
+              <Type>USINT</Type>
+            </SubItem>
+            <SubItem>
+              <Name>EDO1</Name>
+              <Type>USINT</Type>
+            </SubItem>
+          </SubItems>
+        </DataType>
+
+<!-- I/O structure datatypes -->
+        <DataType>
+          <Name>DT_OS1401_OUT</Name>
+          <SubItems>
+            <SubItem>
+              <Name>DOS</Name>
+              <Type>TBIN_12DO</Type>
+            </SubItem>
+          </SubItems>
+        </DataType>
+
+      </DataTypes>
+
+<!-- Configuration objects -->
+      <Objects>
+        <Object index="#x8000" name="Binary_Outputs" type="DT_OS-1401_DO" access="rw">
+          <DisplayName>
+            <label lang="en">Binary outputs</label>
+            <label lang="cz">Binární výstupy</label>
+          </DisplayName>
+          <SubObjects>
+            <SubObject name="EDO0" access="rw">
+              <DisplayName>
+                <label lang="en">Enable binary outputs carry DO0 - DO7</label>
+                <label lang="cz">Zapnutí přenosu binárních výstupů DO0 - DO7</label>
+              </DisplayName>
+              <DefaultValue>1</DefaultValue>
+            </SubObject>
+            <SubObject name="EDO1" access="rw">
+              <DisplayName>
+                <label lang="en">Enable binary outputs carry DO8 - DO11</label>
+                <label lang="cz">Zapnutí přenosu binárních výstupů DO8 - DO11</label>
+              </DisplayName>
+              <DefaultValue>1</DefaultValue>
+            </SubObject>
+          </SubObjects>
+        </Object>
+
+        <Object index="#x8001" name="General" type="DT_OS-1401_OTH" access="rw">
+          <DisplayName>
+            <label lang="en">General</label>
+            <label lang="cz">Obecné</label>
+          </DisplayName>
+          <SubObjects>
+            <SubObject name="REM" access="rw">
+              <DisplayName>
+                <label lang="en">Enable ignoring module errors</label>
+                <label lang="cz">Povolit ignorování chyb modulu</label>
+              </DisplayName>
+              <DefaultValue>0</DefaultValue>
+            </SubObject>
+          </SubObjects>
+        </Object>
+
+<!-- I/O Data --> 
+        <Object index="#x7000" name="r{RACK}_p{POSITION}_OUT" type="DT_OS1401_OUT" access="rw"> 
+          <SubObjects>
+            <SubObject name="DOS" access="rw">
+              <DisplayName>
+                <label lang="en">DOS</label>   
+              </DisplayName>
+              <Enabled>(@Binary_Outputs.EDO0 == 1) || (@Binary_Outputs.EDO1 == 1)</Enabled>
+              <SubObjects>
+                <SubObject name="DO0" access="rw"> 
+                  <DefaultValue>0</DefaultValue>
+                  <Enabled>@Binary_Outputs.EDO0 == 1</Enabled>
+                  <Termination>
+                    <TerminalLabel>A6</TerminalLabel>
+                  </Termination>
+                </SubObject>
+                <SubObject name="DO1" access="rw"> 
+                  <DefaultValue>0</DefaultValue>
+                  <Enabled>@Binary_Outputs.EDO0 == 1</Enabled>
+                  <Termination>
+                    <TerminalLabel>A7</TerminalLabel>
+                  </Termination>
+                </SubObject>
+                <SubObject name="DO2" access="rw"> 
+                  <DefaultValue>0</DefaultValue>
+                  <Enabled>@Binary_Outputs.EDO0 == 1</Enabled>
+                  <Termination>
+                    <TerminalLabel>A8</TerminalLabel>
+                  </Termination>
+                </SubObject>
+                <SubObject name="DO3" access="rw"> 
+                  <DefaultValue>0</DefaultValue>
+                  <Enabled>@Binary_Outputs.EDO0 == 1</Enabled>
+                  <Termination>
+                    <TerminalLabel>A9</TerminalLabel>
+                  </Termination>
+                </SubObject>
+                <SubObject name="DO4" access="rw"> 
+                  <DefaultValue>0</DefaultValue>
+                  <Enabled>@Binary_Outputs.EDO0 == 1</Enabled>
+                  <Termination>
+                    <TerminalLabel>B2</TerminalLabel>
+                  </Termination>
+                </SubObject>
+                <SubObject name="DO5" access="rw"> 
+                  <DefaultValue>0</DefaultValue>
+                  <Enabled>@Binary_Outputs.EDO0 == 1</Enabled>
+                  <Termination>
+                    <TerminalLabel>B3</TerminalLabel>
+                  </Termination>
+                </SubObject>
+                <SubObject name="DO6" access="rw"> 
+                  <DefaultValue>0</DefaultValue>
+                  <Enabled>@Binary_Outputs.EDO0 == 1</Enabled>
+                  <Termination>
+                    <TerminalLabel>B4</TerminalLabel>
+                  </Termination>
+                </SubObject>
+                <SubObject name="DO7" access="rw"> 
+                  <DefaultValue>0</DefaultValue>
+                  <Enabled>@Binary_Outputs.EDO0 == 1</Enabled>
+                  <Termination>
+                    <TerminalLabel>B5</TerminalLabel>
+                  </Termination>
+                </SubObject>
+                <SubObject name="DO8" access="rw"> 
+                  <DefaultValue>0</DefaultValue>
+                  <Enabled>@Binary_Outputs.EDO1 == 1</Enabled>
+                  <Termination>
+                    <TerminalLabel>B6</TerminalLabel>
+                  </Termination>
+                </SubObject>
+                <SubObject name="DO9" access="rw"> 
+                  <DefaultValue>0</DefaultValue>
+                  <Enabled>@Binary_Outputs.EDO1 == 1</Enabled>
+                  <Termination>
+                    <TerminalLabel>B7</TerminalLabel>
+                  </Termination>
+                </SubObject>
+                <SubObject name="DO10" access="rw"> 
+                  <DefaultValue>0</DefaultValue>
+                  <Enabled>@Binary_Outputs.EDO1 == 1</Enabled>
+                  <Termination>
+                    <TerminalLabel>B8</TerminalLabel>
+                  </Termination>
+                </SubObject>
+                <SubObject name="DO11" access="rw"> 
+                  <DefaultValue>0</DefaultValue>
+                  <Enabled>@Binary_Outputs.EDO1 == 1</Enabled>
+                  <Termination>
+                    <TerminalLabel>B9</TerminalLabel>
+                  </Termination>
+                </SubObject>
+              </SubObjects>
+            </SubObject>
+          </SubObjects>
+        </Object>
+
+<!-- Initialization table object -->
+        <Object index="#x9000" name="r{RACK}_p{POSITION}_Table" type="_TTS_OS1401" access="rw">
+          <Comment>
+            <label lang="en">Initialization table of OS-1401 module</label>
+            <label lang="cz">Inicializační tabulka modulu OS-1401</label>
+          </Comment>
+          <SubObjects>
+            <SubObject name="Head" access="ro">
+              <SubObjects>
+                <SubObject name="ModulID" access="const">
+                  <DefaultValue>1401</DefaultValue>
+                </SubObject>
+                <SubObject name="Stat0" access="ro">
+                  <DefaultValue>00</DefaultValue>
+                  <ValueDependency>
+                    <When condition="@General.REM != 0">
+                      <Data>02</Data>
+                    </When>
+                  </ValueDependency>
+                </SubObject>
+                <SubObject name="Stat1" access="const">
+                  <DefaultValue>00</DefaultValue>
+                </SubObject> 
+              </SubObjects>
+            </SubObject> 
+            <SubObject name="EDO0" access="ro">
+              <DefaultData>80</DefaultData>
+              <ValueDependency>
+                <When condition="@Binary_Outputs.EDO0 == 0">
+                  <Data>00</Data>
+                </When>
+              </ValueDependency>
+            </SubObject>
+            <SubObject name="EDO1" access="ro">
+              <DefaultData>80</DefaultData>
+              <ValueDependency>
+                <When condition="@Binary_Outputs.EDO1 == 0">
+                  <Data>00</Data>
+                </When>
+              </ValueDependency>
+            </SubObject>
+          </SubObjects>
+        </Object>
+
+<!-- OS-1401 module declaration -->
+        <Object index="#xA000" name="r{RACK}_p{POSITION}_ModulE1" type="TModulE1" access="rw"> <!-- if="_PLCTYPE_ &lt; 11" -->
+          <Comment>
+            <label lang="en">OS-1401 module declaration</label>
+            <label lang="cz">Deklarace modulu OS-1401</label>
+          </Comment>
+          <Excluded>&quot;{SYSTEM}&quot; != &quot;FOXTROT&quot;</Excluded>
+          <SubObjects>
+            <SubObject name="version" access="ro">
+              <DefaultValue>1</DefaultValue>
+            </SubObject>
+            <SubObject name="rack" access="ro">   
+              <MacroValue>{RACK}</MacroValue>
+            </SubObject>
+            <SubObject name="address" access="ro">   
+              <MacroValue>{POSITION}</MacroValue>
+            </SubObject>
+            <SubObject name="LogAddress" access="ro">
+              <DefaultValue>0</DefaultValue>
+            </SubObject>
+            <SubObject name="LenInputs" access="ro">
+              <DefaultValue>0</DefaultValue>
+            </SubObject>
+            <SubObject name="LenOutputs" access="ro">
+              <DefaultValue>0</DefaultValue>
+            </SubObject>
+            <SubObject name="OffsetInputs" access="ro">
+              <DefaultValue>0</DefaultValue>
+            </SubObject>
+            <SubObject name="OffsetOutputs" access="ro">
+              <MacroValue>__offset(r{RACK}_p{POSITION}_OUT)</MacroValue>
+            </SubObject>
+            <SubObject name="InitTable" access="ro">
+              <MacroValue>__indx(r{RACK}_p{POSITION}_Table)</MacroValue>
+            </SubObject>  
+          </SubObjects>
+        </Object>
+        
+<!-- =============================================================== -->
+<!-- Module declaration for CP-2xxx --> 
+<!-- =============================================================== -->
+
+        <!-- inicializacni tabulka driveru                           -->
+        <!-- Indexy inicializacnich objektu:                         -->
+        <!-- $01 - Nazev zarizeni {PRODUCT_NAME_LEN}{PRODUCT_NAME}   -->
+        <!-- $02 - Alias zarizeni {DEVICE_ALIAS_LEN}{DEVICE_ALIAS}   -->
+        <!-- $03 - Konverze vstupu {CONV_IN_LEN},{$CONV_IN_ARRAY}    -->
+        <!-- $04 - Konverze vystupu {CONV_OUT_LEN},{$CONV_OUT_ARRAY} -->
+        
+        <Object index="#x9001" name="r{RACK}_p{POSITION}_DriverInit" type="BYTE" access="rw">
+          <Comment>
+            <label lang="cz">Inicializacni tabulka driveru</label>
+            <label lang="en">Initialization table of driver</label>
+          </Comment>
+          <Excluded>&quot;{SYSTEM}&quot; != &quot;FOXTROT2&quot;</Excluded>
+          <MacroValue>$01,{PRODUCT_NAME_LEN},'{PRODUCT_NAME}',\n$02,{DEVICE_ALIAS_LEN},'{DEVICE_ALIAS}',\n$00</MacroValue>
+        </Object>
+                
+        <Object index="#xA001" name="r{RACK}_p{POSITION}_ModulE2" type="TModulE2" access="rw"> <!-- if="_PLCTYPE_ &gt; 10" -->
+          <Comment>
+            <label lang="en">OS-1401 module declaration</label>
+            <label lang="cz">Deklarace modulu OS-1401</label>
+          </Comment>
+          <Excluded>&quot;{SYSTEM}&quot; != &quot;FOXTROT2&quot;</Excluded>
+          <SubObjects> 
+            <SubObject name="version" access="ro">   
+              <DefaultValue>2</DefaultValue>            
+            </SubObject>  
+            <SubObject name="hwCode" access="ro">   
+              <DefaultValue>1401</DefaultValue>            
+            </SubObject>
+            <SubObject name="busId" access="ro">   
+              <MacroValue>${$RACK}</MacroValue>
+            </SubObject>
+            <SubObject name="address" access="ro">   
+              <MacroValue>{POSITION}</MacroValue>
+            </SubObject>
+            <SubObject name="port" access="ro">   
+              <DefaultValue>9</DefaultValue>            
+            </SubObject>
+            <SubObject name="lenInputs" access="ro">   
+              <DefaultValue>0</DefaultValue>            
+            </SubObject>
+            <SubObject name="lenOutputs" access="ro">   
+              <DefaultValue>0</DefaultValue>            
+            </SubObject>
+            <SubObject name="offsetInputs" access="ro">
+              <DefaultValue>0</DefaultValue>
+            </SubObject>  
+            <SubObject name="offsetOutputs" access="ro">
+              <MacroValue>__offset(r{RACK}_p{POSITION}_OUT)</MacroValue>
+            </SubObject>
+            <SubObject name="initTable" access="ro">
+              <MacroValue>__indx(r{RACK}_p{POSITION}_Table)</MacroValue>
+            </SubObject>  
+            <SubObject name="driverInitTable" access="ro">
+              <MacroValue>__indx(r{RACK}_p{POSITION}_DriverInit)</MacroValue>
+            </SubObject>  
+          </SubObjects>
+        </Object>
+
+      </Objects>
+    </Dictionary>
+
+<!-- Hardware description -->
+    <Hardware>
+      <Terminals>
+        <Terminal label="A1" purpose="TCL2+">
+          <Description>
+            <label lang="en">system bus TCL2</label>
+            <label lang="cz">systémová sběrnice TCL2</label>
+          </Description>
+        </Terminal> 
+        <Terminal label="A2" purpose="TCL2–">
+          <Description>
+            <label lang="en">system bus TCL2</label>
+            <label lang="cz">systémová sběrnice TCL2</label>
+          </Description>
+        </Terminal> 
+        <Terminal label="A3" purpose="GND">
+          <Description>
+            <label lang="en">module ground</label>
+            <label lang="cz">zem modulu</label>
+          </Description>
+        </Terminal> 
+        <Terminal label="A4" purpose="+24V">
+          <Description>
+            <label lang="en">power</label>
+            <label lang="cz">napájení</label>
+          </Description>
+        </Terminal> 
+        <Terminal label="A5" purpose="COM1">
+          <Description>
+            <label lang="cz">common conductor of outputs DO0 - DO3</label>
+            <label lang="cz">společný vodič pro vstupy DO0 - DO3</label>
+          </Description>
+        </Terminal> 
+        <Terminal label="A6" purpose="DO0">
+          <Description>
+            <label lang="en">binary output DO0</label>
+            <label lang="cz">binární výstup DO0</label>
+          </Description>
+          <InConnectionWith>A5</InConnectionWith>
+        </Terminal>
+        <Terminal label="A7" purpose="DO1">
+          <Description>
+            <label lang="en">binary output DO1</label>
+            <label lang="cz">binární výstup DO1</label>
+          </Description>
+          <InConnectionWith>A5</InConnectionWith>
+        </Terminal>
+        <Terminal label="A8" purpose="DO2">
+          <Description>
+            <label lang="en">binary output DO2</label>
+            <label lang="cz">binární výstup DO2</label>
+          </Description>
+          <InConnectionWith>A5</InConnectionWith>
+        </Terminal>
+        <Terminal label="A9" purpose="DO3">
+          <Description>
+            <label lang="en">binary output DO3</label>
+            <label lang="cz">binární výstup DO3</label>
+          </Description>
+          <InConnectionWith>A5</InConnectionWith>
+        </Terminal> 
+        <Terminal label="B1" purpose="COM2">
+          <Description>
+            <label lang="cz">common conductor of outputs DO4 - DO11</label>
+            <label lang="cz">společný vodič pro výstupy DO4 - DO11</label>
+          </Description>
+        </Terminal> 
+        <Terminal label="B2" purpose="DO4">
+          <Description>
+            <label lang="en">binary output DO4</label>
+            <label lang="cz">binární výstup DO4</label>
+          </Description>
+          <InConnectionWith>B1</InConnectionWith>
+        </Terminal>
+        <Terminal label="B3" purpose="DO5">
+          <Description>
+            <label lang="en">binary output DO5</label>
+            <label lang="cz">binární výstup DO5</label>
+          </Description> 
+          <InConnectionWith>B1</InConnectionWith>
+        </Terminal>
+        <Terminal label="B4" purpose="DO6">
+          <Description>
+            <label lang="en">binary output DO6</label>
+            <label lang="cz">binární výstup DO6</label>
+          </Description> 
+          <InConnectionWith>B1</InConnectionWith>
+        </Terminal>
+        <Terminal label="B5" purpose="DO7">
+          <Description>
+            <label lang="en">binary output DO7</label>
+            <label lang="cz">binární výstup DO7</label>
+          </Description>
+          <InConnectionWith>B1</InConnectionWith>
+        </Terminal>
+        <Terminal label="B6" purpose="DO8"> 
+          <Description>
+            <label lang="en">binary output DO8</label>
+            <label lang="cz">binární výstup DO8</label>
+          </Description>
+          <InConnectionWith>B1</InConnectionWith>
+        </Terminal>
+        <Terminal label="B7" purpose="DO9">
+          <Description>
+            <label lang="en">binary output DO9</label>
+            <label lang="cz">binární výstup DO9</label>
+          </Description>
+          <InConnectionWith>B1</InConnectionWith>
+        </Terminal>
+        <Terminal label="B8" purpose="DO10">
+          <Description>
+            <label lang="en">binary output DO10</label>
+            <label lang="cz">binární výstup DO10</label>
+          </Description>
+          <InConnectionWith>B1</InConnectionWith>
+        </Terminal>
+        <Terminal label="B9" purpose="DO11">
+          <Description>
+            <label lang="en">binary output DO11</label>
+            <label lang="cz">binární výstup DO11</label>
+          </Description>
+          <InConnectionWith>B1</InConnectionWith>
+        </Terminal>
+      </Terminals>
+    </Hardware>
+  </Device>
+</TecoDescriptor>
+                       

@@ -1,0 +1,789 @@
+(*` {CSY}Knihovna vývojového systému Mosaic{ENU}Mosaic IDE library *)
+(*` {CSY}Jméno souboru{ENU}File name{} : D:\TecoUserLibs\EncryptLib_V12_20160923.mlb *)
+(*` {CSY}Knihovna : EncryptLib{ENU}Library : EncryptLib{} 1.2 *)
+(*` {CSY}Autor{ENU}Author{} : Teco a.s. *)
+(*` {CSY}Autorská práva{ENU}Copyright{} : (c) 2016 Teco a.s. *)
+(*` {CSY}Verze IEC pøekladaèe{ENU}IEC compiler version{} : 3.11.8.1 *)
+(*` {CSY}Verze assembleru{ENU}Assembler version{} : 4.3.00 *)
+
+//{Knihovna : EncryptLib 1.2  }
+(*` {CSY}Historie{ENU}History{}: *)
+(*`
+{CSY}
+v1.0 22.06.2014 nem první verze knihovny
+                    funkce: AES128_encrypt(), AES128_decrypt(), RC4(), 
+                            SHA1_hash(), Base64_encode(), Base64_decode()
+                    je tøeba Foxtrot firmware v8.8 nebo vyšší 
+v1.1 19.01.2016 nem pøidána funkce SHA256_hash(), která potøebuje 
+                    Foxtrot firmware v9.7 nebo vyšší
+v1.2 23.09.2016 byd pøidána funkce Base64_encode_string a Base64_encode_ptr_string pro kódování textových øetìzcù a dat do base64 øetìzcù
+
+{ENU}
+v1.0 2014-06-22 nem first version of library
+                    functions: AES128_encrypt() and AES128_decrypt(),  RC4(),
+                               SHA1_hash(), Base64_encode(), Base64_decode() 
+                    Foxtrot firmware v8.8 or higher is needed
+v1.1 2016-01-19 nem added function SHA256_hash(), which needs
+                    Foxtrot firmware v9.7 or higher
+v1.2 2016-09-23 byd added function Base64_encode_string and Base64_encode_ptr_string for coding text and data strings to base64 strings
+*)
+
+(*----------------------------------------------------------------------------*)
+// {LIBRARY="LOCALLIB\SYSLIB_V33_20130621.MLB"}
+
+__DECL FUNCTION AES128_encrypt : uint
+(*`{CSY} AES-128 CBC šifrování
+   
+   {ENU} AES-128 CBC encryption*)
+  VAR_INPUT
+    dataLen          : uint;  (*`{ENU} Length of data in bytes (must be divisible by 16)  {CSY} délka vstupních dat v bytech (musí být dìlitelná 16)*)
+    bufferLen        : uint;  (*`{ENU} Size of output buffer in bytes                     {CSY} velikost datového bufferu v bytech*)
+  END_VAR
+  VAR_IN_OUT
+    key              : usint;  (*`{ENU} Encryption key (16 bytes)                          {CSY} šifrovací klíè (16 bytù)*)
+    iv               : usint;  (*`{ENU} Encryption init vector for CBC mode (16 bytes)     {CSY} inicializaèní vektor (16 bytù)*)
+    data             : usint;  (*`{ENU} Data to encrypt in-place                           {CSY} šifrovaná data (vstup i výstup)*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION AES128_decrypt : uint
+(*`{CSY} AES-128 CBC dešifrování
+   
+   {ENU} AES-128 CBC decryption*)
+  VAR_INPUT
+    dataLen          : uint;  (*`{ENU} Length of data in bytes (must be divisible by 16)  {CSY} délka vstupních dat v bytech (musí být dìlitelná 16)*)
+  END_VAR
+  VAR_IN_OUT
+    key              : usint;  (*`{ENU} Decryption key (16 bytes)                          {CSY} dešifrovací klíè (16 bytù)*)
+    iv               : usint;  (*`{ENU} Decryption init vector for CBC mode (16 bytes)     {CSY} inicializaèní vektor (16 bytù)*)
+    data             : usint;  (*`{ENU} Data to decrypt in-place                           {CSY} dešifrovaná data (vstup i výstup)*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION RC4 : uint
+(*`{CSY} RC4 šifrování / dešifrování
+
+   {ENU} RC4 encryption / decryption*)
+  VAR_INPUT
+    dataLen          : uint;  (*`{ENU} Length of data in bytes                                {CSY} délka vstupních dat v bytech*)
+    keyLen           : uint;  (*`{ENU} Length of the encryption/decryption key in bytes       {CSY} délka šifrovacího / dešifrovacího klíèe v bytech*)
+    skip             : uint;  (*`{ENU} How many bytes from the RC4 generator are skipped      {CSY} kolik bytù RC4 generátoru je pøeskoèeno*)
+  END_VAR
+  VAR_IN_OUT
+    key              : usint;  (*`{ENU} Encryption / decryption key                            {CSY} šifrovací / dešifrovací klíè*)
+    data             : usint;  (*`{ENU} Data to encrypt / decrypt in-place                     {CSY} šifrovaná data (vstup i výstup)*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION Base64_encode : uint
+(*`{CSY} Zakódování binárních dat pomocí ASCII znakù
+         Funkce vrací velikost zakódovaného textu v bytech
+   {ENU} Binary-to-text encoding
+         Function returns size of encoded text in bytes*)
+  VAR_INPUT
+    dataLen          : uint;  (*`{ENU} Length of data in bytes          {CSY} délka vstupních dat v bytech*)
+    bufferLen        : uint;  (*`{ENU} Size of output buffer in bytes   {CSY} velikost datového bufferu v bytech*)
+  END_VAR
+  VAR_IN_OUT
+    data             : usint;  (*`{ENU} Data to encode                   {CSY} vstupní data*)
+    out              : usint;  (*`{ENU} encoded output                   {CSY} zakódovaný text*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION Base64_decode : uint
+(*`{CSY} Dekódování ASCII textu na binární data
+         Funkce vrací velikost dekódovaných dat v bytech
+   {ENU} text-to-binary decoding
+         Function returns size of decoded data in bytes*)
+  VAR_INPUT
+    dataLen          : uint;  (*`{ENU} Length of data in bytes     {CSY} délka vstupních dat v bytech*)
+  END_VAR
+  VAR_IN_OUT
+    data             : usint;  (*`{ENU} Data to decode              {CSY} vstupní text*)
+    out              : usint;  (*`{ENU} decoded output              {CSY} dekódovaná data*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION SHA1_hash : uint
+(*`{CSY} Secure Hash Algorithm
+         Funkce vytvárí ze vstupních dat hash (otisk) fixní délky 160 bitù reprezentovaný jako øetìzec hexadecimálních cifer (40 znakù).
+         Funkce vrací velikost vytvoøeného otisku v bytech
+         Velikost promìnné hash musí být minimálnì 41 bytù, jinak funkce vrátí 0
+   {ENU} Secure Hash Algorithm
+         SHA1_hash produces a 160-bit hash value which is rendered to output as a string of hexadecimal numbers, 40 digits long
+         Function returns size of produced hash in bytes
+         Size of hash variable must be 41 bytes or more. In other cases function returns 0.*)
+  VAR_INPUT
+    dataLen          : uint;  (*`{ENU} Length of data in bytes          {CSY} délka vstupních dat v bytech*)
+    bufferLen        : uint;  (*`{ENU} Size of output buffer in bytes   {CSY} velikost bufferu pro hash v bytech (minimálnì 41 bytù)*)
+  END_VAR
+  VAR_IN_OUT
+    data             : usint;  (*`{ENU} Data to encode                   {CSY} vstupní data*)
+    hash             : string [80];  (*`{ENU} output                           {CSY} výsledný hash*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION SHA256_hash : uint
+(*`{CSY} Secure Hash Algorithm SHA256
+         Funkce vytvárí ze vstupních dat hash (otisk) fixní délky 256 bitù reprezentovaný jako øetìzec hexadecimálních cifer (64 znakù).
+         Funkce vrací velikost vytvoøeného otisku v bytech
+         Velikost promìnné hash musí být minimálnì 65 bytù, jinak funkce vrátí 0
+   {ENU} Secure Hash Algorithm SHA256
+         SHA1_hash produces a 256-bit hash value which is rendered to output as a string of hexadecimal numbers, 64 digits long
+         Function returns size of produced hash in bytes
+         Size of hash variable must be 65 bytes or more. In other cases function returns 0.*)
+  VAR_INPUT
+    dataLen          : uint;  (*`{ENU} Length of data in bytes          {CSY} délka vstupních dat v bytech*)
+    bufferLen        : uint;  (*`{ENU} Size of output buffer in bytes   {CSY} velikost bufferu pro hash v bytech (minimálnì 65 bytù)*)
+  END_VAR
+  VAR_IN_OUT
+    data             : usint;  (*`{ENU} Data to encode                   {CSY} vstupní data*)
+    hash             : string [80];  (*`{ENU} output                           {CSY} výsledný hash*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION HMAC_SHA256 : uint
+(*`{CSY} Secure Hash Algorithm HMAC-SHA256
+         Funkce vytvárí ze vstupních dat hash (otisk) fixní délky 256 bitù reprezentovaný jako pole 32 bytù.
+         Funkce vrací velikost vytvoøeného otisku v bytech
+         Velikost promìnné hash musí být minimálnì 32 bytù, jinak funkce vrátí 0
+   {ENU} Secure Hash Algorithm HMAC-SHA256
+         HMAC-SHA256 produces a 256-bit hash value which is rendered to output as byte array, 32 bytes long
+         Function returns size of produced hash in bytes
+         Size of hash variable must be 32 bytes or more. In other cases function returns 0.*)
+  VAR_INPUT
+    keyLen           : uint;  (*`{ENU} Length of key in bytes           {CSY} délka klíèe v bytech*)
+    dataLen          : uint;  (*`{ENU} Length of data in bytes          {CSY} délka vstupních dat v bytech*)
+    bufferLen        : uint;  (*`{ENU} Size of output buffer in bytes   {CSY} velikost bufferu pro hash v bytech (minimálnì 32 bytù)*)
+  END_VAR
+  VAR_IN_OUT
+    key              : usint;  (*`{ENU} key code                         {CSY} klíè*)
+    data             : usint;  (*`{ENU} Data to encode                   {CSY} vstupní data*)
+    hash             : string [80];  (*`{ENU} output                           {CSY} výsledný hash*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION Base64_encode_string : string
+(*`{CSY}Kóduje ASCII String na Base64 String
+  {ENU}Encode ASCII String to Base64 String*)
+  VAR_INPUT
+    data             : string [60];  (*`{CSY}vstupní ASCII øetìzec o max. délce 60 znakù{ENU}input ASCII string of maximum length 60 characters*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION Base64_encode_ptr_string : string
+(*`{CSY}Kóduje ASCII String na Base64 String
+  {ENU}Encode ASCII String to Base64 String*)
+  VAR_INPUT
+    data             : PTR_TO usint;  (*`{CSY}pointer to first byte of data to encode {ENU}ukazatel na první byte dat ke kódování*)
+    dataLen          : uint;  (*`{ENU}length of data in bytes (max. 60)       {CSY}délka vstupních dat v bytech (max. 60)*)
+  END_VAR
+END_FUNCTION
+
+
+
+#srcfile 'C:\TECOLIBSRC\ENCRYPTLIB\ENCRYPTLIB\AES128_ENCRYPT.ST'
+#pou AES128_encrypt
+#srcline 19 ;FUNCTION AES128_encrypt : UINT
+
+#struct AES128_encrypt__temp__
+  uint aesLen,
+  uint tmp
+P     61
+AES128_encrypt_L0:
+ LINK __SizeOf(AES128_encrypt__temp__)
+ NXT
+; Initialize - variables
+ LD   0
+ WRX  __fc__AES128_encrypt
+; End initialize - variables
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 41 ;  aesLen := (dataLen / 16) * 16;
+ LDX  dataLen
+#debug uint dataLen
+ LD   uint 16
+ DIVL
+ AND  $FFFF
+ LD   uint 16
+ MUL
+ AND  $FFFF
+ WRY  aesLen
+#debug_left uint aesLen
+#srcline 42 ;  IF dataLen > aesLen THEN aesLen := aesLen + 16; END_IF;
+ LDX  dataLen
+#debug uint dataLen
+ LDY  aesLen
+#debug uint aesLen
+ GT
+ JMC  AES128_encrypt_L1
+ LDY  aesLen
+#debug uint aesLen
+ LD   uint 16
+ ADD
+ AND  $FFFF
+ WRY  aesLen
+#debug_left uint aesLen
+AES128_encrypt_L1:
+#srcline 43 ;  IF aesLen > bufferLen THEN
+ LDY  aesLen
+#debug uint aesLen
+ LDX  bufferLen
+#debug uint bufferLen
+ GT
+ JMC  AES128_encrypt_L3
+#srcline 44 ;    AES128_encrypt := 0; RETURN;   // malo mista v bufferu
+ LD   uint 0
+ WRX  __fc__AES128_encrypt
+#debug_left uint AES128_encrypt
+ JMP  AES128_encrypt_RET
+#srcline 45 ;  END_IF;
+AES128_encrypt_L3:
+#srcline 46 ;  {asm}
+#srcline 47
+    LDX      key
+#srcline 48
+    LDX      iv
+#srcline 49
+    LDX      data
+#srcline 50
+    LDY      aesLen
+#srcline 51
+    LD       1
+#srcline 52
+    SYS      85         ; SYS 85, subcode 1
+#srcline 53
+    WRY      tmp        ; delka vystupnich dat
+#srcline 54 ;  {end_asm}
+#srcline 55 ;  AES128_encrypt := tmp;
+ LDY  tmp
+#debug uint tmp
+ WRX  __fc__AES128_encrypt
+#debug_left uint AES128_encrypt
+#srcline 56 ;END_FUNCTION
+AES128_encrypt_RET:
+ PRV  
+ LDX  __fc__AES128_encrypt
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou AES128_decrypt
+#srcline 66 ;FUNCTION AES128_decrypt : UINT
+
+#struct AES128_decrypt__temp__
+  uint tmp
+P     61
+AES128_decrypt_L0:
+ LINK __SizeOf(AES128_decrypt__temp__)
+ NXT
+; Initialize - variables
+ LD   0
+ WRX  __fc__AES128_decrypt
+; End initialize - variables
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 86 ;  IF MOD(IN1 := dataLen, IN2 := 16) <> 0 THEN
+ LDX  dataLen
+#debug uint dataLen
+ LD   uint 16
+ MOD
+ AND  $FFFF
+ LD   uint 0
+ EQ
+ NEG
+ JMC  AES128_decrypt_L1
+#srcline 87 ;    AES128_decrypt := 0; RETURN;   // delka neni modulo 16
+ LD   uint 0
+ WRX  __fc__AES128_decrypt
+#debug_left uint AES128_decrypt
+ JMP  AES128_decrypt_RET
+#srcline 88 ;  END_IF;
+AES128_decrypt_L1:
+#srcline 89 ;  {asm}
+#srcline 90
+    LDX      key
+#srcline 91
+    LDX      iv
+#srcline 92
+    LDX      data
+#srcline 93
+    LDX      dataLen
+#srcline 94
+    LD       2
+#srcline 95
+    SYS      85         ; SYS 85, subcode 2
+#srcline 96
+    WRY      tmp        ; delka vystupnich dat
+#srcline 97 ;  {end_asm}
+#srcline 98 ;  AES128_decrypt := tmp;
+ LDY  tmp
+#debug uint tmp
+ WRX  __fc__AES128_decrypt
+#debug_left uint AES128_decrypt
+#srcline 99 ;END_FUNCTION
+AES128_decrypt_RET:
+ PRV  
+ LDX  __fc__AES128_decrypt
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou RC4
+#srcline 110 ;FUNCTION RC4 : UINT
+
+#struct RC4__temp__
+  uint tmp
+P     61
+RC4_L0:
+ LINK __SizeOf(RC4__temp__)
+ NXT
+; Initialize - variables
+ LD   0
+ WRX  __fc__RC4
+; End initialize - variables
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 130 ;begin
+#srcline 131 ;  {asm}
+#srcline 132
+    LDX      key
+#srcline 133
+    LDX      keyLen
+#srcline 134
+    LDX      skip
+#srcline 135
+    LDX      data
+#srcline 136
+    LDX      dataLen
+#srcline 137
+    LD       3
+#srcline 138
+    SYS      85         ; SYS 85, subcode 3
+#srcline 139
+    WRY      tmp        ; delka vystupnich dat
+#srcline 140 ;  {end_asm}
+#srcline 141 ;  RC4 := tmp;
+ LDY  tmp
+#debug uint tmp
+ WRX  __fc__RC4
+#debug_left uint RC4
+#srcline 142 ;END_FUNCTION
+ PRV  
+ LDX  __fc__RC4
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\ENCRYPTLIB\ENCRYPTLIB\BASE64_ENCRYPT.ST'
+#pou Base64_encode
+#srcline 2 ;FUNCTION Base64_encode : UINT
+
+#struct Base64_encode__temp__
+  uint baseLen,
+  uint tmp
+P     61
+Base64_encode_L0:
+ LINK __SizeOf(Base64_encode__temp__)
+ NXT
+; Initialize - variables
+ LD   0
+ WRX  __fc__Base64_encode
+; End initialize - variables
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 24 ;  baseLen := ((dataLen+2)/3*4) +1;             // +1 za koncovou nulu
+ LDX  dataLen
+#debug uint dataLen
+ LD   uint 2
+ ADD
+ AND  $FFFF
+ LD   uint 3
+ DIVL
+ AND  $FFFF
+ LD   uint 4
+ MUL
+ AND  $FFFF
+ LD   uint 1
+ ADD
+ AND  $FFFF
+ WRY  baseLen
+#debug_left uint baseLen
+#srcline 25 ;  IF baseLen > bufferLen THEN
+ LDY  baseLen
+#debug uint baseLen
+ LDX  bufferLen
+#debug uint bufferLen
+ GT
+ JMC  Base64_encode_L1
+#srcline 26 ;    Base64_encode := 0; RETURN;
+ LD   uint 0
+ WRX  __fc__Base64_encode
+#debug_left uint Base64_encode
+ JMP  Base64_encode_RET
+#srcline 27 ;  END_IF;
+Base64_encode_L1:
+#srcline 28 ;  {asm}
+#srcline 29
+    LDX      data           ; plaintext_in
+#srcline 30
+    LDX      dataLen        ; length_in
+#srcline 31
+    LDX      out            ; code_out
+#srcline 32
+    LD       5
+#srcline 33
+    SYS      85             ; SYS 85, subcode 4
+#srcline 34
+    WRY      tmp            ; delka vystupnich dat
+#srcline 35 ;  {end_asm}
+#srcline 36 ;  Base64_encode := tmp;
+ LDY  tmp
+#debug uint tmp
+ WRX  __fc__Base64_encode
+#debug_left uint Base64_encode
+#srcline 37 ;END_FUNCTION
+Base64_encode_RET:
+ PRV  
+ LDX  __fc__Base64_encode
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou Base64_decode
+#srcline 40 ;FUNCTION Base64_decode : UINT
+
+#struct Base64_decode__temp__
+  uint tmp
+P     61
+Base64_decode_L0:
+ LINK __SizeOf(Base64_decode__temp__)
+ NXT
+; Initialize - variables
+ LD   0
+ WRX  __fc__Base64_decode
+; End initialize - variables
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 59 ;begin
+#srcline 60 ;  {asm}
+#srcline 61
+    LDX      data           ; code_in
+#srcline 62
+    LDX      dataLen        ; length_in
+#srcline 63
+    LDX      out            ; plaintext_out
+#srcline 64
+    LD       6
+#srcline 65
+    SYS      85             ; SYS 85, subcode 5
+#srcline 66
+    WRY      tmp            ; delka vystupnich dat
+#srcline 67 ;  {end_asm}
+#srcline 68 ;  Base64_decode := tmp;
+ LDY  tmp
+#debug uint tmp
+ WRX  __fc__Base64_decode
+#debug_left uint Base64_decode
+#srcline 69 ;END_FUNCTION
+ PRV  
+ LDX  __fc__Base64_decode
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\ENCRYPTLIB\ENCRYPTLIB\SHA1_HASH.ST'
+#pou SHA1_hash
+#srcline 1 ;FUNCTION SHA1_hash : UINT
+
+#struct SHA1_hash__temp__
+  uint tmp
+P     61
+SHA1_hash_L0:
+ LINK __SizeOf(SHA1_hash__temp__)
+ NXT
+; Initialize - variables
+ LD   0
+ WRX  __fc__SHA1_hash
+; End initialize - variables
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 26 ;  IF bufferLen < 41 THEN
+ LDX  bufferLen
+#debug uint bufferLen
+ LD   uint 41
+ LT
+ JMC  SHA1_hash_L1
+#srcline 27 ;    SHA1_hash := 0; RETURN;
+ LD   uint 0
+ WRX  __fc__SHA1_hash
+#debug_left uint SHA1_hash
+ JMP  SHA1_hash_RET
+#srcline 28 ;  END_IF;
+SHA1_hash_L1:
+#srcline 29 ;  {asm}
+#srcline 30
+    LDX      data           ; *input
+#srcline 31
+    LDX      hash           ; *output
+#srcline 32
+    LDX      dataLen        ; DataLen
+#srcline 33
+    LD       4
+#srcline 34
+    SYS      85             ; SYS 85, subcode 4
+#srcline 35
+    WRY      tmp            ; delka vystupnich dat
+#srcline 36 ;  {end_asm}
+#srcline 37 ;  SHA1_hash := 40;
+ LD   uint 40
+ WRX  __fc__SHA1_hash
+#debug_left uint SHA1_hash
+#srcline 38 ;END_FUNCTION
+SHA1_hash_RET:
+ PRV  
+ LDX  __fc__SHA1_hash
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\ENCRYPTLIB\ENCRYPTLIB\SHA256_HASH.ST'
+#pou SHA256_hash
+#srcline 1 ;FUNCTION SHA256_hash : UINT
+
+#struct SHA256_hash__temp__
+  uint tmp
+P     61
+SHA256_hash_L0:
+ LINK __SizeOf(SHA256_hash__temp__)
+ NXT
+; Initialize - variables
+ LD   0
+ WRX  __fc__SHA256_hash
+; End initialize - variables
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 26 ;  IF bufferLen < 41 THEN
+ LDX  bufferLen
+#debug uint bufferLen
+ LD   uint 41
+ LT
+ JMC  SHA256_hash_L1
+#srcline 27 ;    SHA256_hash := 0; RETURN;
+ LD   uint 0
+ WRX  __fc__SHA256_hash
+#debug_left uint SHA256_hash
+ JMP  SHA256_hash_RET
+#srcline 28 ;  END_IF;
+SHA256_hash_L1:
+#srcline 29 ;  {asm}
+#srcline 30
+    LDX      data           ; *input
+#srcline 31
+    LDX      hash           ; *output
+#srcline 32
+    LDX      dataLen        ; DataLen
+#srcline 33
+    LD       7
+#srcline 34
+    SYS      85             ; SYS 85, subcode 7
+#srcline 35
+    WRY      tmp            ; delka vystupnich dat
+#srcline 36 ;  {end_asm}
+#srcline 37 ;  SHA256_hash := 64;
+ LD   uint 64
+ WRX  __fc__SHA256_hash
+#debug_left uint SHA256_hash
+#srcline 38 ;END_FUNCTION
+SHA256_hash_RET:
+ PRV  
+ LDX  __fc__SHA256_hash
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\ENCRYPTLIB\ENCRYPTLIB\HMAC_SHA256.ST'
+#pou HMAC_SHA256
+#srcline 1 ;FUNCTION HMAC_SHA256 : UINT
+
+#struct HMAC_SHA256__temp__
+  uint tmp
+P     61
+HMAC_SHA256_L0:
+ LINK __SizeOf(HMAC_SHA256__temp__)
+ NXT
+; Initialize - variables
+ LD   0
+ WRX  __fc__HMAC_SHA256
+; End initialize - variables
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 28 ;  IF bufferLen < 32 THEN
+ LDX  bufferLen
+#debug uint bufferLen
+ LD   uint 32
+ LT
+ JMC  HMAC_SHA256_L1
+#srcline 29 ;    HMAC_SHA256 := 0; RETURN;
+ LD   uint 0
+ WRX  __fc__HMAC_SHA256
+#debug_left uint HMAC_SHA256
+ JMP  HMAC_SHA256_RET
+#srcline 30 ;  END_IF;
+HMAC_SHA256_L1:
+#srcline 31 ;  {asm}
+#srcline 32
+    LDX      key            ; *key
+#srcline 33
+    LDX      keyLen         ; keyLen
+#srcline 34
+    LDX      data           ; *input
+#srcline 35
+    LDX      dataLen        ; dataLen
+#srcline 36
+    LDX      hash           ; *output
+#srcline 37
+    LD       10
+#srcline 38
+    SYS      85             ; SYS 85, subcode 10
+#srcline 39
+    WRY      tmp            ; delka vystupnich dat
+#srcline 40 ;  {end_asm}
+#srcline 41 ;  HMAC_SHA256 := tmp;  // 32
+ LDY  tmp
+#debug uint tmp
+ WRX  __fc__HMAC_SHA256
+#debug_left uint HMAC_SHA256
+#srcline 42 ;END_FUNCTION
+HMAC_SHA256_RET:
+ PRV  
+ LDX  __fc__HMAC_SHA256
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\ENCRYPTLIB\ENCRYPTLIB\BASE64_ENCODE_STRING.ST'
+#pou Base64_encode_string
+#srcline 1 ;FUNCTION Base64_encode_string : STRING[80]
+
+#struct Base64_encode_string__temp__
+  uint dataLen  ; {ENU} length of data in bytes          {CSY} délka vstupních dat v bytech
+P     61
+Base64_encode_string_L0:
+ LINK __SizeOf(Base64_encode_string__temp__)
+ NXT
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 14 ;  datalen := LEN(data);
+ LEAX data
+#debug string data
+ SLEN 
+ WRY  datalen
+#debug_left uint datalen
+#srcline 15 ;//  baseLen := ((dataLen+2)/3*4) +1;             // +1 za koncovou nulu
+#srcline 16 ;  
+#srcline 17 ;  {asm}
+#srcline 18
+    LEAX     data             ; plaintext_in
+#srcline 19
+    LDY      dataLen        ; length_in
+#srcline 20
+    LEAX     __FC__Base64_encode_string            ; code_out
+#srcline 21
+    LD       5
+#srcline 22
+    SYS      85             ; SYS 85, subcode 4
+#srcline 23
+;    WRY      tmp            ; delka vystupnich dat
+#srcline 24 ;  {end_asm}
+#srcline 25 ;//  Base64_encode := tmp;
+#srcline 26 ;END_FUNCTION
+ PRV  
+ LEAX  __fc__Base64_encode_string
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\ENCRYPTLIB\ENCRYPTLIB\BASE64_ENCODE_PTR_STRING.ST'
+#pou Base64_encode_ptr_string
+#srcline 1 ;FUNCTION Base64_encode_ptr_string : STRING[80]
+P     61
+Base64_encode_ptr_string_L0:
+ LINK 0
+ NXT
+#srcline 14 ;  datalen := MIN(60,datalen);
+ LD   uint 60
+ LDX  datalen
+#debug uint datalen
+ MIN
+ WRX  datalen
+#debug_left uint datalen
+#srcline 15 ;//  baseLen := ((dataLen+2)/3*4) +1;             // +1 za koncovou nulu
+#srcline 17 ;  {asm}
+#srcline 18
+    LDX      data             ; plaintext_in
+#srcline 19
+    LDX      dataLen        ; length_in
+#srcline 20
+    LEAX     __FC__Base64_encode_ptr_string            ; code_out
+#srcline 21
+    LD       5
+#srcline 22
+    SYS      85             ; SYS 85, subcode 4
+#srcline 23
+;    WRY      tmp            ; delka vystupnich dat
+#srcline 24 ;  {end_asm}
+#srcline 25 ;//  Base64_encode := tmp;
+#srcline 26 ;END_FUNCTION
+ PRV  
+ LEAX  __fc__Base64_encode_ptr_string
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+æ&  '  Ï

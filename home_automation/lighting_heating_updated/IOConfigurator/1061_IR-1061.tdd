@@ -1,0 +1,1592 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TecoDescriptor xmlns="http://www.tecomat.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.tecomat.com Teco_Default.xsd">
+  <Header>
+    <File>
+      <FileName>1061_IR-1061.tdd</FileName>
+      <FileCreator>Pavel Šedina</FileCreator>
+      <FileCreationDate>2014-10-03</FileCreationDate>
+      <FileModifiedBy>Jan Martinec</FileModifiedBy>
+      <FileModificationDate>2019-08-22</FileModificationDate>
+      <SupportedLanguages>en cz</SupportedLanguages>
+      <FileVersion>1.0</FileVersion>
+    </File>
+    <Vendor>
+      <VendorID>00000000</VendorID>
+      <VendorName>Teco a.s</VendorName>
+      <VendorText>
+        <label lang="en">Controllers for machine, process, building and transport</label>
+        <label lang="cz">Řídící systémy pro stroje, procesy, budovy a dopravu</label>
+      </VendorText>
+      <VendorImage>
+        <ImageData>424D760200000000000036000000280000000C0000000C000000010020000000000040020000120B0000120B00000000000000000000735300E9755500FF6E4E00FC684A00FD634500FD5E4200FD5A3D00FD583D01FD543901FD4C3101FC583D02FF4D3400E58F6800FF8F6800FF886200FF7F5C00FF7A5500FF725100FF6E4E01FF664500FF664806FF7A6133FF563600FF5D4203FF9B7000FD9C7000FF946A00FF8C6500FF855E00FF7F5C02FF765304FF674400FFD0C6ACFFF7F5F3FF7A6030FF4F3000FDA87B02FDAC7C00FFA37600FF9C7100FF956C01FF8B6301FF7C5501FFD4C9ABFFFFFFFFFFE9E7E0FFEEEAE2FF796234FDB37F00FDBB8901FFB38200FFAC7E01FFA47501FF956800FFD6C8A2FFFFFFFFFFA49067FF795A16FFE8E5DDFFE5E3DEFDCEA94AFDC58A00FFC19005FFBD8704FFAC7900FFE0D1A6FFFEFFFFFFB39C6BFF885B00FF875C00FF876A27FFDADADAFBFBF9F2FDD7B24FFFCB8B00FFC18A03FFE7D8ABFFFFFFFFFFBEA467FFA16C00FFA67905FF9D7202FF916600FF81641EFCDFD8C2FDFEFCF5FFDAB252FFE8D49EFFFBFFFFFFC9AE6EFFB97F00FFBD8A02FFB28101FFAA7B00FFA67802FF906701FDC2900FFDE5DCC1FFFFFFFFFFF8F9F9FFD0B36BFFCC8C00FFD09804FFC79100FFC18D00FFB98700FFB48300FF9F7502FDDF9F00FDD49C15FFE1DBC2FFD9BB71FFD89400FFDCA005FFD59B00FFD29700FFCD9400FFC69100FFC28E00FFAC8002FDDEA301FFF2AC00FFDA9E0AFFE29E01FFE7A701FFE1A301FFDEA000FFD99C00FFD69A00FFD19700FFCF9600FFB88701FEDEA404DDEBAD06F3EDAE04F0EAAD07F1E5A805F1E4A605F1E0A405F1DEA205F1DA9F05F1D69D05F0D69C06F4BF8D02D8</ImageData>
+      </VendorImage>
+      <ProductCode>1061</ProductCode>
+      <ProductName>IR-1061</ProductName>
+    </Vendor>
+  </Header>
+  <Device>
+    <DeviceGroup>IO</DeviceGroup>
+    <DeviceFamily>FOXTROT</DeviceFamily>
+    <DeviceName>IR-1061</DeviceName>
+    <DeviceText>
+      <label lang="en">Peripheral Module - 2 DI, 4 DI/AI, 2 DO</label>
+      <label lang="cz">Periferní modul - 2 DI, 4 DI/AI, 2 DO</label>
+    </DeviceText>
+    <DeviceImage>
+      <ImageData>424DE60100000000000036000000280000000C0000000C0000000100180000000000B0010000C30E0000C30E00000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE6F1FF79B1FF96C1FFA1C8FF72ADFFFFFFFFFCFDFF8DAAA77E9896819A98829997819A957696A44886DA558ACC588AC64483DC849D947F9D9E013B362AA29620978B0F9A8C28998D239D9426ABB125A4A822A2A229B6BC166D6207433E15514C4ADBCB1CB8A738CBBC4BD4C51FBDAC21BBA521B7A31EB49F32CBB54AA09719625B16575125A59800897A0D928411958700877904887B0282790082780F8F8543A19811585313605A337B73273E372B473F29443C2A423B2C483C4C5C3F515739486B523FAAA112575111635D3A6E655C4E4C6262615E5B5A615C5B39423A3F674C3E63483A755E41A9A012575111635D376D63615957666D6B616564696A6A36453C296C552867512D756141A89E11575116655E43847B46474250585250564F49514C465043696B486863415E765947B4AA195D5705413C177A7112706712706612706613716816746C15766D15766D15756C1A7C7206403A88A5A37E9A98809C9A809C9A809C9A7F9C9A7F9B997F9B997F9B997F9B997F9A99819E9CFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF</ImageData>
+    </DeviceImage>
+    <InterfacePlugs>
+      <Plug InterfaceClass="TCL2" InterfaceSubClass="INTERN" Length="1"/>
+    </InterfacePlugs>
+    <Firmwares>
+      <Firmware KeyName="IR-1061">
+        <File>ir1061.tfw</File>
+        <History>IR-1061.txt</History>
+      </Firmware>
+    </Firmwares>
+    <HelpFiles>
+      <HelpFile key="IR1061IOC" lang="cz">CSY_FOXTROT.chm</HelpFile>    
+      <HelpFile key="IR1061IOC" lang="en">ENU_FOXTROT.chm</HelpFile>    
+    </HelpFiles>    
+ 
+    <Dictionary>
+<!-- Basic datatypes -->
+      <Include>CommonDataTypes.tod</Include>
+<!-- Module directive datatype -->
+      <Include>ModuleDirTypes.tod</Include>
+<!-- Global IO structures datatypes -->
+      <Include>DT_BIN_TCL.tod</Include>
+      <Include>DT_AI_TCL.tod</Include>
+      <Include>DT_oth_TCL.tod</Include>
+<!-- Global configuration parameters datatypes -->       
+      <Include>DT_cfg_TCL.tod</Include>
+<!-- Clobal initialization tables datatypes -->
+      <Include>DT_ini_TCL.tod</Include>
+
+      <DataTypes>
+<!-- Local configuration parameters datatypes -->       
+<!-- Binary inputs -->
+        <DataType>
+          <Name>DT_IR-1061_DI</Name>
+          <SubItems>
+            <SubItem>
+              <Name>EDI</Name>
+              <Type>BOOL</Type>
+            </SubItem>
+          </SubItems>
+        </DataType>
+
+<!-- Binary outputs -->
+        <DataType>
+          <Name>DT_IR-1061_DO</Name>
+          <SubItems>
+            <SubItem>
+              <Name>EDO</Name>
+              <Type>BOOL</Type>
+            </SubItem>
+          </SubItems>
+        </DataType>
+
+<!-- Analog inputs -->
+        <DataType>
+          <Name>DT_IR-1061_AI</Name>
+          <SubItems>
+            <SubItem>
+              <Name>AI0</Name>
+              <Type>CFG_AIRH</Type>
+            </SubItem>
+            <SubItem>
+              <Name>AI1</Name>
+              <Type>CFG_AIRH</Type>
+            </SubItem>
+            <SubItem>
+              <Name>AI2</Name>
+              <Type>CFG_AIRH</Type>
+            </SubItem>
+            <SubItem>
+              <Name>AI3</Name>
+              <Type>CFG_AIRH</Type>
+            </SubItem>
+          </SubItems>
+        </DataType>
+
+<!-- Power -->
+        <DataType>
+          <Name>DT_IR-1061_POW</Name>
+          <SubItems>
+            <SubItem>
+              <Name>ESTPW</Name>
+              <Type>BOOL</Type>
+            </SubItem>
+            <SubItem>
+              <Name>EUCIB1</Name>
+              <Type>BOOL</Type>
+            </SubItem>
+            <SubItem>
+              <Name>EUCIB2</Name>
+              <Type>BOOL</Type>
+            </SubItem>
+            <SubItem>
+              <Name>EUSRC</Name>
+              <Type>BOOL</Type>
+            </SubItem>
+            <SubItem>
+              <Name>EUACU</Name>
+              <Type>BOOL</Type>
+            </SubItem>
+          </SubItems>
+        </DataType>
+
+<!-- General -->
+        <DataType>
+          <Name>DT_IR-1061_OTH</Name>
+          <SubItems>
+            <SubItem>
+              <Name>REM</Name>
+              <Type>BOOL</Type>
+            </SubItem>
+          </SubItems>
+        </DataType>
+
+<!-- Initialization table datatype -->
+        <DataType>
+          <Name>_TTS_IR1061</Name>
+          <SubItems>
+            <SubItem>
+              <Name>Head</Name>
+              <Type>_TTS_Head</Type>
+            </SubItem>
+            <SubItem>
+              <Name>EDI</Name>
+              <Type>USINT</Type>
+            </SubItem>
+            <SubItem>
+              <Name>ESTPW</Name>
+              <Type>USINT</Type>
+            </SubItem>
+            <SubItem>
+              <Name>EAI</Name>
+              <Type>_TTS_EnbCHAI_ARR4</Type>
+            </SubItem>
+            <SubItem>
+              <Name>EUCIB1</Name>
+              <Type>USINT</Type>
+            </SubItem>
+            <SubItem>
+              <Name>EUCIB2</Name>
+              <Type>USINT</Type>
+            </SubItem>
+            <SubItem>
+              <Name>EUSRC</Name>
+              <Type>USINT</Type>
+            </SubItem>
+            <SubItem>
+              <Name>EUACU</Name>
+              <Type>USINT</Type>
+            </SubItem>
+            <SubItem>
+              <Name>EDO</Name>
+              <Type>USINT</Type>
+            </SubItem>
+            <SubItem>
+              <Name>SetAI</Name>
+              <Type>_TTS_IniCHAI_ARR4</Type>
+            </SubItem>
+          </SubItems>
+        </DataType>
+
+      </DataTypes>
+      
+<!-- Configuration objects -->
+      <Objects>
+        <Object index="#x8000" name="Binary_Inputs" type="DT_IR-1061_DI" access="rw">
+          <DisplayName>
+            <label lang="en">Binary inputs</label>
+            <label lang="cz">Binární vstupy</label>
+          </DisplayName>
+          <SubObjects>
+            <SubObject name="EDI" access="rw">
+              <DisplayName>
+                <label lang="en">Enable binary inputs carry</label>
+                <label lang="cz">Zapnutí přenosu binárních vstupů</label>
+              </DisplayName>
+              <DefaultValue>1</DefaultValue>
+            </SubObject>
+          </SubObjects>
+        </Object>
+
+        <Object index="#x8001" name="Binary_Outputs" type="DT_IR-1061_DO" access="rw">
+          <DisplayName>
+            <label lang="en">Binary Outputs</label>   
+            <label lang="cz">Binární výstupy</label>                     
+          </DisplayName>  
+          <SubObjects>
+            <SubObject name="EDO" access="rw">  
+              <DisplayName>
+                <label lang="en">Enable binary outputs carry</label>
+                <label lang="cz">Zapnutí přenosu binárních výstupů</label>
+              </DisplayName>
+              <DefaultValue>1</DefaultValue>
+            </SubObject>
+          </SubObjects>
+        </Object>
+ 
+        <Object index="#x8002" name="Analog_Inputs" type="DT_IR-1061_AI" access="rw">
+          <DisplayName>
+            <label lang="en">Analog inputs</label>
+            <label lang="cz">Analogové vstupy</label>
+          </DisplayName>
+          <SubObjects>
+            <SubObject name="AI0" access="rw">
+              <DisplayName>
+                <label lang="en">Channel AI0</label>
+                <label lang="cz">Kanál AI0</label>
+              </DisplayName>
+              <Xml>
+                <Editor>
+                  <Expanded>0</Expanded>
+                </Editor>
+              </Xml>
+              <SubObjects>
+                <SubObject name="Enabled" access="rw">
+                  <DisplayName>
+                    <label lang="en">Enabled</label>
+                    <label lang="cz">Zapnut</label>
+                  </DisplayName>
+                  <DefaultValue>0</DefaultValue>
+                </SubObject>
+                <SubObject name="Mode" access="rw">
+                  <DisplayName>
+                    <label lang="en">Input type</label>
+                    <label lang="cz">Typ vstupu</label>
+                  </DisplayName>
+                  <DefaultValue>44</DefaultValue>
+                </SubObject> 
+                <SubObject name="Filter" access="rw">
+                  <DisplayName>
+                    <label lang="en">Filtering mode</label>
+                    <label lang="cz">Režim filtrace</label>
+                  </DisplayName>
+                  <DefaultValue>0</DefaultValue>
+                </SubObject> 
+                <SubObject name="Value" access="rw">
+                  <DisplayName>
+                    <label lang="en">Filter time constant [s]</label>
+                    <label lang="cz">Časová konstanta filtru [s]</label>
+                  </DisplayName>
+                  <DefaultValue>0</DefaultValue>
+                  <MinValue>0</MinValue>
+                  <MaxValue>25.0</MaxValue>
+                  <Enabled>(@Analog_Inputs.AI0.Filter &gt; 0) &amp;&amp; (@Analog_Inputs.AI0.Service == 0)</Enabled>
+                </SubObject>
+                <SubObject name="Offset" access="rw">
+                  <DisplayName>
+                    <label lang="en">Offset of measured value</label>
+                    <label lang="cz">Offset měřené hodnoty</label>
+                  </DisplayName>
+                  <DefaultValue>0</DefaultValue>
+                </SubObject>
+                <SubObject name="Gain" access="rw">
+                  <DisplayName>
+                    <label lang="en">Coeficient of gain</label>
+                    <label lang="cz">Koeficient zesílení</label>
+                  </DisplayName>
+                  <DefaultValue>1.0</DefaultValue> 
+                </SubObject>
+                <SubObject name="Format" access="rw">
+                  <DisplayName>
+                    <label lang="en">Value format</label>
+                    <label lang="cz">Formát hodnoty</label>
+                  </DisplayName>
+                  <DefaultValue>1</DefaultValue>
+                </SubObject> 
+                <SubObject name="Service" access="rw">
+                  <DisplayName>
+                    <label lang="en">Service mode</label>
+                    <label lang="cz">Servisní režim</label>
+                  </DisplayName>
+                  <DefaultValue>0</DefaultValue>
+                </SubObject> 
+              </SubObjects>
+            </SubObject> 
+            <SubObject name="AI1" access="rw">
+              <DisplayName>
+                <label lang="en">Channel AI1</label>
+                <label lang="cz">Kanál AI1</label>
+              </DisplayName> 
+              <Xml>
+                <Editor>
+                  <Expanded>0</Expanded>
+                </Editor>
+              </Xml>
+              <SubObjects>
+                <SubObject name="Enabled" access="rw">
+                  <DisplayName>
+                    <label lang="en">Enabled</label>
+                    <label lang="cz">Zapnut</label>
+                  </DisplayName>
+                  <DefaultValue>0</DefaultValue>
+                </SubObject>
+                <SubObject name="Mode" access="rw">
+                  <DisplayName>
+                    <label lang="en">Input type</label>
+                    <label lang="cz">Typ vstupu</label>
+                  </DisplayName>
+                  <DefaultValue>44</DefaultValue>
+                </SubObject> 
+                <SubObject name="Filter" access="rw">
+                  <DisplayName>
+                    <label lang="en">Filtering mode</label>
+                    <label lang="cz">Režim filtrace</label>
+                  </DisplayName>
+                  <DefaultValue>0</DefaultValue>
+                </SubObject> 
+                <SubObject name="Value" access="rw">
+                  <DisplayName>
+                    <label lang="en">Filter time constant [s]</label>
+                    <label lang="cz">Časová konstanta filtru [s]</label>
+                  </DisplayName>
+                  <DefaultValue>0</DefaultValue>
+                  <MinValue>0</MinValue>
+                  <MaxValue>25.0</MaxValue>
+                  <Enabled>(@Analog_Inputs.AI1.Filter &gt; 0) &amp;&amp; (@Analog_Inputs.AI1.Service == 0)</Enabled>
+                </SubObject>
+                <SubObject name="Offset" access="rw">
+                  <DisplayName>
+                    <label lang="en">Offset of measured value</label>
+                    <label lang="cz">Offset měřené hodnoty</label>
+                  </DisplayName>
+                  <DefaultValue>0</DefaultValue>
+                </SubObject>
+                <SubObject name="Gain" access="rw">
+                  <DisplayName>
+                    <label lang="en">Coeficient of gain</label>
+                    <label lang="cz">Koeficient zesílení</label>
+                  </DisplayName>
+                  <DefaultValue>1.0</DefaultValue> 
+                </SubObject>
+                <SubObject name="Format" access="rw">
+                  <DisplayName>
+                    <label lang="en">Value format</label>
+                    <label lang="cz">Formát hodnoty</label>
+                  </DisplayName>
+                  <DefaultValue>1</DefaultValue>
+                </SubObject> 
+                <SubObject name="Service" access="rw">
+                  <DisplayName>
+                    <label lang="en">Service mode</label>
+                    <label lang="cz">Servisní režim</label>
+                  </DisplayName>
+                  <DefaultValue>0</DefaultValue>
+                </SubObject> 
+              </SubObjects>
+            </SubObject>
+            <SubObject name="AI2" access="rw">
+              <DisplayName>
+                <label lang="en">Channel AI2</label>
+                <label lang="cz">Kanál AI2</label>
+              </DisplayName> 
+              <Xml>
+                <Editor>
+                  <Expanded>0</Expanded>
+                </Editor>
+              </Xml>
+              <SubObjects>
+                <SubObject name="Enabled" access="rw">
+                  <DisplayName>
+                    <label lang="en">Enabled</label>
+                    <label lang="cz">Zapnut</label>
+                  </DisplayName>
+                  <DefaultValue>0</DefaultValue>
+                </SubObject>
+                <SubObject name="Mode" access="rw">
+                  <DisplayName>
+                    <label lang="en">Input type</label>
+                    <label lang="cz">Typ vstupu</label>
+                  </DisplayName>
+                  <DefaultValue>44</DefaultValue>
+                </SubObject> 
+                <SubObject name="Filter" access="rw">
+                  <DisplayName>
+                    <label lang="en">Filtering mode</label>
+                    <label lang="cz">Režim filtrace</label>
+                  </DisplayName>
+                  <DefaultValue>0</DefaultValue>
+                </SubObject> 
+                <SubObject name="Value" access="rw">
+                  <DisplayName>
+                    <label lang="en">Filter time constant [s]</label>
+                    <label lang="cz">Časová konstanta filtru [s]</label>
+                  </DisplayName>
+                  <DefaultValue>0</DefaultValue>
+                  <MinValue>0</MinValue>
+                  <MaxValue>25.0</MaxValue>
+                  <Enabled>(@Analog_Inputs.AI2.Filter &gt; 0) &amp;&amp; (@Analog_Inputs.AI2.Service == 0)</Enabled>
+                </SubObject>  
+                <SubObject name="Offset" access="rw">
+                  <DisplayName>
+                    <label lang="en">Offset of measured value</label>
+                    <label lang="cz">Offset měřené hodnoty</label>
+                  </DisplayName>
+                  <DefaultValue>0</DefaultValue>
+                </SubObject>
+                <SubObject name="Gain" access="rw">
+                  <DisplayName>
+                    <label lang="en">Coeficient of gain</label>
+                    <label lang="cz">Koeficient zesílení</label>
+                  </DisplayName>
+                  <DefaultValue>1.0</DefaultValue> 
+                </SubObject>
+                <SubObject name="Format" access="rw">
+                  <DisplayName>
+                    <label lang="en">Value format</label>
+                    <label lang="cz">Formát hodnoty</label>
+                  </DisplayName>
+                  <DefaultValue>1</DefaultValue>
+                </SubObject> 
+                <SubObject name="Service" access="rw">
+                  <DisplayName>
+                    <label lang="en">Service mode</label>
+                    <label lang="cz">Servisní režim</label>
+                  </DisplayName>
+                  <DefaultValue>0</DefaultValue>
+                </SubObject> 
+              </SubObjects>
+            </SubObject> 
+            <SubObject name="AI3" access="rw">
+              <DisplayName>
+                <label lang="en">Channel AI3</label>
+                <label lang="cz">Kanál AI3</label>
+              </DisplayName>
+              <Xml>
+                <Editor>
+                  <Expanded>0</Expanded>
+                </Editor>
+              </Xml>
+              <SubObjects>
+                <SubObject name="Enabled" access="rw">
+                  <DisplayName>
+                    <label lang="en">Enabled</label>
+                    <label lang="cz">Zapnut</label>
+                  </DisplayName>
+                  <DefaultValue>0</DefaultValue>
+                </SubObject>
+                <SubObject name="Mode" access="rw">
+                  <DisplayName>
+                    <label lang="en">Input type</label>
+                    <label lang="cz">Typ vstupu</label>
+                  </DisplayName>
+                  <DefaultValue>44</DefaultValue>
+                </SubObject> 
+                <SubObject name="Filter" access="rw">
+                  <DisplayName>
+                    <label lang="en">Filtering mode</label>
+                    <label lang="cz">Režim filtrace</label>
+                  </DisplayName>
+                  <DefaultValue>0</DefaultValue>
+                </SubObject> 
+                <SubObject name="Value" access="rw">
+                  <DisplayName>
+                    <label lang="en">Filter time constant [s]</label>
+                    <label lang="cz">Časová konstanta filtru [s]</label>
+                  </DisplayName>
+                  <DefaultValue>0</DefaultValue>
+                  <MinValue>0</MinValue>
+                  <MaxValue>25.0</MaxValue>
+                  <Enabled>(@Analog_Inputs.AI3.Filter &gt; 0) &amp;&amp; (@Analog_Inputs.AI3.Service == 0)</Enabled>
+                </SubObject>  
+                <SubObject name="Offset" access="rw">
+                  <DisplayName>
+                    <label lang="en">Offset of measured value</label>
+                    <label lang="cz">Offset měřené hodnoty</label>
+                  </DisplayName>
+                  <DefaultValue>0</DefaultValue>
+                </SubObject>
+                <SubObject name="Gain" access="rw">
+                  <DisplayName>
+                    <label lang="en">Coeficient of gain</label>
+                    <label lang="cz">Koeficient zesílení</label>
+                  </DisplayName>
+                  <DefaultValue>1.0</DefaultValue> 
+                </SubObject>
+                <SubObject name="Format" access="rw">
+                  <DisplayName>
+                    <label lang="en">Value format</label>
+                    <label lang="cz">Formát hodnoty</label>
+                  </DisplayName>
+                  <DefaultValue>1</DefaultValue>
+                </SubObject> 
+                <SubObject name="Service" access="rw">
+                  <DisplayName>
+                    <label lang="en">Service mode</label>
+                    <label lang="cz">Servisní režim</label>
+                  </DisplayName>
+                  <DefaultValue>0</DefaultValue>
+                </SubObject>
+              </SubObjects>
+            </SubObject>
+          </SubObjects>
+        </Object>
+
+        <Object index="#x8003" name="Power" type="DT_IR-1061_POW" access="rw">
+          <DisplayName>
+            <label lang="en">Power</label>
+            <label lang="cz">Napájení</label>
+          </DisplayName>
+          <SubObjects>
+            <SubObject name="ESTPW" access="rw"> 
+              <DisplayName>
+                <label lang="en">Transmit power status</label>
+                <label lang="cz">Přenášet status napájení</label>
+              </DisplayName>
+              <DefaultValue>1</DefaultValue>
+            </SubObject>
+            <SubObject name="EUCIB1" access="rw"> 
+              <DisplayName>
+                <label lang="en">Transmit power control measurements CIB1</label>
+                <label lang="cz">Přenášet kontrolní měření napájení CIB1</label>
+              </DisplayName>
+              <DefaultValue>0</DefaultValue>
+            </SubObject>
+            <SubObject name="EUCIB2" access="rw"> 
+              <DisplayName>
+                <label lang="en">Transmit power control measurements CIB2</label>
+                <label lang="cz">Přenášet kontrolní měření napájení CIB2</label>
+              </DisplayName>
+              <DefaultValue>0</DefaultValue>
+            </SubObject>
+            <SubObject name="EUSRC" access="rw"> 
+              <DisplayName>
+                <label lang="en">Transfer control measurements 24V from source</label>
+                <label lang="cz">Přenášet kontrolní měření napájení 24V ze zdroje</label>
+              </DisplayName>
+              <DefaultValue>0</DefaultValue>
+            </SubObject>
+            <SubObject name="EUACU" access="rw"> 
+              <DisplayName>
+                <label lang="en">Transfer control measurements 24V from accumulator</label>
+                <label lang="cz">Přenášet kontrolní měření napájení 24V z akumulátoru</label>
+              </DisplayName>
+              <DefaultValue>0</DefaultValue>
+            </SubObject>
+          </SubObjects>
+        </Object>
+
+        <Object index="#x8004" name="General" type="DT_IR-1061_OTH" access="rw">
+          <DisplayName>
+            <label lang="en">General</label>
+            <label lang="cz">Obecné</label>
+          </DisplayName>
+          <SubObjects>
+            <SubObject name="REM" access="rw">
+              <DisplayName>
+                <label lang="en">Enable ignoring module errors</label>
+                <label lang="cz">Povolit ignorování chyb modulu</label>
+              </DisplayName>
+              <DefaultValue>0</DefaultValue>
+            </SubObject>
+          </SubObjects>
+        </Object>
+
+<!-- I/O Data --> 
+        <Object index="#x6000" name="r{RACK}_p{POSITION}_DI" type="TBIN_6DIM" access="rw">
+          <DisplayName>
+            <label lang="en">DI</label>
+            <label lang="cz">DI</label>
+          </DisplayName>
+          <Enabled>@Binary_Inputs.EDI == 1</Enabled>
+          <SubObjects>
+            <SubObject name="DI0" access="rw"> 
+              <DefaultValue>0</DefaultValue>
+              <Enabled>@Binary_Inputs.EDI == 1</Enabled>
+              <Termination>
+                <TerminalLabel>E2</TerminalLabel>
+              </Termination>
+            </SubObject>
+            <SubObject name="DI1" access="rw"> 
+              <DefaultValue>0</DefaultValue>
+              <Enabled>@Binary_Inputs.EDI == 1</Enabled>
+              <Termination>
+                <TerminalLabel>E3</TerminalLabel>
+              </Termination>
+            </SubObject>
+            <SubObject name="DI2" access="rw"> 
+              <DefaultValue>0</DefaultValue>
+              <Enabled>@Binary_Inputs.EDI == 1</Enabled>
+              <Termination>
+                <TerminalLabel>E4</TerminalLabel>
+              </Termination>
+            </SubObject>
+            <SubObject name="DI3" access="rw"> 
+              <DefaultValue>0</DefaultValue>
+              <Enabled>@Binary_Inputs.EDI == 1</Enabled>
+              <Termination>
+                <TerminalLabel>E5</TerminalLabel>
+              </Termination>
+            </SubObject>
+            <SubObject name="IN230" access="rw"> 
+              <DefaultValue>0</DefaultValue>
+              <Enabled>@Binary_Inputs.EDI == 1</Enabled>
+              <Termination>
+                <TerminalLabel>F2</TerminalLabel>
+              </Termination>
+            </SubObject>
+            <SubObject name="HDO" access="rw">
+              <DefaultValue>0</DefaultValue>
+              <Enabled>@Binary_Inputs.EDI == 1</Enabled>
+              <Termination>
+                <TerminalLabel>F5</TerminalLabel>
+              </Termination>
+            </SubObject>
+          </SubObjects>
+        </Object>
+
+        <Object index="#x6001" name="r{RACK}_p{POSITION}_STPW" type="TSTPW" access="rw">
+          <DisplayName>
+            <label lang="en">STPW</label>
+            <label lang="cz">STPW</label>
+          </DisplayName>
+          <Enabled>@Power.ESTPW == 1</Enabled>
+          <SubObjects>
+            <SubObject name="WCIB1" access="rw">
+              <DefaultValue>0</DefaultValue>
+            </SubObject>
+            <SubObject name="ECIB1" access="rw"> 
+              <DefaultValue>0</DefaultValue>
+            </SubObject>
+            <SubObject name="WCIB2" access="rw"> 
+              <DefaultValue>0</DefaultValue>
+            </SubObject>
+            <SubObject name="ECIB2" access="rw"> 
+              <DefaultValue>0</DefaultValue>
+            </SubObject>
+            <SubObject name="WSRC" access="rw"> 
+              <DefaultValue>0</DefaultValue>
+            </SubObject>
+            <SubObject name="ESRC" access="rw"> 
+              <DefaultValue>0</DefaultValue>
+            </SubObject>
+            <SubObject name="WACU" access="rw"> 
+              <DefaultValue>0</DefaultValue>
+            </SubObject>
+            <SubObject name="EACU" access="rw"> 
+              <DefaultValue>0</DefaultValue>
+            </SubObject>
+          </SubObjects>
+        </Object>
+ 
+        <Object index="#x6002" name="r{RACK}_p{POSITION}_AI0" type="TAI" access="rw">
+          <DisplayName>
+            <label lang="en">AI0</label>
+            <label lang="cz">AI0</label>
+          </DisplayName>
+          <Enabled>@Analog_Inputs.AI0.Enabled == 1</Enabled>
+          <Termination>
+            <TerminalLabel>E2</TerminalLabel>
+          </Termination>
+          <SubObjects>
+            <SubObject name="STAT" access="rw"> 
+              <Xml>
+                <Editor>
+                  <Expanded>0</Expanded>
+                </Editor>
+              </Xml>
+              <SubObjects>
+                <SubObject name="UNF" access="rw">
+                  <DefaultValue>0</DefaultValue>
+                </SubObject>
+                <SubObject name="UNR" access="rw">
+                  <DefaultValue>0</DefaultValue>
+                </SubObject>
+                <SubObject name="OVR" access="rw">
+                  <DefaultValue>0</DefaultValue>
+                </SubObject>
+                <SubObject name="OVF" access="rw">
+                  <DefaultValue>0</DefaultValue>
+                </SubObject>
+                <SubObject name="FLS" access="rw">
+                  <DefaultValue>0</DefaultValue>
+                </SubObject>
+                <SubObject name="CJC" access="rw">
+                  <DefaultValue>0</DefaultValue>
+                </SubObject>
+                <SubObject name="CHC" access="rw">
+                  <DefaultValue>0</DefaultValue>
+                </SubObject>
+              </SubObjects>
+            </SubObject>
+            <SubObject name="FS" access="rw">
+              <DefaultValue>0</DefaultValue>
+              <Enabled>@Analog_Inputs.AI0.Format == 0</Enabled>
+            </SubObject>
+            <SubObject name="ENG" access="rw">
+              <DefaultValue>0</DefaultValue>
+              <Enabled>@Analog_Inputs.AI0.Format == 1</Enabled>
+            </SubObject>
+            <SubObject name="PCT" access="rw">
+              <DefaultValue>0</DefaultValue>
+              <Enabled>@Analog_Inputs.AI0.Format == 2</Enabled>
+            </SubObject>
+          </SubObjects>
+        </Object>
+
+        <Object index="#x6003" name="r{RACK}_p{POSITION}_AI1" type="TAI" access="rw">
+          <DisplayName>
+            <label lang="en">AI1</label>
+            <label lang="cz">AI1</label>
+          </DisplayName>
+          <Enabled>@Analog_Inputs.AI1.Enabled == 1</Enabled>
+          <Termination>
+            <TerminalLabel>E3</TerminalLabel>
+          </Termination>
+          <SubObjects>
+            <SubObject name="STAT" access="rw">
+              <Xml>
+                <Editor>
+                  <Expanded>0</Expanded>
+                </Editor>
+              </Xml>
+              <SubObjects>
+                <SubObject name="UNF" access="rw">
+                  <DefaultValue>0</DefaultValue>
+                </SubObject>
+                <SubObject name="UNR" access="rw">
+                  <DefaultValue>0</DefaultValue>
+                </SubObject>
+                <SubObject name="OVR" access="rw">
+                  <DefaultValue>0</DefaultValue>
+                </SubObject>
+                <SubObject name="OVF" access="rw">
+                  <DefaultValue>0</DefaultValue>
+                </SubObject>
+                <SubObject name="FLS" access="rw">
+                  <DefaultValue>0</DefaultValue>
+                </SubObject>
+                <SubObject name="CJC" access="rw">
+                  <DefaultValue>0</DefaultValue>
+                </SubObject>
+                <SubObject name="CHC" access="rw">
+                  <DefaultValue>0</DefaultValue>
+                </SubObject>
+              </SubObjects>
+            </SubObject>
+            <SubObject name="FS" access="rw"> 
+              <DefaultValue>0</DefaultValue>
+              <Enabled>@Analog_Inputs.AI1.Format == 0</Enabled>
+            </SubObject>
+            <SubObject name="ENG" access="rw"> 
+              <DefaultValue>0</DefaultValue>
+              <Enabled>@Analog_Inputs.AI1.Format == 1</Enabled>
+            </SubObject>
+            <SubObject name="PCT" access="rw"> 
+              <DefaultValue>0</DefaultValue>
+              <Enabled>@Analog_Inputs.AI1.Format == 2</Enabled>
+            </SubObject>
+          </SubObjects>
+        </Object>
+
+        <Object index="#x6004" name="r{RACK}_p{POSITION}_AI2" type="TAI" access="rw"> 
+          <DisplayName>
+            <label lang="en">AI2</label>
+            <label lang="cz">AI2</label>
+          </DisplayName>
+          <Enabled>@Analog_Inputs.AI2.Enabled == 1</Enabled>
+          <Termination>
+            <TerminalLabel>E4</TerminalLabel>
+          </Termination>
+          <SubObjects>
+            <SubObject name="STAT" access="rw">
+              <Xml>
+                <Editor>
+                  <Expanded>0</Expanded>
+                </Editor>
+              </Xml>
+              <SubObjects>
+                <SubObject name="UNF" access="rw">
+                  <DefaultValue>0</DefaultValue>
+                </SubObject>
+                <SubObject name="UNR" access="rw">
+                  <DefaultValue>0</DefaultValue>
+                </SubObject>
+                <SubObject name="OVR" access="rw">
+                  <DefaultValue>0</DefaultValue>
+                </SubObject>
+                <SubObject name="OVF" access="rw">
+                  <DefaultValue>0</DefaultValue>
+                </SubObject>
+                <SubObject name="FLS" access="rw">
+                  <DefaultValue>0</DefaultValue>
+                </SubObject>
+                <SubObject name="CJC" access="rw">
+                  <DefaultValue>0</DefaultValue>
+                </SubObject>
+                <SubObject name="CHC" access="rw">
+                  <DefaultValue>0</DefaultValue>
+                </SubObject>
+              </SubObjects>
+            </SubObject>
+            <SubObject name="FS" access="rw"> 
+              <DefaultValue>0</DefaultValue>
+              <Enabled>@Analog_Inputs.AI2.Format == 0</Enabled>
+            </SubObject>
+            <SubObject name="ENG" access="rw"> 
+              <DefaultValue>0</DefaultValue>
+              <Enabled>@Analog_Inputs.AI2.Format == 1</Enabled>
+            </SubObject>
+            <SubObject name="PCT" access="rw"> 
+              <DefaultValue>0</DefaultValue>
+              <Enabled>@Analog_Inputs.AI2.Format == 2</Enabled>
+            </SubObject>
+          </SubObjects>
+        </Object>   
+                      
+        <Object index="#x6005" name="r{RACK}_p{POSITION}_AI3" type="TAI" access="rw">  
+          <DisplayName>
+            <label lang="en">AI3</label>
+            <label lang="cz">AI3</label>
+          </DisplayName>
+          <Enabled>@Analog_Inputs.AI3.Enabled == 1</Enabled>
+          <Termination>
+            <TerminalLabel>E5</TerminalLabel>
+          </Termination>
+          <SubObjects>
+            <SubObject name="STAT" access="rw"> 
+              <Xml>
+                <Editor>
+                  <Expanded>0</Expanded>
+                </Editor>
+              </Xml>
+              <SubObjects>
+                <SubObject name="UNF" access="rw">
+                  <DefaultValue>0</DefaultValue>
+                </SubObject>
+                <SubObject name="UNR" access="rw">
+                  <DefaultValue>0</DefaultValue>
+                </SubObject>
+                <SubObject name="OVR" access="rw">
+                  <DefaultValue>0</DefaultValue>
+                </SubObject>
+                <SubObject name="OVF" access="rw">
+                  <DefaultValue>0</DefaultValue>
+                </SubObject>
+                <SubObject name="FLS" access="rw">
+                  <DefaultValue>0</DefaultValue>
+                </SubObject>
+                <SubObject name="CJC" access="rw">
+                  <DefaultValue>0</DefaultValue>
+                </SubObject>
+                <SubObject name="CHC" access="rw">
+                  <DefaultValue>0</DefaultValue>
+                </SubObject>
+              </SubObjects>
+            </SubObject>
+            <SubObject name="FS" access="rw"> 
+              <DefaultValue>0</DefaultValue>
+              <Enabled>@Analog_Inputs.AI3.Format == 0</Enabled>
+            </SubObject>
+            <SubObject name="ENG" access="rw"> 
+              <DefaultValue>0</DefaultValue>
+              <Enabled>@Analog_Inputs.AI3.Format == 1</Enabled>
+            </SubObject>
+            <SubObject name="PCT" access="rw"> 
+              <DefaultValue>0</DefaultValue>
+              <Enabled>@Analog_Inputs.AI3.Format == 2</Enabled>
+            </SubObject>
+          </SubObjects>
+        </Object>
+        
+        <Object index="#x6006" name="r{RACK}_p{POSITION}_AIPW" type="TAIPW" access="rw">    
+          <DisplayName>
+            <label lang="en">AIPW</label>   
+            <label lang="cz">AIPW</label>                     
+          </DisplayName> 
+          <Enabled>(@Power.EUCIB1 == 1) || (@Power.EUCIB2 == 1) || (@Power.EUSRC == 1) || (@Power.EUACU == 1)</Enabled>
+          <SubObjects>
+            <SubObject name="UCIB1" access="rw">
+              <DefaultValue>1</DefaultValue>
+              <Enabled>@Power.EUCIB1 == 1</Enabled>            
+            </SubObject>  
+            <SubObject name="UCIB2" access="rw">
+              <DefaultValue>1</DefaultValue>
+              <Enabled>@Power.EUCIB2 == 1</Enabled>
+            </SubObject> 
+            <SubObject name="USRC" access="rw">
+              <DefaultValue>1</DefaultValue>
+              <Enabled>@Power.EUSRC == 1</Enabled>
+            </SubObject> 
+            <SubObject name="UACU" access="rw">
+              <DefaultValue>1</DefaultValue>
+              <Enabled>@Power.EUACU == 1</Enabled>
+            </SubObject> 
+          </SubObjects>          
+        </Object>     
+
+        <Object index="#x7000" name="r{RACK}_p{POSITION}_DO" type="TBIN_2DO" access="rw"> 
+          <DisplayName>
+            <label lang="en">DO</label>   
+            <label lang="cz">DO</label>                     
+          </DisplayName> 
+          <Enabled>@Binary_Outputs.EDO == 1</Enabled>
+          <SubObjects>
+            <SubObject name="DO0" access="rw">
+              <DefaultValue>0</DefaultValue>
+              <Termination>
+                <TerminalLabel>E9</TerminalLabel>
+              </Termination>
+            </SubObject>  
+            <SubObject name="DO1" access="rw">
+              <DefaultValue>0</DefaultValue>
+              <Termination>
+                <TerminalLabel>F9</TerminalLabel>
+              </Termination>
+            </SubObject> 
+          </SubObjects>          
+        </Object>
+        
+<!-- Initialization table object -->
+        <Object index="#x9000" name="r{RACK}_p{POSITION}_Table" type="_TTS_IR1061" access="rw">
+          <Comment>
+            <label lang="en">Initialization table of IR-1061 device</label>
+            <label lang="cz">Inicializační tabulka desky IR-1061</label>
+          </Comment>      
+          <SubObjects>                              
+            <SubObject name="Head" access="ro">
+              <SubObjects>
+                <SubObject name="ModulID" access="const">
+                  <DefaultValue>1061</DefaultValue>  
+                </SubObject>    
+                <SubObject name="Stat0" access="ro">
+                  <DefaultValue>0</DefaultValue>  
+                  <ValueDependency>          
+                    <When condition="@General.REM != 0">
+                      <Data>02</Data>                                                          
+                    </When>                             
+                  </ValueDependency>  
+                </SubObject> 
+                <SubObject name="Stat1" access="const">
+                  <DefaultValue>0</DefaultValue>  
+                </SubObject> 
+              </SubObjects>
+            </SubObject> 
+            <SubObject name="EDI" access="ro">   
+              <DefaultData>80</DefaultData>
+              <ValueDependency>          
+                <When condition="@Binary_Inputs.EDI == 0">
+                  <Data>00</Data>                                                          
+                </When>                             
+              </ValueDependency>            
+            </SubObject>  
+            <SubObject name="ESTPW" access="ro">   
+              <DefaultData>80</DefaultData>
+              <ValueDependency>           
+                <When condition="@Power.ESTPW == 0">
+                  <Data>00</Data>                                                          
+                </When>                            
+              </ValueDependency>
+            </SubObject>    
+            <SubObject name="EAI" access="ro">   
+              <SubObjects>
+                <SubObject name="EAI[0]" access="const"> 
+                  <SubObjects>
+                    <SubObject name="ESTAT" access="ro">
+                      <DefaultData>00</DefaultData>
+                      <ValueDependency>            
+                        <When condition="@Analog_Inputs.AI0.Enabled != 0">
+                          <Data>80</Data>                                                          
+                        </When>                                
+                      </ValueDependency>
+                    </SubObject>  
+                    <SubObject name="EFS" access="ro">
+                      <DefaultData>00</DefaultData>
+                      <ValueDependency>        
+                        <When condition="(@Analog_Inputs.AI0.Format == 0) &amp;&amp; (@Analog_Inputs.AI0.Enabled != 0)">
+                          <Data>80</Data>                                                          
+                        </When>                                 
+                      </ValueDependency>
+                    </SubObject>  
+                    <SubObject name="EENG" access="ro">
+                      <DefaultData>00</DefaultData>
+                      <ValueDependency>          
+                        <When condition="(@Analog_Inputs.AI0.Format == 1) &amp;&amp; (@Analog_Inputs.AI0.Enabled != 0)">
+                          <Data>80</Data>                                                          
+                        </When>           
+                      </ValueDependency>
+                    </SubObject>  
+                    <SubObject name="EPCT" access="ro">
+                      <DefaultData>00</DefaultData>
+                      <ValueDependency>         
+                        <When condition="(@Analog_Inputs.AI0.Format == 2) &amp;&amp; (@Analog_Inputs.AI0.Enabled != 0)">
+                          <Data>80</Data>                                                          
+                        </When>                                 
+                      </ValueDependency>
+                    </SubObject>  
+                  </SubObjects>                  
+                </SubObject>  
+                <SubObject name="EAI[1]" access="const"> 
+                  <SubObjects>
+                    <SubObject name="ESTAT" access="ro">
+                      <DefaultData>00</DefaultData>
+                      <ValueDependency>          
+                        <When condition="@Analog_Inputs.AI1.Enabled != 0">
+                          <Data>80</Data>                                                          
+                        </When>                                  
+                      </ValueDependency>
+                    </SubObject>  
+                    <SubObject name="EFS" access="ro">
+                      <DefaultData>00</DefaultData>
+                      <ValueDependency>      
+                        <When condition="(@Analog_Inputs.AI1.Format == 0) &amp;&amp; (@Analog_Inputs.AI1.Enabled != 0)">
+                          <Data>80</Data>                                                          
+                        </When>                                  
+                      </ValueDependency>
+                    </SubObject>  
+                    <SubObject name="EENG" access="ro">
+                      <DefaultData>00</DefaultData>
+                      <ValueDependency>        
+                        <When condition="(@Analog_Inputs.AI1.Format == 1) &amp;&amp; (@Analog_Inputs.AI1.Enabled != 0)">
+                          <Data>80</Data>                                                          
+                        </When>                              
+                      </ValueDependency>
+                    </SubObject>  
+                    <SubObject name="EPCT" access="ro">
+                      <DefaultData>00</DefaultData>
+                      <ValueDependency>           
+                        <When condition="(@Analog_Inputs.AI1.Format == 2) &amp;&amp; (@Analog_Inputs.AI1.Enabled != 0)">
+                          <Data>80</Data>                                                          
+                        </When>                         
+                      </ValueDependency>
+                    </SubObject>  
+                  </SubObjects>                  
+                </SubObject>
+                <SubObject name="EAI[2]" access="const"> 
+                  <SubObjects>
+                    <SubObject name="ESTAT" access="ro">
+                      <DefaultData>00</DefaultData>
+                      <ValueDependency>          
+                        <When condition="@Analog_Inputs.AI2.Enabled != 0">
+                          <Data>80</Data>                                                          
+                        </When>                               
+                      </ValueDependency>
+                    </SubObject>  
+                    <SubObject name="EFS" access="ro">
+                      <DefaultData>00</DefaultData>
+                      <ValueDependency>           
+                        <When condition="(@Analog_Inputs.AI2.Format == 0) &amp;&amp; (@Analog_Inputs.AI2.Enabled != 0)">
+                          <Data>80</Data>                                                          
+                        </When>                                    
+                      </ValueDependency>
+                    </SubObject>  
+                    <SubObject name="EENG" access="ro">
+                      <DefaultData>00</DefaultData>
+                      <ValueDependency>          
+                        <When condition="(@Analog_Inputs.AI2.Format == 1) &amp;&amp; (@Analog_Inputs.AI2.Enabled != 0)">
+                          <Data>80</Data>                                                          
+                        </When>                                  
+                      </ValueDependency>
+                    </SubObject>  
+                    <SubObject name="EPCT" access="ro">
+                      <DefaultData>00</DefaultData>
+                      <ValueDependency>           
+                        <When condition="(@Analog_Inputs.AI2.Format == 2) &amp;&amp; (@Analog_Inputs.AI2.Enabled != 0)">
+                          <Data>80</Data>                                                          
+                        </When>                                  
+                      </ValueDependency>
+                    </SubObject>  
+                  </SubObjects>                  
+                </SubObject>
+                <SubObject name="EAI[3]" access="const">
+                  <SubObjects>
+                    <SubObject name="ESTAT" access="ro">
+                      <DefaultData>00</DefaultData>
+                      <ValueDependency>          
+                        <When condition="@Analog_Inputs.AI3.Enabled != 0">
+                          <Data>80</Data>                                                          
+                        </When>                                   
+                      </ValueDependency>
+                    </SubObject>  
+                    <SubObject name="EFS" access="ro">
+                      <DefaultData>00</DefaultData>
+                      <ValueDependency>           
+                        <When condition="(@Analog_Inputs.AI3.Format == 0) &amp;&amp; (@Analog_Inputs.AI3.Enabled != 0)">
+                          <Data>80</Data>                                                          
+                        </When>                                   
+                      </ValueDependency>
+                    </SubObject>  
+                    <SubObject name="EENG" access="ro">
+                      <DefaultData>00</DefaultData>
+                      <ValueDependency>          
+                        <When condition="(@Analog_Inputs.AI3.Format == 1) &amp;&amp; (@Analog_Inputs.AI3.Enabled != 0)">
+                          <Data>80</Data>                                                          
+                        </When>                               
+                      </ValueDependency>
+                    </SubObject>  
+                    <SubObject name="EPCT" access="ro">
+                      <DefaultData>00</DefaultData>
+                      <ValueDependency>          
+                        <When condition="(@Analog_Inputs.AI3.Format == 2) &amp;&amp; (@Analog_Inputs.AI3.Enabled != 0)">
+                          <Data>80</Data>                                                          
+                        </When>                                  
+                      </ValueDependency>
+                    </SubObject>   
+                  </SubObjects>                  
+                </SubObject>
+              </SubObjects>              
+            </SubObject>  
+            <SubObject name="EUCIB1" access="ro">   
+              <DefaultData>00</DefaultData>
+              <ValueDependency>         
+                <When condition="@Power.EUCIB1 != 0">
+                  <Data>80</Data>                                                          
+                </When>                            
+              </ValueDependency>
+            </SubObject>
+            <SubObject name="EUCIB2" access="ro">   
+              <DefaultData>00</DefaultData>
+              <ValueDependency>           
+                <When condition="@Power.EUCIB2 != 0">
+                  <Data>80</Data>                                                          
+                </When>                             
+              </ValueDependency>
+            </SubObject>
+            <SubObject name="EUSRC" access="ro">   
+              <DefaultData>00</DefaultData>
+              <ValueDependency>           
+                <When condition="@Power.EUSRC != 0">
+                  <Data>80</Data>                                                          
+                </When>                               
+              </ValueDependency>
+            </SubObject>
+            <SubObject name="EUACU" access="ro">   
+              <DefaultData>00</DefaultData>
+              <ValueDependency>           
+                <When condition="@Power.EUACU != 0">
+                  <Data>80</Data>                                                          
+                </When>                             
+              </ValueDependency>
+            </SubObject>
+            <SubObject name="EDO" access="ro">   
+              <DefaultData>80</DefaultData>
+              <ValueDependency>         
+                <When condition="@Binary_Outputs.EDO == 0">
+                  <Data>00</Data>                                                          
+                </When>                             
+              </ValueDependency>
+            </SubObject>
+            <SubObject name="SetAI" access="rw">  
+              <SubObjects> 
+                <SubObject name="SetAI[0]" access="const"> 
+                  <SubObjects>
+                    <SubObject name="Mode" access="ro">
+                      <DefaultValue>44</DefaultValue>
+                      <ValueDependency> 
+                        <DataOf>Analog_Inputs.AI0.Mode</DataOf>
+                      </ValueDependency>
+                    </SubObject>  
+                    <SubObject name="Filter" access="ro">
+                      <DefaultValue>0</DefaultValue>
+                      <ValueDependency>
+                        <When condition="(@Analog_Inputs.AI0.Filter != 0) &amp;&amp; (@Analog_Inputs.AI0.Value &lt; 25.0) &amp;&amp; (@Analog_Inputs.AI0.Service == 0)">
+                          <Formula>@Analog_Inputs.AI0.Value * 10</Formula>
+                        </When>
+                        <When condition="(@Analog_Inputs.AI0.Filter != 0) &amp;&amp; (@Analog_Inputs.AI0.Value &gt;= 25.0) &amp;&amp; (@Analog_Inputs.AI0.Service == 0)">
+                          <Value>250</Value>
+                        </When>
+                        <When condition="(@Analog_Inputs.AI0.Service != 0)">
+                          <Value>255</Value>
+                        </When>
+                      </ValueDependency>
+                    </SubObject>
+                    <SubObject name="Offset" access="ro">
+                      <ValueDependency>
+                        <ValueOf>Analog_Inputs.AI0.Offset</ValueOf>
+                      </ValueDependency>
+                    </SubObject>
+                    <SubObject name="Gain" access="ro">
+                      <DefaultValue>1.0</DefaultValue>
+                      <ValueDependency>
+                        <ValueOf>Analog_Inputs.AI0.Gain</ValueOf>
+                      </ValueDependency>
+                    </SubObject>
+                  </SubObjects>
+                </SubObject>
+                <SubObject name="SetAI[1]" access="const">
+                  <SubObjects>
+                    <SubObject name="Mode" access="ro">
+                      <DefaultValue>44</DefaultValue>
+                      <ValueDependency> 
+                        <DataOf>Analog_Inputs.AI1.Mode</DataOf>
+                      </ValueDependency>
+                    </SubObject>  
+                    <SubObject name="Filter" access="ro">
+                      <DefaultValue>0</DefaultValue>
+                      <ValueDependency>
+                        <When condition="(@Analog_Inputs.AI1.Filter != 0) &amp;&amp; (@Analog_Inputs.AI1.Value &lt; 25.0) &amp;&amp; (@Analog_Inputs.AI1.Service == 0)">
+                          <Formula>@Analog_Inputs.AI1.Value * 10</Formula>
+                        </When>
+                        <When condition="(@Analog_Inputs.AI1.Filter != 0) &amp;&amp; (@Analog_Inputs.AI1.Value &gt;= 25.0) &amp;&amp; (@Analog_Inputs.AI1.Service == 0)">
+                          <Value>250</Value>
+                        </When>
+                        <When condition="(@Analog_Inputs.AI1.Service != 0)">
+                          <Value>255</Value>
+                        </When>
+                      </ValueDependency>
+                    </SubObject>
+                    <SubObject name="Offset" access="ro">
+                      <ValueDependency>
+                        <ValueOf>Analog_Inputs.AI1.Offset</ValueOf>
+                      </ValueDependency>
+                    </SubObject>
+                    <SubObject name="Gain" access="ro">
+                      <DefaultValue>1.0</DefaultValue>
+                      <ValueDependency>
+                        <ValueOf>Analog_Inputs.AI1.Gain</ValueOf>
+                      </ValueDependency>
+                    </SubObject>
+                  </SubObjects>
+                </SubObject>
+                <SubObject name="SetAI[2]" access="const"> 
+                  <SubObjects>
+                    <SubObject name="Mode" access="ro">
+                      <DefaultValue>44</DefaultValue>
+                      <ValueDependency> 
+                        <DataOf>Analog_Inputs.AI2.Mode</DataOf>
+                      </ValueDependency>
+                    </SubObject>  
+                    <SubObject name="Filter" access="ro">
+                      <DefaultValue>0</DefaultValue>
+                      <ValueDependency>
+                        <When condition="(@Analog_Inputs.AI2.Filter != 0) &amp;&amp; (@Analog_Inputs.AI2.Value &lt; 25.0) &amp;&amp; (@Analog_Inputs.AI2.Service == 0)">
+                          <Formula>@Analog_Inputs.AI2.Value * 10</Formula>
+                        </When>
+                        <When condition="(@Analog_Inputs.AI2.Filter != 0) &amp;&amp; (@Analog_Inputs.AI2.Value &gt;= 25.0) &amp;&amp; (@Analog_Inputs.AI2.Service == 0)">
+                          <Value>250</Value>
+                        </When>
+                        <When condition="(@Analog_Inputs.AI2.Service != 0)">
+                          <Value>255</Value>
+                        </When>
+                      </ValueDependency>
+                    </SubObject>
+                    <SubObject name="Offset" access="ro">
+                      <ValueDependency>
+                        <ValueOf>Analog_Inputs.AI2.Offset</ValueOf>
+                      </ValueDependency>
+                    </SubObject>
+                    <SubObject name="Gain" access="ro">
+                      <DefaultValue>1.0</DefaultValue>
+                      <ValueDependency>
+                        <ValueOf>Analog_Inputs.AI2.Gain</ValueOf>
+                      </ValueDependency>
+                    </SubObject>
+                  </SubObjects>
+                </SubObject>
+                <SubObject name="SetAI[3]" access="const">
+                  <SubObjects>
+                    <SubObject name="Mode" access="ro">
+                      <DefaultValue>44</DefaultValue>
+                      <ValueDependency> 
+                        <DataOf>Analog_Inputs.AI3.Mode</DataOf>
+                      </ValueDependency>
+                    </SubObject>  
+                    <SubObject name="Filter" access="ro">
+                      <DefaultValue>0</DefaultValue>
+                      <ValueDependency>
+                        <When condition="(@Analog_Inputs.AI3.Filter != 0) &amp;&amp; (@Analog_Inputs.AI3.Value &lt; 25.0) &amp;&amp; (@Analog_Inputs.AI3.Service == 0)">
+                          <Formula>@Analog_Inputs.AI3.Value * 10</Formula>
+                        </When>
+                        <When condition="(@Analog_Inputs.AI3.Filter != 0) &amp;&amp; (@Analog_Inputs.AI3.Value &gt;= 25.0) &amp;&amp; (@Analog_Inputs.AI3.Service == 0)">
+                          <Value>250</Value>
+                        </When>
+                        <When condition="(@Analog_Inputs.AI3.Service != 0)">
+                          <Value>255</Value>
+                        </When>
+                      </ValueDependency>
+                    </SubObject>
+                    <SubObject name="Offset" access="ro">
+                      <ValueDependency>
+                        <ValueOf>Analog_Inputs.AI3.Offset</ValueOf>
+                      </ValueDependency>
+                    </SubObject>
+                    <SubObject name="Gain" access="ro">
+                      <DefaultValue>1.0</DefaultValue>
+                      <ValueDependency>
+                        <ValueOf>Analog_Inputs.AI3.Gain</ValueOf>
+                      </ValueDependency>
+                    </SubObject>
+                  </SubObjects>
+                </SubObject>
+              </SubObjects>
+            </SubObject>
+          </SubObjects>
+        </Object>  
+        
+<!-- IR-1061 device declaration -->
+        <Object index="#xA000" name="r{RACK}_p{POSITION}_Module" type="TModulE1" access="rw">
+          <Comment>
+            <label lang="en">IR-1061 device declaration</label>
+            <label lang="cz">Deklarace desky IR-1061</label>
+          </Comment> 
+          <SubObjects> 
+            <SubObject name="version" access="ro">   
+              <DefaultValue>1</DefaultValue>            
+            </SubObject>  
+            <SubObject name="rack" access="ro">   
+              <MacroValue>{RACK}</MacroValue>
+            </SubObject>
+            <SubObject name="address" access="ro">   
+              <MacroValue>{POSITION}</MacroValue>
+            </SubObject>
+            <SubObject name="LogAddress" access="ro">   
+              <DefaultValue>0</DefaultValue>            
+            </SubObject>
+            <SubObject name="LenInputs" access="ro">   
+              <DefaultValue>0</DefaultValue>            
+            </SubObject>
+            <SubObject name="LenOutputs" access="ro">   
+              <DefaultValue>0</DefaultValue>            
+            </SubObject>
+            <SubObject name="OffsetInputs" access="ro">   
+              <MacroValue>__offset(r{RACK}_p{POSITION}_DI)</MacroValue>                        
+            </SubObject>  
+            <SubObject name="OffsetOutputs" access="ro">   
+              <MacroValue>__offset(r{RACK}_p{POSITION}_DO)</MacroValue>            
+            </SubObject>
+            <SubObject name="InitTable" access="ro">   
+              <MacroValue>__indx(r{RACK}_p{POSITION}_Table)</MacroValue>            
+            </SubObject>  
+          </SubObjects>
+        </Object>                                                   
+      
+      </Objects>
+    </Dictionary>   
+
+<!-- Hardware description -->
+    <Hardware>
+      <Terminals>
+        <Terminal label="A1" purpose="TCL2+">
+          <Description>
+            <label lang="en">system bus TCL2</label>
+            <label lang="cz">systémová sběrnice TCL2</label>
+          </Description>
+        </Terminal> 
+        <Terminal label="A2" purpose="TCL2–">
+          <Description>
+            <label lang="en">system bus TCL2</label>
+            <label lang="cz">systémová sběrnice TCL2</label>
+          </Description>
+        </Terminal> 
+        <Terminal label="A3" purpose="GND">
+          <Description>
+            <label lang="en">module ground</label>
+            <label lang="cz">zem modulu</label>
+          </Description>
+        </Terminal> 
+        <Terminal label="A6" purpose="GND">
+          <Description>
+            <label lang="en">module ground</label>
+            <label lang="cz">zem modulu</label>
+          </Description>
+        </Terminal> 
+        <Terminal label="A7" purpose="RxD CH1">
+          <Description>
+            <label lang="en">received data CH1</label>
+            <label lang="cz">přijímaná data CH1</label>
+          </Description>
+        </Terminal>
+        <Terminal label="A8" purpose="TxD CH1">
+          <Description>
+            <label lang="en">transmitted data CH1</label>
+            <label lang="cz">vysílaná data CH1</label>
+          </Description>
+        </Terminal>
+        <Terminal label="A9" purpose="RTS CH1">
+          <Description>
+            <label lang="en">ready to send for modem CH1</label>
+            <label lang="cz">výzva k vysílání pro modem CH1</label>
+          </Description>
+        </Terminal> 
+        <Terminal label="B1" purpose="CIB1+">
+          <Description>
+            <label lang="en">CIB Common Installation Bus - line 1</label>
+            <label lang="cz">CIB Common Installation Bus - linka 1</label>
+          </Description>
+        </Terminal> 
+        <Terminal label="B2" purpose="CIB1+">
+          <Description>
+            <label lang="en">CIB Common Installation Bus - line 1</label>
+            <label lang="cz">CIB Common Installation Bus - linka 1</label>
+          </Description>
+        </Terminal>
+        <Terminal label="B3" purpose="CIB1-">
+          <Description>
+            <label lang="en">CIB Common Installation Bus - line 1</label>
+            <label lang="cz">CIB Common Installation Bus - linka 1</label>
+          </Description>
+        </Terminal>
+        <Terminal label="B4" purpose="CIB1-">
+          <Description>
+            <label lang="en">CIB Common Installation Bus - line 1</label>
+            <label lang="cz">CIB Common Installation Bus - linka 1</label>
+          </Description>
+        </Terminal>
+        <Terminal label="B6" purpose="CIB2+">
+          <Description>
+            <label lang="en">CIB Common Installation Bus - line 2</label>
+            <label lang="cz">CIB Common Installation Bus - linka 2</label>
+          </Description>
+        </Terminal>
+        <Terminal label="B7" purpose="CIB2+">
+          <Description>
+            <label lang="en">CIB Common Installation Bus - line 2</label>
+            <label lang="cz">CIB Common Installation Bus - linka 2</label>
+          </Description>
+        </Terminal>
+        <Terminal label="B8" purpose="CIB2-">
+          <Description>
+            <label lang="en">CIB Common Installation Bus - line 2</label>
+            <label lang="cz">CIB Common Installation Bus - linka 2</label>
+          </Description> 
+        </Terminal>
+        <Terminal label="B9" purpose="CIB2-">
+          <Description>
+            <label lang="en">CIB Common Installation Bus - line 2</label>
+            <label lang="cz">CIB Common Installation Bus - linka 2</label>
+          </Description> 
+        </Terminal>
+        <Terminal label="C1" purpose="+24V">
+          <Description>
+            <label lang="en">battery power</label>
+            <label lang="cz">napájení z akumulátoru</label>
+          </Description>
+        </Terminal> 
+        <Terminal label="C2" purpose="GND">
+          <Description>
+            <label lang="en">module ground</label>
+            <label lang="cz">zem modulu</label>
+          </Description>
+        </Terminal> 
+        <Terminal label="C4" purpose="+27V">
+          <Description>
+            <label lang="en">power supply</label>
+            <label lang="cz">napájení ze síťového zdroje</label>
+          </Description>
+        </Terminal> 
+        <Terminal label="C5" purpose="+27V">
+          <Description>
+            <label lang="en">power supply</label>
+            <label lang="cz">napájení ze síťového zdroje</label>
+          </Description>
+        </Terminal> 
+        <Terminal label="C6" purpose="+27V">
+          <Description>
+            <label lang="en">power supply</label>
+            <label lang="cz">napájení ze síťového zdroje</label>
+          </Description>
+        </Terminal> 
+        <Terminal label="C7" purpose="GND">
+          <Description>
+            <label lang="en">module ground</label>
+            <label lang="cz">zem modulu</label>
+          </Description>
+        </Terminal> 
+        <Terminal label="C8" purpose="GND">
+          <Description>
+            <label lang="en">module ground</label>
+            <label lang="cz">zem modulu</label>
+          </Description>
+        </Terminal> 
+        <Terminal label="C9" purpose="GND">
+          <Description>
+            <label lang="en">module ground</label>
+            <label lang="cz">zem modulu</label>
+          </Description>
+        </Terminal> 
+        <Terminal label="E1" purpose="AGND">
+          <Description>
+            <label lang="en">module analog ground</label>
+            <label lang="cz">analogová zem modulu</label>
+          </Description>
+        </Terminal> 
+        <Terminal label="E2" purpose="DI0/AI0">
+          <Description>
+            <label lang="en">binary input DI0 / analog input AI0</label>
+            <label lang="cz">binární vstup DI0 / analogový vstup AI0</label>
+          </Description>
+          <InConnectionWith>E1</InConnectionWith>
+        </Terminal>
+        <Terminal label="E3" purpose="DI1/AI1">
+          <Description>
+            <label lang="en">binary input DI1 / analog input AI1</label>
+            <label lang="cz">binární vstup DI1 / analogový vstup AI1</label>
+          </Description>
+          <InConnectionWith>E1</InConnectionWith>
+        </Terminal>  
+        <Terminal label="E4" purpose="DI2/AI2">
+          <Description>
+            <label lang="en">binary input DI2 / analog input AI2</label>
+            <label lang="cz">binární vstup DI2 / analogový vstup AI2</label>
+          </Description>
+          <InConnectionWith>E1</InConnectionWith>
+        </Terminal> 
+        <Terminal label="E5" purpose="DI3/AI3">
+          <Description>
+            <label lang="en">binary input DI3 / analog input AI3</label>
+            <label lang="cz">binární vstup DI3 / analogový vstup AI3</label>
+          </Description>
+          <InConnectionWith>E1</InConnectionWith>
+        </Terminal> 
+        <Terminal label="E8" purpose="COM1">
+          <Description>
+            <label lang="en">digit sense line of output DO0</label>
+            <label lang="cz">nulový vodič výstupu DO0</label>
+          </Description>
+        </Terminal>
+        <Terminal label="E9" purpose="DO0">
+          <Description>
+            <label lang="en">relay output DO0</label>
+            <label lang="cz">reléový výstup DO0</label>
+          </Description>
+          <InConnectionWith>E8</InConnectionWith>
+        </Terminal>
+        <Terminal label="F1" purpose="IN230N">
+          <Description>
+            <label lang="en">digit sense line of input IN230</label>
+            <label lang="cz">nulový vodič vstupu IN230</label>
+          </Description>
+        </Terminal> 
+        <Terminal label="F2" purpose="IN230L">
+          <Description>
+            <label lang="en">input IN230</label>
+            <label lang="cz">vstup IN230</label>
+          </Description>
+          <InConnectionWith>F1</InConnectionWith>
+        </Terminal>
+        <Terminal label="F4" purpose="HDON">
+          <Description>
+            <label lang="en">digit sense line of input HDO</label>
+            <label lang="cz">nulový vodič vstupu HDO</label>
+          </Description>
+        </Terminal>
+        <Terminal label="F5" purpose="HDOL">
+          <Description>
+            <label lang="en">input HDO</label>
+            <label lang="cz">vstup HDO</label>
+          </Description>
+          <InConnectionWith>F4</InConnectionWith>
+        </Terminal>
+        <Terminal label="F8" purpose="COM2">
+          <Description>
+            <label lang="en">digit sense line of output DO1</label>
+            <label lang="cz">nulový vodič výstupu DO1</label>
+          </Description>
+        </Terminal>
+        <Terminal label="F9" purpose="DO1">
+          <Description>
+            <label lang="en">relay output DO1</label>
+            <label lang="cz">reléový výstup DO1</label>
+          </Description>
+          <InConnectionWith>F8</InConnectionWith>
+        </Terminal>
+      </Terminals>
+    </Hardware>
+  </Device>
+</TecoDescriptor>

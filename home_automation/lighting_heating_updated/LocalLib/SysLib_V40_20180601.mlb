@@ -1,0 +1,4256 @@
+(*` {CSY}Knihovna vývojového systému Mosaic{ENU}Mosaic IDE library *)
+(*` {CSY}Jméno souboru{ENU}File name{} : C:\TecoLib\SysLib_V40_20180601.mlb *)
+(*` {CSY}Knihovna : SysLib{ENU}Library : SysLib{} 4.0 *)
+(*` {CSY}Autor{ENU}Author{} : Teco a.s. Kolin *)
+(*` {CSY}Autorská práva{ENU}Copyright{} : (c) 2004..2018 Teco a.s. *)
+(*` {CSY}Verze IEC pøekladaèe{ENU}IEC compiler version{} : 4.2.2.2 *)
+(*` {CSY}Verze assembleru{ENU}Assembler version{} : 4.3.00 *)
+
+//{Knihovna : SysLib 4.0  }
+(*` {CSY}Historie{ENU}History{}: *)
+(*`
+{CSY}
+v1.0 01.09.2004 Nem úvodní verze knihovny
+v1.1 16.09.2004 Nem Pøidány funkce : memcpy(),
+                    SetSummerTime(), IsSummerTime(), SetWinterTime(), IsWinterTime()
+v1.2 16.05.2005 Nem Pøidány funkce GetDate(), GetTime(), GetDateTime(), GetRTC(), 
+                    SetRTC()
+                    Zmìna deklarace systémových promìnných na strukturu
+v1.3 10.11.2005 Nem Doplnìny funkce TecoDT_TO_DT() a DT_TO_TecoDT()
+v1.4 17.11.2007 Nem Doplnìna funkce Memset()
+v1.5 17.01.2008 Nem Doplnìna funkce IncreaseMaxCycleTime()
+                    Vynechány funkce nastavení analog. kanálu.
+v1.6 18.08.2008 Nem Prohozeno poøadí parametrù VAR_INPUT a VAR_IN_OUT
+                    u funkcí Memset() a Memcpy() kvùli použití v LD,
+                    kde je problem s VAR_IN_OUT, pokud je prvni (na CR)
+v1.7 20.02.2009 Nem Doplnìny funkce Get_IP_address() a Set_IP_address() pro Eth1
+v1.8 10.03.2009 Nem Funkce Get_IP_address() nahrazena funkci GetIPaddress() a 
+                    pøesunuta do ComLib
+                    + sesouhlaseny parametry s funkcí GetRemoteIPaddress
+                    Funkce Set_IP_address() nahrazena funkci SetIPaddress() a 
+                    pøesunuta do ComLib
+v1.9 22.10.2009 Nem Doplnìny funkce CIBunitInfo() a SetCIBunitAddress()
+                    a datové typy TCIBunitState a TCIBunitInfo
+v2.0 20.11.2009 Nem Doplnìna funkce ProgramLock()
+v2.1 16.12.2009 Nem Doplnìn funkèní blok fbTick() a funkce Memcmp()
+v2.2 18.01.2010 Nem Opraveno kódování CIB masteru a doplnìn kód pro mastera 0 
+                    (MI0_CIB1 a MI0_CIB2)
+v2.3 06.05.2010 Nem Doplnìny funkce SetWebPSW() a VerifyWebPSW()
+v2.4 16.08.2010 Nem Doplnìny funkce SystemDisplayBacklightOn() a 
+                    SystemDisplayBacklightOff()
+v2.5 02.09.2010 Nem Doplnìny závislosti na knihovnách
+     15.09.2010 Nem Funkce SetRTC vrací informaci o tom, jestli se podaøilo zapsat 
+                    èas do RTC obvodu
+v2.6 19.01.2011 Nem Doplnìny funkce RFunitInfo() and SetRFunitAddress()
+                    Pokud je SW78 = 0 (starsi systemy) tak funkce GetDateTime()
+                    a GetTime() pouzivaji S5 (desitky milisekund) jinak se pouziva 
+                    SW78 (jednotky milisekund)
+v2.7 30.06.2011 Nem Doplnìn funkèní blok fbBondRFunit()
+v2.8 02.11.2011 Nem Doplnìny funkèní bloky memcpyEx(), memsetEx() a memcmpEx()
+v2.9 02.12.2011 Nem Doplnìny funkce SetWebMAC() a VerifyWebMAC()
+v3.0 27.04.2012 Nem Doplnìn funkèní blok TPR() a deklarace do struktury SystemS
+v3.1 21.06.2012 Nem Blok TPR nahrazen blokem fbTPR() - vstup RESET ma prednost
+                    Oprava deklarace struktury SystemS od %S57 dále
+                    (doplnìny CPU_DI a CPU_DO)
+v3.2 22.03.2013 Nem Doplnìn pùvodní blok TPR z verze 3.0 kvùli zpìtné kompatibilitì
+                    Doplnìna funkce ProgramIsChanged()
+v3.3 21.06.2013 Nem Opravena funkce ProgramIsChanged() v pøípadì on-line zmìny
+                    Doplnìny funkce ReInitPLC_hotRestart(), ReInitPLC_coldRestart()
+                    a ReInitPLC_noRestart() - pro Foxtrot je tøeba minimálnì FW v7.8
+v3.4 03.10.2014 Nem Doplnìna funkce GetModuleID() a typ T_RGB_COLOR
+v3.5 16.04.2015 Nem Doplnìna funkce MemcpyPtr()
+v3.6 14.12.2015 Nem Doplnìny funkce GetVarValueByName() a SetVarValueByName()
+v3.7 27.06.2016 Nem Doplnìna funkce GetVarNameByAdr()
+v3.8 21.11.2016 Nem Doplnìny funkce ReInitPLC_hotRestartX(), ReInitPLC_coldRestartX(),
+                    ReInitPLC_noRestartX() a funkèní blok fbIOSystemDiag - vyžadují FW v9.9 nebo vyšší
+     07.09.2017 Nem Doplnìny funkce SetWebLevel() a VerifyWebLevel() 
+v3.9 01.06.2018 Nem Doplnìny funkèní bloky fbLoadRemFromFile() a fbSaveRemToFile()
+                    (pouze pro Foxtrot II)
+v4.0 04.12.2018 Nem Doplnìna funkce MemcpyPtr0()
+
+{ENU}
+v1.0 2004-09-01 Nem First edition
+v1.1 2004-09-16 Nem New funtions : memcpy(),
+                    SetSummerTime(), IsSummerTime(), SetWinterTime(), IsWinterTime()
+v1.2 2005-05-16 Nem New funtions : GetDate(), GetTime(), GetDateTime(), GetRTC(), 
+                    SetRTC()
+                    System registers declared as a structure
+v1.3 2005-11-10 Nem New funtions : TecoDT_TO_DT() and DT_TO_TecoDT()
+v1.4 2007-11-17 Nem New funtion : Memset()
+v1.5 2008-01-17 Nem New funtions : IncreaseMaxCycleTime()
+v1.6 2008-08-18 Nem Change parameters order VAR_INPUT and VAR_IN_OUT
+                    in functions Memset() and Memcpy() - it is better for LD 
+                    language
+v1.7 2009-02-20 Nem New functions : Get_IP_address() and Set_IP_address() for Eth1
+v1.8 2009-03-10 Nem Funtion Get_IP_address() replaced by function GetIPaddress() and 
+                    moved to ComLib
+                    Funtion Set_IP_address() replaced by function SetIPaddress() and 
+                    moved to ComLib
+v1.9 2009-10-22 Nem New funtions : CIBunitInfo() and SetCIBunitAddress()
+                    and new data types TCIBunitState a TCIBunitInfo
+v2.0 2009-11-20 Nem New funtion : ProgramLock()
+v2.1 2009-12-16 Nem New funtions : function block fbTick() and function Memcmp()
+v2.2 2010-01-18 Nem Corrected coding of CIB master and new code for master 0 
+                   (MI0_CIB1 a MI0_CIB2)
+v2.3 2010-05-06 Nem New funtions : SetWebPSW() and VerifyWebPSW()
+v2.4 2010-08-16 Nem New funtions : SystemDisplayBacklightOn() and 
+                    SystemDisplayBacklightOff()
+v2.5 2010-09-02 Nem Dependency on the libraries added
+     2010-09-15 Nem Function SetRTC returns TRUE when date and time is succesfully 
+                    written to RTC device
+v2.6 2011-01-19 Nem New funtions : RFunitInfo() and SetRFunitAddress()
+v2.7 2011-06-30 Nem New funtion block : fbBondRFunit()
+v2.8 2011-11-02 Nem New funtion blocks : memcpyEx(), memsetEx() and memcmpEx()
+v2.9 2011-12-02 Nem New funtions : SetWebMAC() and VerifyWebMAC()
+v3.0 2012-04-27 Nem New funtion block TPR() and completed declaration of SystemS
+v3.1 2012-06-21 Nem Block TPR replaced by block fbTPR() - RESET input has high 
+                    priority
+                    Corrected declaration of structure SystemS 
+                    (added CPU_DI and CPU_DO)
+v3.2 2013-03-22 Nem Restored block TPR from version 3.0 (backward compatibility)
+                    New funtion : ProgramIsChanged()
+v3.3 2013-06-21 Nem Fixed bug in ProgramIsChanged() in case of on-line change
+                    New funtions :  ReInitPLC_hotRestart(), ReInitPLC_coldRestart()
+                    and ReInitPLC_noRestart() - it requires Foxtrot FW v7.8 
+                    minimally
+v3.4 2014-10-03 Nem New function : GetModuleID() and type T_RGB_COLOR
+v3.5 2015-04-16 Nem New function : MemcpyPtr()
+v3.6 2015-12-14 Nem New function : GetVarValueByName() a SetVarValueByName()
+v3.7 2016-06-27 Nem New function : GetVarNameByAdr()
+v3.8 2016-11-21 Nem Added funtions ReInitPLC_hotRestartX(), ReInitPLC_coldRestartX()
+                    ReInitPLC_noRestartX() and function block fbIOSystemDiag- it requires Foxtrot FW v9.9 minimally
+     2017-09-07 Nem Added funtions SetWebLevel() and VerifyWebLevel() 
+v3.9 2018-06-01 Nem Added function blocks fbLoadRemFromFile() a fbSaveRemToFile()
+                    (for Foxtrot II only)
+v4.0 2018-12-04 Nem Added function MemcpyPtr0()
+*)
+
+(*----------------------------------------------------------------------------*)
+{LIBRARY="LOCALLIB\STDLIB_V20_20100519.MLB"}
+
+TYPE T_RGB_COLOR :
+  STRUCT
+    red              : usint;  (*`red color <0..255>*)
+    green            : usint;  (*`green color <0..255>*)
+    blue             : usint;  (*`blue color <0..255>*)
+    opacity          : usint;  (*`opacity (0 = opaque, 255 = transparent)*)
+  END_STRUCT;
+END_TYPE
+
+TYPE TSYSTEM_S :
+  STRUCT
+    S0               : byte;  (*`flags of the results of arithmetic operations {ENU}  {CSY} pøíznaky výsledkù aritmetických operací*)
+    S1               : byte;  (*`flags of the results of logical operations {ENU}  {CSY} pøíznaky výsledkù logických operací*)
+    S2_0             : bool;
+    S2_1             : bool;
+    S2_2             : bool;  (*`{ENU} PLC is running {CSY} PLC je v režimu RUN*)
+    S2_3             : bool;  (*`{ENU} HOT restart {CSY} teplý restart PLC*)
+    S2_4             : bool;  (*`{ENU} COLD restart {CSY} studený restart PLC*)
+    OUTPUTS_ARE_ENABLED : bool;  (*`{ENU} PLC outputs are enabled {CSY} vystupy odblokovany*)
+    S2_6             : bool;  (*`{ENU} RUN without restart {CSY} prechod do run bez restartu PLC*)
+    CYCLE_TIME_WARNING : bool;  (*`{ENU} Cycle time warning {CSY} prekrocena prva mez doby cyklu (varovani)*)
+    LAST_CYCLE_TIME_10MS : usint;  (*`{ENU} Last cycle time [x10 milisecond] {CSY} Doba minuleho cyklu v 10 ms*)
+    CYCLE_COUNTER    : usint;  (*`{ENU} Cycle counter {CSY} Citac cyklu*)
+    COUNTER_10MS     : usint;  (*`{ENU} 10 miliseconds counter {CSY} Citac desitek milisekund*)
+    COUNTER_SECONDS  : usint;  (*`{ENU} second counter {CSY} Citac sekund systemoveho casu*)
+    COUNTER_MINUTES  : usint;  (*`{ENU} minute counter {CSY} Citac minut systemoveho casu*)
+    COUNTER_HOURS    : usint;  (*`{ENU} hour counter {CSY} Citac hodin systemoveho casu*)
+    COUNTER_DAYS_OF_WEEK : usint;  (*`{ENU} day of week {CSY} Citac dnu v tydnu*)
+    COUNTER_DAYS_OF_MONTH : usint;  (*`{ENU} day {CSY} Citac dnu v mesici*)
+    COUNTER_MONTHS   : usint;  (*`{ENU} month {CSY} Citac mesicu*)
+    COUNTER_YEARS    : usint;  (*`{ENU} year {CSY} Citac roku*)
+    PERIOD_PULSE_100MS : bool;  (*`{ENU} 100 ms periodic pulse {CSY} pulz s periodou 100 ms*)
+    PERIOD_PULSE_500MS : bool;  (*`{ENU} 500 ms periodic pulse {CSY} pulz s periodou 500 ms*)
+    PERIOD_PULSE_1SEC : bool;  (*`{ENU} 1 s periodic pulse {CSY} pulz s periodou 1 s*)
+    PERIOD_PULSE_10SEC : bool;  (*`{ENU} 10 s periodic pulse {CSY} pulz s periodou 10 s*)
+    PERIOD_PULSE_1MIN : bool;  (*`{ENU} 1 min periodic pulse {CSY} pulz s periodou 1 min*)
+    PERIOD_PULSE_10MIN : bool;  (*`{ENU} 10 min periodic pulse {CSY} pulz s periodou 10 min*)
+    PERIOD_PULSE_1HOUR : bool;  (*`{ENU} 1 hour periodic pulse {CSY} pulz s periodou 1 hod*)
+    PERIOD_PULSE_1DAY : bool;  (*`{ENU} 1 day periodic pulse {CSY} pulz s periodou 1 den*)
+    COUNTER_100MS    : uint;  (*`{ENU} {CSY} Citac v 100m*)
+    COUNTER_1SEC     : uint;  (*`{ENU} {CSY} Citac v 1s*)
+    COUNTER_10SEC    : uint;  (*`{ENU} {CSY} Citac v 10s*)
+    R_EDGE_100MS     : bool;  (*`{ENU} {CSY} nabezna hrana 1x za 100 ms*)
+    R_EDGE_500MS     : bool;  (*`{ENU} {CSY} nabezna hrana 1x za 500 ms*)
+    R_EDGE_1SEC      : bool;  (*`{ENU} {CSY} nabezna hrana 1x za 1 s*)
+    R_EDGE_10SEC     : bool;  (*`{ENU} {CSY} nabezna hrana 1x za 10 s*)
+    R_EDGE_1MIN      : bool;  (*`{ENU} {CSY} nabezna hrana 1x za 1 min*)
+    R_EDGE_10MIN     : bool;  (*`{ENU} {CSY} nabezna hrana 1x za 10 min*)
+    R_EDGE_1HOUR     : bool;  (*`{ENU} {CSY} nabezna hrana 1x za 1 hod*)
+    R_EDGE_1DAY      : bool;  (*`{ENU} {CSY} nabezna hrana 1x za 1 den*)
+    F_EDGE_100MS     : bool;  (*`{ENU} {CSY} sestupna hrana 1x za 100 ms*)
+    F_EDGE_500MS     : bool;  (*`{ENU} {CSY} sestupna hrana 1x za 500 ms*)
+    F_EDGE_1SEC      : bool;  (*`{ENU} {CSY} sestupna hrana 1x za 1 s*)
+    F_EDGE_10SEC     : bool;  (*`{ENU} {CSY} sestupna hrana 1x za 10 s*)
+    F_EDGE_1MIN      : bool;  (*`{ENU} {CSY} sestupna hrana 1x za 1 min*)
+    F_EDGE_10MIN     : bool;  (*`{ENU} {CSY} sestupna hrana 1x za 10 min*)
+    F_EDGE_1HOUR     : bool;  (*`{ENU} {CSY} sestupna hrana 1x za 1 hod*)
+    F_EDGE_1DAY      : bool;  (*`{ENU} {CSY} sestupna hrana 1x za 1 den*)
+    LAST_CYCLE_TIME_100US : uint;  (*`{ENU} Last cycle time [x100 microsecond] {CSY} Doba minuleho cyklu v 100 µs*)
+    S24              : byte;  (*`{ENU} control masks for PLC processes {CSY} øídící masky procesù*)
+    S25              : byte;  (*`{ENU} control masks for PLC processes {CSY} øídící masky procesù*)
+    S26              : byte;  (*`{ENU} control masks for PLC processes {CSY} øídící masky procesù*)
+    S27              : byte;  (*`{ENU} control masks for PLC processes {CSY} øídící masky procesù*)
+    S28              : byte;  (*`{ENU} control masks for PLC processes {CSY} øídící masky procesù*)
+    S29              : byte;  (*`{ENU} control masks for PLC processes {CSY} øídící masky procesù*)
+    S30              : byte;  (*`{ENU} reserved {CSY} rezervováno*)
+    S31              : byte;  (*`{ENU} reserved {CSY} rezervováno*)
+    S32              : byte;  (*`{ENU} reserved {CSY} rezervováno*)
+    S33              : byte;  (*`{ENU} reserved {CSY} rezervováno*)
+    S34              : byte;  (*`{ENU} main code of PLC error {CSY} hlavní kód chyby PLC*)
+    BAT_ERR          : bool;  (*`{ENU} Backup baterry error {CSY} Chyba zalohovaci baterie*)
+    S35_1            : bool;  (*`{ENU} reserved {CSY} rezervováno*)
+    S35_2            : bool;  (*`{ENU} reserved {CSY} rezervováno*)
+    S35_3            : bool;  (*`{ENU} reserved {CSY} rezervováno*)
+    S35_4            : bool;  (*`{ENU} reserved {CSY} rezervováno*)
+    S35_5            : bool;  (*`{ENU} reserved {CSY} rezervováno*)
+    IS_SUMMER_TIME   : bool;  (*`{ENU} Summer time indication {CSY} Indikace letniho casu*)
+    SUMMER_TIME_REQUEST : bool;  (*`{ENU} {CSY} Zadost o automaticky prechod na letni cas*)
+    CPU_TEMPERATURE  : usint;  (*`{ENU} CPU temperature [Celsius degree] {CSY} Teplota procesoroveho modulu [stupne C]*)
+    S37              : byte;
+    S38              : byte;
+    S39              : byte;
+    S40              : byte;
+    S41              : byte;
+    S42              : byte;
+    S43              : byte;
+    S44              : byte;
+    S45              : byte;
+    S46              : byte;
+    S47              : byte;
+    S48              : byte;
+    S49              : byte;
+    S50              : byte;
+    S51              : byte;
+    COUNTER_1MS      : udint;  (*`{ENU} 1 ms counter {CSY} Citac po 1 ms*)
+    S56              : byte;
+    S57              : byte;
+    CPU_DI           : byte;  (*`{ENU} inputs serviced by CPU {CSY} vstupy obsluhované centrální jednotkou*)
+    CPU_DO           : byte;  (*`{ENU} outputs serviced by CPU  {CSY} výstupy obsluhované centrální jednotkou*)
+    INDEX_OF_RETAIN_ZONE : udint;  (*`{ENU} address of retain zone (index of %R) {CSY} index prvního remanentního registru*)
+    SIZE_OF_RETAIN_ZONE : udint;  (*`{ENU} size of retain zone (number of bytes) {CSY} velikost remanentní zóny (poèet bytù)*)
+    INDEX_SOFT_PLC_STRUCT : uint;  (*`{ENU} reserved for SoftPLC {CSY} rezervováno pro SoftPLC*)
+    CRC_OF_USER_PROGRAM : word;  (*`{ENU} CRC of user program {CSY} CRC uživatelského programu*)
+    CRC_OF_HEADER_PROGRAM : word;  (*`{ENU} CRC of header of user program {CSY} CRC hlavièky uživatelského programu*)
+  END_STRUCT;
+END_TYPE
+
+VAR_GLOBAL
+ System_S AT %S0 : TSYSTEM_S;
+ IS_HOT_RESTART_PLC AT System_S.S2_3 : bool;  (*`{ENU} HOT restart {CSY} teplý restart PLC*)
+ IS_COLD_RESTART_PLC AT System_S.S2_4 : bool;  (*`{ENU} COLD restart {CSY} studený restart PLC*)
+ IS_RESTART_PLC AT System_S.S2_6 : bool;  (*`{ENU} RUN without restart {CSY} prechod do run bez restartu PLC*)
+ CRC_OF_APLIC_PROGRAM AT System_S.CRC_OF_USER_PROGRAM : dword;  (*`{ENU} CRC of aplic program {CSY} CRC aplikaèního programu*)
+
+END_VAR
+
+TYPE TModuleInfo :
+  STRUCT
+    ECOM             : bool;  (*`{ENU} communication module <=> CPU : 0 ... communication is OK, 1 ... ERROR     {CSY} 1 = chyba komunikace mezi CPU a I/O modulem*)
+    DATA             : bool;  (*`{ENU} data validity                : 0 ... module data are not valid, 1 ... OK  {CSY} 1 = data poskytovaná modulem jsou platná*)
+    DUMMY1           : bool;  (*`{ENU} not used {CSY} nepouzito*)
+    DUMMY2           : bool;  (*`{ENU} not used {CSY} nepouzito*)
+    ERR              : bool;  (*`{ENU} I/O module error             : 0 ... module is OK, 1 ... module has a problem  {CSY} 1 = chyba I/O modulu*)
+    DEC              : bool;  (*`{ENU} module declaration           : 0 ... module is not declared in user program    {CSY} 1 = modul má platnou deklaraci v programu PLC*)
+    OTH              : bool;  (*`{ENU} check module type            : 0 ... declared and exist module is the same     {CSY} 1 = typ I/O modulu neodpovídá deklaraci v programu PLC*)
+    POS              : bool;  (*`{ENU} position                     : 0 ... position is free, 1 ... module is present {CSY} 1 = modul je pøítomen v dané pozici*)
+    STAT             : usint;  (*`{ENU} collection all previous bits   {CSY} status modulu – výše uvedené promìnné jako 1 byte (ECOM = STAT.0, … , POS = STAT.7)*)
+  END_STRUCT;
+END_TYPE
+
+TYPE TIOSystemInfo :
+  STRUCT
+    err              : bool;  (*`{ENU} 0 ... all I/O modules are OK, 1 ... any module has error {CSY} 0 = I/O systém PLC je bez chyby, 1 = v I/O systému PLC je nìjaký problém*)
+    rackNumber       : usint;  (*`{ENU} if err=1 then rack number where module is plugged        {CSY} pøi err = 1 udává èíslo rámu PLC, kde je umístìn modul signalizující nìjaký problém*)
+    position         : usint;  (*`{ENU} if err=1 then position number where module is plugged    {CSY} pøi err = 1 udává èíslo pozice v rámu PLC, kde je umístìn modul signalizující nìjaký problém*)
+  END_STRUCT;
+END_TYPE
+
+VAR_GLOBAL CONSTANT
+ MODULE_AND_DATA_OK : usint :=  16#A2;
+
+END_VAR
+
+__DECL FUNCTION ModuleInfo : TModuleInfo
+(*`{ENU} Get information about I/O module
+   Function returns info about one I/O module.
+   You can use this function if module can be removed on time
+
+   {CSY} Informace o I/O modulu
+   Funkce vrátí informace o aktuálním stavu jednoho I/O modulu.
+   Funkce je urèena pro kontrolu I/O modulù vyndavaných za chodu*)
+  VAR_INPUT
+    rackNumber       : usint;  (*`{ENU} rack number where module is plugged     {CSY} èíslo rámu, kde je umístìn I/O modul*)
+    position         : usint;  (*`{ENU} position number where module is plugged {CSY} èíslo pozice v rámu, kde je umístìn I/O modul*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION IOSystemInfo : TIOSystemInfo
+(*`{ENU} Get state of PLC I/O system on TCL2 bus
+
+   Function returns info about I/O system on TCL2 bus
+   Function is designed for monitoring of modules that can be removed online
+
+   If any module on TCL2 bus has an error,
+   err flag is true and position and rack number are set
+   
+   {CSY} Informace o stavu I/O systému na TCL2 sbìrnici
+
+   Funkce vrátí celkovou informaci o stavu I/O systému PLC
+   Funkce je urèena pro kontrolu I/O modulù vyndavaných za chodu
+   
+   Pokud se na TCL2 sbìrnici vyskytne nìjaký problém
+   (napø. chybí I/O modul požadovaný v HW konfiguraci),
+   nastaví se výstup err na TRUE,
+   výstupní promìnná rackNumber udává èíslo rámu
+   a promìnná position øíká pozici v rámu, na které se našel problém*)
+END_FUNCTION
+
+__DECL FUNCTION Memcpy : uint
+(*`{ENU}  Copy memory
+  Function copies a block of n bytes from source to dest
+  Function returns number of copied bytes
+
+  {CSY} Kopírovat pamì
+  Funkce Memcpy zkopíruje blok pamìti ze source do dest
+  Funkce vrací poèet zkopírovaných bytù*)
+  VAR_INPUT
+    length           : uint;  (*`{ENU} number of bytes {CSY} Délka kopírovaného bloku v bytech*)
+  END_VAR
+  VAR_IN_OUT
+    source           : usint;  (*`{ENU} source          {CSY} Zdroj odkud kopírovat*)
+    dest             : usint;  (*`{ENU} destination     {CSY} Cíl kam kopírovat*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION MemcpyEx : uint
+(*`{ENU}  Copy memory
+  Function copies a block of n bytes from source+offsetSource to dest+offsetDest
+  Function returns number of copied bytes
+
+  {CSY} Kopírovat pamì
+  Funkce Memcpy zkopíruje blok pamìti ze source+offsetSource do dest+offsetDest
+  Funkce vrací poèet zkopírovaných bytù*)
+  VAR_INPUT
+    length           : udint;  (*`{ENU} number of bytes {CSY} Délka kopírovaného bloku v bytech*)
+    offSource        : udint;  (*`{ENU} offset in source {CSY} Posunutí od zaèátku zdroje*)
+    offDest          : udint;  (*`{ENU} offset in destination {CSY} Posunutí od zaèátku cíle*)
+  END_VAR
+  VAR_IN_OUT
+    source           : usint;  (*`{ENU} source          {CSY} Zdroj odkud kopírovat*)
+    dest             : usint;  (*`{ENU} destination     {CSY} Cíl kam kopírovat*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION MemcpyPtr : udint
+(*`{ENU} Function MemcpyPtr copies a block of n bytes from source to dest.
+  Function returns number of copied bytes.
+  {CSY} Funkce MemcpyPtr kopíruje blok n bytù ze source do dest.
+  Funkce vrací poèet zkopírovaných bytù*)
+  VAR_INPUT
+    source           : PTR_TO usint;  (*`pointer to source*)
+    dest             : PTR_TO usint;  (*`pointer to  destination*)
+    length           : udint;  (*`number of bytes*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION MemcpyPtr0 : udint
+(*`{ENU} Function MemcpyPtr0 copies a block of n bytes from source to dest.
+  Function returns number of copied bytes.
+  One byte with value with binary zero is written behind the copied block
+  (end of string).
+  {CSY} Funkce MemcpyPtr0 kopíruje blok n bytù ze source do dest.
+  Funkce vrací poèet zkopírovaných bytù. Za konec zkopírovaného bloku
+  se zapíše jeden byte s hodnotou binární nula (konec øetezce).*)
+  VAR_INPUT
+    source           : PTR_TO usint;  (*`pointer to source*)
+    dest             : PTR_TO usint;  (*`pointer to  destination*)
+    length           : udint;  (*`number of bytes*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION Memset : bool
+(*`{ENU} Set memory
+  This function fills the first length bytes of the array pointed to by dest to the value
+  Function returns true if succesfull
+
+  {CSY}  Naplnit pamì
+  Funkce Memset vyplní blok pamìti zadanou hodnotou
+  Funkce vrací TRUE, pakliže se podaøí naplnit blok pamìti*)
+  VAR_INPUT
+    val              : udint;  (*`{ENU} filling value {CSY} Hodnota, která se zapíše do bloku pamìti*)
+    length           : uint;  (*`{ENU} number of bytes to be filled {CSY} Délka bloku pamìti v bytech*)
+  END_VAR
+  VAR_IN_OUT
+    dest             : usint;  (*`{ENU} destination {CSY} Cíl, který bude naplnìn konstantou*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION MemsetEx : bool
+(*`{ENU} Set memory
+  This function fills the first length bytes of the array pointed to by dest+offDest to the value
+  Function returns true if succesfull
+
+  {CSY}  Naplnit pamì
+  Funkce Memset vyplní blok pamìti zadanou hodnotou. Adresa bloku je dest+offDest.
+  Funkce vrací TRUE, pakliže se podaøí naplnit blok pamìti*)
+  VAR_INPUT
+    val              : udint;  (*`{ENU} filling value {CSY} Hodnota, která se zapíše do bloku pamìti*)
+    length           : udint;  (*`{ENU} number of bytes to be filled {CSY} Délka bloku pamìti v bytech*)
+    offDest          : udint;  (*`{ENU} offset in destination {CSY} Posunutí od zaèátku cíle*)
+  END_VAR
+  VAR_IN_OUT
+    dest             : usint;  (*`{ENU} destination {CSY} Cíl, který bude naplnìn konstantou*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION Memcmp : bool
+(*`{ENU} Compare memory
+  Function compares a block of n bytes between in1 and in2
+  Function returns TRUE if in1 is equal in2
+
+  {CSY} Porovnání bloku pamìti
+  Funkce Memcmp porovná vzájemnì dva bloky pamìti
+  Funkce vrací TRUE pokud jsou bloky pamìti shodné*)
+  VAR_INPUT
+    length           : uint;  (*`{ENU} number of bytes   {CSY} Délka porovnávaného bloku v bytech*)
+  END_VAR
+  VAR_IN_OUT
+    in1              : usint;  (*`{ENU} first data block  {CSY} První porovnávaný blok*)
+    in2              : usint;  (*`{ENU} second data block {CSY} Druhý porovnávaný blok*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION MemcmpEx : bool
+(*`{ENU} Compare memory
+  Function compares a block of n bytes between in1+offIn1 and in2+offIn2
+  Function returns TRUE if blocks are equal
+
+  {CSY} Porovnání bloku pamìti
+  Funkce Memcmp porovná vzájemnì dva bloky pamìti.
+  Adresy blokù jsou in1+offIn1 a in2+offIn2.
+  Funkce vrací TRUE pokud jsou bloky pamìti shodné*)
+  VAR_INPUT
+    length           : udint;  (*`{ENU} number of bytes   {CSY} Délka porovnávaného bloku v bytech*)
+    offIn1           : udint;  (*`{ENU} offset in first data block {CSY} Posunutí prvního porovnávaného bloku*)
+    offIn2           : udint;  (*`{ENU} offset in second data block {CSY} Posunutí druhého porovnávaného bloku*)
+  END_VAR
+  VAR_IN_OUT
+    in1              : usint;  (*`{ENU} first data block  {CSY} První porovnávaný blok*)
+    in2              : usint;  (*`{ENU} second data block {CSY} Druhý porovnávaný blok*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION IncreaseMaxCycleTime : bool
+(*`{ENU} Increase max limit for PLC scan time
+
+   Use IncreaseMaxCycleTime to increase max limit for PLC scan time in current scan
+
+   {CSY} Zvýšit èas pro dobu cyklu PLC
+
+   Funkce zvýší jednorázovì hlídanou dobu cyklu PLC*)
+  VAR_INPUT
+    addTime          : uint;  (*`{ENU} milisec {CSY} o kolik milisekund se má zvýšit hlídaná doba cyklu*)
+  END_VAR
+END_FUNCTION
+
+TYPE TTecoDateTime :
+  STRUCT
+    year             : usint;  (*`{ENU} last two numbers          {CSY} rok     (poslední dvì èíslice letopoètu)*)
+    month            : usint;  (*`{ENU} 1 .. 12                   {CSY} mìsíc   (1 .. 12)*)
+    day              : usint;  (*`{ENU} 1 .. 28/29/30/31          {CSY} den     (1 .. 28/29/30/31)*)
+    hour             : usint;  (*`{ENU} 0 .. 23                   {CSY} hodina  (0 .. 23)*)
+    min              : usint;  (*`{ENU} 0 .. 59                   {CSY} minuta  (0 .. 59)*)
+    sec              : usint;  (*`{ENU} 0 .. 59                   {CSY} sekunda (0 .. 59)*)
+    dayOfWeek        : usint;  (*`{ENU} 1 = Monday .. 7 = Sunday  {CSY} den v týdnu (1 = pondìlí, 7 = nedìle)*)
+    milisec          : uint;  (*`{ENU} 0 .. 999                  {CSY} milisekunda*)
+  END_STRUCT;
+END_TYPE
+
+__DECL FUNCTION SetSummerTime : bool
+(*`{ENU} Set Automatic Daylight Saving Time
+  Set request for automatic changing between summer and winter time
+
+  {CSY} Nastavit automatický pøechod na letní èas
+  Funkce nastaví požadavek na automatický pøechod mezi letním a zimním èasem*)
+END_FUNCTION
+
+__DECL FUNCTION IsSummerTime : bool
+(*`{ENU} Test of summer time
+  Test if is summer time now
+
+  {CSY} Test letního èasu
+  Funkce otestuje je-li aktuálnì nastaven letní èas*)
+END_FUNCTION
+
+__DECL FUNCTION SetWinterTime : bool
+(*`{ENU} Disable Automatic Daylight Saving Time
+  Reset request for automatic changing between summer and winter time
+
+  {CSY} Vypnout automatický pøechod na letní èas
+  Funkce vypne požadavek na automatický pøechod mezi letním a zimním èasem*)
+END_FUNCTION
+
+__DECL FUNCTION IsWinterTime : bool
+(*`{ENU} Test of winter time
+  Test if is winter time now
+
+  {CSY} Test zimního èasu
+  Funkce otestuje je-li aktuálnì nastaven zimní èas*)
+END_FUNCTION
+
+__DECL FUNCTION GetDate : date
+(*`{ENU} Get actual system date
+  {CSY} Naèíst aktuální datum*)
+  VAR
+    tmp              : TTecoDateTime;
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION GetTime : time
+(*`{ENU} Get actual system time
+  {CSY} Naèíst aktuální èas PLC*)
+  VAR
+    milisec          : uint;
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION GetDateTime : dt
+(*`{ENU} Get actual system date and time
+  {CSY} Naèíst aktuální datum a èas PLC*)
+  VAR
+    tmp              : TTecoDateTime;
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION GetRTC : dt
+(*`{ENU} Get actual date and time from RTC device directly
+  {CSY} Naèíst datum a èas pøímo z RTC obvodu v PLC*)
+  VAR
+    tmp              : TTecoDateTime;
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION SetRTC : bool
+(*`{ENU} Set new date and time of PLC
+  Function sets new actual date and time to RTC device
+
+  {CSY} Nastavit nový èas a datum PLC
+  Funkce nastaví nový datum a èas do RTC obvodu v PLC*)
+  VAR_INPUT
+    PDT              : dt;  (*`{ENU} new date and time {CSY} nový datum a èas*)
+  END_VAR
+  VAR
+    tmp              : TTecoDateTime;
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION TecoDT_TO_DT : dt
+(*`{ENU} Convert structure TTecoDateTime to type DATE_AND_TIME
+  {CSY} Pøevod datumu a èasu ze struktury TTecoDateTime do IEC formátu DATE_AND_TIME*)
+  VAR_INPUT
+    Teco_DT          : TTecoDateTime;  (*`{ENU} date and time {CSY} datum a èas*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION DT_TO_TecoDT : TTecoDateTime
+(*`{ENU} Convert DATE_AND_TIME to structure TTecoDateTime
+  {CSY} Pøevod datumu a èasu z IEC formátu DATE_AND_TIME do struktury TTecoDateTime*)
+  VAR_INPUT
+    IEC_DT           : dt;  (*`{ENU} date and time {CSY} datum a èas*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION memory_for_ProgramIsChanged {HIDDEN} : bool
+  VAR_INPUT
+    saveSL70         : bool;
+    memSL70          : udint;
+    memS4            : usint;
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION ProgramIsChanged : bool
+(*`{CSY} Funkce vrací TRUE pøi restartu programu a pøi on-line zmìnì programu
+  {ENU} Function returns TRUE in case of restart of PLC program or
+        when program is changed on-line*)
+  VAR
+    saveSL70         : bool;
+    memSL70          : udint;
+    memS4            : usint;
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION ReInitPLC_hotRestart : bool
+(*`{CSY} Funkce pro reinicializaci PLC
+  PLC nejprve pøejde do režimu HALT a výstupy PLC budou zablokovány.
+  Provádìní programu (øízení technologie) se zastaví!
+  Poté se provede teplý restart a PLC pøejde do režimu RUN.
+  Bìhem pøechodu do RUN dojde ke kompletní inicializaci IO systému.
+  Hodnoty RETAIN promìnných zùstanou zachovány,
+  ostatní promìnné se nastaví na inicializaèní hodnotu
+  
+  {ENU} Function for initialization the PLC
+  As a first step PLC goes to HALT mode. PLC outputs are blocked.
+  Processing of application program is stopped.
+  After that warm restart is executed and PLC goes to RUN mode.
+  IO system is completely reinitialized.
+  Values of RETAIN variables are unchanged,
+  all others variables are initialized*)
+  VAR_INPUT
+    rq               : bool;  (*`{CSY} 1 = provést reinicializaci PLC {ENU} 1 = request for reinitialization of PLC*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION ReInitPLC_coldRestart : bool
+(*`{CSY} Funkce pro reinicializaci PLC
+  PLC nejprve pøejde do režimu HALT a výstupy PLC budou zablokovány.
+  Provádìní programu (øízení technologie) se zastaví!
+  Poté se provede studený restart a PLC pøejde do režimu RUN.
+  Bìhem pøechodu do RUN dojde ke kompletní inicializaci IO systému.
+  Do všech promìnných se nastaví inicializaèní hodnoty
+
+  {ENU} Function for initialization the PLC
+  As a first step PLC goes to HALT mode. PLC outputs are blocked.
+  Processing of application program is stopped.
+  After that cold restart is executed and PLC goes to RUN mode.
+  IO system is completely reinitialized.
+  All variables are initialized.*)
+  VAR_INPUT
+    rq               : bool;  (*`{CSY} 1 = provést reinicializaci PLC {ENU} request for reinitialization of PLC*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION ReInitPLC_noRestart : bool
+(*`{CSY} Funkce pro reinicializaci PLC
+  PLC nejprve pøejde do režimu HALT a výstupy PLC budou zablokovány.
+  Provádìní programu (øízení technologie) se zastaví!
+  Poté PLC pøejde do režimu RUN.
+  Bìhem pøechodu do RUN dojde ke kompletní inicializaci IO systému.
+  Hodnoty promìnných zùstanou beze zmìny
+
+  {ENU} Function for initialization the PLC
+  As a first step PLC goes to HALT mode. PLC outputs are blocked.
+  Processing of application program is stopped.
+  After that PLC goes to RUN mode.
+  IO system is completely reinitialized.
+  All variables are unchanged.*)
+  VAR_INPUT
+    rq               : bool;  (*`{CSY} 1 = provést reinicializaci PLC {ENU} request for reinitialization of PLC*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION ReInitPLC_hotRestartX : bool
+(*`{CSY} Funkce pro reinicializaci PLC s naètením nového programu ze souboru
+  Funkce nejprve ovìøí, že existují soubory jejichž jména
+  jsou uvedena v parametrech code a table. V kladném
+  pøípadì funkce vrátí TRUE a PLC dokonèí právì provádìný
+  cykl programu. Poté pøejde PLC do režimu HALT
+  a výstupy PLC jsou zablokovány.
+  Provádìní programu (øízení technologie) se zastaví!
+  Pak se provede naètení nového kódu programu ze souboru (vèetnì tabulek)
+  a PLC provede všechny potøebné kontroly nového kódu. Když kontroly
+  odhalí nìjaký problém, PLC naète zpìt pùvodní kód z pamìti EEPROM.
+  Pokud je kód v poøádku a je nastaven vstup eeprom := TRUE
+  tak se naètený kód naprogramuje do pamìti EEPROM.
+  Poté se provede teplý restart a PLC pøejde do režimu RUN.
+  Bìhem pøechodu do RUN dojde ke kompletní inicializaci IO systému.
+  Hodnoty RETAIN promìnných zùstanou zachovány,
+  ostatní promìnné se nastaví na inicializaèní hodnotu
+
+  {ENU} Function for initialization the PLC with loading of new code from file
+  The function first confirm that there are files whose names are listed
+  in the table and code parameters. If so, the function returns TRUE and
+  PLC completes the currently executing program cycle.
+  Then PLC goes into HALT mode and PLC outputs are disabled.
+  Processing of application program is stopped!
+  Then downloads the new program code from the file (including tables)
+  and PLC makes all the necessary checks of the new code.
+  When checks reveal a problem, the PLC reads back the original code from EEPROM.
+  If the code is ok and input EEPROM = TRUE so new code is programmed into the EEPROM.
+  After that warm restart is executed and PLC goes to RUN mode.
+  IO system is completely reinitialized.
+  Values of RETAIN variables are unchanged,
+  all others variables are initialized*)
+  VAR_INPUT
+    rq               : bool;  (*`{CSY} 1 = provést reinicializaci PLC {ENU} 1 = request for reinitialization of PLC*)
+    eeprom           : bool;  (*`{CSY} 1 = naprogramovat nový kód do EEPROM {ENU} 1 = request for programming of new code into EEPROM*)
+    code             : string [80];  (*`{CSY} jméno souboru s kódem programu (vèetnì cesty) {ENU} file name of program code*)
+    table            : string [80];  (*`{CSY} jméno souboru s tabulkami programu (vèetnì cesty) {ENU} file name of program tables*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION ReInitPLC_coldRestartX : bool
+(*`{CSY} Funkce pro reinicializaci PLC s naètením nového programu ze souboru
+  Funkce nejprve ovìøí, že existují soubory jejichž jména
+  jsou uvedena v parametrech code a table. V kladném
+  pøípadì funkce vrátí TRUE a PLC dokonèí právì provádìný
+  cykl programu. Poté pøejde PLC do režimu HALT
+  a výstupy PLC jsou zablokovány.
+  Provádìní programu (øízení technologie) se zastaví!
+  Pak se provede naètení nového kódu programu ze souboru (vèetnì tabulek)
+  a PLC provede všechny potøebné kontroly nového kódu. Když kontroly
+  odhalí nìjaký problém, PLC naète zpìt pùvodní kód z pamìti EEPROM.
+  Pokud je kód v poøádku a je nastaven vstup eeprom := TRUE
+  tak se naètený kód naprogramuje do pamìti EEPROM.
+  Poté se provede studený restart a PLC pøejde do režimu RUN.
+  Bìhem pøechodu do RUN dojde ke kompletní inicializaci IO systému.
+  Do všech promìnných se nastaví inicializaèní hodnoty
+
+  {ENU} Function for initialization the PLC with loading of new code from file
+  The function first confirm that there are files whose names are listed
+  in the table and code parameters. If so, the function returns TRUE and
+  PLC completes the currently executing program cycle.
+  Then PLC goes into HALT mode and PLC outputs are disabled.
+  Processing of application program is stopped!
+  Then downloads the new program code from the file (including tables)
+  and PLC makes all the necessary checks of the new code.
+  When checks reveal a problem, the PLC reads back the original code from EEPROM.
+  If the code is ok and input EEPROM = TRUE so new code is programmed into the EEPROM.
+  After that cold restart is executed and PLC goes to RUN mode.
+  IO system is completely reinitialized.
+  All variables are initialized.*)
+  VAR_INPUT
+    rq               : bool;  (*`{CSY} 1 = provést reinicializaci PLC {ENU} request for reinitialization of PLC*)
+    eeprom           : bool;  (*`{CSY} 1 = naprogramovat nový kód do EEPROM {ENU} 1 = request for programming of new code into EEPROM*)
+    code             : string [80];  (*`{CSY} jméno souboru s kódem programu (vèetnì cesty) {ENU} file name of program code*)
+    table            : string [80];  (*`{CSY} jméno souboru s tabulkami programu (vèetnì cesty) {ENU} file name of program tables*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION ReInitPLC_noRestartX : bool
+(*`{CSY} Funkce pro reinicializaci PLC s naètením nového programu ze souboru
+  Funkce nejprve ovìøí, že existují soubory jejichž jména
+  jsou uvedena v parametrech code a table. V kladném
+  pøípadì funkce vrátí TRUE a PLC dokonèí právì provádìný
+  cykl programu. Poté pøejde PLC do režimu HALT
+  a výstupy PLC jsou zablokovány.
+  Provádìní programu (øízení technologie) se zastaví!
+  Pak se provede naètení nového kódu programu ze souboru (vèetnì tabulek)
+  a PLC provede všechny potøebné kontroly nového kódu. Když kontroly
+  odhalí nìjaký problém, PLC naète zpìt pùvodní kód z pamìti EEPROM.
+  Pokud je kód v poøádku a je nastaven vstup eeprom := TRUE
+  tak se naètený kód naprogramuje do pamìti EEPROM.
+  Poté PLC pøejde do režimu RUN.
+  Bìhem pøechodu do RUN dojde ke kompletní inicializaci IO systému.
+  Hodnoty promìnných zùstanou beze zmìny
+
+  {ENU} Function for initialization the PLC with loading of new code from file
+  The function first confirm that there are files whose names are listed
+  in the table and code parameters. If so, the function returns TRUE and
+  PLC completes the currently executing program cycle.
+  Then PLC goes into HALT mode and PLC outputs are disabled.
+  Processing of application program is stopped!
+  Then downloads the new program code from the file (including tables)
+  and PLC makes all the necessary checks of the new code.
+  When checks reveal a problem, the PLC reads back the original code from EEPROM.
+  If the code is ok and input EEPROM = TRUE so new code is programmed into the EEPROM.
+  After that PLC goes to RUN mode. IO system is completely reinitialized.
+  All variables are unchanged.*)
+  VAR_INPUT
+    rq               : bool;  (*`{CSY} 1 = provést reinicializaci PLC {ENU} request for reinitialization of PLC*)
+    eeprom           : bool;  (*`{CSY} 1 = naprogramovat nový kód do EEPROM {ENU} 1 = request for programming of new code into EEPROM*)
+    code             : string [80];  (*`{CSY} jméno souboru s kódem programu (vèetnì cesty) {ENU} file name of program code*)
+    table            : string [80];  (*`{CSY} jméno souboru s tabulkami programu (vèetnì cesty) {ENU} file name of program tables*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION GetModuleID : string [40]
+(*`{CSY} Vrátí identifikacní retezec 32 až 36 znaku dle typu modulu
+{ENG} Returns identification string from 32 to 36 characters according to module type*)
+  VAR_INPUT
+    rackNumber       : usint;  (*`{ENU} rack number where module is plugged     {CSY} císlo rámu, kde je umísten I/O modul*)
+    position         : usint;  (*`{ENU} position number where module is plugged {CSY} císlo pozice v rámu, kde je umísten I/O modul*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION GetVarValueByName : string [255]
+(*`{CSY} Vrátí hodnotu promìnné podle zadaného jména promìnné
+{ENG} Returns value of variable according to name of variable*)
+  VAR_INPUT
+    varName          : string [255];  (*`{ENU} full name of variable (name of instance) {CSY} úplné jméno promìnné (jméno instance)*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION GetVarNameByAdr : string [255]
+(*`{CSY} Vrátí jméno promìnné podle adresy promìnné
+{ENG} Returns name of variable according to address of variable*)
+  VAR_IN_OUT
+    varAdr           : byte;  (*`{ENU} variable (name of instance) {CSY} jméno promìnné (jméno instance)*)
+  END_VAR
+  VAR_INPUT
+    varSize          : udint;  (*`{ENU} size of variable (number of bytes) {CSY} velikost promìnné (poèet bytù)*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION SetVarValueByName : bool
+(*`{CSY} Nastaví hodnotu promìnné podle zadaného jména promìnné
+{ENG} Set value of variable according to name of variable*)
+  VAR_INPUT
+    varName          : string [255];  (*`{ENU} full name of variable (name of instance) {CSY} úplné jméno promìnné (jméno instance)*)
+    varValue         : string [255];  (*`{ENU} new value of variable  {CSY} nová hodnota promìnné*)
+  END_VAR
+END_FUNCTION
+
+VAR_GLOBAL CONSTANT
+ MI_CIB1 : usint :=  1;  (*`{ENU} internal Foxtrot CIB line {CSY} interní CIB sbìrnice systému Foxtrot*)
+ MI_CIB2 : usint :=  2;
+ MI0_CIB1 : usint :=  3;  (*`{ENU} external CIB master, address 0, CIB line 1 {CSY} externí CIB master, adresa 0, CIB linka 1*)
+ MI0_CIB2 : usint :=  4;  (*`{ENU} external CIB master, address 0, CIB line 2 {CSY} externí CIB master, adresa 0, CIB linka 2*)
+ MI2_CIB1 : usint :=  5;  (*`{ENU} external CIB master, address 2, CIB line 1 {CSY} externí CIB master, adresa 2, CIB linka 1*)
+ MI2_CIB2 : usint :=  6;  (*`{ENU} external CIB master, address 2, CIB line 2 {CSY} externí CIB master, adresa 2, CIB linka 2*)
+ MI4_CIB1 : usint :=  7;  (*`{ENU} external CIB master, address 4, CIB line 1 {CSY} externí CIB master, adresa 4, CIB linka 1*)
+ MI4_CIB2 : usint :=  8;  (*`{ENU} external CIB master, address 4, CIB line 2 {CSY} externí CIB master, adresa 4, CIB linka 2*)
+ MI6_CIB1 : usint :=  9;  (*`{ENU} external CIB master, address 6, CIB line 1 {CSY} externí CIB master, adresa 6, CIB linka 1*)
+ MI6_CIB2 : usint :=  10;  (*`{ENU} external CIB master, address 6, CIB line 2 {CSY} externí CIB master, adresa 6, CIB linka 2*)
+ MI_RF : usint :=  100;  (*`{ENU} internal Foxtrot RF line      {CSY} interní RF sbìrnice systému Foxtrot*)
+ RF0_RF : usint :=  101;  (*`{ENU} external RF master, address 0 {CSY} externí RF master, adresa 0*)
+ RF2_RF : usint :=  102;  (*`{ENU} external RF master, address 2 {CSY} externí RF master, adresa 2*)
+ RF4_RF : usint :=  103;  (*`{ENU} external RF master, address 4 {CSY} externí RF master, adresa 4*)
+ RF6_RF : usint :=  104;  (*`{ENU} external RF master, address 6 {CSY} externí RF master, adresa 6*)
+
+END_VAR
+
+TYPE TCIBunitState :
+  STRUCT
+    INI              : bool;  (*`{ENU} CIB unit is initialized            {CSY} CIB jednotka je inicializovaná*)
+    COM              : bool;  (*`{ENU} communication with CIB unit is OK  {CSY} komunikace s CIB jednotkou je bez závad*)
+    ADDR             : bool;  (*`{ENU} CIB unit address was accepted      {CSY} adresa CIB jednotky byla akceptovaná*)
+    DUMMY3 {HIDDEN}  : bool;
+    REI              : bool;  (*`{ENU} reinitialization of CIB unit       {CSY} pøíznak reinicializace CIB jednotky*)
+    DUMMY5 {HIDDEN}  : bool;
+    DUMMY6 {HIDDEN}  : bool;
+    NET              : bool;  (*`{ENU} CIB unit is defined and served by CPU {CSY} CIB jednotka je definovaná v programu a obsluhovaná centrální jednotkou*)
+  END_STRUCT;
+END_TYPE
+
+TYPE TCIBunitInfo :
+  STRUCT
+    line_defined     : bool;  (*`{ENU} CIB line defined     {CSY} CIB linka je definovaná v HW konfiguraci PLC*)
+    unit_defined     : bool;  (*`{ENU} CIB unit defined     {CSY} CIB jednotka je definovaná v HW konfiguraci PLC*)
+    state            : TCIBunitState;  (*`{ENU} CIB unit state       {CSY} stav CIB jednotky (viz Typ TCIBunitState)*)
+    address          : word;  (*`{ENU} CIB unit address     {CSY} aktuálnì nastavená HW adresa CIB jednotky*)
+    code             : word;  (*`{ENU} CIB unit code        {CSY} kód CIB jednotky*)
+    unit_type        : string [17];  (*`{ENU} CIB unit type        {CSY} typové oznaèení CIB jednotky*)
+    description      : string [31];  (*`{ENU} CIB unit description {CSY} popis CIB jednotky*)
+  END_STRUCT;
+END_TYPE
+
+TYPE TRFunitState :
+  STRUCT
+    INI              : bool;  (*`{ENU} RF unit is initialized            {CSY} RF jednotka je inicializovaná*)
+    COM              : bool;  (*`{ENU} communication with RF unit is OK  {CSY} komunikace s RF jednotkou je bez závad*)
+    DUMMY2 {HIDDEN}  : bool;
+    DUMMY3 {HIDDEN}  : bool;
+    DUMMY4 {HIDDEN}  : bool;
+    SLP              : bool;  (*`{ENU} sleep mode is available              {CSY} RF jednotka muze prechazet do sleep rezimu*)
+    BND              : bool;  (*`{ENU} unit is paired                       {CSY} jednotka je spárovaná*)
+    NET              : bool;  (*`{ENU} RF unit is defined and served by CPU {CSY} RF jednotka je definovaná v programu a obsluhovaná centrální jednotkou*)
+  END_STRUCT;
+END_TYPE
+
+TYPE TRFunitInfo :
+  STRUCT
+    line_defined     : bool;  (*`{ENU} RF line defined     {CSY} RF linka je definovaná v HW konfiguraci PLC*)
+    unit_defined     : bool;  (*`{ENU} RF unit defined     {CSY} RF jednotka je definovaná v HW konfiguraci PLC*)
+    state            : TRFunitState;  (*`{ENU} RF unit state       {CSY} stav RF jednotky (viz Typ TRFunitState)*)
+    address          : word;  (*`{ENU} RF unit address     {CSY} aktuálnì nastavená HW adresa RF jednotky*)
+    code             : word;  (*`{ENU} RF unit code        {CSY} kód RF jednotky*)
+    unit_type        : string [17];  (*`{ENU} RF unit type        {CSY} typové oznaèení RF jednotky*)
+    description      : string [31];  (*`{ENU} RF unit description {CSY} popis RF jednotky*)
+  END_STRUCT;
+END_TYPE
+
+__DECL FUNCTION CIBunitInfo : bool
+(*`{ENU} Get state of CIB unit
+
+  Function returns information about CIB unit
+  When function is succesful, return value is TRUE
+
+  {CSY} Informace o stavu CIB jednotky
+
+  Funkce získá informace o aktuálním stavu jedné jednotky na CIB sbìrnici
+  Funkce vrací hodnotu TRUE, pokud se podaøí informace o CIB jednotce získat*)
+  VAR_INPUT
+    CIB_line         : usint;  (*`{ENU} CIB line number (see constant MI_CIB1,...,MI6_CIB2) {CSY} èíslo CIB linky (viz konstanty MI_CIB1 až MI6_CIB2)*)
+    CIB_unitID       : usint;  (*`{ENU} CIB position number (1,...,32) {CSY} èíslo pozice CIB jednotky (1,...,32)*)
+  END_VAR
+  VAR_IN_OUT
+    unitInfo         : TCIBunitInfo;  (*`{ENU} variable with information about CIB unit {CSY} promìnná, do které jsou uloženy získané informace o CIB jednotce*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION RFunitInfo : bool
+(*`{ENU} Get state of RF unit
+
+  Function returns information about RF unit
+  When function is succesful, return value is TRUE
+
+  {CSY} Informace o stavu RF jednotky
+
+  Funkce získá informace o aktuálním stavu jedné RF jednotky
+  Funkce vrací hodnotu TRUE, pokud se podaøí informace o RF jednotce získat*)
+  VAR_INPUT
+    RF_line          : usint;  (*`{ENU} RF line number (see constant MI_RF, RF0_RF,...,RF6_RF) {CSY} èíslo RF linky (viz konstanty MI_RF, RF0_RF,...,RF6_RF)*)
+    RF_unitID        : usint;  (*`{ENU} RF position number (1,...,64) {CSY} èíslo pozice RF jednotky (1,...,64)*)
+  END_VAR
+  VAR_IN_OUT
+    unitInfo         : TRFunitInfo;  (*`{ENU} variable with information about RF unit {CSY} promìnná, do které jsou uloženy získané informace o RF jednotce*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION SetAddressCIBunit : bool
+(*`{ENU} Set new address of CIB unit
+  Function sets new address of CIB unit
+  When function is succesful, return value is TRUE
+
+  {CSY} Nastavit novou HW adresu CIB jednotky
+  Funkce nastaví novou HW adresu CIB jednotky
+  Funkce vrací hodnotu TRUE, pokud se podaøí adresu CIB jednotky nastavit*)
+  VAR_INPUT
+    CIB_line         : usint;  (*`{ENU} CIB line number (see constant MI_CIB1,...,MI6_CIB2) {CSY} èíslo CIB linky (viz konstanty MI_CIB1 až MI6_CIB2)*)
+    CIB_unitID       : usint;  (*`{ENU} CIB position number (1,...,32) {CSY} èíslo pozice CIB jednotky (1,...,32)*)
+    CIB_addr         : word;  (*`{ENU} new address of CIB unit  {CSY} nová HW adresa CIB jednotky*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION SetAddressRFunit : bool
+(*`{ENU} Set new address of RF unit
+  Function sets new address of RF unit
+  When function is succesful, return value is TRUE
+
+  {CSY} Nastavit novou HW adresu RF jednotky
+  Funkce nastaví novou HW adresu RF jednotky
+  Funkce vrací hodnotu TRUE, pokud se podaøí adresu RF jednotky nastavit*)
+  VAR_INPUT
+    RF_line          : usint;  (*`{ENU} RF line number (see constant MI_RF, RF0_RF,...,RF6_RF) {CSY} èíslo RF linky (viz konstanty MI_RF, RF0_RF,...,RF6_RF)*)
+    RF_unitID        : usint;  (*`{ENU} RF position number (1,...,64) {CSY} èíslo pozice RF jednotky (1,...,64)*)
+    RF_addr          : word;  (*`{ENU} new address of RF unit  {CSY} nová HW adresa RF jednotky*)
+  END_VAR
+END_FUNCTION
+
+TYPE TBondStat {HIDDEN} :
+  STRUCT  (*`status bondovani*)
+    disconnect       : bool;  (*`probiha odbondovani*)
+    connect          : bool;  (*`probiha bondovani*)
+    bondMap          : bool;  (*`probiha cteni bondovaci mapy*)
+    dummy3           : bool;
+    dummy4           : bool;
+    error            : bool;  (*`doslo k chybe*)
+    done             : bool;  (*`hotovo*)
+    busy             : bool;  (*`master zaneprazdnen*)
+  END_STRUCT;
+END_TYPE
+
+TYPE TBondInfo {HIDDEN} :
+  STRUCT  (*`informace, kterou vraci instrukce SYS 79*)
+    bondStat         : TBondStat;
+    bondID           : usint;  (*`cislo pozice pribondovane jednotky (je-li bondovani uspesne)*)
+    bondType         : word;  (*`typ pribondovane jednotky (je-li bondovani uspesne)*)
+  END_STRUCT;
+END_TYPE
+
+__DECL FUNCTION_BLOCK fbBondRFunit
+(*`{ENU} Bond RF unit with RF master
+  Function block establish relation between RF unit and RF master
+  This operation may take some time. During the action variable busy is set.
+  If you can pair RF unit output variable done has the value TRUE
+  and variable unitType contains string with type of unit and serial number.
+  In other case variable err has value TRUE and variable errID contains error number.
+  
+  {CSY} Spárovat RF jednotku s RF masterem
+  Funkèní blok spáruje RF jednotku s RF masterem.
+  Tato akce mùže nìjakou dobu trvat. Bìhem akce je nastavena promìnná busy.
+  Pokud se podaøí RF jednotku spárovat tak je výstupní promìnná done nastavena na hodnotu TRUE
+  a promìnná unitType obsahuje øetìzec s typem a výrobním èíslem spárované RF jednotky.
+  V opaèném pøípadì je nastavena promìnná err a promìnná errID obsahuje kód chyby*)
+  VAR_INPUT
+    exec             : bool R_EDGE;  (*`{ENU} request to initiate action (rising edge) {CSY} žádost o spárování = nábìžná hrana zahájí akci*)
+    RF_line          : usint;  (*`{ENU} RF line number (see constant MI_RF, RF0_RF,...,RF6_RF) {CSY} èíslo RF linky (viz konstanty MI_RF, RF0_RF,...,RF6_RF)*)
+    RF_unitID        : usint;  (*`{ENU} RF position number (1,...,64) {CSY} èíslo pozice RF jednotky (1,...,64)*)
+    bondRq           : bool;  (*`{ENU} 0 = unbond unit only, 1 = bond new unit  {CSY} 0 = pouze zrušit párování, 1 = napárovat novou jednotku*)
+    useRouter        : bool;  (*`{ENU} 1 = after bonding communicate with unit through router   {CSY} 1 = po napárování komunikovat s RF jednotkou pøes router*)
+  END_VAR
+  VAR_OUTPUT
+    done             : bool;  (*`{ENU} action is done {CSY} párování úspìšnì ukonèeno*)
+    busy             : bool;  (*`{ENU} action in progress {CSY} probíhá párování*)
+    err              : bool;  (*`{ENU} error flag {CSY} párování ukonèeno s chybou*)
+    errID            : udint;  (*`{ENU} error number {CSY} kód chyby*)
+    unitType         : string [40];  (*`{ENU} unit type when action is successful {CSY} typ úspìšnì spárované jednotky*)
+  END_VAR
+  VAR
+    result           : TBondInfo;
+    timIN            : bool;
+    timPT            : time :=  T#2s;
+    tim              : TON;  (*`odbondovat 2+2 s, pribondovat 12+2 s*)
+  END_VAR
+END_FUNCTION_BLOCK
+
+__DECL FUNCTION ProgramLock : bool
+(*`{ENU} Lock the application program
+  Lock the user program (it can not be decompiled)
+
+  {CSY} Uzamèení aplikaèního programu
+  Funkce uzamkne uživatelský program PLC tak,
+  že nelze provést jeho zpìtný pøeklad v prostøedí Mosaic*)
+END_FUNCTION
+
+__DECL FUNCTION_BLOCK TPR
+(*`{ENU} Pulse Timer with RESET. Obsolete version! Please use fbTPR.
+  {CSY} Èasovaè TPR. Zastaralá verze! V novém projektu použijte fbTPR.
+  (generuje pulz dané šíøky, pulz je možno ukonèit vstupem R)*)
+  VAR_INPUT
+    IN               : bool;  (*`{ENU} input  {CSY} vstup èasovaèe*)
+    R                : bool;  (*`{ENU} reset  {CSY} reset èasovaèe*)
+    PT               : time;  (*`{ENU} preset {CSY} pøedvolba èasovaèe*)
+  END_VAR
+  VAR_OUTPUT
+    Q                : bool;  (*`{ENU} output {CSY} výstup èasovaèe*)
+    ET               : time;  (*`{ENU} value  {CSY} aktuální hodnota èasovaèe*)
+  END_VAR
+  VAR
+    IN_r_edge        : R_TRIG;
+    LT               : time;  (*`last tick value ( 1ms resolution)*)
+  END_VAR
+END_FUNCTION_BLOCK
+
+__DECL FUNCTION_BLOCK fbTPR
+(*`{ENU} Pulse Timer with RESET
+  {CSY} Èasovaè fbTPR (generuje pulz dané šíøky, pulz je možno ukonèit vstupem R)*)
+  VAR_INPUT
+    IN               : bool;  (*`{ENU} input  {CSY} vstup èasovaèe*)
+    R                : bool;  (*`{ENU} reset  {CSY} reset èasovaèe*)
+    PT               : time;  (*`{ENU} preset {CSY} pøedvolba èasovaèe*)
+  END_VAR
+  VAR_OUTPUT
+    Q                : bool;  (*`{ENU} output {CSY} výstup èasovaèe*)
+    ET               : time;  (*`{ENU} value  {CSY} aktuální hodnota èasovaèe*)
+  END_VAR
+  VAR
+    IN_r_edge        : R_TRIG;
+    LT               : time;  (*`last tick value ( 1ms resolution)*)
+  END_VAR
+END_FUNCTION_BLOCK
+
+__DECL FUNCTION_BLOCK fbSaveRemToFile
+(*`{CSY} Na nábìžnou hranu vstupu exec uloží obsah všech RETAIN promìnných do souboru.
+  Jméno souboru se pøedává jako vstupní parametr. Ukládání hodnot mùže trvat nìkolik cyklù PLC.
+  Bìhem ukládání je nastaven výstup busy. Výstup done je nastaven na dobu jednoho cyklu ve chvíli,
+  kdy jsou uloženy všechny promìnné. Pokud pøi ukládání došlo k chybì, tak je nastaven výstup err,
+  výstup errId obsahuje kód chyby a výstup errTxt obsahuje popis chyby.
+  POZOR !!! Blok je možné použít pouze pro centrální jednotky systému Foxtrot II
+
+  {ENU} At the leading edge of the input exec stores the contents of all RETAIN variables into the file.
+   The file name is passed as an input parameter. Storing values may take several PLC cycles.
+   The output busy is set during storage. The output done is set for one cycle at a time,
+   when all variables are stored. If an error occurred while saving, the output err is set,
+   the output errId contains the error code and the output errTxt contains a description of the error.
+   ATTENTION !!! The block can be used only for central units of Foxtrot II*)
+  VAR_INPUT
+    exec             : bool R_EDGE;  (*`{ENU} save content of RETAIN variables into file {CSY} uložit stav RETAIN promìnných do souboru*)
+    fileName         : string [80];  (*`{ENU} file name {CSY} jméno souboru*)
+  END_VAR
+  VAR_OUTPUT
+    done             : bool;  (*`{ENU} done              {CSY} hotovo*)
+    busy             : bool;  (*`{ENU} busy              {CSY} blok ještì pracuje*)
+    err              : bool;  (*`{ENU} error             {CSY} došlo k chybì*)
+    errId            : int;  (*`{ENU} error code        {CSY} kód chyby*)
+    errTxt           : string [80];  (*`{ENU} error description {CSY} popis chyby*)
+    percent          : real;  (*`{ENU} how many percent is processed {CSY} kolik procent je zpracováno*)
+  END_VAR
+END_FUNCTION_BLOCK
+
+__DECL FUNCTION_BLOCK fbLoadRemFromFile
+(*`{CSY} Na nábìžnou hranu vstupu exec naète obsah všech RETAIN promìnných ze souboru.
+  Jméno souboru se pøedává jako vstupní parametr, oèekává se soubor vytvoøený funkèním blokem fbSaveRemToFile().
+  Bìhem naèítání je nastaven výstup busy, naèítání mùže trvat nìkolik cyklù PLC.
+  Výstup done je nastaven na dobu jednoho cyklu ve chvíli, kdy jsou naèteny všechny RETAIN promìnné.
+  Pokud pøi naèítání došlo k chybì, tak je nastaven výstup err,
+  výstup errId obsahuje kód chyby a výstup errTxt obsahuje popis chyby.
+  POZOR !!! Blok je možné použít pouze pro centrální jednotky systému Foxtrot II
+
+  {ENU} At the leading edge of the input exec retrieves the contents of all RETAIN variables from the file.
+   The filename is passed as an input parameter, the file created by the function block fbSaveRemToFile() is expected.
+   While loading is set the output busy, loading may take several PLC cycles.
+   The output done is set for one cycle at the time all RETAIN variables are loaded.
+   If an error occurred while loading, the output err is set,
+   the output errId contains the error code and the output errTxt contains a description of the error.
+   ATTENTION !!! The block can be used only for central units of Foxtrot II*)
+  VAR_INPUT
+    exec             : bool R_EDGE;  (*`{ENU} load content of RETAIN variables from file {CSY} naèíst stav RETAIN promìnných ze souboru*)
+    fileName         : string [80];  (*`{ENU} file name {CSY} jméno souboru*)
+  END_VAR
+  VAR_OUTPUT
+    done             : bool;  (*`{ENU} done              {CSY} hotovo*)
+    busy             : bool;  (*`{ENU} busy              {CSY} blok ještì pracuje*)
+    err              : bool;  (*`{ENU} error             {CSY} došlo k chybì*)
+    errId            : int;  (*`{ENU} error code        {CSY} kód chyby*)
+    errTxt           : string [80];  (*`{ENU} error description {CSY} popis chyby*)
+    percent          : real;  (*`{ENU} how many percent is processed {CSY} kolik procent je zpracováno*)
+  END_VAR
+END_FUNCTION_BLOCK
+
+__DECL FUNCTION SetWebPSW : bool
+(*`{ENU} Set password for web access
+   Function sets new username and password for PLC web pages
+
+   {CSY} Nastavit heslo pro pøístup na web stránky PLC
+   Funkce nastaví nové pøihlašovací jméno a heslo pro pøístup na web stránky v PLC*)
+  VAR_INPUT
+    user             : usint;  (*`{ENU} line number in table of users (0...9) {CSY} cislo radku v tabulce uzivatelu (0...9)*)
+  END_VAR
+  VAR_IN_OUT
+    name             : string [80];  (*`{ENU} new user name {CSY} nové pøihlašovací jméno*)
+    password         : string [80];  (*`{ENU} new password {CSY} nové heslo*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION VerifyWebPSW : bool
+(*`{ENU} Verify password for the website PLC
+   Function verifies username and password for PLC web pages
+
+   {CSY} Ovìøit heslo pro pøístup na web stránky PLC
+   Funkce oveøí, zda-li je nastaveno požadované
+   pøihlašovací jméno a heslo pro pøístup na web stránky v PLC*)
+  VAR_INPUT
+    user             : usint;  (*`{ENU} line number in table of users (0...9) {CSY} èíslo øádku v tabulce uživatelù (0...9)*)
+  END_VAR
+  VAR_IN_OUT
+    name             : string [80];  (*`{ENU} user name {CSY} pøihlašovací jméno*)
+    password         : string [80];  (*`{ENU} password {CSY} heslo*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION SetWebMAC : bool
+(*`{ENU} Set MAC for web access
+   Function sets new MAC address for PLC web pages
+
+   {CSY} Nastavit MAC pro pøístup na web stránky PLC
+   Funkce nastaví novou MAC adresu pro pøístup na web stránky v PLC*)
+  VAR_INPUT
+    user             : usint;  (*`{ENU} line number in table of users (0...9) {CSY} èíslo øádku v tabulce uživatelù (0...9)*)
+  END_VAR
+  VAR_IN_OUT
+    MAC              : string [80];  (*`{ENU} new MAC address ('00:11:22:33:44:55') {CSY} nová MAC adresa ('00:11:22:33:44:55')*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION VerifyWebMAC : bool
+(*`{ENU} Verify MAC for the website PLC
+   Function verifies MAC address for PLC web pages access
+
+   {CSY} Ovìøit MAC pro pøístup na web stránky PLC
+   Funkce oveøí, zda-li je nastavena požadovaná
+   MAC adresa pro pøístup na web stránky v PLC*)
+  VAR_INPUT
+    user             : usint;  (*`{ENU} line number in table of users (0...9) {CSY} èíslo øádku v tabulce uživatelù (0...9)*)
+  END_VAR
+  VAR_IN_OUT
+    MAC              : string [80];  (*`{ENU} MAC address ('00:11:22:33:44:55') {CSY} MAC adresa ('00:11:22:33:44:55')*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION SetWebLevel : bool
+(*`{ENU} Set level for web access
+   Function sets new level for PLC web pages
+
+   {CSY} Nastavit uroven pro pøístup na web stránky PLC
+   Funkce nastaví uroven pro pøístup na web stránky v PLC*)
+  VAR_INPUT
+    user             : usint;  (*`{ENU} line number in table of users (0...9) {CSY} èíslo øádku v tabulce uživatelù (0...9)*)
+    level            : sint;  (*`{ENU} new level (-1,0,...,9)                {CSY} nová úroveò (-1,0,...,9)*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION VerifyWebLevel : bool
+(*`{ENU} Verify level for the website PLC
+   Function verifies level for PLC web pages access
+
+   {CSY} Ovìøit úroveò pro pøístup na web stránky PLC
+   Funkce oveøí, zda-li je nastavena požadovaná
+   úroveò pro pøístup na web stránky v PLC*)
+  VAR_INPUT
+    user             : usint;  (*`{ENU} line number in table of users (0...9) {CSY} èíslo øádku v tabulce uživatelù (0...9)*)
+    level            : sint;  (*`{ENU} verified level (-1,0,...,9)           {CSY} ovìøovaná úroveò (-1,0,...,9)*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION SystemDisplayBacklightOn : bool
+(*`{ENU} Switch on the display backlight  system
+   Function switch ON backlight of system LCD display.
+   Function returns TRUE if LCD display is available.
+   In other cases function returns FALSE.
+
+   {CSY} Rozsvítit podsvícení systémového displeje
+   Funkce rozsítí podsvícení LCD displeje na základním modulu PLC.
+   Funkce vrací TRUE, pokud je displej na základním modulu dostupný,
+   jinak vrací FALSE.*)
+  VAR
+    tmp              : udint;
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION SystemDisplayBacklightOff : bool
+(*`{ENU} Switch off the display backlight  system
+   Function switch OFF backlight of system LCD display.
+   Function returns TRUE if LCD display is available.
+   In other cases function returns FALSE.
+
+   {CSY} Zhasnout podsvícení systémového displeje
+   Funkce zhasne podsvícení LCD displeje na základním modulu PLC.
+   Funkce vrací TRUE, pokud je displej na základním modulu dostupný,
+   jinak vrací FALSE.*)
+  VAR
+    tmp              : udint;
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION_BLOCK fbTick
+(*`{ENU} Periodic Timer {CSY} Periodický èasovaè*)
+  VAR_INPUT
+    IN               : bool;  (*`{ENU} ticks enabled   {CSY} povolení èasovaèe*)
+    PT               : time;  (*`{ENU} period of ticks {CSY} perioda výstupních pulzù*)
+  END_VAR
+  VAR_OUTPUT
+    Q                : bool;  (*`{ENU} tick impulse    {CSY} výstup èasovaèe*)
+    ET               : time;  (*`{ENU} elapsed time    {CSY} prùbìžný èas v rámci periody*)
+  END_VAR
+  VAR
+    WasRun           : bool;
+    RunTime          : time;
+  END_VAR
+END_FUNCTION_BLOCK
+
+
+
+{USES=ProgramIsChanged:memory_for_ProgramIsChanged}
+#srcfile 'C:\TECOLIBSRC\SYSLIB\SYSLIB\STRUKTURAS.ST'
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\SYSLIB\SYSLIB\VYNADAVANIZACHODU.ST'
+#pou ModuleInfo
+#srcline 35 ;FUNCTION ModuleInfo : TModuleInfo
+P     61
+ModuleInfo_L0:
+ LINK 0
+ NXT
+#srcline 50 ;begin
+#srcline 51 ;{ asm }
+#srcline 52
+	LEA	%S100
+#srcline 53
+	LDX	rackNumber
+#srcline 54
+	LD	03
+#srcline 55
+	AND				;max. 4 ramy
+#srcline 56
+	LD	16
+#srcline 57
+	MUL
+#srcline 58
+	ADD
+#srcline 59
+	LDX	position
+#srcline 60
+	LD	15
+#srcline 61
+	AND				;max. 16 pozic
+#srcline 62
+	ADD
+#srcline 63
+	LDI
+#srcline 64
+	WRX	__fc__ModuleInfo
+#srcline 65
+	WRX	__fc__ModuleInfo~STAT
+#srcline 66 ;{end_asm}
+#srcline 68 ;END_FUNCTION
+ PRV  
+ LEAX  __fc__ModuleInfo
+ SRC   %X0
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou IOSystemInfo
+#srcline 71 ;FUNCTION IOSystemInfo : TIOSystemInfo
+
+#struct IOSystemInfo__temp__
+  usint index,
+  usint help
+P     61
+IOSystemInfo_L0:
+ LINK __SizeOf(IOSystemInfo__temp__)
+ NXT
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 97 ;begin
+#srcline 98 ;	{ asm }
+#srcline 99
+;
+#srcline 100
+;--->	prednastavit vystup funkce
+#srcline 101
+;
+#srcline 102
+	LD	0
+#srcline 103
+	WRX	__fc__IOSystemInfo~err
+#srcline 104
+	WRX	__fc__IOSystemInfo~rackNumber
+#srcline 105
+	WRX	__fc__IOSystemInfo~position
+#srcline 106
+;
+#srcline 107
+IOSystemInfo_Zacatek:
+#srcline 108
+	LEA	%S100
+#srcline 109
+	LDY	index
+#srcline 110
+	ADD
+#srcline 111
+	LDI				;nacist status modulu
+#srcline 112
+	JMC	IOSystemInfo_DalsiModul	;neni modul ani obsluha
+#srcline 113
+	WRY	help
+#srcline 114
+	LD	$20			;obsluha deklarovana ?
+#srcline 115
+	AND
+#srcline 116
+	JMC	IOSystemInfo_DalsiModul ;ne
+#srcline 117
+	LDY	help
+#srcline 118
+	LD	$A2			;modul OK ?
+#srcline 119
+	EQ
+#srcline 120
+	JMD	IOSystemInfo_DalsiModul	;ano
+#srcline 121
+;
+#srcline 122
+;--->	chyba modulu
+#srcline 123
+;
+#srcline 124
+	LD	1
+#srcline 125
+	WRX	__fc__IOSystemInfo~err
+#srcline 126
+	LDY	index
+#srcline 127
+	LD	16
+#srcline 128
+	MOD
+#srcline 129
+	WRX     __fc__IOSystemInfo~position
+#srcline 130
+	LDY	index
+#srcline 131
+	LD	16
+#srcline 132
+	DIV
+#srcline 133
+	WRX     __fc__IOSystemInfo~rackNumber
+#srcline 134
+	JMP	IOSystemInfo_Konec
+#srcline 135
+;
+#srcline 136
+;--->	na dalsi modul
+#srcline 137
+;
+#srcline 138
+IOSystemInfo_DalsiModul:
+#srcline 139
+	LDY	index
+#srcline 140
+	INR
+#srcline 141
+	WRY	index
+#srcline 142
+	LD	63			;adresa posledniho modulu
+#srcline 143
+	GT
+#srcline 144
+	JMC	IOSystemInfo_Zacatek
+#srcline 145
+;
+#srcline 146
+IOSystemInfo_Konec:
+#srcline 147 ;	{end_asm}
+#srcline 149 ;END_FUNCTION
+ PRV  
+ LEAX  __fc__IOSystemInfo
+ SRC   %X0
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\SYSLIB\SYSLIB\REGISTRYS.ST'
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\SYSLIB\SYSLIB\COPY.ST'
+#pou Memcpy
+#srcline 4 ;FUNCTION Memcpy : UINT
+P     61
+Memcpy_L0:
+ LINK 0
+ NXT
+#srcline 22 ;  Memcpy := 0;
+ LD   uint 0
+ WRX  __fc__Memcpy
+#debug_left uint Memcpy
+#srcline 23 ;	{asm}
+#srcline 24
+	ldx	source
+#srcline 25
+	src	%X0
+#srcline 26
+	ldx	dest
+#srcline 27
+	ldx	length
+#srcline 28
+	mov	%X0
+#srcline 29
+	wrx	__fc__memcpy
+#srcline 30 ;	{end_asm}
+#srcline 31 ;END_FUNCTION
+ PRV  
+ LDX  __fc__Memcpy
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou MemcpyEx
+#srcline 34 ;FUNCTION MemcpyEx : UINT
+P     61
+MemcpyEx_L0:
+ LINK 0
+ NXT
+#srcline 54 ;  MemcpyEx := 0;
+ LD   uint 0
+ WRX  __fc__MemcpyEx
+#debug_left uint MemcpyEx
+#srcline 55 ;	{asm}
+#srcline 56
+	ldx	source
+#srcline 57
+	ldx     offSource
+#srcline 58
+	add
+#srcline 59
+	src	%X0
+#srcline 60
+	ldx	dest
+#srcline 61
+	ldx     offDest
+#srcline 62
+	add
+#srcline 63
+	ldx	length
+#srcline 64
+	mov	%X0
+#srcline 65
+	wrx	__fc__memcpyEx
+#srcline 66 ;	{end_asm}
+#srcline 67 ;END_FUNCTION
+ PRV  
+ LDX  __fc__MemcpyEx
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou MemcpyPtr
+#srcline 69 ;FUNCTION MemcpyPtr : udint
+P     61
+MemcpyPtr_L0:
+ LINK 0
+ NXT
+#srcline 81 ;  MemcpyPtr := 0;
+ LD   udint 0
+ WRX  __fc__MemcpyPtr
+#debug_left udint MemcpyPtr
+#srcline 82 ;{asm}
+#srcline 83
+	ldx	source
+#srcline 84
+	src	%X0
+#srcline 85
+	ldx	dest
+#srcline 86
+	ldx	length
+#srcline 87
+	mov	%X0
+#srcline 88
+	wrx	__fc__MemcpyPtr
+#srcline 89 ;{end_asm}
+#srcline 90 ;END_FUNCTION
+ PRV  
+ LDX  __fc__MemcpyPtr
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou MemcpyPtr0
+#srcline 92 ;FUNCTION MemcpyPtr0 : udint
+P     61
+MemcpyPtr0_L0:
+ LINK 0
+ NXT
+#srcline 107 ;  MemcpyPtr0 := 0;
+ LD   udint 0
+ WRX  __fc__MemcpyPtr0
+#debug_left udint MemcpyPtr0
+#srcline 108 ;{asm}
+#srcline 109
+	ldx	source
+#srcline 110
+	src	%X0
+#srcline 111
+	ldx	dest
+#srcline 112
+	ldx	length
+#srcline 113
+	mov	%X0
+#srcline 114
+	wrx	__fc__MemcpyPtr0
+#srcline 115
+	ld  0
+#srcline 116
+  ldx	dest
+#srcline 117
+	ldx	length
+#srcline 118
+	add
+#srcline 119
+	wri
+#srcline 120 ;{end_asm}
+#srcline 121 ;END_FUNCTION
+ PRV  
+ LDX  __fc__MemcpyPtr0
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou Memset
+#srcline 135 ;FUNCTION Memset : bool
+P     61
+Memset_L0:
+ LINK 0
+ NXT
+#srcline 153 ;  Memset := false;
+ LD   bool 0       ; false
+ WRX  __fc__Memset
+#debug_left bool Memset
+#srcline 154 ;  {asm}
+#srcline 155
+	ldx    dest
+#srcline 156
+	ldx    length
+#srcline 157
+	ldx    val
+#srcline 158
+	fil
+#srcline 159
+	ld     %s1.0
+#srcline 160
+	wrx    __fc__memset
+#srcline 161 ;  {end_asm}
+#srcline 162 ;END_FUNCTION
+ PRV  
+ LDX  __fc__Memset
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou MemsetEx
+#srcline 164 ;FUNCTION MemsetEx : bool
+P     61
+MemsetEx_L0:
+ LINK 0
+ NXT
+#srcline 183 ;  MemsetEx := false;
+ LD   bool 0       ; false
+ WRX  __fc__MemsetEx
+#debug_left bool MemsetEx
+#srcline 184 ;  {asm}
+#srcline 185
+	ldx    dest
+#srcline 186
+	ldx    offDest
+#srcline 187
+	add
+#srcline 188
+	ldx    length
+#srcline 189
+	ldx    val
+#srcline 190
+	fil
+#srcline 191
+	ld     %s1.0
+#srcline 192
+	wrx    __fc__memsetEx
+#srcline 193 ;  {end_asm}
+#srcline 194 ;END_FUNCTION
+ PRV  
+ LDX  __fc__MemsetEx
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou Memcmp
+#srcline 196 ;FUNCTION Memcmp : BOOL
+P     61
+Memcmp_L0:
+ LINK 0
+ NXT
+#srcline 214 ;  Memcmp := FALSE;
+ LD   bool 0       ; false
+ WRX  __fc__Memcmp
+#debug_left bool Memcmp
+#srcline 215 ;	{asm}
+#srcline 216
+	ldx	in1
+#srcline 217
+	ldx	in2
+#srcline 218
+	ldx	length
+#srcline 219
+        bcmp
+#srcline 220
+        eq      0
+#srcline 221
+	wrx	__fc__memcmp
+#srcline 222 ;	{end_asm}
+#srcline 223 ;END_FUNCTION
+ PRV  
+ LDX  __fc__Memcmp
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou MemcmpEx
+#srcline 225 ;FUNCTION MemcmpEx : BOOL
+P     61
+MemcmpEx_L0:
+ LINK 0
+ NXT
+#srcline 246 ;  MemcmpEx := FALSE;
+ LD   bool 0       ; false
+ WRX  __fc__MemcmpEx
+#debug_left bool MemcmpEx
+#srcline 247 ;	{asm}
+#srcline 248
+	ldx	in1
+#srcline 249
+	ldx     offIn1
+#srcline 250
+	add
+#srcline 251
+	ldx	in2
+#srcline 252
+	ldx     offIn2
+#srcline 253
+	add
+#srcline 254
+	ldx	length
+#srcline 255
+        bcmp
+#srcline 256
+        eq      0
+#srcline 257
+	wrx	__fc__memcmpEx
+#srcline 258 ;	{end_asm}
+#srcline 259 ;END_FUNCTION
+ PRV  
+ LDX  __fc__MemcmpEx
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou IncreaseMaxCycleTime
+#srcline 262 ;FUNCTION IncreaseMaxCycleTime : BOOL
+P     61
+IncreaseMaxCycleTime_L0:
+ LINK 0
+ NXT
+#srcline 275 ;begin
+#srcline 276 ;     {asm} (**)
+#srcline 277
+     LDX  addTime
+#srcline 278
+     SYS  25
+#srcline 279 ;     {end_asm}
+#srcline 280 ;     IncreaseMaxCycleTime := TRUE;
+ LD   bool -1       ; true
+ WRX  __fc__IncreaseMaxCycleTime
+#debug_left bool IncreaseMaxCycleTime
+#srcline 281 ;END_FUNCTION
+ PRV  
+ LDX  __fc__IncreaseMaxCycleTime
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\SYSLIB\SYSLIB\LETNI_ZIMNI_CAS.ST'
+#pou SetSummerTime
+#srcline 17 ;FUNCTION SetSummerTime : BOOL
+P     61
+SetSummerTime_L0:
+ LINK 0
+ NXT
+; Initialize - variables
+ LD   0
+ WRX  __fc__SetSummerTime
+; End initialize - variables
+#srcline 26 ;  System_S.SUMMER_TIME_REQUEST := TRUE;
+ LD   bool -1       ; true
+ WR   System_S~SUMMER_TIME_REQUEST
+#debug_left bool System_S.SUMMER_TIME_REQUEST
+#srcline 27 ;  SetSummerTime := TRUE;
+ LD   bool -1       ; true
+ WRX  __fc__SetSummerTime
+#debug_left bool SetSummerTime
+#srcline 28 ;END_FUNCTION
+ PRV  
+ LDX  __fc__SetSummerTime
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou IsSummerTime
+#srcline 31 ;FUNCTION IsSummerTime : BOOL
+P     61
+IsSummerTime_L0:
+ LINK 0
+ NXT
+; Initialize - variables
+ LD   0
+ WRX  __fc__IsSummerTime
+; End initialize - variables
+#srcline 40 ;  IsSummerTime := System_S.IS_SUMMER_TIME;
+ LD   System_S~IS_SUMMER_TIME
+#debug bool System_S.IS_SUMMER_TIME
+ WRX  __fc__IsSummerTime
+#debug_left bool IsSummerTime
+#srcline 41 ;END_FUNCTION
+ PRV  
+ LDX  __fc__IsSummerTime
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou SetWinterTime
+#srcline 44 ;FUNCTION SetWinterTime : BOOL
+P     61
+SetWinterTime_L0:
+ LINK 0
+ NXT
+; Initialize - variables
+ LD   0
+ WRX  __fc__SetWinterTime
+; End initialize - variables
+#srcline 53 ;  System_S.SUMMER_TIME_REQUEST := FALSE;
+ LD   bool 0       ; false
+ WR   System_S~SUMMER_TIME_REQUEST
+#debug_left bool System_S.SUMMER_TIME_REQUEST
+#srcline 54 ;  SetWinterTime := TRUE;
+ LD   bool -1       ; true
+ WRX  __fc__SetWinterTime
+#debug_left bool SetWinterTime
+#srcline 55 ;END_FUNCTION
+ PRV  
+ LDX  __fc__SetWinterTime
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou IsWinterTime
+#srcline 58 ;FUNCTION IsWinterTime : BOOL
+P     61
+IsWinterTime_L0:
+ LINK 0
+ NXT
+; Initialize - variables
+ LD   0
+ WRX  __fc__IsWinterTime
+; End initialize - variables
+#srcline 67 ;  IsWinterTime := NOT System_S.IS_SUMMER_TIME;
+ LD   System_S~IS_SUMMER_TIME
+#debug bool System_S.IS_SUMMER_TIME
+ NEG
+ WRX  __fc__IsWinterTime
+#debug_left bool IsWinterTime
+#srcline 68 ;END_FUNCTION
+ PRV  
+ LDX  __fc__IsWinterTime
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou GetDate
+#srcline 71 ;FUNCTION GetDate : DATE
+P     61
+GetDate_L0:
+ LINK 0
+ NXT
+; Initialize - variables
+ LD   0
+ WRX  __fc__GetDate
+ LEAX tmp
+ LD   9
+ LD   0
+ FIL 
+; End initialize - variables
+#srcline 80 ;  tmp.year      := System_S.COUNTER_YEARS;
+ LD   System_S~COUNTER_YEARS
+#debug usint System_S.COUNTER_YEARS
+ WRX  tmp~year
+#debug_left usint tmp.year
+#srcline 81 ;  tmp.month     := System_S.COUNTER_MONTHS;
+ LD   System_S~COUNTER_MONTHS
+#debug usint System_S.COUNTER_MONTHS
+ WRX  tmp~month
+#debug_left usint tmp.month
+#srcline 82 ;  tmp.day       := System_S.COUNTER_DAYS_OF_MONTH;
+ LD   System_S~COUNTER_DAYS_OF_MONTH
+#debug usint System_S.COUNTER_DAYS_OF_MONTH
+ WRX  tmp~day
+#debug_left usint tmp.day
+#srcline 83 ;  tmp.hour      := 0;
+ LD   usint 0
+ WRX  tmp~hour
+#debug_left usint tmp.hour
+#srcline 84 ;  tmp.min       := 0;
+ LD   usint 0
+ WRX  tmp~min
+#debug_left usint tmp.min
+#srcline 85 ;  tmp.sec       := 0;
+ LD   usint 0
+ WRX  tmp~sec
+#debug_left usint tmp.sec
+#srcline 86 ;  tmp.dayOfWeek := 0;
+ LD   usint 0
+ WRX  tmp~dayOfWeek
+#debug_left usint tmp.dayOfWeek
+#srcline 87 ;  tmp.milisec   := 0;
+ LD   uint 0
+ WRX  tmp~milisec
+#debug_left uint tmp.milisec
+#srcline 88 ;  {asm}
+#srcline 89
+        LEAX  tmp
+#srcline 90
+        SYS   18                ; konverze TTecoDateTime -> DATE_AND_TIME;
+#srcline 91
+        WRX   __fc__GetDate
+#srcline 92 ;  {end_asm}
+#srcline 93 ;END_FUNCTION
+ PRV  
+ LDX  __fc__GetDate
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou GetTime
+#srcline 96 ;FUNCTION GetTime : TIME
+P     61
+GetTime_L0:
+ LINK 0
+ NXT
+; Initialize - variables
+ LD   0
+ WRX  __fc__GetTime
+ WRX  milisec
+; End initialize - variables
+#srcline 108 ;  if 0 <> %SW78 then
+ LD   0
+ LD   %SW78
+ EQ
+ NEG
+ JMC  GetTime_L1
+#srcline 109 ;    milisec   := %SW78;
+ LD   %SW78
+ WRX  milisec
+#debug_left uint milisec
+#srcline 110 ;  else
+ JMP  GetTime_L2
+GetTime_L1:
+#srcline 111 ;    milisec   := USINT_TO_UINT( System_S.COUNTER_10MS) * 10;
+ LD   System_S~COUNTER_10MS
+#debug usint System_S.COUNTER_10MS
+ AND  $FFFF
+ LD   uint 10
+ MUL
+ AND  $FFFF
+ WRX  milisec
+#debug_left uint milisec
+#srcline 112 ;  end_if;
+GetTime_L2:
+#srcline 114 ;  GetTime :=  UINT_TO_TIME (milisec                  ) +
+ LDX  milisec
+#debug uint milisec
+#srcline 115 ;              USINT_TO_TIME( System_S.COUNTER_SECONDS) * 1000      +
+ LD   System_S~COUNTER_SECONDS
+#debug usint System_S.COUNTER_SECONDS
+ LD   time 1000
+ MULS
+ ADD
+#srcline 116 ;              USINT_TO_TIME( System_S.COUNTER_MINUTES) * 1000 * 60 +
+ LD   System_S~COUNTER_MINUTES
+#debug usint System_S.COUNTER_MINUTES
+ LD   time 1000
+ MULS
+ LD   time 60
+ MULS
+ ADD
+#srcline 117 ;              USINT_TO_TIME( System_S.COUNTER_HOURS  ) * 1000 * 3600;
+ LD   System_S~COUNTER_HOURS
+#debug usint System_S.COUNTER_HOURS
+ LD   time 1000
+ MULS
+ LD   time 3600
+ MULS
+ ADD
+ WRX  __fc__GetTime
+#debug_left time GetTime
+#srcline 119 ;END_FUNCTION
+ PRV  
+ LDX  __fc__GetTime
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou GetDateTime
+#srcline 122 ;FUNCTION GetDateTime : DATE_AND_TIME
+P     61
+GetDateTime_L0:
+ LINK 0
+ NXT
+; Initialize - variables
+ LDQ  0.0
+ WRX  __fc__GetDateTime
+ LEAX tmp
+ LD   9
+ LD   0
+ FIL 
+; End initialize - variables
+#srcline 134 ;  tmp.year      := System_S.COUNTER_YEARS;
+ LD   System_S~COUNTER_YEARS
+#debug usint System_S.COUNTER_YEARS
+ WRX  tmp~year
+#debug_left usint tmp.year
+#srcline 135 ;  tmp.month     := System_S.COUNTER_MONTHS;
+ LD   System_S~COUNTER_MONTHS
+#debug usint System_S.COUNTER_MONTHS
+ WRX  tmp~month
+#debug_left usint tmp.month
+#srcline 136 ;  tmp.day       := System_S.COUNTER_DAYS_OF_MONTH;
+ LD   System_S~COUNTER_DAYS_OF_MONTH
+#debug usint System_S.COUNTER_DAYS_OF_MONTH
+ WRX  tmp~day
+#debug_left usint tmp.day
+#srcline 137 ;  tmp.hour      := System_S.COUNTER_HOURS;
+ LD   System_S~COUNTER_HOURS
+#debug usint System_S.COUNTER_HOURS
+ WRX  tmp~hour
+#debug_left usint tmp.hour
+#srcline 138 ;  tmp.min       := System_S.COUNTER_MINUTES;
+ LD   System_S~COUNTER_MINUTES
+#debug usint System_S.COUNTER_MINUTES
+ WRX  tmp~min
+#debug_left usint tmp.min
+#srcline 139 ;  tmp.sec       := System_S.COUNTER_SECONDS;
+ LD   System_S~COUNTER_SECONDS
+#debug usint System_S.COUNTER_SECONDS
+ WRX  tmp~sec
+#debug_left usint tmp.sec
+#srcline 140 ;  tmp.dayOfWeek := System_S.COUNTER_DAYS_OF_WEEK;
+ LD   System_S~COUNTER_DAYS_OF_WEEK
+#debug usint System_S.COUNTER_DAYS_OF_WEEK
+ WRX  tmp~dayOfWeek
+#debug_left usint tmp.dayOfWeek
+#srcline 142 ;  if 0 <> %SW78  then
+ LD   0
+ LD   %SW78
+ EQ
+ NEG
+ JMC  GetDateTime_L1
+#srcline 143 ;    tmp.milisec   := %SW78;
+ LD   %SW78
+ WRX  tmp~milisec
+#debug_left uint tmp.milisec
+#srcline 144 ;  else
+ JMP  GetDateTime_L2
+GetDateTime_L1:
+#srcline 145 ;    tmp.milisec   := USINT_TO_UINT( System_S.COUNTER_10MS) * 10;
+ LD   System_S~COUNTER_10MS
+#debug usint System_S.COUNTER_10MS
+ AND  $FFFF
+ LD   uint 10
+ MUL
+ AND  $FFFF
+ WRX  tmp~milisec
+#debug_left uint tmp.milisec
+#srcline 146 ;  end_if;
+GetDateTime_L2:
+#srcline 147 ;  {asm}
+#srcline 148
+        LEAX  tmp
+#srcline 149
+        SYS   18                ; konverze TTecoDateTime -> DATE_AND_TIME;
+#srcline 150
+        WRX   __fc__GetDateTime
+#srcline 151 ;  {end_asm}
+#srcline 152 ;END_FUNCTION
+ PRV  
+ LDX  __fc__GetDateTime
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou GetRTC
+#srcline 155 ;FUNCTION GetRTC : DATE_AND_TIME
+P     61
+GetRTC_L0:
+ LINK 0
+ NXT
+; Initialize - variables
+ LDQ  0.0
+ WRX  __fc__GetRTC
+ LEAX tmp
+ LD   9
+ LD   0
+ FIL 
+; End initialize - variables
+#srcline 164 ;begin
+#srcline 165 ;  {asm}
+#srcline 166
+        LD    __indx( __Instance__GetRTC~tmp)
+#srcline 167
+        SYS   3                 ; RDT -> nacist okamzity cas
+#srcline 168
+        LEAX  tmp
+#srcline 169
+        SYS   18                ; konverze TTecoDateTime -> DATE_AND_TIME;
+#srcline 170
+        WRX   __fc__GetRTC
+#srcline 171 ;  {end_asm}
+#srcline 172 ;END_FUNCTION
+ PRV  
+ LDX  __fc__GetRTC
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou SetRTC
+#srcline 175 ;FUNCTION SetRTC : BOOL
+
+#struct SetRTC__temp__
+  bool result
+P     61
+SetRTC_L0:
+ LINK __SizeOf(SetRTC__temp__)
+ NXT
+; Initialize - variables
+ LD   0
+ WRX  __fc__SetRTC
+ LEAX tmp
+ LD   9
+ LD   0
+ FIL 
+; End initialize - variables
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 192 ;begin
+#srcline 193 ;  {asm}
+#srcline 194
+        LEAX  tmp
+#srcline 195
+        LDX   PDT
+#srcline 196
+        SYS   19                ; konverze DATE_AND_TIME -> TTecoDateTime
+#srcline 197
+        LD    __indx( __Instance__SetRTC~tmp)
+#srcline 198
+        SYS   4                 ; WRT -> zapsat okamzity cas
+#srcline 199
+        EQ    0                 ; 0 = nepodarilo se zapsat
+#srcline 200
+        NEG
+#srcline 201
+        WRY   result
+#srcline 202 ;  {end_asm}
+#srcline 203 ;  SetRTC := result;
+ LDY  result
+#debug bool result
+ WRX  __fc__SetRTC
+#debug_left bool SetRTC
+#srcline 204 ;END_FUNCTION
+ PRV  
+ LDX  __fc__SetRTC
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou TecoDT_TO_DT
+#srcline 207 ;FUNCTION TecoDT_TO_DT : DATE_AND_TIME
+P     61
+TecoDT_TO_DT_L0:
+ LINK 0
+ NXT
+#srcline 216 ;begin
+#srcline 217 ;  {asm}
+#srcline 218
+        LEAX  Teco_DT
+#srcline 219
+        SYS   18                ; konverze TTecoDateTime -> DATE_AND_TIME;
+#srcline 220
+        WRX   __fc__TecoDT_TO_DT
+#srcline 221 ;  {end_asm}
+#srcline 222 ;END_FUNCTION
+ PRV  
+ LDX  __fc__TecoDT_TO_DT
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou DT_TO_TecoDT
+#srcline 225 ;FUNCTION DT_TO_TecoDT : TTecoDateTime
+P     61
+DT_TO_TecoDT_L0:
+ LINK 0
+ NXT
+#srcline 234 ;begin
+#srcline 235 ;  {asm}
+#srcline 236
+        LEAX  __fc__DT_TO_TecoDT
+#srcline 237
+        LDX   IEC_DT
+#srcline 238
+        SYS   19                ; konverze DATE_AND_TIME -> TTecoDateTime
+#srcline 239 ;  {end_asm}
+#srcline 240 ;END_FUNCTION
+ PRV  
+ LEAX  __fc__DT_TO_TecoDT
+ SRC   %X0
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\SYSLIB\SYSLIB\PROGRAMISCHANGED.ST'
+#pou memory_for_ProgramIsChanged
+#srcline 6 ;FUNCTION memory_for_ProgramIsChanged {HIDDEN} : BOOL
+P     61
+memory_for_ProgramIsChanged_L0:
+ LINK 0
+ NXT
+#srcline 13 ;  memory_for_ProgramIsChanged := 1;
+ LD   bool -1      ; true
+ WRX  __fc__memory_for_ProgramIsChanged
+#debug_left bool memory_for_ProgramIsChanged
+#srcline 14 ;END_FUNCTION
+ PRV  
+ LDX  __fc__memory_for_ProgramIsChanged
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou ProgramIsChanged
+#srcline 17 ;FUNCTION ProgramIsChanged : BOOL
+P     61
+ProgramIsChanged_L0:
+ LINK 0
+ NXT
+; Initialize - variables
+ LD   0
+ WRX  __fc__ProgramIsChanged
+ WRX  saveSL70
+ WRX  memSL70
+ WRX  memS4
+; End initialize - variables
+#srcline 33 ;  ProgramIsChanged := 0;
+ LD   bool 0       ; false
+ WRX  __fc__ProgramIsChanged
+#debug_left bool ProgramIsChanged
+#srcline 34 ;  // nacist promenne z minuleho volani
+#srcline 35 ;  {asm}
+#srcline 36
+     LD    __Instance__memory_for_ProgramIsChanged~saveSL70
+#srcline 37
+     WRX   saveSL70
+#srcline 38
+     LD    __Instance__memory_for_ProgramIsChanged~memSL70
+#srcline 39
+     WRX   memSL70
+#srcline 40
+     LD    __Instance__memory_for_ProgramIsChanged~memS4
+#srcline 41
+     WRX   memS4
+#srcline 42 ;  {end_asm}
+#srcline 43 ;  
+#srcline 44 ;  IF saveSL70 THEN
+ LDX  saveSL70
+#debug bool saveSL70
+ JMC  ProgramIsChanged_L1
+#srcline 45 ;    IF memS4 <> %S4 THEN
+ LDX  memS4
+#debug usint memS4
+ LD   %S4
+ EQ
+ NEG
+ JMC  ProgramIsChanged_L3
+#srcline 46 ;      memSL70 := %SL70;               // zapamatovat aktualni CRC programu
+ LD   %SL70
+ WRX  memSL70
+#debug_left udint memSL70
+#srcline 47 ;      {asm}
+#srcline 48
+        LD   %SL70
+#srcline 49
+        WR   __Instance__memory_for_ProgramIsChanged~memSL70
+#srcline 50
+        LD   0
+#srcline 51
+        WR   __Instance__memory_for_ProgramIsChanged~saveSL70
+#srcline 52 ;      {end_asm}
+#srcline 53 ;      saveSL70 := 0;                  // shodit pozadavek na ulozeni SL70
+ LD   bool 0       ; false
+ WRX  saveSL70
+#debug_left bool saveSL70
+#srcline 54 ;    END_IF;
+ProgramIsChanged_L3:
+#srcline 55 ;  END_IF;
+ProgramIsChanged_L1:
+#srcline 57 ;  // restart PLC programu
+#srcline 58 ;  IF System_S.S2_3 OR System_S.S2_4 OR System_S.S2_6 THEN
+ LD   System_S~S2_3
+#debug bool System_S.S2_3
+ LD   System_S~S2_4
+#debug bool System_S.S2_4
+ OR  
+ LD   System_S~S2_6
+#debug bool System_S.S2_6
+ OR  
+ JMC  ProgramIsChanged_L5
+#srcline 59 ;    // memSL70 := %SL70;              // zapamatovat aktualni CRC programu
+#srcline 60 ;    {asm}
+#srcline 61
+      LD   %SL70
+#srcline 62
+      WR   __Instance__memory_for_ProgramIsChanged~memSL70
+#srcline 63 ;    {end_asm}
+#srcline 64 ;    ProgramIsChanged := 1;
+ LD   bool -1      ; true
+ WRX  __fc__ProgramIsChanged
+#debug_left bool ProgramIsChanged
+#srcline 65 ;    RETURN;
+ JMP  ProgramIsChanged_RET
+#srcline 66 ;  END_IF;
+ProgramIsChanged_L5:
+#srcline 68 ;  // on-line zmena programu
+#srcline 69 ;  IF memSL70 <> %SL70 THEN
+ LDX  memSL70
+#debug udint memSL70
+ LD   %SL70
+ EQ
+ NEG
+ JMC  ProgramIsChanged_L7
+#srcline 70 ;    // memS4 := %S4;                  // citac cyklu, ve kterem nastala zmena
+#srcline 71 ;    // saveSL70 := 1;                 // pozadavek na ulozeni SL72
+#srcline 72 ;    {asm}
+#srcline 73
+      LD   %S4
+#srcline 74
+      WR   __Instance__memory_for_ProgramIsChanged~memS4
+#srcline 75
+      LD   1
+#srcline 76
+      WR   __Instance__memory_for_ProgramIsChanged~saveSL70
+#srcline 77 ;    {end_asm}
+#srcline 78 ;    ProgramIsChanged := 1;
+ LD   bool -1      ; true
+ WRX  __fc__ProgramIsChanged
+#debug_left bool ProgramIsChanged
+#srcline 79 ;  END_IF;
+ProgramIsChanged_L7:
+#srcline 81 ;  RETURN;                             // konec funkce
+ JMP  ProgramIsChanged_RET
+#srcline 83 ;  memory_for_ProgramIsChanged();      // tohle je tu jen proto, aby linker pridal
+ NXT
+ LD   0
+ WR   __Instance__memory_for_ProgramIsChanged~saveSL70
+ WR   __Instance__memory_for_ProgramIsChanged~memSL70
+ WR   __Instance__memory_for_ProgramIsChanged~memS4
+ PRV
+ LEA  __Instance__memory_for_ProgramIsChanged
+ CAL  memory_for_ProgramIsChanged_L0
+#srcline 84 ;                                      // fci memory_for_ProgramIsChanged do kodu
+#srcline 85 ;END_FUNCTION
+ProgramIsChanged_RET:
+ PRV  
+ LDX  __fc__ProgramIsChanged
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\SYSLIB\SYSLIB\RESTARTPLC.ST'
+#pou ReInitPLC_hotRestart
+#srcline 25 ;FUNCTION ReInitPLC_hotRestart : BOOL
+P     61
+ReInitPLC_hotRestart_L0:
+ LINK 0
+ NXT
+#srcline 47 ;  IF rq THEN
+ LDX  rq
+#debug bool rq
+ JMC  ReInitPLC_hotRestart_L1
+#srcline 48 ;    {asm}
+#srcline 49
+      LD   1      ; 1 = restart PLC
+#srcline 50
+      LD   $0061  ; pozadavky na prechod do rezimu HALT (blky, clry, clre)
+#srcline 51
+      LD   $0088  ; pozadavky na prechod do rezimu RUN  (hot restart)
+#srcline 52
+      SYS  2      ; zadost o restart
+#srcline 53 ;    {end_asm}
+#srcline 54 ;  END_IF;
+ReInitPLC_hotRestart_L1:
+#srcline 55 ;  ReInitPLC_hotRestart := 0;
+ LD   bool 0       ; false
+ WRX  __fc__ReInitPLC_hotRestart
+#debug_left bool ReInitPLC_hotRestart
+#srcline 56 ;END_FUNCTION
+ PRV  
+ LDX  __fc__ReInitPLC_hotRestart
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou ReInitPLC_coldRestart
+#srcline 58 ;FUNCTION ReInitPLC_coldRestart : BOOL
+P     61
+ReInitPLC_coldRestart_L0:
+ LINK 0
+ NXT
+#srcline 78 ;  IF rq THEN
+ LDX  rq
+#debug bool rq
+ JMC  ReInitPLC_coldRestart_L1
+#srcline 79 ;    {asm}
+#srcline 80
+      LD   1      ; 1 = restart PLC
+#srcline 81
+      LD   $0061  ; pozadavky na prechod do rezimu HALT (blky, clry, clre)
+#srcline 82
+      LD   $0098  ; pozadavky na prechod do rezimu RUN  (hot restart)
+#srcline 83
+      SYS  2      ; zadost o restart
+#srcline 84 ;    {end_asm}
+#srcline 85 ;  END_IF;
+ReInitPLC_coldRestart_L1:
+#srcline 86 ;  ReInitPLC_coldRestart := 0;
+ LD   bool 0       ; false
+ WRX  __fc__ReInitPLC_coldRestart
+#debug_left bool ReInitPLC_coldRestart
+#srcline 87 ;END_FUNCTION
+ PRV  
+ LDX  __fc__ReInitPLC_coldRestart
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou ReInitPLC_noRestart
+#srcline 89 ;FUNCTION ReInitPLC_noRestart : BOOL
+P     61
+ReInitPLC_noRestart_L0:
+ LINK 0
+ NXT
+#srcline 109 ;  IF rq THEN
+ LDX  rq
+#debug bool rq
+ JMC  ReInitPLC_noRestart_L1
+#srcline 110 ;    {asm}
+#srcline 111
+      LD   1      ; 1 = restart PLC
+#srcline 112
+      LD   $0061  ; pozadavky na prechod do rezimu HALT (blky, clry, clre)
+#srcline 113
+      LD   $0080  ; pozadavky na prechod do rezimu RUN  (no restart)
+#srcline 114
+      SYS  2      ; zadost o restart
+#srcline 115 ;    {end_asm}
+#srcline 116 ;  END_IF;
+ReInitPLC_noRestart_L1:
+#srcline 117 ;  ReInitPLC_noRestart := 0;
+ LD   bool 0       ; false
+ WRX  __fc__ReInitPLC_noRestart
+#debug_left bool ReInitPLC_noRestart
+#srcline 118 ;END_FUNCTION
+ PRV  
+ LDX  __fc__ReInitPLC_noRestart
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou ReInitPLC_hotRestartX
+#srcline 122 ;FUNCTION ReInitPLC_hotRestartX : BOOL
+
+#struct ReInitPLC_hotRestartX__temp__
+  word progMask,
+  bool tmp
+P     61
+ReInitPLC_hotRestartX_L0:
+ LINK __SizeOf(ReInitPLC_hotRestartX__temp__)
+ NXT
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 167 ;  IF rq THEN
+ LDX  rq
+#debug bool rq
+ JMC  ReInitPLC_hotRestartX_L1
+#srcline 168 ;    IF eeprom THEN
+ LDX  eeprom
+#debug bool eeprom
+ JMC  ReInitPLC_hotRestartX_L3
+#srcline 169 ;      progMask := 16#0100;
+ LD   word $0100
+ WRY  progMask
+#debug_left word progMask
+#srcline 170 ;    END_IF;
+ReInitPLC_hotRestartX_L3:
+#srcline 171 ;    {asm}
+#srcline 172
+      LEAX code     ; nazev souboru s kodem programu
+#srcline 173
+      LEAX table    ; nazev souboru s tabulkami programu
+#srcline 174
+      LD   2        ; 2 = restart PLC s nactenim noveho programu ze souboru
+#srcline 175
+      LD   $0061    ; pozadavky na prechod do rezimu HALT (blky, clry, clre)
+#srcline 176
+      LD   $0088    ; pozadavky na prechod do rezimu RUN  (hot restart)
+#srcline 177
+      LDY  progMask ; pozadavek na programovani EEPROM
+#srcline 178
+      OR            ; pridat do pozadavku na prechod do RUN
+#srcline 179
+      SYS  2        ; zadost o restart
+#srcline 180
+      WRY  tmp      ; jak dopadla kontrola souboru (1 == soubory existuji a maji spravna CRC)
+#srcline 181 ;    {end_asm}
+#srcline 182 ;  END_IF;
+ReInitPLC_hotRestartX_L1:
+#srcline 183 ;  ReInitPLC_hotRestartX := tmp;
+ LDY  tmp
+#debug bool tmp
+ WRX  __fc__ReInitPLC_hotRestartX
+#debug_left bool ReInitPLC_hotRestartX
+#srcline 184 ;END_FUNCTION
+ PRV  
+ LDX  __fc__ReInitPLC_hotRestartX
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou ReInitPLC_coldRestartX
+#srcline 186 ;FUNCTION ReInitPLC_coldRestartX : BOOL
+
+#struct ReInitPLC_coldRestartX__temp__
+  word progMask,
+  bool tmp
+P     61
+ReInitPLC_coldRestartX_L0:
+ LINK __SizeOf(ReInitPLC_coldRestartX__temp__)
+ NXT
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 229 ;  IF rq THEN
+ LDX  rq
+#debug bool rq
+ JMC  ReInitPLC_coldRestartX_L1
+#srcline 230 ;    IF eeprom THEN
+ LDX  eeprom
+#debug bool eeprom
+ JMC  ReInitPLC_coldRestartX_L3
+#srcline 231 ;      progMask := 16#0100;
+ LD   word $0100
+ WRY  progMask
+#debug_left word progMask
+#srcline 232 ;    END_IF;
+ReInitPLC_coldRestartX_L3:
+#srcline 233 ;    {asm}
+#srcline 234
+      LEAX code     ; nazev souboru s kodem programu
+#srcline 235
+      LEAX table    ; nazev souboru s tabulkami programu
+#srcline 236
+      LD   2        ; 2 = restart PLC s nactenim noveho programu ze souboru
+#srcline 237
+      LD   $0061    ; pozadavky na prechod do rezimu HALT (blky, clry, clre)
+#srcline 238
+      LD   $0098    ; pozadavky na prechod do rezimu RUN  (hot restart)
+#srcline 239
+      LDY  progMask ; pozadavek na programovani EEPROM
+#srcline 240
+      OR            ; pridat do pozadavku na prechod do RUN
+#srcline 241
+      SYS  2        ; zadost o restart
+#srcline 242
+      WRY  tmp      ; jak dopadla kontrola souboru (1 == soubory existuji a maji spravna CRC)
+#srcline 243 ;    {end_asm}
+#srcline 244 ;  END_IF;
+ReInitPLC_coldRestartX_L1:
+#srcline 245 ;  ReInitPLC_coldRestartX := tmp;
+ LDY  tmp
+#debug bool tmp
+ WRX  __fc__ReInitPLC_coldRestartX
+#debug_left bool ReInitPLC_coldRestartX
+#srcline 246 ;END_FUNCTION
+ PRV  
+ LDX  __fc__ReInitPLC_coldRestartX
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou ReInitPLC_noRestartX
+#srcline 248 ;FUNCTION ReInitPLC_noRestartX : BOOL
+
+#struct ReInitPLC_noRestartX__temp__
+  word progMask,
+  bool tmp
+P     61
+ReInitPLC_noRestartX_L0:
+ LINK __SizeOf(ReInitPLC_noRestartX__temp__)
+ NXT
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 290 ;  IF rq THEN
+ LDX  rq
+#debug bool rq
+ JMC  ReInitPLC_noRestartX_L1
+#srcline 291 ;    IF eeprom THEN
+ LDX  eeprom
+#debug bool eeprom
+ JMC  ReInitPLC_noRestartX_L3
+#srcline 292 ;      progMask := 16#0100;
+ LD   word $0100
+ WRY  progMask
+#debug_left word progMask
+#srcline 293 ;    END_IF;
+ReInitPLC_noRestartX_L3:
+#srcline 294 ;    {asm}
+#srcline 295
+      LEAX code     ; nazev souboru s kodem programu
+#srcline 296
+      LEAX table    ; nazev souboru s tabulkami programu
+#srcline 297
+      LD   2        ; 2 = restart PLC s nactenim noveho programu ze souboru
+#srcline 298
+      LD   $0061    ; pozadavky na prechod do rezimu HALT (blky, clry, clre)
+#srcline 299
+      LD   $0080    ; pozadavky na prechod do rezimu RUN  (no restart)
+#srcline 300
+      LDY  progMask ; pozadavek na programovani EEPROM
+#srcline 301
+      OR            ; pridat do pozadavku na prechod do RUN
+#srcline 302
+      SYS  2        ; zadost o restart
+#srcline 303
+      WRY  tmp      ; jak dopadla kontrola souboru (1 == soubory existuji a maji spravna CRC)
+#srcline 304 ;    {end_asm}
+#srcline 305 ;  END_IF;
+ReInitPLC_noRestartX_L1:
+#srcline 306 ;  ReInitPLC_noRestartX := tmp;
+ LDY  tmp
+#debug bool tmp
+ WRX  __fc__ReInitPLC_noRestartX
+#debug_left bool ReInitPLC_noRestartX
+#srcline 307 ;END_FUNCTION
+ PRV  
+ LDX  __fc__ReInitPLC_noRestartX
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\SYSLIB\SYSLIB\GETMODULEID.ST'
+#pou GetModuleID
+#srcline 1 ;FUNCTION GetModuleID : STRING[40]
+P     61
+GetModuleID_L0:
+ LINK 0
+ NXT
+#srcline 10 ;  BEGIN
+#srcline 12 ;  {ASM}
+#srcline 13
+     LEAX  __fc__GetModuleID
+#srcline 14
+     LDX   rackNumber           ;RM  - císlo rámu
+#srcline 15
+     LDX   position             ;POS - pozice modulu v rámu
+#srcline 16
+     IDTM                       ;nactení identifikace
+#srcline 17 ;  {END_ASM}
+#srcline 18 ;END_FUNCTION
+ PRV  
+ LEAX  __fc__GetModuleID
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\SYSLIB\SYSLIB\GETVARVALUEBYNAME.ST'
+#pou GetVarValueByName
+#srcline 1 ;FUNCTION GetVarValueByName : STRING[255]
+P     61
+GetVarValueByName_L0:
+ LINK 0
+ NXT
+; Initialize - variables
+ LD   0
+ WRX  __fc__GetVarValueByName
+; End initialize - variables
+#srcline 13 ;begin
+#srcline 14 ;  {asm}
+#srcline 15
+    LEAX  __fc__GetVarValueByName
+#srcline 16
+    LEAX  varName
+#srcline 17
+    LD    1
+#srcline 18
+    SYS   87        ; GetVarValue ( char *varName, char *varValue);
+#srcline 19 ;  {end_asm}
+#srcline 20 ;END_FUNCTION
+ PRV  
+ LEAX  __fc__GetVarValueByName
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou GetVarNameByAdr
+#srcline 22 ;FUNCTION GetVarNameByAdr : STRING[255]
+P     61
+GetVarNameByAdr_L0:
+ LINK 0
+ NXT
+; Initialize - variables
+ LD   0
+ WRX  __fc__GetVarNameByAdr
+; End initialize - variables
+#srcline 35 ;begin
+#srcline 36 ;  {asm}
+#srcline 37
+    LDX   varSize                  ; velikost promenne, ktera nas zajima
+#srcline 38
+    LDX   varAdr                   ; adresa promenne, ktera nas zajima
+#srcline 39
+    LEAX  __fc__GetVarNameByAdr    ; sem ulozi funkce SearchTrackAddress jmeno promenne
+#srcline 40
+    LD    255                      ; kolik mista mame pro jmeno promenne
+#srcline 41
+    LD    11
+#srcline 42
+    SYS   87                       ; SearchTrackAddress ( DWORD dwNoteOffset, DWORD dwSize, char *pszFoundName, const unsigned cnNameSize);
+#srcline 43 ;  {end_asm}
+#srcline 44 ;END_FUNCTION
+ PRV  
+ LEAX  __fc__GetVarNameByAdr
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\SYSLIB\SYSLIB\SETVARVALUEBYNAME.ST'
+#pou SetVarValueByName
+#srcline 1 ;FUNCTION SetVarValueByName : BOOL
+P     61
+SetVarValueByName_L0:
+ LINK 0
+ NXT
+; Initialize - variables
+ LD   0
+ WRX  __fc__SetVarValueByName
+; End initialize - variables
+#srcline 14 ;begin
+#srcline 15 ;  {asm}
+#srcline 16
+    LEAX  varValue
+#srcline 17
+    LEAX  varName
+#srcline 18
+    LD    2
+#srcline 19
+    SYS   87        ; SetVarValue ( char *varName, char *varValue);
+#srcline 20
+    WRX   __fc__SetVarValueByName
+#srcline 21 ;  {end_asm}
+#srcline 22 ;END_FUNCTION
+ PRV  
+ LDX  __fc__SetVarValueByName
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\SYSLIB\SYSLIB\CIB_FUNKCE.ST'
+#pou CIBunitInfo
+#srcline 64 ;FUNCTION CIBunitInfo : BOOL
+
+#struct CIBunitInfo__temp__
+  bool tmp
+P     61
+CIBunitInfo_L0:
+ LINK __SizeOf(CIBunitInfo__temp__)
+ NXT
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 86 ;begin
+#srcline 87 ;  {asm}
+#srcline 88
+    LDX   CIB_line
+#srcline 89
+    LDX   CIB_unitID
+#srcline 90
+    LDX   unitInfo
+#srcline 91
+    SYS   76            ; GetCIBunitInfo()
+#srcline 92
+    WRY   tmp
+#srcline 93 ;  {end_asm}
+#srcline 94 ;  CIBunitInfo := tmp;
+ LDY  tmp
+#debug bool tmp
+ WRX  __fc__CIBunitInfo
+#debug_left bool CIBunitInfo
+#srcline 95 ;END_FUNCTION
+ PRV  
+ LDX  __fc__CIBunitInfo
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou RFunitInfo
+#srcline 98 ;FUNCTION RFunitInfo : BOOL
+
+#struct RFunitInfo__temp__
+  bool tmp
+P     61
+RFunitInfo_L0:
+ LINK __SizeOf(RFunitInfo__temp__)
+ NXT
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 120 ;begin
+#srcline 121 ;  {asm}
+#srcline 122
+    LDX   RF_line
+#srcline 123
+    LDX   RF_unitID
+#srcline 124
+    LDX   unitInfo
+#srcline 125
+    SYS   76            ; GetCIBunitInfo()
+#srcline 126
+    WRY   tmp
+#srcline 127 ;  {end_asm}
+#srcline 128 ;  RFunitInfo := tmp;
+ LDY  tmp
+#debug bool tmp
+ WRX  __fc__RFunitInfo
+#debug_left bool RFunitInfo
+#srcline 129 ;END_FUNCTION
+ PRV  
+ LDX  __fc__RFunitInfo
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou SetAddressCIBunit
+#srcline 132 ;FUNCTION SetAddressCIBunit : BOOL
+
+#struct SetAddressCIBunit__temp__
+  bool result
+P     61
+SetAddressCIBunit_L0:
+ LINK __SizeOf(SetAddressCIBunit__temp__)
+ NXT
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 150 ;begin
+#srcline 151 ;  {asm}
+#srcline 152
+    LDX   CIB_line
+#srcline 153
+    LDX   CIB_unitID
+#srcline 154
+    LDX   CIB_addr
+#srcline 155
+    SYS   77            ; SetCIBunitAddress()
+#srcline 156
+    WRY   result
+#srcline 157 ;  {end_asm}
+#srcline 158 ;  SetAddressCIBunit := result;
+ LDY  result
+#debug bool result
+ WRX  __fc__SetAddressCIBunit
+#debug_left bool SetAddressCIBunit
+#srcline 160 ;END_FUNCTION
+ PRV  
+ LDX  __fc__SetAddressCIBunit
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou SetAddressRFunit
+#srcline 163 ;FUNCTION SetAddressRFunit : BOOL
+
+#struct SetAddressRFunit__temp__
+  bool result
+P     61
+SetAddressRFunit_L0:
+ LINK __SizeOf(SetAddressRFunit__temp__)
+ NXT
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 181 ;begin
+#srcline 182 ;  {asm}
+#srcline 183
+    LDX   RF_line
+#srcline 184
+    LDX   RF_unitID
+#srcline 185
+    LDX   RF_addr
+#srcline 186
+    SYS   77            ; SetCIBunitAddress()
+#srcline 187
+    WRY   result
+#srcline 188 ;  {end_asm}
+#srcline 189 ;  SetAddressRFunit := result;
+ LDY  result
+#debug bool result
+ WRX  __fc__SetAddressRFunit
+#debug_left bool SetAddressRFunit
+#srcline 191 ;END_FUNCTION
+ PRV  
+ LDX  __fc__SetAddressRFunit
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou fbBondRFunit
+#srcline 213 ;FUNCTION_BLOCK fbBondRFunit
+
+#struct fbBondRFunit__temp__
+  string[42] PS0__st__
+#data byte _str_fbBondRFunit_0 = 
+  '',0
+P     61
+fbBondRFunit_L0:
+ LINK __SizeOf(fbBondRFunit__temp__)
+; R_EDGE, F_EDGE 
+ LDX  exec
+ LETX __EDGE_R__exec
+ WRX  exec
+#srcline 250 ;  IF exec AND NOT busy THEN
+ LDX  exec
+#debug bool exec
+ LDX  busy
+#debug bool busy
+ NEG
+ AND
+ JMC  fbBondRFunit_L1
+#srcline 251 ;    done := FALSE; busy := TRUE; err := FALSE; errID := 0; unitType := '';
+ LD   bool 0       ; false
+ WRX  done
+#debug_left bool done
+ LD   bool -1       ; true
+ WRX  busy
+#debug_left bool busy
+ LD   bool 0       ; false
+ WRX  err
+#debug_left bool err
+ LD   udint 0
+ WRX  errID
+#debug_left udint errID
+ LD   0   ; null string
+ LEAX unitType
+ WRI  
+ LEAX unitType
+ LD   40
+ DST    ; Level 1
+ LEA  _str_fbBondRFunit_0
+ SCON 
+#debug_left string unitType
+ PDST   ; Level 1
+#srcline 252 ;    tim( IN := 0, PT := timPT);   // nulovat kontrolni casovac
+ LD   0
+ WRX  tim~IN
+#debug_left bool tim~IN
+ LDX  timPT
+#debug time timPT
+ WRX  tim~PT
+#debug_left time tim~PT
+ LEAX tim
+ CAL  TON_L0
+#srcline 253 ;    timIN := TRUE;
+ LD   bool -1       ; true
+ WRX  timIN
+#debug_left bool timIN
+#srcline 254 ;    IF bondRq THEN
+ LDX  bondRq
+#debug bool bondRq
+ JMC  fbBondRFunit_L3
+#srcline 255 ;      timPT := T#20s;             // cas pro odbondovani a pribondovani
+ LD   time 20000
+ WRX  timPT
+#debug_left time timPT
+#srcline 256 ;    ELSE
+ JMP  fbBondRFunit_L4
+fbBondRFunit_L3:
+#srcline 257 ;      timPT := T#5s;              // cas pro odbondovani
+ LD   time 5000
+ WRX  timPT
+#debug_left time timPT
+#srcline 258 ;    END_IF;
+fbBondRFunit_L4:
+#srcline 259 ;  END_IF;
+fbBondRFunit_L1:
+#srcline 261 ;  IF busy THEN
+ LDX  busy
+#debug bool busy
+ JMC  fbBondRFunit_L5
+#srcline 262 ;    tim( IN := timIN, PT := timPT);   // kontrolni casovac
+ LDX  timIN
+#debug bool timIN
+ WRX  tim~IN
+#debug_left bool tim~IN
+ LDX  timPT
+#debug time timPT
+ WRX  tim~PT
+#debug_left time tim~PT
+ LEAX tim
+ CAL  TON_L0
+#srcline 263 ;    // volat bondovaci fci
+#srcline 264 ;    {asm}
+#srcline 265
+      LDX   RF_line
+#srcline 266
+      LDX   RF_unitID
+#srcline 267
+      LDX   bondRq
+#srcline 268
+      LDX   useRouter
+#srcline 269
+      LEAX  unitType
+#srcline 270
+      SYS   79            ; BondRFunit()
+#srcline 271
+      LEAX  result
+#srcline 272
+      WRIL                ; bond state
+#srcline 273 ;    {end_asm}
+#srcline 275 ;    done := result.bondStat.done AND NOT result.bondStat.error;
+ LDX  result~bondStat~done
+#debug bool result.bondStat.done
+ LDX  result~bondStat~error
+#debug bool result.bondStat.error
+ NEG
+ AND
+ WRX  done
+#debug_left bool done
+#srcline 276 ;    busy := result.bondStat.busy;
+ LDX  result~bondStat~busy
+#debug bool result.bondStat.busy
+ WRX  busy
+#debug_left bool busy
+#srcline 277 ;    err  := result.bondStat.done AND result.bondStat.error;
+ LDX  result~bondStat~done
+#debug bool result.bondStat.done
+ LDX  result~bondStat~error
+#debug bool result.bondStat.error
+ AND
+ WRX  err
+#debug_left bool err
+#srcline 279 ;    IF err THEN
+ LDX  err
+#debug bool err
+ JMC  fbBondRFunit_L7
+#srcline 280 ;      errID := 1;    // pro zacatek neznama chyba
+ LD   udint 1
+ WRX  errID
+#debug_left udint errID
+#srcline 281 ;      IF result.bondStat.disconnect THEN
+ LDX  result~bondStat~disconnect
+#debug bool result.bondStat.disconnect
+ JMC  fbBondRFunit_L9
+#srcline 282 ;        errID := 2;    // chyba pri odbondovani
+ LD   udint 2
+ WRX  errID
+#debug_left udint errID
+#srcline 283 ;      END_IF;
+fbBondRFunit_L9:
+#srcline 284 ;      IF result.bondStat.connect THEN
+ LDX  result~bondStat~connect
+#debug bool result.bondStat.connect
+ JMC  fbBondRFunit_L11
+#srcline 285 ;        errID := 3;    // chyba pri pribondovani
+ LD   udint 3
+ WRX  errID
+#debug_left udint errID
+#srcline 286 ;      END_IF;
+fbBondRFunit_L11:
+#srcline 287 ;      IF result.bondStat.bondMap THEN
+ LDX  result~bondStat~bondMap
+#debug bool result.bondStat.bondMap
+ JMC  fbBondRFunit_L13
+#srcline 288 ;        errID := 4;    // chyba pri cteni bond mapy
+ LD   udint 4
+ WRX  errID
+#debug_left udint errID
+#srcline 289 ;      END_IF;
+fbBondRFunit_L13:
+#srcline 290 ;    END_IF;
+fbBondRFunit_L7:
+#srcline 291 ;  END_IF;
+fbBondRFunit_L5:
+#srcline 293 ;  IF tim.Q THEN
+ LDX  tim~Q
+#debug bool tim.Q
+ JMC  fbBondRFunit_L15
+#srcline 294 ;    // uz to trva moc dlouho
+#srcline 295 ;    done := FALSE; busy := FALSE; err := TRUE; errID := 5;    // timeout
+ LD   bool 0       ; false
+ WRX  done
+#debug_left bool done
+ LD   bool 0       ; false
+ WRX  busy
+#debug_left bool busy
+ LD   bool -1       ; true
+ WRX  err
+#debug_left bool err
+ LD   udint 5
+ WRX  errID
+#debug_left udint errID
+#srcline 296 ;  END_IF;
+fbBondRFunit_L15:
+#srcline 297 ;END_FUNCTION_BLOCK
+ ULNK
+RET
+E     61
+
+; Initialize - variables
+P     61
+fbBondRFunit__InstanceInit__:
+ LINK 0
+ LD   time 2000
+ WRX  timPT
+ ULNK
+RET
+E     61
+; End initialize - variables
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\SYSLIB\SYSLIB\PROGRAMLOCK.ST'
+#pou ProgramLock
+#srcline 1 ;FUNCTION ProgramLock : BOOL
+P     61
+ProgramLock_L0:
+ LINK 0
+ NXT
+; Initialize - variables
+ LD   0
+ WRX  __fc__ProgramLock
+; End initialize - variables
+#srcline 12 ;begin
+#srcline 13 ;  {asm}
+#srcline 14
+    SYS 17      ;NSLOCK
+#srcline 15 ;  {end_asm}
+#srcline 16 ;  ProgramLock := TRUE;
+ LD   bool -1       ; true
+ WRX  __fc__ProgramLock
+#debug_left bool ProgramLock
+#srcline 17 ;END_FUNCTION
+ PRV  
+ LDX  __fc__ProgramLock
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\SYSLIB\SYSLIB\TPR.ST'
+#pou TPR
+#srcline 1 ;FUNCTION_BLOCK TPR
+P     61
+TPR_L0:
+ LINK 0
+#srcline 25 ;  if R then Q := 0; ET := T#0h; IN_r_edge( CLK := 0); end_if;
+ LDX  R
+#debug bool R
+ JMC  TPR_L1
+ LD   bool 0       ; false
+ WRX  Q
+#debug_left bool Q
+ LD   time 0
+ WRX  ET
+#debug_left time ET
+ LD   bool 0       ; false
+ WRX  IN_r_edge~CLK
+#debug_left bool IN_r_edge~CLK
+ LEAX IN_r_edge
+ CAL  R_TRIG_L0
+TPR_L1:
+#srcline 26 ;  if ( not Q) then
+ LDX  Q
+#debug bool Q
+ NEG
+ JMC  TPR_L3
+#srcline 27 ;    IN_r_edge( CLK := IN);
+ LDX  IN
+#debug bool IN
+ WRX  IN_r_edge~CLK
+#debug_left bool IN_r_edge~CLK
+ LEAX IN_r_edge
+ CAL  R_TRIG_L0
+#srcline 28 ;    if ( IN_r_edge.Q ) then
+ LDX  IN_r_edge~Q
+#debug bool IN_r_edge.Q
+ JMC  TPR_L5
+#srcline 29 ;      LT := %SL52; ET := T#0h; Q := PT > T#0s;
+ LD   %SL52
+ WRX  LT
+#debug_left time LT
+ LD   time 0
+ WRX  ET
+#debug_left time ET
+ LDX  PT
+#debug time PT
+ LD   time 0
+ GTS
+ WRX  Q
+#debug_left bool Q
+#srcline 30 ;    else
+ JMP  TPR_L6
+TPR_L5:
+#srcline 31 ;      if ( not IN) then ET := T#0h; end_if;
+ LDX  IN
+#debug bool IN
+ NEG
+ JMC  TPR_L7
+ LD   time 0
+ WRX  ET
+#debug_left time ET
+TPR_L7:
+#srcline 32 ;    end_if;
+TPR_L6:
+#srcline 33 ;  else
+ JMP  TPR_L4
+TPR_L3:
+#srcline 34 ;    ET := DWORD_TO_TIME( TIME_TO_DWORD( %SL52 - LT) AND 16#7FFF_FFFF);
+ LD   %SL52
+ LDX  LT
+#debug time LT
+ SUB
+ LD   dword $7FFFFFFF
+ AND
+ WRX  ET
+#debug_left time ET
+#srcline 35 ;    Q := (ET <= PT);
+ LDX  ET
+#debug time ET
+ LDX  PT
+#debug time PT
+ GTS
+ NEG
+ WRX  Q
+#debug_left bool Q
+#srcline 36 ;  end_if;
+TPR_L4:
+#srcline 38 ;END_FUNCTION_BLOCK
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\SYSLIB\SYSLIB\FBTPR.ST'
+#pou fbTPR
+#srcline 1 ;function_block fbTPR
+P     61
+fbTPR_L0:
+ LINK 0
+#srcline 23 ;  if R then Q := 0; ET := T#0h; IN_r_edge( CLK := 0); return; end_if;
+ LDX  R
+#debug bool R
+ JMC  fbTPR_L1
+ LD   bool 0       ; false
+ WRX  Q
+#debug_left bool Q
+ LD   time 0
+ WRX  ET
+#debug_left time ET
+ LD   bool 0       ; false
+ WRX  IN_r_edge~CLK
+#debug_left bool IN_r_edge~CLK
+ LEAX IN_r_edge
+ CAL  R_TRIG_L0
+ JMP  fbTPR_RET
+fbTPR_L1:
+#srcline 24 ;  if ( not Q) then
+ LDX  Q
+#debug bool Q
+ NEG
+ JMC  fbTPR_L3
+#srcline 25 ;    IN_r_edge( CLK := IN);
+ LDX  IN
+#debug bool IN
+ WRX  IN_r_edge~CLK
+#debug_left bool IN_r_edge~CLK
+ LEAX IN_r_edge
+ CAL  R_TRIG_L0
+#srcline 26 ;    if ( IN_r_edge.Q ) then
+ LDX  IN_r_edge~Q
+#debug bool IN_r_edge.Q
+ JMC  fbTPR_L5
+#srcline 27 ;      LT := %SL52; ET := T#0h; Q := PT > T#0s;
+ LD   %SL52
+ WRX  LT
+#debug_left time LT
+ LD   time 0
+ WRX  ET
+#debug_left time ET
+ LDX  PT
+#debug time PT
+ LD   time 0
+ GTS
+ WRX  Q
+#debug_left bool Q
+#srcline 28 ;    else
+ JMP  fbTPR_L6
+fbTPR_L5:
+#srcline 29 ;      if ( not IN) then ET := T#0h; end_if;
+ LDX  IN
+#debug bool IN
+ NEG
+ JMC  fbTPR_L7
+ LD   time 0
+ WRX  ET
+#debug_left time ET
+fbTPR_L7:
+#srcline 30 ;    end_if;
+fbTPR_L6:
+#srcline 31 ;  else
+ JMP  fbTPR_L4
+fbTPR_L3:
+#srcline 32 ;    ET := DWORD_TO_TIME( TIME_TO_DWORD( %SL52 - LT) AND 16#7FFF_FFFF);
+ LD   %SL52
+ LDX  LT
+#debug time LT
+ SUB
+ LD   dword $7FFFFFFF
+ AND
+ WRX  ET
+#debug_left time ET
+#srcline 33 ;    Q := (ET <= PT);
+ LDX  ET
+#debug time ET
+ LDX  PT
+#debug time PT
+ GTS
+ NEG
+ WRX  Q
+#debug_left bool Q
+#srcline 34 ;  end_if;
+fbTPR_L4:
+#srcline 35 ;end_function_block
+fbTPR_RET:
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\SYSLIB\SYSLIB\FBLOADREMFROMFILE.ST'
+#pou fbSaveRemToFile
+#srcline 1 ;FUNCTION_BLOCK fbSaveRemToFile
+
+#struct fbSaveRemToFile__temp__
+  int tmp,
+  string[82] PS0__st__
+#data byte _str_fbSaveRemToFile_0 = 
+  '',0
+P     61
+fbSaveRemToFile_L0:
+ LINK __SizeOf(fbSaveRemToFile__temp__)
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+; R_EDGE, F_EDGE 
+ LDX  exec
+ LETX __EDGE_R__exec
+ WRX  exec
+#srcline 33 ;  done := 0; err := 0;
+ LD   bool 0       ; false
+ WRX  done
+#debug_left bool done
+ LD   bool 0       ; false
+ WRX  err
+#debug_left bool err
+#srcline 34 ;  IF exec AND NOT busy THEN
+ LDX  exec
+#debug bool exec
+ LDX  busy
+#debug bool busy
+ NEG
+ AND
+ JMC  fbSaveRemToFile_L1
+#srcline 35 ;    err := 0; busy := 1; errId := 0; errTxt := '';
+ LD   bool 0       ; false
+ WRX  err
+#debug_left bool err
+ LD   bool -1      ; true
+ WRX  busy
+#debug_left bool busy
+ LD   int 0
+ WRX  errId
+#debug_left int errId
+ LD   0   ; null string
+ LEAX errTxt
+ WRI  
+ LEAX errTxt
+ LD   80
+ DST    ; Level 1
+ LEA  _str_fbSaveRemToFile_0
+ SCON 
+#debug_left string errTxt
+ PDST   ; Level 1
+#srcline 36 ;  END_IF;
+fbSaveRemToFile_L1:
+#srcline 38 ;  IF busy THEN
+ LDX  busy
+#debug bool busy
+ JMC  fbSaveRemToFile_L3
+#srcline 39 ;    {asm}
+#srcline 40
+      LEAX      percent
+#srcline 41
+      LEAX      errTxt
+#srcline 42
+      LEAX      fileName
+#srcline 43
+      LD        1
+#srcline 44
+      SYS       89         ; SaveRemByUser()
+#srcline 45
+      WRY       tmp
+#srcline 46 ;    {end_asm}
+#srcline 47 ;  END_IF;
+fbSaveRemToFile_L3:
+#srcline 49 ;  IF tmp < -1 THEN  // chyba
+ LDY  tmp
+#debug int tmp
+ EXTW 
+ LD   int -1
+ LTS
+ JMC  fbSaveRemToFile_L5
+#srcline 50 ;    err := 1; busy := 0; errId := -1 * tmp; percent := 0;
+ LD   bool -1      ; true
+ WRX  err
+#debug_left bool err
+ LD   bool 0       ; false
+ WRX  busy
+#debug_left bool busy
+ LD   int -1
+ LDY  tmp
+#debug int tmp
+ EXTW
+ MULS
+ EXTW
+ WRX  errId
+#debug_left int errId
+ LD   real 0
+ WRX  percent
+#debug_left real percent
+#srcline 51 ;  ELSIF tmp = 1 THEN
+ JMP  fbSaveRemToFile_L6
+fbSaveRemToFile_L5:
+ LDY  tmp
+#debug int tmp
+ EXTW 
+ LD   int 1
+ EQ
+ JMC  fbSaveRemToFile_L7
+#srcline 52 ;    done := 1; busy := 0; percent := 100.0;
+ LD   bool -1      ; true
+ WRX  done
+#debug_left bool done
+ LD   bool 0       ; false
+ WRX  busy
+#debug_left bool busy
+ LD   real 100.0
+ WRX  percent
+#debug_left real percent
+#srcline 53 ;  END_IF;
+ JMP  fbSaveRemToFile_L6
+fbSaveRemToFile_L7:
+fbSaveRemToFile_L6:
+#srcline 54 ;END_FUNCTION_BLOCK
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou fbLoadRemFromFile
+#srcline 56 ;FUNCTION_BLOCK fbLoadRemFromFile
+
+#struct fbLoadRemFromFile__temp__
+  int tmp,
+  string[82] PS0__st__
+#data byte _str_fbLoadRemFromFile_0 = 
+  '',0
+P     61
+fbLoadRemFromFile_L0:
+ LINK __SizeOf(fbLoadRemFromFile__temp__)
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+; R_EDGE, F_EDGE 
+ LDX  exec
+ LETX __EDGE_R__exec
+ WRX  exec
+#srcline 90 ;  done := 0; err := 0;
+ LD   bool 0       ; false
+ WRX  done
+#debug_left bool done
+ LD   bool 0       ; false
+ WRX  err
+#debug_left bool err
+#srcline 91 ;  IF exec AND NOT busy THEN
+ LDX  exec
+#debug bool exec
+ LDX  busy
+#debug bool busy
+ NEG
+ AND
+ JMC  fbLoadRemFromFile_L1
+#srcline 92 ;    err := 0; busy := 1; errId := 0; errTxt := ''; percent := 0;
+ LD   bool 0       ; false
+ WRX  err
+#debug_left bool err
+ LD   bool -1      ; true
+ WRX  busy
+#debug_left bool busy
+ LD   int 0
+ WRX  errId
+#debug_left int errId
+ LD   0   ; null string
+ LEAX errTxt
+ WRI  
+ LEAX errTxt
+ LD   80
+ DST    ; Level 1
+ LEA  _str_fbLoadRemFromFile_0
+ SCON 
+#debug_left string errTxt
+ PDST   ; Level 1
+ LD   real 0
+ WRX  percent
+#debug_left real percent
+#srcline 93 ;  END_IF;
+fbLoadRemFromFile_L1:
+#srcline 95 ;  IF busy THEN
+ LDX  busy
+#debug bool busy
+ JMC  fbLoadRemFromFile_L3
+#srcline 96 ;    {asm}
+#srcline 97
+      LEAX      percent
+#srcline 98
+      LEAX      errTxt
+#srcline 99
+      LEAX      fileName
+#srcline 100
+      LD        2
+#srcline 101
+      SYS       89         ; LoadRemByUser()
+#srcline 102
+      WRY       tmp
+#srcline 103 ;    {end_asm}
+#srcline 104 ;  END_IF;
+fbLoadRemFromFile_L3:
+#srcline 106 ;  IF tmp < -1 THEN  // chyba
+ LDY  tmp
+#debug int tmp
+ EXTW 
+ LD   int -1
+ LTS
+ JMC  fbLoadRemFromFile_L5
+#srcline 107 ;    err := 1; busy := 0; errId := -1 * tmp;
+ LD   bool -1      ; true
+ WRX  err
+#debug_left bool err
+ LD   bool 0       ; false
+ WRX  busy
+#debug_left bool busy
+ LD   int -1
+ LDY  tmp
+#debug int tmp
+ EXTW
+ MULS
+ EXTW
+ WRX  errId
+#debug_left int errId
+#srcline 108 ;  ELSIF tmp = 1 THEN
+ JMP  fbLoadRemFromFile_L6
+fbLoadRemFromFile_L5:
+ LDY  tmp
+#debug int tmp
+ EXTW 
+ LD   int 1
+ EQ
+ JMC  fbLoadRemFromFile_L7
+#srcline 109 ;    done := 1; busy := 0; percent := 100.0;
+ LD   bool -1      ; true
+ WRX  done
+#debug_left bool done
+ LD   bool 0       ; false
+ WRX  busy
+#debug_left bool busy
+ LD   real 100.0
+ WRX  percent
+#debug_left real percent
+#srcline 110 ;  END_IF;
+ JMP  fbLoadRemFromFile_L6
+fbLoadRemFromFile_L7:
+fbLoadRemFromFile_L6:
+#srcline 111 ;END_FUNCTION_BLOCK
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\SYSLIB\SYSLIB\WEBPSW_FUNKCE.ST'
+#pou SetWebPSW
+#srcline 1 ;FUNCTION SetWebPSW : BOOL
+
+#struct SetWebPSW__temp__
+  bool tmp
+P     61
+SetWebPSW_L0:
+ LINK __SizeOf(SetWebPSW__temp__)
+ NXT
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 20 ;  IF user < 10 THEN
+ LDX  user
+#debug usint user
+ LD   usint 10
+ LT
+ JMC  SetWebPSW_L1
+#srcline 21 ;    {asm}
+#srcline 22
+      LDX   name
+#srcline 23
+      LDX   password
+#srcline 24
+      LDX   user
+#srcline 25
+      LD    1             ; SetPsw
+#srcline 26
+      SYS   78            ; WebPsw()
+#srcline 27
+      WRY   tmp
+#srcline 28 ;    {end_asm}
+#srcline 29 ;  END_IF;
+SetWebPSW_L1:
+#srcline 30 ;  SetWebPSW := tmp;
+ LDY  tmp
+#debug bool tmp
+ WRX  __fc__SetWebPSW
+#debug_left bool SetWebPSW
+#srcline 31 ;END_FUNCTION
+ PRV  
+ LDX  __fc__SetWebPSW
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou VerifyWebPSW
+#srcline 33 ;FUNCTION VerifyWebPSW : BOOL
+
+#struct VerifyWebPSW__temp__
+  bool tmp
+P     61
+VerifyWebPSW_L0:
+ LINK __SizeOf(VerifyWebPSW__temp__)
+ NXT
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 53 ;  IF user < 10 THEN
+ LDX  user
+#debug usint user
+ LD   usint 10
+ LT
+ JMC  VerifyWebPSW_L1
+#srcline 54 ;    {asm}
+#srcline 55
+      LDX   name
+#srcline 56
+      LDX   password
+#srcline 57
+      LDX   user
+#srcline 58
+      LD    2             ; VerifyPsw
+#srcline 59
+      SYS   78            ; WebPsw()
+#srcline 60
+      WRY   tmp
+#srcline 61 ;    {end_asm}
+#srcline 62 ;  END_IF;
+VerifyWebPSW_L1:
+#srcline 63 ;  VerifyWebPSW := tmp;
+ LDY  tmp
+#debug bool tmp
+ WRX  __fc__VerifyWebPSW
+#debug_left bool VerifyWebPSW
+#srcline 64 ;END_FUNCTION
+ PRV  
+ LDX  __fc__VerifyWebPSW
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou SetWebMAC
+#srcline 66 ;FUNCTION SetWebMAC : BOOL
+
+#struct SetWebMAC__temp__
+  bool tmp,
+  string[81] empty  ; {ENU} empty parameter {CSY} nevyuzito
+P     61
+SetWebMAC_L0:
+ LINK __SizeOf(SetWebMAC__temp__)
+ NXT
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 86 ;  tmp := (SHL( BYTE_TO_WORD(System_S.S40), 8) OR BYTE_TO_WORD(System_S.S41)) > 16#0700;
+ LD   System_S~S40
+#debug byte System_S.S40
+ LD   uint 8
+ SHL
+ AND  $FFFF
+ LD   System_S~S41
+#debug byte System_S.S41
+ OR  
+ LD   word $0700
+ GT
+ WRY  tmp
+#debug_left bool tmp
+#srcline 87 ;  IF tmp AND (user < 10) THEN
+ LDY  tmp
+#debug bool tmp
+ LDX  user
+#debug usint user
+ LD   usint 10
+ LT
+ AND
+ JMC  SetWebMAC_L1
+#srcline 88 ;    {asm}
+#srcline 89
+      LDX   MAC
+#srcline 90
+      LEAY  empty
+#srcline 91
+      LDX   user
+#srcline 92
+      LD    3             ; SetMac
+#srcline 93
+      SYS   78            ; WebPsw()
+#srcline 94
+      WRY   tmp
+#srcline 95 ;    {end_asm}
+#srcline 96 ;  END_IF;
+SetWebMAC_L1:
+#srcline 97 ;  SetWebMAC := tmp;
+ LDY  tmp
+#debug bool tmp
+ WRX  __fc__SetWebMAC
+#debug_left bool SetWebMAC
+#srcline 98 ;END_FUNCTION
+ PRV  
+ LDX  __fc__SetWebMAC
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou VerifyWebMAC
+#srcline 100 ;FUNCTION VerifyWebMAC : BOOL
+
+#struct VerifyWebMAC__temp__
+  bool tmp,
+  string[81] empty  ; {ENU} empty parameter {CSY} nevyuzito
+P     61
+VerifyWebMAC_L0:
+ LINK __SizeOf(VerifyWebMAC__temp__)
+ NXT
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 121 ;  tmp := (SHL( BYTE_TO_WORD(System_S.S40), 8) OR BYTE_TO_WORD(System_S.S41)) > 16#0700;
+ LD   System_S~S40
+#debug byte System_S.S40
+ LD   uint 8
+ SHL
+ AND  $FFFF
+ LD   System_S~S41
+#debug byte System_S.S41
+ OR  
+ LD   word $0700
+ GT
+ WRY  tmp
+#debug_left bool tmp
+#srcline 122 ;  IF tmp  AND (user < 10) THEN
+ LDY  tmp
+#debug bool tmp
+ LDX  user
+#debug usint user
+ LD   usint 10
+ LT
+ AND
+ JMC  VerifyWebMAC_L1
+#srcline 123 ;    {asm}
+#srcline 124
+      LDX   MAC
+#srcline 125
+      LEAY  empty
+#srcline 126
+      LDX   user
+#srcline 127
+      LD    4             ; VerifyMac
+#srcline 128
+      SYS   78            ; WebPsw()
+#srcline 129
+      WRY   tmp
+#srcline 130 ;    {end_asm}
+#srcline 131 ;  END_IF;
+VerifyWebMAC_L1:
+#srcline 132 ;  VerifyWebMAC := tmp;
+ LDY  tmp
+#debug bool tmp
+ WRX  __fc__VerifyWebMAC
+#debug_left bool VerifyWebMAC
+#srcline 133 ;END_FUNCTION
+ PRV  
+ LDX  __fc__VerifyWebMAC
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou SetWebLevel
+#srcline 135 ;FUNCTION SetWebLevel : BOOL
+
+#struct SetWebLevel__temp__
+  bool tmp,
+  string[9] txLevel,
+  string[9] empty,  ; {ENU} empty parameter {CSY} nevyuzito
+  string[10] PS0__st__,
+  string[82] PSC__st__
+P     61
+SetWebLevel_L0:
+ LINK __SizeOf(SetWebLevel__temp__)
+ NXT
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 154 ;  IF (level > -2) AND (level < 10) THEN
+ LDX  level
+#debug sint level
+ EXTB 
+ LD   sint -2
+ GTS
+ LDX  level
+#debug sint level
+ EXTB 
+ LD   sint 10
+ LTS
+ AND
+ JMC  SetWebLevel_L1
+#srcline 155 ;    tmp := 1;
+ LD   bool -1      ; true
+ WRY  tmp
+#debug_left bool tmp
+#srcline 156 ;    txLevel := SINT_TO_STRING( level);
+ LD   0   ; null string
+ WRY  PS0__st__[0]
+ LEAY PS0__st__[0]
+ LD   8
+ DST    ; Level 1
+ LD   0   ; null string
+ WRY  PSC__st__[0]
+ LEAY PSC__st__[0]
+ LD   8
+ DST    ; Level 2
+ LDX  level
+#debug sint level
+ EXTB 
+ SCNV $0930;  IEC_SINT _TO_ IEC_STRING
+ PDST   ; Level 2
+ LEAY PSC__st__[0]
+
+ SCON 
+ PDST   ; Level 1
+ LD   0   ; null string
+ LEAY txLevel
+ WRI  
+ LEAY txLevel
+ LD   8
+ DST    ; Level 1
+ LEAY PS0__st__[0]
+ SCON 
+#debug_left string txLevel
+ PDST   ; Level 1
+#srcline 157 ;  END_IF;
+SetWebLevel_L1:
+#srcline 159 ;  IF tmp AND (user < 10) THEN
+ LDY  tmp
+#debug bool tmp
+ LDX  user
+#debug usint user
+ LD   usint 10
+ LT
+ AND
+ JMC  SetWebLevel_L3
+#srcline 160 ;    {asm}
+#srcline 161
+      LEAY  txLevel
+#srcline 162
+      LEAY  empty
+#srcline 163
+      LDX   user
+#srcline 164
+      LD    5             ; SetLevel
+#srcline 165
+      SYS   78            ; WebPsw()
+#srcline 166
+      WRY   tmp
+#srcline 167 ;    {end_asm}
+#srcline 168 ;  END_IF;
+SetWebLevel_L3:
+#srcline 169 ;  SetWebLevel := tmp;
+ LDY  tmp
+#debug bool tmp
+ WRX  __fc__SetWebLevel
+#debug_left bool SetWebLevel
+#srcline 170 ;END_FUNCTION
+ PRV  
+ LDX  __fc__SetWebLevel
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou VerifyWebLevel
+#srcline 172 ;FUNCTION VerifyWebLevel : BOOL
+
+#struct VerifyWebLevel__temp__
+  bool tmp,
+  string[9] txLevel,
+  string[9] empty,  ; {ENU} empty parameter {CSY} nevyuzito
+  string[10] PS0__st__,
+  string[82] PSC__st__
+P     61
+VerifyWebLevel_L0:
+ LINK __SizeOf(VerifyWebLevel__temp__)
+ NXT
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 192 ;  IF (level > -2) AND (level < 10) THEN
+ LDX  level
+#debug sint level
+ EXTB 
+ LD   sint -2
+ GTS
+ LDX  level
+#debug sint level
+ EXTB 
+ LD   sint 10
+ LTS
+ AND
+ JMC  VerifyWebLevel_L1
+#srcline 193 ;    tmp := 1;
+ LD   bool -1      ; true
+ WRY  tmp
+#debug_left bool tmp
+#srcline 194 ;    txLevel := SINT_TO_STRING( level);
+ LD   0   ; null string
+ WRY  PS0__st__[0]
+ LEAY PS0__st__[0]
+ LD   8
+ DST    ; Level 1
+ LD   0   ; null string
+ WRY  PSC__st__[0]
+ LEAY PSC__st__[0]
+ LD   8
+ DST    ; Level 2
+ LDX  level
+#debug sint level
+ EXTB 
+ SCNV $0930;  IEC_SINT _TO_ IEC_STRING
+ PDST   ; Level 2
+ LEAY PSC__st__[0]
+
+ SCON 
+ PDST   ; Level 1
+ LD   0   ; null string
+ LEAY txLevel
+ WRI  
+ LEAY txLevel
+ LD   8
+ DST    ; Level 1
+ LEAY PS0__st__[0]
+ SCON 
+#debug_left string txLevel
+ PDST   ; Level 1
+#srcline 195 ;  END_IF;
+VerifyWebLevel_L1:
+#srcline 197 ;  IF tmp  AND (user < 10) THEN
+ LDY  tmp
+#debug bool tmp
+ LDX  user
+#debug usint user
+ LD   usint 10
+ LT
+ AND
+ JMC  VerifyWebLevel_L3
+#srcline 198 ;    {asm}
+#srcline 199
+      LEAY  txLevel
+#srcline 200
+      LEAY  empty
+#srcline 201
+      LDX   user
+#srcline 202
+      LD    6             ; VerifyLevel
+#srcline 203
+      SYS   78            ; WebPsw()
+#srcline 204
+      WRY   tmp
+#srcline 205 ;    {end_asm}
+#srcline 206 ;  END_IF;
+VerifyWebLevel_L3:
+#srcline 207 ;  VerifyWebLevel := tmp;
+ LDY  tmp
+#debug bool tmp
+ WRX  __fc__VerifyWebLevel
+#debug_left bool VerifyWebLevel
+#srcline 208 ;END_FUNCTION
+ PRV  
+ LDX  __fc__VerifyWebLevel
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\SYSLIB\SYSLIB\SYSTEMDISPLAY_FUNKCE.ST'
+#pou SystemDisplayBacklightOn
+#srcline 1 ;FUNCTION SystemDisplayBacklightOn : BOOL
+P     61
+SystemDisplayBacklightOn_L0:
+ LINK 0
+ NXT
+; Initialize - variables
+ LD   0
+ WRX  __fc__SystemDisplayBacklightOn
+ WRX  tmp
+; End initialize - variables
+#srcline 16 ;begin
+#srcline 17 ;  {asm}
+#srcline 18
+    LD    1     ; backlight ON
+#srcline 19
+    SYS   75    ; sysDisplay
+#srcline 20
+    WRX   tmp
+#srcline 21 ;  {end_asm}
+#srcline 22 ;  SystemDisplayBacklightOn := tmp <> 0;
+ LDX  tmp
+#debug udint tmp
+ LD   udint 0
+ EQ
+ NEG
+ WRX  __fc__SystemDisplayBacklightOn
+#debug_left bool SystemDisplayBacklightOn
+#srcline 23 ;END_FUNCTION
+ PRV  
+ LDX  __fc__SystemDisplayBacklightOn
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou SystemDisplayBacklightOff
+#srcline 25 ;FUNCTION SystemDisplayBacklightOff : BOOL
+P     61
+SystemDisplayBacklightOff_L0:
+ LINK 0
+ NXT
+; Initialize - variables
+ LD   0
+ WRX  __fc__SystemDisplayBacklightOff
+ WRX  tmp
+; End initialize - variables
+#srcline 40 ;begin
+#srcline 41 ;  {asm}
+#srcline 42
+    LD    2     ; backlight OFF
+#srcline 43
+    SYS   75    ; sysDisplay
+#srcline 44
+    WRX   tmp
+#srcline 45 ;  {end_asm}
+#srcline 46 ;  SystemDisplayBacklightOff := tmp <> 0;
+ LDX  tmp
+#debug udint tmp
+ LD   udint 0
+ EQ
+ NEG
+ WRX  __fc__SystemDisplayBacklightOff
+#debug_left bool SystemDisplayBacklightOff
+#srcline 47 ;END_FUNCTION
+ PRV  
+ LDX  __fc__SystemDisplayBacklightOff
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\SYSLIB\SYSLIB\FBTICK.FBD'
+#pou fbTick
+#srcline 1 ;FUNCTION_BLOCK fbTick
+P     61
+fbTick_L0:
+ LINK 0
+#srcline 95 ;(* 31 *)    LD        IN
+ LDX  IN
+#debug bool IN
+#srcline 96 ;(* 32 *)    ANDN      WasRun
+ LDX  WasRun
+#debug bool WasRun
+ NEG
+ AND
+#srcline 97 ;(* 33 *)    __CR_TEST
+ OR   BOOL 0
+#debug_type bool
+#srcline 98 ;(* 36 *)    JMPCN __PouSkip_35
+ JMC  fbTick___POUSKIP_35
+#srcline 99 ;(* 35 *)    LD        %SL52
+ LD   %SL52
+#srcline 100 ;(* 39 *)    ST        RunTime
+ WRX  RunTime
+#debug_left time RunTime
+#srcline 101 ;(* 38 *)    LD_bool true
+ LD   bool -1       ; true
+#srcline 102 ;(* 35 *)  __PouSkip_35:
+fbTick___POUSKIP_35:
+#srcline 103 ;(* Network 2 *)
+#srcline 104 ;(* 48 *)    LD        %SL52
+ LD   %SL52
+#srcline 105 ;(* 49 *)    SUB       RunTime
+ LDX  RunTime
+#debug time RunTime
+ SUB
+#srcline 106 ;(* 50 *)    __CR_TEST
+ OR   DWORD 0
+#debug_type time
+#srcline 107 ;(* 52 *)    ST        ET
+ WRX  ET
+#debug_left time ET
+#srcline 108 ;(* 55 *)    GE        PT
+ LDX  PT
+#debug time PT
+ LTS
+ NEG
+#srcline 109 ;(* 56 *)    __CR_TEST
+ OR   BOOL 0
+#debug_type bool
+#srcline 110 ;(* 59 *)    JMPCN __PouSkip_58
+ JMC  fbTick___POUSKIP_58
+#srcline 111 ;(* 58 *)    LD        RunTime
+ LDX  RunTime
+#debug time RunTime
+#srcline 112 ;(* 61 *)    ADD       PT
+ LDX  PT
+#debug time PT
+ ADD
+#srcline 113 ;(* 63 *)    ST        RunTime
+ WRX  RunTime
+#debug_left time RunTime
+#srcline 114 ;(* 62 *)    LD_bool true
+ LD   bool -1       ; true
+#srcline 115 ;(* 58 *)  __PouSkip_58:
+fbTick___POUSKIP_58:
+#srcline 116 ;(* 67 *)    AND       IN
+ LDX  IN
+#debug bool IN
+ AND
+#srcline 117 ;(* 68 *)    __CR_TEST
+ OR   BOOL 0
+#debug_type bool
+#srcline 118 ;(* 70 *)    ST        Q
+ WRX  Q
+#debug_left bool Q
+#srcline 119 ;(* Network 3 *)
+#srcline 120 ;(* 77 *)    LD        IN
+ LDX  IN
+#debug bool IN
+#srcline 121 ;(* 78 *)    ST        WasRun
+ WRX  WasRun
+#debug_left bool WasRun
+#srcline 122 ;(* 79 *)    NOT
+ NEG
+#srcline 123 ;(* 81 *)    __CR_TEST
+ OR   BOOL 0
+#debug_type bool
+#srcline 124 ;(* 84 *)    JMPCN __PouSkip_83
+ JMC  fbTick___POUSKIP_83
+#srcline 125 ;(* 83 *)    LD        t#0s
+ LD   time 0
+#srcline 126 ;(* 87 *)    ST        ET
+ WRX  ET
+#debug_left time ET
+#srcline 127 ;(* 86 *)    LD_bool true
+ LD   bool -1       ; true
+#srcline 128 ;(* 83 *)  __PouSkip_83:
+fbTick___POUSKIP_83:
+#srcline 129 ;END_FUNCTION_BLOCK
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+ð÷  q  v

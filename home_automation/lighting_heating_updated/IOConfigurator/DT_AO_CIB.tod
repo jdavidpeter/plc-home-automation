@@ -1,0 +1,89 @@
+﻿<?xml version="1.0"?>
+<TecoDictionary xmlns="http://www.tecomat.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.tecomat.com Teco_Dictionary.xsd">
+  <DataTypes>
+  
+<!-- zakladni datove typy analogovych vystupu CIB modulu -->
+    
+<!-- 2 AO -->                
+    <DataType>
+      <Name>TCIB_AO2</Name>
+      <SubItems>
+        <SubItem>
+          <Name>AO1</Name>
+          <Type>REAL</Type>
+        </SubItem>     
+        <SubItem>
+          <Name>AO2</Name>
+          <Type>REAL</Type>
+        </SubItem>
+      </SubItems>      
+    </DataType> 
+
+<!-- 2 AOUT -->                
+    <DataType>
+      <Name>TCIB_AOUT2</Name>
+      <SubItems>
+        <SubItem>
+          <Name>OUT1</Name>
+          <Type>REAL</Type>
+        </SubItem>     
+        <SubItem>
+          <Name>OUT2</Name>
+          <Type>REAL</Type>
+        </SubItem>
+      </SubItems>      
+    </DataType> 
+ 
+<!-- 4 AO -->                
+    <DataType>
+      <Name>TCIB_AO4</Name>
+      <SubItems>
+        <SubItem>
+          <SubIdx>0</SubIdx>
+          <Name>AO1</Name>
+          <Type>REAL</Type>
+        </SubItem>     
+        <SubItem>
+          <SubIdx>1</SubIdx>
+          <Name>AO2</Name>
+          <Type>REAL</Type>
+        </SubItem>
+        <SubItem>
+          <SubIdx>2</SubIdx>
+          <Name>AO3</Name>
+          <Type>REAL</Type>
+        </SubItem>
+        <SubItem>
+          <SubIdx>3</SubIdx>
+          <Name>AO4</Name>
+          <Type>REAL</Type>
+        </SubItem>
+      </SubItems>      
+    </DataType> 
+
+<!-- 4 AOUT -->                
+    <DataType>
+      <Name>TCIB_AOUT4</Name>
+      <SubItems>
+        <SubItem>
+          <Name>OUT1</Name>
+          <Type>REAL</Type>
+        </SubItem>     
+        <SubItem>
+          <Name>OUT2</Name>
+          <Type>REAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>OUT3</Name>
+          <Type>REAL</Type>
+        </SubItem>     
+        <SubItem>
+          <Name>OUT4</Name>
+          <Type>REAL</Type>
+        </SubItem>
+      </SubItems>      
+    </DataType> 
+ 
+     
+  </DataTypes> 	
+</TecoDictionary>

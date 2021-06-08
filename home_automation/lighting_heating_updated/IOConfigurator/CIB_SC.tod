@@ -1,0 +1,111 @@
+﻿<?xml version="1.0"?>
+<TecoDictionary xmlns="http://www.tecomat.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.tecomat.com Teco_Dictionary.xsd">
+  
+  <Include>Modules.tod</Include>
+  <Include>Channels.tod</Include>  
+  <Include optional="true">r{RACK}_p{POSITION}_CIB.tod</Include> 
+  
+  <DataTypes>   
+    
+    <DataType>
+      <Name>TCIB_STAT_ARRAY</Name> 
+      <BaseType>BYTE</BaseType>
+      <ArrayInfo>
+        <LBound>0</LBound>
+        <Elements>32</Elements>
+      </ArrayInfo>
+    </DataType>    
+    
+  </DataTypes>
+  
+  <Objects>    
+    
+    <Object index="#x6090" name="r{RACK}_p{POSITION}_CIB_Statistic" type="TCHStatistic" access="rw" use="Master" busID="08,30">   
+      <DisplayName>
+        <label lang="en">r{RACK}_p{POSITION}_CIB_Statistic</label>   
+        <label lang="cz">r{RACK}_p{POSITION}_CIB_Statistic</label>                     
+      </DisplayName>   
+      <Excluded>&quot;{SYSTEM}&quot; != &quot;FOXTROT&quot;</Excluded>
+      <Xml>
+        <Editor>
+          <Expanded>0</Expanded>
+        </Editor>
+      </Xml>
+    </Object>
+    
+    <Object index="#x6092" name="r{RACK}_p{POSITION}_CIB_STAT" type="TCIB_STAT_ARRAY" access="rw" use="Master_STAT" busID="08,30">   
+      <DisplayName>
+        <label lang="en">r{RACK}_p{POSITION}_CIB_STAT</label>   
+        <label lang="cz">r{RACK}_p{POSITION}_CIB_STAT</label>                     
+      </DisplayName>   
+      <Excluded>&quot;{SYSTEM}&quot; != &quot;FOXTROT&quot;</Excluded>
+      <Xml>
+        <Editor>
+          <Expanded>0</Expanded>
+        </Editor>
+      </Xml>
+    </Object>
+    
+    <Object index="#x6093" name="r{RACK}_p{POSITION}_CIB_ERR" type="TCIB_STAT_ARRAY" access="rw" use="Master_ERR" busID="08,30">   
+      <DisplayName>
+        <label lang="en">r{RACK}_p{POSITION}_CIB_ERR</label>   
+        <label lang="cz">r{RACK}_p{POSITION}_CIB_ERR</label>                     
+      </DisplayName>
+      <Excluded>&quot;{SYSTEM}&quot; != &quot;FOXTROT&quot;</Excluded>
+      <Xml>
+        <Editor>
+          <Expanded>0</Expanded>
+        </Editor>
+      </Xml>   
+    </Object>
+                                                                                                         
+    <Object index="#x7090" name="r{RACK}_p{POSITION}_CIB_Control" type="TCHControl" access="rw" use="Master" busID="08,30">   
+      <DisplayName>
+        <label lang="en">r{RACK}_p{POSITION}_CIB_Control</label>
+        <label lang="cz">r{RACK}_p{POSITION}_CIB_Control</label>
+      </DisplayName>
+      <Excluded>&quot;{SYSTEM}&quot; != &quot;FOXTROT&quot;</Excluded>
+      <Xml>
+        <Editor>
+          <Expanded>0</Expanded>
+        </Editor>
+      </Xml>
+    </Object>
+    
+    <!-- Module of PC mode -->
+    <Object index="#xA090" name="r{RACK}_p{POSITION}_Module" type="TModulE1" access="rw" use="Master">
+      <Excluded>&quot;{SYSTEM}&quot; != &quot;FOXTROT&quot;</Excluded>
+      <SubObjects>
+        <SubObject subIndex="0" name="version" access="ro">   
+          <DefaultValue>1</DefaultValue>            
+        </SubObject>  
+        <SubObject subIndex="1" name="rack" access="ro">   
+          <MacroValue>{RACK}</MacroValue>            
+        </SubObject>
+        <SubObject subIndex="2" name="address" access="ro">   
+          <MacroValue>{POSITION}</MacroValue>            
+        </SubObject>
+        <SubObject subIndex="3" name="LogAddress" access="ro">   
+          <DefaultData>1001</DefaultData>            
+        </SubObject>
+        <SubObject subIndex="4" name="LenInputs" access="ro">   
+          <MacroValue>10</MacroValue>                        
+        </SubObject>
+        <SubObject subIndex="5" name="LenOutputs" access="ro">   
+          <MacroValue>2</MacroValue>                        
+        </SubObject>
+        <SubObject subIndex="6" name="OffsetInputs" access="ro">   
+          <MacroValue>__offset(r{RACK}_p{POSITION}_CIB_Statistic)</MacroValue>                        
+        </SubObject>  
+        <SubObject subIndex="7" name="OffsetOutputs" access="ro">   
+          <MacroValue>__offset(r{RACK}_p{POSITION}_CIB_Control)</MacroValue>            
+        </SubObject>
+        <SubObject subIndex="8" name="InitTable" access="ro">   
+          <MacroValue>__indx(r{RACK}_p{POSITION}_Table)</MacroValue>            
+        </SubObject>  
+      </SubObjects>          
+    </Object>
+       
+  </Objects>    
+</TecoDictionary>  
+    

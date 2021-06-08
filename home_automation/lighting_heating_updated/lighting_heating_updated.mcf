@@ -1,0 +1,15 @@
+CONFIGURATION lighting_heating_updated
+  RESOURCE CPM
+    TASK FreeWheeling(Number := 0);
+    TASK InitialisationBlock(Number := 63);
+    TASK FileIO(Number := 6);
+    PROGRAM Lighting_Init WITH InitialisationBlock : LightingInit ();
+    PROGRAM Ligting_Control WITH FreeWheeling : LightingControl ();
+    PROGRAM Heating_Init WITH InitialisationBlock : HeatingInint ();
+    PROGRAM Heating_Control WITH FreeWheeling : HeatingControl ();
+    PROGRAM Alarm_Control WITH FreeWheeling : AlarmControl ();
+    PROGRAM Alarm_Init WITH InitialisationBlock : AlarmInit ();
+    PROGRAM Persist_Data WITH FileIO : PersistData ();
+    PROGRAM Persist_Init WITH InitialisationBlock : PersistInit ();
+  END_RESOURCE
+END_CONFIGURATION

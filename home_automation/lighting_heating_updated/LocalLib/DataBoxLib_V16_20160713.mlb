@@ -1,0 +1,763 @@
+(*` {CSY}Knihovna vývojového systému Mosaic{ENU}Mosaic IDE library *)
+(*` {CSY}Jméno souboru{ENU}File name{} : C:\TecoLib\DataBoxLib_V16_20160713.mlb *)
+(*` {CSY}Knihovna : DataBoxLib{ENU}Library : DataBoxLib{} 1.6 *)
+(*` {CSY}Autor{ENU}Author{} : Teco a.s. Kolin *)
+(*` {CSY}Autorská práva{ENU}Copyright{} : (c) 2004, 2016 Teco a.s. *)
+(*` {CSY}Verze IEC pøekladaèe{ENU}IEC compiler version{} : 3.11.8.1 *)
+(*` {CSY}Verze assembleru{ENU}Assembler version{} : 4.3.00 *)
+
+//{Knihovna : DataBoxLib 1.6  }
+(*` {CSY}Historie{ENU}History{}: *)
+(*`
+{CSY}
+v1.0 17.02.2004	Nem Úvodni verze knihovny
+                    Funkce : ReadFromDataBox - cteni dat z DataBoxu do promenne
+                             WriteToDataBox  - zapis dat z promenne do DataBoxu
+                             SizeOfDataBox   - vrati velikost DataBoxu v KB
+v1.1 09.09.2004	Nem Funkce pøepsány bez použití direktivy system_fc on
+v1.2 30.08.2007	Nem Pøelozeno s novìjší verzí ST prekladace (v3.3.2.0)
+v1.3 11.01.2010	Nem Prohozeno poøadí vstupních promìnných u funkcí ReadBlockFromDBx
+                    a WriteBlockToDBx kvùli použití v LD a FBD
+v1.4 02.09.2010 Nem Doplnìny závislosti na knihovnách
+v1.5 18.11.2013 Nem Oprava pro pøípad, kdy je adresa promìnné > %R65535
+                    (Foxtrot potøebuje firmware v8.1 nebo vyšší)
+v1.6 13.07.2016 Nem Doplnìny funkce ReadFromDBx() a WriteToDBx()
+                    (Foxtrot potøebuje firmware v8.7 nebo vyšší)
+
+{ENU}
+v1.0 2004-02-17 Nem First edition
+v1.1 2004-09-09 Nem Rewrited without using directive system_fc on
+v1.2 2007-08-30 Nem Compiled with new version of ST compiler (v3.3.2.0)
+v1.3 2010-01-11 Nem Order of input variables changed : 
+                    functions ReadBlockFromDBx and WriteBlockToDBx 
+                    (it is better for LD a FBD languages)
+v1.4 2010-09-02 Nem Dependency on the libraries added
+v1.5 2013-11-18 Nem Corrected bug in case when address of variable is > %R65535
+                    (Foxtrot firmware v8.1 or higher is necessary)  
+v1.6 2016-07-13 Nem New functions ReadFromDBx() and WriteToDBx()
+                    (Foxtrot firmware v8.7 or higher is necessary)  
+*)
+
+(*----------------------------------------------------------------------------*)
+
+VAR_GLOBAL CONSTANT
+ MAX_LENGTH_DATABOX_BLOCK : int :=  10000;
+
+END_VAR
+
+TYPE TDataBoxPar :
+  STRUCT
+    databoxAddress   : udint;
+    registerIndex    : uint;
+    blockLength      : usint;
+  END_STRUCT;
+END_TYPE
+
+TYPE  TPtrNaPole : ARRAY [0..10000] OF usint;
+END_TYPE
+
+__DECL FUNCTION ReadBlockFromDBx : usint
+(*`{ENU} Transfer of data block from DataBox memory to variable
+
+         Maximal block size is 255 bytes
+         Return value : number of transfered bytes
+
+   {CSY} Pøenos bloku pamìti z DataBoxu do promìnné
+
+         Maximální velikost bloku je 255 bytù
+         Funkce vrací poèet pøenesených bytù*)
+  VAR_INPUT
+    dataBoxAddress   : udint;  (*`{ENU} source address (DataBox)  {CSY} adresa zdroje (adresa v DataBoxu)*)
+    length           : usint;  (*`{ENU} size of data block (number of bytes, max 255) {CSY} velikost pøenášeného bloku (poèet bytù, max 255)*)
+  END_VAR
+  VAR_IN_OUT
+    variable         : usint;  (*`{ENU} destination address (variable) {CSY} adresa cíle (promìnná)*)
+  END_VAR
+  VAR
+    par              : TDataBoxPar;
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION WriteBlockToDBx : usint
+(*`{ENU} Transfers of data block from variable to DataBox memory
+
+         Maximal block size is 255 bytes
+         Return value : number of transfered bytes
+
+   {CSY} Pøenos bloku pamìti z promìnné do DataBoxu
+
+         Maximální velikost bloku je 255 bytù
+         Funkce vrací poèet pøenesených bytù*)
+  VAR_INPUT
+    dataBoxAddress   : udint;  (*`{ENU} destination address (DataBox)  {CSY} adresa cíle (adresa v DataBoxu)*)
+    length           : usint;  (*`{ENU} size of data block (number of bytes, max 255) {CSY} velikost pøenášeného bloku (poèet bytù, max 255)*)
+  END_VAR
+  VAR_IN_OUT
+    variable         : usint;  (*`{ENU} source address (variable) {CSY} adresa zdroje (promìnná)*)
+  END_VAR
+  VAR
+    par              : TDataBoxPar;
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION ReadFromDataBox : bool
+(*`{ENU} Transfer of data block from DataBox memory to variable
+
+         Maximal block size is 10000 bytes
+         Return value : TRUE if all data was transfered
+         Warning !!!
+         - variable must be allocated inside %M or %R !!!
+         - variable's data type can not be BOOL or ARRAY[] OF BOOL !!!
+
+   {CSY} Pøenos bloku pamìti z DataBoxu do promìnné
+
+         Maximální velikost bloku je 10000 bytù
+         Funkce vrací TRUE, pokud byla všechna požadovaná data pøenesena
+         Upozornìní !!!
+         - promìnná musí být umístìna v pamìovém prostoru %R resp. %M
+         - promìnná nesmí být typu BOOL nebo ARRAY[] OF BOOL*)
+  VAR_INPUT
+    dataBoxAddress   : udint;  (*`{ENU} source address (DataBox)  {CSY} adresa zdroje (adresa v DataBoxu)*)
+    length           : uint;  (*`{ENU} size of data block (number of bytes, max 10000)  {CSY} velikost pøenášeného bloku (poèet bytù, max 10000)*)
+  END_VAR
+  VAR_IN_OUT
+    variable         : TPtrNaPole;  (*`{ENU} destination address (variable) {CSY} adresa cíle (promìnná)*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION WriteToDataBox : bool
+(*`{ENU} Transfer of data block from variable to DataBox memory
+
+         Maximal block size is 10000 bytes
+         Return value : TRUE if all data was transfered
+         Warning !!!
+         - variable must be allocated inside %M or %R !!!
+         - variable's data type can not be BOOL or ARRAY[] OF BOOL !!!
+
+   {CSY} Pøenos bloku pamìti z promìnné do DataBoxu
+
+         Maximální velikost bloku je 10000 bytù
+         Funkce vrací TRUE, pokud byla všechna požadovaná data pøenesena
+         Upozornìní !!!
+         - promìnná musí být umístìna v pamìovém prostoru %R resp. %M
+         - promìnná nesmí být typu BOOL nebo ARRAY[] OF BOOL*)
+  VAR_INPUT
+    dataBoxAddress   : udint;  (*`{ENU} destination address (DataBox)  {CSY} adresa cíle (adresa v DataBoxu)*)
+    length           : uint;  (*`{ENU} size of data block (number of bytes, max 10000)  {CSY} velikost pøenášeného bloku (poèet bytù, max 10000)*)
+  END_VAR
+  VAR_IN_OUT
+    variable         : TPtrNaPole;  (*`{ENU} source address (variable) {CSY} adresa zdroje (promìnná)*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION SizeOfDataBox : uint
+(*`{ENU} DataBox memory size identification
+
+         Return value : DataBox memory size [kilobytes]
+   {CSY} Test aktuální velikost pamìti v DataBoxu
+
+         Funkce vrací velikost DataBoxu v kilobytech*)
+END_FUNCTION
+
+__DECL FUNCTION ReadFromDBx : bool
+(*`{ENU} Transfer of data block from DataBox memory to variable
+         Return value is TRUE if all data was transferred
+         Warning !!!
+         - function requires Foxtrot with FW v8.7 or higher
+         - variable's data type can not be BOOL or ARRAY[] OF BOOL !!!
+
+   {CSY} Pøenos bloku pamìti z DataBoxu do promìnné
+         Funkce vrací TRUE, pokud byla všechna požadovaná data pøenesena
+         Upozornìní !!!
+         - funkce vyžaduje Foxtrot s FW v8.7 nebo vyšším
+         - promìnná nesmí být typu BOOL nebo ARRAY[] OF BOOL*)
+  VAR_INPUT
+    dataBoxAddress   : udint;  (*`{ENU} source address (address in DataBox)       {CSY} adresa zdroje (adresa v DataBoxu)*)
+    length           : udint;  (*`{ENU} size of data block (number of bytes)      {CSY} velikost pøenášeného bloku (poèet bytù)*)
+    varAddress       : udint;  (*`{ENU} destination address (address of variable) {CSY} adresa cíle (adresa promìnné)*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION WriteToDBx : bool
+(*`{ENU} Transfers of data block from variable to DataBox memory
+         Return value is TRUE if all data was transferred
+         Warning !!!
+         - function requires Foxtrot with FW v8.7 or higher
+         - variable's data type can not be BOOL or ARRAY[] OF BOOL !!!
+
+   {CSY} Pøenos bloku pamìti z promìnné do DataBoxu
+         Funkce vrací TRUE, pokud byla všechna požadovaná data pøenesena
+         Upozornìní !!!
+         - funkce vyžaduje Foxtrot s FW v8.7 nebo vyšším
+         - promìnná nesmí být typu BOOL nebo ARRAY[] OF BOOL*)
+  VAR_INPUT
+    dataBoxAddress   : udint;  (*`{ENU} source address (address in DataBox)       {CSY} adresa zdroje (adresa v DataBoxu)*)
+    length           : udint;  (*`{ENU} size of data block (number of bytes)      {CSY} velikost pøenášeného bloku (poèet bytù)*)
+    varAddress       : udint;  (*`{ENU} destination address (address of variable) {CSY} adresa cíle (adresa promìnné)*)
+  END_VAR
+END_FUNCTION
+
+
+
+{USES=ReadFromDataBox:ReadBlockFromDBx}
+{USES=WriteToDataBox:WriteBlockToDBx}
+#srcfile 'C:\TECOLIBSRC\DATABOX\DATABOXLIB_V16\DATABOXLIB_V16.ST'
+#pou ReadBlockFromDBx
+#srcline 21 ;FUNCTION ReadBlockFromDBx : usint
+P     61
+ReadBlockFromDBx_L0:
+ LINK 0
+ NXT
+; Initialize - variables
+ LD   0
+ WRX  __fc__ReadBlockFromDBx
+ LEAX par
+ LD   7
+ LD   0
+ FIL 
+; End initialize - variables
+#srcline 44 ;begin
+#srcline 45 ;{asm}
+#srcline 46
+#def BAZE_REG %R0
+#srcline 47
+;
+#srcline 48
+;---> nastavit cislo registru
+#srcline 49
+;
+#srcline 50
+  ldx variable
+#srcline 51
+  lea BAZE_REG  ;absolutni adresa R0
+#srcline 52
+  sub     ;ld __indx( variable)
+#srcline 53
+  wrx par~registerIndex
+#srcline 54
+  gt      65535           ;asi rada L, pouzit jinou SYS
+#srcline 55
+  jmd     ReadBlockFromDBxNew
+#srcline 56
+;
+#srcline 57
+;---> nastavit  pocet bytu, ktery budu cist
+#srcline 58
+;
+#srcline 59
+  ldx length
+#srcline 60
+  wrx par~blockLength
+#srcline 61
+;
+#srcline 62
+;--->   nastavit adresu v DataBoxu
+#srcline 63
+;
+#srcline 64
+  ldx     dataBoxAddress
+#srcline 65
+  wrx par~databoxAddress
+#srcline 66
+;
+#srcline 67
+;---> precist blok dat z DataBoxu do pameti
+#srcline 68
+;
+#srcline 69
+  ld  __indx(__Instance__ReadBlockFromDBx~par~databoxAddress)
+#srcline 70
+  SYS     5               ; rdb = cteni z DataBoxu
+#srcline 71
+  wrx   __fc__ReadBlockFromDBx
+#srcline 72
+  jmp     EndReadBlockFromDBx
+#srcline 73
+;
+#srcline 74
+ReadBlockFromDBxNew:
+#srcline 75
+        ldx length          ; delka
+#srcline 76
+  ldx     dataBoxAddress  ; adresa v databoxu
+#srcline 77
+  ldx variable  ; adresa v zapisniku
+#srcline 78
+  ld      1               ; kod RDB
+#srcline 79
+  SYS     84              ; sysDBX
+#srcline 80
+  wrx   __fc__ReadBlockFromDBx
+#srcline 81
+;
+#srcline 82
+EndReadBlockFromDBx:
+#srcline 83 ;{end_asm}
+#srcline 84 ;END_FUNCTION
+ PRV  
+ LDX  __fc__ReadBlockFromDBx
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou WriteBlockToDBx
+#srcline 87 ;FUNCTION WriteBlockToDBx : usint
+P     61
+WriteBlockToDBx_L0:
+ LINK 0
+ NXT
+; Initialize - variables
+ LD   0
+ WRX  __fc__WriteBlockToDBx
+ LEAX par
+ LD   7
+ LD   0
+ FIL 
+; End initialize - variables
+#srcline 110 ;begin
+#srcline 111 ;{asm}
+#srcline 112
+#def BAZE_REG %R0
+#srcline 113
+;
+#srcline 114
+;---> nastavit cislo registru
+#srcline 115
+;
+#srcline 116
+  ldx variable
+#srcline 117
+  lea BAZE_REG  ; absolutni adresa R0
+#srcline 118
+  sub     ; ld __indx( variable)
+#srcline 119
+  wrx par~registerIndex
+#srcline 120
+  gt      65535
+#srcline 121
+  jmd     WriteBlockFromDBxNew
+#srcline 122
+;
+#srcline 123
+;---> nastavit  pocet bytu, ktery budu cist
+#srcline 124
+;
+#srcline 125
+  ldx length
+#srcline 126
+  wrx par~blockLength
+#srcline 127
+;
+#srcline 128
+;--->   nastavit adresu v DataBoxu
+#srcline 129
+;
+#srcline 130
+  ldx     dataBoxAddress
+#srcline 131
+  wrx par~databoxAddress
+#srcline 132
+;
+#srcline 133
+;---> precist blok dat z DataBoxu do pameti
+#srcline 134
+;
+#srcline 135
+  ld  __indx(__Instance__WriteBlockToDBx~par~databoxAddress)
+#srcline 136
+  SYS     6               ; wdb = zapis do DataBoxu
+#srcline 137
+  wrx   __fc__WriteBlockToDBx
+#srcline 138
+  jmp     EndWriteBlockToDBx
+#srcline 139
+;
+#srcline 140
+WriteBlockFromDBxNew:
+#srcline 141
+  ldx length          ; delka
+#srcline 142
+  ldx     dataBoxAddress  ; adresa v databoxu
+#srcline 143
+  ldx variable  ; adresa v zapisniku
+#srcline 144
+  ld      2               ; kod WDB
+#srcline 145
+  SYS     84              ; sysDBX
+#srcline 146
+  wrx   __fc__WriteBlockToDBx
+#srcline 147
+;
+#srcline 148
+EndWriteBlockToDBx:
+#srcline 149 ;{end_asm}
+#srcline 150 ;END_FUNCTION
+ PRV  
+ LDX  __fc__WriteBlockToDBx
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou ReadFromDataBox
+#srcline 153 ;FUNCTION ReadFromDataBox : bool
+
+#struct ReadFromDataBox__temp__
+  uint t,
+  uint j
+P     61
+ReadFromDataBox_L0:
+ LINK __SizeOf(ReadFromDataBox__temp__)
+ NXT
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 183 ;    j := length;
+ LDX  length
+#debug uint length
+ WRY  j
+#debug_left uint j
+#srcline 184 ;    WHILE j >0 DO
+ReadFromDataBox_L1:
+ LDY  j
+#debug uint j
+ LD   uint 0
+ GT
+ JMC  ReadFromDataBox_L2
+ DBG 
+#srcline 185 ;    IF j > 250 THEN
+ LDY  j
+#debug uint j
+ LD   uint 250
+ GT
+ JMC  ReadFromDataBox_L3
+#srcline 186 ;       t := USINT_TO_UINT( ReadBlockFromDBx(
+ NXT
+ LDX  dataBoxAddress
+#debug udint dataBoxAddress
+ LDY  j
+#debug uint j
+ ADD
+ LD   udint 250
+ SUB
+ WR   __Instance__ReadBlockFromDBx~dataBoxAddress
+#debug_left udint __Instance__ReadBlockFromDBx~dataBoxAddress
+#srcline 188 ;                           length         :=250,
+ LD   usint 250
+ WR   __Instance__ReadBlockFromDBx~length
+#debug_left usint __Instance__ReadBlockFromDBx~length
+#srcline 189 ;                           variable       := void(variable[j-250])));
+ LDX  variable
+ LDY  j
+#debug uint j
+ LD   uint 250
+ SUB
+ AND  $FFFF
+ RCHK 10000   ; Range Check
+ ADD     ; + offset 
+ WR   __Instance__ReadBlockFromDBx~variable
+#debug_left pointer __Instance__ReadBlockFromDBx.variable
+ PRV
+ LEA  __Instance__ReadBlockFromDBx
+ CAL  ReadBlockFromDBx_L0
+ AND  $FFFF
+ WRY  t
+#debug_left uint t
+#srcline 190 ;     IF t = 0 THEN  EXIT;  END_IF;
+ LDY  t
+#debug uint t
+ LD   uint 0
+ EQ
+ JMC  ReadFromDataBox_L5
+ JMP  ReadFromDataBox_L2
+ReadFromDataBox_L5:
+#srcline 191 ;           j := j - t;
+ LDY  j
+#debug uint j
+ LDY  t
+#debug uint t
+ SUB
+ AND  $FFFF
+ WRY  j
+#debug_left uint j
+#srcline 192 ;    ELSE
+ JMP  ReadFromDataBox_L4
+ReadFromDataBox_L3:
+#srcline 193 ;           j :=j - USINT_TO_UINT( ReadBlockFromDBx(
+ LDY  j
+#debug uint j
+ NXT
+ LDX  dataBoxAddress
+#debug udint dataBoxAddress
+ WR   __Instance__ReadBlockFromDBx~dataBoxAddress
+#debug_left udint __Instance__ReadBlockFromDBx~dataBoxAddress
+#srcline 195 ;                        length         := UINT_TO_USINT(j),
+ LDY  j
+#debug uint j
+ AND  $FF
+ WR   __Instance__ReadBlockFromDBx~length
+#debug_left usint __Instance__ReadBlockFromDBx~length
+#srcline 196 ;                        variable       := void(variable)));
+ LDX  variable
+ WR   __Instance__ReadBlockFromDBx~variable
+#debug_left pointer __Instance__ReadBlockFromDBx.variable
+ PRV
+ LEA  __Instance__ReadBlockFromDBx
+ CAL  ReadBlockFromDBx_L0
+ AND  $FFFF
+ SUB
+ AND  $FFFF
+ WRY  j
+#debug_left uint j
+#srcline 197 ;     EXIT;
+ JMP  ReadFromDataBox_L2
+#srcline 198 ;    END_IF;
+ReadFromDataBox_L4:
+#srcline 199 ;    END_WHILE;
+ JMP  ReadFromDataBox_L1
+ReadFromDataBox_L2:
+#srcline 200 ;    ReadFromDataBox := j = 0;
+ LDY  j
+#debug uint j
+ LD   uint 0
+ EQ
+ WRX  __fc__ReadFromDataBox
+#debug_left bool ReadFromDataBox
+#srcline 201 ;END_FUNCTION
+ PRV  
+ LDX  __fc__ReadFromDataBox
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou WriteToDataBox
+#srcline 204 ;FUNCTION WriteToDataBox : bool
+
+#struct WriteToDataBox__temp__
+  uint t,
+  uint j
+P     61
+WriteToDataBox_L0:
+ LINK __SizeOf(WriteToDataBox__temp__)
+ NXT
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 234 ;    j := length;
+ LDX  length
+#debug uint length
+ WRY  j
+#debug_left uint j
+#srcline 235 ;    WHILE j >0 DO
+WriteToDataBox_L1:
+ LDY  j
+#debug uint j
+ LD   uint 0
+ GT
+ JMC  WriteToDataBox_L2
+ DBG 
+#srcline 236 ;    IF j > 250 THEN
+ LDY  j
+#debug uint j
+ LD   uint 250
+ GT
+ JMC  WriteToDataBox_L3
+#srcline 237 ;       t := USINT_TO_UINT( WriteBlockToDBx(
+ NXT
+ LDX  dataBoxAddress
+#debug udint dataBoxAddress
+ LDY  j
+#debug uint j
+ ADD
+ LD   udint 250
+ SUB
+ WR   __Instance__WriteBlockToDBx~dataBoxAddress
+#debug_left udint __Instance__WriteBlockToDBx~dataBoxAddress
+#srcline 239 ;                           length         :=250,
+ LD   usint 250
+ WR   __Instance__WriteBlockToDBx~length
+#debug_left usint __Instance__WriteBlockToDBx~length
+#srcline 240 ;                           variable       := void(variable[j-250])));
+ LDX  variable
+ LDY  j
+#debug uint j
+ LD   uint 250
+ SUB
+ AND  $FFFF
+ RCHK 10000   ; Range Check
+ ADD     ; + offset 
+ WR   __Instance__WriteBlockToDBx~variable
+#debug_left pointer __Instance__WriteBlockToDBx.variable
+ PRV
+ LEA  __Instance__WriteBlockToDBx
+ CAL  WriteBlockToDBx_L0
+ AND  $FFFF
+ WRY  t
+#debug_left uint t
+#srcline 241 ;     IF t = 0 THEN  EXIT;  END_IF;
+ LDY  t
+#debug uint t
+ LD   uint 0
+ EQ
+ JMC  WriteToDataBox_L5
+ JMP  WriteToDataBox_L2
+WriteToDataBox_L5:
+#srcline 242 ;           j := j - t;
+ LDY  j
+#debug uint j
+ LDY  t
+#debug uint t
+ SUB
+ AND  $FFFF
+ WRY  j
+#debug_left uint j
+#srcline 243 ;    ELSE
+ JMP  WriteToDataBox_L4
+WriteToDataBox_L3:
+#srcline 244 ;           j :=j - USINT_TO_UINT( WriteBlockToDBx(
+ LDY  j
+#debug uint j
+ NXT
+ LDX  dataBoxAddress
+#debug udint dataBoxAddress
+ WR   __Instance__WriteBlockToDBx~dataBoxAddress
+#debug_left udint __Instance__WriteBlockToDBx~dataBoxAddress
+#srcline 246 ;                        length         := UINT_TO_USINT(j),
+ LDY  j
+#debug uint j
+ AND  $FF
+ WR   __Instance__WriteBlockToDBx~length
+#debug_left usint __Instance__WriteBlockToDBx~length
+#srcline 247 ;                        variable       := void(variable)));
+ LDX  variable
+ WR   __Instance__WriteBlockToDBx~variable
+#debug_left pointer __Instance__WriteBlockToDBx.variable
+ PRV
+ LEA  __Instance__WriteBlockToDBx
+ CAL  WriteBlockToDBx_L0
+ AND  $FFFF
+ SUB
+ AND  $FFFF
+ WRY  j
+#debug_left uint j
+#srcline 248 ;     EXIT;
+ JMP  WriteToDataBox_L2
+#srcline 249 ;    END_IF;
+WriteToDataBox_L4:
+#srcline 250 ;    END_WHILE;
+ JMP  WriteToDataBox_L1
+WriteToDataBox_L2:
+#srcline 251 ;    WriteToDataBox := j = 0;
+ LDY  j
+#debug uint j
+ LD   uint 0
+ EQ
+ WRX  __fc__WriteToDataBox
+#debug_left bool WriteToDataBox
+#srcline 252 ;END_FUNCTION
+ PRV  
+ LDX  __fc__WriteToDataBox
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou SizeOfDataBox
+#srcline 255 ;FUNCTION SizeOfDataBox : uint
+P     61
+SizeOfDataBox_L0:
+ LINK 0
+ NXT
+#srcline 264 ;begin
+#srcline 265 ;{asm}
+#srcline 266
+  SYS     7                    ;idb = identifikace DataBoxu
+#srcline 267
+  wrx __fc__SizeOfDataBox
+#srcline 268 ;{end_asm}
+#srcline 269 ;END_FUNCTION
+ PRV  
+ LDX  __fc__SizeOfDataBox
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\DATABOX\DATABOXLIB_V16\NEWFUNCTION.ST'
+#pou ReadFromDBx
+#srcline 1 ;FUNCTION ReadFromDBx : BOOL
+P     61
+ReadFromDBx_L0:
+ LINK 0
+ NXT
+#srcline 21 ;begin
+#srcline 22 ;  {asm}
+#srcline 23
+    ldx	   length                    ; delka
+#srcline 24
+  	ldx    dataBoxAddress            ; adresa v databoxu
+#srcline 25
+  	ldx	   varAddress                ; adresa v zapisniku
+#srcline 26
+  	ld     1                         ; kod RDB
+#srcline 27
+    SYS    84                        ; sysDBX
+#srcline 28
+    ldx	   length                    ; delka
+#srcline 29
+    EQ
+#srcline 30
+    wrx  	 __fc__ReadFromDBx
+#srcline 31 ;  {end_asm}
+#srcline 32 ;END_FUNCTION
+ PRV  
+ LDX  __fc__ReadFromDBx
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou WriteToDBx
+#srcline 34 ;FUNCTION WriteToDBx : BOOL
+P     61
+WriteToDBx_L0:
+ LINK 0
+ NXT
+#srcline 54 ;begin
+#srcline 55 ;  {asm}
+#srcline 56
+    ldx	   length                    ; delka
+#srcline 57
+  	ldx    dataBoxAddress            ; adresa v databoxu
+#srcline 58
+  	ldx	   varAddress                ; adresa v zapisniku
+#srcline 59
+  	ld     2                         ; kod WDB
+#srcline 60
+    SYS    84                        ; sysDBX
+#srcline 61
+    ldx	   length                    ; delka
+#srcline 62
+    EQ
+#srcline 63
+    wrx  	 __fc__WriteToDBx
+#srcline 64 ;  {end_asm}
+#srcline 65 ;END_FUNCTION
+ PRV  
+ LDX  __fc__WriteToDBx
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+‰"    E

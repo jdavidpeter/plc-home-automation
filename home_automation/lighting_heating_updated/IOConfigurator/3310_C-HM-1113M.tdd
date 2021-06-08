@@ -1,0 +1,994 @@
+﻿<?xml version="1.0"?>
+<TecoDescriptor xmlns="http://www.tecomat.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.tecomat.com Teco_Default.xsd">
+  <Header>
+    <File>
+      <FileName>3310_C-HM-1113M.tdd</FileName>
+      <FileCreator>Petr Vosahlo, Teco a.s.</FileCreator>
+      <FileCreationDate>2012-03-05</FileCreationDate>
+      <FileModifiedBy>Jan Martinec</FileModifiedBy>
+      <FileModificationDate>2019-08-22</FileModificationDate>
+      <SupportedLanguages>en cz</SupportedLanguages>
+      <FileVersion>2.2</FileVersion>
+    </File>
+    <Vendor>
+      <VendorID>00000000</VendorID>
+      <VendorName>Teco a.s</VendorName>
+      <VendorText>
+        <label lang="en">Controllers for machine, process, building and transport</label>
+        <label lang="cz">Řídící systémy pro stroje, procesy, budovy a dopravu</label>
+      </VendorText>
+      <VendorImage>
+        <ImageData>424D760200000000000036000000280000000C0000000C000000010020000000000040020000120B0000120B00000000000000000000735300E9755500FF6E4E00FC684A00FD634500FD5E4200FD5A3D00FD583D01FD543901FD4C3101FC583D02FF4D3400E58F6800FF8F6800FF886200FF7F5C00FF7A5500FF725100FF6E4E01FF664500FF664806FF7A6133FF563600FF5D4203FF9B7000FD9C7000FF946A00FF8C6500FF855E00FF7F5C02FF765304FF674400FFD0C6ACFFF7F5F3FF7A6030FF4F3000FDA87B02FDAC7C00FFA37600FF9C7100FF956C01FF8B6301FF7C5501FFD4C9ABFFFFFFFFFFE9E7E0FFEEEAE2FF796234FDB37F00FDBB8901FFB38200FFAC7E01FFA47501FF956800FFD6C8A2FFFFFFFFFFA49067FF795A16FFE8E5DDFFE5E3DEFDCEA94AFDC58A00FFC19005FFBD8704FFAC7900FFE0D1A6FFFEFFFFFFB39C6BFF885B00FF875C00FF876A27FFDADADAFBFBF9F2FDD7B24FFFCB8B00FFC18A03FFE7D8ABFFFFFFFFFFBEA467FFA16C00FFA67905FF9D7202FF916600FF81641EFCDFD8C2FDFEFCF5FFDAB252FFE8D49EFFFBFFFFFFC9AE6EFFB97F00FFBD8A02FFB28101FFAA7B00FFA67802FF906701FDC2900FFDE5DCC1FFFFFFFFFFF8F9F9FFD0B36BFFCC8C00FFD09804FFC79100FFC18D00FFB98700FFB48300FF9F7502FDDF9F00FDD49C15FFE1DBC2FFD9BB71FFD89400FFDCA005FFD59B00FFD29700FFCD9400FFC69100FFC28E00FFAC8002FDDEA301FFF2AC00FFDA9E0AFFE29E01FFE7A701FFE1A301FFDEA000FFD99C00FFD69A00FFD19700FFCF9600FFB88701FEDEA404DDEBAD06F3EDAE04F0EAAD07F1E5A805F1E4A605F1E0A405F1DEA205F1DA9F05F1D69D05F0D69C06F4BF8D02D8</ImageData>
+      </VendorImage>
+      <ProductCode>3310</ProductCode>
+      <ProductName>C-HM-1113M</ProductName>
+      <OrderNumber>TXN 133 10</OrderNumber>
+    </Vendor>
+  </Header>
+  <Device>
+    <DeviceGroup>CFOX</DeviceGroup>
+    <DeviceFamily>FOXTROT</DeviceFamily>
+    <DeviceName>C-HM-1113M</DeviceName>
+    <DeviceText>
+      <label lang="en">CIB peripheral module - 8 DI, 3 AI, 11 DO, 2 AO</label>
+      <label lang="cz">CIB periferní modul - 8 DI, 3 AI, 11 DO, 2 AO</label>
+    </DeviceText>
+    <DeviceImage>
+      <ImageFile URI="IMAGES\190_127_CIB_C-HM-1113_02.jpg"/>
+      <ImageData>424D760200000000000036000000280000000C0000000C000000010020000000000040020000120B0000120B00000000000000000000735300E9755500FF6E4E00FC684A00FD634500FD5E4200FD5A3D00FD583D01FD543901FD4C3101FC583D02FF4D3400E58F6800FF8F6800FF886200FF7F5C00FF7A5500FF725100FF6E4E01FF664500FF664806FF7A6133FF563600FF5D4203FF9B7000FD9C7000FF946A00FF8C6500FF855E00FF7F5C02FF765304FF674400FFD0C6ACFFF7F5F3FF7A6030FF4F3000FDA87B02FDAC7C00FFA37600FF9C7100FF956C01FF8B6301FF7C5501FFD4C9ABFFFFFFFFFFE9E7E0FFEEEAE2FF796234FDB37F00FDBB8901FFB38200FFAC7E01FFA47501FF956800FFD6C8A2FFFFFFFFFFA49067FF795A16FFE8E5DDFFE5E3DEFDCEA94AFDC58A00FFC19005FFBD8704FFAC7900FFE0D1A6FFFEFFFFFFB39C6BFF885B00FF875C00FF876A27FFDADADAFBFBF9F2FDD7B24FFFCB8B00FFC18A03FFE7D8ABFFFFFFFFFFBEA467FFA16C00FFA67905FF9D7202FF916600FF81641EFCDFD8C2FDFEFCF5FFDAB252FFE8D49EFFFBFFFFFFC9AE6EFFB97F00FFBD8A02FFB28101FFAA7B00FFA67802FF906701FDC2900FFDE5DCC1FFFFFFFFFFF8F9F9FFD0B36BFFCC8C00FFD09804FFC79100FFC18D00FFB98700FFB48300FF9F7502FDDF9F00FDD49C15FFE1DBC2FFD9BB71FFD89400FFDCA005FFD59B00FFD29700FFCD9400FFC69100FFC28E00FFAC8002FDDEA301FFF2AC00FFDA9E0AFFE29E01FFE7A701FFE1A301FFDEA000FFD99C00FFD69A00FFD19700FFCF9600FFB88701FEDEA404DDEBAD06F3EDAE04F0EAAD07F1E5A805F1E4A605F1E0A405F1DEA205F1DA9F05F1D69D05F0D69C06F4BF8D02D8</ImageData>
+    </DeviceImage>
+    <InterfacePlugs>
+      <Plug InterfaceClass="CIB" Length="1"/>
+			<Plug InterfaceClass="CIB" InterfaceSubClass="A" Length="1"/>
+			<Plug InterfaceClass="CIB" InterfaceSubClass="B" Length="1"/>
+    </InterfacePlugs>
+    <Firmwares>
+      <Firmware KeyName="C-HM-1113M">
+        <File>C-HM-1113M.tfw</File>
+        <History>TXD13310_list81.txt</History>
+      </Firmware>
+    </Firmwares>
+    <HelpFiles>
+      <HelpFile key="C-HM-1113M" lang="cz">CSY_CIBModules.chm</HelpFile>
+      <HelpFile key="C-HM-1113M" lang="en">ENU_CIBModules.chm</HelpFile>
+    </HelpFiles>
+    <Dictionary>
+      <Include>CommonDataTypes.tod</Include>
+      <Include>Modules.tod</Include>
+      <Include>DT_cfg_CIB.tod</Include>
+      <!-- zakladni datove typy konfiguracnich dialogu CIB modulu -->
+      <Include>DT_ini_CIB.tod</Include>
+      <!-- zakladni datove typy inicializacnich tabulek CIB modulu -->
+      <Include>DT_BIN_CIB.tod</Include>
+      <!-- zakladni datove typy binarnich i/o CIB modulu -->
+      <Include>DT_AI_CIB.tod</Include>
+      <!-- zakladni datove typy analogovych vstupu CIB modulu -->
+      <Include>DT_AO_CIB.tod</Include>
+      <!-- zakladni datove typy analogovych vystupu CIB modulu -->
+      <Include>DT_oth_CIB.tod</Include>
+      <!-- zakladni datove typy ostatnich i/o CIB modulu -->
+      <DataTypes>
+        <!-- dilci struktury konfiguracniho dialogu modulu -->
+        <!-- struktura konfiguracniho dialogu zarizeni AIx  -->
+        <DataType>
+          <Name>TAnalogInputsDevice</Name>
+          <SubItems>
+            <SubItem>
+              <Name>Enabled</Name>
+              <Type>BOOL</Type>
+            </SubItem>
+            <SubItem>
+              <Name>AI1</Name>
+              <Type>TCIB_AnalogInputCfg_CHM</Type>
+            </SubItem>
+            <SubItem>
+              <Name>AI2</Name>
+              <Type>TCIB_AnalogInputCfg_CHM</Type>
+            </SubItem>
+            <SubItem>
+              <Name>AI3</Name>
+              <Type>TCIB_AnalogInputCfg_CHM</Type>
+            </SubItem>
+          </SubItems>
+        </DataType>
+
+        <!-- struktura konfiguracniho dialogu zarizeni AOx  -->
+        <DataType>
+          <Name>TAnalogOutputsDevice</Name>
+          <SubItems>
+            <SubItem>
+              <Name>Enabled</Name>
+              <!-- povoleni zarizeni -->
+              <Type>BOOL</Type>
+            </SubItem>
+            <SubItem>
+              <Name>AO1_HaltingState</Name>
+              <!-- osetreni ao1 pri halt -->
+              <Type>THaltingStateEnum</Type>
+            </SubItem>
+            <SubItem>
+              <Name>AO2_HaltingState</Name>
+              <!-- osetreni ao2 pri halt -->
+              <Type>THaltingStateEnum</Type>
+            </SubItem>
+          </SubItems>
+        </DataType>
+
+        <!-- struktura konfiguracniho dialogu jedne skupiny DO  -->
+        <DataType>
+          <Name>TBinaryOutputsGruppeCfg</Name>
+          <SubItems>
+            <SubItem>
+              <Name>HaltingState</Name>
+              <!-- osetreni pri halt -->
+              <Type>THaltingStateEnum</Type>
+            </SubItem>
+            <SubItem>
+              <Name>ManualModeDisable</Name>
+              <!-- zakaz manualniho rezimu -->
+              <Type>BOOL</Type>
+            </SubItem>
+          </SubItems>
+        </DataType>
+
+        <!-- struktura konfiguracniho dialogu zarizeni DOx  -->
+        <DataType>
+          <Name>TBinaryOutputsDevice</Name>
+          <SubItems>
+            <SubItem>
+              <Name>Enabled</Name>
+              <!-- povoleni zarizeni -->
+              <Type>BOOL</Type>
+            </SubItem>
+            <SubItem>
+              <Name>DO1_3</Name>
+              <!-- konfigurace skupiny do1-do3 -->
+              <Type>TBinaryOutputsGruppeCfg</Type>
+            </SubItem>
+            <SubItem>
+              <Name>DO4_6</Name>
+              <!-- konfigurace skupiny do4-do6 -->
+              <Type>TBinaryOutputsGruppeCfg</Type>
+            </SubItem>
+            <SubItem>
+              <Name>DO7_8</Name>
+              <!-- konfigurace skupiny do7-do8 -->
+              <Type>TBinaryOutputsGruppeCfg</Type>
+            </SubItem>
+            <SubItem>
+              <Name>DO9_10</Name>
+              <!-- konfigurace skupiny do9-do10 -->
+              <Type>TBinaryOutputsGruppeCfg</Type>
+            </SubItem>
+            <SubItem>
+              <Name>DO11</Name>
+              <!-- konfigurace skupiny do11 -->
+              <Type>TBinaryOutputsGruppeCfg</Type>
+            </SubItem>
+          </SubItems>
+        </DataType>
+
+        <!-- struktura konfiguracniho dialogu modulu  -->
+        <DataType>
+          <Name>TDevices_3310</Name>
+          <SubItems>
+            <SubItem>
+              <Name>StateDevice</Name>
+              <!-- status -->
+              <Type>BOOL</Type>
+            </SubItem>
+            <SubItem>
+              <Name>AnalogInputsDevice</Name>
+              <!-- 3xAI -->
+              <Type>TAnalogInputsDevice</Type>
+            </SubItem>
+            <SubItem>
+              <Name>AnalogOutputsDevice</Name>
+              <!-- 2xAO -->
+              <Type>TAnalogOutputsDevice</Type>
+            </SubItem>
+            <SubItem>
+              <Name>BinaryInputsDevice</Name>
+              <!-- 8xDI -->
+              <Type>BOOL</Type>
+            </SubItem>
+            <SubItem>
+              <Name>BinaryOutputsDevice</Name>
+              <!-- 11xDO -->
+              <Type>TBinaryOutputsDevice</Type>
+            </SubItem>
+          </SubItems>
+        </DataType>
+
+        <!-- struktura inicializacni tabulky cib modulu -->
+        <DataType>
+          <Name>TCIB_3310_init</Name>
+          <SubItems>
+            <SubItem>
+              <Name>Header</Name>
+              <Type>_TCIBHeader_</Type>
+            </SubItem>
+            <SubItem>
+              <Name>Dev</Name>
+              <Type>_TDev[5]_</Type>
+            </SubItem>
+            <SubItem>
+              <Name>ai1type</Name>
+              <!-- typ vstupu -->
+              <Type>BYTE</Type>
+            </SubItem>
+            <SubItem>
+              <Name>ai2type</Name>
+              <!-- typ vstupu -->
+              <Type>BYTE</Type>
+            </SubItem>
+            <SubItem>
+              <Name>ai3type</Name>
+              <!-- typ vstupu -->
+              <Type>BYTE</Type>
+            </SubItem>
+            <SubItem>
+              <Name>ai1tau</Name>
+              <!-- filtr -->
+              <Type>USINT</Type>
+            </SubItem>
+            <SubItem>
+              <Name>ai2tau</Name>
+              <!-- filtr -->
+              <Type>USINT</Type>
+            </SubItem>
+            <SubItem>
+              <Name>ai3tau</Name>
+              <!-- filtr -->
+              <Type>USINT</Type>
+            </SubItem>
+            <SubItem>
+              <Name>manDis</Name>
+              <!-- zakaz manualniho rezimu vystupu -->
+              <Type>BYTE</Type>
+            </SubItem>
+          </SubItems>
+        </DataType>
+
+        <!-- i/o struktury modulu -->
+        <DataType>
+          <Name>TCIB_C_HM_1113M_IN</Name>
+          <SubItems>
+            <SubItem>
+              <Name>STAT</Name>
+              <Type>TCIB_CHM0308_STAT</Type>
+              <BitOffs>0</BitOffs>
+            </SubItem>
+            <SubItem>
+              <Name>AI</Name>
+              <Type>TCIB_AI3</Type>
+              <BitOffs>8</BitOffs>
+            </SubItem>
+            <SubItem>
+              <Name>DI</Name>
+              <Type>TCIB_DI8</Type>
+              <BitOffs>104</BitOffs>
+            </SubItem>
+          </SubItems>
+        </DataType>
+
+        <DataType>
+          <Name>TCIB_C_HM_1113M_OUT</Name>
+          <SubItems>
+            <SubItem>
+              <Name>AO</Name>
+              <Type>TCIB_AO2</Type>
+              <BitOffs>0</BitOffs>
+            </SubItem>
+            <SubItem>
+              <Name>DOs</Name>
+              <Type>TCIB_DO11</Type>
+              <BitOffs>64</BitOffs>
+            </SubItem>
+          </SubItems>
+        </DataType>
+
+      </DataTypes>
+
+      <Objects>
+        <!-- konfiguracni dialog modulu (objekty #x8000 ...) -->
+        <Object index="#x8000" name="Devices" type="TDevices_3310" access="rw">
+          <DisplayName>
+            <label lang="cz">Zařízení</label>
+            <label lang="en">Devices</label>
+          </DisplayName>
+          <SubObjects>
+            <SubObject name="StateDevice" access="rw">
+              <!-- status -->
+              <DisplayName>
+                <label lang="cz">Status</label>
+                <label lang="en">State</label>
+              </DisplayName>
+              <DefaultValue>1</DefaultValue>
+              <!-- defaultne zarizeni povolit -->
+            </SubObject>
+            <SubObject name="AnalogInputsDevice" access="rw">
+              <!-- analogove vstupy 3xAI -->
+              <DisplayName>
+                <label lang="cz">Analogové vstupy</label>
+                <label lang="en">Analog inputs</label>
+              </DisplayName>
+              <SubObjects>
+                <SubObject name="Enabled" access="rw">
+                  <DefaultValue>1</DefaultValue>
+                  <!-- defaultne zarizeni povolit -->
+                </SubObject>
+                <SubObject name="AI1" access="rw">
+                  <DisplayName>
+                    <label lang="cz">AI1</label>
+                    <label lang="en">AI1</label>
+                  </DisplayName>
+                  <SubObjects>
+                    <SubObject name="Type" access="rw">
+                      <DisplayName>
+                        <label lang="cz">Typ</label>
+                        <label lang="en">Type</label>
+                      </DisplayName>
+                      <DefaultData>22</DefaultData>
+                      <!-- Pt1000, 1.385  -->
+                    </SubObject>
+                    <SubObject name="Filter" access="rw">
+                      <DisplayName>
+                        <label lang="cz">Časová konstanta filtru [s]</label>
+                        <label lang="en">Filter time constant [s]</label>
+                      </DisplayName>
+                      <DefaultValue>0</DefaultValue>
+                      <MinValue>0</MinValue>
+                      <MaxValue>25.5</MaxValue>
+                    </SubObject>
+                  </SubObjects>
+                </SubObject>
+                <SubObject name="AI2" access="rw">
+                  <DisplayName>
+                    <label lang="cz">AI2</label>
+                    <label lang="en">AI2</label>
+                  </DisplayName>
+                  <SubObjects>
+                    <SubObject name="Type" access="rw">
+                      <DisplayName>
+                        <label lang="cz">Typ</label>
+                        <label lang="en">Type</label>
+                      </DisplayName>
+                      <DefaultData>22</DefaultData>
+                      <!-- Pt1000, 1.385  -->
+                    </SubObject>
+                    <SubObject name="Filter" access="rw">
+                      <DisplayName>
+                        <label lang="cz">Časová konstanta filtru [s]</label>
+                        <label lang="en">Filter time constant [s]</label>
+                      </DisplayName>
+                      <DefaultValue>0</DefaultValue>
+                      <MinValue>0</MinValue>
+                      <MaxValue>25.5</MaxValue>
+                    </SubObject>
+                  </SubObjects>
+                </SubObject>
+                <SubObject name="AI3" access="rw">
+                  <DisplayName>
+                    <label lang="cz">AI3</label>
+                    <label lang="en">AI3</label>
+                  </DisplayName>
+                  <SubObjects>
+                    <SubObject name="Type" access="rw">
+                      <DisplayName>
+                        <label lang="cz">Typ</label>
+                        <label lang="en">Type</label>
+                      </DisplayName>
+                      <DefaultData>22</DefaultData>
+                      <!-- Pt1000, 1.385  -->
+                    </SubObject>
+                    <SubObject name="Filter" access="rw">
+                      <DisplayName>
+                        <label lang="cz">Časová konstanta filtru [s]</label>
+                        <label lang="en">Filter time constant [s]</label>
+                      </DisplayName>
+                      <DefaultValue>0</DefaultValue>
+                      <MinValue>0</MinValue>
+                      <MaxValue>25.5</MaxValue>
+                    </SubObject>
+                  </SubObjects>
+                </SubObject>
+              </SubObjects>
+            </SubObject>
+            <SubObject name="AnalogOutputsDevice" access="rw">
+              <!-- analogove vystupy, 2xAO -->
+              <DisplayName>
+                <label lang="cz">Analogové výstupy</label>
+                <label lang="en">Analog outputs</label>
+              </DisplayName>
+              <SubObjects>
+                <SubObject name="Enabled" access="rw">
+                  <DefaultValue>1</DefaultValue>
+                  <!-- defaultne zarizeni povolit -->
+                </SubObject>
+                <SubObject name="AO1_HaltingState" access="rw">
+                  <!-- osetreni vystupu pri halt -->
+                  <DisplayName>
+                    <label lang="cz">Nastavení blokace AO1</label>
+                    <label lang="en">Setting blocking AO1</label>
+                  </DisplayName>
+                  <DefaultValue>0</DefaultValue>
+                  <!-- zamrazit aktualni stav -->
+                </SubObject>
+                <SubObject name="AO2_HaltingState" access="rw">
+                  <!-- osetreni vystupu pri halt -->
+                  <DisplayName>
+                    <label lang="cz">Nastavení blokace AO2</label>
+                    <label lang="en">Setting blocking AO2</label>
+                  </DisplayName>
+                  <DefaultValue>0</DefaultValue>
+                  <!-- zamrazit aktualni stav -->
+                </SubObject>
+              </SubObjects>
+            </SubObject>
+            <SubObject name="BinaryInputsDevice" access="rw">
+              <!-- binarni vstupy, 8xDI -->
+              <DisplayName>
+                <label lang="cz">Binární vstupy</label>
+                <label lang="en">Binary inputs</label>
+              </DisplayName>
+              <DefaultValue>1</DefaultValue>
+              <!-- defaultne zarizeni povolit -->
+            </SubObject>
+            <SubObject name="BinaryOutputsDevice" access="rw">
+              <!-- binarni vystupy, 11xDO -->
+              <DisplayName>
+                <label lang="cz">Binární výstupy</label>
+                <label lang="en">Binary outputs</label>
+              </DisplayName>
+              <SubObjects>
+                <SubObject name="Enabled" access="rw">
+                  <DefaultValue>1</DefaultValue>
+                  <!-- defaultne zarizeni povolit -->
+                </SubObject>
+                <SubObject name="DO1_3" access="rw">
+                  <DisplayName>
+                    <label lang="cz">DO1-DO3</label>
+                    <label lang="en">DO1-DO3</label>
+                  </DisplayName>
+                  <SubObjects>
+                    <SubObject name="HaltingState" access="rw">
+                      <!-- osetreni vystupu pri halt -->
+                      <DisplayName>
+                        <label lang="cz">Nastavení blokace</label>
+                        <label lang="en">Setting blocking</label>
+                      </DisplayName>
+                      <DefaultValue>0</DefaultValue>
+                      <!-- zamrazit aktualni stav -->
+                    </SubObject>
+                    <SubObject name="ManualModeDisable" access="rw">
+                      <!-- blokovat manualni rezim vystupu -->
+                      <DisplayName>
+                        <label lang="cz">Blokovat manuální režim</label>
+                        <label lang="en">Blocking manual mode</label>
+                      </DisplayName>
+                      <DefaultValue>0</DefaultValue>
+                      <!-- manualni rezim vystupu povolen -->
+                    </SubObject>
+                  </SubObjects>
+                </SubObject>
+                <SubObject name="DO4_6" access="rw">
+                  <DisplayName>
+                    <label lang="cz">DO4-DO6</label>
+                    <label lang="en">DO4-DO6</label>
+                  </DisplayName>
+                  <SubObjects>
+                    <SubObject name="HaltingState" access="rw">
+                      <!-- osetreni vystupu pri halt -->
+                      <DisplayName>
+                        <label lang="cz">Nastavení blokace</label>
+                        <label lang="en">Setting blocking</label>
+                      </DisplayName>
+                      <DefaultValue>0</DefaultValue>
+                      <!-- zamrazit aktualni stav -->
+                    </SubObject>
+                    <SubObject name="ManualModeDisable" access="rw">
+                      <!-- blokovat manualni rezim vystupu -->
+                      <DisplayName>
+                        <label lang="cz">Blokovat manuální režim</label>
+                        <label lang="en">Blocking manual mode</label>
+                      </DisplayName>
+                      <DefaultValue>0</DefaultValue>
+                      <!-- manualni rezim vystupu povolen -->
+                    </SubObject>
+                  </SubObjects>
+                </SubObject>
+                <SubObject name="DO7_8" access="rw">
+                  <DisplayName>
+                    <label lang="cz">DO7-DO8</label>
+                    <label lang="en">DO7-DO8</label>
+                  </DisplayName>
+                  <SubObjects>
+                    <SubObject name="HaltingState" access="rw">
+                      <!-- osetreni vystupu pri halt -->
+                      <DisplayName>
+                        <label lang="cz">Nastavení blokace</label>
+                        <label lang="en">Setting blocking</label>
+                      </DisplayName>
+                      <DefaultValue>0</DefaultValue>
+                      <!-- zamrazit aktualni stav -->
+                    </SubObject>
+                    <SubObject name="ManualModeDisable" access="rw">
+                      <!-- blokovat manualni rezim vystupu -->
+                      <DisplayName>
+                        <label lang="cz">Blokovat manuální režim</label>
+                        <label lang="en">Blocking manual mode</label>
+                      </DisplayName>
+                      <DefaultValue>0</DefaultValue>
+                      <!-- manualni rezim vystupu povolen -->
+                    </SubObject>
+                  </SubObjects>
+                </SubObject>
+                <SubObject name="DO9_10" access="rw">
+                  <DisplayName>
+                    <label lang="cz">DO9-DO10</label>
+                    <label lang="en">DO9-DO10</label>
+                  </DisplayName>
+                  <SubObjects>
+                    <SubObject name="HaltingState" access="rw">
+                      <!-- osetreni vystupu pri halt -->
+                      <DisplayName>
+                        <label lang="cz">Nastavení blokace</label>
+                        <label lang="en">Setting blocking</label>
+                      </DisplayName>
+                      <DefaultValue>0</DefaultValue>
+                      <!-- zamrazit aktualni stav -->
+                    </SubObject>
+                    <SubObject name="ManualModeDisable" access="rw">
+                      <!-- blokovat manualni rezim vystupu -->
+                      <DisplayName>
+                        <label lang="cz">Blokovat manuální režim</label>
+                        <label lang="en">Blocking manual mode</label>
+                      </DisplayName>
+                      <DefaultValue>0</DefaultValue>
+                      <!-- manualni rezim vystupu povolen -->
+                    </SubObject>
+                  </SubObjects>
+                </SubObject>
+                <SubObject name="DO11" access="rw">
+                  <DisplayName>
+                    <label lang="cz">DO11</label>
+                    <label lang="en">DO11</label>
+                  </DisplayName>
+                  <SubObjects>
+                    <SubObject name="HaltingState" access="rw">
+                      <!-- osetreni vystupu pri halt -->
+                      <DisplayName>
+                        <label lang="cz">Nastavení blokace</label>
+                        <label lang="en">Setting blocking</label>
+                      </DisplayName>
+                      <DefaultValue>0</DefaultValue>
+                      <!-- zamrazit aktualni stav -->
+                    </SubObject>
+                    <SubObject name="ManualModeDisable" access="rw">
+                      <!-- blokovat manualni rezim vystupu -->
+                      <DisplayName>
+                        <label lang="cz">Blokovat manuální režim</label>
+                        <label lang="en">Blocking manual mode</label>
+                      </DisplayName>
+                      <DefaultValue>0</DefaultValue>
+                      <!-- manualni rezim vystupu povolen -->
+                    </SubObject>
+                  </SubObjects>
+                </SubObject>
+              </SubObjects>
+            </SubObject>
+          </SubObjects>
+        </Object>
+
+        <!-- inicializacni tabulka modulu (objekty #x9000 ...) -->
+        <Object index="#x9000" name="r{RACK}_p{POSITION}_C_HM_1113M_init" type="TCIB_3310_init" access="rw">
+          <Comment>
+            <label lang="cz">Inicializacni tabulka modulu C-HM-1113M</label>
+            <label lang="en">Initialization table of C-HM-1113M unit</label>
+          </Comment>
+          <SubObjects>
+            <SubObject name="Header" access="rw">
+              <!-- hlavicka ini. tabulky -->
+              <SubObjects>
+                <SubObject name="code" access="ro">
+                  <!-- kod modulu -->
+                  <DefaultValue>3310</DefaultValue>
+                </SubObject>
+                <SubObject name="mode" access="ro">
+                  <DefaultValue>0</DefaultValue>
+                </SubObject>
+                <SubObject name="fadr" access="rw">
+                  <!-- HW adresa modulu (dlouha adresa) -->
+                  <MacroValue>${FADR}</MacroValue>
+                </SubObject>
+                <SubObject name="ladr" access="rw">
+                  <!-- logicka adresa modulu (kratka adresa) -->
+                  <MacroValue>{POSITION}</MacroValue>
+                </SubObject>
+                <SubObject name="ndev" access="ro">
+                  <!-- pocet zarizeni modulu -->
+                  <DefaultValue>5</DefaultValue>
+                </SubObject>
+              </SubObjects>
+            </SubObject>
+            <SubObject name="Dev" access="rw">
+              <!-- zarizeni modulu -->
+              <SubObjects>
+                <SubObject name="Dev[0]" access="rw">
+                  <!-- zarizeni 1, vstupni, STAT -->
+                  <SubObjects>
+                    <SubObject name="typdev" access="rw">
+                      <DefaultData>80</DefaultData>
+                      <!-- defaultne povolit -->
+                      <ValueDependency>
+                        <When condition="@Devices.StateDevice == 0">
+                          <Data>00</Data>
+                        </When>
+                      </ValueDependency>
+                    </SubObject>
+                    <SubObject name="bloko" access="rw">
+                      <DefaultData>00</DefaultData>
+                    </SubObject>
+                    <SubObject name="leindev" access="const">
+                      <!-- delka vstupu v bitech -->
+                      <DefaultValue>8</DefaultValue>
+                    </SubObject>
+                    <SubObject name="leoutdev" access="const">
+                      <!-- delka vystupu v bitech -->
+                      <DefaultValue>0</DefaultValue>
+                    </SubObject>
+                  </SubObjects>
+                </SubObject>
+                <SubObject name="Dev[1]" access="rw">
+                  <!-- zarizeni 2, vstupni, 3xAI -->
+                  <SubObjects>
+                    <SubObject name="typdev" access="rw">
+                      <DefaultData>80</DefaultData>
+                      <!-- defaultne povolit -->
+                      <ValueDependency>
+                        <When condition="@Devices.AnalogInputsDevice.Enabled == 0">
+                          <Data>00</Data>
+                        </When>
+                      </ValueDependency>
+                    </SubObject>
+                    <SubObject name="bloko" access="rw">
+                      <DefaultData>00</DefaultData>
+                    </SubObject>
+                    <SubObject name="leindev" access="const">
+                      <!-- delka vstupu v bitech -->
+                      <DefaultValue>48</DefaultValue>
+                    </SubObject>
+                    <SubObject name="leoutdev" access="const">
+                      <!-- delka vystupu v bitech -->
+                      <DefaultValue>0</DefaultValue>
+                    </SubObject>
+                  </SubObjects>
+                </SubObject>
+                <SubObject name="Dev[2]" access="rw">
+                  <!-- zarizeni 3, vystupni, 2xAO -->
+                  <SubObjects>
+                    <SubObject name="typdev" access="rw">
+                      <DefaultData>81</DefaultData>
+                      <!-- defaultne povolit -->
+                      <ValueDependency>
+                        <When condition="@Devices.AnalogOutputsDevice.Enabled == 0">
+                          <Data>00</Data>
+                        </When>
+                      </ValueDependency>
+                    </SubObject>
+                    <SubObject name="bloko" access="rw">
+                      <DefaultData>00</DefaultData>
+                      <ValueDependency>
+                        <Formula>(0x01 * (@Devices.AnalogOutputsDevice.AO1_HaltingState == 1)) + (0x02 * (@Devices.AnalogOutputsDevice.AO2_HaltingState == 1)) </Formula>
+                        <!-- osetreni vystupu pri halt -->
+                      </ValueDependency>
+                    </SubObject>
+                    <SubObject name="leindev" access="const">
+                      <!-- delka vstupu v bitech -->
+                      <DefaultValue>0</DefaultValue>
+                    </SubObject>
+                    <SubObject name="leoutdev" access="const">
+                      <!-- delka vystupu v bitech -->
+                      <DefaultValue>16</DefaultValue>
+                    </SubObject>
+                  </SubObjects>
+                </SubObject>
+                <SubObject name="Dev[3]" access="rw">
+                  <!-- zarizeni 4, vstupni, 8xDI -->
+                  <SubObjects>
+                    <SubObject name="typdev" access="rw">
+                      <DefaultData>80</DefaultData>
+                      <!-- defaultne povolit -->
+                      <ValueDependency>
+                        <When condition="@Devices.BinaryInputsDevice == 0">
+                          <Data>00</Data>
+                        </When>
+                      </ValueDependency>
+                    </SubObject>
+                    <SubObject name="bloko" access="rw">
+                      <DefaultData>00</DefaultData>
+                    </SubObject>
+                    <SubObject name="leindev" access="const">
+                      <!-- delka vstupu v bitech -->
+                      <DefaultValue>8</DefaultValue>
+                    </SubObject>
+                    <SubObject name="leoutdev" access="const">
+                      <!-- delka vystupu v bitech -->
+                      <DefaultValue>0</DefaultValue>
+                    </SubObject>
+                  </SubObjects>
+                </SubObject>
+                <SubObject name="Dev[4]" access="rw">
+                  <!-- zarizeni 5, vystupni, 11xDO -->
+                  <SubObjects>
+                    <SubObject name="typdev" access="rw">
+                      <DefaultData>81</DefaultData>
+                      <!-- defaultne povolit -->
+                      <ValueDependency>
+                        <When condition="@Devices.BinaryOutputsDevice.Enabled == 0">
+                          <Data>00</Data>
+                        </When>
+                      </ValueDependency>
+                    </SubObject>
+                    <SubObject name="bloko" access="rw">
+                      <DefaultData>00</DefaultData>
+                      <ValueDependency>
+                        <Formula>(0x01 * (@Devices.BinaryOutputsDevice.DO1_3.HaltingState == 1)) + (0x02 * (@Devices.BinaryOutputsDevice.DO4_6.HaltingState == 1)) + (0x04 * (@Devices.BinaryOutputsDevice.DO7_8.HaltingState == 1)) + (0x08 * (@Devices.BinaryOutputsDevice.DO9_10.HaltingState == 1)) + (0x10 * (@Devices.BinaryOutputsDevice.DO11.HaltingState == 1))</Formula>
+                        <!-- osetreni vystupu pri halt -->
+                      </ValueDependency>
+                    </SubObject>
+                    <SubObject name="leindev" access="const">
+                      <!-- delka vstupu v bitech -->
+                      <DefaultValue>0</DefaultValue>
+                    </SubObject>
+                    <SubObject name="leoutdev" access="const">
+                      <!-- delka vystupu v bitech -->
+                      <DefaultValue>11</DefaultValue>
+                    </SubObject>
+                  </SubObjects>
+                </SubObject>
+              </SubObjects>
+            </SubObject>
+            <SubObject name="ai1type" access="rw">
+              <!-- Pt1000, 1.385 -->
+              <DefaultData>22</DefaultData>
+              <ValueDependency>
+                <ValueOf>Devices.AnalogInputsDevice.AI1.Type</ValueOf>
+              </ValueDependency>
+            </SubObject>
+            <SubObject name="ai2type" access="rw">
+              <!-- Pt1000, 1.385 -->
+              <DefaultData>22</DefaultData>
+              <ValueDependency>
+                <ValueOf>Devices.AnalogInputsDevice.AI2.Type</ValueOf>
+              </ValueDependency>
+            </SubObject>
+            <SubObject name="ai3type" access="rw">
+              <!-- Pt1000, 1.385 -->
+              <DefaultData>22</DefaultData>
+              <ValueDependency>
+                <ValueOf>Devices.AnalogInputsDevice.AI3.Type</ValueOf>
+              </ValueDependency>
+            </SubObject>
+            <SubObject name="ai1tau" access="rw">
+              <DefaultValue>0</DefaultValue>
+              <ValueDependency>
+                <Formula>@Devices.AnalogInputsDevice.AI1.Filter * 10</Formula>
+              </ValueDependency>
+            </SubObject>
+            <SubObject name="ai2tau" access="rw">
+              <DefaultValue>0</DefaultValue>
+              <ValueDependency>
+                <Formula>@Devices.AnalogInputsDevice.AI2.Filter * 10</Formula>
+              </ValueDependency>
+            </SubObject>
+            <SubObject name="ai3tau" access="rw">
+              <DefaultValue>0</DefaultValue>
+              <ValueDependency>
+                <Formula>@Devices.AnalogInputsDevice.AI3.Filter * 10</Formula>
+              </ValueDependency>
+            </SubObject>
+            <SubObject name="manDis" access="rw">
+              <DefaultData>00</DefaultData>
+              <ValueDependency>
+                <Formula>(0x01 * (@Devices.BinaryOutputsDevice.DO1_3.ManualModeDisable == 1)) + (0x02 * (@Devices.BinaryOutputsDevice.DO4_6.ManualModeDisable == 1)) + (0x04 * (@Devices.BinaryOutputsDevice.DO7_8.ManualModeDisable == 1)) + (0x08 * (@Devices.BinaryOutputsDevice.DO9_10.ManualModeDisable == 1)) + (0x10 * (@Devices.BinaryOutputsDevice.DO11.ManualModeDisable == 1))</Formula>
+              </ValueDependency>
+            </SubObject>
+          </SubObjects>
+        </Object>
+
+        <!-- i/o data modulu -->
+        <!-- vstupni data modulu (objekty #x6000 ...) -->
+        <!-- stavovy byte stat-->
+        <!-- analogove vstupy -->
+        <!-- binarni vstupy -->
+        <!-- vystupni data modulu (objekty #x7000 ...) -->
+        <!-- analogove vystupy -->
+        <!-- binarni vystupy -->
+        <Object index="#x6000" name="r{RACK}_p{POSITION}_IN" type="TCIB_C_HM_1113M_IN">
+          <SubObjects>
+            <SubObject name="STAT">
+              <DisplayName>
+                <label lang="cz">STAT</label>
+                <label lang="en">STAT</label>
+              </DisplayName>
+              <Xml>
+                <Editor>
+                  <Expanded>0</Expanded>
+                  <!-- uzel dat nerozbalovat -->
+                </Editor>
+              </Xml>
+              <Disabled>@Devices.StateDevice == 0</Disabled>
+            </SubObject>
+            <SubObject name="AI">
+              <DisplayName>
+                <label lang="cz">AI</label>
+                <label lang="en">AI</label>
+              </DisplayName>
+              <SubObjects>
+                <SubObject name="AI1" access="rw">
+                  <Transformation>
+                    <Conversion condition="@Devices.AnalogInputsDevice.AI1.Type == 0x2E">94</Conversion>
+                    <!-- OV600k  konvertovat neznamenkove v setinach,   UW100TF -->
+                    <Conversion condition="@Devices.AnalogInputsDevice.AI1.Type == 0x2F">94</Conversion>
+                    <!-- OV6M    konvertovat neznamenkove v setinach,   UW100TF -->
+                    <Conversion condition="@Devices.AnalogInputsDevice.AI1.Type == 0x82">96</Conversion>
+                    <!-- 0-2V    konvertovat neznamenkove v desetinach, UW10TF  -->
+                    <Conversion condition="@Devices.AnalogInputsDevice.AI1.Type == 0x83">96</Conversion>
+                    <!-- 0-1V    konvertovat neznamenkove v desetinach, UW10TF  -->
+                    <Conversion condition="@Devices.AnalogInputsDevice.AI1.Type == 0x86">94</Conversion>
+                    <!-- 0-100mV konvertovat neznamenkove v setinach,   UW100TF -->
+                    <Conversion condition="@Devices.AnalogInputsDevice.AI1.Type == 0x87">94</Conversion>
+                    <!-- 0-50mV  konvertovat neznamenkove v setinach,   UW100TF -->
+                    <Conversion>93</Conversion>
+                    <!-- vse ostatni konvertovat znamenkove v setinach, SW100TF -->
+                  </Transformation>
+                </SubObject>
+                <SubObject name="AI2" access="rw">
+                  <Transformation>
+                    <Conversion condition="@Devices.AnalogInputsDevice.AI2.Type == 0x2E">94</Conversion>
+                    <!-- OV600k  konvertovat neznamenkove v setinach,   UW100TF -->
+                    <Conversion condition="@Devices.AnalogInputsDevice.AI2.Type == 0x2F">94</Conversion>
+                    <!-- OV6M    konvertovat neznamenkove v setinach,   UW100TF -->
+                    <Conversion condition="@Devices.AnalogInputsDevice.AI2.Type == 0x82">96</Conversion>
+                    <!-- 0-2V    konvertovat neznamenkove v desetinach, UW10TF  -->
+                    <Conversion condition="@Devices.AnalogInputsDevice.AI2.Type == 0x83">96</Conversion>
+                    <!-- 0-1V    konvertovat neznamenkove v desetinach, UW10TF  -->
+                    <Conversion condition="@Devices.AnalogInputsDevice.AI2.Type == 0x86">94</Conversion>
+                    <!-- 0-100mV konvertovat neznamenkove v setinach,   UW100TF -->
+                    <Conversion condition="@Devices.AnalogInputsDevice.AI2.Type == 0x87">94</Conversion>
+                    <!-- 0-50mV  konvertovat neznamenkove v setinach,   UW100TF -->
+                    <Conversion>93</Conversion>
+                    <!-- vse ostatni konvertovat znamenkove v setinach, SW100TF -->
+                  </Transformation>
+                </SubObject>
+                <SubObject name="AI3" access="rw">
+                  <Transformation>
+                    <Conversion condition="@Devices.AnalogInputsDevice.AI3.Type == 0x2E">94</Conversion>
+                    <!-- OV600k  konvertovat neznamenkove v setinach,   UW100TF -->
+                    <Conversion condition="@Devices.AnalogInputsDevice.AI3.Type == 0x2F">94</Conversion>
+                    <!-- OV6M    konvertovat neznamenkove v setinach,   UW100TF -->
+                    <Conversion condition="@Devices.AnalogInputsDevice.AI3.Type == 0x82">96</Conversion>
+                    <!-- 0-2V    konvertovat neznamenkove v desetinach, UW10TF  -->
+                    <Conversion condition="@Devices.AnalogInputsDevice.AI3.Type == 0x83">96</Conversion>
+                    <!-- 0-1V    konvertovat neznamenkove v desetinach, UW10TF  -->
+                    <Conversion condition="@Devices.AnalogInputsDevice.AI3.Type == 0x86">94</Conversion>
+                    <!-- 0-100mV konvertovat neznamenkove v setinach,   UW100TF -->
+                    <Conversion condition="@Devices.AnalogInputsDevice.AI3.Type == 0x87">94</Conversion>
+                    <!-- 0-50mV  konvertovat neznamenkove v setinach,   UW100TF -->
+                    <Conversion>93</Conversion>
+                    <!-- vse ostatni konvertovat znamenkove v setinach, SW100TF -->
+                  </Transformation>
+                </SubObject>
+              </SubObjects>
+              <Disabled>@Devices.AnalogInputsDevice.Enabled == 0</Disabled>
+            </SubObject>
+            <SubObject name="DI">
+              <DisplayName>
+                <label lang="cz">DI</label>
+                <label lang="en">DI</label>
+              </DisplayName>
+              <Disabled>@Devices.BinaryInputsDevice == 0</Disabled>
+            </SubObject>
+          </SubObjects>
+        </Object>
+
+        <Object index="#x7000" name="r{RACK}_p{POSITION}_OUT" type="TCIB_C_HM_1113M_OUT">
+          <SubObjects>
+            <SubObject name="AO">
+              <DisplayName>
+                <label lang="cz">AO</label>
+                <label lang="en">AO</label>
+              </DisplayName>
+              <SubObjects>
+                <SubObject name="AO1" access="rw">
+                  <Transformation>
+                    <Conversion>C2</Conversion>
+                    <!-- konvertovat neznamenkove, FTUB -->
+                  </Transformation>
+                </SubObject>
+                <SubObject name="AO2" access="rw">
+                  <Transformation>
+                    <Conversion>C2</Conversion>
+                    <!-- konvertovat neznamenkove, FTUB -->
+                  </Transformation>
+                </SubObject>
+              </SubObjects>
+              <Disabled>@Devices.AnalogOutputsDevice.Enabled == 0</Disabled>
+            </SubObject>
+            <SubObject name="DOs">
+              <DisplayName>
+                <label lang="cz">DOs</label>
+                <label lang="en">DOs</label>
+              </DisplayName>
+              <Disabled>@Devices.BinaryOutputsDevice.Enabled == 0</Disabled>
+            </SubObject>
+          </SubObjects>
+        </Object>
+
+
+<!-- =============================================================== -->
+<!-- Module declaration for CP-2xxx --> 
+<!-- =============================================================== -->
+
+        <!-- inicializacni tabulka driveru                           -->
+        <!-- Indexy inicializacnich objektu:                         -->
+        <!-- $01 - Nazev zarizeni {PRODUCT_NAME_LEN}{PRODUCT_NAME}   -->
+        <!-- $02 - Alias zarizeni {DEVICE_ALIAS_LEN}{DEVICE_ALIAS}   -->
+        <!-- $03 - Konverze vstupu {CONV_IN_LEN},{$CONV_IN_ARRAY}    -->
+        <!-- $04 - Konverze vystupu {CONV_OUT_LEN},{$CONV_OUT_ARRAY} -->
+        
+        <Object index="#x9001" name="r{RACK}_p{POSITION}_DriverInit" type="BYTE" access="rw">
+          <Comment>
+            <label lang="cz">Inicializacni tabulka driveru</label>
+            <label lang="en">Initialization table of driver</label>
+          </Comment>
+          <Excluded>&quot;{SYSTEM}&quot; != &quot;FOXTROT2&quot;</Excluded>
+          <MacroValue>$01,{PRODUCT_NAME_LEN},'{PRODUCT_NAME}',\n$02,{DEVICE_ALIAS_LEN},'{DEVICE_ALIAS}',\n$03,{CONV_IN_LEN},{$CONV_IN_ARRAY},\n$04,{CONV_OUT_LEN},{$CONV_OUT_ARRAY},\n$00</MacroValue>
+        </Object>
+
+        <Object index="#xA000" name="r{RACK}_p{POSITION}_Module" type="TModulE2" access="rw"> <!-- if="_PLCTYPE_ &gt; 10" -->
+          <Excluded>&quot;{SYSTEM}&quot; != &quot;FOXTROT2&quot;</Excluded> 
+          <SubObjects> 
+            <SubObject name="version" access="ro">   
+              <DefaultValue>2</DefaultValue>            
+            </SubObject>  
+            <SubObject name="hwCode" access="ro">   
+              <MacroValue>{HWCODE}</MacroValue>            
+            </SubObject>
+            <SubObject name="busId" access="ro">   
+              <MacroValue>${$RACK}</MacroValue>
+            </SubObject>
+            <SubObject name="address" access="ro">   
+              <MacroValue>{POSITION}</MacroValue>
+            </SubObject>
+            <SubObject name="port" access="ro">   
+              <DefaultValue>9</DefaultValue>            
+            </SubObject>
+            <SubObject name="lenInputs" access="ro">   
+              <MacroValue>__sizeof(r{RACK}_p{POSITION}_IN)</MacroValue>             
+            </SubObject>
+            <SubObject name="lenOutputs" access="ro">   
+              <MacroValue>__sizeof(r{RACK}_p{POSITION}_OUT)</MacroValue>             
+            </SubObject>
+            <SubObject name="offsetInputs" access="ro">
+              <MacroValue>__offset(r{RACK}_p{POSITION}_IN)</MacroValue>
+            </SubObject>
+            <SubObject name="offsetOutputs" access="ro">
+              <MacroValue>__offset(r{RACK}_p{POSITION}_OUT)</MacroValue>
+            </SubObject>
+            <SubObject name="initTable" access="ro">
+              <MacroValue>__indx(r{RACK}_p{POSITION}_C_HM_1113M_init)</MacroValue>
+            </SubObject>
+            <SubObject name="driverInitTable" access="ro">
+              <MacroValue>__indx(r{RACK}_p{POSITION}_DriverInit)</MacroValue>
+            </SubObject>
+          </SubObjects>
+        </Object>
+
+      </Objects>
+
+    </Dictionary>
+  </Device>
+</TecoDescriptor>

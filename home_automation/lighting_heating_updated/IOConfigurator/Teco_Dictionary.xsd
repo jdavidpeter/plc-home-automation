@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.tecomat.com" xmlns="http://www.tecomat.com" elementFormDefault="qualified">
+  
+  <xsd:include schemaLocation="Teco_CommonTypes.xsd"/>
+    
+  <!-- Base element -->
+  <xsd:element name="TecoDictionary" type="TDictionary"/>
+  
+  <!-- TDictionary -->
+  <xsd:complexType name="TDictionary">
+    <xsd:sequence>
+      <xsd:element name="Include" type="TInclude" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="DataTypes" type="TDataTypes" minOccurs="0"/>
+      <xsd:element name="Objects" type="TObjects" minOccurs="0"/>   
+    </xsd:sequence>
+    <xsd:attribute name="version" type="xsd:string" use="optional"/> 
+  </xsd:complexType>
+  
+  <!-- TInclude -->
+  <xsd:complexType name="TInclude">
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:string">
+        <xsd:attribute name="version" type="xsd:string" use="optional"/> 
+        <xsd:attribute name="optional" type="xsd:boolean" use="optional" default="false"/>
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>  
+    
+  <!-- TDataTypes -->
+  <xsd:complexType name="TDataTypes">
+    <xsd:group ref="GDataTypes"/>
+  </xsd:complexType>
+  
+  <!-- TObjects -->
+  <xsd:complexType name="TObjects">
+    <xsd:group ref="GObjects"/>
+  </xsd:complexType>
+  
+  <!-- GDataTypes -->
+  <xsd:group name="GDataTypes">
+    <xsd:sequence>
+      <xsd:element name="DataType" type="TDataType" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:group>
+  
+  <!-- GObjects -->
+  <xsd:group name="GObjects">
+    <xsd:sequence>
+      <xsd:element name="Object" type="TObject" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:group>    
+  
+  <!-- TDataType -->
+  <xsd:complexType name="TDataType">
+    <xsd:sequence>
+      <xsd:element name="Index" type="THexDecValue" minOccurs="0"/>
+      <xsd:element name="Name" type="xsd:string"/>
+      <xsd:element name="BaseType" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="BitSize" type="xsd:int" minOccurs="0"/> 
+      <xsd:element name="Comment" type="TLabels" minOccurs="0"/>
+      <xsd:choice minOccurs="0">
+        <xsd:element name="DefaultString" type="xsd:string" minOccurs="0"/>
+        <xsd:element name="DefaultData" type="xsd:hexBinary" minOccurs="0"/>
+        <xsd:sequence minOccurs="0">
+          <xsd:element name="MinValue" type="THexDecValue" minOccurs="0"/>
+          <xsd:element name="MaxValue" type="THexDecValue" minOccurs="0"/>
+          <xsd:element name="DefaultValue" type="THexDecValue" minOccurs="0"/>
+        </xsd:sequence>
+        <xsd:element name="MacroValue" type="xsd:string" minOccurs="0"/>
+      </xsd:choice>
+      <xsd:choice minOccurs="0">
+        <xsd:element name="ArrayInfo" type="TArrayInfo" minOccurs="0" maxOccurs="1"/>
+        <xsd:element name="SubItems" type="TSubItems" minOccurs="0" maxOccurs="1"/>
+        <xsd:element name="EnumInfo" type="TEnumInfo" minOccurs="0" maxOccurs="unbounded"/>
+      </xsd:choice>
+      <xsd:element name="IFDEF" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="IFNDEF" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="Flags" type="TFlags" minOccurs="0"/>
+      <xsd:element name="Properties" type="TProperties" minOccurs="0"/>
+      <xsd:element name="Xml" type="TXml" minOccurs="0"/>
+    </xsd:sequence>
+    <xsd:attribute name="hidden" type="xsd:boolean" use="optional" default="false"/>
+  </xsd:complexType>
+  
+   <!-- TArrayInfo -->
+  <xsd:complexType name="TArrayInfo">
+    <xsd:sequence>
+      <xsd:element name="LBound" type="xsd:integer"/>
+      <xsd:element name="Elements" type="xsd:integer"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  
+  <!-- TObjects -->
+  <xsd:complexType name="TSubItems">
+    <xsd:group ref="GSubItems"/>
+    <xsd:attribute name="count" type="xsd:integer" use="optional"/>
+  </xsd:complexType>
+  
+  <!-- GSubItems -->
+  <xsd:group name="GSubItems">
+    <xsd:sequence>
+      <xsd:element name="SubItem" type="TSubItem" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:group>
+                      
+  <!-- TSubItem -->
+  <xsd:complexType name="TSubItem">
+    <xsd:sequence>
+      <xsd:element name="SubIdx" type="THexDecValue" minOccurs="0"/>
+      <xsd:element name="Name" type="xsd:string"/>
+      <xsd:element name="DisplayName" type="TLabels" minOccurs="0"/>
+      <xsd:element name="Type" type="xsd:string"/>
+      <xsd:element name="BitSize" type="xsd:int" minOccurs="0"/>
+      <xsd:element name="BitOffs" type="xsd:int" minOccurs="0"/>
+      <xsd:element name="Comment" type="TLabels" minOccurs="0"/>
+      <xsd:choice minOccurs="0">
+        <xsd:element name="DefaultString" type="xsd:string" minOccurs="0"/>
+        <xsd:element name="DefaultData" type="xsd:hexBinary" minOccurs="0"/>
+        <xsd:sequence minOccurs="0">
+          <xsd:element name="MinValue" type="THexDecValue" minOccurs="0"/>
+          <xsd:element name="MaxValue" type="THexDecValue" minOccurs="0"/>
+          <xsd:element name="DefaultValue" type="THexDecValue" minOccurs="0"/>
+        </xsd:sequence>
+        <xsd:element name="MacroValue" type="xsd:string" minOccurs="0"/>
+      </xsd:choice>
+      <xsd:element name="Properties" type="TProperties" minOccurs="0"/>
+      <xsd:element name="Xml" type="TXml" minOccurs="0"/>
+    </xsd:sequence>
+    <xsd:attribute name="hidden" type="xsd:boolean" use="optional" default="false"/>
+  </xsd:complexType>
+  
+  <!-- TEnumInfo -->
+  <xsd:complexType name="TEnumInfo">
+    <xsd:sequence>
+      <xsd:element name="Text" type="TLabels"/>
+      <xsd:choice minOccurs="1">
+        <xsd:element name="Enum" type="THexDecValue"/>
+        <xsd:element name="EnumData" type="xsd:hexBinary"/>  
+      </xsd:choice>      
+      <xsd:element name="Comment" type="TLabels" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  
+  <!-- TProperties -->
+  <xsd:complexType name="TProperties">
+    <xsd:group ref="GProperties"/>
+  </xsd:complexType>
+  
+  <!-- GProperties -->
+  <xsd:group name="GProperties">
+    <xsd:sequence>
+      <xsd:element name="Property" type="TProperty" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:group>
+  
+  <!-- TProperty -->
+  <xsd:complexType name="TProperty">
+    <xsd:sequence>
+      <xsd:element name="Name" type="xsd:string"/>
+      <xsd:element name="Value" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="Desc" type="TLabels" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  
+  <!-- TXml -->
+  <xsd:complexType name="TXml">
+    <xsd:sequence>
+      <xsd:any processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  
+  <!-- TFlags -->
+  <xsd:complexType name="TFlags">
+    <xsd:sequence>
+      <xsd:element name="Access" type="TAccess" minOccurs="0"/>
+      <xsd:element name="Category" type="TCategory" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  
+  <!-- TAccess -->
+  <xsd:simpleType name="TAccess">
+    <xsd:restriction base="xsd:NMTOKEN">
+      <xsd:enumeration value="ro"/>
+      <xsd:enumeration value="wo"/>
+      <xsd:enumeration value="rw"/>
+      <xsd:enumeration value="const"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  
+  <!-- TMasterSlaveEnum -->
+  <xsd:simpleType name="TUseEnum">
+    <xsd:restriction base="xsd:NMTOKEN">
+      <xsd:enumeration value="Always"/>
+      <xsd:enumeration value="Master"/>
+      <xsd:enumeration value="Master_STAT"/>
+      <xsd:enumeration value="Master_ERR"/>
+      <xsd:enumeration value="Slave"/>
+      <xsd:enumeration value="NET_ADDR"/>
+      <xsd:enumeration value="NET_ZONE"/>
+      <xsd:enumeration value="NET_ZONE_SIZE"/>
+      <xsd:enumeration value="NET_ZONE_ADDR"/>
+      <xsd:enumeration value="NET_RASTER"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  
+  <!-- TCategory -->
+  <xsd:simpleType name="TCategory">
+    <xsd:restriction base="xsd:NMTOKEN">
+      <xsd:enumeration value="m"/>
+      <xsd:enumeration value="o"/>
+      <xsd:enumeration value="c"/>
+    </xsd:restriction>
+  </xsd:simpleType> 
+  
+  <!-- TDependency-->
+  <xsd:complexType name="TDependency">
+    <xsd:choice minOccurs="1" maxOccurs="1">
+      <xsd:element name="ValueOf" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="DataOf" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="Formula" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="When" type="TWhen" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:choice>
+  </xsd:complexType> 
+  
+  <!-- TArrayDependency-->
+  <xsd:complexType name="TArrayDependency">
+    <xsd:choice minOccurs="1" maxOccurs="1">
+      <xsd:element name="Elements" type="TDependency" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="LBound" type="TDependency" minOccurs="0" maxOccurs="1"/>
+    </xsd:choice>
+  </xsd:complexType> 
+  
+  <!-- TWhen -->
+  <xsd:complexType name="TWhen">
+    <xsd:all>
+      <xsd:element name="Value" type="THexDecValue" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="Data" type="xsd:hexBinary" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="MacroValue" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ValueOf" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="DataOf" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="Formula" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="CreateInstance" type="TCreateInstance" minOccurs="0" maxOccurs="1"/>
+    </xsd:all>
+    <xsd:attribute name="condition" type="xsd:string" use="optional"/> 
+    <xsd:attribute name="value" type="THexDecValue" use="optional"/>
+    <xsd:attribute name="data" type="xsd:hexBinary" use="optional"/>
+    <xsd:attribute name="string" type="xsd:string" use="optional"/> 
+  </xsd:complexType>  
+  
+  <!-- TOnChange -->
+  <xsd:complexType name="TOnChange">
+    <xsd:sequence>
+      <xsd:element name="When" type="TWhen" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>         
+  </xsd:complexType> 
+  
+  <!-- TCreateInstance -->
+  <xsd:complexType name="TCreateInstance">
+    <xsd:group ref="GCreateInstance"/>
+    <xsd:attribute name="iterations" type="TRange" use="optional"/>
+  </xsd:complexType>
+  
+  <!-- GCreateInstance -->
+  <xsd:group name="GCreateInstance">
+    <xsd:sequence>
+      <xsd:element name="ObjectInstance" type="TObjectInstance" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:group>
+  
+  <!-- TObjectInstance -->
+  <xsd:complexType name="TObjectInstance">
+    <xsd:attribute name="objectIndex" type="THexDecValue" use="required"/> 
+    <xsd:attribute name="objectName" type="xsd:string" use="optional"/>
+    <xsd:attribute name="instanceIndex" type="xsd:string" use="required"/>
+    <xsd:attribute name="instanceName" type="xsd:string" use="optional"/>
+    <xsd:attribute name="substitutions" type="xsd:string" use="optional"/>  
+  </xsd:complexType>
+  
+  <!-- TSubObjects -->
+  <xsd:complexType name="TSubObjects">
+    <xsd:group ref="GSubObjects"/>
+  </xsd:complexType>
+  
+  <!-- GSubObjects -->
+  <xsd:group name="GSubObjects">
+    <xsd:sequence>
+      <xsd:element name="SubObject" type="TSubObject" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:group>
+  
+  <!-- TTransformation -->
+  <xsd:complexType name="TTransformation">
+    <xsd:group ref="GTransformation"/>
+  </xsd:complexType>
+  
+  <!-- GTransformation -->
+  <xsd:group name="GTransformation">
+    <xsd:sequence>
+      <xsd:element name="Conversion" type="TConversion" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:group>
+  
+  <!-- TConversion -->
+  <xsd:complexType name="TConversion">
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:hexBinary">
+        <xsd:attribute name="condition" type="xsd:string" use="optional"/>
+      </xsd:extension>
+    </xsd:simpleContent>             
+  </xsd:complexType>
+  
+  <!-- TTerminal -->
+  <xsd:complexType name="TTerminalLabel">
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:string">
+        <xsd:attribute name="condition" type="xsd:string" use="optional"/>
+      </xsd:extension>
+    </xsd:simpleContent>             
+  </xsd:complexType>
+  
+  <!-- TTerminals -->
+  <xsd:complexType name="TTermination">
+    <xsd:group ref="GTermination"/>
+  </xsd:complexType>
+  
+  <!-- GTerminals -->
+  <xsd:group name="GTermination">
+    <xsd:sequence>
+      <xsd:element name="TerminalLabel" type="TTerminalLabel" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:group>
+            
+  <!-- TObject -->
+  <xsd:complexType name="TObject">
+    <xsd:all>
+      <xsd:element name="DisplayName" type="TLabels" minOccurs="0"/>
+      <xsd:element name="Comment" type="TLabels" minOccurs="0"/>
+      <xsd:element name="Alias" type="TLabels" minOccurs="0"/> 
+      <xsd:element name="DefaultString" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="MinData" type="xsd:hexBinary" minOccurs="0"/>
+			<xsd:element name="MaxData" type="xsd:hexBinary" minOccurs="0"/>       
+			<xsd:element name="DefaultData" type="xsd:hexBinary" minOccurs="0"/>
+      <xsd:element name="MinValue" type="THexDecValue" minOccurs="0"/>
+      <xsd:element name="MaxValue" type="THexDecValue" minOccurs="0"/>
+      <xsd:element name="Step" type="THexDecValue" minOccurs="0"/>
+      <xsd:element name="DefaultValue" type="THexDecValue" minOccurs="0"/>
+      <xsd:element name="MacroValue" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="ValueDependency" type="TDependency" minOccurs="0"/>
+      <xsd:element name="ArrayDependency" type="TArrayDependency" minOccurs="0"/>
+      <xsd:element name="Transformation" type="TTransformation" minOccurs="0"/>
+      <xsd:element name="Enabled" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="Disabled" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="Excluded" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="Included" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="Hidden" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="Termination" type="TTermination" minOccurs="0"/>
+      <xsd:element name="Properties" type="TProperties" minOccurs="0"/>
+      <xsd:element name="OnChange" type="TOnChange" minOccurs="0"/>
+      <xsd:element name="Xml" type="TXml" minOccurs="0"/>
+      <xsd:element name="SubObjects" type="TSubObjects" minOccurs="0"/>
+    </xsd:all>     
+    <xsd:attribute name="index" type="THexDecValue" use="required"/>
+    <xsd:attribute name="name" type="xsd:string" use="optional"/>
+    <xsd:attribute name="type" type="xsd:string" use="required"/>
+    <xsd:attribute name="bitsize" type="xsd:int" use="optional"/>
+    <xsd:attribute name="access" type="TAccess" use="optional"/>
+    <xsd:attribute name="category" type="TCategory" use="optional"/>
+    <xsd:attribute name="dynamic" type="xsd:boolean" use="optional" default="false"/>
+    <xsd:attribute name="use" type="TUseEnum" use="optional" default="Always"/>
+    <xsd:attribute name="at" type="xsd:string" use="optional"/>
+    <xsd:attribute name="busID" type="xsd:string" use="optional"/>
+    <xsd:attribute name="if" type="xsd:string" use="optional"/>
+    <xsd:attribute name="ifdef" type="xsd:string" use="optional"/>
+    <xsd:attribute name="ifndef" type="xsd:string" use="optional"/>
+	</xsd:complexType>
+  
+  <!-- TSubObject -->
+  <xsd:complexType name="TSubObject">
+    <xsd:all>
+		  <xsd:element name="DisplayName" type="TLabels" minOccurs="0"/>  
+      <xsd:element name="Comment" type="TLabels" minOccurs="0"/>
+      <xsd:element name="Alias" type="TLabels" minOccurs="0"/> 
+      <xsd:element name="DefaultString" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="MinData" type="xsd:hexBinary" minOccurs="0"/>
+			<xsd:element name="MaxData" type="xsd:hexBinary" minOccurs="0"/>
+			<xsd:element name="DefaultData" type="xsd:hexBinary" minOccurs="0"/>
+      <xsd:element name="MinValue" type="THexDecValue" minOccurs="0"/>
+      <xsd:element name="MaxValue" type="THexDecValue" minOccurs="0"/>
+      <xsd:element name="Step" type="THexDecValue" minOccurs="0"/>
+      <xsd:element name="DefaultValue" type="THexDecValue" minOccurs="0"/>
+      <xsd:element name="MacroValue" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="ValueDependency" type="TDependency" minOccurs="0"/>
+      <xsd:element name="ArrayDependency" type="TArrayDependency" minOccurs="0"/>
+      <xsd:element name="Transformation" type="TTransformation" minOccurs="0"/>
+      <xsd:element name="Enabled" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="Disabled" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="Excluded" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="Included" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="Hidden" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="Termination" type="TTermination" minOccurs="0"/>
+      <xsd:element name="Properties" type="TProperties" minOccurs="0"/>
+      <xsd:element name="OnChange" type="TOnChange" minOccurs="0"/>
+      <xsd:element name="Xml" type="TXml" minOccurs="0"/>
+      <xsd:element name="SubObjects" type="TSubObjects" minOccurs="0"/>
+    </xsd:all>    
+    <xsd:attribute name="subIndex" type="THexDecValue" use="optional"/>
+    <xsd:attribute name="name" type="xsd:string" use="optional"/>
+    <xsd:attribute name="type" type="xsd:string" use="optional"/>
+    <xsd:attribute name="bitsize" type="xsd:int" use="optional"/>
+    <xsd:attribute name="access" type="TAccess" use="optional"/>
+    <xsd:attribute name="category" type="TCategory" use="optional"/>
+    <xsd:attribute name="use" type="TUseEnum" use="optional" default="Always"/>
+    <xsd:attribute name="at" type="xsd:string" use="optional"/>
+    <xsd:attribute name="busID" type="xsd:hexBinary" use="optional"/>
+	</xsd:complexType>
+  
+</xsd:schema>

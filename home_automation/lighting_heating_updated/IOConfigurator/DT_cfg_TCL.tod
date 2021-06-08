@@ -1,0 +1,4687 @@
+﻿<?xml version="1.0"?>
+<TecoDictionary xmlns="http://www.tecomat.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.tecomat.com Teco_Dictionary.xsd">
+  <DataTypes>
+
+<!-- Configuration datatypes -->
+
+<!-- DI short pulses detection datatypes -->
+
+<!-- DI0-3 short pulses detection cfg datatype -->
+<!-- IR-1057, IB-1301, IR-1501, IR-2552, IR-2553 -->
+    <DataType>
+      <Name>CFG_ESP4</Name>
+      <SubItems>
+        <SubItem>
+          <Name>ESP0</Name>
+          <Type>CFG_ESP</Type>
+        </SubItem>
+        <SubItem>
+          <Name>ESP1</Name>
+          <Type>CFG_ESP</Type>
+        </SubItem>
+        <SubItem>
+          <Name>ESP2</Name>
+          <Type>CFG_ESP</Type>
+        </SubItem>
+        <SubItem>
+          <Name>ESP3</Name>
+          <Type>CFG_ESP</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- DI0-3,13 short pulses detection cfg datatype -->
+<!-- IR-1059 -->
+    <DataType>
+      <Name>CFG_ESP5_14</Name>
+      <SubItems>
+        <SubItem>
+          <Name>ESP0</Name>
+          <Type>CFG_ESP</Type>
+        </SubItem>
+        <SubItem>
+          <Name>ESP1</Name>
+          <Type>CFG_ESP</Type>
+        </SubItem>
+        <SubItem>
+          <Name>ESP2</Name>
+          <Type>CFG_ESP</Type>
+        </SubItem>
+        <SubItem>
+          <Name>ESP3</Name>
+          <Type>CFG_ESP</Type>
+        </SubItem>
+        <SubItem>
+          <Name>ESP13</Name>
+          <Type>CFG_ESP</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- DI0-5 short pulses detection cfg datatype -->
+<!-- IR-2551 -->
+    <DataType>
+      <Name>CFG_ESP6</Name>
+      <SubItems>
+        <SubItem>
+          <Name>ESP0</Name>
+          <Type>CFG_ESP</Type>
+        </SubItem>
+        <SubItem>
+          <Name>ESP1</Name>
+          <Type>CFG_ESP</Type>
+        </SubItem>
+        <SubItem>
+          <Name>ESP2</Name>
+          <Type>CFG_ESP</Type>
+        </SubItem>
+        <SubItem>
+          <Name>ESP3</Name>
+          <Type>CFG_ESP</Type>
+        </SubItem>
+        <SubItem>
+          <Name>ESP4</Name>
+          <Type>CFG_ESP</Type>
+        </SubItem>
+        <SubItem>
+          <Name>ESP5</Name>
+          <Type>CFG_ESP</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- DI0-7 short pulses detection cfg datatype -->
+<!-- IC-1701 -->
+    <DataType>
+      <Name>CFG_ESP8</Name>
+      <SubItems>
+        <SubItem>
+          <Name>ESP0</Name>
+          <Type>CFG_ESP</Type>
+        </SubItem>
+        <SubItem>
+          <Name>ESP1</Name>
+          <Type>CFG_ESP</Type>
+        </SubItem>
+        <SubItem>
+          <Name>ESP2</Name>
+          <Type>CFG_ESP</Type>
+        </SubItem>
+        <SubItem>
+          <Name>ESP3</Name>
+          <Type>CFG_ESP</Type>
+        </SubItem>
+        <SubItem>
+          <Name>ESP4</Name>
+          <Type>CFG_ESP</Type>
+        </SubItem>
+        <SubItem>
+          <Name>ESP5</Name>
+          <Type>CFG_ESP</Type>
+        </SubItem>
+        <SubItem>
+          <Name>ESP6</Name>
+          <Type>CFG_ESP</Type>
+        </SubItem>
+        <SubItem>
+          <Name>ESP7</Name>
+          <Type>CFG_ESP</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- DI8-15 short pulses detection cfg datatype -->
+<!-- IR-1062 -->
+    <DataType>
+      <Name>CFG_ESP8_16</Name>
+      <SubItems>
+        <SubItem>
+          <Name>ESP8</Name>
+          <Type>CFG_ESP</Type>
+        </SubItem>
+        <SubItem>
+          <Name>ESP9</Name>
+          <Type>CFG_ESP</Type>
+        </SubItem>
+        <SubItem>
+          <Name>ESP10</Name>
+          <Type>CFG_ESP</Type>
+        </SubItem>
+        <SubItem>
+          <Name>ESP11</Name>
+          <Type>CFG_ESP</Type>
+        </SubItem>
+        <SubItem>
+          <Name>ESP12</Name>
+          <Type>CFG_ESP</Type>
+        </SubItem>
+        <SubItem>
+          <Name>ESP13</Name>
+          <Type>CFG_ESP</Type>
+        </SubItem>
+        <SubItem>
+          <Name>ESP14</Name>
+          <Type>CFG_ESP</Type>
+        </SubItem>
+        <SubItem>
+          <Name>ESP15</Name>
+          <Type>CFG_ESP</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- DI6-11 short pulses detection cfg datatype -->
+<!-- IR-1065 -->
+    <DataType>
+      <Name>CFG_ESP6_13</Name>
+      <SubItems>
+        <SubItem>
+          <Name>ESP6</Name>
+          <Type>CFG_ESP</Type>
+        </SubItem>
+        <SubItem>
+          <Name>ESP7</Name>
+          <Type>CFG_ESP</Type>
+        </SubItem>
+        <SubItem>
+          <Name>ESP8</Name>
+          <Type>CFG_ESP</Type>
+        </SubItem>
+        <SubItem>
+          <Name>ESP9</Name>
+          <Type>CFG_ESP</Type>
+        </SubItem>
+        <SubItem>
+          <Name>ESP10</Name>
+          <Type>CFG_ESP</Type>
+        </SubItem>
+        <SubItem>
+          <Name>ESP11</Name>
+          <Type>CFG_ESP</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- DI7-15 short pulses detection cfg datatype -->
+<!-- IR-1980 -->
+    <DataType>
+      <Name>CFG_ESP9_32</Name>
+      <SubItems>
+        <SubItem>
+          <Name>ESP7</Name>
+          <Type>CFG_ESP</Type>
+        </SubItem>
+        <SubItem>
+          <Name>ESP8</Name>
+          <Type>CFG_ESP</Type>
+        </SubItem>
+        <SubItem>
+          <Name>ESP9</Name>
+          <Type>CFG_ESP</Type>
+        </SubItem>
+        <SubItem>
+          <Name>ESP10</Name>
+          <Type>CFG_ESP</Type>
+        </SubItem>
+        <SubItem>
+          <Name>ESP11</Name>
+          <Type>CFG_ESP</Type>
+        </SubItem>
+        <SubItem>
+          <Name>ESP12</Name>
+          <Type>CFG_ESP</Type>
+        </SubItem>
+        <SubItem>
+          <Name>ESP13</Name>
+          <Type>CFG_ESP</Type>
+        </SubItem>
+        <SubItem>
+          <Name>ESP14</Name>
+          <Type>CFG_ESP</Type>
+        </SubItem>
+        <SubItem>
+          <Name>ESP15</Name>
+          <Type>CFG_ESP</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- DI7-17 short pulses detection cfg datatype -->
+<!-- IR-297x -->
+    <DataType>
+      <Name>CFG_ESP11_32</Name>
+      <SubItems>
+        <SubItem>
+          <Name>ESP7</Name>
+          <Type>CFG_ESP</Type>
+        </SubItem>
+        <SubItem>
+          <Name>ESP8</Name>
+          <Type>CFG_ESP</Type>
+        </SubItem>
+        <SubItem>
+          <Name>ESP9</Name>
+          <Type>CFG_ESP</Type>
+        </SubItem>
+        <SubItem>
+          <Name>ESP10</Name>
+          <Type>CFG_ESP</Type>
+        </SubItem>
+        <SubItem>
+          <Name>ESP11</Name>
+          <Type>CFG_ESP</Type>
+        </SubItem>
+        <SubItem>
+          <Name>ESP12</Name>
+          <Type>CFG_ESP</Type>
+        </SubItem>
+        <SubItem>
+          <Name>ESP13</Name>
+          <Type>CFG_ESP</Type>
+        </SubItem>
+        <SubItem>
+          <Name>ESP14</Name>
+          <Type>CFG_ESP</Type>
+        </SubItem>
+        <SubItem>
+          <Name>ESP15</Name>
+          <Type>CFG_ESP</Type>
+        </SubItem>
+        <SubItem>
+          <Name>ESP16</Name>
+          <Type>CFG_ESP</Type>
+        </SubItem>
+        <SubItem>
+          <Name>ESP17</Name>
+          <Type>CFG_ESP</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- DI2-5 short pulses detection cfg datatype -->
+<!-- IR-1982 -->
+    <DataType>
+      <Name>CFG_ESP4_6</Name>
+      <SubItems>
+        <SubItem>
+          <Name>ESP2</Name>
+          <Type>CFG_ESP</Type>
+        </SubItem>
+        <SubItem>
+          <Name>ESP3</Name>
+          <Type>CFG_ESP</Type>
+        </SubItem>
+        <SubItem>
+          <Name>ESP4</Name>
+          <Type>CFG_ESP</Type>
+        </SubItem>
+        <SubItem>
+          <Name>ESP5</Name>
+          <Type>CFG_ESP</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- DI3-5, 8-12 short pulses detection cfg datatype -->
+<!-- IR-2554 -->
+    <DataType>
+      <Name>CFG_ESP8_15</Name>
+      <SubItems>
+        <SubItem>
+          <Name>ESP3</Name>
+          <Type>CFG_ESP</Type>
+        </SubItem>
+        <SubItem>
+          <Name>ESP4</Name>
+          <Type>CFG_ESP</Type>
+        </SubItem>
+        <SubItem>
+          <Name>ESP5</Name>
+          <Type>CFG_ESP</Type>
+        </SubItem>
+        <SubItem>
+          <Name>ESP8</Name>
+          <Type>CFG_ESP</Type>
+        </SubItem>
+        <SubItem>
+          <Name>ESP9</Name>
+          <Type>CFG_ESP</Type>
+        </SubItem>
+        <SubItem>
+          <Name>ESP10</Name>
+          <Type>CFG_ESP</Type>
+        </SubItem>
+        <SubItem>
+          <Name>ESP11</Name>
+          <Type>CFG_ESP</Type>
+        </SubItem>
+        <SubItem>
+          <Name>ESP12</Name>
+          <Type>CFG_ESP</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- DI short pulses detection mode datatype -->
+    <DataType>
+      <Name>CFG_ESP</Name>
+      <BaseType>USINT</BaseType>
+      <EnumInfo>
+        <Text>
+          <label lang="en">detection of short pulses off</label>
+          <label lang="cz">detekce krátkých pulzů vypnuta</label>
+        </Text>
+        <Enum>0</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">short impulses detected at LOW level</label>
+          <label lang="cz">krátké pulzy detekovány v úrovni log.0</label>
+        </Text>
+        <Enum>1</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">short impulses detected at HIGH level</label>
+          <label lang="cz">krátké pulzy detekovány v úrovni log.1</label>
+        </Text>
+        <Enum>2</Enum>
+      </EnumInfo>
+    </DataType>
+
+<!-- DI0-13 potential-free inputs datatype -->
+<!-- IR-2554 -->
+    <DataType>
+      <Name>CFG_POL13</Name>
+      <SubItems>
+        <SubItem>
+          <Name>POL0</Name>
+          <Type>CFG_POL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>POL1</Name>
+          <Type>CFG_POL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>POL2</Name>
+          <Type>CFG_POL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>POL3</Name>
+          <Type>CFG_POL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>POL4</Name>
+          <Type>CFG_POL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>POL5</Name>
+          <Type>CFG_POL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>POL6</Name>
+          <Type>CFG_POL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>POL7</Name>
+          <Type>CFG_POL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>POL8</Name>
+          <Type>CFG_POL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>POL9</Name>
+          <Type>CFG_POL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>POL10</Name>
+          <Type>CFG_POL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>POL11</Name>
+          <Type>CFG_POL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>POL12</Name>
+          <Type>CFG_POL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>POL13</Name>
+          <Type>CFG_POL</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- DI potential-free inputs datatype -->
+    <DataType>
+      <Name>CFG_POL</Name>
+      <BaseType>USINT</BaseType>
+      <EnumInfo>
+        <Text>
+          <label lang="en">input 24 V</label>
+          <label lang="cz">vstup 24 V</label>
+        </Text>
+        <Enum>0</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">potential-free input</label>
+          <label lang="cz">bezpotenciálový vstup</label>
+        </Text>
+        <Enum>1</Enum>
+      </EnumInfo>
+    </DataType>
+
+<!-- AI datatypes -->
+
+<!-- AI cfg datatype -->
+<!-- 10 V range -->
+<!-- IR-1057, IR-1980 -->
+    <DataType>
+      <Name>CFG_AI10</Name>
+      <SubItems>
+        <SubItem>
+          <Name>Enabled</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Mode</Name>
+          <Type>CFG_MODAI10</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Filter</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Value</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Offset</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Gain</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Format</Name>
+          <Type>CFG_AIVAR</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Service</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- 5 V range -->
+<!-- IR-1980 -->
+    <DataType>
+      <Name>CFG_AI5</Name>
+      <SubItems>
+        <SubItem>
+          <Name>Enabled</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Mode</Name>
+          <Type>CFG_MODAI5</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Filter</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Value</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Offset</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Gain</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Format</Name>
+          <Type>CFG_AIVAR</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Service</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- 2 V range -->
+<!-- IR-1980 -->
+    <DataType>
+      <Name>CFG_AI2</Name>
+      <SubItems>
+        <SubItem>
+          <Name>Enabled</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Mode</Name>
+          <Type>CFG_MODAI2</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Filter</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Value</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Offset</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Gain</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Format</Name>
+          <Type>CFG_AIVAR</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Service</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- 12 V range -->
+<!-- IR-1980 -->
+    <DataType>
+      <Name>CFG_AI12</Name>
+      <SubItems>
+        <SubItem>
+          <Name>Enabled</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Mode</Name>
+          <Type>CFG_MODAI12</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Filter</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Value</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Offset</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Gain</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Format</Name>
+          <Type>CFG_AIVAR</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Service</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- 75 V range -->
+<!-- IR-1980 -->
+    <DataType>
+      <Name>CFG_AI75</Name>
+      <SubItems>
+        <SubItem>
+          <Name>Enabled</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Mode</Name>
+          <Type>CFG_MODAI75</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Filter</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Value</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Offset</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Gain</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Format</Name>
+          <Type>CFG_AIVAR</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Service</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- 10, 5, 2, 1 V, 0-20, 4-20, 0-5 mA, Pt100, Pt1000, Ni1000, 100 Ohm, 1kO, NTC ranges -->
+<!-- IT-1601 -->
+    <DataType>
+      <Name>CFG_AIU1R</Name>
+      <SubItems>
+        <SubItem>
+          <Name>Enabled</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Mode</Name>
+          <Type>CFG_MODAIU1R</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Filter</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Value</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Format</Name>
+          <Type>CFG_AIVAR</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Service</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- 10, 5, 2, 1, 0.5 V, 0-20, 4-20, 0-5 mA, Pt100, Pt1000, Ni1000, KTY81-121, 2kO, NTC, 200 kO ranges -->
+<!-- IT-1604 -->
+    <DataType>
+      <Name>CFG_AIU1</Name>
+      <SubItems>
+        <SubItem>
+          <Name>Enabled</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Mode</Name>
+          <Type>CFG_MODAIU1</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Filter</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Value</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Offset</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Gain</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Format</Name>
+          <Type>CFG_AIVAR</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Service</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- 10, 2 V, 0-20, 4-20 mA, Pt1000, Ni1000, KTY81-121, 2kO, NTC, 200 kO ranges -->
+<!-- IR-1062, IR-1064 -->
+    <DataType>
+      <Name>CFG_AIU3</Name>
+      <SubItems>
+        <SubItem>
+          <Name>Enabled</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Mode</Name>
+          <Type>CFG_MODAIU3</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Filter</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Value</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Offset</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Gain</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Format</Name>
+          <Type>CFG_AIVAR</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Service</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- 10, 5, 2, 1, 0.5 V, 0-20, 4-20 mA, Pt100, Pt1000, Ni1000, KTY81-121, 1kO, 2kO, NTC, 200 kO ranges -->
+<!-- IR-1056 -->
+    <DataType>
+      <Name>CFG_AIU5R</Name>
+      <SubItems>
+        <SubItem>
+          <Name>Enabled</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Mode</Name>
+          <Type>CFG_MODAIU5</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Filter</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Value</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Format</Name>
+          <Type>CFG_AIVAR</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Service</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- 10, 5, 2, 1, 0.5, 0.2, 0.1 V, 0-20, 4-20, 20, 0-5, 5 mA ranges -->
+<!-- IT-1606 -->
+    <DataType>
+      <Name>CFG_AIU6</Name>
+      <SubItems>
+        <SubItem>
+          <Name>Enabled</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Mode</Name>
+          <Type>CFG_MODAIU6</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Filter</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Value</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Offset</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Gain</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Format</Name>
+          <Type>CFG_AIVAR</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Service</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- 10, 2 V, ADC V, 0-20, 4-20 mA, Pt1000, Ni1000, KTY81-121, 2kO, NTC, 200 kO ranges -->
+<!-- IR-2551, IR-2554 -->
+    <DataType>
+      <Name>CFG_AIU2005</Name>
+      <SubItems>
+        <SubItem>
+          <Name>Enabled</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Mode</Name>
+          <Type>CFG_MODAIU2005</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Filter</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Value</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Offset</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Gain</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Format</Name>
+          <Type>CFG_AIVAR</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Service</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- 10, 2 V, ADC V, Pt1000, Ni1000, KTY81-121, 2kO, NTC, 200 kO ranges -->
+<!-- IR-2554 -->
+    <DataType>
+      <Name>CFG_AIU2005B</Name>
+      <SubItems>
+        <SubItem>
+          <Name>Enabled</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Mode</Name>
+          <Type>CFG_MODAIU2005B</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Filter</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Value</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Offset</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Gain</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Format</Name>
+          <Type>CFG_AIVAR</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Service</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- ADC V, Pt1000, Ni1000, KTY81-121, 2kO, NTC, 200 kO ranges -->
+<!-- IR-2553 -->
+    <DataType>
+      <Name>CFG_AIR2000</Name>
+      <SubItems>
+        <SubItem>
+          <Name>Enabled</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Mode</Name>
+          <Type>CFG_MODAIR2000</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Filter</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Value</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Offset</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Gain</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Format</Name>
+          <Type>CFG_AIVAR</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Service</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- 0-20, 4-20 mA, 2 V ranges -->
+<!-- IR-1980, IR-1982 -->
+    <DataType>
+      <Name>CFG_AII</Name>
+      <SubItems>
+        <SubItem>
+          <Name>Enabled</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Mode</Name>
+          <Type>CFG_MODAII</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Filter</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Value</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Offset</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Gain</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Format</Name>
+          <Type>CFG_AIVAR</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Service</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- Pt100, Pt1000, Ni1000, KTY81-121, 1kO ranges -->
+<!-- RT-1058, RT-1681 -->
+    <DataType>
+      <Name>CFG_AIPZP</Name>
+      <SubItems>
+        <SubItem>
+          <Name>Enabled</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Mode</Name>
+          <Type>CFG_MODAIPZP</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Filter</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Value</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Format</Name>
+          <Type>CFG_AIVAR</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Service</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- Pt1000, Ni1000, KTY81-121, 2kO ranges -->
+<!-- IR-1059, IR-1060 -->
+    <DataType>
+      <Name>CFG_AIR</Name>
+      <SubItems>
+        <SubItem>
+          <Name>Enabled</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Mode</Name>
+          <Type>CFG_MODAIR</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Filter</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Value</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Offset</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Gain</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Format</Name>
+          <Type>CFG_AIVAR</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Service</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- Pt1000, Ni1000, KTY81-121, 2kO, 0-20, 4-20 mA ranges -->
+<!-- IR-1059 -->
+    <DataType>
+      <Name>CFG_AIRI</Name>
+      <SubItems>
+        <SubItem>
+          <Name>Enabled</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Mode</Name>
+          <Type>CFG_MODAIRI</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Filter</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Value</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Offset</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Gain</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Format</Name>
+          <Type>CFG_AIVAR</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Service</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- Pt1000, Ni1000, KTY81-121, 2kO, NTC, 200 kO, 0-20, 4-20 mA ranges -->
+<!-- IR-106O -->
+    <DataType>
+      <Name>CFG_AIRHI</Name>
+      <SubItems>
+        <SubItem>
+          <Name>Enabled</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Mode</Name>
+          <Type>CFG_MODAIRHI</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Filter</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Value</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Offset</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Gain</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Format</Name>
+          <Type>CFG_AIVAR</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Service</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- Pt1000, Ni1000, KTY81-121, 2kO, NTC, 200 kO ranges -->
+<!-- IR-1061 -->
+    <DataType>
+      <Name>CFG_AIRH</Name>
+      <SubItems>
+        <SubItem>
+          <Name>Enabled</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Mode</Name>
+          <Type>CFG_MODAIRH</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Filter</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Value</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Offset</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Gain</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Format</Name>
+          <Type>CFG_AIVAR</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Service</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- Pt1000, Ni1000, KTY81-121, 2kO, ADC V ranges -->
+<!-- IR-1065, IR-1980 -->
+    <DataType>
+      <Name>CFG_AIR2K</Name>
+      <SubItems>
+        <SubItem>
+          <Name>Enabled</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Mode</Name>
+          <Type>CFG_MODAIR2K</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Filter</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Value</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Offset</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Gain</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Format</Name>
+          <Type>CFG_AIVAR</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Service</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- 5kO, ADC V ranges -->
+<!-- IR-1980 -->
+    <DataType>
+      <Name>CFG_AIR5K</Name>
+      <SubItems>
+        <SubItem>
+          <Name>Enabled</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Mode</Name>
+          <Type>CFG_MODAIR5K</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Filter</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Value</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Offset</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Gain</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Format</Name>
+          <Type>CFG_AIVAR</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Service</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- NTC 12k, 200 kO, ADC V ranges -->
+<!-- IR-1980 -->
+    <DataType>
+      <Name>CFG_AIR200K</Name>
+      <SubItems>
+        <SubItem>
+          <Name>Enabled</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Mode</Name>
+          <Type>CFG_MODAIR200K</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Filter</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Value</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Offset</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Gain</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Format</Name>
+          <Type>CFG_AIVAR</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Service</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- NTC 5-20k, 200 kO, ADC V ranges -->
+<!-- IR-297x -->
+    <DataType>
+      <Name>CFG_AIR200K2</Name>
+      <SubItems>
+        <SubItem>
+          <Name>Enabled</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Mode</Name>
+          <Type>CFG_MODAIR200K2</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Filter</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Value</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Offset</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Gain</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Format</Name>
+          <Type>CFG_AIVAR</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Service</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- Pt100, 250 Ohm, ADC V ranges -->
+<!-- IR-1980 -->
+    <DataType>
+      <Name>CFG_AIR250</Name>
+      <SubItems>
+        <SubItem>
+          <Name>Enabled</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Mode</Name>
+          <Type>CFG_MODAIR250</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Filter</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Value</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Offset</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Gain</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Format</Name>
+          <Type>CFG_AIVAR</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Service</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- TC, +-2 V, +-1 V, +-0.1 V, +-0.05 V ranges -->
+<!-- IT-1602 -->
+    <DataType>
+      <Name>CFG_AIT1R</Name>
+      <SubItems>
+        <SubItem>
+          <Name>Enabled</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Mode</Name>
+          <Type>CFG_MODAIT1</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Filter</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Value</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Format</Name>
+          <Type>CFG_AIVAR</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Service</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- IT-1605 -->
+    <DataType>
+      <Name>CFG_AIT1</Name>
+      <SubItems>
+        <SubItem>
+          <Name>Enabled</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Mode</Name>
+          <Type>CFG_MODAIT1</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Filter</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Value</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Offset</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Gain</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Format</Name>
+          <Type>CFG_AIVAR</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Service</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- TC, +2 V, +1, -0.02 - +0.1, -0.02 - +0.05 V ranges -->
+<!-- IR-1060, IR-1982 -->
+    <DataType>
+      <Name>CFG_AIT2</Name>
+      <SubItems>
+        <SubItem>
+          <Name>Enabled</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Mode</Name>
+          <Type>CFG_MODAIT2</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Filter</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Value</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Offset</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Gain</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Format</Name>
+          <Type>CFG_AIVAR</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Service</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- CJC internal -->
+<!-- IR-1060 -->
+    <DataType>
+      <Name>CFG_AICJC</Name>
+      <SubItems>
+        <SubItem>
+          <Name>Enabled</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Mode</Name>
+          <Type>CFG_MODAICJC</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Format</Name>
+          <Type>CFG_AIVAR</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Service</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- IR-1980 -->
+    <DataType>
+      <Name>CFG_AICJCF</Name>
+      <SubItems>
+        <SubItem>
+          <Name>Enabled</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Mode</Name>
+          <Type>CFG_MODAICJC</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Filter</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Value</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Offset</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Gain</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Format</Name>
+          <Type>CFG_AIVAR</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Service</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+ 
+<!-- CJC external -->
+<!-- IT-1605 -->
+    <DataType>
+      <Name>CFG_AICJCFE</Name>
+      <SubItems>
+        <SubItem>
+          <Name>Enabled</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Mode</Name>
+          <Type>CFG_MODAICJCE</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Filter</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Value</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Offset</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Gain</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Format</Name>
+          <Type>CFG_AIVAR</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Service</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- AI mode datatypes -->
+<!-- 10 V range -->
+<!-- IR-1057, IR-1980 -->
+    <DataType>
+      <Name>CFG_MODAI10</Name>
+      <BaseType>USINT</BaseType>
+      <EnumInfo>
+        <Text>
+          <label lang="en">voltage measuring 0 - 10 V</label>
+          <label lang="cz">měření napětí 0 - 10 V</label>
+        </Text>
+        <EnumData>80</EnumData>
+      </EnumInfo>
+    </DataType>
+
+<!-- 5 V range -->
+<!-- IR-1980 -->
+    <DataType>
+      <Name>CFG_MODAI5</Name>
+      <BaseType>USINT</BaseType>
+      <EnumInfo>
+        <Text>
+          <label lang="en">voltage measuring 0 - 5 V</label>
+          <label lang="cz">měření napětí 0 - 5 V</label>
+        </Text>
+        <EnumData>81</EnumData>
+      </EnumInfo>
+    </DataType>
+
+<!-- 2 V range -->
+<!-- IR-1980 -->
+    <DataType>
+      <Name>CFG_MODAI2</Name>
+      <BaseType>USINT</BaseType>
+      <EnumInfo>
+        <Text>
+          <label lang="en">voltage measuring 0 - 2 V</label>
+          <label lang="cz">měření napětí 0 - 2 V</label>
+        </Text>
+        <EnumData>82</EnumData>
+      </EnumInfo>
+    </DataType>
+
+<!-- 12 V range -->
+<!-- IR-1980 -->
+    <DataType>
+      <Name>CFG_MODAI12</Name>
+      <BaseType>USINT</BaseType>
+      <EnumInfo>
+        <Text>
+          <label lang="en">voltage measuring 0 - 12 V</label>
+          <label lang="cz">měření napětí 0 - 12 V</label>
+        </Text>
+        <EnumData>8A</EnumData>
+      </EnumInfo>
+    </DataType>
+
+<!-- 75 V range -->
+<!-- IR-1980 -->
+    <DataType>
+      <Name>CFG_MODAI75</Name>
+      <BaseType>USINT</BaseType>
+      <EnumInfo>
+        <Text>
+          <label lang="en">voltage measuring 0 - 75 V</label>
+          <label lang="cz">měření napětí 0 - 75 V</label>
+        </Text>
+        <EnumData>8B</EnumData>
+      </EnumInfo>
+    </DataType>
+
+<!-- 10, 5, 2, 1 V, 0-20, 4-20, 0-5 mA, Pt100, Pt1000, Ni1000, 100 Ohm, 1kO, NTC ranges -->
+<!-- IT-1601 -->
+    <DataType>
+      <Name>CFG_MODAIU1R</Name>
+      <BaseType>USINT</BaseType>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor Pt100, W100 = 1,385</label>
+          <label lang="cz">odporový snímač Pt100, W100 = 1,385</label>
+        </Text>
+        <EnumData>20</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor Pt100, W100 = 1,391</label>
+          <label lang="cz">odporový snímač Pt100, W100 = 1,391</label>
+        </Text>
+        <EnumData>21</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor Pt1000, W100 = 1,385</label>
+          <label lang="cz">odporový snímač Pt1000, W100 = 1,385</label>
+        </Text>
+        <EnumData>22</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor Pt1000, W100 = 1,391</label>
+          <label lang="cz">odporový snímač Pt1000, W100 = 1,391</label>
+        </Text>
+        <EnumData>23</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor Ni1000, W100 = 1,617</label>
+          <label lang="cz">odporový snímač Ni1000, W100 = 1,617</label>
+        </Text>
+        <EnumData>24</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor Ni1000, W100 = 1,500</label>
+          <label lang="cz">odporový snímač Ni1000, W100 = 1,500</label>
+        </Text>
+        <EnumData>25</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">NTC termistor 12k / 25°C</label>
+          <label lang="cz">termistor NTC 12k / 25°C</label>
+        </Text>
+        <EnumData>29</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">resistance measuring up to 100 Ohm</label>
+          <label lang="cz">měření odporu do 100 Ohm</label>
+        </Text>
+        <EnumData>26</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">resistance measuring up to 1 kOhm</label>
+          <label lang="cz">měření odporu do 1 kOhm</label>
+        </Text>
+        <EnumData>27</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">current measuring 0 - 20 mA</label>
+          <label lang="cz">měření proudu 0 - 20 mA</label>
+        </Text>
+        <EnumData>40</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">current measuring 4 - 20 mA</label>
+          <label lang="cz">měření proudu 4 - 20 mA</label>
+        </Text>
+        <EnumData>41</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">current measuring 0 - 5 mA</label>
+          <label lang="cz">měření proudu 0 - 5 mA</label>
+        </Text>
+        <EnumData>43</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">voltage measuring 0 - 10 V</label>
+          <label lang="cz">měření napětí 0 - 10 V</label>
+        </Text>
+        <EnumData>80</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">voltage measuring 0 - 5 V</label>
+          <label lang="cz">měření napětí 0 - 5 V</label>
+        </Text>
+        <EnumData>81</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">voltage measuring 0 - 2 V</label>
+          <label lang="cz">měření napětí 0 - 2 V</label>
+        </Text>
+        <EnumData>82</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">voltage measuring 0 - 1 V</label>
+          <label lang="cz">měření napětí 0 - 1 V</label>
+        </Text>
+        <EnumData>83</EnumData>
+      </EnumInfo>
+    </DataType>
+
+<!-- 10, 5, 2, 1, 0.5 V, 0-20, 4-20, 0-5 mA, Pt100, Pt1000, Ni1000, KTY81-121, 2kO, NTC, 200 kO ranges -->
+<!-- IT-1604 -->
+    <DataType>
+      <Name>CFG_MODAIU1</Name>
+      <BaseType>USINT</BaseType>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor Pt100, W100 = 1,385</label>
+          <label lang="cz">odporový snímač Pt100, W100 = 1,385</label>
+        </Text>
+        <EnumData>20</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor Pt100, W100 = 1,391</label>
+          <label lang="cz">odporový snímač Pt100, W100 = 1,391</label>
+        </Text>
+        <EnumData>21</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor Pt1000, W100 = 1,385</label>
+          <label lang="cz">odporový snímač Pt1000, W100 = 1,385</label>
+        </Text>
+        <EnumData>22</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor Pt1000, W100 = 1,391</label>
+          <label lang="cz">odporový snímač Pt1000, W100 = 1,391</label>
+        </Text>
+        <EnumData>23</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor Ni1000, W100 = 1,617</label>
+          <label lang="cz">odporový snímač Ni1000, W100 = 1,617</label>
+        </Text>
+        <EnumData>24</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor Ni1000, W100 = 1,500</label>
+          <label lang="cz">odporový snímač Ni1000, W100 = 1,500</label>
+        </Text>
+        <EnumData>25</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor KTY81-121</label>
+          <label lang="cz">odporový snímač KTY81-121</label>
+        </Text>
+        <EnumData>28</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">NTC termistor 12k / 25°C</label>
+          <label lang="cz">termistor NTC 12k / 25°C</label>
+        </Text>
+        <EnumData>29</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">resistance measuring up to 2 kOhm</label>
+          <label lang="cz">měření odporu do 2 kOhm</label>
+        </Text>
+        <EnumData>2C</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">resistance measuring up to 200 kOhm</label>
+          <label lang="cz">měření odporu do 200 kOhm</label>
+        </Text>
+        <EnumData>2D</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor Pt100, W100 = 1,385 - external resistance</label>
+          <label lang="cz">odporový snímač Pt100, W100 = 1,385 - vnější odpor</label>
+        </Text>
+        <EnumData>30</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor Pt100, W100 = 1,391 - external resistance</label>
+          <label lang="cz">odporový snímač Pt100, W100 = 1,391 - vnější odpor</label>
+        </Text>
+        <EnumData>31</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor Pt1000, W100 = 1,385 - external resistance</label>
+          <label lang="cz">odporový snímač Pt1000, W100 = 1,385 - vnější odpor</label>
+        </Text>
+        <EnumData>32</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor Pt1000, W100 = 1,391 - external resistance</label>
+          <label lang="cz">odporový snímač Pt1000, W100 = 1,391 - vnější odpor</label>
+        </Text>
+        <EnumData>33</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor Ni1000, W100 = 1,617 - external resistance</label>
+          <label lang="cz">odporový snímač Ni1000, W100 = 1,617 - vnější odpor</label>
+        </Text>
+        <EnumData>34</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor Ni1000, W100 = 1,500 - external resistance</label>
+          <label lang="cz">odporový snímač Ni1000, W100 = 1,500 - vnější odpor</label>
+        </Text>
+        <EnumData>35</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor KTY81-121 - external resistance</label>
+          <label lang="cz">odporový snímač KTY81-121 - vnější odpor</label>
+        </Text>
+        <EnumData>38</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">NTC termistor 12k / 25°C - external resistance</label>
+          <label lang="cz">termistor NTC 12k / 25°C - vnější odpor</label>
+        </Text>
+        <EnumData>39</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">resistance measuring up to 2 kOhm - external resistance</label>
+          <label lang="cz">měření odporu do 2 kOhm - vnější odpor</label>
+        </Text>
+        <EnumData>3C</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">resistance measuring up to 200 kOhm - external resistance</label>
+          <label lang="cz">měření odporu do 200 kOhm - vnější odpor</label>
+        </Text>
+        <EnumData>3D</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">current measuring 0 - 20 mA</label>
+          <label lang="cz">měření proudu 0 - 20 mA</label>
+        </Text>
+        <EnumData>40</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">current measuring 4 - 20 mA</label>
+          <label lang="cz">měření proudu 4 - 20 mA</label>
+        </Text>
+        <EnumData>41</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">current measuring 0 - 5 mA</label>
+          <label lang="cz">měření proudu 0 - 5 mA</label>
+        </Text>
+        <EnumData>43</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">current measuring 0 - 20 mA - external resistance</label>
+          <label lang="cz">měření proudu 0 - 20 mA - vnější odpor</label>
+        </Text>
+        <EnumData>50</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">current measuring 4 - 20 mA - external resistance</label>
+          <label lang="cz">měření proudu 4 - 20 mA - vnější odpor</label>
+        </Text>
+        <EnumData>51</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">current measuring 0 - 5 mA - external resistance</label>
+          <label lang="cz">měření proudu 0 - 5 mA - vnější odpor</label>
+        </Text>
+        <EnumData>53</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">voltage measuring 0 - 10 V</label>
+          <label lang="cz">měření napětí 0 - 10 V</label>
+        </Text>
+        <EnumData>80</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">voltage measuring 0 - 5 V</label>
+          <label lang="cz">měření napětí 0 - 5 V</label>
+        </Text>
+        <EnumData>81</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">voltage measuring 0 - 2 V</label>
+          <label lang="cz">měření napětí 0 - 2 V</label>
+        </Text>
+        <EnumData>82</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">voltage measuring 0 - 1 V</label>
+          <label lang="cz">měření napětí 0 - 1 V</label>
+        </Text>
+        <EnumData>83</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">voltage measuring 0 - 0.5 V</label>
+          <label lang="cz">měření napětí 0 - 0,5 V</label>
+        </Text>
+        <EnumData>84</EnumData>
+      </EnumInfo>
+    </DataType>
+
+<!-- 10, 2 V, 0-20, 4-20 mA, Pt1000, Ni1000, KTY81-121, 2kO, NTC, 200 kO ranges -->
+<!-- IR-1062, IR-1064 -->
+    <DataType>
+      <Name>CFG_MODAIU3</Name>
+      <BaseType>USINT</BaseType>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor Pt1000, W100 = 1,385</label>
+          <label lang="cz">odporový snímač Pt1000, W100 = 1,385</label>
+        </Text>
+        <EnumData>22</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor Pt1000, W100 = 1,391</label>
+          <label lang="cz">odporový snímač Pt1000, W100 = 1,391</label>
+        </Text>
+        <EnumData>23</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor Ni1000, W100 = 1,617</label>
+          <label lang="cz">odporový snímač Ni1000, W100 = 1,617</label>
+        </Text>
+        <EnumData>24</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor Ni1000, W100 = 1,500</label>
+          <label lang="cz">odporový snímač Ni1000, W100 = 1,500</label>
+        </Text>
+        <EnumData>25</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor KTY81-121</label>
+          <label lang="cz">odporový snímač KTY81-121</label>
+        </Text>
+        <EnumData>28</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">NTC termistor 12k / 25°C</label>
+          <label lang="cz">termistor NTC 12k / 25°C</label>
+        </Text>
+        <EnumData>29</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">resistance measuring up to 2 kOhm</label>
+          <label lang="cz">měření odporu do 2 kOhm</label>
+        </Text>
+        <EnumData>2C</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">resistance measuring up to 200 kOhm</label>
+          <label lang="cz">měření odporu do 200 kOhm</label>
+        </Text>
+        <EnumData>2D</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">current measuring 0 - 20 mA</label>
+          <label lang="cz">měření proudu 0 - 20 mA</label>
+        </Text>
+        <EnumData>40</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">current measuring 4 - 20 mA</label>
+          <label lang="cz">měření proudu 4 - 20 mA</label>
+        </Text>
+        <EnumData>41</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">voltage measuring 0 - 10 V</label>
+          <label lang="cz">měření napětí 0 - 10 V</label>
+        </Text>
+        <EnumData>80</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">voltage measuring 0 - 2 V</label>
+          <label lang="cz">měření napětí 0 - 2 V</label>
+        </Text>
+        <EnumData>82</EnumData>
+      </EnumInfo>
+    </DataType>
+
+<!-- 10, 5, 2, 1, 0.5 V, 0-20, 4-20 mA, Pt100, Pt1000, Ni1000, KTY81-121, 1kO, 2kO, NTC, 200 kO ranges -->
+<!-- IR-1056 -->
+    <DataType>
+      <Name>CFG_MODAIU5</Name>
+      <BaseType>USINT</BaseType>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor Pt100, W100 = 1,385</label>
+          <label lang="cz">odporový snímač Pt100, W100 = 1,385</label>
+        </Text>
+        <EnumData>20</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor Pt100, W100 = 1,391</label>
+          <label lang="cz">odporový snímač Pt100, W100 = 1,391</label>
+        </Text>
+        <EnumData>21</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor Pt1000, W100 = 1,385</label>
+          <label lang="cz">odporový snímač Pt1000, W100 = 1,385</label>
+        </Text>
+        <EnumData>22</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor Pt1000, W100 = 1,391</label>
+          <label lang="cz">odporový snímač Pt1000, W100 = 1,391</label>
+        </Text>
+        <EnumData>23</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor Ni1000, W100 = 1,617</label>
+          <label lang="cz">odporový snímač Ni1000, W100 = 1,617</label>
+        </Text>
+        <EnumData>24</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor Ni1000, W100 = 1,500</label>
+          <label lang="cz">odporový snímač Ni1000, W100 = 1,500</label>
+        </Text>
+        <EnumData>25</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor KTY81-121</label>
+          <label lang="cz">odporový snímač KTY81-121</label>
+        </Text>
+        <EnumData>28</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">NTC termistor 12k / 25°C</label>
+          <label lang="cz">termistor NTC 12k / 25°C</label>
+        </Text>
+        <EnumData>29</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">resistance measuring up to 1 kOhm</label>
+          <label lang="cz">měření odporu do 1 kOhm</label>
+        </Text>
+        <EnumData>27</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">resistance measuring up to 2 kOhm</label>
+          <label lang="cz">měření odporu do 2 kOhm</label>
+        </Text>
+        <EnumData>2C</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">resistance measuring up to 200 kOhm</label>
+          <label lang="cz">měření odporu do 200 kOhm</label>
+        </Text>
+        <EnumData>2D</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">current measuring 0 - 20 mA</label>
+          <label lang="cz">měření proudu 0 - 20 mA</label>
+        </Text>
+        <EnumData>40</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">current measuring 4 - 20 mA</label>
+          <label lang="cz">měření proudu 4 - 20 mA</label>
+        </Text>
+        <EnumData>41</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">voltage measuring 0 - 10 V</label>
+          <label lang="cz">měření napětí 0 - 10 V</label>
+        </Text>
+        <EnumData>80</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">voltage measuring 0 - 5 V</label>
+          <label lang="cz">měření napětí 0 - 5 V</label>
+        </Text>
+        <EnumData>81</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">voltage measuring 0 - 2 V</label>
+          <label lang="cz">měření napětí 0 - 2 V</label>
+        </Text>
+        <EnumData>82</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">voltage measuring 0 - 1 V</label>
+          <label lang="cz">měření napětí 0 - 1 V</label>
+        </Text>
+        <EnumData>83</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">voltage measuring 0 - 0.5 V</label>
+          <label lang="cz">měření napětí 0 - 0,5 V</label>
+        </Text>
+        <EnumData>84</EnumData>
+      </EnumInfo>
+    </DataType>
+
+<!-- 10, 5, 2, 1, 0.5, 0.2, 0.1 V, 20, 5 mA ranges -->
+<!-- IT-1606 -->
+    <DataType>
+      <Name>CFG_MODAIU6</Name>
+      <BaseType>USINT</BaseType>
+      <EnumInfo>
+        <Text>
+          <label lang="en">current measuring -20 - +20 mA</label>
+          <label lang="cz">měření proudu -20 - +20 mA</label>
+        </Text>
+        <EnumData>42</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">current measuring -5 - +5 mA</label>
+          <label lang="cz">měření proudu -5 - +5 mA</label>
+        </Text>
+        <EnumData>44</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">voltage measuring -10 - +10 V</label>
+          <label lang="cz">měření napětí -10 - +10 V</label>
+        </Text>
+        <EnumData>80</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">voltage measuring -5 - +5 V</label>
+          <label lang="cz">měření napětí -5 - +5 V</label>
+        </Text>
+        <EnumData>81</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">voltage measuring -2 - +2 V</label>
+          <label lang="cz">měření napětí -2 - +2 V</label>
+        </Text>
+        <EnumData>82</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">voltage measuring -1 - +1 V</label>
+          <label lang="cz">měření napětí -1 - +1 V</label>
+        </Text>
+        <EnumData>83</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">voltage measuring -0.5 - +0.5 V</label>
+          <label lang="cz">měření napětí -0,5 - +0,5 V</label>
+        </Text>
+        <EnumData>84</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">voltage measuring -0.2 - +0.2 V</label>
+          <label lang="cz">měření napětí -0,2 - +0,2 V</label>
+        </Text>
+        <EnumData>85</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">voltage measuring -0.1 - +0.1 V</label>
+          <label lang="cz">měření napětí -0,1 - +0,1 V</label>
+        </Text>
+        <EnumData>86</EnumData>
+      </EnumInfo>
+    </DataType>
+
+<!-- 10, 2 V, ADC V, 0-20, 4-20 mA, Pt1000, Ni1000, KTY81-121, 2kO, NTC 5-20k, 200 kO ranges -->
+<!-- IR-2551, IR-2554 -->
+    <DataType>
+      <Name>CFG_MODAIU2005</Name>
+      <BaseType>USINT</BaseType>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor Pt1000, W100 = 1,385</label>
+          <label lang="cz">odporový snímač Pt1000, W100 = 1,385</label>
+        </Text>
+        <EnumData>22</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor Pt1000, W100 = 1,391</label>
+          <label lang="cz">odporový snímač Pt1000, W100 = 1,391</label>
+        </Text>
+        <EnumData>23</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor Ni1000, W100 = 1,617</label>
+          <label lang="cz">odporový snímač Ni1000, W100 = 1,617</label>
+        </Text>
+        <EnumData>24</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor Ni1000, W100 = 1,500</label>
+          <label lang="cz">odporový snímač Ni1000, W100 = 1,500</label>
+        </Text>
+        <EnumData>25</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor KTY81-121</label>
+          <label lang="cz">odporový snímač KTY81-121</label>
+        </Text>
+        <EnumData>28</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">NTC termistor 5k / 25°C</label>
+          <label lang="cz">termistor NTC 5k / 25°C</label>
+        </Text>
+        <EnumData>38</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">NTC termistor 10k / 25°C</label>
+          <label lang="cz">termistor NTC 10k / 25°C</label>
+        </Text>
+        <EnumData>39</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">NTC termistor 12k / 25°C</label>
+          <label lang="cz">termistor NTC 12k / 25°C</label>
+        </Text>
+        <EnumData>3A</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">NTC termistor 15k / 25°C</label>
+          <label lang="cz">termistor NTC 15k / 25°C</label>
+        </Text>
+        <EnumData>3B</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">NTC termistor 20k / 25°C</label>
+          <label lang="cz">termistor NTC 20k / 25°C</label>
+        </Text>
+        <EnumData>3C</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">resistance measuring up to 2 kOhm</label>
+          <label lang="cz">měření odporu do 2 kOhm</label>
+        </Text>
+        <EnumData>2C</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">resistance measuring up to 200 kOhm</label>
+          <label lang="cz">měření odporu do 200 kOhm</label>
+        </Text>
+        <EnumData>2D</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">current measuring 0 - 20 mA</label>
+          <label lang="cz">měření proudu 0 - 20 mA</label>
+        </Text>
+        <EnumData>40</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">current measuring 4 - 20 mA</label>
+          <label lang="cz">měření proudu 4 - 20 mA</label>
+        </Text>
+        <EnumData>41</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">voltage measuring 0 - 10 V</label>
+          <label lang="cz">měření napětí 0 - 10 V</label>
+        </Text>
+        <EnumData>80</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">voltage measuring 0 - 2 V</label>
+          <label lang="cz">měření napětí 0 - 2 V</label>
+        </Text>
+        <EnumData>82</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">ADC input voltage</label>
+          <label lang="cz">vstupní napětí na AD převodníku</label>
+        </Text>
+        <EnumData>8F</EnumData>
+      </EnumInfo>
+    </DataType>
+
+<!-- 10, 2 V, ADC V, Pt1000, Ni1000, KTY81-121, 2kO, NTC, 200 kO ranges -->
+<!-- IR-2554 -->
+    <DataType>
+      <Name>CFG_MODAIU2005B</Name>
+      <BaseType>USINT</BaseType>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor Pt1000, W100 = 1,385</label>
+          <label lang="cz">odporový snímač Pt1000, W100 = 1,385</label>
+        </Text>
+        <EnumData>22</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor Pt1000, W100 = 1,391</label>
+          <label lang="cz">odporový snímač Pt1000, W100 = 1,391</label>
+        </Text>
+        <EnumData>23</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor Ni1000, W100 = 1,617</label>
+          <label lang="cz">odporový snímač Ni1000, W100 = 1,617</label>
+        </Text>
+        <EnumData>24</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor Ni1000, W100 = 1,500</label>
+          <label lang="cz">odporový snímač Ni1000, W100 = 1,500</label>
+        </Text>
+        <EnumData>25</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor KTY81-121</label>
+          <label lang="cz">odporový snímač KTY81-121</label>
+        </Text>
+        <EnumData>28</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">NTC termistor 5k / 25°C</label>
+          <label lang="cz">termistor NTC 5k / 25°C</label>
+        </Text>
+        <EnumData>38</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">NTC termistor 10k / 25°C</label>
+          <label lang="cz">termistor NTC 10k / 25°C</label>
+        </Text>
+        <EnumData>39</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">NTC termistor 12k / 25°C</label>
+          <label lang="cz">termistor NTC 12k / 25°C</label>
+        </Text>
+        <EnumData>3A</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">NTC termistor 15k / 25°C</label>
+          <label lang="cz">termistor NTC 15k / 25°C</label>
+        </Text>
+        <EnumData>3B</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">NTC termistor 20k / 25°C</label>
+          <label lang="cz">termistor NTC 20k / 25°C</label>
+        </Text>
+        <EnumData>3C</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">resistance measuring up to 2 kOhm</label>
+          <label lang="cz">měření odporu do 2 kOhm</label>
+        </Text>
+        <EnumData>2C</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">resistance measuring up to 200 kOhm</label>
+          <label lang="cz">měření odporu do 200 kOhm</label>
+        </Text>
+        <EnumData>2D</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">voltage measuring 0 - 10 V</label>
+          <label lang="cz">měření napětí 0 - 10 V</label>
+        </Text>
+        <EnumData>80</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">voltage measuring 0 - 2 V</label>
+          <label lang="cz">měření napětí 0 - 2 V</label>
+        </Text>
+        <EnumData>82</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">ADC input voltage</label>
+          <label lang="cz">vstupní napětí na AD převodníku</label>
+        </Text>
+        <EnumData>8F</EnumData>
+      </EnumInfo>
+    </DataType>
+
+<!-- ADC V, Pt1000, Ni1000, KTY81-121, 2kO, NTC, 200 kO ranges -->
+<!-- IR-2553 -->
+    <DataType>
+      <Name>CFG_MODAIR2000</Name>
+      <BaseType>USINT</BaseType>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor Pt1000, W100 = 1,385</label>
+          <label lang="cz">odporový snímač Pt1000, W100 = 1,385</label>
+        </Text>
+        <EnumData>22</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor Pt1000, W100 = 1,391</label>
+          <label lang="cz">odporový snímač Pt1000, W100 = 1,391</label>
+        </Text>
+        <EnumData>23</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor Ni1000, W100 = 1,617</label>
+          <label lang="cz">odporový snímač Ni1000, W100 = 1,617</label>
+        </Text>
+        <EnumData>24</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor Ni1000, W100 = 1,500</label>
+          <label lang="cz">odporový snímač Ni1000, W100 = 1,500</label>
+        </Text>
+        <EnumData>25</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor KTY81-121</label>
+          <label lang="cz">odporový snímač KTY81-121</label>
+        </Text>
+        <EnumData>28</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">NTC termistor 5k / 25°C</label>
+          <label lang="cz">termistor NTC 5k / 25°C</label>
+        </Text>
+        <EnumData>38</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">NTC termistor 10k / 25°C</label>
+          <label lang="cz">termistor NTC 10k / 25°C</label>
+        </Text>
+        <EnumData>39</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">NTC termistor 12k / 25°C</label>
+          <label lang="cz">termistor NTC 12k / 25°C</label>
+        </Text>
+        <EnumData>3A</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">NTC termistor 15k / 25°C</label>
+          <label lang="cz">termistor NTC 15k / 25°C</label>
+        </Text>
+        <EnumData>3B</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">NTC termistor 20k / 25°C</label>
+          <label lang="cz">termistor NTC 20k / 25°C</label>
+        </Text>
+        <EnumData>3C</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">resistance measuring up to 2 kOhm</label>
+          <label lang="cz">měření odporu do 2 kOhm</label>
+        </Text>
+        <EnumData>2C</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">resistance measuring up to 200 kOhm</label>
+          <label lang="cz">měření odporu do 200 kOhm</label>
+        </Text>
+        <EnumData>2D</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">ADC input voltage</label>
+          <label lang="cz">vstupní napětí na AD převodníku</label>
+        </Text>
+        <EnumData>8F</EnumData>
+      </EnumInfo>
+    </DataType>
+
+<!-- 0-20, 4-20 mA, ADC V ranges -->
+<!-- IR-1980, IR-1982 -->
+    <DataType>
+      <Name>CFG_MODAII</Name>
+      <BaseType>USINT</BaseType>
+      <EnumInfo>
+        <Text>
+          <label lang="en">current measuring 0 - 20 mA</label>
+          <label lang="cz">měření proudu 0 - 20 mA</label>
+        </Text>
+        <EnumData>40</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">current measuring 4 - 20 mA</label>
+          <label lang="cz">měření proudu 4 - 20 mA</label>
+        </Text>
+        <EnumData>41</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">ADC input voltage</label>
+          <label lang="cz">vstupní napětí na AD převodníku</label>
+        </Text>
+        <EnumData>8F</EnumData>
+      </EnumInfo>
+    </DataType>
+
+<!-- Pt100, Pt1000, Ni1000, KTY81-121, 1kO ranges -->
+<!-- RT-1058, RT-1681 -->
+    <DataType>
+      <Name>CFG_MODAIPZP</Name>
+      <BaseType>USINT</BaseType>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor Pt100, W100 = 1,385</label>
+          <label lang="cz">odporový snímač Pt100, W100 = 1,385</label>
+        </Text>
+        <EnumData>20</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor Pt100, W100 = 1,391</label>
+          <label lang="cz">odporový snímač Pt100, W100 = 1,391</label>
+        </Text>
+        <EnumData>21</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor Pt1000, W100 = 1,385</label>
+          <label lang="cz">odporový snímač Pt1000, W100 = 1,385</label>
+        </Text>
+        <EnumData>22</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor Pt1000, W100 = 1,391</label>
+          <label lang="cz">odporový snímač Pt1000, W100 = 1,391</label>
+        </Text>
+        <EnumData>23</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor Ni1000, W100 = 1,617</label>
+          <label lang="cz">odporový snímač Ni1000, W100 = 1,617</label>
+        </Text>
+        <EnumData>24</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor Ni1000, W100 = 1,500</label>
+          <label lang="cz">odporový snímač Ni1000, W100 = 1,500</label>
+        </Text>
+        <EnumData>25</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">resistance measuring up to 1 kOhm</label>
+          <label lang="cz">měření odporu do 1 kOhm</label>
+        </Text>
+        <EnumData>27</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor KTY81-121</label>
+          <label lang="cz">odporový snímač KTY81-121</label>
+        </Text>
+        <EnumData>28</EnumData>
+      </EnumInfo>
+    </DataType>
+
+<!-- Pt1000, Ni1000, KTY81-121, 2kO ranges -->
+<!-- IR-1059 -->
+    <DataType>
+      <Name>CFG_MODAIR</Name>
+      <BaseType>USINT</BaseType>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor Pt1000, W100 = 1,385</label>
+          <label lang="cz">odporový snímač Pt1000, W100 = 1,385</label>
+        </Text>
+        <EnumData>22</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor Pt1000, W100 = 1,391</label>
+          <label lang="cz">odporový snímač Pt1000, W100 = 1,391</label>
+        </Text>
+        <EnumData>23</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor Ni1000, W100 = 1,617</label>
+          <label lang="cz">odporový snímač Ni1000, W100 = 1,617</label>
+        </Text>
+        <EnumData>24</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor Ni1000, W100 = 1,500</label>
+          <label lang="cz">odporový snímač Ni1000, W100 = 1,500</label>
+        </Text>
+        <EnumData>25</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor KTY81-121</label>
+          <label lang="cz">odporový snímač KTY81-121</label>
+        </Text>
+        <EnumData>28</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">resistance measuring up to 2 kOhm</label>
+          <label lang="cz">měření odporu do 2 kOhm</label>
+        </Text>
+        <EnumData>2C</EnumData>
+      </EnumInfo>
+    </DataType>
+
+<!-- Pt1000, Ni1000, KTY81-121, 2kO, ADC V ranges -->
+<!-- IR-1980 -->
+    <DataType>
+      <Name>CFG_MODAIR2K</Name>
+      <BaseType>USINT</BaseType>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor Pt1000, W100 = 1,385</label>
+          <label lang="cz">odporový snímač Pt1000, W100 = 1,385</label>
+        </Text>
+        <EnumData>22</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor Pt1000, W100 = 1,391</label>
+          <label lang="cz">odporový snímač Pt1000, W100 = 1,391</label>
+        </Text>
+        <EnumData>23</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor Ni1000, W100 = 1,617</label>
+          <label lang="cz">odporový snímač Ni1000, W100 = 1,617</label>
+        </Text>
+        <EnumData>24</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor Ni1000, W100 = 1,500</label>
+          <label lang="cz">odporový snímač Ni1000, W100 = 1,500</label>
+        </Text>
+        <EnumData>25</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor KTY81-121</label>
+          <label lang="cz">odporový snímač KTY81-121</label>
+        </Text>
+        <EnumData>28</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">resistance measuring up to 2 kOhm</label>
+          <label lang="cz">měření odporu do 2 kOhm</label>
+        </Text>
+        <EnumData>2C</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">ADC input voltage</label>
+          <label lang="cz">vstupní napětí na AD převodníku</label>
+        </Text>
+        <EnumData>8F</EnumData>
+      </EnumInfo>
+    </DataType>
+
+<!-- 5 kO, ADC V ranges -->
+<!-- IR-1980 -->
+    <DataType>
+      <Name>CFG_MODAIR5K</Name>
+      <BaseType>USINT</BaseType>
+      <EnumInfo>
+        <Text>
+          <label lang="en">resistance measuring up to 5 kOhm</label>
+          <label lang="cz">měření odporu do 5 kOhm</label>
+        </Text>
+        <EnumData>2E</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">ADC input voltage</label>
+          <label lang="cz">vstupní napětí na AD převodníku</label>
+        </Text>
+        <EnumData>8F</EnumData>
+      </EnumInfo>
+    </DataType>
+
+<!-- NTC, 200 kO, ADC V ranges -->
+<!-- IR-1980 -->
+    <DataType>
+      <Name>CFG_MODAIR200K</Name>
+      <BaseType>USINT</BaseType>
+      <EnumInfo>
+        <Text>
+          <label lang="en">NTC termistor 12k / 25°C</label>
+          <label lang="cz">termistor NTC 12k / 25°C</label>
+        </Text>
+        <EnumData>29</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">resistance measuring up to 200 kOhm</label>
+          <label lang="cz">měření odporu do 200 kOhm</label>
+        </Text>
+        <EnumData>2D</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">ADC input voltage</label>
+          <label lang="cz">vstupní napětí na AD převodníku</label>
+        </Text>
+        <EnumData>8F</EnumData>
+      </EnumInfo>
+    </DataType>
+
+<!-- NTC 5 - 20k, 200 kO, ADC V ranges -->
+<!-- IR-297x -->
+    <DataType>
+      <Name>CFG_MODAIR200K2</Name>
+      <BaseType>USINT</BaseType>
+      <EnumInfo>
+        <Text>
+          <label lang="en">NTC termistor 5k / 25°C</label>
+          <label lang="cz">termistor NTC 5k / 25°C</label>
+        </Text>
+        <EnumData>38</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">NTC termistor 10k / 25°C</label>
+          <label lang="cz">termistor NTC 10k / 25°C</label>
+        </Text>
+        <EnumData>39</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">NTC termistor 12k / 25°C</label>
+          <label lang="cz">termistor NTC 12k / 25°C</label>
+        </Text>
+        <EnumData>3A</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">NTC termistor 15k / 25°C</label>
+          <label lang="cz">termistor NTC 15k / 25°C</label>
+        </Text>
+        <EnumData>3B</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">NTC termistor 20k / 25°C</label>
+          <label lang="cz">termistor NTC 20k / 25°C</label>
+        </Text>
+        <EnumData>3C</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">resistance measuring up to 200 kOhm</label>
+          <label lang="cz">měření odporu do 200 kOhm</label>
+        </Text>
+        <EnumData>2D</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">ADC input voltage</label>
+          <label lang="cz">vstupní napětí na AD převodníku</label>
+        </Text>
+        <EnumData>8F</EnumData>
+      </EnumInfo>
+    </DataType>
+
+<!-- Pt100, 250 Ohm, ADC V ranges -->
+<!-- IR-1980 -->
+    <DataType>
+      <Name>CFG_MODAIR250</Name>
+      <BaseType>USINT</BaseType>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor Pt100, W100 = 1,385</label>
+          <label lang="cz">odporový snímač Pt100, W100 = 1,385</label>
+        </Text>
+        <EnumData>20</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor Pt100, W100 = 1,391</label>
+          <label lang="cz">odporový snímač Pt100, W100 = 1,391</label>
+        </Text>
+        <EnumData>21</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">resistance measuring up to 250 Ohm</label>
+          <label lang="cz">měření odporu do 250 Ohm</label>
+        </Text>
+        <EnumData>2B</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">ADC input voltage</label>
+          <label lang="cz">vstupní napětí na AD převodníku</label>
+        </Text>
+        <EnumData>8F</EnumData>
+      </EnumInfo>
+    </DataType>
+
+<!-- Pt1000, Ni1000, KTY81-121, 2kO, 0-20, 4-20 mA ranges -->
+<!-- IR-1059 -->
+    <DataType>
+      <Name>CFG_MODAIRI</Name>
+      <BaseType>USINT</BaseType>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor Pt1000, W100 = 1,385</label>
+          <label lang="cz">odporový snímač Pt1000, W100 = 1,385</label>
+        </Text>
+        <EnumData>22</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor Pt1000, W100 = 1,391</label>
+          <label lang="cz">odporový snímač Pt1000, W100 = 1,391</label>
+        </Text>
+        <EnumData>23</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor Ni1000, W100 = 1,617</label>
+          <label lang="cz">odporový snímač Ni1000, W100 = 1,617</label>
+        </Text>
+        <EnumData>24</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor Ni1000, W100 = 1,500</label>
+          <label lang="cz">odporový snímač Ni1000, W100 = 1,500</label>
+        </Text>
+        <EnumData>25</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor KTY81-121</label>
+          <label lang="cz">odporový snímač KTY81-121</label>
+        </Text>
+        <EnumData>28</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">resistance measuring up to 2 kOhm</label>
+          <label lang="cz">měření odporu do 2 kOhm</label>
+        </Text>
+        <EnumData>2C</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">current measuring 0 - 20 mA</label>
+          <label lang="cz">měření proudu 0 - 20 mA</label>
+        </Text>
+        <EnumData>40</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">current measuring 4 - 20 mA</label>
+          <label lang="cz">měření proudu 4 - 20 mA</label>
+        </Text>
+        <EnumData>41</EnumData>
+      </EnumInfo>
+    </DataType>
+
+<!-- Pt1000, Ni1000, KTY81-121, 2kO, NTC, 200 kO, 0-20, 4-20 mA ranges -->
+<!-- IR-1060 -->
+    <DataType>
+      <Name>CFG_MODAIRHI</Name>
+      <BaseType>USINT</BaseType>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor Pt1000, W100 = 1,385</label>
+          <label lang="cz">odporový snímač Pt1000, W100 = 1,385</label>
+        </Text>
+        <EnumData>22</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor Pt1000, W100 = 1,391</label>
+          <label lang="cz">odporový snímač Pt1000, W100 = 1,391</label>
+        </Text>
+        <EnumData>23</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor Ni1000, W100 = 1,617</label>
+          <label lang="cz">odporový snímač Ni1000, W100 = 1,617</label>
+        </Text>
+        <EnumData>24</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor Ni1000, W100 = 1,500</label>
+          <label lang="cz">odporový snímač Ni1000, W100 = 1,500</label>
+        </Text>
+        <EnumData>25</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor KTY81-121</label>
+          <label lang="cz">odporový snímač KTY81-121</label>
+        </Text>
+        <EnumData>28</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">NTC termistor 12k / 25°C</label>
+          <label lang="cz">termistor NTC 12k / 25°C</label>
+        </Text>
+        <EnumData>29</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">resistance measuring up to 2 kOhm</label>
+          <label lang="cz">měření odporu do 2 kOhm</label>
+        </Text>
+        <EnumData>2C</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">resistance measuring up to 200 kOhm</label>
+          <label lang="cz">měření odporu do 200 kOhm</label>
+        </Text>
+        <EnumData>2D</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">current measuring 0 - 20 mA</label>
+          <label lang="cz">měření proudu 0 - 20 mA</label>
+        </Text>
+        <EnumData>40</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">current measuring 4 - 20 mA</label>
+          <label lang="cz">měření proudu 4 - 20 mA</label>
+        </Text>
+        <EnumData>41</EnumData>
+      </EnumInfo>
+    </DataType>
+
+<!-- Pt1000, Ni1000, KTY81-121, 2kO, NTC, 200 kO ranges -->
+<!-- IR-1061 -->
+    <DataType>
+      <Name>CFG_MODAIRH</Name>
+      <BaseType>USINT</BaseType>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor Pt1000, W100 = 1,385</label>
+          <label lang="cz">odporový snímač Pt1000, W100 = 1,385</label>
+        </Text>
+        <EnumData>22</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor Pt1000, W100 = 1,391</label>
+          <label lang="cz">odporový snímač Pt1000, W100 = 1,391</label>
+        </Text>
+        <EnumData>23</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor Ni1000, W100 = 1,617</label>
+          <label lang="cz">odporový snímač Ni1000, W100 = 1,617</label>
+        </Text>
+        <EnumData>24</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor Ni1000, W100 = 1,500</label>
+          <label lang="cz">odporový snímač Ni1000, W100 = 1,500</label>
+        </Text>
+        <EnumData>25</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor KTY81-121</label>
+          <label lang="cz">odporový snímač KTY81-121</label>
+        </Text>
+        <EnumData>28</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">NTC termistor 12k / 25°C</label>
+          <label lang="cz">termistor NTC 12k / 25°C</label>
+        </Text>
+        <EnumData>29</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">resistance measuring up to 2 kOhm</label>
+          <label lang="cz">měření odporu do 2 kOhm</label>
+        </Text>
+        <EnumData>2C</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">resistance measuring up to 200 kOhm</label>
+          <label lang="cz">měření odporu do 200 kOhm</label>
+        </Text>
+        <EnumData>2D</EnumData>
+      </EnumInfo>
+    </DataType>
+
+<!-- TC, +-2 V, +-1 V, +-0.1 V, +-0.05 V ranges -->
+<!-- IT-1602 -->
+    <DataType>
+      <Name>CFG_MODAIT1</Name>
+      <BaseType>USINT</BaseType>
+      <EnumInfo>
+        <Text>
+          <label lang="en">thermocouple type J</label>
+          <label lang="cz">termočlánek typ J</label>
+        </Text>
+        <Enum>0</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">thermocouple type K</label>
+          <label lang="cz">termočlánek typ K</label>
+        </Text>
+        <Enum>1</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">thermocouple type R</label>
+          <label lang="cz">termočlánek typ R</label>
+        </Text>
+        <Enum>2</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">thermocouple type S</label>
+          <label lang="cz">termočlánek typ S</label>
+        </Text>
+        <Enum>3</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">thermocouple type T</label>
+          <label lang="cz">termočlánek typ T</label>
+        </Text>
+        <Enum>4</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">thermocouple type B</label>
+          <label lang="cz">termočlánek typ B</label>
+        </Text>
+        <Enum>5</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">thermocouple type N</label>
+          <label lang="cz">termočlánek typ N</label>
+        </Text>
+        <Enum>6</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">lambda probe</label>
+          <label lang="cz">lambda sonda</label>
+        </Text>
+        <Enum>9</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">voltage measuring -2 - +2 V</label>
+          <label lang="cz">měření napětí -2 - +2 V</label>
+        </Text>
+        <EnumData>82</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">voltage measuring -1 - +1 V</label>
+          <label lang="cz">měření napětí -1 - +1 V</label>
+        </Text>
+        <EnumData>83</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">voltage measuring -0.1 - +0.1 V</label>
+          <label lang="cz">měření napětí -0,1 - +0,1 V</label>
+        </Text>
+        <EnumData>86</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">voltage measuring -0.05 - +0.05 V</label>
+          <label lang="cz">měření napětí -0,05 - +0,05 V</label>
+        </Text>
+        <EnumData>87</EnumData>
+      </EnumInfo>
+    </DataType>
+
+<!-- TC, +2 V, +1, -0.02 - +0.1, -0.02 - +0.05 V ranges -->
+<!-- IR-1060, IR-1980 -->
+    <DataType>
+      <Name>CFG_MODAIT2</Name>
+      <BaseType>USINT</BaseType>
+      <EnumInfo>
+        <Text>
+          <label lang="en">thermocouple type J</label>
+          <label lang="cz">termočlánek typ J</label>
+        </Text>
+        <Enum>0</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">thermocouple type K</label>
+          <label lang="cz">termočlánek typ K</label>
+        </Text>
+        <Enum>1</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">thermocouple type R</label>
+          <label lang="cz">termočlánek typ R</label>
+        </Text>
+        <Enum>2</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">thermocouple type S</label>
+          <label lang="cz">termočlánek typ S</label>
+        </Text>
+        <Enum>3</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">thermocouple type T</label>
+          <label lang="cz">termočlánek typ T</label>
+        </Text>
+        <Enum>4</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">thermocouple type B</label>
+          <label lang="cz">termočlánek typ B</label>
+        </Text>
+        <Enum>5</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">thermocouple type N</label>
+          <label lang="cz">termočlánek typ N</label>
+        </Text>
+        <Enum>6</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">lambda probe</label>
+          <label lang="cz">lambda sonda</label>
+        </Text>
+        <Enum>9</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">voltage measuring 0 - +2 V</label>
+          <label lang="cz">měření napětí 0 - +2 V</label>
+        </Text>
+        <EnumData>82</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">voltage measuring 0 - +1 V</label>
+          <label lang="cz">měření napětí 0 - +1 V</label>
+        </Text>
+        <EnumData>83</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">voltage measuring -0.02 - +0.1 V</label>
+          <label lang="cz">měření napětí -0,02 - +0,1 V</label>
+        </Text>
+        <EnumData>86</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">voltage measuring -0.02 - +0.05 V</label>
+          <label lang="cz">měření napětí -0,02 - +0,05 V</label>
+        </Text>
+        <EnumData>87</EnumData>
+      </EnumInfo>
+    </DataType>
+
+<!-- CJC internal -->
+<!-- IR-1060, IR-1980 -->
+    <DataType>
+      <Name>CFG_MODAICJC</Name>
+      <BaseType>USINT</BaseType>
+      <EnumInfo>
+        <Text>
+          <label lang="en">internal temperature sensor</label>
+          <label lang="cz">vnitřní teplotní čidlo</label>
+        </Text>
+        <EnumData>29</EnumData>
+      </EnumInfo>
+    </DataType>
+
+<!-- CJC external -->
+<!-- IT-1605 -->
+    <DataType>
+      <Name>CFG_MODAICJCE</Name>
+      <BaseType>USINT</BaseType>
+      <EnumInfo>
+        <Text>
+          <label lang="en">RTD sensor Ni1000, W100 = 1,617</label>
+          <label lang="cz">odporový snímač Ni1000, W100 = 1,617</label>
+        </Text>
+        <EnumData>24</EnumData>
+      </EnumInfo>
+    </DataType>
+
+<!-- AI format datatype -->
+    <DataType>
+      <Name>CFG_AIVAR</Name>
+      <BaseType>USINT</BaseType>
+      <EnumInfo>
+        <Text>
+          <label lang="en">binary value (FS)</label>
+          <label lang="cz">binární hodnota (FS)</label>
+        </Text>
+        <Enum>0</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">engineering value (ENG)</label>
+          <label lang="cz">hodnota v inženýrských jednotkách (ENG)</label>
+        </Text>
+        <Enum>1</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">normalised value (PCT)</label>
+          <label lang="cz">normalizovaná hodnota (PCT)</label>
+        </Text>
+        <Enum>2</Enum>
+      </EnumInfo>
+    </DataType>
+
+
+<!-- AO datatypes -->
+
+<!-- AO cfg datatype -->
+<!-- 10 V range -->
+<!-- IT-1604, IR-1982 -->
+    <DataType>
+      <Name>CFG_AO10</Name>
+      <SubItems>
+        <SubItem>
+          <Name>Enabled</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Mode</Name>
+          <Type>CFG_MODAO10</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Block</Name>
+          <Type>CFG_BlockAO</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Value</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Format</Name>
+          <Type>CFG_AIVAR</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- +-10 V range -->
+<!-- IT-1602, IR-1062 -->
+    <DataType>
+      <Name>CFG_AO10B</Name>
+      <SubItems>
+        <SubItem>
+          <Name>Enabled</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Mode</Name>
+          <Type>CFG_MODAO10B</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Block</Name>
+          <Type>CFG_BlockAO</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Value</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Format</Name>
+          <Type>CFG_AIVAR</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- 10 V, 20 mA ranges -->
+<!-- OT-1651 -->
+    <DataType>
+      <Name>CFG_AOUI</Name>
+      <SubItems>
+        <SubItem>
+          <Name>Enabled</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Mode</Name>
+          <Type>CFG_MODAOUI</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Block</Name>
+          <Type>CFG_BlockAO</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Value</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Format</Name>
+          <Type>CFG_AIVAR</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- +-10 V, +-5 V, 20 mA ranges -->
+<!-- OT-1661 -->
+    <DataType>
+      <Name>CFG_AOUIB</Name>
+      <SubItems>
+        <SubItem>
+          <Name>Enabled</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Mode</Name>
+          <Type>CFG_MODAOUIB</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Block</Name>
+          <Type>CFG_BlockAO</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Value</Name>
+          <Type>LREAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Format</Name>
+          <Type>CFG_AIVAR</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- AO mode datatypes -->
+<!-- 10 V range -->
+<!-- IT-1604, IR-1065, IR-1982 -->
+    <DataType>
+      <Name>CFG_MODAO10</Name>
+      <BaseType>USINT</BaseType>
+      <EnumInfo>
+        <Text>
+          <label lang="en">voltage output 0 - 10 V</label>
+          <label lang="cz">napěťový výstup 0 - 10 V</label>
+        </Text>
+        <EnumData>80</EnumData>
+      </EnumInfo>
+    </DataType>
+
+<!-- +-10 V range -->
+<!-- IT-1602, IR-1062 -->
+    <DataType>
+      <Name>CFG_MODAO10B</Name>
+      <BaseType>USINT</BaseType>
+      <EnumInfo>
+        <Text>
+          <label lang="en">voltage output -10 - +10 V</label>
+          <label lang="cz">napěťový výstup -10 - +10 V</label>
+        </Text>
+        <EnumData>80</EnumData>
+      </EnumInfo>
+    </DataType>
+
+<!-- 10 V, 20 mA ranges -->
+<!-- OT-1651 -->
+    <DataType>
+      <Name>CFG_MODAOUI</Name>
+      <BaseType>USINT</BaseType>
+      <EnumInfo>
+        <Text>
+          <label lang="en">current output 0 - 20 mA</label>
+          <label lang="cz">proudový výstup 0 - 20 mA</label>
+        </Text>
+        <EnumData>40</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">voltage output 0 - 10 V</label>
+          <label lang="cz">napěťový výstup 0 - 10 V</label>
+        </Text>
+        <EnumData>80</EnumData>
+      </EnumInfo>
+    </DataType>
+
+<!-- +-10 V, +-5 V, 20 mA ranges -->
+<!-- OT-1661 -->
+    <DataType>
+      <Name>CFG_MODAOUIB</Name>
+      <BaseType>USINT</BaseType>
+      <EnumInfo>
+        <Text>
+          <label lang="en">current output 0 - 20 mA</label>
+          <label lang="cz">proudový výstup 0 - 20 mA</label>
+        </Text>
+        <EnumData>40</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">voltage output -10 - +10 V</label>
+          <label lang="cz">napěťový výstup -10 - +10 V</label>
+        </Text>
+        <EnumData>88</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">voltage output -5 - +5 V</label>
+          <label lang="cz">napěťový výstup -5 - +5 V</label>
+        </Text>
+        <EnumData>89</EnumData>
+      </EnumInfo>
+    </DataType>
+
+<!-- AO block mode datatype -->
+    <DataType>
+      <Name>CFG_BlockAO</Name>
+      <BaseType>USINT</BaseType>
+      <EnumInfo>
+        <Text>
+          <label lang="en">freeze the current state</label>
+          <label lang="cz">zmrazit aktuální stav</label>
+        </Text>
+        <Enum>0</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">set defined value</label>
+          <label lang="cz">nastavit definovanou hodnotu</label>
+        </Text>
+        <Enum>1</Enum>
+      </EnumInfo>
+    </DataType>
+
+
+<!-- CNT datatypes -->
+
+<!-- CNT cfg datatype -->
+<!-- CNT1 IR-1057, IB-1301, IR-1501 -->
+    <DataType>
+      <Name>CFG_CNT</Name>
+      <SubItems>
+        <SubItem>
+          <Name>Enabled</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>MODCNT</Name>
+          <Type>CFG_MODCNT1</Type>
+        </SubItem>
+        <SubItem>
+          <Name>CFGPNI</Name>
+          <Type>CFG_LVLCNT</Type>
+        </SubItem>
+        <SubItem>
+          <Name>CFGPMD</Name>
+          <Type>CFG_LVLCNT</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- CNT2 IR-1057, IB-1301, IR-1501, IR-1982 -->
+    <DataType>
+      <Name>CFG_CNTR</Name>
+      <SubItems>
+        <SubItem>
+          <Name>Enabled</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>MODCNT</Name>
+          <Type>CFG_MODCNT2</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- CNTn IR-1062 -->
+    <DataType>
+      <Name>CFG_CNT3</Name>
+      <SubItems>
+        <SubItem>
+          <Name>Enabled</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>MODCNT</Name>
+          <Type>CFG_MODCNT3</Type>
+        </SubItem>
+        <SubItem>
+          <Name>CFGPNI</Name>
+          <Type>CFG_LVLCNT</Type>
+        </SubItem>
+        <SubItem>
+          <Name>CFGPMD</Name>
+          <Type>CFG_LVLCNT</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- CNT IR-1059 -->
+    <DataType>
+      <Name>CFG_CNT6</Name>
+      <SubItems>
+        <SubItem>
+          <Name>Enabled</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>MODCNT</Name>
+          <Type>CFG_MODCNT6</Type>
+        </SubItem>
+        <SubItem>
+          <Name>CFGPNI</Name>
+          <Type>CFG_LVLCNT</Type>
+        </SubItem>
+        <SubItem>
+          <Name>CFGPMD</Name>
+          <Type>CFG_LVLCNT</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- CNTn IC-1701 -->
+    <DataType>
+      <Name>CFG_CNT7</Name>
+      <SubItems>
+        <SubItem>
+          <Name>Enabled</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>MODCNT</Name>
+          <Type>CFG_MODCNT7</Type>
+        </SubItem>
+        <SubItem>
+          <Name>CFGPNI</Name>
+          <Type>CFG_LVLCNT</Type>
+        </SubItem>
+        <SubItem>
+          <Name>CFGPMD</Name>
+          <Type>CFG_LVLCNT</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- CNTn IR-1065, single counter IR-1980, IR-2551, IR-2552 -->
+    <DataType>
+      <Name>CFG_CNT80C</Name>
+      <SubItems>
+        <SubItem>
+          <Name>Enabled</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>MODCNT</Name>
+          <Type>CFG_MODCNT80C</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- CNTn PWM input IR-1980 -->
+    <DataType>
+      <Name>CFG_CNT80P</Name>
+      <SubItems>
+        <SubItem>
+          <Name>Enabled</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>MODCNT</Name>
+          <Type>CFG_MODCNT80P</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- CNTn motion control IR-1980 -->
+    <DataType>
+      <Name>CFG_CNT80M</Name>
+      <SubItems>
+        <SubItem>
+          <Name>Enabled</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>MODCNT</Name>
+          <Type>CFG_MODCNT80M</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- CNT1 IR-1982 -->
+    <DataType>
+      <Name>CFG_CNTL</Name>
+      <SubItems>
+        <SubItem>
+          <Name>Enabled</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>MODCNT</Name>
+          <Type>CFG_MODCNTL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>CFGPNI</Name>
+          <Type>CFG_LVLCNT</Type>
+        </SubItem>
+        <SubItem>
+          <Name>CFGPMD</Name>
+          <Type>CFG_LVLCNT</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- CNTn IR-2554 -->
+    <DataType>
+      <Name>CFG_CNTSI</Name>
+      <SubItems>
+        <SubItem>
+          <Name>Enabled</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>MODCNT</Name>
+          <Type>CFG_MODCNTSI</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- CNT mode datatypes -->
+<!-- 1, 2, 4, 5, 8, 20, 21, 24, 28, 29 -->
+<!-- CNT1 IR-1057, IB-1301, IR-1501 -->
+    <DataType>
+      <Name>CFG_MODCNT1</Name>
+      <BaseType>USINT</BaseType>
+      <EnumInfo>
+        <Text>
+          <label lang="en">one non-reversible counter</label>
+          <label lang="cz">jeden jednosměrný čítač</label>
+        </Text>
+        <Enum>1</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">two non-reversible counters</label>
+          <label lang="cz">dva jednosměrné čítače</label>
+        </Text>
+        <Enum>2</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">one reversible counter</label>
+          <label lang="cz">jeden obousměrný čítač</label>
+        </Text>
+        <Enum>4</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">one counter with direction control</label>
+          <label lang="cz">jeden čítač s řízením směru</label>
+        </Text>
+        <Enum>5</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">IRC</label>
+          <label lang="cz">IRC</label>
+        </Text>
+        <Enum>8</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">one reversible counter with reset and capturing</label>
+          <label lang="cz">jeden obousměrný čítač s nulováním a zachycením</label>
+        </Text>
+        <EnumData>14</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">one counter with direction control, reset and capturing</label>
+          <label lang="cz">jeden čítač s řízením směru, nulováním a zachycením</label>
+        </Text>
+        <EnumData>15</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">IRC with reset and capturing</label>
+          <label lang="cz">IRC s nulováním a zachycením</label>
+        </Text>
+        <EnumData>18</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">pulse length measurement</label>
+          <label lang="cz">měření délky pulzu</label>
+        </Text>
+        <EnumData>1C</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">period and phase shift measurement</label>
+          <label lang="cz">měření periody a fázového posuvu</label>
+        </Text>
+        <EnumData>1D</EnumData>
+      </EnumInfo>
+    </DataType>
+
+<!-- 1, 2, 4, 5, 8 -->
+<!-- CNT2 IR-1057, IB-1301, IR-1501, IR-1982 -->
+    <DataType>
+      <Name>CFG_MODCNT2</Name>
+      <BaseType>USINT</BaseType>
+      <EnumInfo>
+        <Text>
+          <label lang="en">one non-reversible counter</label>
+          <label lang="cz">jeden jednosměrný čítač</label>
+        </Text>
+        <Enum>1</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">two non-reversible counters</label>
+          <label lang="cz">dva jednosměrné čítače</label>
+        </Text>
+        <Enum>2</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">one reversible counter</label>
+          <label lang="cz">jeden obousměrný čítač</label>
+        </Text>
+        <Enum>4</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">one counter with direction control</label>
+          <label lang="cz">jeden čítač s řízením směru</label>
+        </Text>
+        <Enum>5</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">IRC</label>
+          <label lang="cz">IRC</label>
+        </Text>
+        <Enum>8</Enum>
+      </EnumInfo>
+    </DataType>
+
+<!-- 1, 2, 4, 5, 6, 7, 11, 14, 15, 18, 1C, 1D -->
+<!-- CNTn IR-1062 -->
+    <DataType>
+      <Name>CFG_MODCNT3</Name>
+      <BaseType>USINT</BaseType>
+      <EnumInfo>
+        <Text>
+          <label lang="en">one non-reversible counter</label>
+          <label lang="cz">jeden jednosměrný čítač</label>
+        </Text>
+        <Enum>1</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">two non-reversible counters</label>
+          <label lang="cz">dva jednosměrné čítače</label>
+        </Text>
+        <Enum>2</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">one reversible counter</label>
+          <label lang="cz">jeden obousměrný čítač</label>
+        </Text>
+        <Enum>4</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">one counter with direction control</label>
+          <label lang="cz">jeden čítač s řízením směru</label>
+        </Text>
+        <Enum>5</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">two reversible counters</label>
+          <label lang="cz">dva obousměrné čítače</label>
+        </Text>
+        <Enum>6</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">two counters with direction control</label>
+          <label lang="cz">dva čítače s řízením směru</label>
+        </Text>
+        <Enum>7</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">one non-reversible counter with reset and capturing</label>
+          <label lang="cz">jeden jednosměrný čítač s nulováním a zachycením</label>
+        </Text>
+        <EnumData>11</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">one reversible counter with reset and capturing</label>
+          <label lang="cz">jeden obousměrný čítač s nulováním a zachycením</label>
+        </Text>
+        <EnumData>14</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">one counter with direction control, reset and capturing</label>
+          <label lang="cz">jeden čítač s řízením směru, nulováním a zachycením</label>
+        </Text>
+        <EnumData>15</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">IRC with reset and capturing</label>
+          <label lang="cz">IRC s nulováním a zachycením</label>
+        </Text>
+        <EnumData>18</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">pulse length measurement</label>
+          <label lang="cz">měření délky pulzu</label>
+        </Text>
+        <EnumData>1C</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">period and phase shift measurement</label>
+          <label lang="cz">měření periody a fázového posuvu</label>
+        </Text>
+        <EnumData>1D</EnumData>
+      </EnumInfo>
+    </DataType>
+
+<!-- 1, 5, 11, 15 -->
+<!-- CNT IR-1059 -->
+    <DataType>
+      <Name>CFG_MODCNT6</Name>
+      <BaseType>USINT</BaseType>
+      <EnumInfo>
+        <Text>
+          <label lang="en">one non-reversible counter</label>
+          <label lang="cz">jeden jednosměrný čítač</label>
+        </Text>
+        <Enum>1</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">one counter with direction control</label>
+          <label lang="cz">jeden čítač s řízením směru</label>
+        </Text>
+        <Enum>5</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">one non-reversible counter with reset and capturing</label>
+          <label lang="cz">jeden jednosměrný čítač s nulováním a zachycením</label>
+        </Text>
+        <EnumData>11</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">one counter with direction control, reset and capturing</label>
+          <label lang="cz">jeden čítač s řízením směru, nulováním a zachycením</label>
+        </Text>
+        <EnumData>15</EnumData>
+      </EnumInfo>
+    </DataType>
+ 
+<!-- 1, 2, 4, 5, 6, 7, 8, 11, 14, 15, 18, 1C, 1D, 1E -->
+<!-- CNTn IC-1701 -->
+    <DataType>
+      <Name>CFG_MODCNT7</Name>
+      <BaseType>USINT</BaseType>
+      <EnumInfo>
+        <Text>
+          <label lang="en">one non-reversible counter</label>
+          <label lang="cz">jeden jednosměrný čítač</label>
+        </Text>
+        <Enum>1</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">two non-reversible counters</label>
+          <label lang="cz">dva jednosměrné čítače</label>
+        </Text>
+        <Enum>2</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">one reversible counter</label>
+          <label lang="cz">jeden obousměrný čítač</label>
+        </Text>
+        <Enum>4</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">one counter with direction control</label>
+          <label lang="cz">jeden čítač s řízením směru</label>
+        </Text>
+        <Enum>5</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">two reversible counters</label>
+          <label lang="cz">dva obousměrné čítače</label>
+        </Text>
+        <Enum>6</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">two counters with direction control</label>
+          <label lang="cz">dva čítače s řízením směru</label>
+        </Text>
+        <Enum>7</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">IRC</label>
+          <label lang="cz">IRC</label>
+        </Text>
+        <Enum>8</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">one non-reversible counter with reset and capturing</label>
+          <label lang="cz">jeden jednosměrný čítač s nulováním a zachycením</label>
+        </Text>
+        <EnumData>11</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">one reversible counter with reset and capturing</label>
+          <label lang="cz">jeden obousměrný čítač s nulováním a zachycením</label>
+        </Text>
+        <EnumData>14</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">one counter with direction control, reset and capturing</label>
+          <label lang="cz">jeden čítač s řízením směru, nulováním a zachycením</label>
+        </Text>
+        <EnumData>15</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">IRC with reset and capturing</label>
+          <label lang="cz">IRC s nulováním a zachycením</label>
+        </Text>
+        <EnumData>18</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">pulse length measurement</label>
+          <label lang="cz">měření délky pulzu</label>
+        </Text>
+        <EnumData>1C</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">period and phase shift measurement</label>
+          <label lang="cz">měření periody a fázového posuvu</label>
+        </Text>
+        <EnumData>1D</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">PWM input</label>
+          <label lang="cz">vstup PWM</label>
+        </Text>
+        <EnumData>1E</EnumData>
+      </EnumInfo>
+    </DataType>
+
+<!-- 1 -->
+<!-- CNTn IR-1065, IR-1980, IR-2551, IR-2552 -->
+    <DataType>
+      <Name>CFG_MODCNT80C</Name>
+      <BaseType>USINT</BaseType>
+      <EnumInfo>
+        <Text>
+          <label lang="en">one non-reversible counter</label>
+          <label lang="cz">jeden jednosměrný čítač</label>
+        </Text>
+        <Enum>1</Enum>
+      </EnumInfo>
+    </DataType>
+ 
+<!-- 1E -->
+<!-- CNTn IR-1980 -->
+    <DataType>
+      <Name>CFG_MODCNT80P</Name>
+      <BaseType>USINT</BaseType>
+      <EnumInfo>
+        <Text>
+          <label lang="en">PWM input</label>
+          <label lang="cz">vstup PWM</label>
+        </Text>
+        <EnumData>1E</EnumData>
+      </EnumInfo>
+    </DataType>
+ 
+<!-- 41 -->
+<!-- CNTn IR-1980 -->
+    <DataType>
+      <Name>CFG_MODCNT80M</Name>
+      <BaseType>USINT</BaseType>
+      <EnumInfo>
+        <Text>
+          <label lang="en">stepper motor</label>
+          <label lang="cz">krokový motor</label>
+        </Text>
+        <EnumData>41</EnumData>
+      </EnumInfo>
+    </DataType>
+ 
+<!-- 1, 2, 4, 5, 8, 14, 15, 18 -->
+<!-- CNT1 IR-1982 -->
+    <DataType>
+      <Name>CFG_MODCNTL</Name>
+      <BaseType>USINT</BaseType>
+      <EnumInfo>
+        <Text>
+          <label lang="en">one non-reversible counter</label>
+          <label lang="cz">jeden jednosměrný čítač</label>
+        </Text>
+        <Enum>1</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">two non-reversible counters</label>
+          <label lang="cz">dva jednosměrné čítače</label>
+        </Text>
+        <Enum>2</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">one reversible counter</label>
+          <label lang="cz">jeden obousměrný čítač</label>
+        </Text>
+        <Enum>4</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">one counter with direction control</label>
+          <label lang="cz">jeden čítač s řízením směru</label>
+        </Text>
+        <Enum>5</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">IRC</label>
+          <label lang="cz">IRC</label>
+        </Text>
+        <Enum>8</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">one reversible counter with reset and capturing</label>
+          <label lang="cz">jeden obousměrný čítač s nulováním a zachycením</label>
+        </Text>
+        <EnumData>14</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">one counter with direction control, reset and capturing</label>
+          <label lang="cz">jeden čítač s řízením směru, nulováním a zachycením</label>
+        </Text>
+        <EnumData>15</EnumData>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">IRC with reset and capturing</label>
+          <label lang="cz">IRC s nulováním a zachycením</label>
+        </Text>
+        <EnumData>18</EnumData>
+      </EnumInfo>
+    </DataType>
+
+<!-- 1, 1E -->
+<!-- CNTn IR-2554 -->
+    <DataType>
+      <Name>CFG_MODCNTSI</Name>
+      <BaseType>USINT</BaseType>
+      <EnumInfo>
+        <Text>
+          <label lang="en">one non-reversible counter</label>
+          <label lang="cz">jeden jednosměrný čítač</label>
+        </Text>
+        <Enum>1</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">PWM input</label>
+          <label lang="cz">vstup PWM</label>
+        </Text>
+        <EnumData>1E</EnumData>
+      </EnumInfo>
+    </DataType>
+ 
+ <!-- CNT signal level datatype -->
+   <DataType>
+      <Name>CFG_LVLCNT</Name>
+      <BaseType>USINT</BaseType>
+      <EnumInfo>
+        <Text>
+          <label lang="en">in level 0</label>
+          <label lang="cz">v úrovni log. 0</label>
+        </Text>
+        <Enum>0</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">in level 1</label>
+          <label lang="cz">v úrovni log. 1</label>
+        </Text>
+        <Enum>1</Enum>
+      </EnumInfo>
+    </DataType>
+
+
+<!-- PWM datatypes -->
+
+<!-- PWM cfg datatype -->
+<!-- IR-1062 -->
+    <DataType>
+      <Name>CFG_PWMR</Name>
+      <SubItems>
+        <SubItem>
+          <Name>Enabled</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Polarity</Name>
+          <Type>CFG_LVLCNT</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Format</Name>
+          <Type>CFG_PWMVAR</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- IR-1065 -->
+    <DataType>
+      <Name>CFG_PWMFS</Name>
+      <SubItems>
+        <SubItem>
+          <Name>Enabled</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>MODPWM</Name>
+          <Type>CFG_MODPWMF</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Polarity</Name>
+          <Type>CFG_LVLCNT</Type>
+        </SubItem>
+        <SubItem>
+          <Name>PeriodFormat</Name>
+          <Type>CFG_PFU</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Period</Name>
+          <Type>UDINT</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- IC-1701, IR-2552, IR-2554 -->
+    <DataType>
+      <Name>CFG_PWMF</Name>
+      <SubItems>
+        <SubItem>
+          <Name>Enabled</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>MODPWM</Name>
+          <Type>CFG_MODPWMF</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Polarity</Name>
+          <Type>CFG_LVLCNT</Type>
+        </SubItem>
+        <SubItem>
+          <Name>PeriodFormat</Name>
+          <Type>CFG_PFU</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Period</Name>
+          <Type>UDINT</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- IR-1980 -->
+    <DataType>
+      <Name>CFG_PWMM</Name>
+      <SubItems>
+        <SubItem>
+          <Name>Enabled</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>MODPWM</Name>
+          <Type>CFG_MODPWM</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Polarity</Name>
+          <Type>CFG_LVLCNT</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Period</Name>
+          <Type>UDINT</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- IR-1982 -->
+    <DataType>
+      <Name>CFG_PWMP</Name>
+      <SubItems>
+        <SubItem>
+          <Name>Enabled</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Polarity</Name>
+          <Type>CFG_LVLCNT</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Block</Name>
+          <Type>CFG_BLK</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Period</Name>
+          <Type>CFG_PF</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+ 
+<!-- PWM mode datatype -->
+<!-- IR-1065 -->
+    <DataType>
+      <Name>CFG_MODPWMS</Name>
+      <BaseType>USINT</BaseType>
+      <EnumInfo>
+        <Text>
+          <label lang="en">PWM output with fixed frequency</label>
+          <label lang="cz">PWM výstup se stálou frekvencí</label>
+        </Text>
+        <Enum>1</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">PWM output with variable frequency</label>
+          <label lang="cz">PWM výstup s proměnnou frekvencí</label>
+        </Text>
+        <Enum>2</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">single pulses</label>
+          <label lang="cz">jednotlivé pulzy</label>
+        </Text>
+        <Enum>7</Enum>
+      </EnumInfo>
+    </DataType>
+
+<!-- IC-1701 -->
+    <DataType>
+      <Name>CFG_MODPWMF</Name>
+      <BaseType>USINT</BaseType>
+      <EnumInfo>
+        <Text>
+          <label lang="en">PWM output with fixed frequency</label>
+          <label lang="cz">PWM výstup se stálou frekvencí</label>
+        </Text>
+        <Enum>1</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">PWM output with variable frequency</label>
+          <label lang="cz">PWM výstup s proměnnou frekvencí</label>
+        </Text>
+        <Enum>2</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">single pulses</label>
+          <label lang="cz">jednotlivé pulzy</label>
+        </Text>
+        <Enum>7</Enum>
+      </EnumInfo>
+    </DataType>
+
+<!-- IR-1980 -->
+    <DataType>
+      <Name>CFG_MODPWM</Name>
+      <BaseType>USINT</BaseType>
+      <EnumInfo>
+        <Text>
+          <label lang="en">PWM output</label>
+          <label lang="cz">PWM výstup</label>
+        </Text>
+        <Enum>1</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">single pulses</label>
+          <label lang="cz">jednotlivé pulzy</label>
+        </Text>
+        <Enum>2</Enum>
+      </EnumInfo>
+    </DataType>
+
+<!-- PWM format datatype -->
+    <DataType>
+      <Name>CFG_PWMVAR</Name>
+      <BaseType>USINT</BaseType>
+      <EnumInfo>
+        <Text>
+          <label lang="en">binary value (FS)</label>
+          <label lang="cz">binární hodnota (FS)</label>
+        </Text>
+        <Enum>0</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">normalised value (PCT)</label>
+          <label lang="cz">normalizovaná hodnota (PCT)</label>
+        </Text>
+        <Enum>2</Enum>
+      </EnumInfo>
+    </DataType>
+
+<!-- PWM block datatype -->
+    <DataType>
+      <Name>CFG_BLK</Name>
+      <BaseType>USINT</BaseType>
+      <EnumInfo>
+        <Text>
+          <label lang="en">PWM output is always active</label>
+          <label lang="cz">výstup PWM trvale aktivní</label>
+        </Text>
+        <Enum>0</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">PWM output is enabled by bit EN</label>
+          <label lang="cz">výstup PWM povolen bitem EN</label>
+        </Text>
+        <Enum>1</Enum>
+      </EnumInfo>
+    </DataType>
+
+<!-- PWM period / frequency datatype -->
+    <DataType>
+      <Name>CFG_PF</Name>
+      <BaseType>USINT</BaseType>
+      <EnumInfo>
+        <Text>
+          <label lang="en">period [ms]</label>
+          <label lang="cz">perioda [ms]</label>
+        </Text>
+        <Enum>0</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">frequency [Hz]</label>
+          <label lang="cz">frekvence [Hz]</label>
+        </Text>
+        <Enum>1</Enum>
+      </EnumInfo>
+    </DataType>
+
+    <DataType>
+      <Name>CFG_PFU</Name>
+      <BaseType>USINT</BaseType>
+      <EnumInfo>
+        <Text>
+          <label lang="en">period [µs]</label>
+          <label lang="cz">perioda [µs]</label>
+        </Text>
+        <Enum>0</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">frequency [Hz]</label>
+          <label lang="cz">frekvence [Hz]</label>
+        </Text>
+        <Enum>1</Enum>
+      </EnumInfo>
+    </DataType>
+
+<!-- MC datatypes -->
+
+<!-- MC cfg datatype -->
+<!-- IR-1062, IR-1982 -->
+    <DataType>
+      <Name>CFG_MC</Name>
+      <SubItems>
+        <SubItem>
+          <Name>Enabled</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Polarity</Name>
+          <Type>CFG_LVLMC</Type>
+        </SubItem>
+        <SubItem>
+          <Name>MinVelocity</Name>
+          <Type>UDINT</Type>
+        </SubItem>
+        <SubItem>
+          <Name>MaxVelocity</Name>
+          <Type>UDINT</Type>
+        </SubItem>
+        <SubItem>
+          <Name>MaxAcceleration</Name>
+          <Type>UDINT</Type>
+        </SubItem>
+        <SubItem>
+          <Name>MaxDeceleration</Name>
+          <Type>UDINT</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+ <!-- MC signal level datatype -->
+    <DataType>
+      <Name>CFG_LVLMC</Name>
+      <BaseType>USINT</BaseType>
+      <EnumInfo>
+        <Text>
+          <label lang="en">+ in level 0, - in level 1</label>
+          <label lang="cz">+ v úrovni log. 0, - v úrovni log. 1</label>
+        </Text>
+        <Enum>0</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>
+          <label lang="en">+ in level 1, - in level 0</label>
+          <label lang="cz">+ v úrovni log. 1, - v úrovni log. 0</label>
+        </Text>
+        <Enum>1</Enum>
+      </EnumInfo>
+    </DataType>
+
+
+  </DataTypes>
+</TecoDictionary>

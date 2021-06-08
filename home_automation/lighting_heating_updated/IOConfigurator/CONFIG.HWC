@@ -1,0 +1,705 @@
+;Warning
+;The file is automatically generated and all manual modifications will be lost.
+
+#struct _TCIBHeader_
+        UINT code,
+        WORD mode,
+        WORD fadr,
+        USINT ladr,
+        USINT ndev
+
+#struct _TCIBDevice
+        BYTE typdev,
+        BYTE bloko,
+        UINT leindev,
+        UINT leoutdev
+
+#struct TCIB_3360_init
+        _TCIBHeader_ Header,
+        _TCIBDevice[5] Dev,
+        BYTE ezsenb,
+        BYTE ezstype,
+        BYTE manDis,
+        USINT tPress,
+        BYTE ai1type,
+        BYTE ai2type,
+        BYTE ai3type,
+        USINT ai1tau,
+        USINT ai2tau,
+        USINT ai3tau
+
+#struct TCIB_3310_init
+        _TCIBHeader_ Header,
+        _TCIBDevice[5] Dev,
+        BYTE ai1type,
+        BYTE ai2type,
+        BYTE ai3type,
+        USINT ai1tau,
+        USINT ai2tau,
+        USINT ai3tau,
+        BYTE manDis
+
+#struct TCIBHeader
+        WORD code,
+        WORD mode,
+        WORD fadr,
+        BYTE ladr,
+        BYTE ndev
+
+#struct TCIBDevice
+        BYTE typdev,
+        BYTE bloko,
+        WORD leindev,
+        WORD leoutdev
+
+#struct TCIB_1140_init
+        TCIBHeader Header,
+        TCIBDevice dev1
+
+#struct TCIBDescLine
+        UINT hwCode,
+        STRING[18] descr
+
+#struct r0_p2_TCIBDesc
+        BYTE version,
+        USINT numStr,
+        USINT lenStr,
+        WORD tabType,
+        TCIBDescLine[2] lines
+
+#struct TCIBDestLine
+        UINT hwCode,
+        STRING[32] name
+
+#struct r0_p2_TCIBDest
+        BYTE version,
+        USINT numStr,
+        USINT lenStr,
+        WORD tabType,
+        TCIBDestLine[6] lines
+
+#struct r0_p2_TConvertIN
+        BYTE[1] ID0,
+        BYTE[4] ID1,
+        BYTE[4] ID2,
+        BYTE[4] ID3,
+        BYTE[5] ID4,
+        BYTE[5] ID5,
+        BYTE[5] ID6,
+        BYTE END
+
+#struct r0_p2_TConvertOUT
+        BYTE[1] ID1,
+        BYTE[1] ID2,
+        BYTE[1] ID3,
+        BYTE[3] ID4,
+        BYTE[3] ID5,
+        BYTE[3] ID6,
+        BYTE END
+
+#struct _TTS_CIBHead
+        WORD code,
+        WORD mode_,
+        USINT mode,
+        USINT adr,
+        USINT speed,
+        USINT timeOut,
+        USINT pause,
+        WORD desttable,
+        USINT param,
+        UINT lenmi,
+        UINT lenmo,
+        UDINT imodi,
+        UDINT imodo,
+        DWORD iin,
+        DWORD iout,
+        DWORD istat,
+        DWORD ierr,
+        WORD tabConvIN,
+        WORD tabConvOUT,
+        USINT nnt,
+        USINT nline
+
+#struct _TTS_LINE
+        BYTE mkom,
+        BYTE rez,
+        WORD tabini,
+        UINT lein,
+        UINT leout
+
+#struct _TTS_CIBINIT_CH
+        _TTS_CIBHead Head,
+        _TTS_LINE[33] Line
+
+#struct TModulE1
+        USINT version,
+        USINT rack,
+        USINT address,
+        UINT LogAddress,
+        UINT LenInputs,
+        UINT LenOutputs,
+        DINT OffsetInputs,
+        DINT OffsetOutputs,
+        UINT InitTable
+
+#struct r0_p3_TCIBDesc
+        BYTE version,
+        USINT numStr,
+        USINT lenStr,
+        WORD tabType
+
+#struct r0_p3_TCIBDest
+        BYTE version,
+        USINT numStr,
+        USINT lenStr,
+        WORD tabType
+
+#struct r0_p3_TConvertIN
+        BYTE[1] ID0,
+        BYTE END
+
+#struct r0_p3_TConvertOUT
+        BYTE END
+
+#struct _TTS_Head
+        UINT ModulID,
+        BYTE Stat0,
+        BYTE Stat1
+
+#struct _TTS_EnbCHAI
+        BYTE ESTAT,
+        BYTE EFS,
+        BYTE EENG,
+        BYTE EPCT
+
+#struct _TTS_IniCHAI
+        BYTE Mode,
+        USINT Filter,
+        REAL Offset,
+        REAL Gain
+
+#struct _TTS_IR1061
+        _TTS_Head Head,
+        USINT EDI,
+        USINT ESTPW,
+        _TTS_EnbCHAI[4] EAI,
+        USINT EUCIB1,
+        USINT EUCIB2,
+        USINT EUSRC,
+        USINT EUACU,
+        USINT EDO,
+        _TTS_IniCHAI[4] SetAI
+
+#struct _TTS_EnbCNTI
+        BYTE ESCNT,
+        BYTE ECNT,
+        BYTE ECNTB
+
+#struct _TTS_EnbCNTO
+        BYTE ECCNT,
+        BYTE ESET
+
+#struct _TTS_SPE4W
+        BOOL SPE0,
+        BOOL SPE1,
+        BOOL SPE2,
+        BOOL SPE3,
+        BOOL dummy4,
+        BOOL dummy5,
+        BOOL dummy6,
+        BOOL dummy7,
+        BOOL dummy8,
+        BOOL dummy9,
+        BOOL dummy10,
+        BOOL dummy11,
+        BOOL dummy12,
+        BOOL dummy13,
+        BOOL dummy14,
+        BOOL dummy15
+
+#struct _TTS_SPP4W
+        BOOL SPP0,
+        BOOL SPP1,
+        BOOL SPP2,
+        BOOL SPP3,
+        BOOL dummy4,
+        BOOL dummy5,
+        BOOL dummy6,
+        BOOL dummy7,
+        BOOL dummy8,
+        BOOL dummy9,
+        BOOL dummy10,
+        BOOL dummy11,
+        BOOL dummy12,
+        BOOL dummy13,
+        BOOL dummy14,
+        BOOL dummy15
+
+#struct T_CFGCNT
+        BOOL dummy0,
+        BOOL dummy1,
+        BOOL PNI,
+        BOOL PMD,
+        BOOL dummy4,
+        BOOL dummy5,
+        BOOL dummy6,
+        BOOL dummy7
+
+#struct _TTS_IniCNT
+        BYTE MODCNT,
+        T_CFGCNT CFGCNT
+
+#struct _TTS_IB1301
+        _TTS_Head Head,
+        USINT EDI0,
+        USINT EDI1,
+        USINT EDIP0,
+        USINT EDIP1,
+        _TTS_EnbCNTI[2] ECNTI,
+        _TTS_EnbCNTO[2] ECNTO,
+        _TTS_SPE4W SPE,
+        _TTS_SPP4W SPP,
+        _TTS_IniCNT[2] SetCNT
+
+#struct _TTS_OS1401
+        _TTS_Head Head,
+        USINT EDO0,
+        USINT EDO1
+
+#struct _TTS_UC1204_init
+        _TTS_Head Head,
+        BYTE EVARI,
+        BYTE EVARO,
+        BYTE MODE
+
+#struct _TTS_UNIINIT
+        UINT code,
+        UINT mode,
+        USINT chMod,
+        USINT adr,
+        USINT speed,
+        USINT tor,
+        USINT tot,
+        USINT[3] rez1,
+        WORD sysMap,
+        USINT[10] rez2,
+        UINT lendi,
+        UINT lendo,
+        UDINT idati,
+        UDINT idato,
+        USINT lnc,
+        USINT msc,
+        USINT opd,
+        USINT opm,
+        USINT prot,
+        USINT sdl,
+        USINT edl,
+        USINT edh,
+        USINT acl,
+        USINT ach,
+        UINT pad,
+        UINT pas,
+        UINT chs,
+        UINT plm,
+        UINT mlm
+
+;C-IR-0303M
+#table TCIB_3360_init r8_p0_C_IR_0303M_init = 3360,$0000,$9FD9,0,5,
+                                              $83,$00,16,3,
+                                              $80,$00,8,0,
+                                              $80,$00,16,0,
+                                              $80,$00,16,0,
+                                              $80,$00,16,0,
+                                              $00,
+                                              $00,
+                                              $00,
+                                              70,
+                                              $22,
+                                              $22,
+                                              $22,
+                                              0,
+                                              0,
+                                              0
+
+;C-IR-0303M
+#table TCIB_3360_init r8_p1_C_IR_0303M_init = 3360,$0000,$9FDA,1,5,
+                                              $83,$00,16,3,
+                                              $80,$00,8,0,
+                                              $80,$00,16,0,
+                                              $80,$00,16,0,
+                                              $80,$00,16,0,
+                                              $00,
+                                              $00,
+                                              $00,
+                                              70,
+                                              $22,
+                                              $22,
+                                              $22,
+                                              0,
+                                              0,
+                                              0
+
+;C-IR-0303M
+#table TCIB_3360_init r8_p2_C_IR_0303M_init = 3360,$0000,$9FDC,2,5,
+                                              $83,$00,16,3,
+                                              $80,$00,8,0,
+                                              $00,$00,16,0,
+                                              $00,$00,16,0,
+                                              $00,$00,16,0,
+                                              $00,
+                                              $00,
+                                              $00,
+                                              70,
+                                              $22,
+                                              $22,
+                                              $22,
+                                              0,
+                                              0,
+                                              0
+
+;C-HM-1113M - Initialization table of C-HM-1113M unit
+#table TCIB_3310_init r8_p3_C_HM_1113M_init = 3310,$0000,$F62C,3,5,
+                                              $80,$00,8,0,
+                                              $80,$00,48,0,
+                                              $81,$00,0,16,
+                                              $80,$00,8,0,
+                                              $81,$00,0,11,
+                                              $22,
+                                              $22,
+                                              $22,
+                                              0,
+                                              0,
+                                              0,
+                                              $00
+
+;C-HM-1113M - Initialization table of C-HM-1113M unit
+#table TCIB_3310_init r8_p4_C_HM_1113M_init = 3310,$0000,$F62D,4,5,
+                                              $80,$00,8,0,
+                                              $80,$00,48,0,
+                                              $81,$00,0,16,
+                                              $80,$00,8,0,
+                                              $81,$00,0,11,
+                                              $22,
+                                              $22,
+                                              $22,
+                                              0,
+                                              0,
+                                              0,
+                                              $00
+
+;C-HM-1113M - Initialization table of C-HM-1113M unit
+#table TCIB_3310_init r8_p5_C_HM_1113M_init = 3310,$0000,$F62E,5,5,
+                                              $80,$00,8,0,
+                                              $80,$00,48,0,
+                                              $81,$00,0,16,
+                                              $80,$00,8,0,
+                                              $81,$00,0,11,
+                                              $22,
+                                              $22,
+                                              $22,
+                                              0,
+                                              0,
+                                              0,
+                                              $00
+
+;CF-1140 - Initialization table of CP-1140 unit
+#table TCIB_1140_init r0_p2_CF_1140_init = $0C38,$0000,$0000,$00,$01,
+                                           $80,$00,$0010,$0000
+
+;CF-1140
+#table r0_p2_TCIBDesc r0_p2_Desc = $02,
+                                   2,
+                                   18,
+                                   $FFFF,
+                                   3360,'C-IR-0303M',0,0,0,0,0,0,0,0,
+                                   3310,'C-HM-1113M',0,0,0,0,0,0,0,0
+
+;CF-1140
+#table r0_p2_TCIBDest r0_p2_Dest = $02,
+                                   6,
+                                   32,
+                                   __indx(r0_p2_Desc),
+                                   3360,'C-IR-0303M-9FD9',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                                   3360,'C-IR-0303M-9FDA',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                                   3360,'C-IR-0303M-9FDC',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                                   3310,'C-HM-1113M-F62C',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                                   3310,'C-HM-1113M-F62D',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                                   3310,'C-HM-1113M-F62E',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+
+;CF-1140
+#table r0_p2_TConvertIN r0_p2_Convert_IN = $94, ;Master
+                                           $03,$93,$93,$93, ;p0, 9FD9, C-IR-0303M
+                                           $03,$93,$93,$93, ;p1, 9FDA, C-IR-0303M
+                                           $03,$44,$44,$44, ;p2, 9FDC, C-IR-0303M
+                                           $01,$93,$93,$93,$01, ;p3, F62C, C-HM-1113M
+                                           $01,$93,$93,$93,$01, ;p4, F62D, C-HM-1113M
+                                           $01,$93,$93,$93,$01, ;p5, F62E, C-HM-1113M
+                                           $00
+
+;CF-1140
+#table r0_p2_TConvertOUT r0_p2_Convert_OUT = $01, ;p0, 9FD9, C-IR-0303M
+                                             $01, ;p1, 9FDA, C-IR-0303M
+                                             $01, ;p2, 9FDC, C-IR-0303M
+                                             $C2,$C2,$02, ;p3, F62C, C-HM-1113M
+                                             $C2,$C2,$02, ;p4, F62D, C-HM-1113M
+                                             $C2,$C2,$02, ;p5, F62E, C-HM-1113M
+                                             $00
+
+;CF-1140
+#table _TTS_CIBINIT_CH r0_p2_Table = $00C9,$0000,9,63,12,0,0,__indx(r0_p2_Dest),0,0,0,0,0,__offset32(r0_p2_CIB_IN),__offset32(r0_p2_CIB_OUT),__offset32(r0_p2_CIB_Stat),__offset32(r0_p2_CIB_Err),__indx(r0_p2_Convert_IN),__indx(r0_p2_Convert_OUT),7,33,
+                                     $C0,$00,__indx(r0_p2_CF_1140_init),2,0,
+                                     $80,$00,__indx(r8_p0_C_IR_0303M_init),9,1,
+                                     $80,$00,__indx(r8_p1_C_IR_0303M_init),9,1,
+                                     $80,$00,__indx(r8_p2_C_IR_0303M_init),3,1,
+                                     $80,$00,__indx(r8_p3_C_HM_1113M_init),8,4,
+                                     $80,$00,__indx(r8_p4_C_HM_1113M_init),8,4,
+                                     $80,$00,__indx(r8_p5_C_HM_1113M_init),8,4,
+                                     $00,$00,$0000,0,0,
+                                     $00,$00,$0000,0,0,
+                                     $00,$00,$0000,0,0,
+                                     $00,$00,$0000,0,0,
+                                     $00,$00,$0000,0,0,
+                                     $00,$00,$0000,0,0,
+                                     $00,$00,$0000,0,0,
+                                     $00,$00,$0000,0,0,
+                                     $00,$00,$0000,0,0,
+                                     $00,$00,$0000,0,0,
+                                     $00,$00,$0000,0,0,
+                                     $00,$00,$0000,0,0,
+                                     $00,$00,$0000,0,0,
+                                     $00,$00,$0000,0,0,
+                                     $00,$00,$0000,0,0,
+                                     $00,$00,$0000,0,0,
+                                     $00,$00,$0000,0,0,
+                                     $00,$00,$0000,0,0,
+                                     $00,$00,$0000,0,0,
+                                     $00,$00,$0000,0,0,
+                                     $00,$00,$0000,0,0,
+                                     $00,$00,$0000,0,0,
+                                     $00,$00,$0000,0,0,
+                                     $00,$00,$0000,0,0,
+                                     $00,$00,$0000,0,0,
+                                     $00,$00,$0000,0,0
+
+;CF-1140 - Initialization table of CP-1140 unit
+#table TCIB_1140_init r0_p3_CF_1140_init = $0C38,$0000,$0000,$00,$01,
+                                           $80,$00,$0010,$0000
+
+;CF-1140
+#table r0_p3_TCIBDesc r0_p3_Desc = $02,
+                                   0,
+                                   18,
+                                   $FFFF
+
+;CF-1140
+#table r0_p3_TCIBDest r0_p3_Dest = $02,
+                                   0,
+                                   32,
+                                   __indx(r0_p3_Desc)
+
+;CF-1140
+#table r0_p3_TConvertIN r0_p3_Convert_IN = $94, ;Master
+                                           $00
+
+;CF-1140
+#table r0_p3_TConvertOUT r0_p3_Convert_OUT = $00
+
+;CF-1140
+#table _TTS_CIBINIT_CH r0_p3_Table = $00C9,$0000,9,63,12,0,0,__indx(r0_p3_Dest),0,0,0,0,0,__offset32(r0_p3_CIB_IN),__offset32(r0_p3_CIB_OUT),__offset32(r0_p3_CIB_Stat),__offset32(r0_p3_CIB_Err),__indx(r0_p3_Convert_IN),__indx(r0_p3_Convert_OUT),1,33,
+                                     $C0,$00,__indx(r0_p3_CF_1140_init),2,0,
+                                     $00,$00,$0000,0,0,
+                                     $00,$00,$0000,0,0,
+                                     $00,$00,$0000,0,0,
+                                     $00,$00,$0000,0,0,
+                                     $00,$00,$0000,0,0,
+                                     $00,$00,$0000,0,0,
+                                     $00,$00,$0000,0,0,
+                                     $00,$00,$0000,0,0,
+                                     $00,$00,$0000,0,0,
+                                     $00,$00,$0000,0,0,
+                                     $00,$00,$0000,0,0,
+                                     $00,$00,$0000,0,0,
+                                     $00,$00,$0000,0,0,
+                                     $00,$00,$0000,0,0,
+                                     $00,$00,$0000,0,0,
+                                     $00,$00,$0000,0,0,
+                                     $00,$00,$0000,0,0,
+                                     $00,$00,$0000,0,0,
+                                     $00,$00,$0000,0,0,
+                                     $00,$00,$0000,0,0,
+                                     $00,$00,$0000,0,0,
+                                     $00,$00,$0000,0,0,
+                                     $00,$00,$0000,0,0,
+                                     $00,$00,$0000,0,0,
+                                     $00,$00,$0000,0,0,
+                                     $00,$00,$0000,0,0,
+                                     $00,$00,$0000,0,0,
+                                     $00,$00,$0000,0,0,
+                                     $00,$00,$0000,0,0,
+                                     $00,$00,$0000,0,0,
+                                     $00,$00,$0000,0,0,
+                                     $00,$00,$0000,0,0
+
+;IR-1061 - Initialization table of IR-1061 device
+#table _TTS_IR1061 r0_p5_Table = 1061,$00,$00,
+                                 128,
+                                 128,
+                                 $80,$00,$80,$00,
+                                 $00,$00,$00,$00,
+                                 $00,$00,$00,$00,
+                                 $00,$00,$00,$00,
+                                 128,
+                                 128,
+                                 128,
+                                 128,
+                                 128,
+                                 $22,10,0,1,
+                                 $2C,0,0,1,
+                                 $2C,0,0,1,
+                                 $2C,0,0,1
+
+;IB-1301 - Initialization table of IB-1301 module
+#table _TTS_IB1301 r1_p0_Table = 1301,$00,$00,
+                                 128,
+                                 128,
+                                 0,
+                                 0,
+                                 $00,$00,$00,
+                                 $00,$00,$00,
+                                 $00,$00,
+                                 $00,$00,
+                                 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                                 1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,
+                                 $00,0,0,1,1,0,0,0,0,
+                                 $00,0,0,0,0,0,0,0,0
+
+;OS-1401 - Initialization table of OS-1401 module
+#table _TTS_OS1401 r1_p1_Table = 1401,$00,$00,
+                                 128,
+                                 128
+
+;OS-1401 - Initialization table of OS-1401 module
+#table _TTS_OS1401 r1_p2_Table = 1401,$00,$00,
+                                 128,
+                                 128
+
+;UC-1204
+#table _TTS_UC1204_init r1_p9_Table = 1204,$00,$00,
+                                      $80,
+                                      $80,
+                                      $01
+
+;CH2 - Initialization table of UNI channel mode
+#table _TTS_UNIINIT r0_p0_Table_UNI_CH2 = 197,
+                                          2,
+                                          5,
+                                          0,
+                                          14,
+                                          4,
+                                          4,
+                                          0,
+                                          0,
+                                          0,
+                                          $0000,
+                                          0,
+                                          0,
+                                          0,
+                                          0,
+                                          0,
+                                          0,
+                                          0,
+                                          0,
+                                          0,
+                                          0,
+                                          254,
+                                          254,
+                                          __offset32(r0_p0_UNI_CH2_IN),
+                                          __offset32(r0_p0_UNI_CH2_OUT),
+                                          24,
+                                          128,
+                                          0,
+                                          0,
+                                          0,
+                                          0,
+                                          0,
+                                          0,
+                                          0,
+                                          0,
+                                          0,
+                                          0,
+                                          0,
+                                          0,
+                                          0
+
+;CH1 - Initialization table of UNI channel mode
+#table _TTS_UNIINIT r0_p0_Table_UNI_CH1 = 197,
+                                          2,
+                                          5,
+                                          0,
+                                          10,
+                                          4,
+                                          4,
+                                          0,
+                                          0,
+                                          0,
+                                          $0000,
+                                          0,
+                                          0,
+                                          0,
+                                          0,
+                                          0,
+                                          0,
+                                          0,
+                                          0,
+                                          0,
+                                          0,
+                                          254,
+                                          54,
+                                          __offset32(r0_p0_UNI_CH1_IN),
+                                          __offset32(r0_p0_UNI_CH1_OUT),
+                                          0,
+                                          128,
+                                          0,
+                                          0,
+                                          0,
+                                          0,
+                                          0,
+                                          0,
+                                          0,
+                                          0,
+                                          0,
+                                          0,
+                                          0,
+                                          0,
+                                          0
+
+;CF-1140
+#module TModulE1 $01,0,2,272,10,2,__offset(r0_p2_CIB_Statistic),__offset(r0_p2_CIB_Control),__indx(r0_p2_Table)
+
+;CF-1140
+#module TModulE1 $01,0,3,272,10,2,__offset(r0_p3_CIB_Statistic),__offset(r0_p3_CIB_Control),__indx(r0_p3_Table)
+
+;IR-1061 - IR-1061 device declaration
+#module TModulE1 $01,0,5,0,66,1,__offset(r0_p5_DI),__offset(r0_p5_DO),__indx(r0_p5_Table)
+
+;IB-1301 - IB-1301 module declaration
+#module TModulE1 $01,1,0,0,24,12,__offset(r1_p0_IN),__offset(r1_p0_OUT),__indx(r1_p0_Table)
+
+;OS-1401 - OS-1401 module declaration
+#module TModulE1 $01,1,1,0,0,2,0,__offset(r1_p1_OUT),__indx(r1_p1_Table)
+
+;OS-1401 - OS-1401 module declaration
+#module TModulE1 $01,1,2,0,0,2,0,__offset(r1_p2_OUT),__indx(r1_p2_Table)
+
+;UC-1204 - UC-1204 device declaration
+#module TModulE1 $01,1,9,0,6,6,__offset(r1_p9_IN),__offset(r1_p9_OUT),__indx(r1_p9_Table)
+
+;CH2 - UNI_SC declaration
+#module TModulE1 $01,0,0,$0102,__sizeof(r0_p0_Statistic_CH2),__sizeof(r0_p0_Control_CH2),__offset(r0_p0_Statistic_CH2),__offset(r0_p0_Control_CH2),__indx(r0_p0_Table_UNI_CH2)
+
+;CH1 - UNI_SC declaration
+#module TModulE1 $01,0,0,$0101,__sizeof(r0_p0_Statistic_CH1),__sizeof(r0_p0_Control_CH1),__offset(r0_p0_Statistic_CH1),__offset(r0_p0_Control_CH1),__indx(r0_p0_Table_UNI_CH1)
+
+;*******************************************************************************
+;Generated by Mosaic
+;© 2001-2021 Teco a.s.

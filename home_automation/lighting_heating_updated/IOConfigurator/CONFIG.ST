@@ -1,0 +1,651 @@
+(* Warning *)
+(* The file is automatically generated and all manual modifications will be lost. *)
+
+VAR_GLOBAL CONSTANT
+   CPU_TYPE : USINT := 75; (* CPU type *)
+   CPU_CODE : UINT := 1000; (* CPU code *)
+END_VAR
+
+TYPE
+
+   TCHStatistic : STRUCT
+      STAT : USINT;
+      ERR : USINT;
+      trueMes : UDINT;
+      falseMes : UDINT;
+   END_STRUCT;
+
+   TCIB_STAT_ARRAY : ARRAY[0..31] OF BYTE;
+
+   TCIB_CIR0303M_DI : STRUCT
+      DI1 : BOOL;
+      DI2 : BOOL;
+      DI3 : BOOL;
+      dummy3 {HIDDEN} : BOOL;
+      CLICK1 : BOOL;
+      CLICK2 : BOOL;
+      CLICK3 : BOOL;
+      dummy7 {HIDDEN} : BOOL;
+      PRESS1 : BOOL;
+      PRESS2 : BOOL;
+      PRESS3 : BOOL;
+      dummy11 {HIDDEN} : BOOL;
+      TAMPER1 : BOOL;
+      TAMPER2 : BOOL;
+      TAMPER3 : BOOL;
+      dummy15 {HIDDEN} : BOOL;
+   END_STRUCT;
+
+   TCIB_CIR0303M_STAT : STRUCT
+      OUF1 : BOOL;
+      VLD1 : BOOL;
+      OUF2 : BOOL;
+      VLD2 : BOOL;
+      OUF3 : BOOL;
+      VLD3 : BOOL;
+      MAN : BOOL;
+      dummy7 {HIDDEN} : BOOL;
+   END_STRUCT;
+
+   TCIB_C_IR_0303M_IN : STRUCT
+      DI : TCIB_CIR0303M_DI;
+      STAT : TCIB_CIR0303M_STAT;
+      AI1 : REAL;
+      AI2 : REAL;
+      AI3 : REAL;
+   END_STRUCT;
+
+   TCIB_CHM0308_STAT : STRUCT
+      OUF1 : BOOL;
+      VLD1 : BOOL;
+      OUF2 : BOOL;
+      VLD2 : BOOL;
+      OUF3 : BOOL;
+      VLD3 : BOOL;
+      ManMode : BOOL;
+      PowerErr : BOOL;
+   END_STRUCT;
+
+   TCIB_AI3 : STRUCT
+      AI1 : REAL;
+      AI2 : REAL;
+      AI3 : REAL;
+   END_STRUCT;
+
+   TCIB_DI8 : STRUCT
+      DI1 : BOOL;
+      DI2 : BOOL;
+      DI3 : BOOL;
+      DI4 : BOOL;
+      DI5 : BOOL;
+      DI6 : BOOL;
+      DI7 : BOOL;
+      DI8 : BOOL;
+   END_STRUCT;
+
+   TCIB_C_HM_1113M_IN : STRUCT
+      STAT : TCIB_CHM0308_STAT;
+      AI : TCIB_AI3;
+      DI : TCIB_DI8;
+   END_STRUCT;
+
+   r0_p2_TCIB_IN : STRUCT
+      intgr : REAL;
+      r8_p0_IN {HIDDEN} : TCIB_C_IR_0303M_IN;
+      r8_p1_IN {HIDDEN} : TCIB_C_IR_0303M_IN;
+      r8_p2_IN {HIDDEN} : TCIB_C_IR_0303M_IN;
+      r8_p3_IN {HIDDEN} : TCIB_C_HM_1113M_IN;
+      r8_p4_IN {HIDDEN} : TCIB_C_HM_1113M_IN;
+      r8_p5_IN {HIDDEN} : TCIB_C_HM_1113M_IN;
+   END_STRUCT;
+
+   TCHControl : STRUCT
+      CONTROL : UINT;
+   END_STRUCT;
+
+   TCIB_DO3 : STRUCT
+      DO1 : BOOL;
+      DO2 : BOOL;
+      DO3 : BOOL;
+      dummy3 {HIDDEN} : BOOL;
+      dummy4 {HIDDEN} : BOOL;
+      dummy5 {HIDDEN} : BOOL;
+      dummy6 {HIDDEN} : BOOL;
+      dummy7 {HIDDEN} : BOOL;
+   END_STRUCT;
+
+   TCIB_C_IR_0303M_OUT : STRUCT
+      DOs : TCIB_DO3;
+   END_STRUCT;
+
+   TCIB_AO2 : STRUCT
+      AO1 : REAL;
+      AO2 : REAL;
+   END_STRUCT;
+
+   TCIB_DO11 : STRUCT
+      DO1 : BOOL;
+      DO2 : BOOL;
+      DO3 : BOOL;
+      DO4 : BOOL;
+      DO5 : BOOL;
+      DO6 : BOOL;
+      DO7 : BOOL;
+      DO8 : BOOL;
+      DO9 : BOOL;
+      DO10 : BOOL;
+      DO11 : BOOL;
+      dummy11 {HIDDEN} : BOOL;
+      dummy12 {HIDDEN} : BOOL;
+      dummy13 {HIDDEN} : BOOL;
+      dummy14 {HIDDEN} : BOOL;
+      dummy15 {HIDDEN} : BOOL;
+   END_STRUCT;
+
+   TCIB_C_HM_1113M_OUT : STRUCT
+      AO : TCIB_AO2;
+      DOs : TCIB_DO11;
+   END_STRUCT;
+
+   r0_p2_TCIB_OUT : STRUCT
+      r8_p0_OUT {HIDDEN} : TCIB_C_IR_0303M_OUT;
+      r8_p1_OUT {HIDDEN} : TCIB_C_IR_0303M_OUT;
+      r8_p2_OUT {HIDDEN} : TCIB_C_IR_0303M_OUT;
+      r8_p3_OUT {HIDDEN} : TCIB_C_HM_1113M_OUT;
+      r8_p4_OUT {HIDDEN} : TCIB_C_HM_1113M_OUT;
+      r8_p5_OUT {HIDDEN} : TCIB_C_HM_1113M_OUT;
+   END_STRUCT;
+
+   r0_p3_TCIB_IN : STRUCT
+      intgr : REAL;
+   END_STRUCT;
+
+   r0_p3_TCIB_OUT : STRUCT
+      NoData : USINT;
+   END_STRUCT;
+
+   TBIN_6DIM : STRUCT
+      DI0 : BOOL;
+      DI1 : BOOL;
+      DI2 : BOOL;
+      DI3 : BOOL;
+      IN230 : BOOL;
+      HDO : BOOL;
+      dummy6 {HIDDEN} : BOOL;
+      dummy7 {HIDDEN} : BOOL;
+   END_STRUCT;
+
+   TSTPW : STRUCT
+      WCIB1 : BOOL;
+      ECIB1 : BOOL;
+      WCIB2 : BOOL;
+      ECIB2 : BOOL;
+      WSRC : BOOL;
+      ESRC : BOOL;
+      WACU : BOOL;
+      EACU : BOOL;
+   END_STRUCT;
+
+   TAIStat : STRUCT
+      UNF : BOOL;
+      UNR : BOOL;
+      OVR : BOOL;
+      OVF : BOOL;
+      FLS : BOOL;
+      CJC : BOOL;
+      dummy6 {HIDDEN} : BOOL;
+      dummy7 {HIDDEN} : BOOL;
+      CHC : BOOL;
+      dummy9 {HIDDEN} : BOOL;
+      dummy10 {HIDDEN} : BOOL;
+      dummy11 {HIDDEN} : BOOL;
+      dummy12 {HIDDEN} : BOOL;
+      dummy13 {HIDDEN} : BOOL;
+      dummy14 {HIDDEN} : BOOL;
+      dummy15 {HIDDEN} : BOOL;
+   END_STRUCT;
+
+   TAI : STRUCT
+      STAT : TAIStat;
+      FS : INT;
+      ENG : REAL;
+      PCT : REAL;
+   END_STRUCT;
+
+   TAIPW : STRUCT
+      UCIB1 : REAL;
+      UCIB2 : REAL;
+      USRC : REAL;
+      UACU : REAL;
+   END_STRUCT;
+
+   TBIN_2DO : STRUCT
+      DO0 : BOOL;
+      DO1 : BOOL;
+      dummy2 {HIDDEN} : BOOL;
+      dummy3 {HIDDEN} : BOOL;
+      dummy4 {HIDDEN} : BOOL;
+      dummy5 {HIDDEN} : BOOL;
+      dummy6 {HIDDEN} : BOOL;
+      dummy7 {HIDDEN} : BOOL;
+   END_STRUCT;
+
+   TBIN_12DI : STRUCT
+      DI0 : BOOL;
+      DI1 : BOOL;
+      DI2 : BOOL;
+      DI3 : BOOL;
+      DI4 : BOOL;
+      DI5 : BOOL;
+      DI6 : BOOL;
+      DI7 : BOOL;
+      DI8 : BOOL;
+      DI9 : BOOL;
+      DI10 : BOOL;
+      DI11 : BOOL;
+      dummy12 {HIDDEN} : BOOL;
+      dummy13 {HIDDEN} : BOOL;
+      dummy14 {HIDDEN} : BOOL;
+      dummy15 {HIDDEN} : BOOL;
+   END_STRUCT;
+
+   TBIN_4DIPW : STRUCT
+      DIP0 : BOOL;
+      DIP1 : BOOL;
+      DIP2 : BOOL;
+      DIP3 : BOOL;
+      dummy4 {HIDDEN} : BOOL;
+      dummy5 {HIDDEN} : BOOL;
+      dummy6 {HIDDEN} : BOOL;
+      dummy7 {HIDDEN} : BOOL;
+      dummy8 {HIDDEN} : BOOL;
+      dummy9 {HIDDEN} : BOOL;
+      dummy10 {HIDDEN} : BOOL;
+      dummy11 {HIDDEN} : BOOL;
+      dummy12 {HIDDEN} : BOOL;
+      dummy13 {HIDDEN} : BOOL;
+      dummy14 {HIDDEN} : BOOL;
+      dummy15 {HIDDEN} : BOOL;
+   END_STRUCT;
+
+   TCNTF_IN : STRUCT
+      SCNT : UINT;
+      VALA : UDINT;
+      VALB : UDINT;
+   END_STRUCT;
+
+   DT_IB1301_IN : STRUCT
+      DIS : TBIN_12DI;
+      DIP : TBIN_4DIPW;
+      CNT_IN1 : TCNTF_IN;
+      CNT_IN2 : TCNTF_IN;
+   END_STRUCT;
+
+   TCNTF_OUT : STRUCT
+      CCNT : UINT;
+      SET : UDINT;
+   END_STRUCT;
+
+   DT_IB1301_OUT : STRUCT
+      CNT_OUT1 : TCNTF_OUT;
+      CNT_OUT2 : TCNTF_OUT;
+   END_STRUCT;
+
+   TBIN_12DO : STRUCT
+      DO0 : BOOL;
+      DO1 : BOOL;
+      DO2 : BOOL;
+      DO3 : BOOL;
+      DO4 : BOOL;
+      DO5 : BOOL;
+      DO6 : BOOL;
+      DO7 : BOOL;
+      DO8 : BOOL;
+      DO9 : BOOL;
+      DO10 : BOOL;
+      DO11 : BOOL;
+      dummy12 {HIDDEN} : BOOL;
+      dummy13 {HIDDEN} : BOOL;
+      dummy14 {HIDDEN} : BOOL;
+      dummy15 {HIDDEN} : BOOL;
+   END_STRUCT;
+
+   DT_OS1401_OUT : STRUCT
+      DOS : TBIN_12DO;
+   END_STRUCT;
+
+   TUC1204_Stat : STRUCT
+      dummy0 {HIDDEN} : BOOL;
+      dummy1 {HIDDEN} : BOOL;
+      dummy2 {HIDDEN} : BOOL;
+      dummy3 {HIDDEN} : BOOL;
+      dummy4 {HIDDEN} : BOOL;
+      LITE : BOOL;
+      COMERR : BOOL;
+      ACN : BOOL;
+   END_STRUCT;
+
+   TUC1204_IN : STRUCT
+      STAT : TUC1204_Stat;
+      MSG_TYPE : USINT;
+      SPARE {HIDDEN} : USINT;
+      DATA_ID : USINT;
+      DATA_VAL : UINT;
+   END_STRUCT;
+
+   TUC1204_Cont : STRUCT
+      dummy0 {HIDDEN} : BOOL;
+      dummy1 {HIDDEN} : BOOL;
+      dummy2 {HIDDEN} : BOOL;
+      dummy3 {HIDDEN} : BOOL;
+      dummy4 {HIDDEN} : BOOL;
+      dummy5 {HIDDEN} : BOOL;
+      dummy6 {HIDDEN} : BOOL;
+      ACN : BOOL;
+   END_STRUCT;
+
+   TUC1204_OUT : STRUCT
+      CONT : TUC1204_Cont;
+      MSG_TYPE : USINT;
+      SPARE {HIDDEN} : USINT;
+      DATA_ID : USINT;
+      DATA_VAL : UINT;
+   END_STRUCT;
+
+   TUniStat : STRUCT
+      DSR : BOOL;
+      CTS : BOOL;
+      dummy2 {HIDDEN} : BOOL;
+      TRO : BOOL;
+      RCF : BOOL;
+      ROV : BOOL;
+      TRF : BOOL;
+      ARC : BOOL;
+   END_STRUCT;
+
+   TZONE_ARRAY_CH2_RX : ARRAY[0..249] OF USINT;
+
+   TUNI_CH2_IN : STRUCT
+      STAT : TUniStat;
+      ERR : USINT;
+      NUMR : UINT;
+      DATA : TZONE_ARRAY_CH2_RX;
+   END_STRUCT;
+
+   TUniCont : STRUCT
+      dummy0 {HIDDEN} : BOOL;
+      dummy1 {HIDDEN} : BOOL;
+      dummy2 {HIDDEN} : BOOL;
+      dummy3 {HIDDEN} : BOOL;
+      dummy4 {HIDDEN} : BOOL;
+      TRG : BOOL;
+      CLR : BOOL;
+      ACN : BOOL;
+   END_STRUCT;
+
+   TUniSign : STRUCT
+      DTR : BOOL;
+      RTS : BOOL;
+      dummy2 {HIDDEN} : BOOL;
+      dummy3 {HIDDEN} : BOOL;
+      dummy4 {HIDDEN} : BOOL;
+      dummy5 {HIDDEN} : BOOL;
+      dummy6 {HIDDEN} : BOOL;
+      dummy7 {HIDDEN} : BOOL;
+   END_STRUCT;
+
+   TZONE_ARRAY_CH2_TX : ARRAY[0..249] OF USINT;
+
+   TUNI_CH2_OUT : STRUCT
+      CONT : TUniCont;
+      SIGN : TUniSign;
+      NUMT : UINT;
+      DATA : TZONE_ARRAY_CH2_TX;
+   END_STRUCT;
+
+   TZONE_ARRAY_CH1_RX : ARRAY[0..249] OF USINT;
+
+   TUNI_CH1_IN : STRUCT
+      STAT : TUniStat;
+      ERR : USINT;
+      NUMR : UINT;
+      DATA : TZONE_ARRAY_CH1_RX;
+   END_STRUCT;
+
+   TZONE_ARRAY_CH1_TX : ARRAY[0..49] OF USINT;
+
+   TUNI_CH1_OUT : STRUCT
+      CONT : TUniCont;
+      SIGN : TUniSign;
+      NUMT : UINT;
+      DATA : TZONE_ARRAY_CH1_TX;
+   END_STRUCT;
+
+END_TYPE
+
+VAR_GLOBAL_INPUT
+(* CF-1140 *)
+   r0_p2_CIB_Statistic : TCHStatistic;
+   r0_p2_CIB_STAT : TCIB_STAT_ARRAY;
+   r0_p2_CIB_ERR : TCIB_STAT_ARRAY;
+   r0_p2_CIB_IN : r0_p2_TCIB_IN;
+   (* Aliases *)
+   INE_STAT_MI_CIB1 AT r0_p2_CIB_STAT;
+   INE_ERR_MI_CIB1 AT r0_p2_CIB_ERR;
+(* C-IR-0303M *)
+   r8_p0_IN AT r0_p2_CIB_IN.r8_p0_IN : TCIB_C_IR_0303M_IN;
+(* C-IR-0303M *)
+   r8_p1_IN AT r0_p2_CIB_IN.r8_p1_IN : TCIB_C_IR_0303M_IN;
+(* C-IR-0303M *)
+   r8_p2_IN AT r0_p2_CIB_IN.r8_p2_IN : TCIB_C_IR_0303M_IN;
+(* C-HM-1113M *)
+   r8_p3_IN AT r0_p2_CIB_IN.r8_p3_IN : TCIB_C_HM_1113M_IN;
+(* C-HM-1113M *)
+   r8_p4_IN AT r0_p2_CIB_IN.r8_p4_IN : TCIB_C_HM_1113M_IN;
+(* C-HM-1113M *)
+   r8_p5_IN AT r0_p2_CIB_IN.r8_p5_IN : TCIB_C_HM_1113M_IN;
+(* CF-1140 *)
+   r0_p3_CIB_Statistic : TCHStatistic;
+   r0_p3_CIB_STAT : TCIB_STAT_ARRAY;
+   r0_p3_CIB_ERR : TCIB_STAT_ARRAY;
+   r0_p3_CIB_IN : r0_p3_TCIB_IN;
+   (* Aliases *)
+   INE_STAT_MI_CIB2 AT r0_p3_CIB_STAT;
+   INE_ERR_MI_CIB2 AT r0_p3_CIB_ERR;
+(* IR-1061 *)
+   r0_p5_DI : TBIN_6DIM;
+   r0_p5_STPW : TSTPW;
+   r0_p5_AI0 : TAI;
+   r0_p5_AI1 : TAI;
+   r0_p5_AI2 : TAI;
+   r0_p5_AI3 : TAI;
+   r0_p5_AIPW : TAIPW := (UCIB1 := 1, UCIB2 := 1, USRC := 1, UACU := 1);
+   (* Aliases *)
+   EXTERNAL_TEMPERATURE AT r0_p5_AI0.ENG;
+(* IB-1301 *)
+   r1_p0_IN : DT_IB1301_IN;
+   (* Aliases *)
+   GARAGE_LIGHTS_IN AT r1_p0_IN.DIS.DI11;
+   HALL_LIGHTS_IN AT r1_p0_IN.DIS.DI10;
+   OUTDOOR_LIGHTS_IN AT r1_p0_IN.DIS.DI9;
+   UPSTAIRS_BATH_SHOWER_LIGHTS_IN AT r1_p0_IN.DIS.DI8;
+   UPSTAIRS_WC_VIALGITAS_IN AT r1_p0_IN.DIS.DI7;
+   UPSTAIRS_BATH_MIRROR_LIGHTS_IN AT r1_p0_IN.DIS.DI6;
+   UPSTAIRS_BATH_MAJOR_LIGHTS_IN AT r1_p0_IN.DIS.DI5;
+   EXHAUST_FAN_IN AT r1_p0_IN.DIS.DI4;
+   KERINTGETES_SWITCH_IN AT r1_p0_IN.DIS.DI3;
+   DOWNSTAIRS_BATH_SHOWER_LIGHTS_IN AT r1_p0_IN.DIS.DI2;
+   DOWNSTAIRS_BATH_MAJOR_LIGHTS_IN AT r1_p0_IN.DIS.DI1;
+   FLOW_SWITCH_IN AT r1_p0_IN.DIS.DI0;
+(* UC-1204 *)
+   r1_p9_IN : TUC1204_IN;
+   (* Aliases *)
+   OPENTHERM_IN AT r1_p9_IN;
+   READ_MSG_FEEDBACK AT r1_p9_IN.MSG_TYPE;
+(* CH2 *)
+   r0_p0_Statistic_CH2 : TCHStatistic;
+   r0_p0_UNI_CH2_IN : TUNI_CH2_IN;
+   (* Aliases *)
+   CH2_ZoneIN AT r0_p0_UNI_CH2_IN.DATA;
+(* CH1 *)
+   r0_p0_Statistic_CH1 : TCHStatistic;
+   r0_p0_UNI_CH1_IN : TUNI_CH1_IN;
+   (* Aliases *)
+   CH1_ZoneIN AT r0_p0_UNI_CH1_IN.DATA;
+END_VAR
+
+VAR_GLOBAL_OUTPUT
+(* CF-1140 *)
+   r0_p2_CIB_Control : TCHControl;
+   r0_p2_CIB_OUT : r0_p2_TCIB_OUT;
+(* C-IR-0303M *)
+   r8_p0_OUT AT r0_p2_CIB_OUT.r8_p0_OUT : TCIB_C_IR_0303M_OUT;
+(* C-IR-0303M *)
+   r8_p1_OUT AT r0_p2_CIB_OUT.r8_p1_OUT : TCIB_C_IR_0303M_OUT;
+(* C-IR-0303M *)
+   r8_p2_OUT AT r0_p2_CIB_OUT.r8_p2_OUT : TCIB_C_IR_0303M_OUT;
+(* C-HM-1113M *)
+   r8_p3_OUT AT r0_p2_CIB_OUT.r8_p3_OUT : TCIB_C_HM_1113M_OUT;
+(* C-HM-1113M *)
+   r8_p4_OUT AT r0_p2_CIB_OUT.r8_p4_OUT : TCIB_C_HM_1113M_OUT;
+(* C-HM-1113M *)
+   r8_p5_OUT AT r0_p2_CIB_OUT.r8_p5_OUT : TCIB_C_HM_1113M_OUT;
+(* CF-1140 *)
+   r0_p3_CIB_Control : TCHControl;
+   r0_p3_CIB_OUT : r0_p3_TCIB_OUT;
+(* IR-1061 *)
+   r0_p5_DO : TBIN_2DO;
+   (* Aliases *)
+   GARAGE_GATE_OUT AT r0_p5_DO.DO0;
+(* IB-1301 *)
+   r1_p0_OUT : DT_IB1301_OUT;
+(* OS-1401 *)
+   r1_p1_OUT : DT_OS1401_OUT;
+   (* Aliases *)
+   GARAGE_TERMOFEJ AT r1_p1_OUT.DOS.DO10;
+   ELOSZABA_TERMOFEJ AT r1_p1_OUT.DOS.DO9;
+   DOWNSTAIRS_BATH_TERMOFEJ AT r1_p1_OUT.DOS.DO8;
+   LIVING_ROOM_3_TERMOFEJ AT r1_p1_OUT.DOS.DO7;
+   LIVING_ROOM_2_TERMOFEJ AT r1_p1_OUT.DOS.DO6;
+   LIVING_ROOM_1_TERMOFEJ AT r1_p1_OUT.DOS.DO5;
+   BEDROOM_TERMOFEJ AT r1_p1_OUT.DOS.DO4;
+(* OS-1401 *)
+   r1_p2_OUT : DT_OS1401_OUT;
+   (* Aliases *)
+   WC_TERMOFEJ AT r1_p2_OUT.DOS.DO10;
+   UPSTAIRS_BATH_TERMOFEJ AT r1_p2_OUT.DOS.DO9;
+   BOILER_TERMOFEJ AT r1_p2_OUT.DOS.DO8;
+   CHILDRENS_ROOM_2_TERMOFEJ AT r1_p2_OUT.DOS.DO7;
+   HALLWAY_TERMOFEJ AT r1_p2_OUT.DOS.DO6;
+   CHILDRENS_ROOM_1_TERMOFEJ AT r1_p2_OUT.DOS.DO5;
+   CHILDRENS_ROOM_3_TERMOFEJ AT r1_p2_OUT.DOS.DO4;
+(* UC-1204 *)
+   r1_p9_OUT : TUC1204_OUT;
+   (* Aliases *)
+   OPENTHERM_OUT AT r1_p9_OUT;
+(* CH2 *)
+   r0_p0_Control_CH2 : TCHControl;
+   r0_p0_UNI_CH2_OUT : TUNI_CH2_OUT;
+   (* Aliases *)
+   CH2_ZoneOUT AT r0_p0_UNI_CH2_OUT.DATA;
+(* CH1 *)
+   r0_p0_Control_CH1 : TCHControl;
+   r0_p0_UNI_CH1_OUT : TUNI_CH1_OUT;
+   (* Aliases *)
+   CH1_ZoneOUT AT r0_p0_UNI_CH1_OUT.DATA;
+END_VAR
+
+VAR_GLOBAL
+(* C-IR-0303M *)
+   (* Aliases *)
+   C_IR_0303M_9FD9_IN AT r8_p0_IN;
+   C_IR_0303M_9FD9_OUT AT r8_p0_OUT;
+(* C-IR-0303M *)
+   (* Aliases *)
+   C_IR_0303M_9FDA_IN AT r8_p1_IN;
+   HALL_TEMPERATURE {PUBLIC} AT r8_p1_IN.AI1;
+   C_IR_0303M_9FDA_OUT AT r8_p1_OUT;
+(* C-IR-0303M *)
+   (* Aliases *)
+   C_IR_0303M_9FDC_IN AT r8_p2_IN;
+   C_IR_0303M_9FDC_OUT AT r8_p2_OUT;
+(* C-HM-1113M *)
+   (* Aliases *)
+   C_HM_1113M_F62C_IN AT r8_p3_IN;
+   CHILDRENS_ROOM_1_INNER_LIGHTS_IN AT r8_p3_IN.DI.DI8;
+   CHILDRENS_ROOM_1_OUTER_LIGHTS_IN AT r8_p3_IN.DI.DI7;
+   CHILDRENS_ROOM_2_LIGHTS_IN AT r8_p3_IN.DI.DI6;
+   GATE_BALCONY_LIGHTS_IN AT r8_p3_IN.DI.DI5;
+   DOWNSTAIRS_BEDROOM_LIGHTS_IN AT r8_p3_IN.DI.DI4;
+   MINOR_STORAGE_LIGHTS_IN AT r8_p3_IN.DI.DI3;
+   MAJOR_STORAGE_LIGHTS_IN AT r8_p3_IN.DI.DI2;
+   GARAGE_GATE_IN AT r8_p3_IN.DI.DI1;
+   CHILDRENS_ROOM_1_TEMPERATURE AT r8_p3_IN.AI.AI2;
+   UPSTAIRS_BATH_TEMPERATURE AT r8_p3_IN.AI.AI1;
+   C_HM_1113M_F62C_OUT AT r8_p3_OUT;
+   BOILER_PLUG_OUT AT r8_p3_OUT.DOs.DO11;
+   CHILDRENS_ROOM_3_LIGHTS_OUT AT r8_p3_OUT.DOs.DO10;
+   CHILDRENS_ROOM_1_OUTER_LIGHTS_OUT AT r8_p3_OUT.DOs.DO9;
+   CHILDRENS_ROOM_1_INNER_LIGHTS_OUT AT r8_p3_OUT.DOs.DO8;
+   CHILDRENS_ROOM_2_LIGHTS_OUT AT r8_p3_OUT.DOs.DO7;
+   DOWNSTAIRS_BEDROOM_LIGHTS_OUT AT r8_p3_OUT.DOs.DO6;
+   GARDEN_BALCONY_LIGHTS_OUT AT r8_p3_OUT.DOs.DO5;
+   GATE_BALCONY_LIGHTS_OUT AT r8_p3_OUT.DOs.DO4;
+   TERRACE_LIGHTS_OUT AT r8_p3_OUT.DOs.DO3;
+   OUTDOOR_LIGHTS_OUT AT r8_p3_OUT.DOs.DO1;
+(* C-HM-1113M *)
+   (* Aliases *)
+   C_HM_1113M_F62D_IN AT r8_p4_IN;
+   STAIRS_LIGHTS_IN AT r8_p4_IN.DI.DI8;
+   TERRACE_LIGHTS_IN AT r8_p4_IN.DI.DI7;
+   LIVING_ROOM_LIGHTS_IN AT r8_p4_IN.DI.DI6;
+   DINING_ROOM_LIGHTS_IN AT r8_p4_IN.DI.DI5;
+   KITCHEN_FURNITURE_LIGHTS_IN AT r8_p4_IN.DI.DI4;
+   KITCHEN_LIGHTS_IN AT r8_p4_IN.DI.DI3;
+   CHILDRENS_ROOM_3_LIGHTS_IN AT r8_p4_IN.DI.DI2;
+   GARDEN_BALCONY_LIGHTS_IN AT r8_p4_IN.DI.DI1;
+   CHILDRENS_ROOM_3_TEMPERATURE AT r8_p4_IN.AI.AI3;
+   CHILDRENS_ROOM_2_TEMPERATURE AT r8_p4_IN.AI.AI2;
+   LIVING_ROOM_TEMPERATURE AT r8_p4_IN.AI.AI1;
+   C_HM_1113M_F62D_OUT AT r8_p4_OUT;
+   DOWNSTAIRS_BATH_PROGAMOZHATO_PLUG AT r8_p4_OUT.DOs.DO11;
+   UPSTAIRS_WC_LIGHTS_OUT AT r8_p4_OUT.DOs.DO10;
+   UPSTAIRS_BATH_SHOWER_LIGHTS_OUT AT r8_p4_OUT.DOs.DO9;
+   UPSTAIRS_BATH_MAJOR_LIGHTS_OUT AT r8_p4_OUT.DOs.DO8;
+   UPSTAIRS_BATH_MIRROR_LIGHTS_OUT AT r8_p4_OUT.DOs.DO7;
+   BOILER_LIGHTS_OUT AT r8_p4_OUT.DOs.DO6;
+   DOWNSTAIRS_BATH_MAJOR_LIGHTS_OUT AT r8_p4_OUT.DOs.DO5;
+   HALLWAY_LIGHTS_OUT AT r8_p4_OUT.DOs.DO4;
+   LIVING_ROOM_LIGHTS_OUT AT r8_p4_OUT.DOs.DO3;
+   DINING_ROOM_LIGHTS_OUT AT r8_p4_OUT.DOs.DO2;
+   KITCHEN_LIGHTS_OUT AT r8_p4_OUT.DOs.DO1;
+(* C-HM-1113M *)
+   (* Aliases *)
+   C_HM_1113M_F62E_IN AT r8_p5_IN;
+   BOILER_LIGHTS_IN AT r8_p5_IN.DI.DI2;
+   HALLWAY_LIGHTS_IN AT r8_p5_IN.DI.DI1;
+   GARAGE_TEMPERATURE AT r8_p5_IN.AI.AI3;
+   BEDROOM_TEMPERATURE AT r8_p5_IN.AI.AI2;
+   DOWNSTAIRS_BATH_TEMPERATURE AT r8_p5_IN.AI.AI1;
+   C_HM_1113M_F62E_OUT AT r8_p5_OUT;
+   UPSTAIRS_BATH_PROGRAMABLE_PLUG AT r8_p5_OUT.DOs.DO11;
+   EXHAUST_FAN_OUT AT r8_p5_OUT.DOs.DO10;
+   STORAGE_PUMP AT r8_p5_OUT.DOs.DO9;
+   GARAGE_LIGHTS_OUT AT r8_p5_OUT.DOs.DO8;
+   BOILER_PUMP_PLUG_LEFT AT r8_p5_OUT.DOs.DO7;
+   KITCHEN_FURNITURE_LIGHTS_OUT AT r8_p5_OUT.DOs.DO6;
+   BOILER_PUMP_PLUG_RIGHT AT r8_p5_OUT.DOs.DO5;
+   HALL_LIGHTS_OUT AT r8_p5_OUT.DOs.DO4;
+   MINOR_STORAGE_LIGHTS_OUT AT r8_p5_OUT.DOs.DO3;
+   DOWNSTAIRS_BATH_SHOWER_LIGHTS_OUT AT r8_p5_OUT.DOs.DO2;
+   MAJOR_STORAGE_LIGHTS_OUT AT r8_p5_OUT.DOs.DO1;
+END_VAR
+
+VAR_EXTERNAL
+END_VAR
+
+
+
+(* ******************************************************************************* *)
+(* Generated by Mosaic *)
+(* © 2001-2021 Teco a.s. *)

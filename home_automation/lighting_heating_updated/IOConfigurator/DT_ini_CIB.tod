@@ -1,0 +1,155 @@
+﻿<?xml version="1.0"?>
+<TecoDictionary xmlns="http://www.tecomat.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.tecomat.com Teco_Dictionary.xsd">
+  <DataTypes>
+  
+<!-- zakladni datove typy inicializacnich tabulek CIB modulu -->
+    
+<!-- struktura hlavicky inicializacni tabulky cib modulu -->                
+    <DataType>
+      <Name>_TCIBHeader_</Name>
+      <SubItems>
+        <SubItem>
+          <SubIdx>0</SubIdx>
+          <Name>code</Name>
+          <Type>UINT</Type>
+        </SubItem>     
+        <SubItem>
+          <SubIdx>1</SubIdx>
+          <Name>mode</Name>
+          <Type>WORD</Type>
+        </SubItem>
+        <SubItem>
+          <SubIdx>2</SubIdx>
+          <Name>fadr</Name>
+          <Type>WORD</Type>
+        </SubItem>
+        <SubItem>
+          <SubIdx>3</SubIdx>
+          <Name>ladr</Name>
+          <Type>USINT</Type>
+        </SubItem>
+        <SubItem>
+          <SubIdx>4</SubIdx>
+          <Name>ndev</Name>
+          <Type>USINT</Type>
+        </SubItem>
+      </SubItems>      
+    </DataType>
+        
+<!-- struktura jednoho zarizeni v inicializacni tabulce cib modulu -->                
+    <DataType>
+      <Name>_TCIBDevice</Name>
+      <BitSize>48</BitSize>
+      <SubItems>
+        <SubItem>
+          <SubIdx>0</SubIdx>
+          <Name>typdev</Name>
+          <Type>BYTE</Type>
+        </SubItem>
+        <SubItem>
+          <SubIdx>1</SubIdx>
+          <Name>bloko</Name>
+          <Type>BYTE</Type>
+        </SubItem>
+        <SubItem>
+          <SubIdx>2</SubIdx>
+          <Name>leindev</Name>
+          <Type>UINT</Type>
+        </SubItem>
+        <SubItem>
+          <SubIdx>3</SubIdx>
+          <Name>leoutdev</Name>
+          <Type>UINT</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>                              
+
+<!-- struktura pro jedno zarizeni inicializacni tabulky -->
+    <DataType>
+      <Name>_TDev[1]_</Name>
+      <BaseType>_TCIBDevice</BaseType>
+      <ArrayInfo>
+        <LBound>0</LBound>
+        <Elements>1</Elements>
+      </ArrayInfo>
+    </DataType>
+
+<!-- struktura pro dve zarizeni inicializacni tabulky -->
+    <DataType>
+      <Name>_TDev[2]_</Name>
+      <BaseType>_TCIBDevice</BaseType>
+      <ArrayInfo>
+        <LBound>0</LBound>
+        <Elements>2</Elements>
+      </ArrayInfo>
+    </DataType>
+
+<!-- struktura pro tri zarizeni inicializacni tabulky -->
+    <DataType>
+      <Name>_TDev[3]_</Name>
+      <BaseType>_TCIBDevice</BaseType>
+      <ArrayInfo>
+        <LBound>0</LBound>
+        <Elements>3</Elements>
+      </ArrayInfo>
+    </DataType>
+
+<!-- struktura pro ctyri zarizeni inicializacni tabulky -->
+    <DataType>
+      <Name>_TDev[4]_</Name>
+      <BaseType>_TCIBDevice</BaseType>
+      <ArrayInfo>
+        <LBound>0</LBound>
+        <Elements>4</Elements>
+      </ArrayInfo>
+    </DataType>
+    
+<!-- struktura pro pet zarizeni inicializacni tabulky -->
+    <DataType>
+      <Name>_TDev[5]_</Name>
+      <BaseType>_TCIBDevice</BaseType>
+      <ArrayInfo>
+        <LBound>0</LBound>
+        <Elements>5</Elements>
+      </ArrayInfo>
+    </DataType>
+    
+<!-- struktura pro sest zarizeni inicializacni tabulky -->
+    <DataType>
+      <Name>_TDev[6]_</Name>
+      <BaseType>_TCIBDevice</BaseType>
+      <ArrayInfo>
+        <LBound>0</LBound>
+        <Elements>6</Elements>
+      </ArrayInfo>
+    </DataType>
+
+<!--
+- konstanty pro konverzi i/o dat pro potreby CIB site, konverze se provadi v CPU,
+- konstanty jsou obsazeny v souboru inekom.h pro CPU CP-1xxx
+- vyuzivaji se pri definici i/o objektu cib modulu
+- v XML je bohuzel nelze nadeklarovat globalne jako konstanty :-((, musi se tedy pouzivat v ciselne podobe :-((((
+
+#define KEOC            0x00    /* konec seznamu */
+/*			0x01...0x7F = 1...127 Bytu nijak nekonvertovat */ 	
+#define KCONV           0x80    /* maska konverze */
+#define KSBTF           0x81    /* konverze signed byte na float */
+#define KUBTF           0x82    /* konverze unsigned byte na float */
+#define KSWTF           0x83    /* konverze signed word na float */
+#define KUWTF           0x84    /* konverze unsigned word na float */
+#define KSW100TF        0x93    /* konverze signed word v setinach na float */
+#define KUW100TF        0x94    /* konverze unsigned word v setinach na float */
+#define KSW10TF         0x95    /* konverze signed word v desetinach na float */
+#define KUW10TF         0x96    /* konverze unsigned word v desetinach na float */
+#define KFTSB           0xC1    /* konverze float na signed byte */             
+#define KFTUB           0xC2    /* konverze float na unsigned byte */           
+#define KFTSW           0xC3    /* konverze float na signed word */             
+#define KFTUW           0xC4    /* konverze float na unsigned word */           
+#define KFTSW100        0xD3    /* konverze float na signed word v setinach */  
+#define KFTUW100        0xD4    /* konverze float na unsigned word v setinach */
+#define KFTSW10         0xD5    /* konverze float na signed word v desetinach */  
+#define KFTUW10         0xD6    /* konverze float na unsigned word v desetinach */
+-->
+    
+  </DataTypes> 	
+</TecoDictionary>

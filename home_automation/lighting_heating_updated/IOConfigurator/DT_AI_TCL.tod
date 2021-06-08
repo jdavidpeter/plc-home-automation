@@ -1,0 +1,68 @@
+﻿<?xml version="1.0"?>
+<TecoDictionary xmlns="http://www.tecomat.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.tecomat.com Teco_Dictionary.xsd">
+  <DataTypes>
+
+<!-- Analog inputs datatypes -->
+
+<!-- AI status datatype -->
+    <DataType>
+      <Name>TAIStat</Name>
+      <BitSize>16</BitSize>
+      <SubItems>
+        <SubItem>
+          <Name>UNF</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>UNR</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>OVR</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>OVF</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>FLS</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>CJC</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>CHC</Name>
+          <Type>BOOL</Type>
+          <BitOffs>8</BitOffs>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- AI channel datatype -->
+    <DataType>
+      <Name>TAI</Name>
+      <SubItems>
+        <SubItem>
+          <Name>STAT</Name>
+          <Type>TAIStat</Type>
+        </SubItem>
+        <SubItem>
+          <Name>FS</Name>
+          <Type>INT</Type>
+        </SubItem>
+        <SubItem>
+          <Name>ENG</Name>
+          <Type>REAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>PCT</Name>
+          <Type>REAL</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+  </DataTypes>
+</TecoDictionary>

@@ -1,0 +1,4615 @@
+(*` {CSY}Knihovna vývojového systému Mosaic{ENU}Mosaic IDE library *)
+(*` {CSY}Jméno souboru{ENU}File name{} : D:\TecoUserLibs\ConvertLib_V21_20170222.mlb *)
+(*` {CSY}Knihovna : ConvertLib{ENU}Library : ConvertLib{} 2.1 *)
+(*` {CSY}Autor{ENU}Author{} : Teco a.s. *)
+(*` {CSY}Autorská práva{ENU}Copyright{} : (c) 2017 Teco a.s. *)
+(*` {CSY}Verze IEC pøekladaèe{ENU}IEC compiler version{} : 3.12.10.2 *)
+(*` {CSY}Verze assembleru{ENU}Assembler version{} : 4.3.00 *)
+
+//{Knihovna : ConvertLib 2.1  }
+(*` {CSY}Historie{ENU}History{}: *)
+(*`
+{CSY}
+v1.0 17.11.2010 Nem Úvodni verze knihovny
+v1.1 22.07.2010 Nem Funkce STRING_TO_UPPER() a STRING_TO_LOWER()
+                    vrací délku pøevedeného stringu
+v1.2 13.02.2012 Nem Pøidaná funkce ISO8859_2_TO_CP1250()
+v1.3 27.04.2012 Nem Pøidaná funkce ReplaceChar()
+v1.4 03.09.2012 Nem Pøidány funkce DT_TO_DT_RFC822() a DT_RFC822_TO_DT()
+v1.5 02.06.2013 Nem Opravena funkce DT_RFC822_TO_DT() pro èerven a èervenec
+v1.6 23.09.2013 Byd Pøidány funkce WindDirectionT115Deg, WindDirectionT115StringCs, 
+                    WindDirectionT115StringEn a funkèní bloky fbMeterCounter, fbMeterPulse
+v1.7 14.10.2013 Byd Oprava v DT_RFC822_TO_DT pro mìsíc øíjen
+v1.8 31.10.2014 Nem Pøidány funkce STRING_TO_INT_EX, STRING_TO_REAL_EX, 
+                    STRING_TO_LREAL_EX
+v1.9 18.01.2016 Nem Pøidány funkce DT_TO_DT_HTTP() a UTF8_TO_CP125x()
+                    Oprava v DT_RFC822_TO_DT pro PM
+v2.0 19.01.2017 Byd Ošetøen blok fbMeterCounter pro MaxPeriod menší než 1000ms
+v2.1 22.02.2017 Byd Pøidány funkce CP1250_TO_UTF8, CP1251_TO_UTF8, CP1252_TO_UTF8, CP1253_TO_UTF8, CP1254_TO_UTF8, CP1255_TO_UTF8
+
+
+{ENU}
+v1.0 2010-11-17 Nem First edition
+v1.1 2011-07-22 Nem Functions STRING_TO_UPPER() a STRING_TO_LOWER()
+                    returns length of converted string
+v1.2 2012-02-13 Nem New function ISO8859_2_TO_CP1250()
+v1.3 2012-04-27 Nem New function ReplaceChar()
+v1.4 2012-09-03 Nem New functions DT_TO_DT_RFC822() a DT_RFC822_TO_DT()
+v1.5 2013-06-02 Nem Fix bug for june and july in DT_RFC822_TO_DT()
+v1.6 2013-09-23 Byd New functions WindDirectionT115Deg, WindDirectionT115StringCs, 
+                    WindDirectionT115StringEn and function blocks 
+                    fbMeterCounter, fbMeterPulse
+v1.7 2013-10-14 Byd DT_RFC822_TO_DT fixed for month October
+v1.8 2014-10-31 Nem New functions STRING_TO_INT_EX, STRING_TO_REAL_EX, 
+                    STRING_TO_LREAL_EX
+v1.9 2016-01-18 Nem New functions DT_TO_DT_HTTP() and UTF8_TO_CP125x()
+                    DT_RFC822_TO_DT fixed for PM
+v2.0 2017-01-19 Byd Fixed block fbMeterCounter for MaxPeriod less than 1000ms
+v2.1 22.02.2017 Byd Added functions CP1250_TO_UTF8, CP1251_TO_UTF8, CP1252_TO_UTF8, CP1253_TO_UTF8, CP1254_TO_UTF8, CP1255_TO_UTF8
+*)
+
+(*----------------------------------------------------------------------------*)
+// {LIBRARY="LOCALLIB\STDLIB_V21_20140514.MLB"}
+{LIBRARY="LOCALLIB\TOSTRINGLIB_V13_20110203.MLB"}
+
+__DECL FUNCTION STRING_TO_UPPER : uint
+(*`{CSY} Pøevod všech znakù v øetìzci na velká písmena. Vrací délku pøevedeného øetìzce.
+  {ENU} Convert lowercase letters to uppercase.Returns length of string.*)
+  VAR_IN_OUT
+    input            : string [80];
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION STRING_TO_LOWER : uint
+(*`{CSY} Pøevod všech znakù v øetìzci na malá písmena. Vrací délku pøevedeného øetìzce.
+  {ENU} Convert uppercase letters to lowercase. Returns length of string.*)
+  VAR_IN_OUT
+    input            : string [80];
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION STRING_HEX_TO_UDINT : udint
+(*`{CSY} Pøevod STRING (pouze hex èíslice) na UDINT
+  
+  Povolené znaky : '0123456789abcdefABCDEF'
+  {ENU} Convert STRING (HEX NUMBER ONLY) TO UDINT
+  
+  Permissible characters : '0123456789abcdefABCDEF'*)
+  VAR_INPUT
+    input            : string [80];
+  END_VAR
+  VAR
+    tmp              : string [8] :=  '00000000';
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION DEG_TO_RAD : lreal
+(*`{CSY} Pøevod úhlových stupòù na radiány
+  {ENU} Convert degrees to radians*)
+  VAR_INPUT
+    angle            : lreal;  (*`{CSY}úhel ve stupních{ENG}Angle in degrees*)
+  END_VAR
+  VAR CONSTANT
+    _180_pi          : lreal :=  3.1415926535897931/180.0;
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION RAD_TO_DEG : lreal
+(*`{CSY} Pøevod radiánù na úhlové stupnì
+  {ENU} Convert radians to degrees*)
+  VAR_INPUT
+    angle            : lreal;  (*`{CSY}úhel v radiánech{ENG}Angle in radians*)
+  END_VAR
+  VAR CONSTANT
+    _pi_180          : lreal :=  180.0/3.1415926535897931;
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION DEGREES_TO_ANGLE : lreal
+(*`{CSY} Pøevod úhlu ze stupòù, minut a vteøin na stupnì
+  {ENU} Convert angle (degrees, minutes, seconds) to degrees*)
+  VAR_INPUT
+    degrees          : int;  (*`{CSY}Stupnì{ENU}Degrees*)
+    minutes          : int;  (*`{CSY}Minuty{ENU}Minutes*)
+    seconds          : int;  (*`{CSY}Vteøiny{ENU}Seconds*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION FAHRENHEIT_TO_CELSIUS : real
+(*`{CSY} Pøevod teploty ze stupòù Fahrenheita na stupnì Celsia
+  {ENU} Convert temperature from Fahrenheit to Celsius*)
+  VAR_INPUT
+    temp             : real;  (*`{CSY}teplota ve stupních Fahrenheita{ENU}temperature °F*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION CELSIUS_TO_FAHRENHEIT : real
+(*`{CSY} Pøevod teploty ze stupòù Celsia na stupnì Fahrenheita
+  {ENU} Convert temperature from Celsius to Fahrenheit*)
+  VAR_INPUT
+    temp             : real;  (*`{CSY}teplota ve stupních Celsia{ENU}temperature °C*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION ANGLE_TO_DEGREES : bool
+(*`{CSY} Pøevod úhlu ve stupních na stupnì/minuty/vteøiny
+  {ENU} Convert angle in degrees to degrees/minutes/seconds*)
+  VAR_INPUT
+    angle            : lreal;  (*`{CSY} úhel ve stupních {ENU} angle (degrees)*)
+  END_VAR
+  VAR_IN_OUT
+    degrees          : int;  (*`{CSY}Stupnì{ENU}Degrees*)
+    minutes          : int;  (*`{CSY}Minuty{ENU}Minutes*)
+    seconds          : int;  (*`{CSY}Vteøiny{ENU}Seconds*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION ISO8859_2_TO_CP1250 : udint
+(*`{CSY} Pøevod znakù kódovaných podle ISO 8859-2 na kódování CP-1250
+  {ENU} Convert characters from ISO 8859-2 to CP-1250*)
+  VAR_IN_OUT
+    src              : usint;  (*`{CSY} první byte øetìzce pro pøevod {ENU} first byte of string for conversion*)
+  END_VAR
+  VAR
+    ps               : PTR_TO usint;
+    s                : usint;
+  END_VAR
+  VAR CONSTANT
+    ISO8859_2_TO_CP1250_161_190 : ARRAY [161..190] OF usint :=  [
+      165, 162, 163, 164, 188, 140,
+      167, 168, 138, 170, 141, 143,
+      173, 142, 175, 176, 185, 178,
+      179, 180, 190, 156, 183, 184,
+      154, 186, 157, 159, 189, 158
+    ];
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION REPLACE_CHAR : uint
+(*`{ENU} Replace all character C1 with character C2
+Returns len of STRING
+{CSY} Nahradí všechny znaky C1 znakem C2
+Vrací délku øetìzce*)
+  VAR_INPUT
+    C1               : byte;  (*`{ENU}ASCII value of character to be replaced{CSY}ASCII hodnota znaku, který má být nahrazen*)
+    C2               : byte;  (*`{ENU}ASCII value of character used for replacement{CSY}ASCII hodnota znaku, kterým se bude nahrazovat*)
+  END_VAR
+  VAR_IN_OUT
+    input            : string [255];  (*`{ENU}String where there characters will be replaced{CSY}Øetizec, ve kterém budou znaky nahrazeny*)
+  END_VAR
+END_FUNCTION
+
+TYPE TypeTecoDateTime {HIDDEN} :
+  STRUCT
+    year             : usint;  (*`rok     (poslední dvì èíslice letopoètu)*)
+    month            : usint;  (*`mìsíc   (1 .. 12)*)
+    day              : usint;  (*`den     (1 .. 28/29/30/31)*)
+    hour             : usint;  (*`hodina  (0 .. 23)*)
+    min              : usint;  (*`minuta  (0 .. 59)*)
+    sec              : usint;  (*`sekunda (0 .. 59)*)
+    dayOfWeek        : usint;  (*`den v týdnu (1 = pondìlí, 7 = nedìle)*)
+    milisec          : uint;  (*`milisekunda*)
+  END_STRUCT;
+END_TYPE
+
+VAR_GLOBAL CONSTANT
+ MonthsNamesRFC822 : ARRAY [1..12] OF string [3] :=   ['Jan', 'Feb', 'Mar', 'Apr',
+                                                       'May', 'Jun', 'Jul', 'Aug',
+                                                       'Sep', 'Oct', 'Nov', 'Dec'];
+
+END_VAR
+
+__DECL FUNCTION DT_TO_DT_RFC822 : string [26]
+(*`{ENU} returns date and time according to RFC822
+
+  date and time according to RFC822
+
+  date            =       day month year
+  year            =       4 DIGIT
+  month           =       month-name
+  month-name      =       "Jan" / "Feb" / "Mar" / "Apr" /
+                          "May" / "Jun" / "Jul" / "Aug" /
+                          "Sep" / "Oct" / "Nov" / "Dec"
+  day             =       1-2 DIGIT
+  time            =       time-of-day zone
+  time-of-day     =       hour ":" minute ":" second
+  hour            =       2 DIGIT
+  minute          =       2 DIGIT
+  second          =       2 DIGIT
+  zone            =       (( "+" / "-" ) 4 DIGIT)
+
+  {CSY} vrací datum a èas dle RFC822
+
+  datum a èas podle RFC822
+
+  datum           =       den mìsíc rok
+  rok             =       4 èísla
+  mìsíc           =       jméno-mìsíce
+  jméno-mìsíce    =       "Jan" / "Feb" / "Mar" / "Apr" /
+                          "May" / "Jun" / "Jul" / "Aug" /
+                          "Sep" / "Oct" / "Nov" / "Dec"
+  den             =       1-2 èísla
+  èas             =       èas-ve-dni zóna
+  èas-ve-dni      =       hodina ":" minuta ":" sekunda
+  hodina          =       2 èísla
+  minuta          =       2 èísla
+  sekunda         =       2 èísla
+  zóna            =       (( "+" / "-" ) 4 èísla)*)
+  VAR_INPUT
+    dateTime         : dt;  (*`{ENU} Date and time in IEC DT format {CSY} Datum a èas ve formátu IEC DT*)
+    UtcOff           : uint;  (*`{ENU} Offset from UTC in minutes {CSY} Posun èasového pásma v minutách*)
+  END_VAR
+  VAR
+    tmpDT            : TypeTecoDateTime;
+    tmpTime          : time;
+    Format           : string [80];
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION DT_RFC822_TO_DT : dt
+(*`{ENU} Conversion date and time according to RFC822 to IEC format DATE_AND_TIME
+  Returns standard IEC DT format
+
+  date and time according to RFC822
+
+  date            =       day month year
+  year            =       4 DIGIT
+  month           =       month-name
+  month-name      =       "Jan" / "Feb" / "Mar" / "Apr" /
+                          "May" / "Jun" / "Jul" / "Aug" /
+                          "Sep" / "Oct" / "Nov" / "Dec"
+  day             =       1-2 DIGIT
+  time            =       time-of-day zone
+  time-of-day     =       hour ":" minute ":" second
+  hour            =       2 DIGIT
+  minute          =       2 DIGIT
+  second          =       2 DIGIT
+  zone            =       (( "+" / "-" ) 4 DIGIT)
+
+  {CSY} Pøevod data a èasu ve formátu podle RFC822 na IEC formát DATE_AND_TIME
+  Vrací èas ve formátu IEC DT
+
+  datum a èas podle RFC822
+
+  datum           =       den mìsíc rok
+  rok             =       4 èísla
+  mìsíc           =       jméno-mìsíce
+  jméno-mìsíce    =       "Jan" / "Feb" / "Mar" / "Apr" /
+                          "May" / "Jun" / "Jul" / "Aug" /
+                          "Sep" / "Oct" / "Nov" / "Dec"
+  den             =       1-2 èísla
+  èas             =       èas-ve-dni zóna
+  èas-ve-dni      =       hodina ":" minuta ":" sekunda
+  hodina          =       2 èísla
+  minuta          =       2 èísla
+  sekunda         =       2 èísla
+  zóna            =       (( "+" / "-" ) 4 èísla)*)
+  VAR_INPUT
+    dateTime         : string [80];  (*`{ENU} Date and time according to RFC822 (for example Tue, 28 Aug 2012 7:58 am) {CSY} Datum a èas podle RFC822 (napø. Tue, 28 Aug 2012 7:58 am)*)
+  END_VAR
+  VAR
+    tmpDT            : TypeTecoDateTime;
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION WindDirectionT115Deg : real
+(*`{CSY}Pøevod odporu mìøeného na ukazateli smìru vìtru T115 na úhlové stupnì
+  {ENU}Conversion of resistivity measured of wind indicator T115 to degrees*)
+  VAR_INPUT
+    R                : real;
+  END_VAR
+  VAR CONSTANT
+    directionDeg     : ARRAY [0..7] OF real :=  [90,135,180,45,225,0,315,270];
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION WindDirectionT115StringCs : string [2]
+(*`{CSY}Pøevod odporu mìøeného na ukazateli smìru vìtru T115 na èeské oznaèení smìru
+  {ENU}Conversion of measured resistivity of wind indicator T115 to Czech description of direction*)
+  VAR_INPUT
+    R                : real;  (*`{CSY}Odpor mìøený na ukazateli smìru vìtru T115 {ENU}Measured resistivity of wind indicator T115*)
+  END_VAR
+  VAR
+    direction        : ARRAY [0..7] OF string [2] :=  ['V','JV','J','SV','JZ','S','SZ','Z'];
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION WindDirectionT115StringEn : string [2]
+(*`{CSY}Pøevod odporu mìøeného na ukazateli smìru vìtru T115 na anglické oznaèení smìru
+  {ENU}Conversion of measured resistivity of wind indicator T115 to English description of direction*)
+  VAR_INPUT
+    R                : real;  (*`{CSY}Odpor mìøený na ukazateli smìru vìtru T115 {ENU}Measured resistivity of wind indicator T115*)
+  END_VAR
+  VAR
+    direction        : ARRAY [0..7] OF string [2] :=  ['E','SE','S','NE','SW','N','NW','W'];
+  END_VAR
+END_FUNCTION
+
+VAR_GLOBAL CONSTANT
+ DayNamesRFC1123 : ARRAY [1..7] OF string [3] :=   [ 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+
+END_VAR
+
+__DECL FUNCTION DT_TO_DT_HTTP : string
+(*`dateTime : DT;            {ENU} Date and time in IEC DT format {CSY} Datum a èas ve formátu IEC DT
+    UtcOff   : UINT;          {ENU} Offset from UTC in minutes {CSY} Posun èasového pásma v minutách
+  END_VAR*)
+  VAR_INPUT
+    dateTime         : dt;  (*`{ENU} Date and time in IEC DT format {CSY} Datum a èas ve formátu IEC DT*)
+    UtcOff           : uint;  (*`{ENU} Offset from UTC in minutes {CSY} Posun èasového pásma v minutách*)
+  END_VAR
+  VAR
+    gmtDT            : dt;
+    tmpDT            : TypeTecoDateTime;
+    tmpTime          : time;
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION UTF8_TO_CP125x : uint
+(*`{CSY} Pøevod znakù kódovaných podle UTF8 na kódování CP-1250,...,CP1255
+        Vrací velikost výsledného øetìzce
+  {ENU} Convert characters from UTF8 to CP-1250,...,CP1255
+        Returns the size of the resulting string*)
+  VAR_IN_OUT
+    str              : string [255];  (*`{ENU} string to be converted from UTF8 to CP125x {CSY} øetìzec, který bude pøekódován z UTF8 na CP125x*)
+  END_VAR
+  VAR_INPUT
+    codePage         : uint;  (*`{ENU} code page = 1250,...,1255 {CSY} kódová stránka = 1250,...,1255*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION_BLOCK fbMeterPulse
+(*`{ENU}
+  Counts pulses and estaminates their frequency
+
+  {CSY}
+  Poèítá pulzy a jejich frekvenci*)
+  VAR_INPUT
+    Pulse            : bool R_EDGE;  (*`{ENU}Pulses{CSY}Pulzy*)
+    Reset            : bool R_EDGE;  (*`{ENU}Reset pulse counter{CSY}Nulování poèítadla pulzù*)
+    Freeze           : bool;  (*`{ENU}Stops counting and set frequency to zero{CSY}Zastaví èítání a nastaví frekvenci na nulu*)
+    Filter           : time :=  T#2s;  (*`{ENU}Time constant of filter for frequency{CSY}Èasová konstanta filtru frekvence*)
+    MaxPeriod        : time :=  T#1m;  (*`{ENU}Maximum period between pulses{CSY}Maximální perioda mezi pulzy*)
+    Base             : time :=  T#1s;  (*`{ENU}Base time period for estaminating frequency{CSY}Základní èasová perioda pro urèování frekvence*)
+  END_VAR
+  VAR_OUTPUT
+    PulseOut         : bool;  (*`{ENU}Copy of input pulses{CSY}Kopie vstupních pulzù*)
+    Overflow         : bool;  (*`{ENU}Pulse counter overflow, set Reset to logical 1{CSY}Pøeteèení èítaèe pulzù, nastavte Reset do logické 1*)
+    Frequency        : real;  (*`{ENU}Frequency [1/Base]{CSY}Frekvence [1/Base]*)
+  END_VAR
+  VAR_IN_OUT
+    Counter          : udint;  (*`{ENU}Pulse counter (have to be RETAIN!){CSY}Poèítadlo pulzù (musí být RETAIN!)*)
+  END_VAR
+  VAR
+    RawFrequncy      : real;
+    LastPulseTim     : time;
+    PulseLen         : real;
+    LastPulseLen     : real;
+    Exp1             : real;
+    LastFilterTime   : time;
+    OldFilter        : time;
+    MaxPulseLen      : real;
+  END_VAR
+END_FUNCTION_BLOCK
+
+__DECL FUNCTION_BLOCK fbMeterCounter
+(*`{ENU}
+  Counts pulses and estaminates their frequency
+
+  {CSY}
+  Poèítá pulzy a jejich frekvenci*)
+  VAR_INPUT
+    Cnt              : uint;  (*`{ENU}Counter of pulses{CSY}Èítaè pulzù*)
+    Reset            : bool R_EDGE;  (*`{ENU}Reset pulse counter{CSY}Nulování poèítadla pulzù*)
+    Freeze           : bool;  (*`{ENU}Stops counting and set frequency to zero{CSY}Zastaví èítání a nastaví frekvenci na nulu*)
+    Filter           : time :=  T#2s;  (*`{ENU}Time constant of filter for frequency{CSY}Èasová konstanta filtru frekvence*)
+    MaxPeriod        : time :=  T#1m;  (*`{ENU}Maximum period between pulses{CSY}Maximální perioda mezi pulzy*)
+    Base             : time :=  T#1s;  (*`{ENU}Base time period for estaminating frequency{CSY}Základní èasová perioda pro urèování frekvence*)
+  END_VAR
+  VAR_OUTPUT
+    Change           : bool;  (*`{ENU}Counter of pulses changed value{CSY}Èítaè pulzù zmìnil hodnotu*)
+    Overflow         : bool;  (*`{ENU}Pulse counter overflow, set Reset to logical 1{CSY}Pøeteèení èítaèe pulzù, nastavte Reset do logické 1*)
+    Frequency        : real;  (*`{ENU}Frequency [1/Base]{CSY}Frekvence [1/Base]*)
+  END_VAR
+  VAR_IN_OUT
+    Counter          : dint;  (*`{ENU}Pulse counter (have to be RETAIN!){CSY}Poèítadlo pulzù (musí být RETAIN!)*)
+  END_VAR
+  VAR
+    RawFrequncy      : real;
+    LastPulseTim     : time;
+    PulseLen         : real;
+    LastPulseLen     : real;
+    Exp1             : real;
+    LastFilterTime   : time;
+    OldFilter        : time;
+    MaxPulseLen      : real;
+    Dif              : dint;
+    MaxDif           : dint;
+    CntOld           : uint;
+    Init             : bool;
+  END_VAR
+END_FUNCTION_BLOCK
+
+__DECL FUNCTION STRING_TO_REAL_EX : real
+(*`{ENU} Conversion STRING to REAL, spaces and comma in number are enabled
+{CSY}Pøevod STRING na REAL, toleruje mezery a des. èárku ve vstupním øetìzci*)
+  VAR_INPUT
+    input            : string [80];
+  END_VAR
+  VAR
+    pchar1           : PTR_TO byte;
+    pchar2           : PTR_TO byte;
+    Buffer           : string [80];
+    value1           : byte;  (*`pomocna hodnota*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION STRING_TO_LREAL_EX : lreal
+(*`{ENU} Conversion STRING to LREAL, spaces and comma in number are enabled
+{CSY} Pøevod STRING na LREAL, toleruje mezery a des. èárku ve vstupním øetìzci*)
+  VAR_INPUT
+    input            : string [80];
+  END_VAR
+  VAR
+    pchar1           : PTR_TO byte;
+    pchar2           : PTR_TO byte;
+    Buffer           : string [80];
+    value1           : byte;  (*`pomocna hodnota*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION STRING_TO_INT_EX : int
+(*`{ENU} Conversion STRING to REAL, spaces in number are enabled
+{CSY} Pøevod STRING na INT, toleruje mezery ve vstupním øetìzci*)
+  VAR_INPUT
+    input            : string [80];
+  END_VAR
+  VAR
+    pchar1           : PTR_TO byte;
+    pchar2           : PTR_TO byte;
+    Buffer           : string [80];
+    value1           : byte;  (*`pomocna hodnota*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION CP125x_TO_UTF8 {HIDDEN} : udint
+  VAR_INPUT
+    maxLen           : udint;  (*`maximum len of output buffer including end zero*)
+    TO_UTF8_128_255  : PTR_TO dword;
+  END_VAR
+  VAR_IN_OUT
+    cp125x           : string [255];
+    utf8             : string [255];
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION CP1250_TO_UTF8 : udint
+  VAR_INPUT
+    maxLen           : udint;  (*`maximum len of output buffer including end zero*)
+  END_VAR
+  VAR
+    TO_UTF8_128_255  : ARRAY [128..255] OF dword :=  [
+      16#00AC82E2,16#00BDBFEF,16#009A80E2,16#00BDBFEF,16#009E80E2,16#00A680E2,16#00A080E2,16#00A180E2,
+      16#00BDBFEF,16#00B080E2,16#0000A0C5,16#00B980E2,16#00009AC5,16#0000A4C5,16#0000BDC5,16#0000B9C5,
+      16#00BDBFEF,16#009880E2,16#009980E2,16#009C80E2,16#009D80E2,16#00A280E2,16#009380E2,16#009480E2,
+      16#00BDBFEF,16#00A284E2,16#0000A1C5,16#00BA80E2,16#00009BC5,16#0000A5C5,16#0000BEC5,16#0000BAC5,
+      16#0000A0C2,16#000087CB,16#000098CB,16#000081C5,16#0000A4C2,16#000084C4,16#0000A6C2,16#0000A7C2,
+      16#0000A8C2,16#0000A9C2,16#00009EC5,16#0000ABC2,16#0000ACC2,16#0000ADC2,16#0000AEC2,16#0000BBC5,
+      16#0000B0C2,16#0000B1C2,16#00009BCB,16#000082C5,16#0000B4C2,16#0000B5C2,16#0000B6C2,16#0000B7C2,
+      16#0000B8C2,16#000085C4,16#00009FC5,16#0000BBC2,16#0000BDC4,16#00009DCB,16#0000BEC4,16#0000BCC5,
+      16#000094C5,16#000081C3,16#000082C3,16#000082C4,16#000084C3,16#0000B9C4,16#000086C4,16#000087C3,
+      16#00008CC4,16#000089C3,16#000098C4,16#00008BC3,16#00009AC4,16#00008DC3,16#00008EC3,16#00008EC4,
+      16#000090C4,16#000083C5,16#000087C5,16#000093C3,16#000094C3,16#000090C5,16#000096C3,16#000097C3,
+      16#000098C5,16#0000AEC5,16#00009AC3,16#0000B0C5,16#00009CC3,16#00009DC3,16#0000A2C5,16#00009FC3,
+      16#000095C5,16#0000A1C3,16#0000A2C3,16#000083C4,16#0000A4C3,16#0000BAC4,16#000087C4,16#0000A7C3,
+      16#00008DC4,16#0000A9C3,16#000099C4,16#0000ABC3,16#00009BC4,16#0000ADC3,16#0000AEC3,16#00008FC4,
+      16#000091C4,16#000084C5,16#000088C5,16#0000B3C3,16#0000B4C3,16#000091C5,16#0000B6C3,16#0000B7C3,
+      16#000099C5,16#0000AFC5,16#0000BAC3,16#0000B1C5,16#0000BCC3,16#0000BDC3,16#0000A3C5,16#000099CB
+    ];
+  END_VAR
+  VAR_IN_OUT
+    cp1250           : string [255];
+    utf8             : string [255];
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION CP1251_TO_UTF8 : udint
+  VAR_INPUT
+    maxLen           : udint;  (*`maximum len of output buffer including end zero*)
+  END_VAR
+  VAR
+    TO_UTF8_128_255  : ARRAY [128..255] OF dword :=  [
+      16#000082D0,16#000083D0,16#009A80E2,16#000093D1,16#009E80E2,16#00A680E2,16#00A080E2,16#00A180E2,
+      16#00AC82E2,16#00B080E2,16#000089D0,16#00B980E2,16#00008AD0,16#00008CD0,16#00008BD0,16#00008FD0,
+      16#000092D1,16#009880E2,16#009980E2,16#009C80E2,16#009D80E2,16#00A280E2,16#009380E2,16#009480E2,
+      16#00BDBFEF,16#00A284E2,16#000099D1,16#00BA80E2,16#00009AD1,16#00009CD1,16#00009BD1,16#00009FD1,
+      16#0000A0C2,16#00008ED0,16#00009ED1,16#000088D0,16#0000A4C2,16#000090D2,16#0000A6C2,16#0000A7C2,
+      16#000081D0,16#0000A9C2,16#000084D0,16#0000ABC2,16#0000ACC2,16#0000ADC2,16#0000AEC2,16#000087D0,
+      16#0000B0C2,16#0000B1C2,16#000086D0,16#000096D1,16#000091D2,16#0000B5C2,16#0000B6C2,16#0000B7C2,
+      16#000091D1,16#009684E2,16#000094D1,16#0000BBC2,16#000098D1,16#000085D0,16#000095D1,16#000097D1,
+      16#000090D0,16#000091D0,16#000092D0,16#000093D0,16#000094D0,16#000095D0,16#000096D0,16#000097D0,
+      16#000098D0,16#000099D0,16#00009AD0,16#00009BD0,16#00009CD0,16#00009DD0,16#00009ED0,16#00009FD0,
+      16#0000A0D0,16#0000A1D0,16#0000A2D0,16#0000A3D0,16#0000A4D0,16#0000A5D0,16#0000A6D0,16#0000A7D0,
+      16#0000A8D0,16#0000A9D0,16#0000AAD0,16#0000ABD0,16#0000ACD0,16#0000ADD0,16#0000AED0,16#0000AFD0,
+      16#0000B0D0,16#0000B1D0,16#0000B2D0,16#0000B3D0,16#0000B4D0,16#0000B5D0,16#0000B6D0,16#0000B7D0,
+      16#0000B8D0,16#0000B9D0,16#0000BAD0,16#0000BBD0,16#0000BCD0,16#0000BDD0,16#0000BED0,16#0000BFD0,
+      16#000080D1,16#000081D1,16#000082D1,16#000083D1,16#000084D1,16#000085D1,16#000086D1,16#000087D1,
+      16#000088D1,16#000089D1,16#00008AD1,16#00008BD1,16#00008CD1,16#00008DD1,16#00008ED1,16#00008FD1
+    ];
+  END_VAR
+  VAR_IN_OUT
+    cp1251           : string [255];
+    utf8             : string [255];
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION CP1252_TO_UTF8 : udint
+  VAR_INPUT
+    maxLen           : udint;  (*`maximum len of output buffer including end zero*)
+  END_VAR
+  VAR
+    TO_UTF8_128_255  : ARRAY [128..255] OF dword :=  [
+      16#00AC82E2,16#00BDBFEF,16#009A80E2,16#000092C6,16#009E80E2,16#00A680E2,16#00A080E2,16#00A180E2,
+      16#000086CB,16#00B080E2,16#0000A0C5,16#00B980E2,16#000092C5,16#00BDBFEF,16#0000BDC5,16#00BDBFEF,
+      16#00BDBFEF,16#009880E2,16#009980E2,16#009C80E2,16#009D80E2,16#00A280E2,16#009380E2,16#009480E2,
+      16#00009CCB,16#00A284E2,16#0000A1C5,16#00BA80E2,16#000093C5,16#00BDBFEF,16#0000BEC5,16#0000B8C5,
+      16#0000A0C2,16#0000A1C2,16#0000A2C2,16#0000A3C2,16#0000A4C2,16#0000A5C2,16#0000A6C2,16#0000A7C2,
+      16#0000A8C2,16#0000A9C2,16#0000AAC2,16#0000ABC2,16#0000ACC2,16#0000ADC2,16#0000AEC2,16#0000AFC2,
+      16#0000B0C2,16#0000B1C2,16#0000B2C2,16#0000B3C2,16#0000B4C2,16#0000B5C2,16#0000B6C2,16#0000B7C2,
+      16#0000B8C2,16#0000B9C2,16#0000BAC2,16#0000BBC2,16#0000BCC2,16#0000BDC2,16#0000BEC2,16#0000BFC2,
+      16#000080C3,16#000081C3,16#000082C3,16#000083C3,16#000084C3,16#000085C3,16#000086C3,16#000087C3,
+      16#000088C3,16#000089C3,16#00008AC3,16#00008BC3,16#00008CC3,16#00008DC3,16#00008EC3,16#00008FC3,
+      16#000090C3,16#000091C3,16#000092C3,16#000093C3,16#000094C3,16#000095C3,16#000096C3,16#000097C3,
+      16#000098C3,16#000099C3,16#00009AC3,16#00009BC3,16#00009CC3,16#00009DC3,16#00009EC3,16#00009FC3,
+      16#0000A0C3,16#0000A1C3,16#0000A2C3,16#0000A3C3,16#0000A4C3,16#0000A5C3,16#0000A6C3,16#0000A7C3,
+      16#0000A8C3,16#0000A9C3,16#0000AAC3,16#0000ABC3,16#0000ACC3,16#0000ADC3,16#0000AEC3,16#0000AFC3,
+      16#0000B0C3,16#0000B1C3,16#0000B2C3,16#0000B3C3,16#0000B4C3,16#0000B5C3,16#0000B6C3,16#0000B7C3,
+      16#0000B8C3,16#0000B9C3,16#0000BAC3,16#0000BBC3,16#0000BCC3,16#0000BDC3,16#0000BEC3,16#0000BFC3
+    ];
+  END_VAR
+  VAR_IN_OUT
+    cp1252           : string [255];
+    utf8             : string [255];
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION CP1253_TO_UTF8 : udint
+  VAR_INPUT
+    maxLen           : udint;  (*`maximum len of output buffer including end zero*)
+  END_VAR
+  VAR
+    TO_UTF8_128_255  : ARRAY [128..255] OF dword :=  [
+      16#00AC82E2,16#00BDBFEF,16#009A80E2,16#000092C6,16#009E80E2,16#00A680E2,16#00A080E2,16#00A180E2,
+      16#00BDBFEF,16#00B080E2,16#00BDBFEF,16#00B980E2,16#00BDBFEF,16#00BDBFEF,16#00BDBFEF,16#00BDBFEF,
+      16#00BDBFEF,16#009880E2,16#009980E2,16#009C80E2,16#009D80E2,16#00A280E2,16#009380E2,16#009480E2,
+      16#00BDBFEF,16#00A284E2,16#00BDBFEF,16#00BA80E2,16#00BDBFEF,16#00BDBFEF,16#00BDBFEF,16#00BDBFEF,
+      16#0000A0C2,16#000085CE,16#000086CE,16#0000A3C2,16#0000A4C2,16#0000A5C2,16#0000A6C2,16#0000A7C2,
+      16#0000A8C2,16#0000A9C2,16#00BDBFEF,16#0000ABC2,16#0000ACC2,16#0000ADC2,16#0000AEC2,16#009580E2,
+      16#0000B0C2,16#0000B1C2,16#0000B2C2,16#0000B3C2,16#000084CE,16#0000B5C2,16#0000B6C2,16#0000B7C2,
+      16#000088CE,16#000089CE,16#00008ACE,16#0000BBC2,16#00008CCE,16#0000BDC2,16#00008ECE,16#00008FCE,
+      16#000090CE,16#000091CE,16#000092CE,16#000093CE,16#000094CE,16#000095CE,16#000096CE,16#000097CE,
+      16#000098CE,16#000099CE,16#00009ACE,16#00009BCE,16#00009CCE,16#00009DCE,16#00009ECE,16#00009FCE,
+      16#0000A0CE,16#0000A1CE,16#00BDBFEF,16#0000A3CE,16#0000A4CE,16#0000A5CE,16#0000A6CE,16#0000A7CE,
+      16#0000A8CE,16#0000A9CE,16#0000AACE,16#0000ABCE,16#0000ACCE,16#0000ADCE,16#0000AECE,16#0000AFCE,
+      16#0000B0CE,16#0000B1CE,16#0000B2CE,16#0000B3CE,16#0000B4CE,16#0000B5CE,16#0000B6CE,16#0000B7CE,
+      16#0000B8CE,16#0000B9CE,16#0000BACE,16#0000BBCE,16#0000BCCE,16#0000BDCE,16#0000BECE,16#0000BFCE,
+      16#000080CF,16#000081CF,16#000082CF,16#000083CF,16#000084CF,16#000085CF,16#000086CF,16#000087CF,
+      16#000088CF,16#000089CF,16#00008ACF,16#00008BCF,16#00008CCF,16#00008DCF,16#00008ECF,16#00BDBFEF
+    ];
+  END_VAR
+  VAR_IN_OUT
+    cp1253           : string [255];
+    utf8             : string [255];
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION CP1254_TO_UTF8 : udint
+  VAR_INPUT
+    maxLen           : udint;  (*`maximum len of output buffer including end zero*)
+  END_VAR
+  VAR
+    TO_UTF8_128_255  : ARRAY [128..255] OF dword :=  [
+      16#00AC82E2,16#000081C2,16#009A80E2,16#000092C6,16#009E80E2,16#00A680E2,16#00A080E2,16#00A180E2,
+      16#000086CB,16#00B080E2,16#0000A0C5,16#00B980E2,16#000092C5,16#00008DC2,16#00008EC2,16#00008FC2,
+      16#000090C2,16#009880E2,16#009980E2,16#009C80E2,16#009D80E2,16#00A280E2,16#009380E2,16#009480E2,
+      16#00009CCB,16#00A284E2,16#0000A1C5,16#00BA80E2,16#000093C5,16#00009DC2,16#00009EC2,16#0000B8C5,
+      16#0000A0C2,16#0000A1C2,16#0000A2C2,16#0000A3C2,16#0000A4C2,16#0000A5C2,16#0000A6C2,16#0000A7C2,
+      16#0000A8C2,16#0000A9C2,16#0000AAC2,16#0000ABC2,16#0000ACC2,16#0000ADC2,16#0000AEC2,16#0000AFC2,
+      16#0000B0C2,16#0000B1C2,16#0000B2C2,16#0000B3C2,16#0000B4C2,16#0000B5C2,16#0000B6C2,16#0000B7C2,
+      16#0000B8C2,16#0000B9C2,16#0000BAC2,16#0000BBC2,16#0000BCC2,16#0000BDC2,16#0000BEC2,16#0000BFC2,
+      16#000080C3,16#000081C3,16#000082C3,16#000083C3,16#000084C3,16#000085C3,16#000086C3,16#000087C3,
+      16#000088C3,16#000089C3,16#00008AC3,16#00008BC3,16#00008CC3,16#00008DC3,16#00008EC3,16#00008FC3,
+      16#00009EC4,16#000091C3,16#000092C3,16#000093C3,16#000094C3,16#000095C3,16#000096C3,16#000097C3,
+      16#000098C3,16#000099C3,16#00009AC3,16#00009BC3,16#00009CC3,16#0000B0C4,16#00009EC5,16#00009FC3,
+      16#0000A0C3,16#0000A1C3,16#0000A2C3,16#0000A3C3,16#0000A4C3,16#0000A5C3,16#0000A6C3,16#0000A7C3,
+      16#0000A8C3,16#0000A9C3,16#0000AAC3,16#0000ABC3,16#0000ACC3,16#0000ADC3,16#0000AEC3,16#0000AFC3,
+      16#00009FC4,16#0000B1C3,16#0000B2C3,16#0000B3C3,16#0000B4C3,16#0000B5C3,16#0000B6C3,16#0000B7C3,
+      16#0000B8C3,16#0000B9C3,16#0000BAC3,16#0000BBC3,16#0000BCC3,16#0000B1C4,16#00009FC5,16#0000BFC3
+    ];
+  END_VAR
+  VAR_IN_OUT
+    cp1254           : string [255];
+    utf8             : string [255];
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION CP1255_TO_UTF8 : udint
+  VAR_INPUT
+    maxLen           : udint;  (*`maximum len of output buffer including end zero*)
+  END_VAR
+  VAR
+    TO_UTF8_128_255  : ARRAY [128..255] OF dword :=  [
+      16#00AC82E2,16#00BDBFEF,16#009A80E2,16#000092C6,16#009E80E2,16#00A680E2,16#00A080E2,16#00A180E2,
+      16#000086CB,16#00B080E2,16#00BDBFEF,16#00B980E2,16#00BDBFEF,16#00BDBFEF,16#00BDBFEF,16#00BDBFEF,
+      16#00BDBFEF,16#009880E2,16#009980E2,16#009C80E2,16#009D80E2,16#00A280E2,16#009380E2,16#009480E2,
+      16#00009CCB,16#00A284E2,16#00BDBFEF,16#00BA80E2,16#00BDBFEF,16#00BDBFEF,16#00BDBFEF,16#00BDBFEF,
+      16#0000A0C2,16#0000A1C2,16#0000A2C2,16#0000A3C2,16#00AA82E2,16#0000A5C2,16#0000A6C2,16#0000A7C2,
+      16#0000A8C2,16#0000A9C2,16#000097C3,16#0000ABC2,16#0000ACC2,16#0000ADC2,16#0000AEC2,16#0000AFC2,
+      16#0000B0C2,16#0000B1C2,16#0000B2C2,16#0000B3C2,16#0000B4C2,16#0000B5C2,16#0000B6C2,16#0000B7C2,
+      16#0000B8C2,16#0000B9C2,16#0000B7C3,16#0000BBC2,16#0000BCC2,16#0000BDC2,16#0000BEC2,16#0000BFC2,
+      16#0000B0D6,16#0000B1D6,16#0000B2D6,16#0000B3D6,16#0000B4D6,16#0000B5D6,16#0000B6D6,16#0000B7D6,
+      16#0000B8D6,16#0000B9D6,16#00BDBFEF,16#0000BBD6,16#0000BCD6,16#0000BDD6,16#0000BED6,16#0000BFD6,
+      16#000080D7,16#000081D7,16#000082D7,16#000083D7,16#0000B0D7,16#0000B1D7,16#0000B2D7,16#0000B3D7,
+      16#0000B4D7,16#00BDBFEF,16#00BDBFEF,16#00BDBFEF,16#00BDBFEF,16#00BDBFEF,16#00BDBFEF,16#00BDBFEF,
+      16#000090D7,16#000091D7,16#000092D7,16#000093D7,16#000094D7,16#000095D7,16#000096D7,16#000097D7,
+      16#000098D7,16#000099D7,16#00009AD7,16#00009BD7,16#00009CD7,16#00009DD7,16#00009ED7,16#00009FD7,
+      16#0000A0D7,16#0000A1D7,16#0000A2D7,16#0000A3D7,16#0000A4D7,16#0000A5D7,16#0000A6D7,16#0000A7D7,
+      16#0000A8D7,16#0000A9D7,16#0000AAD7,16#00BDBFEF,16#00BDBFEF,16#008E80E2,16#008F80E2,16#00BDBFEF
+    ];
+  END_VAR
+  VAR_IN_OUT
+    cp1255           : string [255];
+    utf8             : string [255];
+  END_VAR
+END_FUNCTION
+
+
+
+{USES=STRING_HEX_TO_UDINT:STRING_TO_UPPER}
+{USES=DT_TO_DT_RFC822:TIME_TO_STRINGF,UINT_TO_STRINGF}
+{USES=DT_TO_DT_HTTP:SUB_DT_TIME,USINT_TO_STRINGF,TIME_TO_STRINGF}
+{USES=CP1250_TO_UTF8:CP125x_TO_UTF8}
+{USES=CP1251_TO_UTF8:CP125x_TO_UTF8}
+{USES=CP1252_TO_UTF8:CP125x_TO_UTF8}
+{USES=CP1253_TO_UTF8:CP125x_TO_UTF8}
+{USES=CP1254_TO_UTF8:CP125x_TO_UTF8}
+{USES=CP1255_TO_UTF8:CP125x_TO_UTF8}
+#srcfile 'C:\TECOLIBSRC\CONVERTLIB\CONVERTLIB\CONVERTLIB_V10.ST'
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\CONVERTLIB\CONVERTLIB\STRING_TO_UPPER.ST'
+#pou STRING_TO_UPPER
+#srcline 1 ;FUNCTION STRING_TO_UPPER : UINT
+
+#struct STRING_TO_UPPER__temp__
+  pointer ptr
+P     61
+STRING_TO_UPPER_L0:
+ LINK __SizeOf(STRING_TO_UPPER__temp__)
+ NXT
+; Initialize - dynamic variables
+ LD   udint $FFFFFFFF    ; nil
+ WRY  ptr
+; End initialize - dynamic variables
+#srcline 13 ;  ptr := ADR(input);
+ LDX  input
+#debug pointer input
+ LEAY ptr
+ WRIL 
+#debug_left pointer ptr
+#srcline 14 ;  WHILE ptr^ <> 0 DO
+STRING_TO_UPPER_L1:
+ LEAY ptr
+ LDIL    ; dereference 
+ LDI  
+#debug byte ptr^
+ LD   byte 0
+ EQ
+ NEG
+ JMC  STRING_TO_UPPER_L2
+ DBG 
+#srcline 15 ;    IF ptr^ > 16#5f THEN
+ LEAY ptr
+ LDIL    ; dereference 
+ LDI  
+#debug byte ptr^
+ LD   byte $5f
+ GT
+ JMC  STRING_TO_UPPER_L3
+#srcline 16 ;      IF ptr^ < 16#7B THEN
+ LEAY ptr
+ LDIL    ; dereference 
+ LDI  
+#debug byte ptr^
+ LD   byte $7B
+ LT
+ JMC  STRING_TO_UPPER_L5
+#srcline 17 ;        ptr^ := ptr^ AND 16#DF;
+ LEAY ptr
+ LDIL    ; dereference 
+ LDI  
+#debug byte ptr^
+ LD   byte $DF
+ AND
+ LEAY ptr
+ LDIL    ; dereference 
+ WRI 
+#debug_left byte ptr^
+#srcline 18 ;      END_IF;
+STRING_TO_UPPER_L5:
+#srcline 19 ;    END_IF;
+STRING_TO_UPPER_L3:
+#srcline 20 ;    ptr := ptr + 1;
+ LEAY ptr
+ LDIL 
+#debug pointer ptr
+ LD   udint 1
+ ADD
+ LEAY ptr
+ WRIL 
+#debug_left pointer ptr
+#srcline 21 ;  END_WHILE;
+ JMP  STRING_TO_UPPER_L1
+STRING_TO_UPPER_L2:
+ NOP  -1
+#srcline 22 ;  STRING_TO_UPPER := UDINT_TO_UINT( PTR_TO_UDINT(ptr) - PTR_TO_UDINT( ADR(input)));
+ LEAY ptr
+ LDIL 
+#debug pointer ptr
+ LDX  input
+#debug pointer input
+ SUB
+ AND  $FFFF
+ WRX  __fc__STRING_TO_UPPER
+#debug_left uint STRING_TO_UPPER
+#srcline 23 ;END_FUNCTION
+ PRV  
+ LDX  __fc__STRING_TO_UPPER
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\CONVERTLIB\CONVERTLIB\STRING_TO_LOWER.ST'
+#pou STRING_TO_LOWER
+#srcline 1 ;FUNCTION STRING_TO_LOWER : UINT
+
+#struct STRING_TO_LOWER__temp__
+  pointer ptr
+P     61
+STRING_TO_LOWER_L0:
+ LINK __SizeOf(STRING_TO_LOWER__temp__)
+ NXT
+; Initialize - dynamic variables
+ LD   udint $FFFFFFFF    ; nil
+ WRY  ptr
+; End initialize - dynamic variables
+#srcline 13 ;  ptr := ADR(input);
+ LDX  input
+#debug pointer input
+ LEAY ptr
+ WRIL 
+#debug_left pointer ptr
+#srcline 14 ;  WHILE ptr^ <> 0 DO
+STRING_TO_LOWER_L1:
+ LEAY ptr
+ LDIL    ; dereference 
+ LDI  
+#debug byte ptr^
+ LD   byte 0
+ EQ
+ NEG
+ JMC  STRING_TO_LOWER_L2
+ DBG 
+#srcline 15 ;    IF ptr^ > 16#3f THEN
+ LEAY ptr
+ LDIL    ; dereference 
+ LDI  
+#debug byte ptr^
+ LD   byte $3f
+ GT
+ JMC  STRING_TO_LOWER_L3
+#srcline 16 ;      IF ptr^ < 16#5B THEN
+ LEAY ptr
+ LDIL    ; dereference 
+ LDI  
+#debug byte ptr^
+ LD   byte $5B
+ LT
+ JMC  STRING_TO_LOWER_L5
+#srcline 17 ;        ptr^ := ptr^ OR 16#20;
+ LEAY ptr
+ LDIL    ; dereference 
+ LDI  
+#debug byte ptr^
+ LD   byte $20
+ OR  
+ LEAY ptr
+ LDIL    ; dereference 
+ WRI 
+#debug_left byte ptr^
+#srcline 18 ;      END_IF;
+STRING_TO_LOWER_L5:
+#srcline 19 ;    END_IF;
+STRING_TO_LOWER_L3:
+#srcline 20 ;    ptr := ptr + 1;
+ LEAY ptr
+ LDIL 
+#debug pointer ptr
+ LD   udint 1
+ ADD
+ LEAY ptr
+ WRIL 
+#debug_left pointer ptr
+#srcline 21 ;  END_WHILE;
+ JMP  STRING_TO_LOWER_L1
+STRING_TO_LOWER_L2:
+ NOP  -1
+#srcline 22 ;  STRING_TO_LOWER := UDINT_TO_UINT( PTR_TO_UDINT(ptr) - PTR_TO_UDINT( ADR(input)));
+ LEAY ptr
+ LDIL 
+#debug pointer ptr
+ LDX  input
+#debug pointer input
+ SUB
+ AND  $FFFF
+ WRX  __fc__STRING_TO_LOWER
+#debug_left uint STRING_TO_LOWER
+#srcline 23 ;END_FUNCTION
+ PRV  
+ LDX  __fc__STRING_TO_LOWER
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\CONVERTLIB\CONVERTLIB\STRING_HEX_TO_UDINT.ST'
+#pou STRING_HEX_TO_UDINT
+#srcline 1 ;FUNCTION STRING_HEX_TO_UDINT : UDINT
+#table byte __Init___STRING_HEX_TO_UDINT_tmp = 
+    '0','0','0','0','0','0','0','0';
+
+#struct STRING_HEX_TO_UDINT__temp__
+  int lenIn,
+  udint low,
+  udint high,
+  string[10] PS0__st__
+P     61
+STRING_HEX_TO_UDINT_L0:
+ LINK __SizeOf(STRING_HEX_TO_UDINT__temp__)
+ NXT
+; Initialize - variables
+ LD   0
+ WRX  __fc__STRING_HEX_TO_UDINT
+ LD   0
+ SRC  byte __Init___STRING_HEX_TO_UDINT_tmp
+ LEAX byte tmp
+ LD   9
+ MOV  %X0
+; End initialize - variables
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 21 ;  STRING_HEX_TO_UDINT := 0; lenIn := LEN( input);
+ LD   udint 0
+ WRX  __fc__STRING_HEX_TO_UDINT
+#debug_left udint STRING_HEX_TO_UDINT
+ LEAX input
+#debug string input
+ SLEN 
+ WRY  lenIn
+#debug_left int lenIn
+#srcline 22 ;  IF lenIn < 9 THEN
+ LDY  lenIn
+#debug int lenIn
+ EXTW 
+ LD   int 9
+ LTS
+ JMC  STRING_HEX_TO_UDINT_L1
+#srcline 23 ;    lenIn := 9 - lenIn;
+ LD   int 9
+ LDY  lenIn
+#debug int lenIn
+ EXTW 
+ SUB
+ EXTW
+ WRY  lenIn
+#debug_left int lenIn
+#srcline 24 ;    tmp := INSERT(IN1 := tmp, IN2 := input, P := lenIn);
+ LD   0   ; null string
+ WRY  PS0__st__[0]
+ LEAY PS0__st__[0]
+ LD   8
+ DST    ; Level 1
+ LEAX tmp
+#debug string tmp
+ LEAX input
+#debug string input
+ LDY  lenIn
+#debug int lenIn
+ EXTW 
+ SUB  1
+ SINS 
+ PDST   ; Level 1
+ LD   0   ; null string
+ LEAX tmp
+ WRI  
+ LEAX tmp
+ LD   8
+ DST    ; Level 1
+ LEAY PS0__st__[0]
+ SCON 
+#debug_left string tmp
+ PDST   ; Level 1
+#srcline 25 ;    STRING_TO_UPPER(tmp);
+ NXT
+ LEAX tmp
+ WR   __Instance__STRING_TO_UPPER~input
+#debug_left pointer __Instance__STRING_TO_UPPER.input
+ PRV
+ LEA  __Instance__STRING_TO_UPPER
+ CAL  STRING_TO_UPPER_L0
+#srcline 26 ;    {asm}
+#srcline 27
+       LEAX   tmp
+#srcline 28
+       LDIL
+#srcline 29
+       ASB
+#srcline 30
+       SWL
+#srcline 31
+       WRY    high
+#srcline 32
+       LEAX   tmp
+#srcline 33
+       ADD    4
+#srcline 34
+       LDIL
+#srcline 35
+       ASB
+#srcline 36
+       WRY    low
+#srcline 37 ;    {end_asm}
+#srcline 38 ;    STRING_HEX_TO_UDINT := high + low;
+ LDY  high
+#debug udint high
+ LDY  low
+#debug udint low
+ ADD
+ WRX  __fc__STRING_HEX_TO_UDINT
+#debug_left udint STRING_HEX_TO_UDINT
+#srcline 39 ;  END_IF;
+STRING_HEX_TO_UDINT_L1:
+#srcline 40 ;END_FUNCTION
+ PRV  
+ LDX  __fc__STRING_HEX_TO_UDINT
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\CONVERTLIB\CONVERTLIB\DEG_TO_RAD.ST'
+#pou DEG_TO_RAD
+#srcline 1 ;FUNCTION DEG_TO_RAD : LREAL
+P     61
+DEG_TO_RAD_L0:
+ LINK 0
+ NXT
+; Initialize - variables
+ LDQ  0.0
+ WRX  __fc__DEG_TO_RAD
+; End initialize - variables
+#srcline 14 ;  DEG_TO_RAD := _180_pi * angle;
+ LDQ  lreal 0.0174532925199433
+ LDX  angle
+#debug lreal angle
+ MUDF
+ WRX  __fc__DEG_TO_RAD
+#debug_left lreal DEG_TO_RAD
+#srcline 16 ;END_FUNCTION
+ PRV  
+ LDX  __fc__DEG_TO_RAD
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\CONVERTLIB\CONVERTLIB\RAD_TO_DEG.ST'
+#pou RAD_TO_DEG
+#srcline 1 ;FUNCTION RAD_TO_DEG : LREAL
+P     61
+RAD_TO_DEG_L0:
+ LINK 0
+ NXT
+; Initialize - variables
+ LDQ  0.0
+ WRX  __fc__RAD_TO_DEG
+; End initialize - variables
+#srcline 14 ;  RAD_TO_DEG := _pi_180 * angle;
+ LDQ  lreal 57.2957795130823
+ LDX  angle
+#debug lreal angle
+ MUDF
+ WRX  __fc__RAD_TO_DEG
+#debug_left lreal RAD_TO_DEG
+#srcline 16 ;  
+#srcline 17 ;//  RAD_TO_DEG := 180.0 * angle / ACOS(-1.0);
+#srcline 18 ;END_FUNCTION
+ PRV  
+ LDX  __fc__RAD_TO_DEG
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\CONVERTLIB\CONVERTLIB\DEGREES_TO_ANGLE.ST'
+#pou DEGREES_TO_ANGLE
+#srcline 1 ;FUNCTION DEGREES_TO_ANGLE : LREAL
+P     61
+DEGREES_TO_ANGLE_L0:
+ LINK 0
+ NXT
+#srcline 12 ;  IF degrees < 0 THEN
+ LDX  degrees
+#debug int degrees
+ EXTW 
+ LD   int 0
+ LTS
+ JMC  DEGREES_TO_ANGLE_L1
+#srcline 13 ;    DEGREES_TO_ANGLE := INT_TO_LREAL( degrees) - (INT_TO_LREAL( minutes) / 60.0) - (INT_TO_LREAL( seconds) / 3600.0);
+ LDX  degrees
+#debug int degrees
+ EXTW 
+ ILDF
+ LDX  minutes
+#debug int minutes
+ EXTW 
+ ILDF
+ LDQ  lreal 60.0
+ DIDF
+ SUDF
+ LDX  seconds
+#debug int seconds
+ EXTW 
+ ILDF
+ LDQ  lreal 3600.0
+ DIDF
+ SUDF
+ WRX  __fc__DEGREES_TO_ANGLE
+#debug_left lreal DEGREES_TO_ANGLE
+#srcline 14 ;  ELSE
+ JMP  DEGREES_TO_ANGLE_L2
+DEGREES_TO_ANGLE_L1:
+#srcline 15 ;    DEGREES_TO_ANGLE := INT_TO_LREAL( degrees) + (INT_TO_LREAL( minutes) / 60.0) + (INT_TO_LREAL( seconds) / 3600.0);
+ LDX  degrees
+#debug int degrees
+ EXTW 
+ ILDF
+ LDX  minutes
+#debug int minutes
+ EXTW 
+ ILDF
+ LDQ  lreal 60.0
+ DIDF
+ ADDF
+ LDX  seconds
+#debug int seconds
+ EXTW 
+ ILDF
+ LDQ  lreal 3600.0
+ DIDF
+ ADDF
+ WRX  __fc__DEGREES_TO_ANGLE
+#debug_left lreal DEGREES_TO_ANGLE
+#srcline 16 ;  END_IF;
+DEGREES_TO_ANGLE_L2:
+#srcline 17 ;END_FUNCTION
+ PRV  
+ LDX  __fc__DEGREES_TO_ANGLE
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\CONVERTLIB\CONVERTLIB\FAHRENHEIT_TO_CELSIUS.ST'
+#pou FAHRENHEIT_TO_CELSIUS
+#srcline 4 ;FUNCTION FAHRENHEIT_TO_CELSIUS : REAL
+P     61
+FAHRENHEIT_TO_CELSIUS_L0:
+ LINK 0
+ NXT
+#srcline 12 ;  FAHRENHEIT_TO_CELSIUS := (temp - 32.0)/1.8;
+ LDX  temp
+#debug real temp
+ LD   real 32.0
+ SUF
+ LD   real 1.8
+ DIF
+ WRX  __fc__FAHRENHEIT_TO_CELSIUS
+#debug_left real FAHRENHEIT_TO_CELSIUS
+#srcline 13 ;END_FUNCTION
+ PRV  
+ LDX  __fc__FAHRENHEIT_TO_CELSIUS
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\CONVERTLIB\CONVERTLIB\CELSIUS_TO_FAHRENHEIT.ST'
+#pou CELSIUS_TO_FAHRENHEIT
+#srcline 4 ;FUNCTION CELSIUS_TO_FAHRENHEIT : REAL
+P     61
+CELSIUS_TO_FAHRENHEIT_L0:
+ LINK 0
+ NXT
+#srcline 12 ;  CELSIUS_TO_FAHRENHEIT := (temp * 1.8) + 32.0;
+ LDX  temp
+#debug real temp
+ LD   real 1.8
+ MUF
+ LD   real 32.0
+ ADF
+ WRX  __fc__CELSIUS_TO_FAHRENHEIT
+#debug_left real CELSIUS_TO_FAHRENHEIT
+#srcline 13 ;END_FUNCTION
+ PRV  
+ LDX  __fc__CELSIUS_TO_FAHRENHEIT
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\CONVERTLIB\CONVERTLIB\ANGLE_TO_DEGREES.ST'
+#pou ANGLE_TO_DEGREES
+#srcline 53 ;FUNCTION ANGLE_TO_DEGREES : BOOL
+
+#struct ANGLE_TO_DEGREES__temp__
+  lreal degreesTmp,
+  lreal minutesTmp
+P     61
+ANGLE_TO_DEGREES_L0:
+ LINK __SizeOf(ANGLE_TO_DEGREES__temp__)
+ NXT
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 69 ;  IF angle < 0.0 THEN
+ LDX  angle
+#debug lreal angle
+ LDQ  lreal 0.0
+ LTDF
+ JMC  ANGLE_TO_DEGREES_L1
+#srcline 70 ;    degreesTmp := CEIL( angle);
+ LDX  angle
+#debug lreal angle
+ CEID
+ WRY  degreesTmp
+#debug_left lreal degreesTmp
+#srcline 71 ;    angle      := (angle - degreesTmp) * -60.0;
+ LDX  angle
+#debug lreal angle
+ LDY  degreesTmp
+#debug lreal degreesTmp
+ SUDF
+ LDQ  lreal -60.0
+ MUDF
+ WRX  angle
+#debug_left lreal angle
+#srcline 72 ;    minutesTmp := FLOOR(angle);
+ LDX  angle
+#debug lreal angle
+ FLOD
+ WRY  minutesTmp
+#debug_left lreal minutesTmp
+#srcline 73 ;    angle      := (angle - minutesTmp) * 60.0;
+ LDX  angle
+#debug lreal angle
+ LDY  minutesTmp
+#debug lreal minutesTmp
+ SUDF
+ LDQ  lreal 60.0
+ MUDF
+ WRX  angle
+#debug_left lreal angle
+#srcline 74 ;  ELSE
+ JMP  ANGLE_TO_DEGREES_L2
+ANGLE_TO_DEGREES_L1:
+#srcline 75 ;    degreesTmp := FLOOR(angle);
+ LDX  angle
+#debug lreal angle
+ FLOD
+ WRY  degreesTmp
+#debug_left lreal degreesTmp
+#srcline 76 ;    angle      := (angle - degreesTmp) * 60.0;
+ LDX  angle
+#debug lreal angle
+ LDY  degreesTmp
+#debug lreal degreesTmp
+ SUDF
+ LDQ  lreal 60.0
+ MUDF
+ WRX  angle
+#debug_left lreal angle
+#srcline 77 ;    minutesTmp := FLOOR(angle);
+ LDX  angle
+#debug lreal angle
+ FLOD
+ WRY  minutesTmp
+#debug_left lreal minutesTmp
+#srcline 78 ;    angle      := (angle - minutesTmp) * 60.0;
+ LDX  angle
+#debug lreal angle
+ LDY  minutesTmp
+#debug lreal minutesTmp
+ SUDF
+ LDQ  lreal 60.0
+ MUDF
+ WRX  angle
+#debug_left lreal angle
+#srcline 79 ;  END_IF;
+ANGLE_TO_DEGREES_L2:
+#srcline 81 ;  degrees    := LREAL_TO_INT( degreesTmp);
+ LDY  degreesTmp
+#debug lreal degreesTmp
+ RNDD
+ IDFL
+ EXTW
+ LDX  degrees
+ WRIW 
+#debug_left int degrees
+#srcline 82 ;  minutes    := LREAL_TO_INT( minutesTmp);
+ LDY  minutesTmp
+#debug lreal minutesTmp
+ RNDD
+ IDFL
+ EXTW
+ LDX  minutes
+ WRIW 
+#debug_left int minutes
+#srcline 83 ;  seconds    := LREAL_TO_INT( ROUND( angle));
+ LDX  angle
+#debug lreal angle
+ RNDD
+ RNDD
+ IDFL
+ EXTW
+ LDX  seconds
+ WRIW 
+#debug_left int seconds
+#srcline 84 ;  ANGLE_TO_DEGREES := TRUE;
+ LD   bool -1       ; true
+ WRX  __fc__ANGLE_TO_DEGREES
+#debug_left bool ANGLE_TO_DEGREES
+#srcline 85 ;END_FUNCTION
+ PRV  
+ LDX  __fc__ANGLE_TO_DEGREES
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\CONVERTLIB\CONVERTLIB\ISO8859_2_TO_CP1250.ST'
+#pou ISO8859_2_TO_CP1250
+#srcline 1 ;FUNCTION ISO8859_2_TO_CP1250 : UDINT
+P     61
+ISO8859_2_TO_CP1250_L0:
+ LINK 0
+ NXT
+; Initialize - variables
+ LD   0
+ WRX  __fc__ISO8859_2_TO_CP1250
+ LD   -1
+ WRX  ps
+ LD   0
+ WRX  s
+; End initialize - variables
+#srcline 25 ;  ps := ADR(src);
+ LDX  src
+#debug pointer src
+ LEAX ps
+ WRIL 
+#debug_left pointer ps
+#srcline 26 ;  s := ps^;
+ LEAX ps
+ LDIL    ; dereference 
+ LDI  
+#debug usint ps^
+ WRX  s
+#debug_left usint s
+#srcline 27 ;  WHILE s <> 0 DO
+ISO8859_2_TO_CP1250_L1:
+ LDX  s
+#debug usint s
+ LD   usint 0
+ EQ
+ NEG
+ JMC  ISO8859_2_TO_CP1250_L2
+ DBG 
+#srcline 28 ;    IF s >= 161 AND s <= 190 THEN
+ LDX  s
+#debug usint s
+ LD   usint 161
+ LT
+ NEG
+ LDX  s
+#debug usint s
+ LD   usint 190
+ GT
+ NEG
+ AND
+ JMC  ISO8859_2_TO_CP1250_L3
+#srcline 29 ;      ps^ := ISO8859_2_TO_CP1250_161_190[s];
+ LEA  __Const__ISO8859_2_TO_CP1250_ISO8859_2_TO_CP1250_161_190
+ LDX  s
+#debug usint s
+ SUB  161   ; Low range[1]
+ RCHK 29   ; Range Check
+ ADD     ; + offset 
+ LDI  
+ LEAX ps
+ LDIL    ; dereference 
+ WRI 
+#debug_left usint ps^
+#srcline 30 ;    END_IF;
+ISO8859_2_TO_CP1250_L3:
+#srcline 31 ;    ps := ps + 1;
+ LEAX ps
+ LDIL 
+#debug pointer ps
+ LD   udint 1
+ ADD
+ LEAX ps
+ WRIL 
+#debug_left pointer ps
+#srcline 32 ;    s := ps^;
+ LEAX ps
+ LDIL    ; dereference 
+ LDI  
+#debug usint ps^
+ WRX  s
+#debug_left usint s
+#srcline 33 ;  END_WHILE;
+ JMP  ISO8859_2_TO_CP1250_L1
+ISO8859_2_TO_CP1250_L2:
+ NOP  -1
+#srcline 35 ;  ISO8859_2_TO_CP1250 := PTR_TO_UDINT(ps) - PTR_TO_UDINT(ADR(src));
+ LEAX ps
+ LDIL 
+#debug pointer ps
+ LDX  src
+#debug pointer src
+ SUB
+ WRX  __fc__ISO8859_2_TO_CP1250
+#debug_left udint ISO8859_2_TO_CP1250
+#srcline 36 ;END_FUNCTION
+ PRV  
+ LDX  __fc__ISO8859_2_TO_CP1250
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\CONVERTLIB\CONVERTLIB\REPLACECHAR.ST'
+#pou REPLACE_CHAR
+#srcline 1 ;FUNCTION REPLACE_CHAR : UINT
+
+#struct REPLACE_CHAR__temp__
+  pointer pchar1
+P     61
+REPLACE_CHAR_L0:
+ LINK __SizeOf(REPLACE_CHAR__temp__)
+ NXT
+; Initialize - dynamic variables
+ LD   udint $FFFFFFFF    ; nil
+ WRY  pchar1
+; End initialize - dynamic variables
+#srcline 19 ;  IF C1 > 0 THEN
+ LDX  C1
+#debug byte C1
+ LD   byte 0
+ GT
+ JMC  REPLACE_CHAR_L1
+#srcline 20 ;    pchar1 := ADR(input);
+ LDX  input
+#debug pointer input
+ LEAY pchar1
+ WRIL 
+#debug_left pointer pchar1
+#srcline 21 ;    WHILE pchar1^ > 0 DO
+REPLACE_CHAR_L3:
+ LEAY pchar1
+ LDIL    ; dereference 
+ LDI  
+#debug byte pchar1^
+ LD   byte 0
+ GT
+ JMC  REPLACE_CHAR_L4
+ DBG 
+#srcline 22 ;      IF pchar1^ = C1 THEN
+ LEAY pchar1
+ LDIL    ; dereference 
+ LDI  
+#debug byte pchar1^
+ LDX  C1
+#debug byte C1
+ EQ
+ JMC  REPLACE_CHAR_L5
+#srcline 23 ;        pchar1^ := C2;
+ LDX  C2
+#debug byte C2
+ LEAY pchar1
+ LDIL    ; dereference 
+ WRI 
+#debug_left byte pchar1^
+#srcline 24 ;      END_IF;
+REPLACE_CHAR_L5:
+#srcline 25 ;      pchar1 := pchar1 + 1;
+ LEAY pchar1
+ LDIL 
+#debug pointer pchar1
+ LD   udint 1
+ ADD
+ LEAY pchar1
+ WRIL 
+#debug_left pointer pchar1
+#srcline 26 ;    END_WHILE;
+ JMP  REPLACE_CHAR_L3
+REPLACE_CHAR_L4:
+ NOP  -1
+#srcline 27 ;  END_IF;
+REPLACE_CHAR_L1:
+#srcline 29 ;  REPLACE_CHAR := UDINT_TO_UINT(PTR_TO_UDINT(pchar1) - PTR_TO_UDINT(ADR(input)));
+ LEAY pchar1
+ LDIL 
+#debug pointer pchar1
+ LDX  input
+#debug pointer input
+ SUB
+ AND  $FFFF
+ WRX  __fc__REPLACE_CHAR
+#debug_left uint REPLACE_CHAR
+#srcline 31 ;END_FUNCTION
+ PRV  
+ LDX  __fc__REPLACE_CHAR
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\CONVERTLIB\CONVERTLIB\DT_RFC822_TO_DT.ST'
+#pou DT_TO_DT_RFC822
+#srcline 23 ;FUNCTION DT_TO_DT_RFC822 : STRING[26]
+
+#struct DT_TO_DT_RFC822__temp__
+  string[82] PS0__st__,
+  string[82] PS1__st__,
+  string[257] PSC__st__
+#data byte _str_DT_TO_DT_RFC822_0 = 
+  ' ','-','%','0','2','i',0
+#data byte _str_DT_TO_DT_RFC822_1 = 
+  ' ','+','%','0','2','i',0
+#data byte _str_DT_TO_DT_RFC822_2 = 
+  ' ',0
+#data byte _str_DT_TO_DT_RFC822_3 = 
+  ' ','2','0',0
+#data byte _str_DT_TO_DT_RFC822_4 = 
+  ' ','%','T','h','h',':','m','m',':','s','s',0
+#data byte _str_DT_TO_DT_RFC822_5 = 
+  '%','0','2','i',0
+P     61
+DT_TO_DT_RFC822_L0:
+ LINK __SizeOf(DT_TO_DT_RFC822__temp__)
+ NXT
+; Initialize - variables
+ LD   0
+ WRX  __fc__DT_TO_DT_RFC822
+ LEAX tmpDT
+ LD   9
+ LD   0
+ FIL 
+ LD   0
+ WRX  tmpTime
+ WRX  Format
+; End initialize - variables
+#srcline 74 ;  IF UtcOff < 0 THEN
+ LDX  UtcOff
+#debug uint UtcOff
+ LD   uint 0
+ LT
+ JMC  DT_TO_DT_RFC822_L1
+#srcline 75 ;    Format := ' -%02i';
+ LD   0   ; null string
+ LEAX Format
+ WRI  
+ LEAX Format
+ LD   80
+ DST    ; Level 1
+ LEA  _str_DT_TO_DT_RFC822_0
+ SCON 
+#debug_left string Format
+ PDST   ; Level 1
+#srcline 76 ;  ELSE
+ JMP  DT_TO_DT_RFC822_L2
+DT_TO_DT_RFC822_L1:
+#srcline 77 ;    Format := ' +%02i';
+ LD   0   ; null string
+ LEAX Format
+ WRI  
+ LEAX Format
+ LD   80
+ DST    ; Level 1
+ LEA  _str_DT_TO_DT_RFC822_1
+ SCON 
+#debug_left string Format
+ PDST   ; Level 1
+#srcline 78 ;  END_IF;
+DT_TO_DT_RFC822_L2:
+#srcline 79 ;  UtcOff := UtcOff + BOOL_TO_UINT(%S35.6)*60;
+ LDX  UtcOff
+#debug uint UtcOff
+ LD   %S35.6
+ AND  1
+ LD   uint 60
+ MUL
+ AND  $FFFF
+ ADD
+ AND  $FFFF
+ WRX  UtcOff
+#debug_left uint UtcOff
+#srcline 81 ;  // tmpDT   := DT_TO_TecoDT( dateTime); // konverze DATE_AND_TIME -> TTecoDateTime
+#srcline 82 ;  {asm}
+#srcline 83
+        LEAX  tmpDT
+#srcline 84
+        LDX   dateTime
+#srcline 85
+        SYS   19                ; konverze DATE_AND_TIME -> TTecoDateTime
+#srcline 86 ;  {end_asm}
+#srcline 88 ;  tmpTime := DT_TO_TIME( dateTime);
+ LDX  dateTime
+#debug dt dateTime
+ SCNV $3233;  IEC_DT _TO_ IEC_TIME
+ WRX  tmpTime
+#debug_left time tmpTime
+#srcline 90 ;  DT_TO_DT_RFC822 := USINT_TO_STRING( tmpDT.day)
+ LD   0   ; null string
+ WRY  PS0__st__[0]
+ LEAY PS0__st__[0]
+ LD   26
+ DST    ; Level 1
+ LD   0   ; null string
+ WRY  PSC__st__[0]
+ LEAY PSC__st__[0]
+ LD   26
+ DST    ; Level 2
+ LDX  tmpDT~day
+#debug usint tmpDT.day
+ SCNV $0830;  IEC_USINT _TO_ IEC_STRING
+ PDST   ; Level 2
+ LEAY PSC__st__[0]
+#srcline 91 ;                     + ' '   + MonthsNamesRFC822[tmpDT.month]
+
+ SCON 
+ LEA  _str_DT_TO_DT_RFC822_2
+ SCON 
+#srcline 92 ;                     + ' 20' + USINT_TO_STRING( tmpDT.year)
+ LEA  MonthsNamesRFC822
+ LDX  tmpDT~month
+#debug usint tmpDT.month
+ SUB  1   ; Low range[1]
+ RCHK 11   ; Range Check
+ MUL  4   ; SizeOf(...)
+ ADD     ; + offset 
+ SCON 
+ LEA  _str_DT_TO_DT_RFC822_3
+ SCON 
+ LD   0   ; null string
+ WRY  PSC__st__[0]
+ LEAY PSC__st__[0]
+ LD   26
+ DST    ; Level 2
+ LDX  tmpDT~year
+#debug usint tmpDT.year
+ SCNV $0830;  IEC_USINT _TO_ IEC_STRING
+ PDST   ; Level 2
+ LEAY PSC__st__[0]
+#srcline 93 ;                     + TIME_TO_STRINGF(in := tmpTime, format := ' %Thh:mm:ss')
+
+ SCON 
+ NXT
+ LDX  tmpTime
+#debug time tmpTime
+ WR   __Instance__TIME_TO_STRINGF~in
+#debug_left time __Instance__TIME_TO_STRINGF~in
+ LD   0   ; null string
+ LEA  __Instance__TIME_TO_STRINGF~format
+ WRI 
+ LEA  __Instance__TIME_TO_STRINGF~format
+ LD   80
+ DST    ; Level 2
+ LEA  _str_DT_TO_DT_RFC822_4
+ SCON 
+#debug_left string __Instance__TIME_TO_STRINGF~format
+ PDST   ; Level 2
+ PRV
+ LEA  __Instance__TIME_TO_STRINGF
+ CAL  TIME_TO_STRINGF_L0
+#srcline 94 ;                     + UINT_TO_STRINGF(in := UtcOff / 60 , format := Format)
+
+ SCON 
+ NXT
+ LDX  UtcOff
+#debug uint UtcOff
+ LD   uint 60
+ DIVL
+ AND  $FFFF
+ WR   __Instance__UINT_TO_STRINGF~in
+#debug_left uint __Instance__UINT_TO_STRINGF~in
+ LD   0   ; null string
+ LEA  __Instance__UINT_TO_STRINGF~format
+ WRI 
+ LEA  __Instance__UINT_TO_STRINGF~format
+ LD   80
+ DST    ; Level 2
+ LEAX Format
+#debug string Format
+ SCON 
+#debug_left string __Instance__UINT_TO_STRINGF~format
+ PDST   ; Level 2
+ PRV
+ LEA  __Instance__UINT_TO_STRINGF
+ CAL  UINT_TO_STRINGF_L0
+#srcline 95 ;                     + UINT_TO_STRINGF(in := MOD(UtcOff, 60) , format := '%02i');
+
+ SCON 
+ NXT
+ LDX  UtcOff
+#debug uint UtcOff
+ LD   uint 60
+ MOD
+ AND  $FFFF
+ WR   __Instance__UINT_TO_STRINGF~in
+#debug_left uint __Instance__UINT_TO_STRINGF~in
+ LD   0   ; null string
+ LEA  __Instance__UINT_TO_STRINGF~format
+ WRI 
+ LEA  __Instance__UINT_TO_STRINGF~format
+ LD   80
+ DST    ; Level 2
+ LEA  _str_DT_TO_DT_RFC822_5
+ SCON 
+#debug_left string __Instance__UINT_TO_STRINGF~format
+ PDST   ; Level 2
+ PRV
+ LEA  __Instance__UINT_TO_STRINGF
+ CAL  UINT_TO_STRINGF_L0
+
+ SCON 
+ PDST   ; Level 1
+ LD   0   ; null string
+ LEAX __fc__DT_TO_DT_RFC822
+ WRI  
+ LEAX __fc__DT_TO_DT_RFC822
+ LD   26
+ DST    ; Level 1
+ LEAY PS0__st__[0]
+ SCON 
+#debug_left string DT_TO_DT_RFC822
+ PDST   ; Level 1
+#srcline 96 ;END_FUNCTION
+ PRV  
+ LEAX  __fc__DT_TO_DT_RFC822
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou DT_RFC822_TO_DT
+#srcline 99 ;FUNCTION DT_RFC822_TO_DT : DT
+
+#struct DT_RFC822_TO_DT__temp__
+  int pos,
+  pointer ptr,
+  pointer str,
+  udint P0__st__
+#data byte _str_DT_RFC822_TO_DT_0 = 
+  ',',0
+#data byte _str_DT_RFC822_TO_DT_1 = 
+  ':',0
+#data byte _str_DT_RFC822_TO_DT_2 = 
+  'p','m',0
+#data byte _str_DT_RFC822_TO_DT_3 = 
+  'P','M',0
+#data byte _str_DT_RFC822_TO_DT_4 = 
+  ':',0
+#data byte _str_DT_RFC822_TO_DT_5 = 
+  ':',0
+P     61
+DT_RFC822_TO_DT_L0:
+ LINK __SizeOf(DT_RFC822_TO_DT__temp__)
+ NXT
+; Initialize - variables
+ LDQ  0.0
+ WRX  __fc__DT_RFC822_TO_DT
+ LEAX tmpDT
+ LD   9
+ LD   0
+ FIL 
+; End initialize - variables
+; Initialize - dynamic variables
+ LD   udint $FFFFFFFF    ; nil
+ WRY  ptr
+ LD   udint $FFFFFFFF    ; nil
+ WRY  str
+; End initialize - dynamic variables
+#srcline 151 ;  ptr := ADR( dateTime);
+ LEAX dateTime
+#debug pointer dateTime
+ LEAY ptr
+ WRIL 
+#debug_left pointer ptr
+#srcline 152 ;  IF FIND(IN1 := dateTime, IN2 := ',') <> 0 THEN
+ LEAX dateTime
+#debug string dateTime
+ LEA  _str_DT_RFC822_TO_DT_0
+ SFND 
+ LD   int 0
+ EQ
+ NEG
+ JMC  DT_RFC822_TO_DT_L1
+#srcline 153 ;    ptr := ptr + 5;                              // preskocit den
+ LEAY ptr
+ LDIL 
+#debug pointer ptr
+ LD   udint 5
+ ADD
+ LEAY ptr
+ WRIL 
+#debug_left pointer ptr
+#srcline 154 ;  END_IF;
+DT_RFC822_TO_DT_L1:
+#srcline 156 ;  // day
+#srcline 157 ;  str := ptr;
+ LEAY ptr
+ LDIL 
+#debug pointer ptr
+ LEAY str
+ WRIL 
+#debug_left pointer str
+#srcline 158 ;  tmpDT.day := STRING_TO_USINT( str^);
+ LEAY str
+ LDIL    ; dereference 
+#debug string str^
+ SCNV $3008;  IEC_STRING _TO_ IEC_USINT
+ WRX  tmpDT~day
+#debug_left usint tmpDT.day
+#srcline 160 ;  //  month  =  "Jan"  /  "Feb" /  "Mar"  /  "Apr"   /  "May"  /  "Jun" /  "Jul"  /  "Aug"  /  "Sep"  /  "Oct" /  "Nov"  /  "Dec"
+#srcline 161 ;  WHILE ptr^ <> 16#20 DO ptr := ptr + 1; END_WHILE;
+DT_RFC822_TO_DT_L3:
+ LEAY ptr
+ LDIL    ; dereference 
+ LDI  
+#debug usint ptr^
+ LD   usint $20
+ EQ
+ NEG
+ JMC  DT_RFC822_TO_DT_L4
+ DBG 
+ LEAY ptr
+ LDIL 
+#debug pointer ptr
+ LD   udint 1
+ ADD
+ LEAY ptr
+ WRIL 
+#debug_left pointer ptr
+ JMP  DT_RFC822_TO_DT_L3
+DT_RFC822_TO_DT_L4:
+ NOP  -1
+#srcline 162 ;  ptr := ptr + 1;
+ LEAY ptr
+ LDIL 
+#debug pointer ptr
+ LD   udint 1
+ ADD
+ LEAY ptr
+ WRIL 
+#debug_left pointer ptr
+#srcline 163 ;  CASE ptr^ OF
+ LEAY ptr
+ LDIL    ; dereference 
+ LDI  
+#debug usint ptr^
+ WRY  P0__st__
+ LD   $4A
+ LDY  P0__st__
+ EQ  
+ JMC  DT_RFC822_TO_DT_L6
+#srcline 164 ;    16#4A : // Jan Jun Jul
+#srcline 165 ;            tmpDT.month := 1;
+ LD   usint 1
+ WRX  tmpDT~month
+#debug_left usint tmpDT.month
+#srcline 166 ;            ptr := ptr + 1;
+ LEAY ptr
+ LDIL 
+#debug pointer ptr
+ LD   udint 1
+ ADD
+ LEAY ptr
+ WRIL 
+#debug_left pointer ptr
+#srcline 167 ;            IF ptr^ = 16#61 THEN
+ LEAY ptr
+ LDIL    ; dereference 
+ LDI  
+#debug usint ptr^
+ LD   usint $61
+ EQ
+ JMC  DT_RFC822_TO_DT_L7
+#srcline 168 ;              tmpDT.month := 1; ptr := ptr - 1;      // Jan
+ LD   usint 1
+ WRX  tmpDT~month
+#debug_left usint tmpDT.month
+ LEAY ptr
+ LDIL 
+#debug pointer ptr
+ LD   udint 1
+ SUB
+ LEAY ptr
+ WRIL 
+#debug_left pointer ptr
+#srcline 169 ;            ELSE
+ JMP  DT_RFC822_TO_DT_L8
+DT_RFC822_TO_DT_L7:
+#srcline 170 ;              ptr := ptr + 1;
+ LEAY ptr
+ LDIL 
+#debug pointer ptr
+ LD   udint 1
+ ADD
+ LEAY ptr
+ WRIL 
+#debug_left pointer ptr
+#srcline 171 ;              IF ptr^ = 16#6E THEN tmpDT.month := 6; // Jun
+ LEAY ptr
+ LDIL    ; dereference 
+ LDI  
+#debug usint ptr^
+ LD   usint $6E
+ EQ
+ JMC  DT_RFC822_TO_DT_L9
+ LD   usint 6
+ WRX  tmpDT~month
+#debug_left usint tmpDT.month
+#srcline 172 ;              ELSE tmpDT.month := 7; END_IF;         // Jul
+ JMP  DT_RFC822_TO_DT_L10
+DT_RFC822_TO_DT_L9:
+ LD   usint 7
+ WRX  tmpDT~month
+#debug_left usint tmpDT.month
+DT_RFC822_TO_DT_L10:
+#srcline 173 ;              ptr := ptr - 2;
+ LEAY ptr
+ LDIL 
+#debug pointer ptr
+ LD   udint 2
+ SUB
+ LEAY ptr
+ WRIL 
+#debug_left pointer ptr
+#srcline 174 ;            END_IF;
+DT_RFC822_TO_DT_L8:
+ JMP  DT_RFC822_TO_DT_L5
+DT_RFC822_TO_DT_L6:
+ LD   $46
+ LDY  P0__st__
+ EQ  
+ JMC  DT_RFC822_TO_DT_L11
+#srcline 175 ;    16#46 : // Feb
+#srcline 176 ;            tmpDT.month := 2;
+ LD   usint 2
+ WRX  tmpDT~month
+#debug_left usint tmpDT.month
+ JMP  DT_RFC822_TO_DT_L5
+DT_RFC822_TO_DT_L11:
+ LD   $4D
+ LDY  P0__st__
+ EQ  
+ JMC  DT_RFC822_TO_DT_L12
+#srcline 177 ;    16#4D : // Mar May
+#srcline 178 ;            ptr := ptr + 2;
+ LEAY ptr
+ LDIL 
+#debug pointer ptr
+ LD   udint 2
+ ADD
+ LEAY ptr
+ WRIL 
+#debug_left pointer ptr
+#srcline 179 ;            IF ptr^ = 16#72 THEN tmpDT.month := 3;   // Mar
+ LEAY ptr
+ LDIL    ; dereference 
+ LDI  
+#debug usint ptr^
+ LD   usint $72
+ EQ
+ JMC  DT_RFC822_TO_DT_L13
+ LD   usint 3
+ WRX  tmpDT~month
+#debug_left usint tmpDT.month
+#srcline 180 ;            ELSE tmpDT.month := 5; END_IF;           // May
+ JMP  DT_RFC822_TO_DT_L14
+DT_RFC822_TO_DT_L13:
+ LD   usint 5
+ WRX  tmpDT~month
+#debug_left usint tmpDT.month
+DT_RFC822_TO_DT_L14:
+#srcline 181 ;            ptr := ptr - 2;
+ LEAY ptr
+ LDIL 
+#debug pointer ptr
+ LD   udint 2
+ SUB
+ LEAY ptr
+ WRIL 
+#debug_left pointer ptr
+ JMP  DT_RFC822_TO_DT_L5
+DT_RFC822_TO_DT_L12:
+ LD   $41
+ LDY  P0__st__
+ EQ  
+ JMC  DT_RFC822_TO_DT_L15
+#srcline 182 ;    16#41 : // Apr Aug
+#srcline 183 ;            ptr := ptr + 1;
+ LEAY ptr
+ LDIL 
+#debug pointer ptr
+ LD   udint 1
+ ADD
+ LEAY ptr
+ WRIL 
+#debug_left pointer ptr
+#srcline 184 ;            IF ptr^ = 16#70 THEN tmpDT.month := 4;   // Apr
+ LEAY ptr
+ LDIL    ; dereference 
+ LDI  
+#debug usint ptr^
+ LD   usint $70
+ EQ
+ JMC  DT_RFC822_TO_DT_L16
+ LD   usint 4
+ WRX  tmpDT~month
+#debug_left usint tmpDT.month
+#srcline 185 ;            ELSE tmpDT.month := 8; END_IF;           // Aug
+ JMP  DT_RFC822_TO_DT_L17
+DT_RFC822_TO_DT_L16:
+ LD   usint 8
+ WRX  tmpDT~month
+#debug_left usint tmpDT.month
+DT_RFC822_TO_DT_L17:
+#srcline 186 ;            ptr := ptr - 1;
+ LEAY ptr
+ LDIL 
+#debug pointer ptr
+ LD   udint 1
+ SUB
+ LEAY ptr
+ WRIL 
+#debug_left pointer ptr
+ JMP  DT_RFC822_TO_DT_L5
+DT_RFC822_TO_DT_L15:
+ LD   $53
+ LDY  P0__st__
+ EQ  
+ JMC  DT_RFC822_TO_DT_L18
+#srcline 187 ;    16#53 : // Sep
+#srcline 188 ;            tmpDT.month := 9;
+ LD   usint 9
+ WRX  tmpDT~month
+#debug_left usint tmpDT.month
+ JMP  DT_RFC822_TO_DT_L5
+DT_RFC822_TO_DT_L18:
+ LD   $4F
+ LDY  P0__st__
+ EQ  
+ JMC  DT_RFC822_TO_DT_L19
+#srcline 189 ;    16#4F : // Oct
+#srcline 190 ;            tmpDT.month := 10;
+ LD   usint 10
+ WRX  tmpDT~month
+#debug_left usint tmpDT.month
+ JMP  DT_RFC822_TO_DT_L5
+DT_RFC822_TO_DT_L19:
+ LD   $4E
+ LDY  P0__st__
+ EQ  
+ JMC  DT_RFC822_TO_DT_L20
+#srcline 191 ;    16#4E : // Nov
+#srcline 192 ;            tmpDT.month := 11;
+ LD   usint 11
+ WRX  tmpDT~month
+#debug_left usint tmpDT.month
+ JMP  DT_RFC822_TO_DT_L5
+DT_RFC822_TO_DT_L20:
+ LD   $44
+ LDY  P0__st__
+ EQ  
+ JMC  DT_RFC822_TO_DT_L21
+#srcline 193 ;    16#44 : // Dec
+#srcline 194 ;            tmpDT.month := 12;
+ LD   usint 12
+ WRX  tmpDT~month
+#debug_left usint tmpDT.month
+ JMP  DT_RFC822_TO_DT_L5
+DT_RFC822_TO_DT_L21:
+DT_RFC822_TO_DT_L5:
+#srcline 197 ;  // year
+#srcline 198 ;  str := ptr + 6;
+ LEAY ptr
+ LDIL 
+#debug pointer ptr
+ LD   udint 6
+ ADD
+ LEAY str
+ WRIL 
+#debug_left pointer str
+#srcline 199 ;  tmpDT.year := STRING_TO_USINT( str^);
+ LEAY str
+ LDIL    ; dereference 
+#debug string str^
+ SCNV $3008;  IEC_STRING _TO_ IEC_USINT
+ WRX  tmpDT~year
+#debug_left usint tmpDT.year
+#srcline 201 ;  pos := FIND(IN1 := str^, IN2 := ':');
+ LEAY str
+ LDIL    ; dereference 
+#debug string str^
+ LEA  _str_DT_RFC822_TO_DT_1
+ SFND 
+ WRY  pos
+#debug_left int pos
+#srcline 202 ;  IF pos <> 0 THEN     // je uveden cas
+ LDY  pos
+#debug int pos
+ EXTW 
+ LD   int 0
+ EQ
+ NEG
+ JMC  DT_RFC822_TO_DT_L22
+#srcline 203 ;    // hour
+#srcline 204 ;    str := str + 3;
+ LEAY str
+ LDIL 
+#debug pointer str
+ LD   udint 3
+ ADD
+ LEAY str
+ WRIL 
+#debug_left pointer str
+#srcline 205 ;    tmpDT.hour := STRING_TO_USINT( str^);
+ LEAY str
+ LDIL    ; dereference 
+#debug string str^
+ SCNV $3008;  IEC_STRING _TO_ IEC_USINT
+ WRX  tmpDT~hour
+#debug_left usint tmpDT.hour
+#srcline 206 ;    IF tmpDT.hour = 12 THEN
+ LDX  tmpDT~hour
+#debug usint tmpDT.hour
+ LD   usint 12
+ EQ
+ JMC  DT_RFC822_TO_DT_L24
+#srcline 207 ;      tmpDT.hour := tmpDT.hour - 12;
+ LDX  tmpDT~hour
+#debug usint tmpDT.hour
+ LD   usint 12
+ SUB
+ AND  $FF
+ WRX  tmpDT~hour
+#debug_left usint tmpDT.hour
+#srcline 208 ;    END_IF;
+DT_RFC822_TO_DT_L24:
+#srcline 209 ;    IF FIND(IN1 := dateTime, IN2 := 'pm') <> 0 THEN
+ LEAX dateTime
+#debug string dateTime
+ LEA  _str_DT_RFC822_TO_DT_2
+ SFND 
+ LD   int 0
+ EQ
+ NEG
+ JMC  DT_RFC822_TO_DT_L26
+#srcline 210 ;      tmpDT.hour := tmpDT.hour + 12;
+ LDX  tmpDT~hour
+#debug usint tmpDT.hour
+ LD   usint 12
+ ADD
+ AND  $FF
+ WRX  tmpDT~hour
+#debug_left usint tmpDT.hour
+#srcline 211 ;    ELSIF FIND(IN1 := dateTime, IN2 := 'PM') <> 0 THEN
+ JMP  DT_RFC822_TO_DT_L27
+DT_RFC822_TO_DT_L26:
+ LEAX dateTime
+#debug string dateTime
+ LEA  _str_DT_RFC822_TO_DT_3
+ SFND 
+ LD   int 0
+ EQ
+ NEG
+ JMC  DT_RFC822_TO_DT_L28
+#srcline 212 ;      tmpDT.hour := tmpDT.hour + 12;
+ LDX  tmpDT~hour
+#debug usint tmpDT.hour
+ LD   usint 12
+ ADD
+ AND  $FF
+ WRX  tmpDT~hour
+#debug_left usint tmpDT.hour
+#srcline 213 ;    END_IF;
+ JMP  DT_RFC822_TO_DT_L27
+DT_RFC822_TO_DT_L28:
+DT_RFC822_TO_DT_L27:
+#srcline 215 ;    // min
+#srcline 216 ;    pos := FIND(IN1 := str^, IN2 := ':');
+ LEAY str
+ LDIL    ; dereference 
+#debug string str^
+ LEA  _str_DT_RFC822_TO_DT_4
+ SFND 
+ WRY  pos
+#debug_left int pos
+#srcline 217 ;    str := str + INT_TO_UDINT(pos);
+ LEAY str
+ LDIL 
+#debug pointer str
+ LDY  pos
+#debug int pos
+ EXTW 
+ ADD
+ LEAY str
+ WRIL 
+#debug_left pointer str
+#srcline 218 ;    tmpDT.min := STRING_TO_USINT( str^);
+ LEAY str
+ LDIL    ; dereference 
+#debug string str^
+ SCNV $3008;  IEC_STRING _TO_ IEC_USINT
+ WRX  tmpDT~min
+#debug_left usint tmpDT.min
+#srcline 220 ;    // sec
+#srcline 221 ;    pos := FIND(IN1 := str^, IN2 := ':');
+ LEAY str
+ LDIL    ; dereference 
+#debug string str^
+ LEA  _str_DT_RFC822_TO_DT_5
+ SFND 
+ WRY  pos
+#debug_left int pos
+#srcline 222 ;    IF pos <> 0 THEN
+ LDY  pos
+#debug int pos
+ EXTW 
+ LD   int 0
+ EQ
+ NEG
+ JMC  DT_RFC822_TO_DT_L29
+#srcline 223 ;      str := str + INT_TO_UDINT(pos);
+ LEAY str
+ LDIL 
+#debug pointer str
+ LDY  pos
+#debug int pos
+ EXTW 
+ ADD
+ LEAY str
+ WRIL 
+#debug_left pointer str
+#srcline 224 ;      tmpDT.sec := STRING_TO_USINT( str^);
+ LEAY str
+ LDIL    ; dereference 
+#debug string str^
+ SCNV $3008;  IEC_STRING _TO_ IEC_USINT
+ WRX  tmpDT~sec
+#debug_left usint tmpDT.sec
+#srcline 225 ;    END_IF;
+DT_RFC822_TO_DT_L29:
+#srcline 226 ;  END_IF;
+DT_RFC822_TO_DT_L22:
+#srcline 228 ;  // DT_RFC822_TO_DT := TecoDT_TO_DT( tmpDT);    // vratit IEC datum a cas
+#srcline 229 ;  {asm}
+#srcline 230
+        LEAX  tmpDT
+#srcline 231
+        SYS   18                ; konverze TTecoDateTime -> DATE_AND_TIME;
+#srcline 232
+        WRX   __fc__DT_RFC822_TO_DT
+#srcline 233 ;  {end_asm}
+#srcline 234 ;END_FUNCTION
+ PRV  
+ LDX  __fc__DT_RFC822_TO_DT
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\CONVERTLIB\CONVERTLIB\WINDDIRECTIONT115DEG.ST'
+#pou WindDirectionT115Deg
+#srcline 1 ;FUNCTION WindDirectionT115Deg : REAL
+P     61
+WindDirectionT115Deg_L0:
+ LINK 0
+ NXT
+; Initialize - variables
+ LD   0.0
+ WRX  __fc__WindDirectionT115Deg
+; End initialize - variables
+#srcline 13 ;  WindDirectionT115Deg := directionDeg[LIMIT(MN := 0, IN := REAL_TO_INT(LOG(R/1000.0) / log(2.0)), MX := 7)];
+ LEA  __Const__WindDirectionT115Deg_directionDeg
+ LD   int 0
+ LDX  R
+#debug real R
+ LD   real 1000.0
+ DIF
+ LOG
+ LD   real 2.0
+ LOG
+ DIF
+ RND
+ IFW
+ EXTW
+ MAXS
+ LD   int 7
+ MINS
+ RCHK 7   ; Range Check
+ MUL  4   ; SizeOf(...)
+ ADD     ; + offset 
+ LDIL 
+ WRX  __fc__WindDirectionT115Deg
+#debug_left real WindDirectionT115Deg
+#srcline 15 ;END_FUNCTION
+ PRV  
+ LDX  __fc__WindDirectionT115Deg
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\CONVERTLIB\CONVERTLIB\WINDDIRECTIONT115STRINGCS.ST'
+#pou WindDirectionT115StringCs
+#srcline 1 ;FUNCTION WindDirectionT115StringCs : STRING[2]
+#table byte __Init___WindDirectionT115StringCs_direction = 
+    'V',$00,$00,'J','V',$00,'J',$00,$00,'S','V',$00,'J','Z',$00,'S',$00,$00,'S','Z',$00,
+    'Z';
+
+#struct WindDirectionT115StringCs__temp__
+  string[4] PS0__st__
+P     61
+WindDirectionT115StringCs_L0:
+ LINK __SizeOf(WindDirectionT115StringCs__temp__)
+ NXT
+; Initialize - variables
+ LD   0
+ WRX  __fc__WindDirectionT115StringCs
+ LD   0
+ SRC  byte __Init___WindDirectionT115StringCs_direction
+ LEAX byte direction[0]
+ LD   24
+ MOV  %X0
+; End initialize - variables
+#srcline 13 ;  WindDirectionT115StringCs := direction[LIMIT(MN := 0, IN := REAL_TO_INT(LOG(R/1000.0) / log(2.0)), MX := 7)];
+ LD   0   ; null string
+ WRY  PS0__st__[0]
+ LEAY PS0__st__[0]
+ LD   2
+ DST    ; Level 1
+ LEAX direction
+ LD   int 0
+ LDX  R
+#debug real R
+ LD   real 1000.0
+ DIF
+ LOG
+ LD   real 2.0
+ LOG
+ DIF
+ RND
+ IFW
+ EXTW
+ MAXS
+ LD   int 7
+ MINS
+ RCHK 7   ; Range Check
+ MUL  3   ; SizeOf(...)
+ ADD     ; + offset 
+#debug string direction[LIMIT(MN:=0,IN:=REAL_TO_INT(LOG(R/1000.0)/log(2.0)),MX:=7)]
+ SCON 
+ PDST   ; Level 1
+ LD   0   ; null string
+ LEAX __fc__WindDirectionT115StringCs
+ WRI  
+ LEAX __fc__WindDirectionT115StringCs
+ LD   2
+ DST    ; Level 1
+ LEAY PS0__st__[0]
+ SCON 
+#debug_left string WindDirectionT115StringCs
+ PDST   ; Level 1
+#srcline 15 ;END_FUNCTION
+ PRV  
+ LEAX  __fc__WindDirectionT115StringCs
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\CONVERTLIB\CONVERTLIB\WINDDIRECTIONT115STRINGEN.ST'
+#pou WindDirectionT115StringEn
+#srcline 1 ;FUNCTION WindDirectionT115StringEn : STRING[2]
+#table byte __Init___WindDirectionT115StringEn_direction = 
+    'E',$00,$00,'S','E',$00,'S',$00,$00,'N','E',$00,'S','W',$00,'N',$00,$00,'N','W',$00,
+    'W';
+
+#struct WindDirectionT115StringEn__temp__
+  string[4] PS0__st__
+P     61
+WindDirectionT115StringEn_L0:
+ LINK __SizeOf(WindDirectionT115StringEn__temp__)
+ NXT
+; Initialize - variables
+ LD   0
+ WRX  __fc__WindDirectionT115StringEn
+ LD   0
+ SRC  byte __Init___WindDirectionT115StringEn_direction
+ LEAX byte direction[0]
+ LD   24
+ MOV  %X0
+; End initialize - variables
+#srcline 13 ;  WindDirectionT115StringEn := direction[LIMIT(MN := 0, IN := REAL_TO_INT(LOG(R/1000.0) / log(2.0)), MX := 7)];
+ LD   0   ; null string
+ WRY  PS0__st__[0]
+ LEAY PS0__st__[0]
+ LD   2
+ DST    ; Level 1
+ LEAX direction
+ LD   int 0
+ LDX  R
+#debug real R
+ LD   real 1000.0
+ DIF
+ LOG
+ LD   real 2.0
+ LOG
+ DIF
+ RND
+ IFW
+ EXTW
+ MAXS
+ LD   int 7
+ MINS
+ RCHK 7   ; Range Check
+ MUL  3   ; SizeOf(...)
+ ADD     ; + offset 
+#debug string direction[LIMIT(MN:=0,IN:=REAL_TO_INT(LOG(R/1000.0)/log(2.0)),MX:=7)]
+ SCON 
+ PDST   ; Level 1
+ LD   0   ; null string
+ LEAX __fc__WindDirectionT115StringEn
+ WRI  
+ LEAX __fc__WindDirectionT115StringEn
+ LD   2
+ DST    ; Level 1
+ LEAY PS0__st__[0]
+ SCON 
+#debug_left string WindDirectionT115StringEn
+ PDST   ; Level 1
+#srcline 15 ;END_FUNCTION
+ PRV  
+ LEAX  __fc__WindDirectionT115StringEn
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\CONVERTLIB\CONVERTLIB\DT_TO_DT_HTTP.ST'
+#pou DT_TO_DT_HTTP
+#srcline 34 ;FUNCTION DT_TO_DT_HTTP : STRING
+
+#struct DT_TO_DT_HTTP__temp__
+  string[82] PS0__st__,
+  string[82] PS1__st__,
+  string[257] PSC__st__
+#data byte _str_DT_TO_DT_HTTP_0 = 
+  ',',' ','%','0','2','i',0
+#data byte _str_DT_TO_DT_HTTP_1 = 
+  ' ',0
+#data byte _str_DT_TO_DT_HTTP_2 = 
+  ' ','2','0',0
+#data byte _str_DT_TO_DT_HTTP_3 = 
+  ' ','%','T','h','h',':','m','m',':','s','s',' ','G','M','T',0
+P     61
+DT_TO_DT_HTTP_L0:
+ LINK __SizeOf(DT_TO_DT_HTTP__temp__)
+ NXT
+; Initialize - variables
+ LD   0
+ WRX  __fc__DT_TO_DT_HTTP
+ LDQ  0.0
+ WRX  gmtDT
+ LEAX tmpDT
+ LD   9
+ LD   0
+ FIL 
+ LD   0
+ WRX  tmpTime
+; End initialize - variables
+#srcline 85 ;  UtcOff := UtcOff + BOOL_TO_UINT(%S35.6)*60;
+ LDX  UtcOff
+#debug uint UtcOff
+ LD   %S35.6
+ AND  1
+ LD   uint 60
+ MUL
+ AND  $FFFF
+ ADD
+ AND  $FFFF
+ WRX  UtcOff
+#debug_left uint UtcOff
+#srcline 86 ;  gmtDT := SUB_DT_TIME( dateTime, UDINT_TO_TIME( UINT_TO_UDINT(UtcOff)*60000));
+ NXT
+ LDX  dateTime
+#debug dt dateTime
+ WR   __Instance__SUB_DT_TIME~IN1
+#debug_left dt __Instance__SUB_DT_TIME~IN1
+ LDX  UtcOff
+#debug uint UtcOff
+ LD   udint 60000
+ MUL
+ WR   __Instance__SUB_DT_TIME~IN2
+#debug_left time __Instance__SUB_DT_TIME~IN2
+ PRV
+ LEA  __Instance__SUB_DT_TIME
+ CAL  SUB_DT_TIME_L0
+ WRX  gmtDT
+#debug_left dt gmtDT
+#srcline 88 ;  // tmpDT   := DT_TO_TecoDT( dateTime); // konverze DATE_AND_TIME -> TTecoDateTime
+#srcline 89 ;  {asm}
+#srcline 90
+        LEAX  tmpDT
+#srcline 91
+        LDX   gmtDT
+#srcline 92
+        SYS   19                ; konverze DATE_AND_TIME -> TTecoDateTime
+#srcline 93 ;  {end_asm}
+#srcline 95 ;  tmpTime := DT_TO_TIME( gmtDT);
+ LDX  gmtDT
+#debug dt gmtDT
+ SCNV $3233;  IEC_DT _TO_ IEC_TIME
+ WRX  tmpTime
+#debug_left time tmpTime
+#srcline 97 ;  DT_TO_DT_HTTP := DayNamesRFC1123[tmpDT.dayOfWeek]
+ LD   0   ; null string
+ WRY  PS0__st__[0]
+ LEAY PS0__st__[0]
+ LD   80
+ DST    ; Level 1
+#srcline 98 ;                   +         USINT_TO_STRINGF( in := tmpDT.day, format := ', %02i')
+ LEA  DayNamesRFC1123
+ LDX  tmpDT~dayOfWeek
+#debug usint tmpDT.dayOfWeek
+ SUB  1   ; Low range[1]
+ RCHK 6   ; Range Check
+ MUL  4   ; SizeOf(...)
+ ADD     ; + offset 
+ SCON 
+ NXT
+ LDX  tmpDT~day
+#debug usint tmpDT.day
+ WR   __Instance__USINT_TO_STRINGF~in
+#debug_left usint __Instance__USINT_TO_STRINGF~in
+ LD   0   ; null string
+ LEA  __Instance__USINT_TO_STRINGF~format
+ WRI 
+ LEA  __Instance__USINT_TO_STRINGF~format
+ LD   80
+ DST    ; Level 2
+ LEA  _str_DT_TO_DT_HTTP_0
+ SCON 
+#debug_left string __Instance__USINT_TO_STRINGF~format
+ PDST   ; Level 2
+ PRV
+ LEA  __Instance__USINT_TO_STRINGF
+ CAL  USINT_TO_STRINGF_L0
+#srcline 99 ;                   + ' '   + MonthsNamesRFC822[tmpDT.month]
+
+ SCON 
+ LEA  _str_DT_TO_DT_HTTP_1
+ SCON 
+#srcline 100 ;                   + ' 20' + USINT_TO_STRING( tmpDT.year)
+ LEA  MonthsNamesRFC822
+ LDX  tmpDT~month
+#debug usint tmpDT.month
+ SUB  1   ; Low range[1]
+ RCHK 11   ; Range Check
+ MUL  4   ; SizeOf(...)
+ ADD     ; + offset 
+ SCON 
+ LEA  _str_DT_TO_DT_HTTP_2
+ SCON 
+ LD   0   ; null string
+ WRY  PSC__st__[0]
+ LEAY PSC__st__[0]
+ LD   80
+ DST    ; Level 2
+ LDX  tmpDT~year
+#debug usint tmpDT.year
+ SCNV $0830;  IEC_USINT _TO_ IEC_STRING
+ PDST   ; Level 2
+ LEAY PSC__st__[0]
+#srcline 101 ;                   +         TIME_TO_STRINGF(in := tmpTime, format := ' %Thh:mm:ss GMT');
+
+ SCON 
+ NXT
+ LDX  tmpTime
+#debug time tmpTime
+ WR   __Instance__TIME_TO_STRINGF~in
+#debug_left time __Instance__TIME_TO_STRINGF~in
+ LD   0   ; null string
+ LEA  __Instance__TIME_TO_STRINGF~format
+ WRI 
+ LEA  __Instance__TIME_TO_STRINGF~format
+ LD   80
+ DST    ; Level 2
+ LEA  _str_DT_TO_DT_HTTP_3
+ SCON 
+#debug_left string __Instance__TIME_TO_STRINGF~format
+ PDST   ; Level 2
+ PRV
+ LEA  __Instance__TIME_TO_STRINGF
+ CAL  TIME_TO_STRINGF_L0
+
+ SCON 
+ PDST   ; Level 1
+ LD   0   ; null string
+ LEAX __fc__DT_TO_DT_HTTP
+ WRI  
+ LEAX __fc__DT_TO_DT_HTTP
+ LD   80
+ DST    ; Level 1
+ LEAY PS0__st__[0]
+ SCON 
+#debug_left string DT_TO_DT_HTTP
+ PDST   ; Level 1
+#srcline 102 ;END_FUNCTION
+ PRV  
+ LEAX  __fc__DT_TO_DT_HTTP
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\CONVERTLIB\CONVERTLIB\UTF8_TO_CP125X.ST'
+#pou UTF8_TO_CP125x
+#srcline 1 ;FUNCTION UTF8_TO_CP125x : UINT
+
+#struct UTF8_TO_CP125x__temp__
+  uint tmp
+P     61
+UTF8_TO_CP125x_L0:
+ LINK __SizeOf(UTF8_TO_CP125x__temp__)
+ NXT
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 17 ;begin
+#srcline 18 ;  {asm}
+#srcline 19
+    LDX      str            ; *str
+#srcline 20
+    LDX      codePage       ; codePage
+#srcline 21
+    LD       11
+#srcline 22
+    SYS      85             ; SYS 85, subcode 11
+#srcline 23
+    WRY      tmp            ; delka prekodovanych dat
+#srcline 24 ;  {end_asm}
+#srcline 25 ;  UTF8_TO_CP125x := tmp;
+ LDY  tmp
+#debug uint tmp
+ WRX  __fc__UTF8_TO_CP125x
+#debug_left uint UTF8_TO_CP125x
+#srcline 26 ;END_FUNCTION
+ PRV  
+ LDX  __fc__UTF8_TO_CP125x
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\CONVERTLIB\CONVERTLIB\FBMETERPULSE.ST'
+#pou fbMeterPulse
+#srcline 1 ;FUNCTION_BLOCK fbMeterPulse
+P     61
+fbMeterPulse_L0:
+ LINK 0
+; R_EDGE, F_EDGE 
+ LDX  Pulse
+ LETX __EDGE_R__Pulse
+ WRX  Pulse
+ LDX  Reset
+ LETX __EDGE_R__Reset
+ WRX  Reset
+#srcline 39 ;  PulseOut := Pulse;
+ LDX  Pulse
+#debug bool Pulse
+ WRX  PulseOut
+#debug_left bool PulseOut
+#srcline 41 ;  PulseLen := TIME_TO_REAL(%SL52 - LastPulseTim);
+ LD   %SL52
+ LDX  LastPulseTim
+#debug time LastPulseTim
+ SUB
+ ILF
+ WRX  PulseLen
+#debug_left real PulseLen
+#srcline 43 ;  MaxPulseLen := TIME_TO_REAL(MaxPeriod);
+ LDX  MaxPeriod
+#debug time MaxPeriod
+ ILF
+ WRX  MaxPulseLen
+#debug_left real MaxPulseLen
+#srcline 45 ;  IF Freeze THEN
+ LDX  Freeze
+#debug bool Freeze
+ JMC  fbMeterPulse_L1
+#srcline 46 ;    Pulse := false;
+ LD   bool 0       ; false
+ WRX  Pulse
+#debug_left bool Pulse
+#srcline 47 ;    LastPulseTim := %SL52 - REAL_TO_TIME(MaxPulseLen) - T#1ms;
+ LD   %SL52
+ LDX  MaxPulseLen
+#debug real MaxPulseLen
+ RND
+ IFL
+ SUB
+ LD   time 1
+ SUB
+ WRX  LastPulseTim
+#debug_left time LastPulseTim
+#srcline 48 ;  END_IF;
+fbMeterPulse_L1:
+#srcline 50 ;  IF PulseLen > MaxPulseLen THEN
+ LDX  PulseLen
+#debug real PulseLen
+ LDX  MaxPulseLen
+#debug real MaxPulseLen
+ GTF
+ JMC  fbMeterPulse_L3
+#srcline 51 ;    LastPulseTim := %SL52 - REAL_TO_TIME(MaxPulseLen);
+ LD   %SL52
+ LDX  MaxPulseLen
+#debug real MaxPulseLen
+ RND
+ IFL
+ SUB
+ WRX  LastPulseTim
+#debug_left time LastPulseTim
+#srcline 52 ;  END_IF;
+fbMeterPulse_L3:
+#srcline 54 ;  IF Reset THEN Counter := 0; Overflow := 0; END_IF;
+ LDX  Reset
+#debug bool Reset
+ JMC  fbMeterPulse_L5
+ LD   udint 0
+ LDX  Counter
+ WRIL 
+#debug_left udint Counter
+ LD   bool 0       ; false
+ WRX  Overflow
+#debug_left bool Overflow
+fbMeterPulse_L5:
+#srcline 56 ;  IF Pulse THEN //prisel Pulse
+ LDX  Pulse
+#debug bool Pulse
+ JMC  fbMeterPulse_L7
+#srcline 57 ;    Counter := Counter + BOOL_TO_UDINT(NOT Overflow); //citani Pulsu
+ LDX  Counter
+ LDIL 
+#debug udint Counter
+ LDX  Overflow
+#debug bool Overflow
+ NEG
+ AND  1
+ ADD
+ LDX  Counter
+ WRIL 
+#debug_left udint Counter
+#srcline 58 ;    Overflow := Counter = 4294967295;
+ LDX  Counter
+ LDIL 
+#debug udint Counter
+ LD   udint 4294967295
+ EQ
+ WRX  Overflow
+#debug_left bool Overflow
+#srcline 59 ;    LastPulseLen := PulseLen;
+ LDX  PulseLen
+#debug real PulseLen
+ WRX  LastPulseLen
+#debug_left real LastPulseLen
+#srcline 60 ;    LastPulseTim := %SL52; //aktualni cas kdy nastal Pulse
+ LD   %SL52
+ WRX  LastPulseTim
+#debug_left time LastPulseTim
+#srcline 61 ;  END_IF;
+fbMeterPulse_L7:
+#srcline 63 ;  IF LastPulseLen > 0.0 AND (MaxPulseLen > max(LastPulseLen, PulseLen)) THEN
+ LDX  LastPulseLen
+#debug real LastPulseLen
+ LD   real 0.0
+ GTF
+ LDX  MaxPulseLen
+#debug real MaxPulseLen
+ LDX  LastPulseLen
+#debug real LastPulseLen
+ LDX  PulseLen
+#debug real PulseLen
+ MAXF
+ GTF
+ AND
+ JMC  fbMeterPulse_L9
+#srcline 64 ;    RawFrequncy := TIME_TO_REAL(Base) / max(LastPulseLen, PulseLen);
+ LDX  Base
+#debug time Base
+ ILF
+ LDX  LastPulseLen
+#debug real LastPulseLen
+ LDX  PulseLen
+#debug real PulseLen
+ MAXF
+ DIF
+ WRX  RawFrequncy
+#debug_left real RawFrequncy
+#srcline 65 ;  ELSE
+ JMP  fbMeterPulse_L10
+fbMeterPulse_L9:
+#srcline 66 ;    RawFrequncy := 0.0;
+ LD   real 0.0
+ WRX  RawFrequncy
+#debug_left real RawFrequncy
+#srcline 67 ;  END_IF;
+fbMeterPulse_L10:
+#srcline 69 ;  //filtrace vysledku
+#srcline 70 ;  if(Filter > T#0s) then
+ LDX  Filter
+#debug time Filter
+ LD   time 0
+ GTS
+ JMC  fbMeterPulse_L11
+#srcline 71 ;    if OldFilter = T#0s then LastFilterTime := %SL52 - T#100ms; end_if;
+ LDX  OldFilter
+#debug time OldFilter
+ LD   time 0
+ EQ
+ JMC  fbMeterPulse_L13
+ LD   %SL52
+ LD   time 100
+ SUB
+ WRX  LastFilterTime
+#debug_left time LastFilterTime
+fbMeterPulse_L13:
+#srcline 72 ;    if(T#100ms <= %SL52 - LastFilterTime) then                        (* while diference of last execution time and actual time is greater then sample period *)
+ LD   time 100
+ LD   %SL52
+ LDX  LastFilterTime
+#debug time LastFilterTime
+ SUB
+ GTS
+ NEG
+ JMC  fbMeterPulse_L15
+#srcline 73 ;      if(T#0s < %SL52 - LastFilterTime - T#200ms) then                (* if diference is to big, make correction *)
+ LD   time 0
+ LD   %SL52
+ LDX  LastFilterTime
+#debug time LastFilterTime
+ SUB
+ LD   time 200
+ SUB
+ LTS
+ JMC  fbMeterPulse_L17
+#srcline 74 ;        LastFilterTime := %SL52 + T#100ms;
+ LD   %SL52
+ LD   time 100
+ ADD
+ WRX  LastFilterTime
+#debug_left time LastFilterTime
+#srcline 75 ;      end_if;
+fbMeterPulse_L17:
+#srcline 76 ;      LastFilterTime := LastFilterTime + T#100ms;                     (* add sample period to last execution *)
+ LDX  LastFilterTime
+#debug time LastFilterTime
+ LD   time 100
+ ADD
+ WRX  LastFilterTime
+#debug_left time LastFilterTime
+#srcline 77 ;      if(Filter > T#0s) then                                          (* if time constans are valid *)
+ LDX  Filter
+#debug time Filter
+ LD   time 0
+ GTS
+ JMC  fbMeterPulse_L19
+#srcline 78 ;        if(OldFilter <> Filter) then                                  (* if parameters were changed *)
+ LDX  OldFilter
+#debug time OldFilter
+ LDX  Filter
+#debug time Filter
+ EQ
+ NEG
+ JMC  fbMeterPulse_L21
+#srcline 79 ;          Exp1 := exp(-100.0 / TIME_TO_REAL(Filter));                 (* evaluate constant *)
+ LD   real -100.0
+ LDX  Filter
+#debug time Filter
+ ILF
+ DIF
+ EXP
+ WRX  Exp1
+#debug_left real Exp1
+#srcline 80 ;          OldFilter := Filter;                                        (* store last parameter value *)
+ LDX  Filter
+#debug time Filter
+ WRX  OldFilter
+#debug_left time OldFilter
+#srcline 81 ;        end_if;
+fbMeterPulse_L21:
+#srcline 82 ;        Frequency := RawFrequncy + (Frequency - RawFrequncy) * Exp1 ;               (* evaluate output *)
+ LDX  RawFrequncy
+#debug real RawFrequncy
+ LDX  Frequency
+#debug real Frequency
+ LDX  RawFrequncy
+#debug real RawFrequncy
+ SUF
+ LDX  Exp1
+#debug real Exp1
+ MUF
+ ADF
+ WRX  Frequency
+#debug_left real Frequency
+#srcline 83 ;      end_if;
+fbMeterPulse_L19:
+#srcline 84 ;    end_if;
+fbMeterPulse_L15:
+#srcline 85 ;  else
+ JMP  fbMeterPulse_L12
+fbMeterPulse_L11:
+#srcline 86 ;    OldFilter   := T#0s; (* set old filter value to force initialization *)
+ LD   time 0
+ WRX  OldFilter
+#debug_left time OldFilter
+#srcline 87 ;    Frequency := RawFrequncy;
+ LDX  RawFrequncy
+#debug real RawFrequncy
+ WRX  Frequency
+#debug_left real Frequency
+#srcline 88 ;  end_if;
+fbMeterPulse_L12:
+#srcline 90 ;END_FUNCTION_BLOCK
+ ULNK
+RET
+E     61
+
+; Initialize - variables
+P     61
+fbMeterPulse__InstanceInit__:
+ LINK 0
+ LD   time 2000
+ WRX  Filter
+ LD   time 60000
+ WRX  MaxPeriod
+ LD   time 1000
+ WRX  Base
+ ULNK
+RET
+E     61
+; End initialize - variables
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\CONVERTLIB\CONVERTLIB\FBMETERCOUNTER.ST'
+#pou fbMeterCounter
+#srcline 1 ;FUNCTION_BLOCK fbMeterCounter
+P     61
+fbMeterCounter_L0:
+ LINK 0
+; R_EDGE, F_EDGE 
+ LDX  Reset
+ LETX __EDGE_R__Reset
+ WRX  Reset
+#srcline 43 ;  IF NOT Init THEN
+ LDX  Init
+#debug bool Init
+ NEG
+ JMC  fbMeterCounter_L1
+#srcline 44 ;    Init := 1;
+ LD   bool -1      ; true
+ WRX  Init
+#debug_left bool Init
+#srcline 45 ;    CntOld := Cnt;
+ LDX  Cnt
+#debug uint Cnt
+ WRX  CntOld
+#debug_left uint CntOld
+#srcline 46 ;  END_IF;
+fbMeterCounter_L1:
+#srcline 48 ;  PulseLen := TIME_TO_REAL(%SL52 - LastPulseTim);
+ LD   %SL52
+ LDX  LastPulseTim
+#debug time LastPulseTim
+ SUB
+ ILF
+ WRX  PulseLen
+#debug_left real PulseLen
+#srcline 50 ;  MaxPulseLen := TIME_TO_REAL(MaxPeriod);
+ LDX  MaxPeriod
+#debug time MaxPeriod
+ ILF
+ WRX  MaxPulseLen
+#debug_left real MaxPulseLen
+#srcline 52 ;  IF Freeze THEN
+ LDX  Freeze
+#debug bool Freeze
+ JMC  fbMeterCounter_L3
+#srcline 53 ;    CntOld := Cnt;
+ LDX  Cnt
+#debug uint Cnt
+ WRX  CntOld
+#debug_left uint CntOld
+#srcline 54 ;    LastPulseTim := %SL52 - REAL_TO_TIME(MaxPulseLen) - T#1ms;
+ LD   %SL52
+ LDX  MaxPulseLen
+#debug real MaxPulseLen
+ RND
+ IFL
+ SUB
+ LD   time 1
+ SUB
+ WRX  LastPulseTim
+#debug_left time LastPulseTim
+#srcline 55 ;  END_IF;
+fbMeterCounter_L3:
+#srcline 57 ;  Dif := INT_TO_DINT(UINT_TO_INT(Cnt) - UINT_TO_INT(CntOld));
+ LDX  Cnt
+#debug uint Cnt
+ EXTW
+ LDX  CntOld
+#debug uint CntOld
+ EXTW
+ SUB
+ EXTW
+ EXTW
+ WRX  Dif
+#debug_left dint Dif
+#srcline 59 ;  IF ABS(Dif) > 50 THEN //chyba
+ LDX  Dif
+#debug dint Dif
+ ABSL
+ LD   dint 50
+ GTS
+ JMC  fbMeterCounter_L5
+#srcline 60 ;    CntOld := Cnt;
+ LDX  Cnt
+#debug uint Cnt
+ WRX  CntOld
+#debug_left uint CntOld
+#srcline 61 ;    Dif    := 0;
+ LD   dint 0
+ WRX  Dif
+#debug_left dint Dif
+#srcline 62 ;  END_IF;
+fbMeterCounter_L5:
+#srcline 64 ;  Change := Dif <> 0;
+ LDX  Dif
+#debug dint Dif
+ LD   dint 0
+ EQ
+ NEG
+ WRX  Change
+#debug_left bool Change
+#srcline 66 ;  IF PulseLen > MaxPulseLen THEN
+ LDX  PulseLen
+#debug real PulseLen
+ LDX  MaxPulseLen
+#debug real MaxPulseLen
+ GTF
+ JMC  fbMeterCounter_L7
+#srcline 67 ;    LastPulseTim := %SL52 - REAL_TO_TIME(MaxPulseLen);
+ LD   %SL52
+ LDX  MaxPulseLen
+#debug real MaxPulseLen
+ RND
+ IFL
+ SUB
+ WRX  LastPulseTim
+#debug_left time LastPulseTim
+#srcline 68 ;  END_IF;
+fbMeterCounter_L7:
+#srcline 70 ;  IF Reset THEN Counter := 0; Overflow := 0; END_IF;
+ LDX  Reset
+#debug bool Reset
+ JMC  fbMeterCounter_L9
+ LD   dint 0
+ LDX  Counter
+ WRIL 
+#debug_left dint Counter
+ LD   bool 0       ; false
+ WRX  Overflow
+#debug_left bool Overflow
+fbMeterCounter_L9:
+#srcline 72 ;  IF Change THEN //prisel Pulse
+ LDX  Change
+#debug bool Change
+ JMC  fbMeterCounter_L11
+#srcline 73 ;    IF Counter >= 0 THEN
+ LDX  Counter
+ LDIL 
+#debug dint Counter
+ LD   dint 0
+ LTS
+ NEG
+ JMC  fbMeterCounter_L13
+#srcline 74 ;      MaxDif := 2147483647 - Counter; //maximalni kladny prirustek
+ LD   dint 2147483647
+ LDX  Counter
+ LDIL 
+#debug dint Counter
+ SUB
+ WRX  MaxDif
+#debug_left dint MaxDif
+#srcline 75 ;      Overflow := Dif > MaxDif;
+ LDX  Dif
+#debug dint Dif
+ LDX  MaxDif
+#debug dint MaxDif
+ GTS
+ WRX  Overflow
+#debug_left bool Overflow
+#srcline 76 ;    ELSE
+ JMP  fbMeterCounter_L14
+fbMeterCounter_L13:
+#srcline 77 ;      MaxDif := -2147483648 - Counter; //maximalni zaporny prirustek
+ LD   dint -2147483648
+ LDX  Counter
+ LDIL 
+#debug dint Counter
+ SUB
+ WRX  MaxDif
+#debug_left dint MaxDif
+#srcline 78 ;      Overflow := Dif < MaxDif;
+ LDX  Dif
+#debug dint Dif
+ LDX  MaxDif
+#debug dint MaxDif
+ LTS
+ WRX  Overflow
+#debug_left bool Overflow
+#srcline 79 ;    END_IF;
+fbMeterCounter_L14:
+#srcline 80 ;    IF NOT Overflow THEN
+ LDX  Overflow
+#debug bool Overflow
+ NEG
+ JMC  fbMeterCounter_L15
+#srcline 81 ;      Counter := Counter + Dif; //citani Pulseu
+ LDX  Counter
+ LDIL 
+#debug dint Counter
+ LDX  Dif
+#debug dint Dif
+ ADD
+ LDX  Counter
+ WRIL 
+#debug_left dint Counter
+#srcline 82 ;    END_IF;
+fbMeterCounter_L15:
+#srcline 83 ;    PulseLen     := PulseLen / DINT_TO_REAL(Dif);
+ LDX  PulseLen
+#debug real PulseLen
+ LDX  Dif
+#debug dint Dif
+ ILF
+ DIF
+ WRX  PulseLen
+#debug_left real PulseLen
+#srcline 84 ;    LastPulseLen := PulseLen;
+ LDX  PulseLen
+#debug real PulseLen
+ WRX  LastPulseLen
+#debug_left real LastPulseLen
+#srcline 85 ;    LastPulseTim := %SL52; //aktualni cas kdy nastal Pulse
+ LD   %SL52
+ WRX  LastPulseTim
+#debug_left time LastPulseTim
+#srcline 86 ;    CntOld       := Cnt;
+ LDX  Cnt
+#debug uint Cnt
+ WRX  CntOld
+#debug_left uint CntOld
+#srcline 87 ;  END_IF;
+fbMeterCounter_L11:
+#srcline 89 ;  //IF Change OR PulseLen > 1000.0 THEN
+#srcline 90 ;  IF Change OR PulseLen >= min(MaxPulseLen, 1000.0) THEN //osetreni kdy je minimalni perioda mensi nez 1000ms  
+ LDX  Change
+#debug bool Change
+ LDX  PulseLen
+#debug real PulseLen
+ LDX  MaxPulseLen
+#debug real MaxPulseLen
+ LD   real 1000.0
+ MINF
+ LTF
+ NEG
+ OR  
+ JMC  fbMeterCounter_L17
+#srcline 91 ;    IF LastPulseLen > 0.0 AND (MaxPulseLen > max(LastPulseLen, PulseLen)) THEN
+ LDX  LastPulseLen
+#debug real LastPulseLen
+ LD   real 0.0
+ GTF
+ LDX  MaxPulseLen
+#debug real MaxPulseLen
+ LDX  LastPulseLen
+#debug real LastPulseLen
+ LDX  PulseLen
+#debug real PulseLen
+ MAXF
+ GTF
+ AND
+ JMC  fbMeterCounter_L19
+#srcline 92 ;      RawFrequncy := TIME_TO_REAL(Base) / max(LastPulseLen, PulseLen);
+ LDX  Base
+#debug time Base
+ ILF
+ LDX  LastPulseLen
+#debug real LastPulseLen
+ LDX  PulseLen
+#debug real PulseLen
+ MAXF
+ DIF
+ WRX  RawFrequncy
+#debug_left real RawFrequncy
+#srcline 93 ;    ELSE
+ JMP  fbMeterCounter_L20
+fbMeterCounter_L19:
+#srcline 94 ;      RawFrequncy := 0.0;
+ LD   real 0.0
+ WRX  RawFrequncy
+#debug_left real RawFrequncy
+#srcline 95 ;    END_IF;
+fbMeterCounter_L20:
+#srcline 96 ;  END_IF;
+fbMeterCounter_L17:
+#srcline 98 ;  //filtrace vysledku
+#srcline 99 ;  if(Filter > T#0s) then
+ LDX  Filter
+#debug time Filter
+ LD   time 0
+ GTS
+ JMC  fbMeterCounter_L21
+#srcline 100 ;    if OldFilter = T#0s then LastFilterTime := %SL52 - T#100ms; end_if;
+ LDX  OldFilter
+#debug time OldFilter
+ LD   time 0
+ EQ
+ JMC  fbMeterCounter_L23
+ LD   %SL52
+ LD   time 100
+ SUB
+ WRX  LastFilterTime
+#debug_left time LastFilterTime
+fbMeterCounter_L23:
+#srcline 101 ;    if(T#100ms <= %SL52 - LastFilterTime) then                        (* while diference of last execution time and actual time is greater then sample period *)
+ LD   time 100
+ LD   %SL52
+ LDX  LastFilterTime
+#debug time LastFilterTime
+ SUB
+ GTS
+ NEG
+ JMC  fbMeterCounter_L25
+#srcline 102 ;      if(T#0s < %SL52 - LastFilterTime - T#200ms) then                (* if diference is to big, make correction *)
+ LD   time 0
+ LD   %SL52
+ LDX  LastFilterTime
+#debug time LastFilterTime
+ SUB
+ LD   time 200
+ SUB
+ LTS
+ JMC  fbMeterCounter_L27
+#srcline 103 ;        LastFilterTime := %SL52 + T#100ms;
+ LD   %SL52
+ LD   time 100
+ ADD
+ WRX  LastFilterTime
+#debug_left time LastFilterTime
+#srcline 104 ;      end_if;
+fbMeterCounter_L27:
+#srcline 105 ;      LastFilterTime := LastFilterTime + T#100ms;                     (* add sample period to last execution *)
+ LDX  LastFilterTime
+#debug time LastFilterTime
+ LD   time 100
+ ADD
+ WRX  LastFilterTime
+#debug_left time LastFilterTime
+#srcline 106 ;      if(Filter > T#0s) then                                          (* if time constans are valid *)
+ LDX  Filter
+#debug time Filter
+ LD   time 0
+ GTS
+ JMC  fbMeterCounter_L29
+#srcline 107 ;        if(OldFilter <> Filter) then                                  (* if parameters were changed *)
+ LDX  OldFilter
+#debug time OldFilter
+ LDX  Filter
+#debug time Filter
+ EQ
+ NEG
+ JMC  fbMeterCounter_L31
+#srcline 108 ;          Exp1 := exp(-100.0 / TIME_TO_REAL(Filter));                 (* evaluate constant *)
+ LD   real -100.0
+ LDX  Filter
+#debug time Filter
+ ILF
+ DIF
+ EXP
+ WRX  Exp1
+#debug_left real Exp1
+#srcline 109 ;          OldFilter := Filter;                                        (* store last parameter value *)
+ LDX  Filter
+#debug time Filter
+ WRX  OldFilter
+#debug_left time OldFilter
+#srcline 110 ;        end_if;
+fbMeterCounter_L31:
+#srcline 111 ;        Frequency := RawFrequncy + (Frequency - RawFrequncy) * Exp1 ;               (* evaluate output *)
+ LDX  RawFrequncy
+#debug real RawFrequncy
+ LDX  Frequency
+#debug real Frequency
+ LDX  RawFrequncy
+#debug real RawFrequncy
+ SUF
+ LDX  Exp1
+#debug real Exp1
+ MUF
+ ADF
+ WRX  Frequency
+#debug_left real Frequency
+#srcline 112 ;      end_if;
+fbMeterCounter_L29:
+#srcline 113 ;    end_if;
+fbMeterCounter_L25:
+#srcline 114 ;  else
+ JMP  fbMeterCounter_L22
+fbMeterCounter_L21:
+#srcline 115 ;    OldFilter   := T#0s; (* set old filter value to force initialization *)
+ LD   time 0
+ WRX  OldFilter
+#debug_left time OldFilter
+#srcline 116 ;    Frequency := RawFrequncy;
+ LDX  RawFrequncy
+#debug real RawFrequncy
+ WRX  Frequency
+#debug_left real Frequency
+#srcline 117 ;  end_if;
+fbMeterCounter_L22:
+#srcline 119 ;END_FUNCTION_BLOCK
+ ULNK
+RET
+E     61
+
+; Initialize - variables
+P     61
+fbMeterCounter__InstanceInit__:
+ LINK 0
+ LD   time 2000
+ WRX  Filter
+ LD   time 60000
+ WRX  MaxPeriod
+ LD   time 1000
+ WRX  Base
+ ULNK
+RET
+E     61
+; End initialize - variables
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\CONVERTLIB\CONVERTLIB\STRING_TO_REAL_EX.ST'
+#pou STRING_TO_REAL_EX
+#srcline 1 ;FUNCTION STRING_TO_REAL_EX : REAL
+P     61
+STRING_TO_REAL_EX_L0:
+ LINK 0
+ NXT
+; Initialize - variables
+ LD   0.0
+ WRX  __fc__STRING_TO_REAL_EX
+ LD   -1
+ WRX  pchar1
+ LD   -1
+ WRX  pchar2
+ LD   0
+ WRX  Buffer
+ WRX  value1
+; End initialize - variables
+#srcline 16 ;  pchar1 := ADR( input);
+ LEAX input
+#debug pointer input
+ LEAX pchar1
+ WRIL 
+#debug_left pointer pchar1
+#srcline 17 ;  pchar2 := ADR( Buffer); pchar2^ := 0;
+ LEAX Buffer
+#debug pointer Buffer
+ LEAX pchar2
+ WRIL 
+#debug_left pointer pchar2
+ LD   byte 0
+ LEAX pchar2
+ LDIL    ; dereference 
+ WRI 
+#debug_left byte pchar2^
+#srcline 18 ;  WHILE pchar1^ > 0 DO
+STRING_TO_REAL_EX_L1:
+ LEAX pchar1
+ LDIL    ; dereference 
+ LDI  
+#debug byte pchar1^
+ LD   byte 0
+ GT
+ JMC  STRING_TO_REAL_EX_L2
+ DBG 
+#srcline 19 ;    value1 := pchar1^;
+ LEAX pchar1
+ LDIL    ; dereference 
+ LDI  
+#debug byte pchar1^
+ WRX  value1
+#debug_left byte value1
+#srcline 20 ;    IF  value1 <> 16#20  THEN //  preskoci mezeru
+ LDX  value1
+#debug byte value1
+ LD   byte $20
+ EQ
+ NEG
+ JMC  STRING_TO_REAL_EX_L3
+#srcline 21 ;        IF  (value1 >= 16#30 ) AND ( value1 <= 16#39) THEN
+ LDX  value1
+#debug byte value1
+ LD   byte $30
+ LT
+ NEG
+ LDX  value1
+#debug byte value1
+ LD   byte $39
+ GT
+ NEG
+ AND
+ JMC  STRING_TO_REAL_EX_L5
+#srcline 22 ;            pchar2^ := value1;
+ LDX  value1
+#debug byte value1
+ LEAX pchar2
+ LDIL    ; dereference 
+ WRI 
+#debug_left byte pchar2^
+#srcline 23 ;        ELSE
+ JMP  STRING_TO_REAL_EX_L6
+STRING_TO_REAL_EX_L5:
+#srcline 24 ;            IF value1 =16#2C THEN         //zamìní èárku za teèku, vyší ukazatel o jeden
+ LDX  value1
+#debug byte value1
+ LD   byte $2C
+ EQ
+ JMC  STRING_TO_REAL_EX_L7
+#srcline 25 ;                pchar2^ := 16#2E;
+ LD   byte $2E
+ LEAX pchar2
+ LDIL    ; dereference 
+ WRI 
+#debug_left byte pchar2^
+#srcline 26 ;            ELSE
+ JMP  STRING_TO_REAL_EX_L8
+STRING_TO_REAL_EX_L7:
+#srcline 27 ;                EXIT;                      // ukoncit WHILE
+ JMP  STRING_TO_REAL_EX_L2
+#srcline 28 ;            END_IF;
+STRING_TO_REAL_EX_L8:
+#srcline 29 ;        END_IF;
+STRING_TO_REAL_EX_L6:
+#srcline 30 ;        pchar2  := pchar2 + sizeof(BYTE);
+ LEAX pchar2
+ LDIL 
+#debug pointer pchar2
+ LD   __sizeof(byte)  ; SizeOf()
+ ADD
+ LEAX pchar2
+ WRIL 
+#debug_left pointer pchar2
+#srcline 31 ;    END_IF;
+STRING_TO_REAL_EX_L3:
+#srcline 32 ;    pchar1 := pchar1 + sizeof(BYTE);
+ LEAX pchar1
+ LDIL 
+#debug pointer pchar1
+ LD   __sizeof(byte)  ; SizeOf()
+ ADD
+ LEAX pchar1
+ WRIL 
+#debug_left pointer pchar1
+#srcline 33 ;  END_WHILE;
+ JMP  STRING_TO_REAL_EX_L1
+STRING_TO_REAL_EX_L2:
+ NOP  -1
+#srcline 34 ;  pchar2^ := 0;           // ukoncit retezec
+ LD   byte 0
+ LEAX pchar2
+ LDIL    ; dereference 
+ WRI 
+#debug_left byte pchar2^
+#srcline 36 ;  STRING_TO_REAL_EX := STRING_TO_REAL( Buffer );
+ LEAX Buffer
+#debug string Buffer
+ SCNV $301C;  IEC_STRING _TO_ IEC_REAL
+ WRX  __fc__STRING_TO_REAL_EX
+#debug_left real STRING_TO_REAL_EX
+#srcline 37 ;END_FUNCTION
+ PRV  
+ LDX  __fc__STRING_TO_REAL_EX
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou STRING_TO_LREAL_EX
+#srcline 40 ;FUNCTION STRING_TO_LREAL_EX : LREAL
+P     61
+STRING_TO_LREAL_EX_L0:
+ LINK 0
+ NXT
+; Initialize - variables
+ LDQ  0.0
+ WRX  __fc__STRING_TO_LREAL_EX
+ LD   -1
+ WRX  pchar1
+ LD   -1
+ WRX  pchar2
+ LD   0
+ WRX  Buffer
+ WRX  value1
+; End initialize - variables
+#srcline 55 ;  pchar1 := ADR( input);
+ LEAX input
+#debug pointer input
+ LEAX pchar1
+ WRIL 
+#debug_left pointer pchar1
+#srcline 56 ;  pchar2 := ADR( Buffer); pchar2^ := 0;
+ LEAX Buffer
+#debug pointer Buffer
+ LEAX pchar2
+ WRIL 
+#debug_left pointer pchar2
+ LD   byte 0
+ LEAX pchar2
+ LDIL    ; dereference 
+ WRI 
+#debug_left byte pchar2^
+#srcline 57 ;  WHILE pchar1^ > 0 DO
+STRING_TO_LREAL_EX_L1:
+ LEAX pchar1
+ LDIL    ; dereference 
+ LDI  
+#debug byte pchar1^
+ LD   byte 0
+ GT
+ JMC  STRING_TO_LREAL_EX_L2
+ DBG 
+#srcline 58 ;    value1 := pchar1^;
+ LEAX pchar1
+ LDIL    ; dereference 
+ LDI  
+#debug byte pchar1^
+ WRX  value1
+#debug_left byte value1
+#srcline 59 ;    IF  value1 <> 16#20  THEN //  preskoci mezeru
+ LDX  value1
+#debug byte value1
+ LD   byte $20
+ EQ
+ NEG
+ JMC  STRING_TO_LREAL_EX_L3
+#srcline 60 ;        IF  (value1 >= 16#30 ) AND ( value1 <= 16#39) THEN
+ LDX  value1
+#debug byte value1
+ LD   byte $30
+ LT
+ NEG
+ LDX  value1
+#debug byte value1
+ LD   byte $39
+ GT
+ NEG
+ AND
+ JMC  STRING_TO_LREAL_EX_L5
+#srcline 61 ;            pchar2^ := value1;
+ LDX  value1
+#debug byte value1
+ LEAX pchar2
+ LDIL    ; dereference 
+ WRI 
+#debug_left byte pchar2^
+#srcline 62 ;        ELSE
+ JMP  STRING_TO_LREAL_EX_L6
+STRING_TO_LREAL_EX_L5:
+#srcline 63 ;            IF value1 =16#2C THEN         //zamìní èárku za teèku, vyší ukazatel o jeden
+ LDX  value1
+#debug byte value1
+ LD   byte $2C
+ EQ
+ JMC  STRING_TO_LREAL_EX_L7
+#srcline 64 ;                pchar2^ := 16#2E;
+ LD   byte $2E
+ LEAX pchar2
+ LDIL    ; dereference 
+ WRI 
+#debug_left byte pchar2^
+#srcline 65 ;            ELSE
+ JMP  STRING_TO_LREAL_EX_L8
+STRING_TO_LREAL_EX_L7:
+#srcline 66 ;                EXIT;                      // ukoncit WHILE
+ JMP  STRING_TO_LREAL_EX_L2
+#srcline 67 ;            END_IF;
+STRING_TO_LREAL_EX_L8:
+#srcline 68 ;        END_IF;
+STRING_TO_LREAL_EX_L6:
+#srcline 69 ;        pchar2  := pchar2 + sizeof(BYTE);
+ LEAX pchar2
+ LDIL 
+#debug pointer pchar2
+ LD   __sizeof(byte)  ; SizeOf()
+ ADD
+ LEAX pchar2
+ WRIL 
+#debug_left pointer pchar2
+#srcline 70 ;    END_IF;
+STRING_TO_LREAL_EX_L3:
+#srcline 71 ;    pchar1 := pchar1 + sizeof(BYTE);
+ LEAX pchar1
+ LDIL 
+#debug pointer pchar1
+ LD   __sizeof(byte)  ; SizeOf()
+ ADD
+ LEAX pchar1
+ WRIL 
+#debug_left pointer pchar1
+#srcline 72 ;  END_WHILE;
+ JMP  STRING_TO_LREAL_EX_L1
+STRING_TO_LREAL_EX_L2:
+ NOP  -1
+#srcline 73 ;  pchar2^ := 0;           // ukoncit retezec
+ LD   byte 0
+ LEAX pchar2
+ LDIL    ; dereference 
+ WRI 
+#debug_left byte pchar2^
+#srcline 75 ;  STRING_TO_LREAL_EX := STRING_TO_LREAL( Buffer );
+ LEAX Buffer
+#debug string Buffer
+ SCNV $301E;  IEC_STRING _TO_ IEC_LREAL
+ WRX  __fc__STRING_TO_LREAL_EX
+#debug_left lreal STRING_TO_LREAL_EX
+#srcline 76 ;END_FUNCTION
+ PRV  
+ LDX  __fc__STRING_TO_LREAL_EX
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou STRING_TO_INT_EX
+#srcline 79 ;FUNCTION STRING_TO_INT_EX : INT
+P     61
+STRING_TO_INT_EX_L0:
+ LINK 0
+ NXT
+; Initialize - variables
+ LD   0
+ WRX  __fc__STRING_TO_INT_EX
+ LD   -1
+ WRX  pchar1
+ LD   -1
+ WRX  pchar2
+ LD   0
+ WRX  Buffer
+ WRX  value1
+; End initialize - variables
+#srcline 94 ;  pchar1 := ADR( input);
+ LEAX input
+#debug pointer input
+ LEAX pchar1
+ WRIL 
+#debug_left pointer pchar1
+#srcline 95 ;  pchar2 := ADR( Buffer); pchar2^ := 0;
+ LEAX Buffer
+#debug pointer Buffer
+ LEAX pchar2
+ WRIL 
+#debug_left pointer pchar2
+ LD   byte 0
+ LEAX pchar2
+ LDIL    ; dereference 
+ WRI 
+#debug_left byte pchar2^
+#srcline 96 ;  WHILE pchar1^ > 0 DO
+STRING_TO_INT_EX_L1:
+ LEAX pchar1
+ LDIL    ; dereference 
+ LDI  
+#debug byte pchar1^
+ LD   byte 0
+ GT
+ JMC  STRING_TO_INT_EX_L2
+ DBG 
+#srcline 97 ;    value1:= pchar1^;
+ LEAX pchar1
+ LDIL    ; dereference 
+ LDI  
+#debug byte pchar1^
+ WRX  value1
+#debug_left byte value1
+#srcline 98 ;    IF  value1 <> 16#20  THEN          //  preskoci mezeru
+ LDX  value1
+#debug byte value1
+ LD   byte $20
+ EQ
+ NEG
+ JMC  STRING_TO_INT_EX_L3
+#srcline 99 ;        IF  (value1 >= 16#30 ) AND ( value1 <= 16#39) THEN
+ LDX  value1
+#debug byte value1
+ LD   byte $30
+ LT
+ NEG
+ LDX  value1
+#debug byte value1
+ LD   byte $39
+ GT
+ NEG
+ AND
+ JMC  STRING_TO_INT_EX_L5
+#srcline 100 ;            pchar2^ := value1;
+ LDX  value1
+#debug byte value1
+ LEAX pchar2
+ LDIL    ; dereference 
+ WRI 
+#debug_left byte pchar2^
+#srcline 101 ;            pchar2  := pchar2 + sizeof(BYTE);
+ LEAX pchar2
+ LDIL 
+#debug pointer pchar2
+ LD   __sizeof(byte)  ; SizeOf()
+ ADD
+ LEAX pchar2
+ WRIL 
+#debug_left pointer pchar2
+#srcline 102 ;        ELSE
+ JMP  STRING_TO_INT_EX_L6
+STRING_TO_INT_EX_L5:
+#srcline 103 ;            EXIT;                      // ukoncit WHILE
+ JMP  STRING_TO_INT_EX_L2
+#srcline 104 ;        END_IF;
+STRING_TO_INT_EX_L6:
+#srcline 105 ;    END_IF;
+STRING_TO_INT_EX_L3:
+#srcline 106 ;    pchar1 := pchar1+sizeof(BYTE);
+ LEAX pchar1
+ LDIL 
+#debug pointer pchar1
+ LD   __sizeof(byte)  ; SizeOf()
+ ADD
+ LEAX pchar1
+ WRIL 
+#debug_left pointer pchar1
+#srcline 107 ;  END_WHILE;
+ JMP  STRING_TO_INT_EX_L1
+STRING_TO_INT_EX_L2:
+ NOP  -1
+#srcline 108 ;  pchar2^ := 0;              // ukoncit retezec
+ LD   byte 0
+ LEAX pchar2
+ LDIL    ; dereference 
+ WRI 
+#debug_left byte pchar2^
+#srcline 110 ;  STRING_TO_INT_EX := STRING_TO_INT( Buffer );
+ LEAX Buffer
+#debug string Buffer
+ SCNV $300B;  IEC_STRING _TO_ IEC_INT
+ WRX  __fc__STRING_TO_INT_EX
+#debug_left int STRING_TO_INT_EX
+#srcline 111 ;END_FUNCTION
+ PRV  
+ LDX  __fc__STRING_TO_INT_EX
+ EXTW 
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\CONVERTLIB\CONVERTLIB\TO_UTF8.ST'
+#pou CP125x_TO_UTF8
+#srcline 1 ;FUNCTION CP125x_TO_UTF8 {HIDDEN} : UDINT
+
+#struct CP125x_TO_UTF8__temp__
+  pointer pUsint,
+  pointer pUtf8,
+  pointer pTable,
+  udint oTable
+P     61
+CP125x_TO_UTF8_L0:
+ LINK __SizeOf(CP125x_TO_UTF8__temp__)
+ NXT
+; Initialize - variables
+ LD   0
+ WRX  __fc__CP125x_TO_UTF8
+; End initialize - variables
+; Initialize - dynamic variables
+ LD   udint $FFFFFFFF    ; nil
+ WRY  pUsint
+ LD   udint $FFFFFFFF    ; nil
+ WRY  pUtf8
+ LD   udint $FFFFFFFF    ; nil
+ WRY  pTable
+; End initialize - dynamic variables
+#srcline 20 ;  pUsint := ADR(cp125x);
+ LDX  cp125x
+#debug pointer cp125x
+ LEAY pUsint
+ WRIL 
+#debug_left pointer pUsint
+#srcline 21 ;  pUtf8   := ADR(utf8);
+ LDX  utf8
+#debug pointer utf8
+ LEAY pUtf8
+ WRIL 
+#debug_left pointer pUtf8
+#srcline 22 ;  CP125x_TO_UTF8 := 0;
+ LD   udint 0
+ WRX  __fc__CP125x_TO_UTF8
+#debug_left udint CP125x_TO_UTF8
+#srcline 24 ;  WHILE pUsint^ > 0 DO
+CP125x_TO_UTF8_L1:
+ LEAY pUsint
+ LDIL    ; dereference 
+ LDI  
+#debug usint pUsint^
+ LD   usint 0
+ GT
+ JMC  CP125x_TO_UTF8_L2
+ DBG 
+#srcline 25 ;    IF pUsint^ < 128 THEN
+ LEAY pUsint
+ LDIL    ; dereference 
+ LDI  
+#debug usint pUsint^
+ LD   usint 128
+ LT
+ JMC  CP125x_TO_UTF8_L3
+#srcline 26 ;      CP125x_TO_UTF8   := CP125x_TO_UTF8 + 1;
+ LDX  __fc__CP125x_TO_UTF8
+#debug udint CP125x_TO_UTF8
+ LD   udint 1
+ ADD
+ WRX  __fc__CP125x_TO_UTF8
+#debug_left udint CP125x_TO_UTF8
+#srcline 27 ;      IF CP125x_TO_UTF8 < maxLen THEN
+ LDX  __fc__CP125x_TO_UTF8
+#debug udint CP125x_TO_UTF8
+ LDX  maxLen
+#debug udint maxLen
+ LT
+ JMC  CP125x_TO_UTF8_L5
+#srcline 28 ;        pUtf8^ := USINT_TO_WORD(pUsint^); //zapisuje se word vcetne koncove nuly
+ LEAY pUsint
+ LDIL    ; dereference 
+ LDI  
+#debug usint pUsint^
+ LEAY pUtf8
+ LDIL    ; dereference 
+ WRIW 
+#debug_left word pUtf8^
+#srcline 29 ;        pUtf8  := pUtf8 + 1;
+ LEAY pUtf8
+ LDIL 
+#debug pointer pUtf8
+ LD   udint 1
+ ADD
+ LEAY pUtf8
+ WRIL 
+#debug_left pointer pUtf8
+#srcline 30 ;      ELSE
+ JMP  CP125x_TO_UTF8_L6
+CP125x_TO_UTF8_L5:
+#srcline 31 ;        CP125x_TO_UTF8   := CP125x_TO_UTF8 - 1;
+ LDX  __fc__CP125x_TO_UTF8
+#debug udint CP125x_TO_UTF8
+ LD   udint 1
+ SUB
+ WRX  __fc__CP125x_TO_UTF8
+#debug_left udint CP125x_TO_UTF8
+#srcline 32 ;        pUsint := ADR(utf8) + CP125x_TO_UTF8;
+ LDX  utf8
+#debug pointer utf8
+ LDX  __fc__CP125x_TO_UTF8
+#debug udint CP125x_TO_UTF8
+ ADD
+ LEAY pUsint
+ WRIL 
+#debug_left pointer pUsint
+#srcline 33 ;        pUsint^ := 0;
+ LD   usint 0
+ LEAY pUsint
+ LDIL    ; dereference 
+ WRI 
+#debug_left usint pUsint^
+#srcline 34 ;        RETURN;
+ JMP  CP125x_TO_UTF8_RET
+#srcline 35 ;      END_IF;
+CP125x_TO_UTF8_L6:
+#srcline 36 ;    ELSE
+ JMP  CP125x_TO_UTF8_L4
+CP125x_TO_UTF8_L3:
+#srcline 37 ;      CP125x_TO_UTF8   := CP125x_TO_UTF8 + 2;
+ LDX  __fc__CP125x_TO_UTF8
+#debug udint CP125x_TO_UTF8
+ LD   udint 2
+ ADD
+ WRX  __fc__CP125x_TO_UTF8
+#debug_left udint CP125x_TO_UTF8
+#srcline 38 ;      IF CP125x_TO_UTF8 < maxLen THEN
+ LDX  __fc__CP125x_TO_UTF8
+#debug udint CP125x_TO_UTF8
+ LDX  maxLen
+#debug udint maxLen
+ LT
+ JMC  CP125x_TO_UTF8_L7
+#srcline 39 ;        oTable := 4*USINT_TO_UDINT(pUsint^-128);
+ LD   udint 4
+ LEAY pUsint
+ LDIL    ; dereference 
+ LDI  
+#debug usint pUsint^
+ LD   usint 128
+ SUB
+ AND  $FF
+ MUL
+ WRY  oTable
+#debug_left udint oTable
+#srcline 40 ;        pTable := TO_UTF8_128_255 + oTable;
+ LEAX TO_UTF8_128_255
+ LDIL 
+#debug pointer TO_UTF8_128_255
+ LDY  oTable
+#debug udint oTable
+ ADD
+ LEAY pTable
+ WRIL 
+#debug_left pointer pTable
+#srcline 41 ;        pUtf8^ := pTable^;
+ LEAY pTable
+ LDIL    ; dereference 
+ LDIW 
+#debug word pTable^
+ LEAY pUtf8
+ LDIL    ; dereference 
+ WRIW 
+#debug_left word pUtf8^
+#srcline 42 ;        pUtf8  := pUtf8 + 2;
+ LEAY pUtf8
+ LDIL 
+#debug pointer pUtf8
+ LD   udint 2
+ ADD
+ LEAY pUtf8
+ WRIL 
+#debug_left pointer pUtf8
+#srcline 43 ;        pTable := pTable + 2;
+ LEAY pTable
+ LDIL 
+#debug pointer pTable
+ LD   udint 2
+ ADD
+ LEAY pTable
+ WRIL 
+#debug_left pointer pTable
+#srcline 44 ;        IF pTable^ > 0 THEN
+ LEAY pTable
+ LDIL    ; dereference 
+ LDIW 
+#debug word pTable^
+ LD   word 0
+ GT
+ JMC  CP125x_TO_UTF8_L9
+#srcline 45 ;          CP125x_TO_UTF8   := CP125x_TO_UTF8 + 1;
+ LDX  __fc__CP125x_TO_UTF8
+#debug udint CP125x_TO_UTF8
+ LD   udint 1
+ ADD
+ WRX  __fc__CP125x_TO_UTF8
+#debug_left udint CP125x_TO_UTF8
+#srcline 46 ;          IF CP125x_TO_UTF8 < maxLen THEN
+ LDX  __fc__CP125x_TO_UTF8
+#debug udint CP125x_TO_UTF8
+ LDX  maxLen
+#debug udint maxLen
+ LT
+ JMC  CP125x_TO_UTF8_L11
+#srcline 47 ;            pUtf8^ := pTable^;
+ LEAY pTable
+ LDIL    ; dereference 
+ LDIW 
+#debug word pTable^
+ LEAY pUtf8
+ LDIL    ; dereference 
+ WRIW 
+#debug_left word pUtf8^
+#srcline 48 ;            pUtf8  := pUtf8 + 1;
+ LEAY pUtf8
+ LDIL 
+#debug pointer pUtf8
+ LD   udint 1
+ ADD
+ LEAY pUtf8
+ WRIL 
+#debug_left pointer pUtf8
+#srcline 49 ;          ELSE
+ JMP  CP125x_TO_UTF8_L12
+CP125x_TO_UTF8_L11:
+#srcline 50 ;            CP125x_TO_UTF8   := CP125x_TO_UTF8 - 2;
+ LDX  __fc__CP125x_TO_UTF8
+#debug udint CP125x_TO_UTF8
+ LD   udint 2
+ SUB
+ WRX  __fc__CP125x_TO_UTF8
+#debug_left udint CP125x_TO_UTF8
+#srcline 51 ;            pUtf8  := pUtf8 - 2;
+ LEAY pUtf8
+ LDIL 
+#debug pointer pUtf8
+ LD   udint 2
+ SUB
+ LEAY pUtf8
+ WRIL 
+#debug_left pointer pUtf8
+#srcline 52 ;            pUtf8^ := 0;
+ LD   word 0
+ LEAY pUtf8
+ LDIL    ; dereference 
+ WRIW 
+#debug_left word pUtf8^
+#srcline 53 ;            RETURN;
+ JMP  CP125x_TO_UTF8_RET
+#srcline 54 ;          END_IF;
+CP125x_TO_UTF8_L12:
+#srcline 55 ;        END_IF;
+CP125x_TO_UTF8_L9:
+#srcline 56 ;      ELSE
+ JMP  CP125x_TO_UTF8_L8
+CP125x_TO_UTF8_L7:
+#srcline 57 ;        CP125x_TO_UTF8   := CP125x_TO_UTF8 - 2;
+ LDX  __fc__CP125x_TO_UTF8
+#debug udint CP125x_TO_UTF8
+ LD   udint 2
+ SUB
+ WRX  __fc__CP125x_TO_UTF8
+#debug_left udint CP125x_TO_UTF8
+#srcline 58 ;        pUsint := ADR(utf8) + CP125x_TO_UTF8;
+ LDX  utf8
+#debug pointer utf8
+ LDX  __fc__CP125x_TO_UTF8
+#debug udint CP125x_TO_UTF8
+ ADD
+ LEAY pUsint
+ WRIL 
+#debug_left pointer pUsint
+#srcline 59 ;        pUsint^ := 0;
+ LD   usint 0
+ LEAY pUsint
+ LDIL    ; dereference 
+ WRI 
+#debug_left usint pUsint^
+#srcline 60 ;        RETURN;
+ JMP  CP125x_TO_UTF8_RET
+#srcline 61 ;      END_IF;
+CP125x_TO_UTF8_L8:
+#srcline 62 ;    END_IF;
+CP125x_TO_UTF8_L4:
+#srcline 63 ;    pUsint := pUsint + 1;
+ LEAY pUsint
+ LDIL 
+#debug pointer pUsint
+ LD   udint 1
+ ADD
+ LEAY pUsint
+ WRIL 
+#debug_left pointer pUsint
+#srcline 64 ;  END_WHILE;
+ JMP  CP125x_TO_UTF8_L1
+CP125x_TO_UTF8_L2:
+ NOP  -1
+#srcline 66 ;  pUsint := ADR(utf8) + CP125x_TO_UTF8;
+ LDX  utf8
+#debug pointer utf8
+ LDX  __fc__CP125x_TO_UTF8
+#debug udint CP125x_TO_UTF8
+ ADD
+ LEAY pUsint
+ WRIL 
+#debug_left pointer pUsint
+#srcline 67 ;  pUsint^ := 0;
+ LD   usint 0
+ LEAY pUsint
+ LDIL    ; dereference 
+ WRI 
+#debug_left usint pUsint^
+#srcline 69 ;END_FUNCTION
+CP125x_TO_UTF8_RET:
+ PRV  
+ LDX  __fc__CP125x_TO_UTF8
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou CP1250_TO_UTF8
+#srcline 71 ;FUNCTION CP1250_TO_UTF8 : UDINT
+#table byte __Init___CP1250_TO_UTF8_TO_UTF8_128_255 = 
+    226,130,172,  0,239,191,189,  0,226,128,154,  0,239,191,189,  0,226,128,158,  0,226,
+    128,166,  0,226,128,160,  0,226,128,161,  0,239,191,189,  0,226,128,176,  0,197,
+    160,  0,  0,226,128,185,  0,197,154,  0,  0,197,164,  0,  0,197,189,  0,  0,197,
+    185,  0,  0,239,191,189,  0,226,128,152,  0,226,128,153,  0,226,128,156,  0,226,
+    128,157,  0,226,128,162,  0,226,128,147,  0,226,128,148,  0,239,191,189,  0,226,
+    132,162,  0,197,161,  0,  0,226,128,186,  0,197,155,  0,  0,197,165,  0,  0,197,
+    190,  0,  0,197,186,  0,  0,194,160,  0,  0,203,135,  0,  0,203,152,  0,  0,197,
+    129,  0,  0,194,164,  0,  0,196,132,  0,  0,194,166,  0,  0,194,167,  0,  0,194,
+    168,  0,  0,194,169,  0,  0,197,158,  0,  0,194,171,  0,  0,194,172,  0,  0,194,
+    173,  0,  0,194,174,  0,  0,197,187,  0,  0,194,176,  0,  0,194,177,  0,  0,203,
+    155,  0,  0,197,130,  0,  0,194,180,  0,  0,194,181,  0,  0,194,182,  0,  0,194,
+    183,  0,  0,194,184,  0,  0,196,133,  0,  0,197,159,  0,  0,194,187,  0,  0,196,
+    189,  0,  0,203,157,  0,  0,196,190,  0,  0,197,188,  0,  0,197,148,  0,  0,195,
+    129,  0,  0,195,130,  0,  0,196,130,  0,  0,195,132,  0,  0,196,185,  0,  0,196,
+    134,  0,  0,195,135,  0,  0,196,140,  0,  0,195,137,  0,  0,196,152,  0,  0,195,
+    139,  0,  0,196,154,  0,  0,195,141,  0,  0,195,142,  0,  0,196,142,  0,  0,196,
+    144,  0,  0,197,131,  0,  0,197,135,  0,  0,195,147,  0,  0,195,148,  0,  0,197,
+    144,  0,  0,195,150,  0,  0,195,151,  0,  0,197,152,  0,  0,197,174,  0,  0,195,
+    154,  0,  0,197,176,  0,  0,195,156,  0,  0,195,157,  0,  0,197,162,  0,  0,195,
+    159,  0,  0,197,149,  0,  0,195,161,  0,  0,195,162,  0,  0,196,131,  0,  0,195,
+    164,  0,  0,196,186,  0,  0,196,135,  0,  0,195,167,  0,  0,196,141,  0,  0,195,
+    169,  0,  0,196,153,  0,  0,195,171,  0,  0,196,155,  0,  0,195,173,  0,  0,195,
+    174,  0,  0,196,143,  0,  0,196,145,  0,  0,197,132,  0,  0,197,136,  0,  0,195,
+    179,  0,  0,195,180,  0,  0,197,145,  0,  0,195,182,  0,  0,195,183,  0,  0,197,
+    153,  0,  0,197,175,  0,  0,195,186,  0,  0,197,177,  0,  0,195,188,  0,  0,195,
+    189,  0,  0,197,163,  0,  0,203,153;
+P     61
+CP1250_TO_UTF8_L0:
+ LINK 0
+ NXT
+; Initialize - variables
+ LD   0
+ WRX  __fc__CP1250_TO_UTF8
+ LD   0
+ SRC  byte __Init___CP1250_TO_UTF8_TO_UTF8_128_255
+ LEAX byte TO_UTF8_128_255[0]
+ LD   512
+ MOV  %X0
+; End initialize - variables
+#srcline 100 ;  CP1250_TO_UTF8 := CP125x_TO_UTF8(maxLen := maxLen, TO_UTF8_128_255 := ADR(TO_UTF8_128_255), cp125x := cp1250, utf8 := utf8);
+ NXT
+ LDX  maxLen
+#debug udint maxLen
+ WR   __Instance__CP125x_TO_UTF8~maxLen
+#debug_left udint __Instance__CP125x_TO_UTF8~maxLen
+ LEAX TO_UTF8_128_255
+#debug pointer TO_UTF8_128_255
+ LEA  __Instance__CP125x_TO_UTF8~TO_UTF8_128_255
+ WRIL 
+#debug_left udint __Instance__CP125x_TO_UTF8~TO_UTF8_128_255
+ LDX  cp1250
+ WR   __Instance__CP125x_TO_UTF8~cp125x
+#debug_left pointer __Instance__CP125x_TO_UTF8.cp125x
+ LDX  utf8
+ WR   __Instance__CP125x_TO_UTF8~utf8
+#debug_left pointer __Instance__CP125x_TO_UTF8.utf8
+ PRV
+ LEA  __Instance__CP125x_TO_UTF8
+ CAL  CP125x_TO_UTF8_L0
+ WRX  __fc__CP1250_TO_UTF8
+#debug_left udint CP1250_TO_UTF8
+#srcline 102 ;END_FUNCTION
+ PRV  
+ LDX  __fc__CP1250_TO_UTF8
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou CP1251_TO_UTF8
+#srcline 104 ;FUNCTION CP1251_TO_UTF8 : UDINT
+#table byte __Init___CP1251_TO_UTF8_TO_UTF8_128_255 = 
+    208,130,  0,  0,208,131,  0,  0,226,128,154,  0,209,147,  0,  0,226,128,158,  0,226,
+    128,166,  0,226,128,160,  0,226,128,161,  0,226,130,172,  0,226,128,176,  0,208,
+    137,  0,  0,226,128,185,  0,208,138,  0,  0,208,140,  0,  0,208,139,  0,  0,208,
+    143,  0,  0,209,146,  0,  0,226,128,152,  0,226,128,153,  0,226,128,156,  0,226,
+    128,157,  0,226,128,162,  0,226,128,147,  0,226,128,148,  0,239,191,189,  0,226,
+    132,162,  0,209,153,  0,  0,226,128,186,  0,209,154,  0,  0,209,156,  0,  0,209,
+    155,  0,  0,209,159,  0,  0,194,160,  0,  0,208,142,  0,  0,209,158,  0,  0,208,
+    136,  0,  0,194,164,  0,  0,210,144,  0,  0,194,166,  0,  0,194,167,  0,  0,208,
+    129,  0,  0,194,169,  0,  0,208,132,  0,  0,194,171,  0,  0,194,172,  0,  0,194,
+    173,  0,  0,194,174,  0,  0,208,135,  0,  0,194,176,  0,  0,194,177,  0,  0,208,
+    134,  0,  0,209,150,  0,  0,210,145,  0,  0,194,181,  0,  0,194,182,  0,  0,194,
+    183,  0,  0,209,145,  0,  0,226,132,150,  0,209,148,  0,  0,194,187,  0,  0,209,
+    152,  0,  0,208,133,  0,  0,209,149,  0,  0,209,151,  0,  0,208,144,  0,  0,208,
+    145,  0,  0,208,146,  0,  0,208,147,  0,  0,208,148,  0,  0,208,149,  0,  0,208,
+    150,  0,  0,208,151,  0,  0,208,152,  0,  0,208,153,  0,  0,208,154,  0,  0,208,
+    155,  0,  0,208,156,  0,  0,208,157,  0,  0,208,158,  0,  0,208,159,  0,  0,208,
+    160,  0,  0,208,161,  0,  0,208,162,  0,  0,208,163,  0,  0,208,164,  0,  0,208,
+    165,  0,  0,208,166,  0,  0,208,167,  0,  0,208,168,  0,  0,208,169,  0,  0,208,
+    170,  0,  0,208,171,  0,  0,208,172,  0,  0,208,173,  0,  0,208,174,  0,  0,208,
+    175,  0,  0,208,176,  0,  0,208,177,  0,  0,208,178,  0,  0,208,179,  0,  0,208,
+    180,  0,  0,208,181,  0,  0,208,182,  0,  0,208,183,  0,  0,208,184,  0,  0,208,
+    185,  0,  0,208,186,  0,  0,208,187,  0,  0,208,188,  0,  0,208,189,  0,  0,208,
+    190,  0,  0,208,191,  0,  0,209,128,  0,  0,209,129,  0,  0,209,130,  0,  0,209,
+    131,  0,  0,209,132,  0,  0,209,133,  0,  0,209,134,  0,  0,209,135,  0,  0,209,
+    136,  0,  0,209,137,  0,  0,209,138,  0,  0,209,139,  0,  0,209,140,  0,  0,209,
+    141,  0,  0,209,142,  0,  0,209,143;
+P     61
+CP1251_TO_UTF8_L0:
+ LINK 0
+ NXT
+; Initialize - variables
+ LD   0
+ WRX  __fc__CP1251_TO_UTF8
+ LD   0
+ SRC  byte __Init___CP1251_TO_UTF8_TO_UTF8_128_255
+ LEAX byte TO_UTF8_128_255[0]
+ LD   512
+ MOV  %X0
+; End initialize - variables
+#srcline 132 ;  CP1251_TO_UTF8 := CP125x_TO_UTF8(maxLen := maxLen, TO_UTF8_128_255 := ADR(TO_UTF8_128_255), cp125x := cp1251, utf8 := utf8);
+ NXT
+ LDX  maxLen
+#debug udint maxLen
+ WR   __Instance__CP125x_TO_UTF8~maxLen
+#debug_left udint __Instance__CP125x_TO_UTF8~maxLen
+ LEAX TO_UTF8_128_255
+#debug pointer TO_UTF8_128_255
+ LEA  __Instance__CP125x_TO_UTF8~TO_UTF8_128_255
+ WRIL 
+#debug_left udint __Instance__CP125x_TO_UTF8~TO_UTF8_128_255
+ LDX  cp1251
+ WR   __Instance__CP125x_TO_UTF8~cp125x
+#debug_left pointer __Instance__CP125x_TO_UTF8.cp125x
+ LDX  utf8
+ WR   __Instance__CP125x_TO_UTF8~utf8
+#debug_left pointer __Instance__CP125x_TO_UTF8.utf8
+ PRV
+ LEA  __Instance__CP125x_TO_UTF8
+ CAL  CP125x_TO_UTF8_L0
+ WRX  __fc__CP1251_TO_UTF8
+#debug_left udint CP1251_TO_UTF8
+#srcline 133 ;END_FUNCTION
+ PRV  
+ LDX  __fc__CP1251_TO_UTF8
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou CP1252_TO_UTF8
+#srcline 135 ;FUNCTION CP1252_TO_UTF8 : UDINT
+#table byte __Init___CP1252_TO_UTF8_TO_UTF8_128_255 = 
+    226,130,172,  0,239,191,189,  0,226,128,154,  0,198,146,  0,  0,226,128,158,  0,226,
+    128,166,  0,226,128,160,  0,226,128,161,  0,203,134,  0,  0,226,128,176,  0,197,
+    160,  0,  0,226,128,185,  0,197,146,  0,  0,239,191,189,  0,197,189,  0,  0,239,
+    191,189,  0,239,191,189,  0,226,128,152,  0,226,128,153,  0,226,128,156,  0,226,
+    128,157,  0,226,128,162,  0,226,128,147,  0,226,128,148,  0,203,156,  0,  0,226,
+    132,162,  0,197,161,  0,  0,226,128,186,  0,197,147,  0,  0,239,191,189,  0,197,
+    190,  0,  0,197,184,  0,  0,194,160,  0,  0,194,161,  0,  0,194,162,  0,  0,194,
+    163,  0,  0,194,164,  0,  0,194,165,  0,  0,194,166,  0,  0,194,167,  0,  0,194,
+    168,  0,  0,194,169,  0,  0,194,170,  0,  0,194,171,  0,  0,194,172,  0,  0,194,
+    173,  0,  0,194,174,  0,  0,194,175,  0,  0,194,176,  0,  0,194,177,  0,  0,194,
+    178,  0,  0,194,179,  0,  0,194,180,  0,  0,194,181,  0,  0,194,182,  0,  0,194,
+    183,  0,  0,194,184,  0,  0,194,185,  0,  0,194,186,  0,  0,194,187,  0,  0,194,
+    188,  0,  0,194,189,  0,  0,194,190,  0,  0,194,191,  0,  0,195,128,  0,  0,195,
+    129,  0,  0,195,130,  0,  0,195,131,  0,  0,195,132,  0,  0,195,133,  0,  0,195,
+    134,  0,  0,195,135,  0,  0,195,136,  0,  0,195,137,  0,  0,195,138,  0,  0,195,
+    139,  0,  0,195,140,  0,  0,195,141,  0,  0,195,142,  0,  0,195,143,  0,  0,195,
+    144,  0,  0,195,145,  0,  0,195,146,  0,  0,195,147,  0,  0,195,148,  0,  0,195,
+    149,  0,  0,195,150,  0,  0,195,151,  0,  0,195,152,  0,  0,195,153,  0,  0,195,
+    154,  0,  0,195,155,  0,  0,195,156,  0,  0,195,157,  0,  0,195,158,  0,  0,195,
+    159,  0,  0,195,160,  0,  0,195,161,  0,  0,195,162,  0,  0,195,163,  0,  0,195,
+    164,  0,  0,195,165,  0,  0,195,166,  0,  0,195,167,  0,  0,195,168,  0,  0,195,
+    169,  0,  0,195,170,  0,  0,195,171,  0,  0,195,172,  0,  0,195,173,  0,  0,195,
+    174,  0,  0,195,175,  0,  0,195,176,  0,  0,195,177,  0,  0,195,178,  0,  0,195,
+    179,  0,  0,195,180,  0,  0,195,181,  0,  0,195,182,  0,  0,195,183,  0,  0,195,
+    184,  0,  0,195,185,  0,  0,195,186,  0,  0,195,187,  0,  0,195,188,  0,  0,195,
+    189,  0,  0,195,190,  0,  0,195,191;
+P     61
+CP1252_TO_UTF8_L0:
+ LINK 0
+ NXT
+; Initialize - variables
+ LD   0
+ WRX  __fc__CP1252_TO_UTF8
+ LD   0
+ SRC  byte __Init___CP1252_TO_UTF8_TO_UTF8_128_255
+ LEAX byte TO_UTF8_128_255[0]
+ LD   512
+ MOV  %X0
+; End initialize - variables
+#srcline 163 ;  CP1252_TO_UTF8 := CP125x_TO_UTF8(maxLen := maxLen, TO_UTF8_128_255 := ADR(TO_UTF8_128_255), cp125x := cp1252, utf8 := utf8);
+ NXT
+ LDX  maxLen
+#debug udint maxLen
+ WR   __Instance__CP125x_TO_UTF8~maxLen
+#debug_left udint __Instance__CP125x_TO_UTF8~maxLen
+ LEAX TO_UTF8_128_255
+#debug pointer TO_UTF8_128_255
+ LEA  __Instance__CP125x_TO_UTF8~TO_UTF8_128_255
+ WRIL 
+#debug_left udint __Instance__CP125x_TO_UTF8~TO_UTF8_128_255
+ LDX  cp1252
+ WR   __Instance__CP125x_TO_UTF8~cp125x
+#debug_left pointer __Instance__CP125x_TO_UTF8.cp125x
+ LDX  utf8
+ WR   __Instance__CP125x_TO_UTF8~utf8
+#debug_left pointer __Instance__CP125x_TO_UTF8.utf8
+ PRV
+ LEA  __Instance__CP125x_TO_UTF8
+ CAL  CP125x_TO_UTF8_L0
+ WRX  __fc__CP1252_TO_UTF8
+#debug_left udint CP1252_TO_UTF8
+#srcline 164 ;END_FUNCTION
+ PRV  
+ LDX  __fc__CP1252_TO_UTF8
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou CP1253_TO_UTF8
+#srcline 166 ;FUNCTION CP1253_TO_UTF8 : UDINT
+#table byte __Init___CP1253_TO_UTF8_TO_UTF8_128_255 = 
+    226,130,172,  0,239,191,189,  0,226,128,154,  0,198,146,  0,  0,226,128,158,  0,226,
+    128,166,  0,226,128,160,  0,226,128,161,  0,239,191,189,  0,226,128,176,  0,239,
+    191,189,  0,226,128,185,  0,239,191,189,  0,239,191,189,  0,239,191,189,  0,239,
+    191,189,  0,239,191,189,  0,226,128,152,  0,226,128,153,  0,226,128,156,  0,226,
+    128,157,  0,226,128,162,  0,226,128,147,  0,226,128,148,  0,239,191,189,  0,226,
+    132,162,  0,239,191,189,  0,226,128,186,  0,239,191,189,  0,239,191,189,  0,239,
+    191,189,  0,239,191,189,  0,194,160,  0,  0,206,133,  0,  0,206,134,  0,  0,194,
+    163,  0,  0,194,164,  0,  0,194,165,  0,  0,194,166,  0,  0,194,167,  0,  0,194,
+    168,  0,  0,194,169,  0,  0,239,191,189,  0,194,171,  0,  0,194,172,  0,  0,194,
+    173,  0,  0,194,174,  0,  0,226,128,149,  0,194,176,  0,  0,194,177,  0,  0,194,
+    178,  0,  0,194,179,  0,  0,206,132,  0,  0,194,181,  0,  0,194,182,  0,  0,194,
+    183,  0,  0,206,136,  0,  0,206,137,  0,  0,206,138,  0,  0,194,187,  0,  0,206,
+    140,  0,  0,194,189,  0,  0,206,142,  0,  0,206,143,  0,  0,206,144,  0,  0,206,
+    145,  0,  0,206,146,  0,  0,206,147,  0,  0,206,148,  0,  0,206,149,  0,  0,206,
+    150,  0,  0,206,151,  0,  0,206,152,  0,  0,206,153,  0,  0,206,154,  0,  0,206,
+    155,  0,  0,206,156,  0,  0,206,157,  0,  0,206,158,  0,  0,206,159,  0,  0,206,
+    160,  0,  0,206,161,  0,  0,239,191,189,  0,206,163,  0,  0,206,164,  0,  0,206,
+    165,  0,  0,206,166,  0,  0,206,167,  0,  0,206,168,  0,  0,206,169,  0,  0,206,
+    170,  0,  0,206,171,  0,  0,206,172,  0,  0,206,173,  0,  0,206,174,  0,  0,206,
+    175,  0,  0,206,176,  0,  0,206,177,  0,  0,206,178,  0,  0,206,179,  0,  0,206,
+    180,  0,  0,206,181,  0,  0,206,182,  0,  0,206,183,  0,  0,206,184,  0,  0,206,
+    185,  0,  0,206,186,  0,  0,206,187,  0,  0,206,188,  0,  0,206,189,  0,  0,206,
+    190,  0,  0,206,191,  0,  0,207,128,  0,  0,207,129,  0,  0,207,130,  0,  0,207,
+    131,  0,  0,207,132,  0,  0,207,133,  0,  0,207,134,  0,  0,207,135,  0,  0,207,
+    136,  0,  0,207,137,  0,  0,207,138,  0,  0,207,139,  0,  0,207,140,  0,  0,207,
+    141,  0,  0,207,142,  0,  0,239,191,189;
+P     61
+CP1253_TO_UTF8_L0:
+ LINK 0
+ NXT
+; Initialize - variables
+ LD   0
+ WRX  __fc__CP1253_TO_UTF8
+ LD   0
+ SRC  byte __Init___CP1253_TO_UTF8_TO_UTF8_128_255
+ LEAX byte TO_UTF8_128_255[0]
+ LD   512
+ MOV  %X0
+; End initialize - variables
+#srcline 194 ;  CP1253_TO_UTF8 := CP125x_TO_UTF8(maxLen := maxLen, TO_UTF8_128_255 := ADR(TO_UTF8_128_255), cp125x := cp1253, utf8 := utf8);
+ NXT
+ LDX  maxLen
+#debug udint maxLen
+ WR   __Instance__CP125x_TO_UTF8~maxLen
+#debug_left udint __Instance__CP125x_TO_UTF8~maxLen
+ LEAX TO_UTF8_128_255
+#debug pointer TO_UTF8_128_255
+ LEA  __Instance__CP125x_TO_UTF8~TO_UTF8_128_255
+ WRIL 
+#debug_left udint __Instance__CP125x_TO_UTF8~TO_UTF8_128_255
+ LDX  cp1253
+ WR   __Instance__CP125x_TO_UTF8~cp125x
+#debug_left pointer __Instance__CP125x_TO_UTF8.cp125x
+ LDX  utf8
+ WR   __Instance__CP125x_TO_UTF8~utf8
+#debug_left pointer __Instance__CP125x_TO_UTF8.utf8
+ PRV
+ LEA  __Instance__CP125x_TO_UTF8
+ CAL  CP125x_TO_UTF8_L0
+ WRX  __fc__CP1253_TO_UTF8
+#debug_left udint CP1253_TO_UTF8
+#srcline 195 ;END_FUNCTION
+ PRV  
+ LDX  __fc__CP1253_TO_UTF8
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou CP1254_TO_UTF8
+#srcline 197 ;FUNCTION CP1254_TO_UTF8 : UDINT
+#table byte __Init___CP1254_TO_UTF8_TO_UTF8_128_255 = 
+    226,130,172,  0,194,129,  0,  0,226,128,154,  0,198,146,  0,  0,226,128,158,  0,226,
+    128,166,  0,226,128,160,  0,226,128,161,  0,203,134,  0,  0,226,128,176,  0,197,
+    160,  0,  0,226,128,185,  0,197,146,  0,  0,194,141,  0,  0,194,142,  0,  0,194,
+    143,  0,  0,194,144,  0,  0,226,128,152,  0,226,128,153,  0,226,128,156,  0,226,
+    128,157,  0,226,128,162,  0,226,128,147,  0,226,128,148,  0,203,156,  0,  0,226,
+    132,162,  0,197,161,  0,  0,226,128,186,  0,197,147,  0,  0,194,157,  0,  0,194,
+    158,  0,  0,197,184,  0,  0,194,160,  0,  0,194,161,  0,  0,194,162,  0,  0,194,
+    163,  0,  0,194,164,  0,  0,194,165,  0,  0,194,166,  0,  0,194,167,  0,  0,194,
+    168,  0,  0,194,169,  0,  0,194,170,  0,  0,194,171,  0,  0,194,172,  0,  0,194,
+    173,  0,  0,194,174,  0,  0,194,175,  0,  0,194,176,  0,  0,194,177,  0,  0,194,
+    178,  0,  0,194,179,  0,  0,194,180,  0,  0,194,181,  0,  0,194,182,  0,  0,194,
+    183,  0,  0,194,184,  0,  0,194,185,  0,  0,194,186,  0,  0,194,187,  0,  0,194,
+    188,  0,  0,194,189,  0,  0,194,190,  0,  0,194,191,  0,  0,195,128,  0,  0,195,
+    129,  0,  0,195,130,  0,  0,195,131,  0,  0,195,132,  0,  0,195,133,  0,  0,195,
+    134,  0,  0,195,135,  0,  0,195,136,  0,  0,195,137,  0,  0,195,138,  0,  0,195,
+    139,  0,  0,195,140,  0,  0,195,141,  0,  0,195,142,  0,  0,195,143,  0,  0,196,
+    158,  0,  0,195,145,  0,  0,195,146,  0,  0,195,147,  0,  0,195,148,  0,  0,195,
+    149,  0,  0,195,150,  0,  0,195,151,  0,  0,195,152,  0,  0,195,153,  0,  0,195,
+    154,  0,  0,195,155,  0,  0,195,156,  0,  0,196,176,  0,  0,197,158,  0,  0,195,
+    159,  0,  0,195,160,  0,  0,195,161,  0,  0,195,162,  0,  0,195,163,  0,  0,195,
+    164,  0,  0,195,165,  0,  0,195,166,  0,  0,195,167,  0,  0,195,168,  0,  0,195,
+    169,  0,  0,195,170,  0,  0,195,171,  0,  0,195,172,  0,  0,195,173,  0,  0,195,
+    174,  0,  0,195,175,  0,  0,196,159,  0,  0,195,177,  0,  0,195,178,  0,  0,195,
+    179,  0,  0,195,180,  0,  0,195,181,  0,  0,195,182,  0,  0,195,183,  0,  0,195,
+    184,  0,  0,195,185,  0,  0,195,186,  0,  0,195,187,  0,  0,195,188,  0,  0,196,
+    177,  0,  0,197,159,  0,  0,195,191;
+P     61
+CP1254_TO_UTF8_L0:
+ LINK 0
+ NXT
+; Initialize - variables
+ LD   0
+ WRX  __fc__CP1254_TO_UTF8
+ LD   0
+ SRC  byte __Init___CP1254_TO_UTF8_TO_UTF8_128_255
+ LEAX byte TO_UTF8_128_255[0]
+ LD   512
+ MOV  %X0
+; End initialize - variables
+#srcline 225 ;  CP1254_TO_UTF8 := CP125x_TO_UTF8(maxLen := maxLen, TO_UTF8_128_255 := ADR(TO_UTF8_128_255), cp125x := cp1254, utf8 := utf8);
+ NXT
+ LDX  maxLen
+#debug udint maxLen
+ WR   __Instance__CP125x_TO_UTF8~maxLen
+#debug_left udint __Instance__CP125x_TO_UTF8~maxLen
+ LEAX TO_UTF8_128_255
+#debug pointer TO_UTF8_128_255
+ LEA  __Instance__CP125x_TO_UTF8~TO_UTF8_128_255
+ WRIL 
+#debug_left udint __Instance__CP125x_TO_UTF8~TO_UTF8_128_255
+ LDX  cp1254
+ WR   __Instance__CP125x_TO_UTF8~cp125x
+#debug_left pointer __Instance__CP125x_TO_UTF8.cp125x
+ LDX  utf8
+ WR   __Instance__CP125x_TO_UTF8~utf8
+#debug_left pointer __Instance__CP125x_TO_UTF8.utf8
+ PRV
+ LEA  __Instance__CP125x_TO_UTF8
+ CAL  CP125x_TO_UTF8_L0
+ WRX  __fc__CP1254_TO_UTF8
+#debug_left udint CP1254_TO_UTF8
+#srcline 226 ;END_FUNCTION
+ PRV  
+ LDX  __fc__CP1254_TO_UTF8
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou CP1255_TO_UTF8
+#srcline 228 ;FUNCTION CP1255_TO_UTF8 : UDINT
+#table byte __Init___CP1255_TO_UTF8_TO_UTF8_128_255 = 
+    226,130,172,  0,239,191,189,  0,226,128,154,  0,198,146,  0,  0,226,128,158,  0,226,
+    128,166,  0,226,128,160,  0,226,128,161,  0,203,134,  0,  0,226,128,176,  0,239,
+    191,189,  0,226,128,185,  0,239,191,189,  0,239,191,189,  0,239,191,189,  0,239,
+    191,189,  0,239,191,189,  0,226,128,152,  0,226,128,153,  0,226,128,156,  0,226,
+    128,157,  0,226,128,162,  0,226,128,147,  0,226,128,148,  0,203,156,  0,  0,226,
+    132,162,  0,239,191,189,  0,226,128,186,  0,239,191,189,  0,239,191,189,  0,239,
+    191,189,  0,239,191,189,  0,194,160,  0,  0,194,161,  0,  0,194,162,  0,  0,194,
+    163,  0,  0,226,130,170,  0,194,165,  0,  0,194,166,  0,  0,194,167,  0,  0,194,
+    168,  0,  0,194,169,  0,  0,195,151,  0,  0,194,171,  0,  0,194,172,  0,  0,194,
+    173,  0,  0,194,174,  0,  0,194,175,  0,  0,194,176,  0,  0,194,177,  0,  0,194,
+    178,  0,  0,194,179,  0,  0,194,180,  0,  0,194,181,  0,  0,194,182,  0,  0,194,
+    183,  0,  0,194,184,  0,  0,194,185,  0,  0,195,183,  0,  0,194,187,  0,  0,194,
+    188,  0,  0,194,189,  0,  0,194,190,  0,  0,194,191,  0,  0,214,176,  0,  0,214,
+    177,  0,  0,214,178,  0,  0,214,179,  0,  0,214,180,  0,  0,214,181,  0,  0,214,
+    182,  0,  0,214,183,  0,  0,214,184,  0,  0,214,185,  0,  0,239,191,189,  0,214,
+    187,  0,  0,214,188,  0,  0,214,189,  0,  0,214,190,  0,  0,214,191,  0,  0,215,
+    128,  0,  0,215,129,  0,  0,215,130,  0,  0,215,131,  0,  0,215,176,  0,  0,215,
+    177,  0,  0,215,178,  0,  0,215,179,  0,  0,215,180,  0,  0,239,191,189,  0,239,
+    191,189,  0,239,191,189,  0,239,191,189,  0,239,191,189,  0,239,191,189,  0,239,
+    191,189,  0,215,144,  0,  0,215,145,  0,  0,215,146,  0,  0,215,147,  0,  0,215,
+    148,  0,  0,215,149,  0,  0,215,150,  0,  0,215,151,  0,  0,215,152,  0,  0,215,
+    153,  0,  0,215,154,  0,  0,215,155,  0,  0,215,156,  0,  0,215,157,  0,  0,215,
+    158,  0,  0,215,159,  0,  0,215,160,  0,  0,215,161,  0,  0,215,162,  0,  0,215,
+    163,  0,  0,215,164,  0,  0,215,165,  0,  0,215,166,  0,  0,215,167,  0,  0,215,
+    168,  0,  0,215,169,  0,  0,215,170,  0,  0,239,191,189,  0,239,191,189,  0,226,
+    128,142,  0,226,128,143,  0,239,191,189;
+P     61
+CP1255_TO_UTF8_L0:
+ LINK 0
+ NXT
+; Initialize - variables
+ LD   0
+ WRX  __fc__CP1255_TO_UTF8
+ LD   0
+ SRC  byte __Init___CP1255_TO_UTF8_TO_UTF8_128_255
+ LEAX byte TO_UTF8_128_255[0]
+ LD   512
+ MOV  %X0
+; End initialize - variables
+#srcline 256 ;  CP1255_TO_UTF8 := CP125x_TO_UTF8(maxLen := maxLen, TO_UTF8_128_255 := ADR(TO_UTF8_128_255), cp125x := cp1255, utf8 := utf8);
+ NXT
+ LDX  maxLen
+#debug udint maxLen
+ WR   __Instance__CP125x_TO_UTF8~maxLen
+#debug_left udint __Instance__CP125x_TO_UTF8~maxLen
+ LEAX TO_UTF8_128_255
+#debug pointer TO_UTF8_128_255
+ LEA  __Instance__CP125x_TO_UTF8~TO_UTF8_128_255
+ WRIL 
+#debug_left udint __Instance__CP125x_TO_UTF8~TO_UTF8_128_255
+ LDX  cp1255
+ WR   __Instance__CP125x_TO_UTF8~cp125x
+#debug_left pointer __Instance__CP125x_TO_UTF8.cp125x
+ LDX  utf8
+ WR   __Instance__CP125x_TO_UTF8~utf8
+#debug_left pointer __Instance__CP125x_TO_UTF8.utf8
+ PRV
+ LEA  __Instance__CP125x_TO_UTF8
+ CAL  CP125x_TO_UTF8_L0
+ WRX  __fc__CP1255_TO_UTF8
+#debug_left udint CP1255_TO_UTF8
+#srcline 258 ;END_FUNCTION
+ PRV  
+ LDX  __fc__CP1255_TO_UTF8
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+[}    e

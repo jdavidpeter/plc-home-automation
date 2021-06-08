@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.tecomat.com" xmlns="http://www.tecomat.com" elementFormDefault="qualified">  
+
+  <xsd:include schemaLocation="Teco_CommonTypes.xsd"/>
+  
+  <!-- Base element -->
+  <xsd:element name="TecoNetworks" type="TTecoNetworks"/>
+  
+  <!-- TTecoNetworks -->
+  <xsd:complexType name="TTecoNetworks">
+    <xsd:all>
+      <xsd:element name="Serial" type="TSerial" maxOccurs="1" minOccurs="0"/> 
+      <xsd:element name="Ethernet" type="TEthernet" maxOccurs="1" minOccurs="0"/>   
+    </xsd:all>
+  </xsd:complexType>
+  
+  <!-- TSerial -->
+  <xsd:complexType name="TSerial">
+    <xsd:all>
+      <xsd:element name="PLDNetworks" type="TPLDNetworks"/>   
+      <xsd:element name="PLCxNetworks" type="TPLCxNetworks"/>
+    </xsd:all>
+  </xsd:complexType>
+  
+  <!-- TEthernet -->
+  <xsd:complexType name="TEthernet">
+    <xsd:all>
+      <xsd:element name="PLDNetworks" type="TPLDNetworks"/> 
+      <xsd:element name="PLCxNetworks" type="TPLCxNetworks"/>  
+    </xsd:all>    
+  </xsd:complexType>
+  
+  <!-- TPLDNetworks -->
+  <xsd:complexType name="TPLDNetworks">
+    <xsd:group ref="GPLDNetworks"/>
+  </xsd:complexType>
+  
+  <!-- TPLCxNetworks -->
+  <xsd:complexType name="TPLCxNetworks">
+    <xsd:group ref="GPLCxNetworks"/>
+  </xsd:complexType>
+  
+  <!-- GPLDNetworks -->
+  <xsd:group name="GPLDNetworks">
+    <xsd:sequence>
+      <xsd:element name="PLDNetwork" type="TPLDNetwork" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>    
+  </xsd:group> 
+  
+  <!-- GPLCxNetworks -->
+  <xsd:group name="GPLCxNetworks">
+    <xsd:sequence>
+      <xsd:element name="PLCxNetwork" type="TPLCxNetwork" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>    
+  </xsd:group>
+  
+  <!-- TPLDNetwork -->
+  <xsd:complexType name="TPLDNetwork">
+    <xsd:sequence>
+      <xsd:element name="Node" type="TPLDNode" maxOccurs="unbounded" minOccurs="0"/>
+    </xsd:sequence>
+    <xsd:attribute name="id" type="xsd:string" use="required"/>
+    <xsd:attribute name="name" type="xsd:string" use='optional' default=""/>
+    <xsd:attribute name="port" type="xsd:unsignedShort" use="optional" default="61700"/>
+    <xsd:attribute name="encrypt" type="xsd:unsignedInt" use="optional" default="0"/>
+    <xsd:attribute name="key" type="xsd:string" use="optional" default=""/>
+    <xsd:attribute name="raster" type="xsd:unsignedInt" use="optional" default="200"/>
+    <xsd:attribute name="speed" type="xsd:unsignedInt" use="optional" default="0"/>
+    <xsd:attribute name="crc" type="xsd:unsignedInt" use="optional" default="0"/>
+  </xsd:complexType>
+  
+  <!-- TPLCxNetwork -->
+  <xsd:complexType name="TPLCxNetwork">
+    <xsd:sequence>
+      <xsd:element name="Node" type="TPLCxNode" maxOccurs="unbounded" minOccurs="0"/>
+    </xsd:sequence>
+    <xsd:attribute name="id" type="xsd:string" use="required"/>
+    <xsd:attribute name="name" type="xsd:string" use='optional' default=""/>
+    <xsd:attribute name="raster" type="xsd:unsignedInt" use="optional" default="200"/>
+    <xsd:attribute name="speed" type="xsd:unsignedInt" use="optional" default="0"/>
+    <xsd:attribute name="crc" type="xsd:unsignedInt" use="optional" default="0"/>
+  </xsd:complexType>
+  
+  <!-- TPLDNode -->
+  <xsd:complexType name="TPLDNode">
+    <xsd:attribute name="name" type="xsd:string" use="required"/> 
+    <xsd:attribute name="channel" type="xsd:string" use="optional" default=""/>    
+    <xsd:attribute name="addr" type="xsd:unsignedInt" use="required"/>
+    <xsd:attribute name="zoneAddr" type="xsd:string" use="optional" default=""/>
+    <xsd:attribute name="zoneSize" type="xsd:unsignedInt" use="required"/>
+    <xsd:attribute name="zoneAlias" type="xsd:string" use="optional" default=""/>
+    <xsd:attribute name="raster" type="xsd:unsignedInt" use="optional" default="0"/>
+  </xsd:complexType>
+  
+  <!-- TPLCxNode -->
+  <xsd:complexType name="TPLCxNode">
+    <xsd:attribute name="name" type="xsd:string" use="required"/> 
+    <xsd:attribute name="channel" type="xsd:string" use="optional" default=""/>    
+    <xsd:attribute name="addr" type="xsd:unsignedInt" use="required"/>
+    <xsd:attribute name="zoneAddr" type="xsd:string" use="optional" default=""/>
+    <xsd:attribute name="zoneSize" type="xsd:unsignedInt" use="required"/>
+    <xsd:attribute name="zoneAlias" type="xsd:string" use="optional" default=""/>
+  </xsd:complexType>
+  
+</xsd:schema>

@@ -1,0 +1,1197 @@
+(*` {CSY}Knihovna vývojového systému Mosaic{ENU}Mosaic IDE library *)
+(*` {CSY}Jméno souboru{ENU}File name{} : C:\TecoLib\StdLib_V22_20180619.mlb *)
+(*` {CSY}Knihovna : StdLib{ENU}Library : StdLib{} 2.2 *)
+(*` {CSY}Autor{ENU}Author{} : Teco a.s. *)
+(*` {CSY}Autorská práva{ENU}Copyright{} : (c) 2006-2018 Teco a.s. *)
+(*` {CSY}Verze IEC pøekladaèe{ENU}IEC compiler version{} : 4.1.4.0 *)
+(*` {CSY}Verze assembleru{ENU}Assembler version{} : 4.3.00 *)
+
+//{Knihovna : StdLib 2.2  }
+(*` {CSY}Historie{ENU}History{}: *)
+(*`
+{CSY}
+v1.0 30.06.2004 Nem  Uvodni verze knihovny
+                     Bloky : R_TRIG, F_TRIG, SR, RS, TON, TOF, CTU, CTD, TP
+v1.1 09.08.2004	Nem  Oprava bloku TOF
+v1.2 06.09.2004	Nem  Upraveny komentare funkcnich bloku v knihovne
+v1.3 16.05.2005	Nem  Osetren stav casovacu TON/TOF/TP po restartu
+                     v pripade, ze jsou casovace cele v rem zone
+v1.4            Nem  vynechana
+v1.5 01.11.2005	Nem  Upraveny casovace TON/TOF/TP tak, aby skutecne 
+                     fungovaly rem zone i pri teplem restartu
+                     Funkcni bloky R_TRIG, F_TRIG, SR a RS prepsany do asm
+v1.6 07.11.2005	Nem  Doplneny funkce ADD_TIME, SUB_TIME, ADD_TOD_TIME, 
+                     ADD_DT_TIME, SUB_DATE_DATE, SUB_TOD_TIME, SUB_TOD_TOD, 
+                     SUB_DT_TIME, SUB_DT_DT a CONCAT_DATE_TOD
+v1.7 17.03.2006	Nem  Oprava masky u TON/TOF/PT
+                     Oprava funkce SUB_DT_DT
+v1.8 04.04.2006	Nem  Zkraceny komentare u TON, .... kvuli FBD
+v1.9 29.09.2008	Nem  Opraven funkcni blok TOF po zapnuti (casovac cely prepracovan)
+v2.0 25.02.2009	Nem  Do funkcniho bloku TP doplnena kontrola predvolby
+                     (je-li predvolba nula, casovac negeneruje zadny pulz)
+     19.05.2010	Nem  Doplneny komentare v cestine (pro Mosaic od v2.0.23)
+     27.10.2010 Nem  Doplnena historie verzi v anglictine
+v2.1 14.05.2014	Nem  Ve funkcnim bloku TP se trvale vyhodnocuje nabezna
+                     hrana na vstupu IN
+v2.2 19.06.2018	Nem  Doplnena funkce IS_INVALID_REAL 
+
+{ENU}
+v1.0 2004-06-30 Nem  First edition
+                     Blocks : R_TRIG, F_TRIG, SR, RS, TON, TOF, CTU, CTD, TP
+v1.1 2004-08-09	Nem  Function block TOF corrected
+v1.2 2004-09-06	Nem  New version of comments
+v1.3 2005-05-16	Nem  New code for restart of TON/TOF/TP in the case
+                     when timers are in retain area
+v1.4            Nem  not used
+v1.5 2005-11-01	Nem  Final version of hot restart TON/TOF/TP
+                     Function blocks R_TRIG, F_TRIG, SR a RS rewritten in asm
+v1.6 2005-11-07	Nem  Functions ADD_TIME, SUB_TIME, ADD_TOD_TIME,
+                     ADD_DT_TIME, SUB_DATE_DATE, SUB_TOD_TIME, SUB_TOD_TOD,
+                     SUB_DT_TIME, SUB_DT_DT a CONCAT_DATE_TOD added
+v1.7 2006-03-17	Nem  Mask for TON/TOF/PT repaired
+                     Function SUB_DT_DT repaired
+v1.8 2006-04-04	Nem  Comments of TON, .... cutted (it is better for FBD)
+v1.9 2008-09-29	Nem  Function block TOF completelly rewritten
+v2.0 2009-02-25	Nem  When preset of TP is zero than there is no output puls
+     2010-05-19	Nem  Czech comments added (Mosaic v2.0.23 and more)
+     2010-10-27 Nem  English history version added
+v2.1 2014-05-14	Nem  Rising edge of IN input is detected permanently
+v2.2 2018-06-19	Nem  Added function IS_INVALID_REAL 
+*)
+
+(*----------------------------------------------------------------------------*)
+
+__DECL FUNCTION_BLOCK R_TRIG
+(*`{ENU} Rising Edge Detector {CSY} Blok pro vyhodnocení nábìžné hrany*)
+  VAR_INPUT
+    CLK              : bool;
+  END_VAR
+  VAR_OUTPUT
+    Q                : bool;
+  END_VAR
+  VAR
+    M                : bool;
+  END_VAR
+END_FUNCTION_BLOCK
+
+__DECL FUNCTION_BLOCK F_TRIG
+(*`{ENU} Falling Edge Detector {CSY} Blok pro vyhodnocení sestupné hrany*)
+  VAR_INPUT
+    CLK              : bool;
+  END_VAR
+  VAR_OUTPUT
+    Q                : bool;
+  END_VAR
+  VAR
+    M                : bool :=  TRUE;
+  END_VAR
+END_FUNCTION_BLOCK
+
+__DECL FUNCTION_BLOCK SR
+(*`{ENU} Flip-Flop (Set Dominant) {CSY} RS klopný obvod (s dominantní funkcí Set)*)
+  VAR_INPUT
+    S1               : bool;
+    R                : bool;
+  END_VAR
+  VAR_OUTPUT
+    Q1               : bool;
+  END_VAR
+END_FUNCTION_BLOCK
+
+__DECL FUNCTION_BLOCK RS
+(*`{ENU} Flip-Flop (Reset Dominant) {CSY} RS klopný obvod (s dominantní funkcí Reset)*)
+  VAR_INPUT
+    S                : bool;
+    R1               : bool;
+  END_VAR
+  VAR_OUTPUT
+    Q1               : bool;
+  END_VAR
+END_FUNCTION_BLOCK
+
+__DECL FUNCTION_BLOCK CTU
+(*`{ENU} Up Counter {CSY} Èítac nahoru*)
+  VAR_INPUT
+    CU               : bool R_EDGE;  (*`{ENU} up      {CSY} vstup pro èítání nahoru*)
+    R                : bool;  (*`{ENU} reset   {CSY} reset èítaèe*)
+    PV               : int;  (*`{ENU} preset  {CSY} pøedvolba èítaèe*)
+  END_VAR
+  VAR_OUTPUT
+    Q                : bool;  (*`{ENU} output  {CSY} výstup èítaèe*)
+    CV               : int;  (*`{ENU} value   {CSY} hodnota èítaèe*)
+  END_VAR
+END_FUNCTION_BLOCK
+
+__DECL FUNCTION_BLOCK CTD
+(*`{ENU} Down Counter {CSY} Èítac dolù*)
+  VAR_INPUT
+    CD               : bool R_EDGE;  (*`{ENU} down    {CSY} vstup pro èítání dolù*)
+    LD               : bool;  (*`{ENU} load    {CSY} vstup pro nastavení pøedvolby*)
+    PV               : int;  (*`{ENU} preset  {CSY} pøedvolba èítaèe*)
+  END_VAR
+  VAR_OUTPUT
+    Q                : bool;  (*`{ENU} output  {CSY} výstup èítaèe*)
+    CV               : int;  (*`{ENU} value   {CSY} hodnota èítaèe*)
+  END_VAR
+END_FUNCTION_BLOCK
+
+__DECL FUNCTION_BLOCK CTUD
+(*`{ENU} Up-Down Counter {CSY} Obousmìrný èítac*)
+  VAR_INPUT
+    CU               : bool R_EDGE;  (*`{ENU} up      {CSY} vstup pro èítání nahoru*)
+    CD               : bool R_EDGE;  (*`{ENU} down    {CSY} vstup pro èítání dolù*)
+    R                : bool;  (*`{ENU} reset   {CSY} reset èítaèe*)
+    LD               : bool;  (*`{ENU} load    {CSY} vstup pro nastavení pøedvolby*)
+    PV               : int;  (*`{ENU} preset  {CSY} pøedvolba èítaèe*)
+  END_VAR
+  VAR_OUTPUT
+    QU               : bool;  (*`{ENU} up output   {CSY} výstup èítaèe nahoru*)
+    QD               : bool;  (*`{ENU} down output {CSY} výstup èítaèe dolù*)
+    CV               : int;  (*`{ENU} value       {CSY} hodnota èítaèe*)
+  END_VAR
+END_FUNCTION_BLOCK
+
+__DECL FUNCTION_BLOCK TON
+(*`{ENU} On-delay Timer {CSY} Èasovaè TON (zpoždìní nábìžné hrany)*)
+  VAR_INPUT
+    IN               : bool;  (*`{ENU} input   {CSY} vstup èasovaèe*)
+    PT               : time;  (*`{ENU} preset  {CSY} pøedvolba èasovaèe*)
+  END_VAR
+  VAR_OUTPUT
+    Q                : bool;  (*`{ENU} output  {CSY} výstup èasovaèe*)
+    ET               : time;  (*`{ENU} value   {CSY} aktuální hodnota èasovaèe*)
+  END_VAR
+  VAR
+    IN_r_edge        : R_TRIG;
+    LT               : time;  (*`last tick value ( 1ms resolution)*)
+  END_VAR
+END_FUNCTION_BLOCK
+
+__DECL FUNCTION_BLOCK TOF
+(*`{ENU} Off-delay Timer {CSY} Èasovaè TOF (zpoždìní sestupné hrany)*)
+  VAR_INPUT
+    IN               : bool;  (*`{ENU} input  {CSY} vstup èasovaèe*)
+    PT               : time;  (*`{ENU} preset {CSY} pøedvolba èasovaèe*)
+  END_VAR
+  VAR_OUTPUT
+    Q                : bool;  (*`{ENU} output {CSY} výstup èasovaèe*)
+    ET               : time;  (*`{ENU} value  {CSY} aktuální hodnota èasovaèe*)
+  END_VAR
+  VAR
+    IN_f_edge        : F_TRIG;
+    LT               : time;  (*`last tick value ( 1ms resolution)*)
+  END_VAR
+END_FUNCTION_BLOCK
+
+__DECL FUNCTION_BLOCK TP
+(*`{ENU} Pulse Timer {CSY} Èasovaè TP (generuje pulz dané šíøky)*)
+  VAR_INPUT
+    IN               : bool;  (*`{ENU} input  {CSY} vstup èasovaèe*)
+    PT               : time;  (*`{ENU} preset {CSY} pøedvolba èasovaèe*)
+  END_VAR
+  VAR_OUTPUT
+    Q                : bool;  (*`{ENU} output {CSY} výstup èasovaèe*)
+    ET               : time;  (*`{ENU} value  {CSY} aktuální hodnota èasovaèe*)
+  END_VAR
+  VAR
+    IN_r_edge        : R_TRIG;
+    LT               : time;  (*`last tick value ( 1ms resolution)*)
+  END_VAR
+END_FUNCTION_BLOCK
+
+__DECL FUNCTION IS_INVALID_REAL : bool
+(*`{CSY} Vrací TRUE pokud má num hodnotu NaN, +INF nebo -INF
+  {ENU} Returns TRUE if the value of num is NaN, +INF or -INF*)
+  VAR_INPUT
+    num              : real;
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION ADD_TIME : time
+(*`------------------------------------------------------------------------------
+  TIME := TIME + TIME;*)
+  VAR_INPUT
+    IN1              : time;
+    IN2              : time;
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION SUB_TIME : time
+(*`------------------------------------------------------------------------------
+  TIME := TIME - TIME;*)
+  VAR_INPUT
+    IN1              : time;
+    IN2              : time;
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION ADD_TOD_TIME : tod
+(*`------------------------------------------------------------------------------
+  TIME_OF_DAY := TIME_OF_DAY + TIME;*)
+  VAR_INPUT
+    IN1              : tod;
+    IN2              : time;
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION ADD_DT_TIME : dt
+(*`------------------------------------------------------------------------------
+  DATE_AND_TIME := DATE_AND_TIME + TIME;*)
+  VAR_INPUT
+    IN1              : dt;
+    IN2              : time;
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION SUB_DATE_DATE : time
+(*`------------------------------------------------------------------------------
+  TIME := DATE - DATE;*)
+  VAR_INPUT
+    IN1              : date;
+    IN2              : date;
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION SUB_TOD_TIME : tod
+(*`------------------------------------------------------------------------------
+  TIME_OF_DAY := TIME_OF_DAY - TIME;*)
+  VAR_INPUT
+    IN1              : tod;
+    IN2              : time;
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION SUB_TOD_TOD : time
+(*`------------------------------------------------------------------------------
+  TIME := TIME_OF_DAY - TIME_OF_DAY;*)
+  VAR_INPUT
+    IN1              : tod;
+    IN2              : tod;
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION SUB_DT_TIME : dt
+(*`------------------------------------------------------------------------------
+  DATE_AND_TIME := DATE_AND_TIME - TIME;*)
+  VAR_INPUT
+    IN1              : dt;
+    IN2              : time;
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION SUB_DT_DT : time
+(*`------------------------------------------------------------------------------
+  TIME := DATE_AND_TIME - DATE_AND_TIME;*)
+  VAR_INPUT
+    IN1              : dt;
+    IN2              : dt;
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION CONCAT_DATE_TOD : dt
+(*`------------------------------------------------------------------------------
+  DATE_AND_TIME := DATE + TIME_OF_DAY;*)
+  VAR_INPUT
+    IN1              : date;
+    IN2              : tod;
+  END_VAR
+END_FUNCTION
+
+
+
+#srcfile 'C:\TECOLIBSRC\STDLIB\STDLIB\STDLIB.ST'
+#pou R_TRIG
+#srcline 9 ;function_block R_TRIG
+P     61
+R_TRIG_L0:
+ LINK 0
+#srcline 16 ;begin
+#srcline 17 ;        //  Q := clk and not M; M := CLK;
+#srcline 18 ;        {asm}
+#srcline 19
+        LDX     CLK
+#srcline 20
+        LETX    M
+#srcline 21
+        WRX     Q
+#srcline 22 ;        {end_asm}
+#srcline 23 ;end_function_block
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou F_TRIG
+#srcline 26 ;function_block F_TRIG
+P     61
+F_TRIG_L0:
+ LINK 0
+#srcline 33 ;begin
+#srcline 34 ;        //  Q := not CLK and not M; M := not CLK;
+#srcline 35 ;        {asm}
+#srcline 36
+        LDX     CLK
+#srcline 37
+        NEG
+#srcline 38
+        LETX    M
+#srcline 39
+        WRX     Q
+#srcline 40 ;        {end_asm}
+#srcline 41 ;end_function_block
+ ULNK
+RET
+E     61
+
+; Initialize - variables
+P     61
+F_TRIG__InstanceInit__:
+ LINK 0
+ LD   bool -1   ; true
+ WRX  M
+ ULNK
+RET
+E     61
+; End initialize - variables
+#endpou 
+
+#pou SR
+#srcline 44 ;function_block SR
+P     61
+SR_L0:
+ LINK 0
+#srcline 50 ;begin
+#srcline 51 ;        //  Q1 := S1 or (not R and Q1);
+#srcline 52 ;        {asm}
+#srcline 53
+        LDX     R
+#srcline 54
+        RESX    Q1
+#srcline 55
+        LDX     S1
+#srcline 56
+        SETX    Q1
+#srcline 57 ;        {end_asm}
+#srcline 58 ;end_function_block
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou RS
+#srcline 61 ;function_block RS
+P     61
+RS_L0:
+ LINK 0
+#srcline 67 ;begin
+#srcline 68 ;        //  Q1 := not R1 and (S or Q1);
+#srcline 69 ;        {asm}
+#srcline 70
+        LDX     S
+#srcline 71
+        SETX    Q1
+#srcline 72
+        LDX     R1
+#srcline 73
+        RESX    Q1
+#srcline 74 ;        {end_asm}
+#srcline 75 ;end_function_block
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou CTU
+#srcline 78 ;function_block CTU
+P     61
+CTU_L0:
+ LINK 0
+; R_EDGE, F_EDGE 
+ LDX  CU
+ LETX __EDGE_R__CU
+ WRX  CU
+#srcline 92 ;  if R then CV := 0;
+ LDX  R
+#debug bool R
+ JMC  CTU_L1
+ LD   int 0
+ WRX  CV
+#debug_left int CV
+#srcline 93 ;  else
+ JMP  CTU_L2
+CTU_L1:
+#srcline 94 ;    if CU and (CV < PV) then CV := CV + 1; end_if;
+ LDX  CU
+#debug bool CU
+ LDX  CV
+#debug int CV
+ EXTW 
+ LDX  PV
+#debug int PV
+ EXTW 
+ LTS
+ AND
+ JMC  CTU_L3
+ LDX  CV
+#debug int CV
+ EXTW 
+ LD   int 1
+ ADD
+ EXTW
+ WRX  CV
+#debug_left int CV
+CTU_L3:
+#srcline 95 ;  end_if;
+CTU_L2:
+#srcline 96 ;  Q := (CV >= PV);
+ LDX  CV
+#debug int CV
+ EXTW 
+ LDX  PV
+#debug int PV
+ EXTW 
+ LTS
+ NEG
+ WRX  Q
+#debug_left bool Q
+#srcline 97 ;end_function_block
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou CTD
+#srcline 100 ;function_block CTD
+P     61
+CTD_L0:
+ LINK 0
+; R_EDGE, F_EDGE 
+ LDX  CD
+ LETX __EDGE_R__CD
+ WRX  CD
+#srcline 114 ;  if LD then CV := PV;
+ LDX  LD
+#debug bool LD
+ JMC  CTD_L1
+ LDX  PV
+#debug int PV
+ EXTW 
+ WRX  CV
+#debug_left int CV
+#srcline 115 ;  else
+ JMP  CTD_L2
+CTD_L1:
+#srcline 116 ;    if CD and (CV > 0) then CV := CV - 1; end_if;
+ LDX  CD
+#debug bool CD
+ LDX  CV
+#debug int CV
+ EXTW 
+ LD   int 0
+ GTS
+ AND
+ JMC  CTD_L3
+ LDX  CV
+#debug int CV
+ EXTW 
+ LD   int 1
+ SUB
+ EXTW
+ WRX  CV
+#debug_left int CV
+CTD_L3:
+#srcline 117 ;  end_if;
+CTD_L2:
+#srcline 118 ;  Q := (CV <= 0);
+ LDX  CV
+#debug int CV
+ EXTW 
+ LD   int 0
+ GTS
+ NEG
+ WRX  Q
+#debug_left bool Q
+#srcline 119 ;end_function_block
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou CTUD
+#srcline 122 ;function_block CTUD
+P     61
+CTUD_L0:
+ LINK 0
+; R_EDGE, F_EDGE 
+ LDX  CU
+ LETX __EDGE_R__CU
+ WRX  CU
+ LDX  CD
+ LETX __EDGE_R__CD
+ WRX  CD
+#srcline 139 ;  if R then CV := 0;
+ LDX  R
+#debug bool R
+ JMC  CTUD_L1
+ LD   int 0
+ WRX  CV
+#debug_left int CV
+#srcline 140 ;  elsif LD then CV := PV;
+ JMP  CTUD_L2
+CTUD_L1:
+ LDX  LD
+#debug bool LD
+ JMC  CTUD_L3
+ LDX  PV
+#debug int PV
+ EXTW 
+ WRX  CV
+#debug_left int CV
+#srcline 141 ;  else
+ JMP  CTUD_L2
+CTUD_L3:
+#srcline 142 ;    if not (CU and CD) then
+ LDX  CU
+#debug bool CU
+ LDX  CD
+#debug bool CD
+ AND
+ NEG
+ JMC  CTUD_L4
+#srcline 143 ;      if CU and (CV < PV) then CV := CV + 1;
+ LDX  CU
+#debug bool CU
+ LDX  CV
+#debug int CV
+ EXTW 
+ LDX  PV
+#debug int PV
+ EXTW 
+ LTS
+ AND
+ JMC  CTUD_L6
+ LDX  CV
+#debug int CV
+ EXTW 
+ LD   int 1
+ ADD
+ EXTW
+ WRX  CV
+#debug_left int CV
+#srcline 144 ;      elsif CD and (CV > 0) then CV := CV - 1;
+ JMP  CTUD_L7
+CTUD_L6:
+ LDX  CD
+#debug bool CD
+ LDX  CV
+#debug int CV
+ EXTW 
+ LD   int 0
+ GTS
+ AND
+ JMC  CTUD_L8
+ LDX  CV
+#debug int CV
+ EXTW 
+ LD   int 1
+ SUB
+ EXTW
+ WRX  CV
+#debug_left int CV
+#srcline 145 ;      end_if;
+ JMP  CTUD_L7
+CTUD_L8:
+CTUD_L7:
+#srcline 146 ;    end_if;
+CTUD_L4:
+#srcline 147 ;  end_if;
+CTUD_L2:
+#srcline 148 ;  QU := (CV >= PV);
+ LDX  CV
+#debug int CV
+ EXTW 
+ LDX  PV
+#debug int PV
+ EXTW 
+ LTS
+ NEG
+ WRX  QU
+#debug_left bool QU
+#srcline 149 ;  QD := (CV <= 0);
+ LDX  CV
+#debug int CV
+ EXTW 
+ LD   int 0
+ GTS
+ NEG
+ WRX  QD
+#debug_left bool QD
+#srcline 150 ;end_function_block
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou TON
+#srcline 153 ;FUNCTION_BLOCK TON
+P     61
+TON_L0:
+ LINK 0
+#srcline 173 ;  IN_r_edge( CLK := IN);
+ LDX  IN
+#debug bool IN
+ WRX  IN_r_edge~CLK
+#debug_left bool IN_r_edge~CLK
+ LEAX IN_r_edge
+ CAL  R_TRIG_L0
+#srcline 174 ;  if not IN then
+ LDX  IN
+#debug bool IN
+ NEG
+ JMC  TON_L1
+#srcline 175 ;    Q := FALSE; ET := T#0h;
+ LD   bool 0       ; false
+ WRX  Q
+#debug_left bool Q
+ LD   time 0
+ WRX  ET
+#debug_left time ET
+#srcline 176 ;  else
+ JMP  TON_L2
+TON_L1:
+#srcline 177 ;    if ((ET < PT) and not IN_r_edge.Q ) then
+ LDX  ET
+#debug time ET
+ LDX  PT
+#debug time PT
+ LTS
+ LDX  IN_r_edge~Q
+#debug bool IN_r_edge.Q
+ NEG
+ AND
+ JMC  TON_L3
+#srcline 178 ;      ET := DWORD_TO_TIME( TIME_TO_DWORD( %SL52 - LT) AND 16#7FFF_FFFF);
+ LD   %SL52
+ LDX  LT
+#debug time LT
+ SUB
+ LD   dword $7FFFFFFF
+ AND
+ WRX  ET
+#debug_left time ET
+#srcline 179 ;      Q  := (ET >= PT);
+ LDX  ET
+#debug time ET
+ LDX  PT
+#debug time PT
+ LTS
+ NEG
+ WRX  Q
+#debug_left bool Q
+#srcline 180 ;      return;
+ JMP  TON_RET
+#srcline 181 ;    end_if;
+TON_L3:
+#srcline 182 ;    Q := (ET >= PT);                    // set output if preset value was changed
+ LDX  ET
+#debug time ET
+ LDX  PT
+#debug time PT
+ LTS
+ NEG
+ WRX  Q
+#debug_left bool Q
+#srcline 183 ;  end_if;
+TON_L2:
+#srcline 184 ;  LT := %SL52;
+ LD   %SL52
+ WRX  LT
+#debug_left time LT
+#srcline 185 ;end_function_block
+TON_RET:
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou TOF
+#srcline 226 ;FUNCTION_BLOCK TOF
+P     61
+TOF_L0:
+ LINK 0
+#srcline 246 ;  IN_f_edge(CLK := IN);
+ LDX  IN
+#debug bool IN
+ WRX  IN_f_edge~CLK
+#debug_left bool IN_f_edge~CLK
+ LEAX IN_f_edge
+ CAL  F_TRIG_L0
+#srcline 248 ;  IF IN THEN
+ LDX  IN
+#debug bool IN
+ JMC  TOF_L1
+#srcline 249 ;    Q := 1;
+ LD   bool -1      ; true
+ WRX  Q
+#debug_left bool Q
+#srcline 250 ;    ET := T#0s;
+ LD   time 0
+ WRX  ET
+#debug_left time ET
+#srcline 251 ;  ELSE
+ JMP  TOF_L2
+TOF_L1:
+#srcline 252 ;    IF IN_f_edge.Q THEN
+ LDX  IN_f_edge~Q
+#debug bool IN_f_edge.Q
+ JMC  TOF_L3
+#srcline 253 ;      LT := %SL52;
+ LD   %SL52
+ WRX  LT
+#debug_left time LT
+#srcline 254 ;    END_IF;
+TOF_L3:
+#srcline 255 ;    IF Q AND ET < PT THEN
+ LDX  Q
+#debug bool Q
+ LDX  ET
+#debug time ET
+ LDX  PT
+#debug time PT
+ LTS
+ AND
+ JMC  TOF_L5
+#srcline 256 ;      ET := ET + DWORD_TO_TIME(TIME_TO_DWORD(%SL52 - LT) & 16#7FFF_FFFF);
+ LDX  ET
+#debug time ET
+ LD   %SL52
+ LDX  LT
+#debug time LT
+ SUB
+ LD   dword $7FFFFFFF
+ AND
+ ADD
+ WRX  ET
+#debug_left time ET
+#srcline 257 ;    ELSE
+ JMP  TOF_L6
+TOF_L5:
+#srcline 258 ;      Q := false;
+ LD   bool 0       ; false
+ WRX  Q
+#debug_left bool Q
+#srcline 259 ;    END_IF;
+TOF_L6:
+#srcline 260 ;  END_IF;
+TOF_L2:
+#srcline 262 ;  LT := %SL52;
+ LD   %SL52
+ WRX  LT
+#debug_left time LT
+#srcline 264 ;END_FUNCTION_BLOCK
+ ULNK
+RET
+E     61
+
+; Initialize - variables
+P     61
+TOF__InstanceInit__:
+ LINK 0
+ LEAX IN_f_edge
+ CAL  F_TRIG__InstanceInit__
+ ULNK
+RET
+E     61
+; End initialize - variables
+#endpou 
+
+#pou TP
+#srcline 267 ;function_block TP
+P     61
+TP_L0:
+ LINK 0
+#srcline 287 ;  IN_r_edge( CLK := IN);
+ LDX  IN
+#debug bool IN
+ WRX  IN_r_edge~CLK
+#debug_left bool IN_r_edge~CLK
+ LEAX IN_r_edge
+ CAL  R_TRIG_L0
+#srcline 288 ;  if ( not Q) then
+ LDX  Q
+#debug bool Q
+ NEG
+ JMC  TP_L1
+#srcline 289 ;    if ( IN_r_edge.Q ) then
+ LDX  IN_r_edge~Q
+#debug bool IN_r_edge.Q
+ JMC  TP_L3
+#srcline 290 ;      LT := %SL52; ET := T#0h; Q := PT > T#0s;
+ LD   %SL52
+ WRX  LT
+#debug_left time LT
+ LD   time 0
+ WRX  ET
+#debug_left time ET
+ LDX  PT
+#debug time PT
+ LD   time 0
+ GTS
+ WRX  Q
+#debug_left bool Q
+#srcline 291 ;    else
+ JMP  TP_L4
+TP_L3:
+#srcline 292 ;      if ( not IN) then ET := T#0h; end_if;
+ LDX  IN
+#debug bool IN
+ NEG
+ JMC  TP_L5
+ LD   time 0
+ WRX  ET
+#debug_left time ET
+TP_L5:
+#srcline 293 ;    end_if;
+TP_L4:
+#srcline 294 ;  else
+ JMP  TP_L2
+TP_L1:
+#srcline 295 ;    ET := DWORD_TO_TIME( TIME_TO_DWORD( %SL52 - LT) AND 16#7FFF_FFFF);
+ LD   %SL52
+ LDX  LT
+#debug time LT
+ SUB
+ LD   dword $7FFFFFFF
+ AND
+ WRX  ET
+#debug_left time ET
+#srcline 296 ;    Q := (ET <= PT);
+ LDX  ET
+#debug time ET
+ LDX  PT
+#debug time PT
+ GTS
+ NEG
+ WRX  Q
+#debug_left bool Q
+#srcline 297 ;  end_if;
+TP_L2:
+#srcline 298 ;end_function_block
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\STDLIB\STDLIB\ISINVALIDREAL.ST'
+#pou IS_INVALID_REAL
+#srcline 1 ;FUNCTION IS_INVALID_REAL : BOOL
+P     61
+IS_INVALID_REAL_L0:
+ LINK 0
+ NXT
+#srcline 10 ;BEGIN
+#srcline 11 ;  {ASM}
+#srcline 12
+    LDX num
+#srcline 13
+    AND  %01111111100000000000000000000000
+#srcline 14
+    EQ   %01111111100000000000000000000000
+#srcline 15
+    WRX  __fc__IS_INVALID_REAL
+#srcline 16 ;  {END_ASM}
+#srcline 17 ;END_FUNCTION
+ PRV  
+ LDX  __fc__IS_INVALID_REAL
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\STDLIB\STDLIB\DATATIME.ST'
+#pou ADD_TIME
+#srcline 10 ;FUNCTION ADD_TIME : TIME
+P     61
+ADD_TIME_L0:
+ LINK 0
+ NXT
+#srcline 18 ;begin
+#srcline 19 ;        {asm}
+#srcline 20
+        LDX     IN1
+#srcline 21
+        LDX     IN2
+#srcline 22
+        ADD
+#srcline 23
+        WRX     __fc__ADD_TIME
+#srcline 24 ;        {end_asm}
+#srcline 25 ;END_FUNCTION
+ PRV  
+ LDX  __fc__ADD_TIME
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou SUB_TIME
+#srcline 28 ;FUNCTION SUB_TIME : TIME
+P     61
+SUB_TIME_L0:
+ LINK 0
+ NXT
+#srcline 36 ;begin
+#srcline 37 ;        {asm}
+#srcline 38
+        LDX     IN1
+#srcline 39
+        LDX     IN2
+#srcline 40
+        SUB
+#srcline 41
+        WRX     __fc__SUB_TIME
+#srcline 42 ;        {end_asm}
+#srcline 43 ;END_FUNCTION
+ PRV  
+ LDX  __fc__SUB_TIME
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou ADD_TOD_TIME
+#srcline 46 ;FUNCTION ADD_TOD_TIME : TIME_OF_DAY
+P     61
+ADD_TOD_TIME_L0:
+ LINK 0
+ NXT
+#srcline 54 ;begin
+#srcline 55 ;        {asm}
+#srcline 56
+        LDX     IN1
+#srcline 57
+        LDX     IN2
+#srcline 58
+        ADD
+#srcline 59
+        WRX     __fc__ADD_TOD_TIME
+#srcline 60 ;        {end_asm}
+#srcline 61 ;END_FUNCTION
+ PRV  
+ LDX  __fc__ADD_TOD_TIME
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou ADD_DT_TIME
+#srcline 64 ;FUNCTION ADD_DT_TIME : DATE_AND_TIME
+P     61
+ADD_DT_TIME_L0:
+ LINK 0
+ NXT
+#srcline 72 ;begin
+#srcline 73 ;        {asm}
+#srcline 74
+        LDX     IN1
+#srcline 75
+        LDX     IN2
+#srcline 76
+	SCNV    $3332                  ;TIME_TO_DT
+#srcline 77
+        ADDF
+#srcline 78
+        WRX     __fc__ADD_DT_TIME
+#srcline 79 ;        {end_asm}
+#srcline 80 ;END_FUNCTION
+ PRV  
+ LDX  __fc__ADD_DT_TIME
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou SUB_DATE_DATE
+#srcline 83 ;FUNCTION SUB_DATE_DATE : TIME
+P     61
+SUB_DATE_DATE_L0:
+ LINK 0
+ NXT
+#srcline 91 ;begin
+#srcline 92 ;        {asm}
+#srcline 93
+        LDX     IN1
+#srcline 94
+        LDX     IN2
+#srcline 95
+	SUDF
+#srcline 96
+        LDQ     1000.
+#srcline 97
+        MUDF
+#srcline 98
+        IDFL
+#srcline 99
+        WRX     __fc__SUB_DATE_DATE
+#srcline 100 ;        {end_asm}
+#srcline 101 ;END_FUNCTION
+ PRV  
+ LDX  __fc__SUB_DATE_DATE
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou SUB_TOD_TIME
+#srcline 104 ;FUNCTION SUB_TOD_TIME : TIME_OF_DAY
+P     61
+SUB_TOD_TIME_L0:
+ LINK 0
+ NXT
+#srcline 112 ;begin
+#srcline 113 ;        {asm}
+#srcline 114
+        LDX     IN1
+#srcline 115
+        LDX     IN2
+#srcline 116
+	SUB
+#srcline 117
+        WRX     __fc__SUB_TOD_TIME
+#srcline 118 ;        {end_asm}
+#srcline 119 ;END_FUNCTION
+ PRV  
+ LDX  __fc__SUB_TOD_TIME
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou SUB_TOD_TOD
+#srcline 122 ;FUNCTION SUB_TOD_TOD : TIME
+P     61
+SUB_TOD_TOD_L0:
+ LINK 0
+ NXT
+#srcline 130 ;begin
+#srcline 131 ;        {asm}
+#srcline 132
+        LDX     IN1
+#srcline 133
+        LDX     IN2
+#srcline 134
+	SUB
+#srcline 135
+        WRX     __fc__SUB_TOD_TOD
+#srcline 136 ;        {end_asm}
+#srcline 137 ;END_FUNCTION
+ PRV  
+ LDX  __fc__SUB_TOD_TOD
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou SUB_DT_TIME
+#srcline 140 ;FUNCTION SUB_DT_TIME : DATE_AND_TIME
+P     61
+SUB_DT_TIME_L0:
+ LINK 0
+ NXT
+#srcline 148 ;begin
+#srcline 149 ;        {asm}
+#srcline 150
+        LDX     IN1
+#srcline 151
+        LDX     IN2
+#srcline 152
+        SCNV    $3432                   ; TOD_TO_DT
+#srcline 153
+	SUDF
+#srcline 154
+        WRX     __fc__SUB_DT_TIME
+#srcline 155 ;        {end_asm}
+#srcline 156 ;END_FUNCTION
+ PRV  
+ LDX  __fc__SUB_DT_TIME
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou SUB_DT_DT
+#srcline 159 ;FUNCTION SUB_DT_DT : TIME
+P     61
+SUB_DT_DT_L0:
+ LINK 0
+ NXT
+#srcline 167 ;begin
+#srcline 168 ;        {asm}
+#srcline 169
+        LDX     IN1
+#srcline 170
+        LDX     IN2
+#srcline 171
+	SUDF
+#srcline 172
+        LDQ     1000.0
+#srcline 173
+        MUDF                    ; prevod na ms
+#srcline 174
+        RNDD
+#srcline 175
+        IDFL                    ; LREAL_TO_TIME
+#srcline 176
+        WRX     __fc__SUB_DT_DT
+#srcline 177 ;        {end_asm}
+#srcline 178 ;END_FUNCTION
+ PRV  
+ LDX  __fc__SUB_DT_DT
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou CONCAT_DATE_TOD
+#srcline 181 ;FUNCTION CONCAT_DATE_TOD : DATE_AND_TIME
+P     61
+CONCAT_DATE_TOD_L0:
+ LINK 0
+ NXT
+#srcline 189 ;begin
+#srcline 190 ;        {asm}
+#srcline 191
+        LDX     IN1
+#srcline 192
+        LDX     IN2
+#srcline 193
+        SCNV    $3432                   ; TOD_TO_DT
+#srcline 194
+        ADDF
+#srcline 195
+        WRX     __fc__CONCAT_DATE_TOD
+#srcline 196 ;        {end_asm}
+#srcline 197 ;END_FUNCTION
+ PRV  
+ LDX  __fc__CONCAT_DATE_TOD
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+’*  Â  ÷

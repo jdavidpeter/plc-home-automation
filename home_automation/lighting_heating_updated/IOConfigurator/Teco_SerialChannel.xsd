@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.tecomat.com" xmlns="http://www.tecomat.com" elementFormDefault="qualified">     
+  
+  <xsd:include schemaLocation="Teco_CommonTypes.xsd"/>
+  <xsd:include schemaLocation="Teco_Dictionary.xsd"/>
+              
+  <!-- Base element -->
+  <xsd:element name="TecoSerialChannel" type="TSerialChannel"/>
+   
+  <!-- TSerialChannel -->
+  <xsd:complexType name="TSerialChannel">
+    <xsd:sequence>
+      <xsd:element name="Header" type="THeader" maxOccurs="1" minOccurs="1"/>   
+      <xsd:element name="Channel" type="TChannel"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  
+  <!-- HeaderType -->
+  <xsd:complexType name="THeader">
+    <xsd:all>
+      <xsd:element name="File" type="TFile" maxOccurs="1" minOccurs="1"/> 
+    </xsd:all>
+  </xsd:complexType>
+  
+  <!-- TFile -->
+  <xsd:complexType name="TFile">
+    <xsd:all>
+      <xsd:element name="FileName" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="FileCreator" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="FileCreationDate" type="xsd:date" minOccurs="0"/>
+      <xsd:element name="FileModifiedBy" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="FileModificationDate" type="xsd:date" minOccurs="0"/>
+      <xsd:element name="SupportedLanguages" default="en">
+        <xsd:simpleType>
+          <xsd:list itemType="xsd:language"/>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element name="FileVersion" type="xsd:string"/>
+    </xsd:all>
+  </xsd:complexType>
+  
+  <!-- TChannel -->
+  <xsd:complexType name="TChannel">
+    <xsd:all>
+      <xsd:element name="Mode" type="TChannelModeEnum"/>    
+      <xsd:element name="Description" type="TLabels" minOccurs="0"/>
+      <xsd:element name="Image" type="TImages" minOccurs="0"/>
+      <xsd:element name="Dictionary" type="TDictionary" minOccurs="0"/>    
+    </xsd:all>
+  </xsd:complexType>
+  
+</xsd:schema> 

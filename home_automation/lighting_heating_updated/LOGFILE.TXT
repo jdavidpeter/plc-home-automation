@@ -1,0 +1,6 @@
+2019-07-07 23:03:19 >> Communication port changed: 61682
+2019-07-07 23:03:19 >> Communication timeout changed: 2000
+2019-07-07 23:03:19 >> munication repetition changed: 
+2019-07-07 23:25:25 >> Communication port changed: 61682
+2019-07-07 23:25:25 >> Communication timeout changed: 2000
+2019-07-07 23:25:25 >> munication repetition changed: 

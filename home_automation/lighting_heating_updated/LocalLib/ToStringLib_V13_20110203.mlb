@@ -1,0 +1,708 @@
+(*` {CSY}Knihovna vývojového systému Mosaic{ENU}Mosaic IDE library *)
+(*` {CSY}Jméno souboru{ENU}File name{} : c:\Program Files\Common Files\Mosaic\Lib\ToStringLib_V13_20110203.mlb *)
+(*` {CSY}Knihovna : ToStringLib{ENU}Library : ToStringLib{} 1.3 *)
+(*` {CSY}Autor{ENU}Author{} : Teco a.s. Kolin *)
+(*` {CSY}Autorská práva{ENU}Copyright{} : (c) 2004..2009 Teco a.s. *)
+(*` {CSY}Verze IEC pøekladaèe{ENU}IEC compiler version{} : 3.8.13.3 *)
+(*` {CSY}Verze assembleru{ENU}Assembler version{} : 4.3.00 *)
+
+//{Knihovna : ToStringLib 1.3  }
+(*` {CSY}Historie{ENU}History{}: *)
+(*`
+{CSY}
+v1.0 04.02.2009 Nem  úvodní verze knihovny 
+v1.1 27.10.2010 Nem  doplnìny komentáøe v èestinì 
+v1.2 06.12.2010 Nem  doplnìny anglické komentáøe
+v1.3 03.02.2011 Nem  doplnìna funkce BOOL_TO_STRINGF
+
+{ENU}
+v1.0 2009-02-04 Nem  first edition
+v1.1 2010-10-27 Nem  czech comments added
+v1.2 2010-12-06 Nem  english comments added
+v1.3 2011-02-03 Nem  added function BOOL_TO_STRINGF
+
+
+*)
+
+(*----------------------------------------------------------------------------*)
+
+__DECL FUNCTION USINT_TO_STRINGF : string
+(*`
+  {CSY} Pøevod USINT na formátovaný STRING
+  Pøíklad formátovacího øetìzce : '%4u'
+
+  {ENU} Conversion USINT to formatted STRING
+  Format example : '%4u'
+
+*)
+  VAR_INPUT
+    in               : usint;
+    format           : string [80];  (*` {CSY} formátovací øetìzec {ENU} format string*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION SINT_TO_STRINGF : string
+(*`
+  {CSY} Pøevod SINT na formátovaný STRING
+  Pøíklad formátovacího øetìzce : '%4d'
+
+  {ENU} Conversion SINT to formatted STRING
+  Format example : '%4d'
+
+*)
+  VAR_INPUT
+    in               : sint;
+    format           : string [80];  (*` {CSY} formátovací øetìzec {ENU} format string*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION UINT_TO_STRINGF : string
+(*`
+  {CSY} Pøevod UINT na formátovaný STRING
+  Pøíklad formátovacího øetìzce : '%5u'
+
+  {ENU} Conversion UINT to formatted STRING
+  Format example : '%5u'
+
+*)
+  VAR_INPUT
+    in               : uint;
+    format           : string [80];  (*` {CSY} formátovací øetìzec {ENU} format string*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION INT_TO_STRINGF : string
+(*`
+  {CSY} Pøevod INT na formátovaný STRING
+  Pøíklad formátovacího øetìzce : '%5d'
+
+  {ENU} Conversion INT to formatted STRING
+  Format example : '%5d'
+
+*)
+  VAR_INPUT
+    in               : int;
+    format           : string [80];  (*` {CSY} formátovací øetìzec {ENU} format string*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION UDINT_TO_STRINGF : string
+(*`
+  {CSY} Pøevod UDINT na formátovaný STRING
+  Pøíklad formátovacího øetìzce : '%6u'
+
+  {ENU} Conversion UDINT to formatted STRING
+  Format example : '%6u'
+
+*)
+  VAR_INPUT
+    in               : udint;
+    format           : string [80];  (*` {CSY} formátovací øetìzec {ENU} format string*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION DINT_TO_STRINGF : string
+(*`
+  {CSY} Pøevod DINT na formátovaný STRING
+  Pøíklad formátovacího øetìzce : '%6d'
+
+  {ENU} Conversion DINT to formatted STRING
+  Format example : '%6d'
+
+*)
+  VAR_INPUT
+    in               : dint;
+    format           : string [80];  (*` {CSY} formátovací øetìzec {ENU} format string*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION REAL_TO_STRINGF : string
+(*`
+  {CSY} Pøevod REAL na formátovaný STRING
+  Pøíklad formátovacího øetìzce : '%6.1f'
+
+  {ENU} Conversion REAL to formatted STRING
+  Format example : '%6.1f'
+
+*)
+  VAR_INPUT
+    in               : real;
+    format           : string [80];  (*` {CSY} formátovací øetìzec {ENU} format string*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION LREAL_TO_STRINGF : string
+(*`
+  {CSY} Pøevod LREAL na formátovaný STRING
+  Pøíklad formátovacího øetìzce : '%6.1f'
+
+  {ENU} Conversion LREAL to formatted STRING
+  Format example : '%6.1f'
+
+*)
+  VAR_INPUT
+    in               : lreal;
+    format           : string [80];  (*` {CSY} formátovací øetìzec {ENU} format string*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION BYTE_TO_STRINGF : string
+(*`
+  {CSY} Pøevod BYTE na formátovaný STRING
+  Pøíklad formátovacího øetìzce : '%02X'
+
+  {ENU} Conversion BYTE to formatted STRING
+  Format example : '%02X'
+
+*)
+  VAR_INPUT
+    in               : byte;
+    format           : string [80];  (*` {CSY} formátovací øetìzec {ENU} format string*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION WORD_TO_STRINGF : string
+(*`
+  {CSY} Pøevod WORD na formátovaný STRING
+  Pøíklad formátovacího øetìzce : '%04X'
+
+  {ENU} Conversion WORD to formatted STRING
+  Format example : '%04X'
+
+*)
+  VAR_INPUT
+    in               : word;
+    format           : string [80];  (*` {CSY} formátovací øetìzec {ENU} format string*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION DWORD_TO_STRINGF : string
+(*`
+  {CSY} Pøevod DWORD na formátovaný STRING
+  Pøíklad formátovacího øetìzce : '%08X'
+
+  {ENU} Conversion DWORD to formatted STRING
+  Format example : '%08X'
+
+*)
+  VAR_INPUT
+    in               : dword;
+    format           : string [80];  (*` {CSY} formátovací øetìzec {ENU} format string*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION DATE_TO_STRINGF : string
+(*`
+  {CSY} Pøevod DATE na formátovaný STRING
+  Pøíklad formátovacího øetìzce : '%TYYYY-MM-DD'
+
+  {ENU} Conversion DATE to formatted STRING
+  Format example : '%TYYYY-MM-DD'
+
+*)
+  VAR_INPUT
+    in               : date;
+    format           : string [80];  (*` {CSY} formátovací øetìzec {ENU} format string*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION DT_TO_STRINGF : string
+(*`
+  {CSY} Pøevod DATE_AND_TIME na formátovaný STRING
+  Pøíklad formátovacího øetìzce : '%TYYYY-MM-DD-hh:mm:ss'
+
+  {ENU} Conversion DATE_AND_TIME to formatted STRING
+  Format example : '%TYYYY-MM-DD-hh:mm:ss'
+
+*)
+  VAR_INPUT
+    in               : dt;
+    format           : string [80];  (*` {CSY} formátovací øetìzec {ENU} format string*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION TIME_TO_STRINGF : string
+(*`
+  {CSY} Pøevod TIME na formátovaný STRING
+  Pøíklad formátovacího øetìzce : '%Thh:mm:ss.zzz'
+
+  {ENU} Conversion TIME to formatted STRING
+  Format example : '%Thh:mm:ss.zzz'
+
+*)
+  VAR_INPUT
+    in               : time;
+    format           : string [80];  (*` {CSY} formátovací øetìzec {ENU} format string*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION TOD_TO_STRINGF : string
+(*`
+  {CSY} Pøevod TIME_OF_DAY na formátovaný STRING
+  Pøíklad formátovacího øetìzce : '%Thh:mm:ss.zzz'
+
+  {ENU} Conversion TIME_OF_DAY to formatted STRING
+  Format example : '%Thh:mm:ss.zzz'
+
+*)
+  VAR_INPUT
+    in               : tod;
+    format           : string [80];  (*` {CSY} formátovací øetìzec {ENU} format string*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION BOOL_TO_STRINGF : string
+(*`
+  {CSY} Pøevod BOOL na formátovaný STRING
+  Pøíklad formátovacího øetìzce : '%b'
+  {ENU} Conversion BOOL to formatted STRING
+  Format example : '%b'
+
+*)
+  VAR_INPUT
+    in               : bool;
+    format           : string [80];  (*` {CSY} formátovací øetìzec {ENU} format string*)
+  END_VAR
+END_FUNCTION
+
+
+
+#srcfile 'C:\TECOLIBSRC\TOSTRINGLIB\TOSTRINGLIB_V13\CONVERSION.ST'
+#pou USINT_TO_STRINGF
+#srcline 3 ;FUNCTION USINT_TO_STRINGF : STRING[80]
+P     61
+USINT_TO_STRINGF_L0:
+ LINK 0
+ NXT
+#srcline 15 ;begin
+#srcline 16 ;  {asm}
+#srcline 17
+   LEAX   __fc__USINT_TO_STRINGF  ;adresa vystupu
+#srcline 18
+   LEAX   format                  ;adresa formatovaciho retezce
+#srcline 19
+   LD     16#08                   ;kod USINT
+#srcline 20
+   LEAX   in                      ;adresa promenne
+#srcline 21
+   SYS    27                      ;sys_SPRINTF
+#srcline 22 ;  {end_asm}
+#srcline 23 ;END_FUNCTION
+ PRV  
+ LEAX  __fc__USINT_TO_STRINGF
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou SINT_TO_STRINGF
+#srcline 27 ;FUNCTION SINT_TO_STRINGF : STRING[80]
+P     61
+SINT_TO_STRINGF_L0:
+ LINK 0
+ NXT
+#srcline 39 ;begin
+#srcline 40 ;  {asm}
+#srcline 41
+   LEAX   __fc__SINT_TO_STRINGF   ;adresa vystupu
+#srcline 42
+   LEAX   format                  ;adresa formatovaciho retezce
+#srcline 43
+   LD     16#09                   ;kod SINT
+#srcline 44
+   LEAX   in                      ;adresa promenne
+#srcline 45
+   SYS    27                      ;sys_SPRINTF
+#srcline 46 ;  {end_asm}
+#srcline 47 ;END_FUNCTION
+ PRV  
+ LEAX  __fc__SINT_TO_STRINGF
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou UINT_TO_STRINGF
+#srcline 51 ;FUNCTION UINT_TO_STRINGF : STRING[80]
+P     61
+UINT_TO_STRINGF_L0:
+ LINK 0
+ NXT
+#srcline 63 ;begin
+#srcline 64 ;  {asm}
+#srcline 65
+   LEAX   __fc__UINT_TO_STRINGF   ;adresa vystupu
+#srcline 66
+   LEAX   format                  ;adresa formatovaciho retezce
+#srcline 67
+   LD     16#0A                   ;kod UINT
+#srcline 68
+   LEAX   in                      ;adresa promenne
+#srcline 69
+   SYS    27                      ;sys_SPRINTF
+#srcline 70 ;  {end_asm}
+#srcline 71 ;END_FUNCTION
+ PRV  
+ LEAX  __fc__UINT_TO_STRINGF
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou INT_TO_STRINGF
+#srcline 75 ;FUNCTION INT_TO_STRINGF : STRING[80]
+P     61
+INT_TO_STRINGF_L0:
+ LINK 0
+ NXT
+#srcline 87 ;begin
+#srcline 88 ;  {asm}
+#srcline 89
+   LEAX   __fc__INT_TO_STRINGF    ;adresa vystupu
+#srcline 90
+   LEAX   format                  ;adresa formatovaciho retezce
+#srcline 91
+   LD     16#0B                   ;kod INT
+#srcline 92
+   LEAX   in                      ;adresa promenne
+#srcline 93
+   SYS    27                      ;sys_SPRINTF
+#srcline 94 ;  {end_asm}
+#srcline 95 ;END_FUNCTION
+ PRV  
+ LEAX  __fc__INT_TO_STRINGF
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou UDINT_TO_STRINGF
+#srcline 99 ;FUNCTION UDINT_TO_STRINGF : STRING[80]
+P     61
+UDINT_TO_STRINGF_L0:
+ LINK 0
+ NXT
+#srcline 111 ;begin
+#srcline 112 ;  {asm}
+#srcline 113
+   LEAX   __fc__UDINT_TO_STRINGF  ;adresa vystupu
+#srcline 114
+   LEAX   format                  ;adresa formatovaciho retezce
+#srcline 115
+   LD     16#0C                   ;kod UDINT
+#srcline 116
+   LEAX   in                      ;adresa promenne
+#srcline 117
+   SYS    27                      ;sys_SPRINTF
+#srcline 118 ;  {end_asm}
+#srcline 119 ;END_FUNCTION
+ PRV  
+ LEAX  __fc__UDINT_TO_STRINGF
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou DINT_TO_STRINGF
+#srcline 123 ;FUNCTION DINT_TO_STRINGF : STRING[80]
+P     61
+DINT_TO_STRINGF_L0:
+ LINK 0
+ NXT
+#srcline 135 ;begin
+#srcline 136 ;  {asm}
+#srcline 137
+   LEAX   __fc__DINT_TO_STRINGF   ;adresa vystupu
+#srcline 138
+   LEAX   format                  ;adresa formatovaciho retezce
+#srcline 139
+   LD     16#0D                   ;kod DINT
+#srcline 140
+   LEAX   in                      ;adresa promenne
+#srcline 141
+   SYS    27                      ;sys_SPRINTF
+#srcline 142 ;  {end_asm}
+#srcline 143 ;END_FUNCTION
+ PRV  
+ LEAX  __fc__DINT_TO_STRINGF
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou REAL_TO_STRINGF
+#srcline 147 ;FUNCTION REAL_TO_STRINGF : STRING[80]
+P     61
+REAL_TO_STRINGF_L0:
+ LINK 0
+ NXT
+#srcline 159 ;begin
+#srcline 160 ;  {asm}
+#srcline 161
+   LEAX   __fc__REAL_TO_STRINGF  ;adresa vystupu
+#srcline 162
+   LEAX   format                  ;adresa formatovaciho retezce
+#srcline 163
+   LD     16#1C                   ;kod REAL
+#srcline 164
+   LEAX   in                      ;adresa promenne
+#srcline 165
+   SYS    27                      ;sys_SPRINTF
+#srcline 166 ;  {end_asm}
+#srcline 167 ;END_FUNCTION
+ PRV  
+ LEAX  __fc__REAL_TO_STRINGF
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou LREAL_TO_STRINGF
+#srcline 171 ;FUNCTION LREAL_TO_STRINGF : STRING[80]
+P     61
+LREAL_TO_STRINGF_L0:
+ LINK 0
+ NXT
+#srcline 183 ;begin
+#srcline 184 ;  {asm}
+#srcline 185
+   LEAX   __fc__LREAL_TO_STRINGF  ;adresa vystupu
+#srcline 186
+   LEAX   format                  ;adresa formatovaciho retezce
+#srcline 187
+   LD     16#1E                   ;kod LREAL
+#srcline 188
+   LEAX   in                      ;adresa promenne
+#srcline 189
+   SYS    27                      ;sys_SPRINTF
+#srcline 190 ;  {end_asm}
+#srcline 191 ;END_FUNCTION
+ PRV  
+ LEAX  __fc__LREAL_TO_STRINGF
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou BYTE_TO_STRINGF
+#srcline 195 ;FUNCTION BYTE_TO_STRINGF : STRING[80]
+P     61
+BYTE_TO_STRINGF_L0:
+ LINK 0
+ NXT
+#srcline 207 ;begin
+#srcline 208 ;  {asm}
+#srcline 209
+   LEAX   __fc__BYTE_TO_STRINGF   ;adresa vystupu
+#srcline 210
+   LEAX   format                  ;adresa formatovaciho retezce
+#srcline 211
+   LD     16#28                   ;kod BYTE
+#srcline 212
+   LEAX   in                      ;adresa promenne
+#srcline 213
+   SYS    27                      ;sys_SPRINTF
+#srcline 214 ;  {end_asm}
+#srcline 215 ;END_FUNCTION
+ PRV  
+ LEAX  __fc__BYTE_TO_STRINGF
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou WORD_TO_STRINGF
+#srcline 219 ;FUNCTION WORD_TO_STRINGF : STRING[80]
+P     61
+WORD_TO_STRINGF_L0:
+ LINK 0
+ NXT
+#srcline 231 ;begin
+#srcline 232 ;  {asm}
+#srcline 233
+   LEAX   __fc__WORD_TO_STRINGF  ;adresa vystupu
+#srcline 234
+   LEAX   format                  ;adresa formatovaciho retezce
+#srcline 235
+   LD     16#2A                   ;kod WORD
+#srcline 236
+   LEAX   in                      ;adresa promenne
+#srcline 237
+   SYS    27                      ;sys_SPRINTF
+#srcline 238 ;  {end_asm}
+#srcline 239 ;END_FUNCTION
+ PRV  
+ LEAX  __fc__WORD_TO_STRINGF
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou DWORD_TO_STRINGF
+#srcline 243 ;FUNCTION DWORD_TO_STRINGF : STRING[80]
+P     61
+DWORD_TO_STRINGF_L0:
+ LINK 0
+ NXT
+#srcline 255 ;begin
+#srcline 256 ;  {asm}
+#srcline 257
+   LEAX   __fc__DWORD_TO_STRINGF  ;adresa vystupu
+#srcline 258
+   LEAX   format                  ;adresa formatovaciho retezce
+#srcline 259
+   LD     16#2C                   ;kod DWORD
+#srcline 260
+   LEAX   in                      ;adresa promenne
+#srcline 261
+   SYS    27                      ;sys_SPRINTF
+#srcline 262 ;  {end_asm}
+#srcline 263 ;END_FUNCTION
+ PRV  
+ LEAX  __fc__DWORD_TO_STRINGF
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou DATE_TO_STRINGF
+#srcline 267 ;FUNCTION DATE_TO_STRINGF : STRING[80]
+P     61
+DATE_TO_STRINGF_L0:
+ LINK 0
+ NXT
+#srcline 279 ;begin
+#srcline 280 ;  {asm}
+#srcline 281
+   LEAX   __fc__DATE_TO_STRINGF   ;adresa vystupu
+#srcline 282
+   LEAX   format                  ;adresa formatovaciho retezce
+#srcline 283
+   LD     16#31                   ;kod DATE
+#srcline 284
+   LEAX   in                      ;adresa promenne
+#srcline 285
+   SYS    27                      ;sys_SPRINTF
+#srcline 286 ;  {end_asm}
+#srcline 287 ;END_FUNCTION
+ PRV  
+ LEAX  __fc__DATE_TO_STRINGF
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou DT_TO_STRINGF
+#srcline 291 ;FUNCTION DT_TO_STRINGF : STRING[80]
+P     61
+DT_TO_STRINGF_L0:
+ LINK 0
+ NXT
+#srcline 303 ;begin
+#srcline 304 ;  {asm}
+#srcline 305
+   LEAX   __fc__DT_TO_STRINGF   ;adresa vystupu
+#srcline 306
+   LEAX   format                  ;adresa formatovaciho retezce
+#srcline 307
+   LD     16#32                   ;kod DT
+#srcline 308
+   LEAX   in                      ;adresa promenne
+#srcline 309
+   SYS    27                      ;sys_SPRINTF
+#srcline 310 ;  {end_asm}
+#srcline 311 ;END_FUNCTION
+ PRV  
+ LEAX  __fc__DT_TO_STRINGF
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou TIME_TO_STRINGF
+#srcline 315 ;FUNCTION TIME_TO_STRINGF : STRING[80]
+P     61
+TIME_TO_STRINGF_L0:
+ LINK 0
+ NXT
+#srcline 327 ;begin
+#srcline 328 ;  {asm}
+#srcline 329
+   LEAX   __fc__TIME_TO_STRINGF   ;adresa vystupu
+#srcline 330
+   LEAX   format                  ;adresa formatovaciho retezce
+#srcline 331
+   LD     16#33                   ;kod TIME
+#srcline 332
+   LEAX   in                      ;adresa promenne
+#srcline 333
+   SYS    27                      ;sys_SPRINTF
+#srcline 334 ;  {end_asm}
+#srcline 335 ;END_FUNCTION
+ PRV  
+ LEAX  __fc__TIME_TO_STRINGF
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou TOD_TO_STRINGF
+#srcline 339 ;FUNCTION TOD_TO_STRINGF : STRING[80]
+P     61
+TOD_TO_STRINGF_L0:
+ LINK 0
+ NXT
+#srcline 351 ;begin
+#srcline 352 ;  {asm}
+#srcline 353
+   LEAX   __fc__TOD_TO_STRINGF    ;adresa vystupu
+#srcline 354
+   LEAX   format                  ;adresa formatovaciho retezce
+#srcline 355
+   LD     16#34                   ;kod TOD
+#srcline 356
+   LEAX   in                      ;adresa promenne
+#srcline 357
+   SYS    27                      ;sys_SPRINTF
+#srcline 358 ;  {end_asm}
+#srcline 359 ;END_FUNCTION
+ PRV  
+ LEAX  __fc__TOD_TO_STRINGF
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou BOOL_TO_STRINGF
+#srcline 367 ;FUNCTION BOOL_TO_STRINGF : STRING[80]
+P     61
+BOOL_TO_STRINGF_L0:
+ LINK 0
+ NXT
+#srcline 378 ;begin
+#srcline 379 ;  {asm}
+#srcline 380
+   LEAX   __fc__BOOL_TO_STRINGF  ;adresa vystupu
+#srcline 381
+   LEAX   format                  ;adresa formatovaciho retezce
+#srcline 382
+   LD     0                       ;kod BIT0
+#srcline 383
+   LEAX   byte in                 ;adresa promenne
+#srcline 384
+   SYS    27                      ;sys_SPRINTF
+#srcline 385 ;  {end_asm}
+#srcline 386 ;END_FUNCTION
+ PRV  
+ LEAX  __fc__BOOL_TO_STRINGF
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+é  V  ¿

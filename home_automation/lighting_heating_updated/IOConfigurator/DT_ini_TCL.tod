@@ -1,0 +1,2320 @@
+﻿<?xml version="1.0"?>
+<TecoDictionary xmlns="http://www.tecomat.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.tecomat.com Teco_Dictionary.xsd">
+  <DataTypes>
+
+<!-- Initialization tables datatypes -->
+
+<!-- Table head datatype -->
+    <DataType>
+      <Name>_TTS_Head</Name> 
+      <SubItems>
+        <SubItem>
+          <Name>ModulID</Name>
+          <Type>UINT</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Stat0</Name>
+          <Type>BYTE</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Stat1</Name>
+          <Type>BYTE</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+
+<!-- DI short pulses detection -->
+<!-- 4 DI short pulses detection enable datatype -->
+<!-- IR-1057, IR-1501, IR-2552, IR-2553 -->
+    <DataType>
+      <Name>_TTS_SPE4</Name> 
+      <BitSize>8</BitSize>
+      <SubItems>  
+        <SubItem>
+          <Name>SPE0</Name>
+          <Type>BOOL</Type>
+        </SubItem> 
+        <SubItem>
+          <Name>SPE1</Name>
+          <Type>BOOL</Type>
+        </SubItem> 
+        <SubItem>
+          <Name>SPE2</Name>
+          <Type>BOOL</Type>
+        </SubItem>  
+        <SubItem>
+          <Name>SPE3</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- IB-1301 -->
+    <DataType>
+      <Name>_TTS_SPE4W</Name> 
+      <BitSize>16</BitSize>
+      <SubItems>  
+        <SubItem>
+          <Name>SPE0</Name>
+          <Type>BOOL</Type>
+        </SubItem> 
+        <SubItem>
+          <Name>SPE1</Name>
+          <Type>BOOL</Type>
+        </SubItem> 
+        <SubItem>
+          <Name>SPE2</Name>
+          <Type>BOOL</Type>
+        </SubItem>  
+        <SubItem>
+          <Name>SPE3</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- 4 DI short pulses detection enable datatype -->
+<!-- IR-1982 -->
+    <DataType>
+      <Name>_TTS_SPE4_6</Name> 
+      <BitSize>8</BitSize>
+      <SubItems>  
+        <SubItem>
+          <Name>SPE2</Name>
+          <Type>BOOL</Type>
+          <BitOffs>2</BitOffs>
+        </SubItem> 
+        <SubItem>
+          <Name>SPE3</Name>
+          <Type>BOOL</Type>
+        </SubItem> 
+        <SubItem>
+          <Name>SPE4</Name>
+          <Type>BOOL</Type>
+        </SubItem>  
+        <SubItem>
+          <Name>SPE5</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- 5 DI short pulses detection enable datatype -->
+<!-- IR-1059 -->
+    <DataType>
+      <Name>_TTS_SPE5_14</Name> 
+      <BitSize>16</BitSize>
+      <SubItems>  
+        <SubItem>
+          <Name>SPE0</Name>
+          <Type>BOOL</Type>
+        </SubItem> 
+        <SubItem>
+          <Name>SPE1</Name>
+          <Type>BOOL</Type>
+        </SubItem> 
+        <SubItem>
+          <Name>SPE2</Name>
+          <Type>BOOL</Type>
+        </SubItem>  
+        <SubItem>
+          <Name>SPE3</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SPE13</Name>
+          <Type>BOOL</Type>
+          <BitOffs>13</BitOffs>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- 6 DI short pulses detection enable datatype -->
+<!-- IR-2551 -->
+    <DataType>
+      <Name>_TTS_SPE6</Name> 
+      <BitSize>8</BitSize>
+      <SubItems>  
+        <SubItem>
+          <Name>SPE0</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SPE1</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SPE2</Name>
+          <Type>BOOL</Type>
+        </SubItem> 
+        <SubItem>
+          <Name>SPE3</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SPE4</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SPE5</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- 6 DI short pulses detection enable datatype -->
+<!-- IR-1065 -->
+    <DataType>
+      <Name>_TTS_SPE6_13</Name> 
+      <BitSize>16</BitSize>
+      <SubItems>  
+        <SubItem>
+          <Name>SPE6</Name>
+          <Type>BOOL</Type>
+          <BitOffs>6</BitOffs>
+        </SubItem>
+        <SubItem>
+          <Name>SPE7</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SPE8</Name>
+          <Type>BOOL</Type>
+        </SubItem> 
+        <SubItem>
+          <Name>SPE9</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SPE10</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SPE11</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- 8 DI short pulses detection enable datatype -->
+<!-- IC-1701 -->
+    <DataType>
+      <Name>_TTS_SPE8</Name> 
+      <BitSize>8</BitSize>
+      <SubItems>  
+        <SubItem>
+          <Name>SPE0</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SPE1</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SPE2</Name>
+          <Type>BOOL</Type>
+        </SubItem> 
+        <SubItem>
+          <Name>SPE3</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SPE4</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SPE5</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SPE6</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SPE7</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- 8 DI short pulses detection enable datatype -->
+<!-- IR-2554 -->
+    <DataType>
+      <Name>_TTS_SPE8_15</Name> 
+      <BitSize>16</BitSize>
+      <SubItems>  
+        <SubItem>
+          <Name>SPE3</Name>
+          <Type>BOOL</Type>
+          <BitOffs>3</BitOffs>
+        </SubItem>
+        <SubItem>
+          <Name>SPE4</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SPE5</Name>
+          <Type>BOOL</Type>
+        </SubItem> 
+        <SubItem>
+          <Name>SPE8</Name>
+          <Type>BOOL</Type>
+          <BitOffs>8</BitOffs>
+        </SubItem>
+        <SubItem>
+          <Name>SPE9</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SPE10</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SPE11</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SPE12</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- 8 DI short pulses detection enable datatype -->
+<!-- IR-1062 -->
+    <DataType>
+      <Name>_TTS_SPE8_16</Name> 
+      <BitSize>16</BitSize>
+      <SubItems>  
+        <SubItem>
+          <Name>SPE8</Name>
+          <Type>BOOL</Type>
+          <BitOffs>8</BitOffs>
+        </SubItem>
+        <SubItem>
+          <Name>SPE9</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SPE10</Name>
+          <Type>BOOL</Type>
+        </SubItem> 
+        <SubItem>
+          <Name>SPE11</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SPE12</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SPE13</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SPE14</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SPE15</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- 9 DI short pulses detection enable datatype -->
+<!-- IR-1980 -->
+    <DataType>
+      <Name>_TTS_SPE9_32</Name> 
+      <BitSize>32</BitSize>
+      <SubItems>  
+        <SubItem>
+          <Name>SPE7</Name>
+          <Type>BOOL</Type>
+          <BitOffs>7</BitOffs>
+        </SubItem>
+        <SubItem>
+          <Name>SPE8</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SPE9</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SPE10</Name>
+          <Type>BOOL</Type>
+        </SubItem> 
+        <SubItem>
+          <Name>SPE11</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SPE12</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SPE13</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SPE14</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SPE15</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- 11 DI short pulses detection enable datatype -->
+<!-- IR-297x -->
+    <DataType>
+      <Name>_TTS_SPE11_32</Name> 
+      <BitSize>32</BitSize>
+      <SubItems>  
+        <SubItem>
+          <Name>SPE7</Name>
+          <Type>BOOL</Type>
+          <BitOffs>7</BitOffs>
+        </SubItem>
+        <SubItem>
+          <Name>SPE8</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SPE9</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SPE10</Name>
+          <Type>BOOL</Type>
+        </SubItem> 
+        <SubItem>
+          <Name>SPE11</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SPE12</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SPE13</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SPE14</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SPE15</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SPE16</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SPE17</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- 4 DI short pulses detection polarity datatype -->
+<!-- IR-1057, IR-1501, IR-2552, IR-2553 -->
+    <DataType>
+      <Name>_TTS_SPP4</Name> 
+      <BitSize>8</BitSize>
+      <SubItems>  
+        <SubItem>
+          <Name>SPP0</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SPP1</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SPP2</Name>
+          <Type>BOOL</Type>
+        </SubItem> 
+        <SubItem>
+          <Name>SPP3</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- IB-1301 -->
+    <DataType>
+      <Name>_TTS_SPP4W</Name> 
+      <BitSize>16</BitSize>
+      <SubItems>  
+        <SubItem>
+          <Name>SPP0</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SPP1</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SPP2</Name>
+          <Type>BOOL</Type>
+        </SubItem> 
+        <SubItem>
+          <Name>SPP3</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- 4 DI short pulses detection polarity datatype -->
+<!-- IR-1982 -->
+    <DataType>
+      <Name>_TTS_SPP4_6</Name> 
+      <BitSize>8</BitSize>
+      <SubItems>  
+        <SubItem>
+          <Name>SPP2</Name>
+          <Type>BOOL</Type>
+          <BitOffs>2</BitOffs>
+        </SubItem> 
+        <SubItem>
+          <Name>SPP3</Name>
+          <Type>BOOL</Type>
+        </SubItem> 
+        <SubItem>
+          <Name>SPP4</Name>
+          <Type>BOOL</Type>
+        </SubItem>  
+        <SubItem>
+          <Name>SPP5</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- 5 DI short pulses detection polarity datatype -->
+<!-- IR-1059 -->
+    <DataType>
+      <Name>_TTS_SPP5_14</Name> 
+      <BitSize>16</BitSize>
+      <SubItems>  
+        <SubItem>
+          <Name>SPP0</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SPP1</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SPP2</Name>
+          <Type>BOOL</Type>
+        </SubItem> 
+        <SubItem>
+          <Name>SPP3</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SPP13</Name>
+          <Type>BOOL</Type>
+          <BitOffs>13</BitOffs>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- 6 DI short pulses detection polarity datatype -->
+<!-- IR-2551 -->
+    <DataType>
+      <Name>_TTS_SPP6</Name> 
+      <BitSize>8</BitSize>
+      <SubItems>  
+        <SubItem>
+          <Name>SPP0</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SPP1</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SPP2</Name>
+          <Type>BOOL</Type>
+        </SubItem> 
+        <SubItem>
+          <Name>SPP3</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SPP4</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SPP5</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- 6 DI short pulses detection polarity datatype -->
+<!-- IR-1065 -->
+    <DataType>
+      <Name>_TTS_SPP6_13</Name> 
+      <BitSize>16</BitSize>
+      <SubItems>  
+        <SubItem>
+          <Name>SPP6</Name>
+          <Type>BOOL</Type>
+          <BitOffs>6</BitOffs>
+        </SubItem>
+        <SubItem>
+          <Name>SPP7</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SPP8</Name>
+          <Type>BOOL</Type>
+        </SubItem> 
+        <SubItem>
+          <Name>SPP9</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SPP10</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SPP11</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- 8 DI short pulses detection polarity datatype -->
+<!-- IC-1701 -->
+    <DataType>
+      <Name>_TTS_SPP8</Name> 
+      <BitSize>8</BitSize>
+      <SubItems>  
+        <SubItem>
+          <Name>SPP0</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SPP1</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SPP2</Name>
+          <Type>BOOL</Type>
+        </SubItem> 
+        <SubItem>
+          <Name>SPP3</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SPP4</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SPP5</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SPP6</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SPP7</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- 8 DI short pulses detection polarity datatype -->
+<!-- IR-2554 -->
+    <DataType>
+      <Name>_TTS_SPP8_15</Name> 
+      <BitSize>16</BitSize>
+      <SubItems>  
+        <SubItem>
+          <Name>SPP3</Name>
+          <Type>BOOL</Type>
+          <BitOffs>3</BitOffs>
+        </SubItem>
+        <SubItem>
+          <Name>SPP4</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SPP5</Name>
+          <Type>BOOL</Type>
+        </SubItem> 
+        <SubItem>
+          <Name>SPP8</Name>
+          <Type>BOOL</Type>
+          <BitOffs>8</BitOffs>
+        </SubItem>
+        <SubItem>
+          <Name>SPP9</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SPP10</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SPP11</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SPP12</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- 8 DI short pulses detection polarity datatype -->
+<!-- IR-1062 -->
+    <DataType>
+      <Name>_TTS_SPP8_16</Name> 
+      <BitSize>16</BitSize>
+      <SubItems>  
+        <SubItem>
+          <Name>SPP8</Name>
+          <Type>BOOL</Type>
+          <BitOffs>8</BitOffs>
+        </SubItem>
+        <SubItem>
+          <Name>SPP9</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SPP10</Name>
+          <Type>BOOL</Type>
+        </SubItem> 
+        <SubItem>
+          <Name>SPP11</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SPP12</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SPP13</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SPP14</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SPP15</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- 9 DI short pulses detection polarity datatype -->
+<!-- IR-1980 -->
+    <DataType>
+      <Name>_TTS_SPP9_32</Name> 
+      <BitSize>32</BitSize>
+      <SubItems>  
+        <SubItem>
+          <Name>SPP7</Name>
+          <Type>BOOL</Type>
+          <BitOffs>7</BitOffs>
+        </SubItem>
+        <SubItem>
+          <Name>SPP8</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SPP9</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SPP10</Name>
+          <Type>BOOL</Type>
+        </SubItem> 
+        <SubItem>
+          <Name>SPP11</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SPP12</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SPP13</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SPP14</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SPP15</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- 11 DI short pulses detection polarity datatype -->
+<!-- IR-297x -->
+    <DataType>
+      <Name>_TTS_SPP11_32</Name> 
+      <BitSize>32</BitSize>
+      <SubItems>  
+        <SubItem>
+          <Name>SPP7</Name>
+          <Type>BOOL</Type>
+          <BitOffs>7</BitOffs>
+        </SubItem>
+        <SubItem>
+          <Name>SPP8</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SPP9</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SPP10</Name>
+          <Type>BOOL</Type>
+        </SubItem> 
+        <SubItem>
+          <Name>SPP11</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SPP12</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SPP13</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SPP14</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SPP15</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SPP16</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SPP17</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+
+<!-- AI -->
+<!-- Enable AI channel datatype -->
+    <DataType>
+      <Name>_TTS_EnbCHAI</Name>
+      <SubItems>
+        <SubItem>
+          <Name>ESTAT</Name>
+          <Type>BYTE</Type>
+        </SubItem>
+        <SubItem>
+          <Name>EFS</Name>
+          <Type>BYTE</Type>
+        </SubItem>
+        <SubItem>
+          <Name>EENG</Name>
+          <Type>BYTE</Type>
+        </SubItem>
+        <SubItem>
+          <Name>EPCT</Name>
+          <Type>BYTE</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- Enable 1 AI channel datatype -->
+    <DataType>
+      <Name>_TTS_EnbCHAI_ARR1</Name>
+      <BaseType>_TTS_EnbCHAI</BaseType>
+      <ArrayInfo>
+        <LBound>0</LBound>
+        <Elements>1</Elements>
+      </ArrayInfo>
+    </DataType>
+
+<!-- Enable 2 AI channels datatype -->
+    <DataType>
+      <Name>_TTS_EnbCHAI_ARR2</Name>
+      <BaseType>_TTS_EnbCHAI</BaseType>
+      <ArrayInfo>
+        <LBound>0</LBound>
+        <Elements>2</Elements>
+      </ArrayInfo>
+    </DataType>
+
+<!-- Enable 4 AI channels datatype -->
+    <DataType>
+      <Name>_TTS_EnbCHAI_ARR4</Name>
+      <BaseType>_TTS_EnbCHAI</BaseType>
+      <ArrayInfo>
+        <LBound>0</LBound>
+        <Elements>4</Elements>
+      </ArrayInfo>
+    </DataType>
+
+<!-- Enable 6 AI channels datatype -->
+    <DataType>
+      <Name>_TTS_EnbCHAI_ARR6</Name>
+      <BaseType>_TTS_EnbCHAI</BaseType>
+      <ArrayInfo>
+        <LBound>0</LBound>
+        <Elements>6</Elements>
+      </ArrayInfo>
+    </DataType>
+
+<!-- Enable 8 AI channels datatype -->
+    <DataType>
+      <Name>_TTS_EnbCHAI_ARR8</Name>
+      <BaseType>_TTS_EnbCHAI</BaseType>
+      <ArrayInfo>
+        <LBound>0</LBound>
+        <Elements>8</Elements>
+      </ArrayInfo>
+    </DataType>
+
+<!-- Enable 9 AI channels datatype -->
+    <DataType>
+      <Name>_TTS_EnbCHAI_ARR9</Name>
+      <BaseType>_TTS_EnbCHAI</BaseType>
+      <ArrayInfo>
+        <LBound>0</LBound>
+        <Elements>9</Elements>
+      </ArrayInfo>
+    </DataType>
+
+<!-- Enable 13 AI channels datatype -->
+    <DataType>
+      <Name>_TTS_EnbCHAI_ARR13</Name>
+      <BaseType>_TTS_EnbCHAI</BaseType>
+      <ArrayInfo>
+        <LBound>0</LBound>
+        <Elements>13</Elements>
+      </ArrayInfo>
+    </DataType>
+
+<!-- Enable 14 AI channels datatype -->
+    <DataType>
+      <Name>_TTS_EnbCHAI_ARR14</Name>
+      <BaseType>_TTS_EnbCHAI</BaseType>
+      <ArrayInfo>
+        <LBound>0</LBound>
+        <Elements>14</Elements>
+      </ArrayInfo>
+    </DataType>
+
+<!-- Enable 21 AI channels datatype -->
+    <DataType>
+      <Name>_TTS_EnbCHAI_ARR21</Name>
+      <BaseType>_TTS_EnbCHAI</BaseType>
+      <ArrayInfo>
+        <LBound>0</LBound>
+        <Elements>21</Elements>
+      </ArrayInfo>
+    </DataType>
+
+<!-- Enable 23 AI channels datatype -->
+    <DataType>
+      <Name>_TTS_EnbCHAI_ARR23</Name>
+      <BaseType>_TTS_EnbCHAI</BaseType>
+      <ArrayInfo>
+        <LBound>0</LBound>
+        <Elements>23</Elements>
+      </ArrayInfo>
+    </DataType>
+
+<!-- Init. AI channel datatype -->
+    <DataType>
+      <Name>_TTS_IniCHAI</Name>
+      <SubItems>
+        <SubItem>
+          <Name>Mode</Name>
+          <Type>BYTE</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Filter</Name>
+          <Type>USINT</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Offset</Name>
+          <Type>REAL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Gain</Name>
+          <Type>REAL</Type>
+         </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- Init. 1 AI channel datatype -->
+    <DataType>
+      <Name>_TTS_IniCHAI_ARR1</Name>
+      <BaseType>_TTS_IniCHAI</BaseType>
+      <ArrayInfo>
+        <LBound>0</LBound>
+        <Elements>1</Elements>
+      </ArrayInfo>
+    </DataType>
+
+<!-- Init. 2 AI channels datatype -->
+    <DataType>
+      <Name>_TTS_IniCHAI_ARR2</Name>
+      <BaseType>_TTS_IniCHAI</BaseType>
+      <ArrayInfo>
+        <LBound>0</LBound>
+        <Elements>2</Elements>
+      </ArrayInfo>
+    </DataType>
+
+<!-- Init. 4 AI channels datatype -->
+    <DataType>
+      <Name>_TTS_IniCHAI_ARR4</Name>
+      <BaseType>_TTS_IniCHAI</BaseType>
+      <ArrayInfo>
+        <LBound>0</LBound>
+        <Elements>4</Elements>
+      </ArrayInfo>
+    </DataType>
+
+<!-- Init. 6 AI channels datatype -->
+    <DataType>
+      <Name>_TTS_IniCHAI_ARR6</Name>
+      <BaseType>_TTS_IniCHAI</BaseType>
+      <ArrayInfo>
+        <LBound>0</LBound>
+        <Elements>6</Elements>
+      </ArrayInfo>
+    </DataType>
+
+<!-- Init. 8 AI channels datatype -->
+    <DataType>
+      <Name>_TTS_IniCHAI_ARR8</Name>
+      <BaseType>_TTS_IniCHAI</BaseType>
+      <ArrayInfo>
+        <LBound>0</LBound>
+        <Elements>8</Elements>
+      </ArrayInfo>
+    </DataType>
+
+<!-- Init. 9 AI channels datatype -->
+    <DataType>
+      <Name>_TTS_IniCHAI_ARR9</Name>
+      <BaseType>_TTS_IniCHAI</BaseType>
+      <ArrayInfo>
+        <LBound>0</LBound>
+        <Elements>9</Elements>
+      </ArrayInfo>
+    </DataType>
+
+<!-- Init. 13 AI channels datatype -->
+    <DataType>
+      <Name>_TTS_IniCHAI_ARR13</Name>
+      <BaseType>_TTS_IniCHAI</BaseType>
+      <ArrayInfo>
+        <LBound>0</LBound>
+        <Elements>13</Elements>
+      </ArrayInfo>
+    </DataType>
+
+<!-- Init. 14 AI channels datatype -->
+    <DataType>
+      <Name>_TTS_IniCHAI_ARR14</Name>
+      <BaseType>_TTS_IniCHAI</BaseType>
+      <ArrayInfo>
+        <LBound>0</LBound>
+        <Elements>14</Elements>
+      </ArrayInfo>
+    </DataType>
+
+<!-- Init. 21 AI channels datatype -->
+    <DataType>
+      <Name>_TTS_IniCHAI_ARR21</Name>
+      <BaseType>_TTS_IniCHAI</BaseType>
+      <ArrayInfo>
+        <LBound>0</LBound>
+        <Elements>21</Elements>
+      </ArrayInfo>
+    </DataType>
+
+<!-- Init. 23 AI channels datatype -->
+    <DataType>
+      <Name>_TTS_IniCHAI_ARR23</Name>
+      <BaseType>_TTS_IniCHAI</BaseType>
+      <ArrayInfo>
+        <LBound>0</LBound>
+        <Elements>23</Elements>
+      </ArrayInfo>
+    </DataType>
+
+<!-- Init. reduced AI channel datatype -->
+    <DataType>
+      <Name>_TTS_IniCHAIR</Name>
+      <SubItems>
+        <SubItem>
+          <Name>Mode</Name>
+          <Type>BYTE</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Filter</Name>
+          <Type>USINT</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- Init. reduced 6 AI channels datatype -->
+    <DataType>
+      <Name>_TTS_IniCHAIR_ARR6</Name>
+      <BaseType>_TTS_IniCHAIR</BaseType>
+      <ArrayInfo>
+        <LBound>0</LBound>
+        <Elements>6</Elements>
+      </ArrayInfo>
+    </DataType>
+
+<!-- Init. reduced 8 AI channels datatype -->
+    <DataType>
+      <Name>_TTS_IniCHAIR_ARR8</Name>
+      <BaseType>_TTS_IniCHAIR</BaseType>
+      <ArrayInfo>
+        <LBound>0</LBound>
+        <Elements>8</Elements>
+      </ArrayInfo>
+    </DataType>
+
+
+<!-- AO -->
+<!-- Enable AO channel datatype -->
+    <DataType>
+      <Name>_TTS_EnbCHAO</Name>
+      <SubItems>
+        <SubItem>
+          <Name>EFS</Name>
+          <Type>BYTE</Type>
+        </SubItem>
+        <SubItem>
+          <Name>EENG</Name>
+          <Type>BYTE</Type>
+        </SubItem>
+        <SubItem>
+          <Name>EPCT</Name>
+          <Type>BYTE</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- Enable 2 AO channels datatype -->
+    <DataType>
+      <Name>_TTS_EnbCHAO_ARR2</Name>
+      <BaseType>_TTS_EnbCHAO</BaseType>
+      <ArrayInfo>
+        <LBound>0</LBound>
+        <Elements>2</Elements>
+      </ArrayInfo>
+    </DataType>
+
+<!-- Enable 4 AO channels datatype -->
+    <DataType>
+      <Name>_TTS_EnbCHAO_ARR4</Name>
+      <BaseType>_TTS_EnbCHAO</BaseType>
+      <ArrayInfo>
+        <LBound>0</LBound>
+        <Elements>4</Elements>
+      </ArrayInfo>
+    </DataType>
+
+<!-- Enable 6 AO channels datatype -->
+    <DataType>
+      <Name>_TTS_EnbCHAO_ARR6</Name>
+      <BaseType>_TTS_EnbCHAO</BaseType>
+      <ArrayInfo>
+        <LBound>0</LBound>
+        <Elements>6</Elements>
+      </ArrayInfo>
+    </DataType>
+
+<!-- Init. AO channel datatype -->
+    <DataType>
+      <Name>_TTS_IniCHAO</Name>
+      <SubItems>
+        <SubItem>
+          <Name>Mode</Name>
+          <Type>BYTE</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Block</Name>
+          <Type>BYTE</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Value</Name>
+          <Type>REAL</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- Init. 2 AO channels datatype -->
+    <DataType>
+      <Name>_TTS_IniCHAO_ARR2</Name>
+      <BaseType>_TTS_IniCHAO</BaseType>
+      <ArrayInfo>
+        <LBound>0</LBound>
+        <Elements>2</Elements>
+      </ArrayInfo>
+    </DataType>
+
+<!-- Init. 4 AO channels datatype -->
+    <DataType>
+      <Name>_TTS_IniCHAO_ARR4</Name>
+      <BaseType>_TTS_IniCHAO</BaseType>
+      <ArrayInfo>
+        <LBound>0</LBound>
+        <Elements>4</Elements>
+      </ArrayInfo>
+    </DataType>
+
+<!-- Init. 6 AO channels datatype -->
+    <DataType>
+      <Name>_TTS_IniCHAO_ARR6</Name>
+      <BaseType>_TTS_IniCHAO</BaseType>
+      <ArrayInfo>
+        <LBound>0</LBound>
+        <Elements>6</Elements>
+      </ArrayInfo>
+    </DataType>
+
+
+<!-- counters -->
+<!-- Enable counter input block datatype -->
+<!-- IR-1057, IR-1059, IR-1062, IB-1301, IR-1501, IR-1982 -->
+    <DataType>
+      <Name>_TTS_EnbCNTI</Name> 
+      <SubItems>  
+        <SubItem>
+          <Name>ESCNT</Name>
+          <Type>BYTE</Type>
+        </SubItem> 
+        <SubItem>
+          <Name>ECNT</Name>
+          <Type>BYTE</Type>
+        </SubItem> 
+        <SubItem>
+          <Name>ECNTB</Name>
+          <Type>BYTE</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- IR-1065, IC-1701, IR-2551, IR-2552, IR-2554, IR-297x -->
+    <DataType>
+      <Name>_TTS_EnbCNTIB</Name> 
+      <SubItems>  
+        <SubItem>
+          <Name>ESCNT</Name>
+          <Type>BYTE</Type>
+        </SubItem> 
+        <SubItem>
+          <Name>ESCNTB</Name>
+          <Type>BYTE</Type>
+        </SubItem> 
+        <SubItem>
+          <Name>ECNT</Name>
+          <Type>BYTE</Type>
+        </SubItem> 
+        <SubItem>
+          <Name>ECNTB</Name>
+          <Type>BYTE</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- Enable 2 counter input blocks datatype -->
+<!-- IR-1057, IR-1062, IB-1301, IR-1501, IR-1982 -->
+    <DataType>
+      <Name>_TTS_EnbCNTI_ARR2</Name>
+      <BaseType>_TTS_EnbCNTI</BaseType>
+      <ArrayInfo>
+        <LBound>0</LBound>
+        <Elements>2</Elements>
+      </ArrayInfo>
+    </DataType>
+    
+<!-- Enable 3 counter input blocks datatype -->
+<!-- IR-2551 -->
+    <DataType>
+      <Name>_TTS_EnbCNTIB_ARR3</Name>
+      <BaseType>_TTS_EnbCNTIB</BaseType>
+      <ArrayInfo>
+        <LBound>0</LBound>
+        <Elements>3</Elements>
+      </ArrayInfo>
+    </DataType>
+    
+<!-- Enable 4 counter input blocks datatype -->
+<!-- IR-2552, IR-2554 -->
+    <DataType>
+      <Name>_TTS_EnbCNTIB_ARR4</Name>
+      <BaseType>_TTS_EnbCNTIB</BaseType>
+      <ArrayInfo>
+        <LBound>0</LBound>
+        <Elements>4</Elements>
+      </ArrayInfo>
+    </DataType>
+
+<!-- Enable 6 counter input blocks datatype -->
+<!-- IR-1065 -->
+    <DataType>
+      <Name>_TTS_EnbCNTIB_ARR6</Name>
+      <BaseType>_TTS_EnbCNTIB</BaseType>
+      <ArrayInfo>
+        <LBound>0</LBound>
+        <Elements>6</Elements>
+      </ArrayInfo>
+    </DataType>
+
+<!-- Enable 10 counter input blocks datatype -->
+<!-- IR-297x -->
+    <DataType>
+      <Name>_TTS_EnbCNTIB_ARR10</Name>
+      <BaseType>_TTS_EnbCNTIB</BaseType>
+      <ArrayInfo>
+        <LBound>0</LBound>
+        <Elements>10</Elements>
+      </ArrayInfo>
+    </DataType>
+
+<!-- Enable counter input reduced block datatype -->
+<!-- IR-1980 -->
+    <DataType>
+      <Name>_TTS_EnbCNTIR</Name> 
+      <SubItems>  
+        <SubItem>
+          <Name>ESCNT</Name>
+          <Type>BYTE</Type>
+        </SubItem> 
+        <SubItem>
+          <Name>ECNT</Name>
+          <Type>BYTE</Type>
+        </SubItem> 
+      </SubItems>
+    </DataType>
+
+<!-- Enable 8 counter input reducedblocks datatype -->
+<!-- IR-1980 -->
+    <DataType>
+      <Name>_TTS_EnbCNTIR_ARR8</Name>
+      <BaseType>_TTS_EnbCNTIR</BaseType>
+      <ArrayInfo>
+        <LBound>0</LBound>
+        <Elements>8</Elements>
+      </ArrayInfo>
+    </DataType>
+
+<!-- Enable counter output block datatype -->
+<!-- IR-1057, IR-1059, IB-1301, IR-1501, IR-1980 -->
+    <DataType>
+      <Name>_TTS_EnbCNTO</Name>
+      <SubItems>  
+        <SubItem>
+          <Name>ECCNT</Name>
+          <Type>BYTE</Type>
+        </SubItem> 
+        <SubItem>
+          <Name>ESET</Name>
+          <Type>BYTE</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- Enable 2 counter output blocks datatype -->
+<!-- IR-1057, IB-1301, IR-1501 -->
+    <DataType>
+      <Name>_TTS_EnbCNTO_ARR2</Name>
+      <BaseType>_TTS_EnbCNTO</BaseType>
+      <ArrayInfo>
+        <LBound>0</LBound>
+        <Elements>2</Elements>
+      </ArrayInfo>
+    </DataType>
+
+<!-- Enable 8 counter output blocks datatype -->
+<!-- IR-1980 -->
+    <DataType>
+      <Name>_TTS_EnbCNTO_ARR8</Name>
+      <BaseType>_TTS_EnbCNTO</BaseType>
+      <ArrayInfo>
+        <LBound>0</LBound>
+        <Elements>8</Elements>
+      </ArrayInfo>
+    </DataType>
+        
+<!-- Enable counter output block datatype -->
+<!-- IR-1062 -->
+    <DataType>
+      <Name>_TTS_EnbCNTO2</Name>
+      <SubItems>  
+        <SubItem>
+          <Name>ECCNT</Name>
+          <Type>BYTE</Type>
+        </SubItem> 
+        <SubItem>
+          <Name>ESET</Name>
+          <Type>BYTE</Type>
+        </SubItem>
+        <SubItem>
+          <Name>ESETB</Name>
+          <Type>BYTE</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- IR-1065, IC-1701, IR-2551, IR-2552, IR-2554, IR-297x -->
+    <DataType>
+      <Name>_TTS_EnbCNTOB2</Name>
+      <SubItems>  
+        <SubItem>
+          <Name>ECCNT</Name>
+          <Type>BYTE</Type>
+        </SubItem> 
+        <SubItem>
+          <Name>ECCNTB</Name>
+          <Type>BYTE</Type>
+        </SubItem> 
+        <SubItem>
+          <Name>ESET</Name>
+          <Type>BYTE</Type>
+        </SubItem>
+        <SubItem>
+          <Name>ESETB</Name>
+          <Type>BYTE</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- Enable 2 counter output blocks datatype -->
+<!-- IR-1062 -->
+    <DataType>
+      <Name>_TTS_EnbCNTO2_ARR2</Name>
+      <BaseType>_TTS_EnbCNTO2</BaseType>
+      <ArrayInfo>
+        <LBound>0</LBound>
+        <Elements>2</Elements>
+      </ArrayInfo>
+    </DataType>
+
+<!-- Enable 3 counter output blocks datatype -->
+<!-- IR-2551 -->
+    <DataType>
+      <Name>_TTS_EnbCNTOB2_ARR3</Name>
+      <BaseType>_TTS_EnbCNTOB2</BaseType>
+      <ArrayInfo>
+        <LBound>0</LBound>
+        <Elements>3</Elements>
+      </ArrayInfo>
+    </DataType>
+
+<!-- Enable 4 counter output blocks datatype -->
+<!-- IR-2552, IR-2554 -->
+    <DataType>
+      <Name>_TTS_EnbCNTOB2_ARR4</Name>
+      <BaseType>_TTS_EnbCNTOB2</BaseType>
+      <ArrayInfo>
+        <LBound>0</LBound>
+        <Elements>4</Elements>
+      </ArrayInfo>
+    </DataType>
+
+<!-- Enable 6 counter output blocks datatype -->
+<!-- IR-1065 -->
+    <DataType>
+      <Name>_TTS_EnbCNTOB2_ARR6</Name>
+      <BaseType>_TTS_EnbCNTOB2</BaseType>
+      <ArrayInfo>
+        <LBound>0</LBound>
+        <Elements>6</Elements>
+      </ArrayInfo>
+    </DataType>
+
+<!-- Enable 10 counter output blocks datatype -->
+<!-- IR-297x -->
+    <DataType>
+      <Name>_TTS_EnbCNTOB2_ARR10</Name>
+      <BaseType>_TTS_EnbCNTOB2</BaseType>
+      <ArrayInfo>
+        <LBound>0</LBound>
+        <Elements>10</Elements>
+      </ArrayInfo>
+    </DataType>
+
+<!-- Init. counter datatype -->
+    <DataType>
+      <Name>_TTS_IniCNT</Name> 
+      <SubItems>  
+        <SubItem>
+          <Name>MODCNT</Name>
+          <Type>BYTE</Type>
+        </SubItem> 
+        <SubItem>
+          <Name>CFGCNT</Name>
+          <Type>T_CFGCNT</Type>
+        </SubItem> 
+      </SubItems>
+    </DataType>
+
+    <DataType>
+      <Name>T_CFGCNT</Name> 
+      <BitSize>8</BitSize>
+      <SubItems>  
+        <SubItem>
+          <Name>PNI</Name>
+          <Type>BOOL</Type>
+          <BitOffs>2</BitOffs>
+        </SubItem> 
+        <SubItem>
+          <Name>PMD</Name>
+          <Type>BOOL</Type>
+          <BitOffs>3</BitOffs>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- Init. 2 counters datatype -->
+    <DataType>
+      <Name>_TTS_IniCNT_ARR2</Name>
+      <BaseType>_TTS_IniCNT</BaseType>
+      <ArrayInfo>
+        <LBound>0</LBound>
+        <Elements>2</Elements>
+      </ArrayInfo>
+    </DataType>
+
+<!-- Init. 4 counters datatype -->
+    <DataType>
+      <Name>_TTS_IniCNT_ARR4</Name>
+      <BaseType>_TTS_IniCNT</BaseType>
+      <ArrayInfo>
+        <LBound>0</LBound>
+        <Elements>4</Elements>
+      </ArrayInfo>
+    </DataType>
+
+<!-- Init. 6 counters datatype -->
+    <DataType>
+      <Name>_TTS_IniCNT_ARR6</Name>
+      <BaseType>_TTS_IniCNT</BaseType>
+      <ArrayInfo>
+        <LBound>0</LBound>
+        <Elements>6</Elements>
+      </ArrayInfo>
+    </DataType>
+
+<!-- Init. counter datatype -->
+<!-- IR-1980, IR-2551, IR-2552, IR-297x -->
+    <DataType>
+      <Name>_TTS_IniCNTR</Name> 
+      <SubItems>  
+        <SubItem>
+          <Name>MODCNT</Name>
+          <Type>BYTE</Type>
+        </SubItem> 
+        <SubItem>
+          <Name>CFGCNT</Name>
+          <Type>BYTE</Type>
+        </SubItem> 
+      </SubItems>
+    </DataType>
+
+<!-- Init. 3 counters datatype -->
+    <DataType>
+      <Name>_TTS_IniCNTR_ARR3</Name>
+      <BaseType>_TTS_IniCNTR</BaseType>
+      <ArrayInfo>
+        <LBound>0</LBound>
+        <Elements>3</Elements>
+      </ArrayInfo>
+    </DataType>
+
+<!-- Init. 4 counters datatype -->
+    <DataType>
+      <Name>_TTS_IniCNTR_ARR4</Name>
+      <BaseType>_TTS_IniCNTR</BaseType>
+      <ArrayInfo>
+        <LBound>0</LBound>
+        <Elements>4</Elements>
+      </ArrayInfo>
+    </DataType>
+
+<!-- Init. 8 counters datatype -->
+    <DataType>
+      <Name>_TTS_IniCNTR_ARR8</Name>
+      <BaseType>_TTS_IniCNTR</BaseType>
+      <ArrayInfo>
+        <LBound>0</LBound>
+        <Elements>8</Elements>
+      </ArrayInfo>
+    </DataType>
+
+<!-- Init. 10 counters datatype -->
+    <DataType>
+      <Name>_TTS_IniCNTR_ARR10</Name>
+      <BaseType>_TTS_IniCNTR</BaseType>
+      <ArrayInfo>
+        <LBound>0</LBound>
+        <Elements>10</Elements>
+      </ArrayInfo>
+    </DataType>
+
+<!-- Init. counter datatype with binary inputs type -->
+<!-- IR-2554 -->
+    <DataType>
+      <Name>_TTS_IniCNTRP</Name> 
+      <SubItems>  
+        <SubItem>
+          <Name>MODCNT</Name>
+          <Type>BYTE</Type>
+        </SubItem> 
+        <SubItem>
+          <Name>CFGPOL</Name>
+          <Type>T_CFGPOL</Type>
+        </SubItem> 
+      </SubItems>
+    </DataType>
+
+    <DataType>
+      <Name>T_CFGPOL</Name> 
+      <BitSize>8</BitSize>
+      <SubItems>  
+        <SubItem>
+          <Name>POL0</Name>
+          <Type>BOOL</Type>
+        </SubItem> 
+        <SubItem>
+          <Name>POL1</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>POL2</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>POL3</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>POL4</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>POL5</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>POL6</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>POL7</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- Init. 4 counters datatype -->
+    <DataType>
+      <Name>_TTS_IniCNTRP_ARR4</Name>
+      <BaseType>_TTS_IniCNTRP</BaseType>
+      <ArrayInfo>
+        <LBound>0</LBound>
+        <Elements>4</Elements>
+      </ArrayInfo>
+    </DataType>
+
+<!-- PWM -->
+<!-- Enable PWM channel datatype -->
+    <DataType>
+      <Name>_TTS_EnbPWM</Name>
+      <SubItems>
+        <SubItem>
+          <Name>EFS</Name>
+          <Type>BYTE</Type>
+        </SubItem>
+        <SubItem>
+          <Name>EPCT</Name>
+          <Type>BYTE</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- Enable 2 PWM channels datatype -->
+    <DataType>
+      <Name>_TTS_EnbPWM_ARR2</Name>
+      <BaseType>_TTS_EnbPWM</BaseType>
+      <ArrayInfo>
+        <LBound>0</LBound>
+        <Elements>2</Elements>
+      </ArrayInfo>
+    </DataType>
+
+<!-- Enable 4 PWM channels datatype -->
+    <DataType>
+      <Name>_TTS_EnbPWM_ARR4</Name>
+      <BaseType>_TTS_EnbPWM</BaseType>
+      <ArrayInfo>
+        <LBound>0</LBound>
+        <Elements>4</Elements>
+      </ArrayInfo>
+    </DataType>
+
+<!-- Enable PWM channel with period datatype -->
+    <DataType>
+      <Name>_TTS_EnbPWMP</Name>
+      <SubItems>
+        <SubItem>
+          <Name>EPCT</Name>
+          <Type>BYTE</Type>
+        </SubItem>
+        <SubItem>
+          <Name>EPER</Name>
+          <Type>BYTE</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- Enable 4 PWM channels with period datatype -->
+    <DataType>
+      <Name>_TTS_EnbPWMP_ARR4</Name>
+      <BaseType>_TTS_EnbPWMP</BaseType>
+      <ArrayInfo>
+        <LBound>0</LBound>
+        <Elements>4</Elements>
+      </ArrayInfo>
+    </DataType>
+
+<!-- Enable PWM channel with all functions -->
+    <DataType>
+      <Name>_TTS_EnbPWMF</Name>
+      <SubItems>
+        <SubItem>
+          <Name>ECNTP</Name>
+          <Type>BYTE</Type>
+        </SubItem>
+        <SubItem>
+          <Name>EPCTP</Name>
+          <Type>BYTE</Type>
+        </SubItem>
+        <SubItem>
+          <Name>EPERP</Name>
+          <Type>BYTE</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- Enable 2 PWM channels with all functions -->
+    <DataType>
+      <Name>_TTS_EnbPWMF_ARR2</Name>
+      <BaseType>_TTS_EnbPWMF</BaseType>
+      <ArrayInfo>
+        <LBound>0</LBound>
+        <Elements>2</Elements>
+      </ArrayInfo>
+    </DataType>
+
+<!-- Enable 4 PWM channels with all functions -->
+    <DataType>
+      <Name>_TTS_EnbPWMF_ARR4</Name>
+      <BaseType>_TTS_EnbPWMF</BaseType>
+      <ArrayInfo>
+        <LBound>0</LBound>
+        <Elements>4</Elements>
+      </ArrayInfo>
+    </DataType>
+
+<!-- Enable 9 PWM channels with all functions -->
+    <DataType>
+      <Name>_TTS_EnbPWMF_ARR9</Name>
+      <BaseType>_TTS_EnbPWMF</BaseType>
+      <ArrayInfo>
+        <LBound>0</LBound>
+        <Elements>9</Elements>
+      </ArrayInfo>
+    </DataType>
+
+<!-- Init. PWM datatype -->
+    <DataType>
+      <Name>T_CFGPWM</Name> 
+      <BitSize>8</BitSize>
+      <SubItems>  
+        <SubItem>
+          <Name>Enabled</Name>
+          <Type>BOOL</Type>
+          <BitOffs>0</BitOffs>
+        </SubItem> 
+        <SubItem>
+          <Name>Polarity</Name>
+          <Type>BOOL</Type>
+          <BitOffs>4</BitOffs>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+    <DataType>
+      <Name>T_CFGPWMM</Name> 
+      <BitSize>8</BitSize>
+      <SubItems>  
+        <SubItem>
+          <Name>Mode0</Name>
+          <Type>BOOL</Type>
+          <BitOffs>0</BitOffs>
+        </SubItem> 
+        <SubItem>
+          <Name>Mode1</Name>
+          <Type>BOOL</Type>
+          <BitOffs>1</BitOffs>
+        </SubItem> 
+        <SubItem>
+          <Name>Polarity</Name>
+          <Type>BOOL</Type>
+          <BitOffs>4</BitOffs>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+    <DataType>
+      <Name>T_CFGPWMF</Name> 
+      <BitSize>8</BitSize>
+      <SubItems>  
+        <SubItem>
+          <Name>Mode0</Name>
+          <Type>BOOL</Type>
+          <BitOffs>0</BitOffs>
+        </SubItem> 
+        <SubItem>
+          <Name>Mode1</Name>
+          <Type>BOOL</Type>
+          <BitOffs>1</BitOffs>
+        </SubItem> 
+        <SubItem>
+          <Name>Mode2</Name>
+          <Type>BOOL</Type>
+          <BitOffs>2</BitOffs>
+        </SubItem> 
+        <SubItem>
+          <Name>Polarity</Name>
+          <Type>BOOL</Type>
+          <BitOffs>4</BitOffs>
+        </SubItem>
+        <SubItem>
+          <Name>PFFormat</Name>
+          <Type>BOOL</Type>
+          <BitOffs>6</BitOffs>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- Init. PWM with all functions -->
+<!-- IR-1065, IC-1701, IR-2552, IR-2554, IR-297x -->
+    <DataType>
+      <Name>_TTS_IniPWMF</Name> 
+      <SubItems>  
+        <SubItem>
+          <Name>Period</Name>
+          <Type>UDINT</Type>
+        </SubItem> 
+        <SubItem>
+          <Name>CFGPWM</Name>
+          <Type>T_CFGPWMF</Type>
+        </SubItem> 
+      </SubItems>
+    </DataType>
+
+ <!-- Init. 2 PWMs with period datatype -->
+ <!-- IR-2552, IR-2554 -->
+   <DataType>
+      <Name>_TTS_IniPWMF_ARR2</Name>
+      <BaseType>_TTS_IniPWMF</BaseType>
+      <ArrayInfo>
+        <LBound>0</LBound>
+        <Elements>2</Elements>
+      </ArrayInfo>
+    </DataType>
+
+ <!-- Init. 4 PWMs with period datatype -->
+ <!-- IC-1701, IR-297x -->
+   <DataType>
+      <Name>_TTS_IniPWMF_ARR4</Name>
+      <BaseType>_TTS_IniPWMF</BaseType>
+      <ArrayInfo>
+        <LBound>0</LBound>
+        <Elements>4</Elements>
+      </ArrayInfo>
+    </DataType>
+
+ <!-- Init. 9 PWMs with period datatype -->
+ <!-- IR-1065 -->
+   <DataType>
+      <Name>_TTS_IniPWMF_ARR9</Name>
+      <BaseType>_TTS_IniPWMF</BaseType>
+      <ArrayInfo>
+        <LBound>0</LBound>
+        <Elements>9</Elements>
+      </ArrayInfo>
+    </DataType>
+
+<!-- Init. 1 PWM datatype -->
+<!-- IR-1980 -->
+    <DataType>
+      <Name>_TTS_IniPWM</Name> 
+      <SubItems>  
+        <SubItem>
+          <Name>Period</Name>
+          <Type>UDINT</Type>
+        </SubItem> 
+        <SubItem>
+          <Name>CFGPWM</Name>
+          <Type>T_CFGPWMM</Type>
+        </SubItem> 
+      </SubItems>
+    </DataType>
+
+ <!-- Init. 4 PWMs datatype -->
+ <!-- IR-1980 -->
+   <DataType>
+      <Name>_TTS_IniPWM_ARR4</Name>
+      <BaseType>_TTS_IniPWM</BaseType>
+      <ArrayInfo>
+        <LBound>0</LBound>
+        <Elements>4</Elements>
+      </ArrayInfo>
+    </DataType>
+
+<!-- Init. PWM with period datatype -->
+<!-- IR-1982 -->
+    <DataType>
+      <Name>_TTS_IniPWMP</Name> 
+      <BitSize>8</BitSize>
+      <SubItems>  
+        <SubItem>
+          <Name>Enabled</Name>
+          <Type>BOOL</Type>
+          <BitOffs>0</BitOffs>
+        </SubItem> 
+        <SubItem>
+          <Name>Polarity</Name>
+          <Type>BOOL</Type>
+          <BitOffs>4</BitOffs>
+        </SubItem>
+        <SubItem>
+          <Name>Block</Name>
+          <Type>BOOL</Type>
+          <BitOffs>5</BitOffs>
+        </SubItem>
+        <SubItem>
+          <Name>Period</Name>
+          <Type>BOOL</Type>
+          <BitOffs>6</BitOffs>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+ <!-- Init. 4 PWMs with period datatype -->
+ <!-- IR-1982 -->
+   <DataType>
+      <Name>_TTS_IniPWMP_ARR4</Name>
+      <BaseType>_TTS_IniPWMP</BaseType>
+      <ArrayInfo>
+        <LBound>0</LBound>
+        <Elements>4</Elements>
+      </ArrayInfo>
+    </DataType>
+
+<!-- Init. 2 PWMs datatype -->
+<!-- IR-1059 -->
+    <DataType>
+      <Name>_TTS_IniPWMR2</Name> 
+      <SubItems>  
+        <SubItem>
+          <Name>Period</Name>
+          <Type>UDINT</Type>
+        </SubItem> 
+        <SubItem>
+          <Name>CFGPWM0</Name>
+          <Type>T_CFGPWM</Type>
+        </SubItem> 
+        <SubItem>
+          <Name>CFGPWM1</Name>
+          <Type>T_CFGPWM</Type>
+        </SubItem> 
+      </SubItems>
+    </DataType>
+
+<!-- Init. 4 PWMs datatype -->
+<!-- IR-1060 -->
+    <DataType>
+      <Name>_TTS_IniPWMR4B</Name> 
+      <SubItems>  
+        <SubItem>
+          <Name>Period</Name>
+          <Type>UDINT</Type>
+        </SubItem> 
+        <SubItem>
+          <Name>CFGPWM0</Name>
+          <Type>T_CFGPWM</Type>
+        </SubItem> 
+        <SubItem>
+          <Name>CFGPWM1</Name>
+          <Type>T_CFGPWM</Type>
+        </SubItem> 
+        <SubItem>
+          <Name>CFGPWM7</Name>
+          <Type>T_CFGPWM</Type>
+        </SubItem> 
+        <SubItem>
+          <Name>CFGPWM8</Name>
+          <Type>T_CFGPWM</Type>
+        </SubItem> 
+      </SubItems>
+    </DataType>
+
+<!-- IR-1062 -->
+    <DataType>
+      <Name>_TTS_IniPWMR4</Name> 
+      <SubItems>  
+        <SubItem>
+          <Name>Period</Name>
+          <Type>UDINT</Type>
+        </SubItem> 
+        <SubItem>
+          <Name>CFGPWM8</Name>
+          <Type>T_CFGPWM</Type>
+        </SubItem> 
+        <SubItem>
+          <Name>CFGPWM9</Name>
+          <Type>T_CFGPWM</Type>
+        </SubItem> 
+        <SubItem>
+          <Name>CFGPWM10</Name>
+          <Type>T_CFGPWM</Type>
+        </SubItem> 
+        <SubItem>
+          <Name>CFGPWM11</Name>
+          <Type>T_CFGPWM</Type>
+        </SubItem> 
+      </SubItems>
+    </DataType>
+
+
+<!-- LED control -->
+<!-- Enable LED outputs datatype -->
+    <DataType>
+      <Name>_TTS_EnbLED</Name>
+      <SubItems>
+        <SubItem>
+          <Name>ELED</Name>
+          <Type>BYTE</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- Enable 3 LED channels datatype -->
+    <DataType>
+      <Name>_TTS_EnbLED_ARR3</Name>
+      <BaseType>_TTS_EnbLED</BaseType>
+      <ArrayInfo>
+        <LBound>0</LBound>
+        <Elements>3</Elements>
+      </ArrayInfo>
+    </DataType>
+
+<!-- Init. 3 LED channels datatype -->
+<!-- IR-1982 -->
+    <DataType>
+      <Name>T_CFGLED</Name> 
+      <BitSize>8</BitSize>
+      <SubItems>  
+        <SubItem>
+          <Name>EnLED0</Name>
+          <Type>BOOL</Type>
+        </SubItem> 
+        <SubItem>
+          <Name>EnLED1</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+        <SubItem>
+          <Name>EnLED2</Name>
+          <Type>BOOL</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+    <DataType>
+      <Name>_TTS_IniLED3</Name>
+      <SubItems>
+        <SubItem>
+          <Name>CFGLED</Name>
+          <Type>T_CFGLED</Type>
+        </SubItem>
+        <SubItem>
+          <Name>Period</Name>
+          <Type>REAL</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+
+<!-- Motion control -->
+<!-- Enable MC inputs datatype -->
+    <DataType>
+      <Name>_TTS_EnbMCI</Name>
+      <SubItems>
+        <SubItem>
+          <Name>EMCIN</Name>
+          <Type>BYTE</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- Enable 2 MC axis inputs datatype -->
+    <DataType>
+      <Name>_TTS_EnbMCI_ARR2</Name>
+      <BaseType>_TTS_EnbMCI</BaseType>
+      <ArrayInfo>
+        <LBound>0</LBound>
+        <Elements>2</Elements>
+      </ArrayInfo>
+    </DataType>
+
+<!-- Enable 4 MC axis inputs datatype -->
+    <DataType>
+      <Name>_TTS_EnbMCI_ARR4</Name>
+      <BaseType>_TTS_EnbMCI</BaseType>
+      <ArrayInfo>
+        <LBound>0</LBound>
+        <Elements>4</Elements>
+      </ArrayInfo>
+    </DataType>
+
+<!-- Enable MC outputs datatype -->
+    <DataType>
+      <Name>_TTS_EnbMCO</Name>
+      <SubItems>
+        <SubItem>
+          <Name>EMCOUT</Name>
+          <Type>BYTE</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+ 
+<!-- Enable 2 MC axis outputs datatype -->
+    <DataType>
+      <Name>_TTS_EnbMCO_ARR2</Name>
+      <BaseType>_TTS_EnbMCO</BaseType>
+      <ArrayInfo>
+        <LBound>0</LBound>
+        <Elements>2</Elements>
+      </ArrayInfo>
+    </DataType>
+ 
+<!-- Enable 4 MC axis outputs datatype -->
+    <DataType>
+      <Name>_TTS_EnbMCO_ARR4</Name>
+      <BaseType>_TTS_EnbMCO</BaseType>
+      <ArrayInfo>
+        <LBound>0</LBound>
+        <Elements>4</Elements>
+      </ArrayInfo>
+    </DataType>
+
+<!-- Init. MC datatype -->
+    <DataType>
+      <Name>_TTS_IniMC</Name> 
+      <SubItems>  
+        <SubItem>
+          <Name>CFGMC</Name>
+          <Type>T_CFGMC</Type>
+        </SubItem> 
+        <SubItem>
+          <Name>CFGMC1</Name>
+          <Type>BYTE</Type>
+        </SubItem>
+        <SubItem>
+          <Name>CFGMC2</Name>
+          <Type>BYTE</Type>
+        </SubItem>
+        <SubItem>
+          <Name>CFGMC3</Name>
+          <Type>BYTE</Type>
+        </SubItem>
+        <SubItem>
+          <Name>MinVelocity</Name>
+          <Type>UDINT</Type>
+        </SubItem>
+        <SubItem>
+          <Name>MaxVelocity</Name>
+          <Type>UDINT</Type>
+        </SubItem>
+        <SubItem>
+          <Name>MaxAcceleration</Name>
+          <Type>UDINT</Type>
+        </SubItem>
+        <SubItem>
+          <Name>MaxDeceleration</Name>
+          <Type>UDINT</Type>
+        </SubItem>
+        <SubItem>
+          <Name>rez1</Name>
+          <Type>UDINT</Type>
+        </SubItem> 
+        <SubItem>
+          <Name>rez2</Name>
+          <Type>UDINT</Type>
+        </SubItem> 
+      </SubItems>
+    </DataType>
+
+    <DataType>
+      <Name>T_CFGMC</Name> 
+      <BitSize>8</BitSize>
+      <SubItems>  
+        <SubItem>
+          <Name>Enabled</Name>
+          <Type>BOOL</Type>
+          <BitOffs>0</BitOffs>
+        </SubItem> 
+        <SubItem>
+          <Name>Polarity</Name>
+          <Type>BOOL</Type>
+          <BitOffs>4</BitOffs>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+ <!-- Init. 4 MC datatype -->
+   <DataType>
+      <Name>_TTS_IniMC_ARR4</Name>
+      <BaseType>_TTS_IniMC</BaseType>
+      <ArrayInfo>
+        <LBound>0</LBound>
+        <Elements>4</Elements>
+      </ArrayInfo>
+    </DataType>
+
+ <!-- Init. 2 MC datatype -->
+   <DataType>
+      <Name>_TTS_IniMC_ARR2</Name>
+      <BaseType>_TTS_IniMC</BaseType>
+      <ArrayInfo>
+        <LBound>0</LBound>
+        <Elements>2</Elements>
+      </ArrayInfo>
+    </DataType>
+
+
+<!-- Enable I2C datatype -->
+<!-- IR-1980 -->
+    <DataType>
+      <Name>_TTS_EnbI2C</Name>
+      <SubItems>
+        <SubItem>
+          <Name>ESI</Name>
+          <Type>BYTE</Type>
+        </SubItem>
+        <SubItem>
+          <Name>EVALIA</Name>
+          <Type>BYTE</Type>
+        </SubItem>
+        <SubItem>
+          <Name>EVALIB</Name>
+          <Type>BYTE</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- Enable 2 I2C lines datatype -->
+    <DataType>
+      <Name>_TTS_EnbI2C_ARR2</Name>
+      <BaseType>_TTS_EnbI2C</BaseType>
+      <ArrayInfo>
+        <LBound>0</LBound>
+        <Elements>2</Elements>
+      </ArrayInfo>
+    </DataType>
+
+<!-- Init. I2C datatype -->
+<!-- IR-1980 -->
+    <DataType>
+      <Name>_TTS_IniI2C</Name>
+      <SubItems>
+        <SubItem>
+          <Name>MODI</Name>
+          <Type>BYTE</Type>
+        </SubItem>
+        <SubItem>
+          <Name>CFGI</Name>
+          <Type>BYTE</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- Init. 2 I2C lines datatype -->
+    <DataType>
+      <Name>_TTS_IniI2C_ARR2</Name>
+      <BaseType>_TTS_IniI2C</BaseType>
+      <ArrayInfo>
+        <LBound>0</LBound>
+        <Elements>2</Elements>
+      </ArrayInfo>
+    </DataType>
+
+
+<!-- Init. audioblock datatype -->
+<!-- IR-1982 -->
+    <DataType>
+      <Name>T_CFGAB</Name> 
+      <BitSize>8</BitSize>
+      <SubItems>  
+        <SubItem>
+          <Name>Enabled</Name>
+          <Type>BOOL</Type>
+        </SubItem> 
+      </SubItems>
+    </DataType>
+
+    <DataType>
+      <Name>_TTS_IniAB</Name> 
+      <BitSize>16</BitSize>
+      <SubItems>  
+        <SubItem>
+          <Name>CFGAB</Name>
+          <Type>T_CFGAB</Type>
+        </SubItem> 
+        <SubItem>
+          <Name>CFGAB1</Name>
+          <Type>BYTE</Type>
+        </SubItem> 
+      </SubItems>
+    </DataType>
+
+
+  </DataTypes>
+</TecoDictionary>

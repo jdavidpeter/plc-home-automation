@@ -1,0 +1,183 @@
+﻿<?xml version="1.0"?>
+<TecoDictionary xmlns="http://www.tecomat.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.tecomat.com Teco_Dictionary.xsd">
+  <DataTypes>
+
+<!-- Counter datatypes -->
+
+<!-- CNT input block datatype -->
+    <DataType>
+      <Name>TCNTF_IN</Name>
+      <SubItems>   
+        <SubItem>
+          <Name>SCNT</Name>
+          <Type>UINT</Type>
+        </SubItem>
+        <SubItem>
+          <Name>VALA</Name>
+          <Type>UDINT</Type>
+        </SubItem>
+        <SubItem>
+          <Name>VALB</Name>
+          <Type>UDINT</Type>
+        </SubItem>
+      </SubItems>      
+    </DataType>  
+
+<!-- IR-1980 -->
+    <DataType>
+      <Name>TCNTR_IN</Name>
+      <SubItems>   
+        <SubItem>
+          <Name>SCNT</Name>
+          <Type>USINT</Type>
+        </SubItem>
+        <SubItem>
+          <Name>VAL</Name>
+          <Type>UDINT</Type>
+        </SubItem>
+      </SubItems>      
+    </DataType>  
+
+<!-- IR-1982 -->
+    <DataType>
+      <Name>TCNTB_IN</Name>
+      <SubItems>   
+        <SubItem>
+          <Name>SCNTA</Name>
+          <Type>USINT</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SCNTB</Name>
+          <Type>USINT</Type>
+        </SubItem>
+        <SubItem>
+          <Name>VALA</Name>
+          <Type>UDINT</Type>
+        </SubItem>
+        <SubItem>
+          <Name>VALB</Name>
+          <Type>UDINT</Type>
+        </SubItem>
+      </SubItems>      
+    </DataType>  
+
+<!-- IR-1065, IC-1701, IR-2552 -->
+    <DataType>
+      <Name>TCNTB9_IN</Name>
+      <SubItems>   
+        <SubItem>
+          <Name>SCNT</Name>
+          <Type>USINT</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SCNTB</Name>
+          <Type>USINT</Type>
+        </SubItem>
+        <SubItem>
+          <Name>VAL</Name>
+          <Type>UDINT</Type>
+        </SubItem>
+        <SubItem>
+          <Name>VALB</Name>
+          <Type>UDINT</Type>
+        </SubItem>
+      </SubItems>      
+    </DataType>  
+
+<!-- CNT output block datatype -->
+    <DataType>
+      <Name>TCNTF_OUT</Name>
+      <SubItems>
+        <SubItem>
+          <Name>CCNT</Name>
+          <Type>UINT</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SET</Name>
+          <Type>UDINT</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- IR-1062 -->
+    <DataType>
+      <Name>TCNTF2_OUT</Name>
+      <SubItems>
+        <SubItem>
+          <Name>CCNT</Name>
+          <Type>UINT</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SET</Name>
+          <Type>UDINT</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SETB</Name>
+          <Type>UDINT</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- IR-1980 -->
+    <DataType>
+      <Name>TCNTR_OUT</Name>
+      <SubItems>   
+        <SubItem>
+          <Name>CCNT</Name>
+          <Type>USINT</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SET</Name>
+          <Type>UDINT</Type>
+        </SubItem>
+      </SubItems>      
+    </DataType>  
+
+<!-- IR-1982 -->
+    <DataType>
+      <Name>TCNTB2_OUT</Name>
+      <SubItems>
+        <SubItem>
+          <Name>CCNTA</Name>
+          <Type>USINT</Type>
+        </SubItem>
+        <SubItem>
+          <Name>CCNTB</Name>
+          <Type>USINT</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SET</Name>
+          <Type>UDINT</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SETB</Name>
+          <Type>UDINT</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+<!-- IR-1065, IC-1701, IR-2552 -->
+    <DataType>
+      <Name>TCNTB9_OUT</Name>
+      <SubItems>
+        <SubItem>
+          <Name>CCNT</Name>
+          <Type>USINT</Type>
+        </SubItem>
+        <SubItem>
+          <Name>CCNTB</Name>
+          <Type>USINT</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SET</Name>
+          <Type>UDINT</Type>
+        </SubItem>
+        <SubItem>
+          <Name>SETB</Name>
+          <Type>UDINT</Type>
+        </SubItem>
+      </SubItems>
+    </DataType>
+
+  </DataTypes>
+</TecoDictionary>

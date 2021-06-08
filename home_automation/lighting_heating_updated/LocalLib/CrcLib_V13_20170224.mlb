@@ -1,0 +1,1173 @@
+(*` {CSY}Knihovna vývojového systému Mosaic{ENU}Mosaic IDE library *)
+(*` {CSY}Jméno souboru{ENU}File name{} : C:\TecoLib\CrcLib_V13_20170224.mlb *)
+(*` {CSY}Knihovna : CrcLib{ENU}Library : CrcLib{} 1.3 *)
+(*` {CSY}Autor{ENU}Author{} : Teco a.s. *)
+(*` {CSY}Autorská práva{ENU}Copyright{} : (c) 2005,..,2017 Teco a.s. *)
+(*` {CSY}Verze IEC pøekladaèe{ENU}IEC compiler version{} : 3.12.11.0 *)
+(*` {CSY}Verze assembleru{ENU}Assembler version{} : 4.3.00 *)
+
+//{Knihovna : CrcLib 1.3  }
+(*` {CSY}Historie{ENU}History{}: *)
+(*`
+{CSY}
+v1.0 01.08.2005 Nem úvodní verze knihovny
+v1.1 17.04.2009 Nem odstranìna varovná hlášení pøekladaèe pøi pøekladu knihovny
+v1.2 02.09.2010 Nem doplnìna historie verzí
+                    doplnìny závislosti na knihovnách
+v1.3 24.02.2017 Nem doplnìna funkce CheckCRC_32
+
+{ENU}
+v1.0 2005-08-01 Nem First edition
+v1.1 2009-04-17 Nem Version without compiler warnings
+v1.2 2010-09-02 Nem History version added
+                    Dependency on the libraries added
+v1.3 2017-02-24 Nem Added function CheckCRC_32
+*)
+
+(*----------------------------------------------------------------------------*)
+
+__DECL FUNCTION CheckCRC_16 : uint
+(*`{ENU} Calculation of polynomial (x16 + x15 + x2 + 1)
+
+        Return value : UINT polynomial
+  {CSY} Výpoèet polynomu (x16 + x15 + x2 + 1)
+  
+	Funkce vrací UINT polynom*)
+  VAR_INPUT
+    ptr              : PTR_TO usint;  (*`{ENU} pointer to array bytes {CSY} pointer na pole bytù*)
+    length           : uint;  (*`{ENU} length of array (number of bytes) {CSY} délka pole (poèet bytù)*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION CheckSum : usint
+(*`{ENU} Calculation of the arithmetic sum of an array of bytes modulo 256
+
+        Return value : sum (mod 256)
+
+  {CSY} Výpoèet aritmetického souètu pole bytù modulo 256
+	
+	Funkce vrací souèet modulo 256*)
+  VAR_INPUT
+    ptr              : PTR_TO usint;  (*`{ENU} pointer to array bytes {CSY} pointer na pole bytù*)
+    length           : uint;  (*`{ENU} length of array (number of bytes) {CSY} délka pole (poèet bytù)*)
+  END_VAR
+  VAR
+    i                : uint;
+    sum              : usint;
+    ptrc             : PTR_TO usint;
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION CheckSum_XOR : usint
+(*`{ENU} Calculation of the logical XOR array of bytes
+
+        Return value : XOR of all bytes
+
+  {CSY} Výpoèet logického XOR pole bytù
+
+	Funkce vrací XOR všech bytù v poli*)
+  VAR_INPUT
+    ptr              : PTR_TO usint;  (*`{ENU} pointer to array bytes {CSY} pointer na pole bytù*)
+    length           : uint;  (*`{ENU} length of array (number of bytes) {CSY} délka pole (poèet bytù)*)
+  END_VAR
+  VAR
+    i                : uint;
+    sum              : byte;
+    ptrc             : PTR_TO byte;
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION CheckCRC_CCITT : uint
+(*`{ENU} Calculation of polynomial (x16 + x12 + x5 + 1)
+        (for PCD SAIA or GFR)
+
+        Return value : UINT polynomial
+  {CSY} Výpoèet polynomu (x16 + x12 + x5 + 1)
+	(používaný v PCD SAIA nebo GFR)
+
+	Funkce vrací UINT polynom*)
+  VAR_INPUT
+    ptr              : PTR_TO usint;  (*`{ENU} pointer to array bytes {CSY} pointer na pole bytù*)
+    length           : uint;  (*`{ENU} length of array (number of bytes) {CSY} délka pole (poèet bytù)*)
+  END_VAR
+  VAR
+    valCRC           : word;
+    tmp              : word;
+    i                : uint;
+    j                : uint;
+    ptrMsg           : PTR_TO byte;
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION CheckCRC_TECO : uint
+(*`{ENU} Calculation of polynomial (x16 + x6 + x3 + 1)
+        (Teco systems use this algorithm)
+        
+        Return value : UINT polynomial
+        
+  {CSY} Výpoèet polynomu (x16 + x6 + x3 + 1)
+	(používaný v systémech Tecomat)
+	
+	Funkce vrací UINT polynom*)
+  VAR_INPUT
+    ptr              : PTR_TO usint;  (*`{ENU} pointer to array bytes {CSY} pointer na pole bytù*)
+    length           : uint;  (*`{ENU} length of array (number of bytes) {CSY} délka pole (poèet bytù)*)
+  END_VAR
+  VAR
+    valCRC           : word;
+    tmp              : word;
+    i                : uint;
+    j                : uint;
+    ptrMsg           : PTR_TO byte;
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION CheckCRC_DIN : uint
+(*`{ENU} Calculation of polynomial according standard DIN 66 348
+  
+        Return value : UINT polynomial
+  {CSY} Výpoèet polynomu podle normy DIN 66 348
+  
+	Funkce vrací UINT polynom*)
+  VAR_INPUT
+    ptr              : PTR_TO usint;  (*`{ENU} pointer to array bytes {CSY} pointer na pole bytù*)
+    length           : uint;  (*`{ENU} length of array (number of bytes) {CSY} délka pole (poèet bytù)*)
+  END_VAR
+  VAR
+    tmp              : word;
+    valCRC           : word;
+    i                : uint;
+    j                : uint;
+    ptrMsg           : PTR_TO byte;
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION CheckCRC_ARNEP : uint
+(*`{ENU} Calculation of the polynomial for Conel net ARNEP
+
+        Return value : UINT polynomial
+  {CSY} Výpoèet polynomu pro Conel sí ARNEP
+  
+	Funkce vrací UINT polynom*)
+  VAR_INPUT
+    ptr              : PTR_TO usint;  (*`{ENU} pointer to array bytes {CSY} pointer na pole bytù*)
+    length           : uint;  (*`{ENU} length of array (number of bytes) {CSY} délka pole (poèet bytù)*)
+  END_VAR
+  VAR
+    valCRC           : word;
+    tmp              : byte;
+    i                : uint;
+    j                : uint;
+    ptrMsg           : PTR_TO byte;
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION CheckCRC_32 : udint
+(*`------------------------------------------------------------------------------
+  Function calculates polynomial (X32+X26+X23+X22+X16+X12+X11+X10+X8+X7+X5+X4+X2+X+1) of byte array
+  Return value : UDINT polynomial*)
+  VAR_INPUT
+    ptr              : PTR_TO usint;
+    length           : uint;
+  END_VAR
+  VAR
+    valCRC           : dword;
+    mask             : dword;
+    i                : uint;
+    j                : uint;
+    ptrMsg           : PTR_TO byte;
+  END_VAR
+END_FUNCTION
+
+
+
+#srcfile 'C:\TECOLIBSRC.OLD\CRCLIB\CRCLIB_V13\CRCLIB_V13.ST'
+#pou CheckCRC_16
+#srcline 3 ;FUNCTION CheckCRC_16 : UINT
+
+#struct CheckCRC_16__temp__
+  uint tmp
+P     61
+CheckCRC_16_L0:
+ LINK __SizeOf(CheckCRC_16__temp__)
+ NXT
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 19 ;begin
+#srcline 20 ;        {asm}
+#srcline 21
+	ldx	ptr                ; address
+#srcline 22
+#debug pointer ptr
+#srcline 23
+	ldx	length             ; length
+#srcline 24
+#debug USINT length
+#srcline 25
+	SYS     16                 ; CRCM
+#srcline 26
+	wry	tmp
+#srcline 27
+#debug UINT checkCRC_16
+#srcline 28 ;        {end_asm}
+#srcline 29 ;  CheckCRC_16 := tmp;
+ LDY  tmp
+#debug uint tmp
+ WRX  __fc__CheckCRC_16
+#debug_left uint CheckCRC_16
+#srcline 30 ;END_FUNCTION
+ PRV  
+ LDX  __fc__CheckCRC_16
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou CheckSum
+#srcline 68 ;FUNCTION CheckSum : USINT
+
+#struct CheckSum__temp__
+  uint P0__st__
+P     61
+CheckSum_L0:
+ LINK __SizeOf(CheckSum__temp__)
+ NXT
+; Initialize - variables
+ LD   0
+ WRX  __fc__CheckSum
+ WRX  i
+ WRX  sum
+ LD   -1
+ WRX  ptrc
+; End initialize - variables
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 88 ;  ptrc := ptr;
+ LEAX ptr
+ LDIL 
+#debug pointer ptr
+ LEAX ptrc
+ WRIL 
+#debug_left pointer ptrc
+#srcline 89 ;  FOR i := 1 TO length DO
+ LD   uint 1
+ WRX  i
+ LDX  length
+#debug uint length
+ WRY  P0__st__
+CheckSum_L1:
+ LDX  i
+ LDY  P0__st__
+ GT   
+ JMD  CheckSum_L2
+ DBG  
+#srcline 90 ;    sum := sum + ptrc^; ptrc := ptrc + 1;
+ LDX  sum
+#debug usint sum
+ LEAX ptrc
+ LDIL    ; dereference 
+ LDI  
+#debug usint ptrc^
+ ADD
+ AND  $FF
+ WRX  sum
+#debug_left usint sum
+ LEAX ptrc
+ LDIL 
+#debug pointer ptrc
+ LD   udint 1
+ ADD
+ LEAX ptrc
+ WRIL 
+#debug_left pointer ptrc
+#srcline 91 ;  END_FOR;
+ LDX  i
+ LD   1
+ ADD  
+ WRX  i
+ JMP  CheckSum_L1
+CheckSum_L2:
+ NOP  -1
+#srcline 92 ;  checkSum := sum;
+ LDX  sum
+#debug usint sum
+ WRX  __fc__checkSum
+#debug_left usint checkSum
+#srcline 93 ;END_FUNCTION
+ PRV  
+ LDX  __fc__CheckSum
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou CheckSum_XOR
+#srcline 96 ;FUNCTION CheckSum_XOR : USINT
+
+#struct CheckSum_XOR__temp__
+  uint P0__st__
+P     61
+CheckSum_XOR_L0:
+ LINK __SizeOf(CheckSum_XOR__temp__)
+ NXT
+; Initialize - variables
+ LD   0
+ WRX  __fc__CheckSum_XOR
+ WRX  i
+ WRX  sum
+ LD   -1
+ WRX  ptrc
+; End initialize - variables
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 116 ;  ptrc := ptr;
+ LEAX ptr
+ LDIL 
+#debug pointer ptr
+ LEAX ptrc
+ WRIL 
+#debug_left pointer ptrc
+#srcline 117 ;  FOR i := 1 TO length DO
+ LD   uint 1
+ WRX  i
+ LDX  length
+#debug uint length
+ WRY  P0__st__
+CheckSum_XOR_L1:
+ LDX  i
+ LDY  P0__st__
+ GT   
+ JMD  CheckSum_XOR_L2
+ DBG  
+#srcline 118 ;    sum := sum XOR ptrc^; ptrc := ptrc + 1;
+ LDX  sum
+#debug byte sum
+ LEAX ptrc
+ LDIL    ; dereference 
+ LDI  
+#debug byte ptrc^
+ XOR 
+ WRX  sum
+#debug_left byte sum
+ LEAX ptrc
+ LDIL 
+#debug pointer ptrc
+ LD   udint 1
+ ADD
+ LEAX ptrc
+ WRIL 
+#debug_left pointer ptrc
+#srcline 119 ;  END_FOR;
+ LDX  i
+ LD   1
+ ADD  
+ WRX  i
+ JMP  CheckSum_XOR_L1
+CheckSum_XOR_L2:
+ NOP  -1
+#srcline 120 ;  checkSum_XOR := BYTE_TO_USINT( sum);
+ LDX  sum
+#debug byte sum
+ WRX  __fc__checkSum_XOR
+#debug_left usint checkSum_XOR
+#srcline 121 ;END_FUNCTION
+ PRV  
+ LDX  __fc__CheckSum_XOR
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou CheckCRC_CCITT
+#srcline 124 ;FUNCTION CheckCRC_CCITT : UINT
+
+#struct CheckCRC_CCITT__temp__
+  uint P0__st__
+P     61
+CheckCRC_CCITT_L0:
+ LINK __SizeOf(CheckCRC_CCITT__temp__)
+ NXT
+; Initialize - variables
+ LD   0
+ WRX  __fc__CheckCRC_CCITT
+ WRX  valCRC
+ WRX  tmp
+ WRX  i
+ WRX  j
+ LD   -1
+ WRX  ptrMsg
+; End initialize - variables
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 145 ;  valCRC := 0; i := length; ptrMsg := ptr;
+ LD   word 0
+ WRX  valCRC
+#debug_left word valCRC
+ LDX  length
+#debug uint length
+ WRX  i
+#debug_left uint i
+ LEAX ptr
+ LDIL 
+#debug pointer ptr
+ LEAX ptrMsg
+ WRIL 
+#debug_left pointer ptrMsg
+#srcline 146 ;  WHILE i > 0 DO
+CheckCRC_CCITT_L1:
+ LDX  i
+#debug uint i
+ LD   uint 0
+ GT
+ JMC  CheckCRC_CCITT_L2
+ DBG 
+#srcline 147 ;    tmp := BYTE_TO_WORD( ptrMsg^);
+ LEAX ptrMsg
+ LDIL    ; dereference 
+ LDI  
+#debug byte ptrMsg^
+ WRX  tmp
+#debug_left word tmp
+#srcline 148 ;    tmp := SHL( tmp, 8);
+ LDX  tmp
+#debug word tmp
+ LD   uint 8
+ SHL
+ AND  $FFFF
+ WRX  tmp
+#debug_left word tmp
+#srcline 149 ;    valCRC := valCRC XOR tmp;
+ LDX  valCRC
+#debug word valCRC
+ LDX  tmp
+#debug word tmp
+ XOR 
+ WRX  valCRC
+#debug_left word valCRC
+#srcline 150 ;    ptrMsg := ptrMsg + 1;
+ LEAX ptrMsg
+ LDIL 
+#debug pointer ptrMsg
+ LD   udint 1
+ ADD
+ LEAX ptrMsg
+ WRIL 
+#debug_left pointer ptrMsg
+#srcline 151 ;    FOR j := 0 TO 7 DO
+ LD   uint 0
+ WRX  j
+ LD   uint 7
+ WRY  P0__st__
+CheckCRC_CCITT_L3:
+ LDX  j
+ LDY  P0__st__
+ GT   
+ JMD  CheckCRC_CCITT_L4
+ DBG  
+#srcline 152 ;      IF (valCRC AND 16#8000) = 16#8000 THEN
+ LDX  valCRC
+#debug word valCRC
+ LD   word $8000
+ AND
+ LD   word $8000
+ EQ
+ JMC  CheckCRC_CCITT_L5
+#srcline 153 ;	valCRC := SHL( valCRC, 1);
+ LDX  valCRC
+#debug word valCRC
+ LD   uint 1
+ SHL
+ AND  $FFFF
+ WRX  valCRC
+#debug_left word valCRC
+#srcline 154 ;	valCRC := valCRC XOR 16#1021;
+ LDX  valCRC
+#debug word valCRC
+ LD   word $1021
+ XOR 
+ WRX  valCRC
+#debug_left word valCRC
+#srcline 155 ;      ELSE
+ JMP  CheckCRC_CCITT_L6
+CheckCRC_CCITT_L5:
+#srcline 156 ;      	valCRC := SHL( valCRC, 1);
+ LDX  valCRC
+#debug word valCRC
+ LD   uint 1
+ SHL
+ AND  $FFFF
+ WRX  valCRC
+#debug_left word valCRC
+#srcline 157 ;      END_IF;
+CheckCRC_CCITT_L6:
+#srcline 158 ;    END_FOR;
+ LDX  j
+ LD   1
+ ADD  
+ WRX  j
+ JMP  CheckCRC_CCITT_L3
+CheckCRC_CCITT_L4:
+ NOP  -1
+#srcline 159 ;    i := i - 1;
+ LDX  i
+#debug uint i
+ LD   uint 1
+ SUB
+ AND  $FFFF
+ WRX  i
+#debug_left uint i
+#srcline 160 ;  END_WHILE;
+ JMP  CheckCRC_CCITT_L1
+CheckCRC_CCITT_L2:
+ NOP  -1
+#srcline 161 ;  checkCRC_CCITT := WORD_TO_UINT( valCRC);
+ LDX  valCRC
+#debug word valCRC
+ WRX  __fc__checkCRC_CCITT
+#debug_left uint checkCRC_CCITT
+#srcline 162 ;END_FUNCTION
+ PRV  
+ LDX  __fc__CheckCRC_CCITT
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou CheckCRC_TECO
+#srcline 165 ;FUNCTION CheckCRC_TECO : UINT
+
+#struct CheckCRC_TECO__temp__
+  uint P0__st__
+P     61
+CheckCRC_TECO_L0:
+ LINK __SizeOf(CheckCRC_TECO__temp__)
+ NXT
+; Initialize - variables
+ LD   0
+ WRX  __fc__CheckCRC_TECO
+ WRX  valCRC
+ WRX  tmp
+ WRX  i
+ WRX  j
+ LD   -1
+ WRX  ptrMsg
+; End initialize - variables
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 187 ;  valCRC := 0; i := length; ptrMsg := ptr;
+ LD   word 0
+ WRX  valCRC
+#debug_left word valCRC
+ LDX  length
+#debug uint length
+ WRX  i
+#debug_left uint i
+ LEAX ptr
+ LDIL 
+#debug pointer ptr
+ LEAX ptrMsg
+ WRIL 
+#debug_left pointer ptrMsg
+#srcline 188 ;  WHILE i > 0 DO
+CheckCRC_TECO_L1:
+ LDX  i
+#debug uint i
+ LD   uint 0
+ GT
+ JMC  CheckCRC_TECO_L2
+ DBG 
+#srcline 189 ;    tmp := BYTE_TO_WORD( ptrMsg^);
+ LEAX ptrMsg
+ LDIL    ; dereference 
+ LDI  
+#debug byte ptrMsg^
+ WRX  tmp
+#debug_left word tmp
+#srcline 190 ;    tmp := SHL( tmp, 8);
+ LDX  tmp
+#debug word tmp
+ LD   uint 8
+ SHL
+ AND  $FFFF
+ WRX  tmp
+#debug_left word tmp
+#srcline 191 ;    valCRC := valCRC XOR tmp;
+ LDX  valCRC
+#debug word valCRC
+ LDX  tmp
+#debug word tmp
+ XOR 
+ WRX  valCRC
+#debug_left word valCRC
+#srcline 192 ;    ptrMsg := ptrMsg + 1;
+ LEAX ptrMsg
+ LDIL 
+#debug pointer ptrMsg
+ LD   udint 1
+ ADD
+ LEAX ptrMsg
+ WRIL 
+#debug_left pointer ptrMsg
+#srcline 193 ;    FOR j := 0 TO 7 DO
+ LD   uint 0
+ WRX  j
+ LD   uint 7
+ WRY  P0__st__
+CheckCRC_TECO_L3:
+ LDX  j
+ LDY  P0__st__
+ GT   
+ JMD  CheckCRC_TECO_L4
+ DBG  
+#srcline 194 ;      IF (valCRC AND 16#8000) = 16#8000 THEN
+ LDX  valCRC
+#debug word valCRC
+ LD   word $8000
+ AND
+ LD   word $8000
+ EQ
+ JMC  CheckCRC_TECO_L5
+#srcline 195 ;	valCRC := SHL( valCRC, 1);
+ LDX  valCRC
+#debug word valCRC
+ LD   uint 1
+ SHL
+ AND  $FFFF
+ WRX  valCRC
+#debug_left word valCRC
+#srcline 196 ;	valCRC := valCRC XOR 16#0049;
+ LDX  valCRC
+#debug word valCRC
+ LD   word $0049
+ XOR 
+ WRX  valCRC
+#debug_left word valCRC
+#srcline 197 ;      ELSE
+ JMP  CheckCRC_TECO_L6
+CheckCRC_TECO_L5:
+#srcline 198 ;      	valCRC := SHL( valCRC, 1);
+ LDX  valCRC
+#debug word valCRC
+ LD   uint 1
+ SHL
+ AND  $FFFF
+ WRX  valCRC
+#debug_left word valCRC
+#srcline 199 ;      END_IF;
+CheckCRC_TECO_L6:
+#srcline 200 ;    END_FOR;
+ LDX  j
+ LD   1
+ ADD  
+ WRX  j
+ JMP  CheckCRC_TECO_L3
+CheckCRC_TECO_L4:
+ NOP  -1
+#srcline 201 ;    i := i - 1;
+ LDX  i
+#debug uint i
+ LD   uint 1
+ SUB
+ AND  $FFFF
+ WRX  i
+#debug_left uint i
+#srcline 202 ;  END_WHILE;
+ JMP  CheckCRC_TECO_L1
+CheckCRC_TECO_L2:
+ NOP  -1
+#srcline 203 ;  checkCRC_TECO := WORD_TO_UINT( valCRC);
+ LDX  valCRC
+#debug word valCRC
+ WRX  __fc__checkCRC_TECO
+#debug_left uint checkCRC_TECO
+#srcline 204 ;END_FUNCTION
+ PRV  
+ LDX  __fc__CheckCRC_TECO
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou CheckCRC_DIN
+#srcline 207 ;FUNCTION CheckCRC_DIN : UINT
+
+#struct CheckCRC_DIN__temp__
+  uint P0__st__
+P     61
+CheckCRC_DIN_L0:
+ LINK __SizeOf(CheckCRC_DIN__temp__)
+ NXT
+; Initialize - variables
+ LD   0
+ WRX  __fc__CheckCRC_DIN
+ WRX  tmp
+ WRX  valCRC
+ WRX  i
+ WRX  j
+ LD   -1
+ WRX  ptrMsg
+; End initialize - variables
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 227 ;  valCRC := 0; i := length; ptrMsg := ptr;
+ LD   word 0
+ WRX  valCRC
+#debug_left word valCRC
+ LDX  length
+#debug uint length
+ WRX  i
+#debug_left uint i
+ LEAX ptr
+ LDIL 
+#debug pointer ptr
+ LEAX ptrMsg
+ WRIL 
+#debug_left pointer ptrMsg
+#srcline 228 ;  WHILE i > 0 DO
+CheckCRC_DIN_L1:
+ LDX  i
+#debug uint i
+ LD   uint 0
+ GT
+ JMC  CheckCRC_DIN_L2
+ DBG 
+#srcline 229 ;    tmp := BYTE_TO_WORD( ptrMsg^);
+ LEAX ptrMsg
+ LDIL    ; dereference 
+ LDI  
+#debug byte ptrMsg^
+ WRX  tmp
+#debug_left word tmp
+#srcline 230 ;    ptrMsg := ptrMsg + 1;
+ LEAX ptrMsg
+ LDIL 
+#debug pointer ptrMsg
+ LD   udint 1
+ ADD
+ LEAX ptrMsg
+ WRIL 
+#debug_left pointer ptrMsg
+#srcline 231 ;    FOR j := 0 TO 7 DO
+ LD   uint 0
+ WRX  j
+ LD   uint 7
+ WRY  P0__st__
+CheckCRC_DIN_L3:
+ LDX  j
+ LDY  P0__st__
+ GT   
+ JMD  CheckCRC_DIN_L4
+ DBG  
+#srcline 232 ;      IF ((valCRC AND 16#0001) = 1) XOR ((tmp AND 16#0001) = 1) THEN
+ LDX  valCRC
+#debug word valCRC
+ LD   word $0001
+ AND
+ LD   word 1
+ EQ
+ LDX  tmp
+#debug word tmp
+ LD   word $0001
+ AND
+ LD   word 1
+ EQ
+ XOR 
+ JMC  CheckCRC_DIN_L5
+#srcline 233 ;	valCRC := SHR( valCRC, 1);
+ LDX  valCRC
+#debug word valCRC
+ LD   uint 1
+ SHR
+ AND  $FFFF
+ WRX  valCRC
+#debug_left word valCRC
+#srcline 234 ;	valCRC := valCRC XOR 16#8408;
+ LDX  valCRC
+#debug word valCRC
+ LD   word $8408
+ XOR 
+ WRX  valCRC
+#debug_left word valCRC
+#srcline 235 ;      ELSE
+ JMP  CheckCRC_DIN_L6
+CheckCRC_DIN_L5:
+#srcline 236 ;      	valCRC := SHR( valCRC, 1);
+ LDX  valCRC
+#debug word valCRC
+ LD   uint 1
+ SHR
+ AND  $FFFF
+ WRX  valCRC
+#debug_left word valCRC
+#srcline 237 ;      END_IF;
+CheckCRC_DIN_L6:
+#srcline 238 ;      tmp := SHR( tmp, 1);
+ LDX  tmp
+#debug word tmp
+ LD   uint 1
+ SHR
+ AND  $FFFF
+ WRX  tmp
+#debug_left word tmp
+#srcline 239 ;    END_FOR;
+ LDX  j
+ LD   1
+ ADD  
+ WRX  j
+ JMP  CheckCRC_DIN_L3
+CheckCRC_DIN_L4:
+ NOP  -1
+#srcline 240 ;    i := i - 1;
+ LDX  i
+#debug uint i
+ LD   uint 1
+ SUB
+ AND  $FFFF
+ WRX  i
+#debug_left uint i
+#srcline 241 ;  END_WHILE;
+ JMP  CheckCRC_DIN_L1
+CheckCRC_DIN_L2:
+ NOP  -1
+#srcline 242 ;  checkCRC_DIN := WORD_TO_UINT( valCRC);
+ LDX  valCRC
+#debug word valCRC
+ WRX  __fc__checkCRC_DIN
+#debug_left uint checkCRC_DIN
+#srcline 243 ;END_FUNCTION
+ PRV  
+ LDX  __fc__CheckCRC_DIN
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou CheckCRC_ARNEP
+#srcline 278 ;FUNCTION CheckCRC_ARNEP : UINT
+
+#struct CheckCRC_ARNEP__temp__
+  uint P0__st__
+P     61
+CheckCRC_ARNEP_L0:
+ LINK __SizeOf(CheckCRC_ARNEP__temp__)
+ NXT
+; Initialize - variables
+ LD   0
+ WRX  __fc__CheckCRC_ARNEP
+ WRX  valCRC
+ WRX  tmp
+ WRX  i
+ WRX  j
+ LD   -1
+ WRX  ptrMsg
+; End initialize - variables
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 298 ;  valCRC := 16#FFFF; i := length; ptrMsg := ptr;
+ LD   word $FFFF
+ WRX  valCRC
+#debug_left word valCRC
+ LDX  length
+#debug uint length
+ WRX  i
+#debug_left uint i
+ LEAX ptr
+ LDIL 
+#debug pointer ptr
+ LEAX ptrMsg
+ WRIL 
+#debug_left pointer ptrMsg
+#srcline 299 ;  WHILE i > 0 DO
+CheckCRC_ARNEP_L1:
+ LDX  i
+#debug uint i
+ LD   uint 0
+ GT
+ JMC  CheckCRC_ARNEP_L2
+ DBG 
+#srcline 300 ;    tmp := ptrMsg^; ptrMsg := ptrMsg + 1;
+ LEAX ptrMsg
+ LDIL    ; dereference 
+ LDI  
+#debug byte ptrMsg^
+ WRX  tmp
+#debug_left byte tmp
+ LEAX ptrMsg
+ LDIL 
+#debug pointer ptrMsg
+ LD   udint 1
+ ADD
+ LEAX ptrMsg
+ WRIL 
+#debug_left pointer ptrMsg
+#srcline 301 ;    FOR j := 0 TO 7 DO
+ LD   uint 0
+ WRX  j
+ LD   uint 7
+ WRY  P0__st__
+CheckCRC_ARNEP_L3:
+ LDX  j
+ LDY  P0__st__
+ GT   
+ JMD  CheckCRC_ARNEP_L4
+ DBG  
+#srcline 302 ;      IF (valCRC AND 16#8000) = 16#8000 THEN
+ LDX  valCRC
+#debug word valCRC
+ LD   word $8000
+ AND
+ LD   word $8000
+ EQ
+ JMC  CheckCRC_ARNEP_L5
+#srcline 303 ;	valCRC := SHL( valCRC, 1);
+ LDX  valCRC
+#debug word valCRC
+ LD   uint 1
+ SHL
+ AND  $FFFF
+ WRX  valCRC
+#debug_left word valCRC
+#srcline 304 ;	IF ( tmp AND 16#80) = 16#80 THEN
+ LDX  tmp
+#debug byte tmp
+ LD   byte $80
+ AND
+ LD   byte $80
+ EQ
+ JMC  CheckCRC_ARNEP_L7
+#srcline 305 ;	  valCRC := UINT_TO_WORD( WORD_TO_UINT( valCRC) + 1);
+ LDX  valCRC
+#debug word valCRC
+ LD   uint 1
+ ADD
+ AND  $FFFF
+ WRX  valCRC
+#debug_left word valCRC
+#srcline 306 ;	END_IF;
+CheckCRC_ARNEP_L7:
+#srcline 307 ;	valCRC := valCRC XOR 16#1021;
+ LDX  valCRC
+#debug word valCRC
+ LD   word $1021
+ XOR 
+ WRX  valCRC
+#debug_left word valCRC
+#srcline 308 ;      ELSE
+ JMP  CheckCRC_ARNEP_L6
+CheckCRC_ARNEP_L5:
+#srcline 309 ;      	valCRC := SHL( valCRC, 1);
+ LDX  valCRC
+#debug word valCRC
+ LD   uint 1
+ SHL
+ AND  $FFFF
+ WRX  valCRC
+#debug_left word valCRC
+#srcline 310 ;      	IF ( tmp AND 16#80) = 16#80 THEN
+ LDX  tmp
+#debug byte tmp
+ LD   byte $80
+ AND
+ LD   byte $80
+ EQ
+ JMC  CheckCRC_ARNEP_L9
+#srcline 311 ;	  valCRC := UINT_TO_WORD( WORD_TO_UINT( valCRC) + 1);
+ LDX  valCRC
+#debug word valCRC
+ LD   uint 1
+ ADD
+ AND  $FFFF
+ WRX  valCRC
+#debug_left word valCRC
+#srcline 312 ;	END_IF;
+CheckCRC_ARNEP_L9:
+#srcline 313 ;      END_IF;
+CheckCRC_ARNEP_L6:
+#srcline 314 ;      tmp := SHL( tmp, 1);
+ LDX  tmp
+#debug byte tmp
+ LD   uint 1
+ SHL
+ AND  $FF
+ WRX  tmp
+#debug_left byte tmp
+#srcline 315 ;    END_FOR;
+ LDX  j
+ LD   1
+ ADD  
+ WRX  j
+ JMP  CheckCRC_ARNEP_L3
+CheckCRC_ARNEP_L4:
+ NOP  -1
+#srcline 316 ;    i := i - 1;
+ LDX  i
+#debug uint i
+ LD   uint 1
+ SUB
+ AND  $FFFF
+ WRX  i
+#debug_left uint i
+#srcline 317 ;  END_WHILE;
+ JMP  CheckCRC_ARNEP_L1
+CheckCRC_ARNEP_L2:
+ NOP  -1
+#srcline 318 ;  CheckCRC_ARNEP := WORD_TO_UINT( valCRC);
+ LDX  valCRC
+#debug word valCRC
+ WRX  __fc__CheckCRC_ARNEP
+#debug_left uint CheckCRC_ARNEP
+#srcline 319 ;END_FUNCTION
+ PRV  
+ LDX  __fc__CheckCRC_ARNEP
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou CheckCRC_32
+#srcline 353 ;FUNCTION CheckCRC_32 : UDINT
+
+#struct CheckCRC_32__temp__
+  uint P0__st__
+P     61
+CheckCRC_32_L0:
+ LINK __SizeOf(CheckCRC_32__temp__)
+ NXT
+; Initialize - variables
+ LD   0
+ WRX  __fc__CheckCRC_32
+ WRX  valCRC
+ WRX  mask
+ WRX  i
+ WRX  j
+ LD   -1
+ WRX  ptrMsg
+; End initialize - variables
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 369 ;  valCRC := 16#FFFFFFFF; i := length; ptrMsg := ptr;
+ LD   dword $FFFFFFFF
+ WRX  valCRC
+#debug_left dword valCRC
+ LDX  length
+#debug uint length
+ WRX  i
+#debug_left uint i
+ LEAX ptr
+ LDIL 
+#debug pointer ptr
+ LEAX ptrMsg
+ WRIL 
+#debug_left pointer ptrMsg
+#srcline 370 ;  WHILE i > 0 DO
+CheckCRC_32_L1:
+ LDX  i
+#debug uint i
+ LD   uint 0
+ GT
+ JMC  CheckCRC_32_L2
+ DBG 
+#srcline 371 ;    valCRC := valCRC XOR BYTE_TO_DWORD( ptrMsg^);
+ LDX  valCRC
+#debug dword valCRC
+ LEAX ptrMsg
+ LDIL    ; dereference 
+ LDI  
+#debug byte ptrMsg^
+ XOR 
+ WRX  valCRC
+#debug_left dword valCRC
+#srcline 372 ;    ptrMsg := ptrMsg + 1;
+ LEAX ptrMsg
+ LDIL 
+#debug pointer ptrMsg
+ LD   udint 1
+ ADD
+ LEAX ptrMsg
+ WRIL 
+#debug_left pointer ptrMsg
+#srcline 373 ;    FOR j := 0 TO 7 DO
+ LD   uint 0
+ WRX  j
+ LD   uint 7
+ WRY  P0__st__
+CheckCRC_32_L3:
+ LDX  j
+ LDY  P0__st__
+ GT   
+ JMD  CheckCRC_32_L4
+ DBG  
+#srcline 374 ;      IF (valCRC AND 16#00000001) = 1 THEN
+ LDX  valCRC
+#debug dword valCRC
+ LD   dword $00000001
+ AND
+ LD   dword 1
+ EQ
+ JMC  CheckCRC_32_L5
+#srcline 375 ;	valCRC := SHR( valCRC, 1);
+ LDX  valCRC
+#debug dword valCRC
+ LD   uint 1
+ SHR
+ WRX  valCRC
+#debug_left dword valCRC
+#srcline 376 ;	valCRC := valCRC XOR 16#EDB88320;
+ LDX  valCRC
+#debug dword valCRC
+ LD   dword $EDB88320
+ XOR 
+ WRX  valCRC
+#debug_left dword valCRC
+#srcline 377 ;      ELSE
+ JMP  CheckCRC_32_L6
+CheckCRC_32_L5:
+#srcline 378 ;      	valCRC := SHR( valCRC, 1);
+ LDX  valCRC
+#debug dword valCRC
+ LD   uint 1
+ SHR
+ WRX  valCRC
+#debug_left dword valCRC
+#srcline 379 ;      END_IF;
+CheckCRC_32_L6:
+#srcline 380 ;    END_FOR;
+ LDX  j
+ LD   1
+ ADD  
+ WRX  j
+ JMP  CheckCRC_32_L3
+CheckCRC_32_L4:
+ NOP  -1
+#srcline 381 ;    i := i - 1;
+ LDX  i
+#debug uint i
+ LD   uint 1
+ SUB
+ AND  $FFFF
+ WRX  i
+#debug_left uint i
+#srcline 382 ;  END_WHILE;
+ JMP  CheckCRC_32_L1
+CheckCRC_32_L2:
+ NOP  -1
+#srcline 383 ;  checkCRC_32 := DWORD_TO_UDINT( valCRC);
+ LDX  valCRC
+#debug dword valCRC
+ WRX  __fc__checkCRC_32
+#debug_left udint checkCRC_32
+#srcline 384 ;//  checkCRC_32 := DWORD_TO_UDINT( NOT valCRC);	//???
+#srcline 385 ;END_FUNCTION
+ PRV  
+ LDX  __fc__CheckCRC_32
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+À  £  L

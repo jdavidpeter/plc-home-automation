@@ -1,0 +1,5051 @@
+(*` {CSY}Knihovna vývojového systému Mosaic{ENU}Mosaic IDE library *)
+(*` {CSY}Jméno souboru{ENU}File name{} : C:\TecoLib\FileLib_V22_20160316.mlb *)
+(*` {CSY}Knihovna : FileLib{ENU}Library : FileLib{} 2.2 *)
+(*` {CSY}Autor{ENU}Author{} : Teco a.s. *)
+(*` {CSY}Autorská práva{ENU}Copyright{} : (c) Teco a.s. *)
+(*` {CSY}Verze IEC pøekladaèe{ENU}IEC compiler version{} : 3.11.3.0 *)
+(*` {CSY}Verze assembleru{ENU}Assembler version{} : 4.3.00 *)
+
+//{Knihovna : FileLib 2.2  }
+(*` {CSY}Historie{ENU}History{}: *)
+(*`
+{CSY}
+v1.0            nem   první verze
+v1.1            nem   pøidaná funkce DiskInfo()
+v1.2            nem   pøidaná funkce FindFreeCluster() a funkèní blok CreatePath()
+                      funkce FindFreeCluster() použita v CreatePath() a WriteFile()
+v1.3            nem   nulování idle time ve WriteToFile() když busy je FALSE
+                      pøidán funkèní blok WriteDbxToFile()
+                      pøidán funkèní blok ReadDbxFromFile()
+v1.4            nem   opraven help funkce DirCreate()
+v1.5            nem   obráceno poøadí parametrù u FileOpen()   
+                      pøidán funkèní blok WriteToFileSeq ()
+v1.6            nem   automatické zvýšení doby cyklu ve funkcích 
+                      DirCreate() a FileClose()
+                      (u nìkterých typù SD karet mùže tato operace trvat delší dobu)
+v1.7 26.10.2010 nem   pøidány závislosti na knihovnách
+v1.8 14.06.2011 nem   pøidána funkce FileInfo()
+v1.9 11.12.2012 nem   pøidány funkce CloseAllFiles() a OpenFilesCount()
+                      (potøebná verze FW je v7.5)
+                      zdokonalen test konce souboru ve funkèním bloku 
+                      ReadFromFile() a ReadDbxFromFile() 
+v2.0 03.12.2013 nem   pøidán funkèní blok DeleteDirectories()
+v2.1 02.10.2015 byd   pøidán funkèní blok ReadLine()
+v2.2 16.03.2016 byd   upraveny bloky WriteToFile() a WriteDbxToFile() -
+                      pøed otevøením nového souboru je uzavøen aktuálnì
+                      otevøený soubor (pokud existuje)
+
+{ENU}
+v1.0            nem   first version
+v1.1            nem   added function DiskInfo()
+v1.2            nem   added function FindFreeCluster() and new function block 
+CreatePath()
+                      function FindFreeCluster() used in CreatePath() and WriteFile
+() too
+v1.3            nem   clearing idle time in WriteToFile() when busy is FALSE
+                      new function block WriteDbxToFile()
+                      new function block ReadDbxFromFile()
+v1.4            nem   help of function DirCreate() was corrected
+v1.5            nem   switch parameters order of FileOpen()   
+                      new function block WriteToFileSeq ()
+v1.6            nem   max cycle time was automatically increased in functions 
+                      DirCreate() and FileClose() (because these functions can
+                      spend more time depends on SD card)
+v1.7 2010-10-26 nem   library dependency added
+v1.8 2011-06-14 nem   added function FileInfo()
+v1.9 2012-12-11 nem   added functions CloseAllFiles() a OpenFilesCount()
+                      (FW v7.5 is required)
+                      better test end of file in function blocks 
+                      ReadFromFile() and ReadDbxFromFile()
+v2.0 2013-12-03 nem   added function block DeleteDirectories()
+v2.1 2015-10-02 byd   added function block fbReadLineFromFile()
+v2.2 2016-03-16 byd   WriteToFile() and WriteDbxToFile() was modified -
+                      before opening new file actual opened file is closed
+*)
+
+(*----------------------------------------------------------------------------*)
+{LIBRARY="LOCALLIB\STDLIB_V20_20100519.MLB"}
+
+TYPE  HANDLE : udint;  (*`{CSY} identifikátor souboru {ENU} file identificator*)
+END_TYPE
+
+TYPE TDirStack :
+  STRUCT
+    hDir             : HANDLE;
+    sDir             : string [12];
+  END_STRUCT;
+END_TYPE
+
+VAR_GLOBAL CONSTANT
+ INVALID_HANDLE_VALUE : HANDLE :=  0;  (*`{CSY} neplatná hodnota identifikátoru {ENU} invalid handle value*)
+ MAX_PATH : uint :=  65;  (*`{CSY} max velikost cesty (poèet bytù) {ENU} max size of path (number of bytes)*)
+ MAX_COUNT_OPEN_FILES : uint :=  16;  (*`{CSY} max poèet souèasnì otevøených souborù {ENU} max count of concurrently open files*)
+ DIR_STACK_MAX_LEVEL : usint :=  4;  (*`{CSY} max hloubka vnoøení adresáøù pro mazání {ENU} max number of subdirectories for deletting*)
+
+END_VAR
+
+TYPE TFileInfo :
+  STRUCT
+    creationTime     : dt;  (*`{CSY} èas vytvoøení souboru {ENU} file creation time*)
+    modifyTime       : dt;  (*`{CSY} èas poslední modifikace {ENU} time of last modification*)
+    fileSize         : udint;  (*`{CSY} velikost souboru (poèet bytù) {ENU} size of file (number of bytes)*)
+    attrib           : dword;  (*`{CSY} atributy souboru {ENU} file attributes*)
+    fileName         : string [80];  (*`{CSY} jméno souboru {ENU} name of file*)
+    empty {HIDDEN}   : byte;
+  END_STRUCT;
+END_TYPE
+
+TYPE TDiskInfo :
+  STRUCT
+    TotalNumberOfKBytes : udint;  (*`{CSY} velikost disku (poèet kilobytù) {ENU} disc size (number of kilobytes)*)
+    TotalNumberOfFreeKBytes : udint;  (*`{CSY} volné místo na disku (poèet kilobytù) {ENU} free space (number of kilobytes)*)
+  END_STRUCT;
+END_TYPE
+
+TYPE TF_MODE : 
+  (F_READ,
+   F_WRITE,
+   F_APPEND,
+   F_READ_PLUS 
+  );
+END_TYPE
+
+__DECL FUNCTION FileOpen : HANDLE
+(*`{CSY} Otevøení souboru
+
+   Funkce FileOpen inicializuje datové struktury potøebné pro ètení
+   nebo zápis do souboru.
+   Vstupní parametry jsou jméno souboru a zpùsob pøístupu k souboru.
+   Dostupné pøístupy k souboru jsou :
+   F_READ   Otevøe soubor pro ètení. Operace skonèí s chybou, pokud
+            soubor neexistuje nebo pokud nejsou dostateèná práva
+            pro pøístup k souboru.
+   F_WRITE  Otevøe soubor pro zápis. Zápis bude probíhat od zaèátku souboru.
+            Tato operace vždy založí nový soubor. Pokud soubor zadaného jména
+            existuje, jeho obsah je smazán.
+   F_APPEND Otevøe soubor pro zápis. Data budou zapsána na konec souboru.
+            Pokud soubor neexistuje, tak bude založen nový soubor.
+            Pokud se soubor otevøe tímto zpùsobem, tak nelze použít
+            funkci FileSetPos - data budou vždy pøipojena na konec souboru.
+
+   Funkce vrací identifikátor otevøeného souboru. Pokud se soubor nepodaøí
+   otevøít je vrácen neplatný identifikátor ( INVALID_HANDLE_VALUE)
+
+   {ENU} Open file
+
+   FileOpen initializes the data structures needed to read or write a file.
+   Specify the file's name as the string at file,
+   and the kind of access you need to the file with mode parameter.
+   Three fundamental kinds of access are available: read, write, and append.
+   mode must be one of the constant: F_READ, F_WRITE or F_APPEND, to select one of these:
+
+   F_READ        Open the file for reading. The operation will fail if the file
+                 does not exist, or if the host system does not permit you to read it.
+   F_WRITE       Open the file for writing from the beginning of the file ( effectively,
+                 this always creates a new file). If the file whose name you specified
+                 already existed, its old contents are discarded.
+   F_APPEND      Open the file for appending data, that is writing from the end of file.
+                 When you open a file this way, all data always goes to the current
+                 end of file. It mens you cannot change this using FileSetPos.
+
+   FileOpen returns a file indicator which you can use for other file operations,
+   unless the file you requested could not be opened. In that situation, the result
+   is INVALID_HANDLE_VALUE.*)
+  VAR_INPUT
+    mode             : TF_MODE;  (*`{CSY}zpùsob pøístupu k souboru (F_READ / F_WRITE / F_APPEND) {ENU} kinds of access (F_READ / F_WRITE / F_APPEND)*)
+  END_VAR
+  VAR_IN_OUT
+    fileName         : string [80];  (*`{CSY} jméno souboru (vèetnì cesty) {ENU} file name (including path)*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION FileClose : bool
+(*`{CSY} Zavøení souboru
+
+   Funkce uzavøe soubor se zadaným identifikátorem,
+   pokud je tento otevøen.
+   
+   Funkce vrací TRUE pokud je soubor úspìšnì uzavøen,
+   FALSE v ostatních pøípadech
+
+   {ENU} Closing file
+
+   If the file identified by hFile is open,
+   FileClose closes it.
+
+   FileClose returns TRUE if successful otherwise,
+   it returns FALSE.*)
+  VAR_INPUT
+    hFile            : HANDLE;  (*`{CSY} identifikátor souboru {ENU} file identificator*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION FileDelete : bool
+(*`{CSY} Vymazání souboru
+
+   Funkce smaže soubor soubor zadaného jména.
+   Tuto funkci lze použít i pro smazání adresáøe.
+   Pro úspìšné smazání adresáøe je nezbytné,
+   aby byl adresáø prázdný.
+
+   Funkce vrací TRUE pokud je soubor/adresáø smazán,
+   FALSE v ostatních pøípadech
+
+   {ENU} Deleting a file
+
+   Use FileDelete to delete the file specified by fileName.
+   You can use this function to delete directory as well,
+   but only in case when the directory is empty.
+
+   FileDelete returns TRUE if it succeeds, FALSE if it fails.*)
+  VAR_IN_OUT
+    fileName         : string [80];  (*`{CSY} jméno souboru (vèetnì cesty) {ENU} file name (including path)*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION FileRead : udint
+(*`{CSY} Ètení souboru
+
+   Funkce zkopíruje zadaný poèet znakù ze souboru do promìnné v pamìti PLC.
+   Funkce mùže zkopírovat i menší poèet znakù než je požadováno v pøípadì,
+   že dojde k chybì pøi ètení souboru nebo je dosaženo konce souboru.
+   Funkce posouvá aktuální pozici pro ètení/zápis do souboru podle
+   pozice naposledy pøeèteného znaku.
+   
+   Funkce vrací skuteèný poèet úspìšnì naètených znakù.
+   
+   {ENU} Read file
+
+   FileRead attempts to copy, from the file identified by hFile,
+   count elements (each of size size) into memory, starting at adrBuf.
+   FileRead may copy fewer elements than count if an error, or end of file, intervenes.
+   FileRead also advances the file position indicator (if any) for hFile
+   by the number of characters actually read.
+
+   The result of FileRead is the number of elements it succeeded in reading.*)
+  VAR_INPUT
+    hFile            : HANDLE;  (*`{CSY} identifikátor souboru {ENU} file identificator*)
+    adrBuf           : udint;  (*`{CSY} adresa promìnné, do které budou zkopírovaná data ze souboru {ENU} destination variable*)
+    size             : udint;  (*`{CSY} délka ètených dat (poèet bytù) {ENU} data length (number of bytes)*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION FileWrite : udint
+(*`{CSY} Zápis do souboru
+
+   Funkce zkopíruje zadaný poèet znakù z promìnné v pamìti PLC do souboru.
+   Funkce mùže zkopírovat i menší než zadaný poèet znakù, pokud dojde
+   k chybì pøi zápisu do souboru.
+   Funkce posouvá aktuální pozici pro ètení/zápis do souboru podle
+   pozice naposledy zapsaného znaku.
+
+   Funkce vrací skuteèný poèet úspìšnì zapsaných znakù
+
+   {ENU} Write to a file
+
+   FileWrite attempts to copy, starting from the memory location adrBuf,
+   count elements (each of size size) into the file identified by hFile.
+   FileWrite may copy fewer elements than count if an error intervenes.
+   FileWrite also advances the file position indicator (if any) for hFile
+   by the number of characters actually written.
+
+   If FileWrite succeeds in writing all the elements you specify,
+   the result is the same as the argument count.
+   In any event, the result is the number of complete elements
+   that FileWrite copied to the file.*)
+  VAR_INPUT
+    hFile            : HANDLE;  (*`{CSY} identifikátor souboru {ENU} file identificator*)
+    adrBuf           : udint;  (*`{CSY} adresa promìnné, ze které budou zkopírovaná data do souboru{ENU} variable address*)
+    size             : udint;  (*`{CSY} délka zapisovaných dat (poèet bytù) {ENU} data length (number of bytes)*)
+  END_VAR
+END_FUNCTION
+
+VAR_GLOBAL CONSTANT
+ BEGIN_POS : udint :=  0;  (*`{CSY} pozice na zaèátku souboru {ENU} begin position in file*)
+ END_POS : udint :=  16#FFFF_FFFF;  (*`{CSY} pozice na konci souboru {ENU} end position in file*)
+
+END_VAR
+
+__DECL FUNCTION FileSetPos : bool
+(*`{CSY} Nastavit pozici v souboru
+
+   Funkce umožòuje nastavit pozici pro ètení resp. pro zápis do souboru.
+   Pozice je offset dat od zaèátku souboru.
+   Pro nastavení pozice na zaèátek souboru lze použít konstantu BEGIN_POS.
+   Pro nastavení pozice na konec souboru lze použít konstantu END_POS.
+   
+   Funkce vrací TRUE, pokud se podaøí nastavit žádanou pozici v souboru.
+   Jinak vrací FALSE.
+
+   {ENU} Set file position
+
+   Objects of type FILE can have a "position" that records
+   how much of the file your program has already read.
+   You can use FileSetPos to set the position for the file identified by hFile.
+   BEGIN_POS and END_POS are constants to set position at begin or end of file.
+
+   FileSetPos returns TRUE when successful.
+   If FileSetPos fails, the result is FALSE.*)
+  VAR_INPUT
+    hFile            : HANDLE;  (*`{CSY} identifikátor souboru {ENU} file identificator*)
+    offset           : udint;  (*`{CSY} pozice v souboru {ENU} data offset in file*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION FileExists : bool
+(*`{CSY} Test existence souboru
+
+   Funkce zjistí zda existuje soubor nebo adresáø zadaného jména.
+   
+   Funkce vrátí TRUE pokud soubor resp. adresáø existuje,
+   FALSE v ostatních pøípadech
+
+   {ENU} Test for existence of file
+
+   Use FileExist to test if file or directory identified by fileName exists.
+
+   FileExist returns TRUE if file exists otherwise, it returns FALSE.*)
+  VAR_IN_OUT
+    fileName         : string [80];  (*`{CSY} jméno souboru (vèetnì cesty) {ENU} file name (including path)*)
+  END_VAR
+END_FUNCTION
+
+VAR_GLOBAL CONSTANT
+ UNKNOWN_SIZE : udint :=  16#FFFF_FFFF;  (*`{CSY} neznámá velikost {ENU} unknown size*)
+
+END_VAR
+
+__DECL FUNCTION FileSize : udint
+(*`{CSY} Zjistit velikost souboru
+
+   Funkce FileSize zjistí velikost souboru
+   
+   Funkce vrací aktuální velikost souboru.
+   Pøi chybì vrací UKNOWN_SIZE, tj. 16#FFFF_FFFF
+
+   {ENU} Find file size
+
+   Use FileSize to test size of file identified by hFile.
+
+   FileSize returns size of file if successful otherwise,
+   it returns 16#FFFF_FFFF.*)
+  VAR_INPUT
+    hFile            : HANDLE;  (*`{CSY} identifikátor souboru {ENU} file identificator*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION DirOpen : HANDLE
+(*`{CSY} Otevøení adresáøe
+
+   Funkce otevøe adresáø zadaného jména.
+   Poté zjistí informace o prvním souboru v adresáøi
+   a tyto informace zapíše do promìnné dirInfo.
+   Informace o dalších souborech v adresáøi lze zjistit funkcí DirRead.
+   
+   Funkce vrací identifikátor otevøeného adresáøe.
+   Pokud se adresáø nepodaøí otevøít je vrácen neplatný identifikátor
+   (INVALID_HANDLE_VALUE)
+
+   {ENU} Open Directory
+
+   Use DirOpen to open the directory specified by dirName.
+   Then function find out information about first file in dir
+   and these information are saved to variable dirInfo.
+   For information about next file use function DirRead
+
+   DirOpen returns identificator of directory when operation is succefull,
+   otherwise invalid identificator (INVALID_HANDLE_VALUE).
+   Function DirOpen sets all items in variable dirInfo
+   which have to be type of TFileInfo*)
+  VAR_IN_OUT
+    dirName          : string [80];  (*`{CSY} jméno adresáøe (vèetnì cesty) {ENU} dir name (including path)*)
+    dirInfo          : TFileInfo;  (*`{CSY} struktura s informacemi o prvním souboru v adresáøi {ENU} structure contains information about first file in dir*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION DirClose : bool
+(*`{CSY} Uzavøení adresáøe
+
+   Funkce uzavøe adresáø.
+   
+   Funkce vrací TRUE pokud je adresáø úspìšnì uzavøen,
+   FALSE v ostatních pøípadech
+
+   {ENU} Closing directory
+
+   If the directory identified by hDir is open, DirClose closes it.
+
+   DirClose returns TRUE if successful otherwise, it returns FALSE.*)
+  VAR_INPUT
+    hDir             : HANDLE;  (*`{CSY} identifikátor souboru {ENU} file identificator*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION DirRead : bool
+(*`{CSY} Ètení z adresáøe
+
+   Funkce zjistí informace o dalším souboru v adresáøi
+   a tyto informace zapíše do promìnné dirInfo.
+   Pøed voláním této funkce musí být adresáø otevøen funkcí DirOpen.
+
+   Funkce vrací TRUE pokud operace dopadne úspìšnì,
+   FALSE v ostatních pøípadech
+
+   {ENU} Read from directory
+
+   Use DirRead to read next item in the directory specified by hDdir.
+   Directory have to be open by function DirOpen.
+
+   DirRead returns TRUE if it succeeds, FALSE if it fails.
+   Function DirRead sets all items in variable dirInfo
+   which have to be type of TFileInfo*)
+  VAR_INPUT
+    hDir             : HANDLE;  (*`{CSY} identifikátor souboru {ENU} file identificator*)
+  END_VAR
+  VAR_IN_OUT
+    dirInfo          : TFileInfo;  (*`{CSY} struktura s informacemi o dalším souboru v adresáøi {ENU} structure contains information about next file in dir*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION DirCreate : bool
+(*`{CSY} Vytvoøení adresáøe
+
+   Funkce vytvoøí adresáø zadaného jména.
+   
+   Funkce vrací TRUE pokud je adresáø úspìšnì vytvoøen,
+   FALSE v ostatních pøípadech
+
+   {ENU} Create a directory
+
+   If the directory specified by dirName does not exist,
+   DirCreate creates it.
+
+   DirCreate returns TRUE if successful otherwise,
+   it returns FALSE.*)
+  VAR_IN_OUT
+    dirName          : string [80];  (*`{CSY} jméno adresáøe (vèetnì cesty) {ENU} directory name (including path)*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION DirDelete : bool
+(*`{CSY} Vymazání adresáøe
+
+   Funkce smaže adresáø zadaného jména.
+   Pro úspìšné smazání adresáøe je nezbytné,
+   aby byl adresáø prázdný (aby neobsahoval žádné soubory).
+   
+   Funkce vrací TRUE pokud je adresáø smazán,
+   FALSE v ostatních pøípadech
+
+   {ENU} Delete directory
+
+   Use DirDelete to delete the directory specified by dirName.
+   You have to be sure the directory is empty.
+
+   DirDelete returns TRUE if it succeeds, FALSE if it fails.*)
+  VAR_IN_OUT
+    dirName          : string [80];  (*`{CSY} jméno adresáøe (vèetnì cesty) {ENU} directory name (including path)*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION GetLastErr : udint
+(*`{CSY} Zjistit kód poslední chyby
+
+   Funkce vrátí kód poslední zaznamenané chyby vzniklé
+   pøi souborové operaci. Tento kód mùže být použit jako
+   parametr funkce GetLastErrTxt, která pak vrátí textový popis chyby
+
+   Funkce vrátí kód poslední chyby pøi souborové operaci
+
+   {ENU} Get the last error code
+
+   The file functions maintain an global error indicator,
+   to record last read or write errors have occurred.
+   Use GetLastErr to query this indicator.
+
+   GetLastErr returns 0 if no errors have occurred.
+   It returns a nonzero value otherwise.*)
+END_FUNCTION
+
+__DECL FUNCTION GetLastErrTxt : bool
+(*`{CSY}
+   Popis
+   Funkce zapíše textový popis chyby do promìnné errMessage.
+   Textový popis chyby odpovídá kódu chyby,
+   který je specifikován promìnnou errCode.
+
+   Návratová hodnota
+   Funkce vrací Vrací TRUE, pokud existuje popis chyby,
+   jinak vrací FALSE.
+
+   {ENU}
+   Description
+   Use GetLastErrTxt to get description of error specified by errCode.
+
+   Returns
+   GetLastErr returns description of error as a string.*)
+  VAR_INPUT
+    errCode          : udint;  (*`{CSY} chybový kód {ENU} error code*)
+  END_VAR
+  VAR_IN_OUT
+    errMessage       : string [80];  (*`{CSY} textový popis chyby {ENU} error description*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION DiskInfo : bool
+(*`{CSY} Zjistit informace o disku
+
+   Funkce zjistí celkovou velikost disku a volné místo na disku
+   
+   Funkce vrací TRUE, pokud se podaøí zjistit informace
+   o zadaném disku.V opaèném pøípadì vrací FALSE.
+   Funkce DiskInfo naplní položky TotalNumberOfKBytes
+   a TotalNumberOfFreeKBytes v promìnné diskDesc.
+   Obì hodnoty jsou v KiloBytech.
+
+   {ENU} Get information about disk
+
+   Use DiskInfo to find out size of disk specified by diskName.
+   If the diskName is empty, default disk is selected.
+
+   DiskInfo returns TRUE if it succeeds, FALSE if it fails.
+   Function DiskInfo sets items TotalNumberOfKBytes and
+   TotalNumberOfFreeKBytes in variable diskDesc*)
+  VAR_IN_OUT
+    diskName         : string [80];  (*`{CSY} název disku (prázdný string pro default disk) {ENU} disk name (empty string for default disk)*)
+    diskDesc         : TDiskInfo;  (*`{CSY} informace o disku {ENU} disk description*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION FindFreeCluster : byte
+(*`{CSY} Najít volné místo na disku
+
+   Funkce hledá volné místo na disku.
+   Úèelem funkce je zrychlit následný zápis dat do souboru.
+   Tato funkce je využívána napø. funkèním blokem CreatePath.
+   
+   Funkce vrací 0 pokud je volné místo nalezeno
+   nebo 13 pokud se v hledání má pokraèovat v pøíštím cyklu PLC
+   nebo jiné èíslo pokud dojde k nìjaké chybì.
+
+   {ENU} Find free disk space
+
+   Use FindFreeCluster to find free space to accelerate disk write.
+
+   FindFreeCluster returns 0 if free cluster found,
+   13 if function still not finished, otherwise error.*)
+  VAR_IN_OUT
+    fileName         : string [80];  (*`{CSY} jméno souboru (vèetnì cesty) {ENU} file name (including path)*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION FileInfo : bool
+(*`{CSY} Zjistit informace o souboru
+
+   Funkce zjistí následující informace o souboru :
+   èas vytvoøení souboru, èas poslední modifikace,
+   velikost souboru (poèet bytù) a atributy souboru
+   Tyto informace zapíše do promìnné fileDesc.
+   Funkce vrací TRUE pokud soubor existuje a informace
+   se podaøilo zjistit, v ostatních pøípadech vrací FALSE
+
+   {ENU} Get information about file
+
+   Use DirRead to read following information about specified file:
+   file creation time, time of last modification,
+   size of file (number of bytes) and file attributes
+   This information is stored to fileDesc variable.
+   DirRead returns TRUE if it succeeds, FALSE if it fails.*)
+  VAR_IN_OUT
+    fileName         : string [80];  (*`{CSY} jméno adresáøe (vèetnì cesty) {ENU} dir name (including path)*)
+    fileDesc         : TFileInfo;  (*`{CSY} struktura s informacemi o souboru {ENU} structure contains information about file*)
+  END_VAR
+END_FUNCTION
+
+__DECL FUNCTION CloseAllFiles : bool
+(*`{CSY} Uzavøení všech otevøených souborù
+
+   Funkce uzavøe všechny aktuálnì otevøené soubory.
+   Funkce vrací TRUE.
+
+   {ENU} Closing all open files*)
+END_FUNCTION
+
+__DECL FUNCTION OpenFilesCount : uint
+(*`{CSY} Poèet aktuálnì otevøených souborù
+
+   Funkce vrací poèet aktuálnì otevøených souborù
+
+   {ENU} Number of open files
+
+   OpenFilesCount returns Number of open files.*)
+END_FUNCTION
+
+__DECL FUNCTION_BLOCK ReadFromFile
+(*`{CSY} Pøenos dat ze souboru do promìnné v PLC
+
+   Funkèní blok pøeète data ze souboru a uloží je do promìnné v pamìti PLC
+   
+   Funkèní blok nastaví TRUE do promìnné done v okamžiku,
+   kdy se naète poslední blok dat ze souboru.
+   Bìhem naèítání dat má promìnná done hodnotu FALSE
+   a promìnná busy hodnotu TRUE.
+   Poèet skuteènì naètených bytù udává promìnná actSize.
+   Pokud bylo ètení bez chyby, promìnná err má hodnotu FALSE,
+   v pøípadì chyby má hodnotu TRUE a v promìnné errID
+   je uložen chybový kód. Ten mùže být použit jako
+   vstupní promìnná funkce GetLastErrTxt pro získání
+   textového popisu vzniklé chyby
+   
+  {ENU} Copy data from file to variable
+
+   Returns
+   Busy is TRUE during file reading.
+   Done is TRUE when reading is finished.
+   If reading failed, err output is TRUE
+   and errID output contains code of error*)
+  VAR_IN_OUT
+    fileName         : string [80];  (*`{CSY} jméno souboru (vèetnì cesty) {ENU} file name (including path)*)
+    dstVar           : udint;  (*`{CSY} adresa promìnné, do které budou uložena data pøeètená ze souboru {ENU} address of destination variable*)
+  END_VAR
+  VAR_INPUT
+    exec             : bool;  (*`{CSY} žádost o ètení = nábìžná hrana zahájí ètení ze souboru{ENU} read request (rising edge)*)
+    seek             : udint;  (*`{CSY} offset od zaèátku souboru, od kterého je ètení zahájeno {ENU} data offset in file*)
+    size             : udint;  (*`{CSY} Požadovaná velikost ètených dat (poèet bytù) {ENU} data length <= size of variable (number of bytes)*)
+  END_VAR
+  VAR_OUTPUT
+    done             : bool;  (*`{CSY} ètení ze souboru je ukonèeno {ENU} action is done*)
+    busy             : bool;  (*`{CSY} probíhá ètení ze souboru {ENU} action in progress*)
+    err              : bool;  (*`{CSY} pøíznak chyby pøi ètení ze souboru {ENU} error flag*)
+    errID            : udint;  (*`{CSY} chybový kód (0 = bez chyby) {ENU} error number (0 = no error)*)
+    actSize          : udint;  (*`{CSY} poèet skuteènì naètených bytù {ENU} number of bytes really read*)
+  END_VAR
+  VAR
+    execTrig         : R_TRIG;
+    errTrig          : R_TRIG;
+    hnd              : HANDLE;
+    adrVar           : udint;
+  END_VAR
+END_FUNCTION_BLOCK
+
+__DECL FUNCTION_BLOCK WriteToFile
+(*`{CSY} Pøenos dat z promìnné v PLC do souboru
+
+   Funkèní blok zapíše obsah promìnné PLC do souboru.
+   
+   Funkèní blok nastaví TRUE do promìnné done v okamžiku,
+   kdy se zapíše poslední blok dat do souboru.
+   Bìhem zápisu dat má promìnná done hodnotu FALSE
+   a promìnná busy hodnotu TRUE.
+   Poèet skuteènì zapsaných bytù udává promìnná actSize.
+   Pokud byl zápis do souboru bez chyby, promìnná err
+   má hodnotu FALSE, v pøípadì chyby má hodnotu TRUE
+   a v promìnné errID je uložen chybový kód.
+   Ten mùže být použit jako vstupní promìnná funkce GetLastErrTxt
+   pro získání textového popisu vzniklé chyby.
+   
+   {ENU} Copy data from variable to file
+   
+   If file does not exist new file is created.
+   If file exists file content is overwitten.
+
+   Returns
+   Busy is TRUE during file writing.
+   Done is TRUE when writing is finished.
+   If writing failed, err output is TRUE
+   and errID output contains code of error*)
+  VAR_IN_OUT
+    fileName         : string [80];  (*`{CSY} jméno souboru (vèetnì cesty) {ENU} file name (including path)*)
+    srcVar           : udint;  (*`{CSY} adresa promìnné, jejíž obsah bude zapsán souboru {ENU} address of source variable*)
+  END_VAR
+  VAR_INPUT
+    exec             : bool;  (*`{CSY} žádost o zápis = nábìžná hrana zahájí zápis do souboru {ENU} write request (rising edge)*)
+    seek             : udint;  (*`{CSY} offset v souboru, od kterého je zahájen zápis {ENU} data offset in file*)
+    size             : udint;  (*`{CSY} velikost zapisovaných dat (poèet bytù) {ENU} data length (number of bytes)*)
+  END_VAR
+  VAR_OUTPUT
+    done             : bool;  (*`{CSY} zápis do souboru byl dokonèen {ENU} action is done*)
+    busy             : bool;  (*`{CSY} probíhá zápis do souboru {ENU} action in progress*)
+    err              : bool;  (*`{CSY} pøíznak chyby pøi zápisu do souboru  {ENU} error flag*)
+    errID            : udint;  (*`{CSY} chybový kód (0 = bez chyby) {ENU} error number (0 = no error)*)
+    actSize          : udint;  (*`{CSY} poèet skuteènì zapsaných bytù {ENU} number of bytes really written*)
+  END_VAR
+  VAR
+    eTrig            : R_TRIG;
+    errTrig          : R_TRIG;
+    hnd              : HANDLE;
+    adrVar           : udint;
+    idle             : uint;
+  END_VAR
+END_FUNCTION_BLOCK
+
+__DECL FUNCTION_BLOCK CreatePath
+(*`{CSY} Založit adresáø (vèetnì cesty)
+
+   Funkèní blok zkontroluje zadanou cestu a pokud neexistuje,
+   tak ji na disku vytvoøí (založí potøebné adresáøe).
+   Jméno cesty udává promìnná fileName.
+   Kontrola bude zahájena na nábìžnou hranu promìnné exec.
+
+   Funkèní blok nastaví TRUE do promìnné done v okamžiku,
+   kdy je zadaná cesta na disku dostupná.
+   Bìhem kontroly resp. vytváøení cesty má promìnná done
+   hodnotu FALSE a promìnná busy hodnotu TRUE.
+   Pokud bìhem práce nebyla detekována žádná chyba
+   promìnná err má hodnotu FALSE, v pøípadì chyby
+   má hodnotu TRUE a v promìnné errID je uložen chybový kód.
+   Ten mùže být použit jako vstupní promìnná funkce GetLastErrTxt
+   pro získání textového popisu vzniklé chyby.
+
+   {ENU} Create a directory (including path)
+
+   Check path and create it if does not exist
+   
+   Returns
+   Busy is TRUE during path creating.
+   Done is TRUE when path creating is finished.
+   If path creating failed, err output is TRUE
+   and errID output contains code of error*)
+  VAR_INPUT
+    exec             : bool;  (*`{CSY} žádost o vytvoøení cesty = nábìžná hrana zahájí kontrolu resp. vytváøení cesty {ENU} request (rising edge)*)
+  END_VAR
+  VAR_IN_OUT
+    fileName         : string [80];  (*`{CSY} jméno adresáøe vèetnì cesty (napø. WWW/NEW_DIR/) {ENU} dir name including path (e.g. WWW/NEW_DIR/)*)
+  END_VAR
+  VAR_OUTPUT
+    done             : bool;  (*`{CSY} cesta byla vytvoøena {ENU} action is done*)
+    busy             : bool;  (*`{CSY} probíhá vytváøení cesty {ENU} action in progress*)
+    err              : bool;  (*`{CSY} pøíznak chyby pøi vytváøení cesty  {ENU} error flag*)
+    errID            : udint;  (*`{CSY} chybový kód (0 = bez chyby) {ENU} error number (0 = no error)*)
+  END_VAR
+  VAR
+    eTrig            : R_TRIG;  (*`rising edge of exec*)
+    errTrig          : R_TRIG;  (*`rising edge of err*)
+    createDir        : bool;
+    path             : string [80];
+    copy             : string [80];
+    idle             : uint;
+  END_VAR
+END_FUNCTION_BLOCK
+
+__DECL FUNCTION_BLOCK WriteDbxToFile
+(*`{CSY} Pøenos dat z pamìti DataBox do souboru
+
+   Funkèní blok zapíše obsah pamìti DataBox do souboru.
+   Pokud soubor neexistuje, tak je vytvoøen.
+   Pokud soubor existuje, jeho obsah je pøepsán.
+   Funkèní blok je podporován na CPM øady K od verze 4.5.
+   
+   Funkèní blok nastaví TRUE do promìnné done v okamžiku,
+   kdy se zapíše poslední blok dat do souboru.
+   Bìhem zápisu dat má promìnná done hodnotu FALSE
+   a promìnná busy hodnotu TRUE.
+   Poèet skuteènì zapsaných bytù udává promìnná actSize.
+   Pokud byl zápis do souboru bez chyby,
+   promìnná err má hodnotu FALSE,
+   v pøípadì chyby má hodnotu TRUE a v promìnné errID
+   je uložen chybový kód. Ten mùže být použit jako
+   vstupní promìnná funkce GetLastErrTxt pro získání
+   textového popisu vzniklé chyby.
+
+   {ENU} Copy data from databox to file
+   
+   If file does not exist new file is created.
+   If file exists file content is overwitten.
+   Supported on CPM type K version 4.5 and higher
+
+   Returns
+   Busy is TRUE during file writing.
+   Done is TRUE when writing is finished.
+   If writing failed, err output is TRUE
+   and errID output contains code of error*)
+  VAR_IN_OUT
+    fileName         : string [80];  (*`{CSY} jméno souboru (vèetnì cesty) {ENU} file name (including path)*)
+  END_VAR
+  VAR_INPUT
+    exec             : bool;  (*`{CSY} žádost o zápis = nábìžná hrana zahájí zápis do souboru{ENU} request (rising edge)*)
+    seek             : udint;  (*`{CSY} offset v souboru, od kterého je zahájen zápis {ENU} data offset in file*)
+    srcAdr           : udint;  (*`{CSY} adresa v DataBoxu, kde zaèínají data, která budou uložena do souboru {ENU} databox address*)
+    size             : udint;  (*`{CSY} velikost zapisovaných dat (poèet bytù) {ENU} data length (number of bytes)*)
+  END_VAR
+  VAR_OUTPUT
+    done             : bool;  (*`{CSY} dokonèen zápis do souboru {ENU} action is done*)
+    busy             : bool;  (*`{CSY} probíhá zápis do souboru {ENU} action in progress*)
+    err              : bool;  (*`{CSY} pøíznak chyby pøi zápisu do souboru {ENU} error flag*)
+    errID            : udint;  (*`{CSY} chybový kód (0 = bez chyby) {ENU} error number (0 = no error)*)
+    actSize          : udint;  (*`{CSY} poèet skuteènì zapsaných bytù {ENU} number of bytes really written*)
+  END_VAR
+  VAR
+    eTrig            : R_TRIG;
+    errTrig          : R_TRIG;
+    hnd              : HANDLE;
+    adrVar           : udint;
+    idle             : uint;
+  END_VAR
+END_FUNCTION_BLOCK
+
+__DECL FUNCTION_BLOCK ReadDbxFromFile
+(*`{CSY} Pøenos dat ze souboru do pamìti DataBox
+
+   Funkèní blok pøeète data ze souboru a uloží je do pamìti DataBox.
+   Funkèní blok je podporován na CPM øady K od verze 4.5.
+
+   Funkèní blok nastaví TRUE do promìnné done v okamžiku,
+   kdy se naète poslední blok dat ze souboru.
+   Bìhem naèítání dat má promìnná done hodnotu FALSE
+   a promìnná busy hodnotu TRUE.
+   Poèet skuteènì naètených bytù udává promìnná actSize.
+   Pokud bylo ètení bez chyby, promìnná err má hodnotu FALSE,
+   v pøípadì chyby má hodnotu TRUE a v promìnné errID je uložen
+   chybový kód. Ten mùže být použit jako vstupní promìnná funkce
+   GetLastErrTxt pro získání textového popisu vzniklé chyby.
+
+   {ENU} Copy data from a file to DataBox memory
+
+   Copy data from file to databox
+   Supported on CPM type K version 4.5 and higher
+
+   Returns
+   Busy is TRUE during file reading.
+   Done is TRUE when reading is finished.
+   If reading failed, err output is TRUE
+   and errID output contains code of error*)
+  VAR_IN_OUT
+    fileName         : string [80];  (*`{CSY} jméno souboru (vèetnì cesty) {ENU} file name (including path)*)
+  END_VAR
+  VAR_INPUT
+    exec             : bool;  (*`{CSY} žádost o ètení = nábìžná hrana zahájí ètení ze souboru {ENU} request (rising edge)*)
+    seek             : udint;  (*`{CSY} offset od zaèátku souboru, od kterého je zahájeno ètení {ENU} data offset in file*)
+    dstAdr           : udint;  (*`{CSY} adresa DataBoxu, od které budou uložena data pøeètená ze souboru {ENU} databox address*)
+    size             : udint;  (*`{CSY} velikost ètených dat (poèet bytù) {ENU} data length <= size of variable (number of bytes)*)
+  END_VAR
+  VAR_OUTPUT
+    done             : bool;  (*`{CSY} ètení ze souboru je ukonèeno {ENU} action is done*)
+    busy             : bool;  (*`{CSY} probíhá ètení ze souboru {ENU} action in progress*)
+    err              : bool;  (*`{CSY} pøíznak chyby pøi ètení ze souboru {ENU} error flag*)
+    errID            : udint;  (*`{CSY} {CSY} chybový kód (0 = bez chyby) {ENU} error number (0 = no error)*)
+    actSize          : udint;  (*`{CSY} poèet skuteènì naètených bytù {ENU} number of bytes really read*)
+  END_VAR
+  VAR
+    execTrig         : R_TRIG;
+    errTrig          : R_TRIG;
+    hnd              : HANDLE;
+    adrVar           : udint;
+  END_VAR
+END_FUNCTION_BLOCK
+
+__DECL FUNCTION_BLOCK WriteToFileSeq
+(*`{CSY} Sekvenèní zápis dat do souboru
+
+   Funkèní blok zapíše obsah promìnné PLC do souboru pøi každém volání,
+   kdy je promìnná write nastavena na hodnotu TRUE.
+   Data jsou zapisována sekvenènì za sebe, až do doby
+   než je soubor uzavøen nastavení vstupu close na hodnotu TRUE.
+
+   Promìnné open signalizuje, že je otevøen soubor pro zápis
+   a bude jej nutné pøi nebo po posledním zápisu nastavením
+   vstupu close zavøít.
+   Poèet všech zapsaných bytù udává promìnná actSize.
+   Pokud byl zápis do souboru bez chyby, promìnná err má hodnotu FALSE,
+   v pøípadì chyby má hodnotu TRUE a v promìnné errID je uložen chybový kód.
+   Ten mùže být použit jako vstupní promìnná funkce GetLastErrTxt
+   pro získání textového popisu vzniklé chyby.
+
+   {ENU} Sequential write data to file
+
+   Copy data from variable to file sequentaly each time
+   the write variable is set to true.
+   If file does not exist new file is created.
+   If file exists file content is overwitten.
+
+   Returns
+   Open is TRUE whyn file is open.
+   If writing failed, err output is TRUE
+   and errID output contains code of error*)
+  VAR_IN_OUT
+    fileName         : string [80];  (*`{CSY} jméno souboru (vèetnì cesty) {ENU} file name (including path)*)
+    srcVar           : udint;  (*`{CSY} adresa promìnné, jejíž obsah bude zapsán souboru {ENU} address of source variable*)
+  END_VAR
+  VAR_INPUT
+    write            : bool;  (*`{CSY} žádost o zápis do souboru {ENU} request*)
+    close            : bool;  (*`{CSY} žádost o uzavøení souboru {ENU} close opened file*)
+    size             : udint;  (*`{CSY} velikost zapisovaných dat (poèet bytù) {ENU} data length (number of bytes)*)
+  END_VAR
+  VAR_OUTPUT
+    open             : bool;  (*`{CSY} soubor je aktuálnì otevøen pro zápis {ENU} file is open, next data will be appended to rest*)
+    err              : bool;  (*`{CSY} pøíznak chyby pøi zápisu do souboru {ENU} error flag*)
+    errID            : udint;  (*`{CSY} chybový kód (0 = bez chyby) {ENU} error number (0 = no error)*)
+    actSize          : udint;  (*`{CSY} aktuální velikost souboru (poèet bytù) {ENU} actual file size (number of bytes)*)
+  END_VAR
+  VAR
+    errTrig          : R_TRIG;
+    wrSize           : udint;
+    hnd              : HANDLE;
+  END_VAR
+END_FUNCTION_BLOCK
+
+__DECL FUNCTION_BLOCK DeleteDirectories
+(*`{CSY} Vymazat obsah adresáøe vèetnì obsahu vložených podadresáøù
+
+   Smaže všechny soubory v adresáøi.
+   Max. poèet vnoøených podadresáøù = 4
+
+   {ENU} Delete content of directory including content of nested directories
+
+   Delete all files in directory.
+   Max. number of nested directories = 4*)
+  VAR_INPUT
+    exec             : bool R_EDGE;  (*`{CSY} žádost o smazání {ENU} request (rising edge)*)
+  END_VAR
+  VAR_IN_OUT
+    dirName          : string [80];  (*`{CSY} jméno adresáøe (vèetnì cesty) {ENU} dir name (including path)*)
+  END_VAR
+  VAR
+    dirStack         : ARRAY [0..4] OF TDirStack;
+    CurrFile         : string [80];
+    dirStackLev      : usint;
+    i                : usint;
+    lLocalFileInfo   : TFileInfo;
+  END_VAR
+  VAR_OUTPUT
+    Done             : bool;
+    Busy             : bool;
+    Err              : bool;
+  END_VAR
+END_FUNCTION_BLOCK
+
+__DECL FUNCTION_BLOCK ReadLine
+(*`{CSY} Naète jeden øádek ze souboru
+        Èíslo požadovaného øádku v souboru udává vstupní promìnná line.
+        První øádek v souboru má èíslo 1.
+        Požadovaný øádek je zapsán do promìnné txtLine vèetnì znakù CR a LF.
+        Promìnná txtLine musí být typu STRING s délkou rovnou nebo vìtší než maxLen.
+        Hledání øádku v souboru mùže trvat více cyklù PLC.
+        Bìhem hledání je výstup busy nastaven na TRUE,
+        pøi nalezení øádku se nastaví výstup done na TRUE (na 1 cykl PLC).
+        Pokud je øádek delší než maxLen znakù, je nastaven výstup lineContinues
+        a øádek je pøedáván po èástech, každý cykl jedna èást, poslední
+        èást má výstup lineContinues nastaven na FALSE
+        (výstup done je nastaven na TRUE u všech èástí dlouhého øádku).
+        Pokud vznikne nìjaká chyba pøi ètení souboru je nastaven chybový
+        kód do výstupu errID a promìnná errTxt obsahuje popis chyby.
+        Funkèní blok ReadLine pøedpokládá, že øádky v souboru konèí znaky CRLF (16#0D,16#0A).
+  {ENU} Read line from file
+        Number of desired line is defined by input line.
+        First line in file has number 1.
+        Desired line is stored in variable txtLine including characters CR and LF.
+        Variable txtLine have to be of type STRING with lenght equal or greater than maxLen.
+        Finding of line in file may take more than one PLC cycle.
+        Output busy is set to TRUE during searching.
+        When line is found, outpud done is set to TRUE (for one cycle of PLC).
+        If the line is longer than maxLen, output lineContinues is set and line is passed in multiple parts.
+        Every PLC cycle one part of line is passed, last part is passed with lineContinues set to FALSE.
+        (Output done is set to TRUE during passing of all parts).
+        If there is any error, output errID contains error code and output errTxt description of error.
+        Function block ReadLine assume that lines ends with characters CRLF (16#0D,16#0A).*)
+  VAR_INPUT
+    line             : udint;  (*`{CSY} Èíslo žádaného øádku (1..n)    {ENU} Number of requested line (1..n)*)
+    maxLen           : udint;  (*`{CSY} Maximalní délka øádku          {ENU} Maximal length of line*)
+  END_VAR
+  VAR_IN_OUT
+    fileName         : string [80];  (*`{CSY} Jméno souboru i s cestou       {ENU} Filename (including path)*)
+    txtLine          : string [255];  (*`{CSY} Naètený øádek ze souboru       {ENU} Line from file*)
+  END_VAR
+  VAR_OUTPUT
+    done             : bool;  (*`{CSY} Ètení ze souboru je ukonèeno   {ENU} Reading from a file is closed*)
+    busy             : bool;  (*`{CSY} Zaneprázdnìn ètením ze souboru {ENU} Busy reading from a file*)
+    err              : bool;  (*`{CSY} Pøíznak chyby                  {ENU} Error flag*)
+    lineContinues    : bool;  (*`{CSY} Øádek byl delší než maximální délka a bude pokraèovat {ENU} Line was longer than maximum lenght and will continue*)
+    actLine          : udint;  (*`{CSY} Èíslo aktuálnì naèteného øádku {ENU} Actual line number*)
+    errID            : udint;  (*`{CSY} Chybový kód (0 = bez chyby)    {ENU} Error code (0 = no error)*)
+    errTxt           : string [80];  (*`{CSY} Text poslední chyby            {ENU} The last error text*)
+  END_VAR
+  VAR
+    lastLine         : udint;  (*`cislo naposled hledaneho radku*)
+    lastFile         : string [80];  (*`jmeno souboru, se kterym se naposledy pracovalo*)
+    actPos           : udint;  (*`aktualni pozice v souboru (offset od zacatku)*)
+    actSize          : udint;  (*`pocet znaku nactenych ze souboru*)
+    i                : int;
+    index            : int;
+    outidx           : uint;
+    bufTxtReady      : bool;
+    newFile          : bool;
+    newFileTest      : bool;
+    fileInf          : TFileInfo;  (*`struktura s informacemi o souboru*)
+    empty            : word;
+    ReadFile         : ReadFromFile;
+  END_VAR
+  VAR CONSTANT
+    SEPARATOR        : ARRAY [0..1] OF byte :=  [ 16#0A, 0];
+  END_VAR
+END_FUNCTION_BLOCK
+
+
+
+{USES=ReadFromFile:FileOpen,FileSetPos,FileRead,GetLastErr,FileClose}
+{USES=WriteToFile:FileClose,FileOpen,FileSetPos,FindFreeCluster,FileWrite,GetLastErr}
+{USES=CreatePath:FileExists,FindFreeCluster,DirCreate,GetLastErr}
+{USES=WriteDbxToFile:FileClose,FileOpen,FileSetPos,FindFreeCluster,FileWrite,GetLastErr}
+{USES=ReadDbxFromFile:FileOpen,FileSetPos,FileRead,GetLastErr,FileClose}
+{USES=WriteToFileSeq:FileOpen,FileWrite,FileClose,GetLastErr}
+{USES=DeleteDirectories:DirClose,DirOpen,FileDelete,DirRead}
+{USES=ReadLine:FileInfo,GetLastErrTxt}
+#srcfile 'C:\TECOLIBSRC\FILELIB\FILELIB_V22\FILELIB_V17.ST'
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\FILELIB\FILELIB_V22\FC_FILEOPEN.ST'
+#pou FileOpen
+#srcline 19 ;FUNCTION FileOpen : HANDLE
+
+#struct FileOpen__temp__
+  HANDLE tmp  ; {CSY} identifikátor souboru {ENU} file identificator
+P     61
+FileOpen_L0:
+ LINK __SizeOf(FileOpen__temp__)
+ NXT
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 71 ;begin
+#srcline 72 ;  {asm}
+#srcline 73
+       LDX  fileName       ; A1
+#srcline 74
+       LDX  mode           ; A0
+#srcline 75
+       SYS  40             ; Api_CreateFile()
+#srcline 76
+       WRY  tmp
+#srcline 77 ;  {end_asm}
+#srcline 78 ;  FileOpen := tmp;
+ LDY  tmp
+#debug udint tmp
+ WRX  __fc__FileOpen
+#debug_left udint FileOpen
+#srcline 79 ;END_FUNCTION
+ PRV  
+ LDX  __fc__FileOpen
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\FILELIB\FILELIB_V22\FC_FILECLOSE.ST'
+#pou FileClose
+#srcline 3 ;FUNCTION FileClose : BOOL
+
+#struct FileClose__temp__
+  bool tmp
+P     61
+FileClose_L0:
+ LINK __SizeOf(FileClose__temp__)
+ NXT
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 27 ;begin
+#srcline 28 ;  {asm}
+#srcline 29
+       LD   350
+#srcline 30
+       SYS  25             ; increase max cycle time
+#srcline 31
+       LDX  hFile          ; A0
+#srcline 32
+       SYS  41             ; Api_CloseHandle()
+#srcline 33
+       WRY   tmp
+#srcline 34 ;  {end_asm}
+#srcline 35 ;  FileClose := tmp;
+ LDY  tmp
+#debug bool tmp
+ WRX  __fc__FileClose
+#debug_left bool FileClose
+#srcline 36 ;END_FUNCTION
+ PRV  
+ LDX  __fc__FileClose
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\FILELIB\FILELIB_V22\FC_FILEDELETE.ST'
+#pou FileDelete
+#srcline 3 ;FUNCTION FileDelete : BOOL
+
+#struct FileDelete__temp__
+  bool tmp
+P     61
+FileDelete_L0:
+ LINK __SizeOf(FileDelete__temp__)
+ NXT
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 29 ;begin
+#srcline 30 ;  {asm}
+#srcline 31
+       LDX  fileName       ; A0
+#srcline 32
+       SYS  42             ; Api_DeleteFile()
+#srcline 33
+       WRY  tmp
+#srcline 34 ;  {end_asm}
+#srcline 35 ;  FileDelete := tmp;
+ LDY  tmp
+#debug bool tmp
+ WRX  __fc__FileDelete
+#debug_left bool FileDelete
+#srcline 36 ;END_FUNCTION
+ PRV  
+ LDX  __fc__FileDelete
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\FILELIB\FILELIB_V22\FC_FILEREAD.ST'
+#pou FileRead
+#srcline 3 ;FUNCTION FileRead : UDINT
+
+#struct FileRead__temp__
+  udint tmp
+P     61
+FileRead_L0:
+ LINK __SizeOf(FileRead__temp__)
+ NXT
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 33 ;begin
+#srcline 34 ;  {asm}
+#srcline 35
+       LDX  hFile          ; A2
+#srcline 36
+       LDX  adrBuf         ; A1
+#srcline 37
+       LDX  size           ; A0
+#srcline 38
+       SYS  43             ; Api_ReadFile()
+#srcline 39
+       WRY  tmp
+#srcline 40 ;  {end_asm}
+#srcline 41 ;  FileRead := tmp;
+ LDY  tmp
+#debug udint tmp
+ WRX  __fc__FileRead
+#debug_left udint FileRead
+#srcline 42 ;END_FUNCTION
+ PRV  
+ LDX  __fc__FileRead
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\FILELIB\FILELIB_V22\FC_FILEWRITE.ST'
+#pou FileWrite
+#srcline 3 ;FUNCTION FileWrite : UDINT
+
+#struct FileWrite__temp__
+  udint tmp
+P     61
+FileWrite_L0:
+ LINK __SizeOf(FileWrite__temp__)
+ NXT
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 36 ;begin
+#srcline 37 ;  {asm}
+#srcline 38
+       LDX  hFile          ; A2
+#srcline 39
+       LDX  adrBuf         ; A1
+#srcline 40
+       LDX  size           ; A0
+#srcline 41
+       SYS  44             ; Api_WriteFile()
+#srcline 42
+       WRY  tmp
+#srcline 43 ;  {end_asm}
+#srcline 44 ;  FileWrite := tmp;
+ LDY  tmp
+#debug udint tmp
+ WRX  __fc__FileWrite
+#debug_left udint FileWrite
+#srcline 45 ;END_FUNCTION
+ PRV  
+ LDX  __fc__FileWrite
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\FILELIB\FILELIB_V22\FC_FILESETPOS.ST'
+#pou FileSetPos
+#srcline 8 ;FUNCTION FileSetPos : BOOL
+
+#struct FileSetPos__temp__
+  bool tmp
+P     61
+FileSetPos_L0:
+ LINK __SizeOf(FileSetPos__temp__)
+ NXT
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 37 ;begin
+#srcline 38 ;  {asm}
+#srcline 39
+       LDX  hFile          ; A1
+#srcline 40
+       LDX  offset         ; A0
+#srcline 41
+       SYS  45             ; Api_SetFilePointer()
+#srcline 42
+       WRY  tmp
+#srcline 43 ;  {end_asm}
+#srcline 44 ;  FileSetPos := tmp;
+ LDY  tmp
+#debug bool tmp
+ WRX  __fc__FileSetPos
+#debug_left bool FileSetPos
+#srcline 45 ;END_FUNCTION
+ PRV  
+ LDX  __fc__FileSetPos
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\FILELIB\FILELIB_V22\FC_FILEEXISTS.ST'
+#pou FileExists
+#srcline 2 ;FUNCTION FileExists : BOOL
+
+#struct FileExists__temp__
+  bool tmp
+P     61
+FileExists_L0:
+ LINK __SizeOf(FileExists__temp__)
+ NXT
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 23 ;begin
+#srcline 24 ;  {asm}
+#srcline 25
+       LDX  fileName       ; A0
+#srcline 26
+       SYS  46             ; Api_PathFileExists()
+#srcline 27
+       WRY   tmp
+#srcline 28 ;  {end_asm}
+#srcline 29 ;  FileExists := tmp;
+ LDY  tmp
+#debug bool tmp
+ WRX  __fc__FileExists
+#debug_left bool FileExists
+#srcline 30 ;END_FUNCTION
+ PRV  
+ LDX  __fc__FileExists
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\FILELIB\FILELIB_V22\FC_FILESIZE.ST'
+#pou FileSize
+#srcline 6 ;FUNCTION FileSize : UDINT
+
+#struct FileSize__temp__
+  udint tmp
+P     61
+FileSize_L0:
+ LINK __SizeOf(FileSize__temp__)
+ NXT
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 28 ;begin
+#srcline 29 ;  {asm}
+#srcline 30
+       LDX  hFile          ; A0
+#srcline 31
+       SYS  47             ; Api_GetFileSize()
+#srcline 32
+       WRY  tmp
+#srcline 33 ;  {end_asm}
+#srcline 34 ;  FileSize := tmp;
+ LDY  tmp
+#debug udint tmp
+ WRX  __fc__FileSize
+#debug_left udint FileSize
+#srcline 35 ;END_FUNCTION
+ PRV  
+ LDX  __fc__FileSize
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\FILELIB\FILELIB_V22\FC_DIROPEN.ST'
+#pou DirOpen
+#srcline 3 ;FUNCTION DirOpen : HANDLE
+
+#struct DirOpen__temp__
+  HANDLE tmp  ; {CSY} identifikátor souboru {ENU} file identificator
+P     61
+DirOpen_L0:
+ LINK __SizeOf(DirOpen__temp__)
+ NXT
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 35 ;begin
+#srcline 36 ;  {asm}
+#srcline 37
+       LDX  dirName        ; A1
+#srcline 38
+       LDX  dirInfo        ; A0
+#srcline 39
+       SYS  50             ; Api_FindFirstFile()
+#srcline 40
+       WRY  tmp
+#srcline 41 ;  {end_asm}
+#srcline 42 ;  DirOpen := tmp;
+ LDY  tmp
+#debug udint tmp
+ WRX  __fc__DirOpen
+#debug_left udint DirOpen
+#srcline 43 ;END_FUNCTION
+ PRV  
+ LDX  __fc__DirOpen
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\FILELIB\FILELIB_V22\FC_DIRCLOSE.ST'
+#pou DirClose
+#srcline 2 ;FUNCTION DirClose : BOOL
+
+#struct DirClose__temp__
+  bool tmp
+P     61
+DirClose_L0:
+ LINK __SizeOf(DirClose__temp__)
+ NXT
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 23 ;begin
+#srcline 24 ;  {asm}
+#srcline 25
+       LDX  hDir           ; A0
+#srcline 26
+       SYS  51             ; Api_FindClose()
+#srcline 27
+       WRY  tmp
+#srcline 28 ;  {end_asm}
+#srcline 29 ;  DirClose := tmp;
+ LDY  tmp
+#debug bool tmp
+ WRX  __fc__DirClose
+#debug_left bool DirClose
+#srcline 30 ;END_FUNCTION
+ PRV  
+ LDX  __fc__DirClose
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\FILELIB\FILELIB_V22\FC_DIRREAD.ST'
+#pou DirRead
+#srcline 2 ;FUNCTION DirRead : BOOL
+
+#struct DirRead__temp__
+  bool tmp
+P     61
+DirRead_L0:
+ LINK __SizeOf(DirRead__temp__)
+ NXT
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 31 ;begin
+#srcline 32 ;  {asm}
+#srcline 33
+       LDX  hDir           ; A1
+#srcline 34
+       LDX  dirInfo        ; A0
+#srcline 35
+       SYS  53             ; Api_FindNextFile()
+#srcline 36
+       WRY  tmp
+#srcline 37 ;  {end_asm}
+#srcline 38 ;  DirRead := tmp;
+ LDY  tmp
+#debug bool tmp
+ WRX  __fc__DirRead
+#debug_left bool DirRead
+#srcline 39 ;END_FUNCTION
+ PRV  
+ LDX  __fc__DirRead
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\FILELIB\FILELIB_V22\FC_DIRCREATE.ST'
+#pou DirCreate
+#srcline 2 ;FUNCTION DirCreate : BOOL
+
+#struct DirCreate__temp__
+  bool tmp
+P     61
+DirCreate_L0:
+ LINK __SizeOf(DirCreate__temp__)
+ NXT
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 25 ;begin
+#srcline 26 ;  {asm}
+#srcline 27
+       LD   350
+#srcline 28
+       SYS  25             ; increase max cycle time
+#srcline 29
+       LDX  dirName        ; A0
+#srcline 30
+       SYS  52             ; Api_CreateDirectory()
+#srcline 31
+       WRY  tmp
+#srcline 32 ;  {end_asm}
+#srcline 33 ;  DirCreate := tmp;
+ LDY  tmp
+#debug bool tmp
+ WRX  __fc__DirCreate
+#debug_left bool DirCreate
+#srcline 34 ;END_FUNCTION
+ PRV  
+ LDX  __fc__DirCreate
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\FILELIB\FILELIB_V22\FC_DIRDELETE.ST'
+#pou DirDelete
+#srcline 2 ;FUNCTION DirDelete : BOOL
+
+#struct DirDelete__temp__
+  bool tmp
+P     61
+DirDelete_L0:
+ LINK __SizeOf(DirDelete__temp__)
+ NXT
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 26 ;begin
+#srcline 27 ;  {asm}
+#srcline 28
+       LDX  dirName        ; A0
+#srcline 29
+       SYS  55             ; Api_RemoveDir()
+#srcline 30
+       WRY  tmp
+#srcline 31 ;  {end_asm}
+#srcline 32 ;  DirDelete := tmp;
+ LDY  tmp
+#debug bool tmp
+ WRX  __fc__DirDelete
+#debug_left bool DirDelete
+#srcline 33 ;END_FUNCTION
+ PRV  
+ LDX  __fc__DirDelete
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\FILELIB\FILELIB_V22\FC_GETLASTERR.ST'
+#pou GetLastErr
+#srcline 1 ;FUNCTION GetLastErr : UDINT
+
+#struct GetLastErr__temp__
+  udint tmp
+P     61
+GetLastErr_L0:
+ LINK __SizeOf(GetLastErr__temp__)
+ NXT
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 23 ;begin
+#srcline 24 ;  {asm}
+#srcline 25
+       SYS  58
+#srcline 26
+       WRY  tmp
+#srcline 27 ;  {end_asm}
+#srcline 28 ;  GetLastErr := tmp;
+ LDY  tmp
+#debug udint tmp
+ WRX  __fc__GetLastErr
+#debug_left udint GetLastErr
+#srcline 29 ;END_FUNCTION
+ PRV  
+ LDX  __fc__GetLastErr
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\FILELIB\FILELIB_V22\FC_GETLASTERRTXT.ST'
+#pou GetLastErrTxt
+#srcline 1 ;FUNCTION GetLastErrTxt : BOOL
+
+#struct GetLastErrTxt__temp__
+  bool tmp
+P     61
+GetLastErrTxt_L0:
+ LINK __SizeOf(GetLastErrTxt__temp__)
+ NXT
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 29 ;begin
+#srcline 30 ;  {asm}
+#srcline 31
+       LDX  errCode     ;A1
+#srcline 32
+       LDX  errMessage  ;A0
+#srcline 33
+       SYS  59
+#srcline 34
+       WRY  tmp
+#srcline 35 ;  {end_asm}
+#srcline 36 ;  GetLastErrTxt := tmp;
+ LDY  tmp
+#debug bool tmp
+ WRX  __fc__GetLastErrTxt
+#debug_left bool GetLastErrTxt
+#srcline 37 ;END_FUNCTION
+ PRV  
+ LDX  __fc__GetLastErrTxt
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\FILELIB\FILELIB_V22\FC_DISKINFO.ST'
+#pou DiskInfo
+#srcline 3 ;FUNCTION DiskInfo : BOOL
+
+#struct DiskInfo__temp__
+  bool tmp
+P     61
+DiskInfo_L0:
+ LINK __SizeOf(DiskInfo__temp__)
+ NXT
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 31 ;begin
+#srcline 32 ;  {asm}
+#srcline 33
+       LDX  diskName       ; A1
+#srcline 34
+       LDX  diskDesc       ; A0
+#srcline 35
+       SYS  56             ; Api_GetDiskFreeSpaceEx()
+#srcline 36
+       WRY  tmp
+#srcline 37 ;  {end_asm}
+#srcline 38 ;  DiskInfo := tmp;
+ LDY  tmp
+#debug bool tmp
+ WRX  __fc__DiskInfo
+#debug_left bool DiskInfo
+#srcline 39 ;END_FUNCTION
+ PRV  
+ LDX  __fc__DiskInfo
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\FILELIB\FILELIB_V22\FINDFREECLUSTER.ST'
+#pou FindFreeCluster
+#srcline 2 ;FUNCTION FindFreeCluster : BYTE
+
+#struct FindFreeCluster__temp__
+  byte tmp
+P     61
+FindFreeCluster_L0:
+ LINK __SizeOf(FindFreeCluster__temp__)
+ NXT
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 27 ;begin
+#srcline 28 ;  {asm}
+#srcline 29
+       LDX  fileName       ; A0
+#srcline 30
+       SYS  49             ; FindFreeCluster()
+#srcline 31
+       WRY   tmp
+#srcline 32 ;  {end_asm}
+#srcline 33 ;  FindFreeCluster := tmp;
+ LDY  tmp
+#debug byte tmp
+ WRX  __fc__FindFreeCluster
+#debug_left byte FindFreeCluster
+#srcline 34 ;END_FUNCTION
+ PRV  
+ LDX  __fc__FindFreeCluster
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\FILELIB\FILELIB_V22\FILEINFO.ST'
+#pou FileInfo
+#srcline 2 ;FUNCTION FileInfo : BOOL
+
+#struct FileInfo__temp__
+  bool tmp
+P     61
+FileInfo_L0:
+ LINK __SizeOf(FileInfo__temp__)
+ NXT
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 28 ;begin
+#srcline 29 ;  {asm}
+#srcline 30
+       LDX  fileName       ; A1
+#srcline 31
+       LDX  fileDesc       ; A0
+#srcline 32
+       SYS  57             ; Api_GetFileInformationByHandle()
+#srcline 33
+       WRY  tmp
+#srcline 34 ;  {end_asm}
+#srcline 35 ;  
+#srcline 36 ;  FileInfo := tmp;
+ LDY  tmp
+#debug bool tmp
+ WRX  __fc__FileInfo
+#debug_left bool FileInfo
+#srcline 37 ;END_FUNCTION
+ PRV  
+ LDX  __fc__FileInfo
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\FILELIB\FILELIB_V22\CLOSEALLFILES.ST'
+#pou CloseAllFiles
+#srcline 2 ;FUNCTION CloseAllFiles : BOOL
+
+#struct CloseAllFiles__temp__
+  bool tmp
+P     61
+CloseAllFiles_L0:
+ LINK __SizeOf(CloseAllFiles__temp__)
+ NXT
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 15 ;begin
+#srcline 16 ;  {asm}
+#srcline 17
+       LD   350
+#srcline 18
+       SYS  25             ; increase max cycle time
+#srcline 19
+       LD   -1             ; -1 == zavrit vse
+#srcline 20
+       SYS  51             ; pretizena fc_DirClose (od FW v7.5)
+#srcline 21
+       WRY   tmp
+#srcline 22 ;  {end_asm}
+#srcline 23 ;  CloseAllFiles := tmp;
+ LDY  tmp
+#debug bool tmp
+ WRX  __fc__CloseAllFiles
+#debug_left bool CloseAllFiles
+#srcline 24 ;END_FUNCTION
+ PRV  
+ LDX  __fc__CloseAllFiles
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\FILELIB\FILELIB_V22\OPENFILESCOUNT.ST'
+#pou OpenFilesCount
+#srcline 2 ;FUNCTION OpenFilesCount : UINT
+
+#struct OpenFilesCount__temp__
+  uint tmp
+P     61
+OpenFilesCount_L0:
+ LINK __SizeOf(OpenFilesCount__temp__)
+ NXT
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 15 ;begin
+#srcline 16 ;  {asm}
+#srcline 17
+       LD   -1             ; -1 == vratit pocet otevrenych souboru
+#srcline 18
+       SYS  41             ; pretizena fce fc_FileClose (od FW v7.5)
+#srcline 19
+       WRY   tmp
+#srcline 20 ;  {end_asm}
+#srcline 21 ;  OpenFilesCount := tmp;
+ LDY  tmp
+#debug uint tmp
+ WRX  __fc__OpenFilesCount
+#debug_left uint OpenFilesCount
+#srcline 22 ;END_FUNCTION
+ PRV  
+ LDX  __fc__OpenFilesCount
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\FILELIB\FILELIB_V22\READFROMFILE.ST'
+#pou ReadFromFile
+#srcline 2 ;FUNCTION_BLOCK ReadFromFile
+
+#struct ReadFromFile__temp__
+  udint restSize,
+  udint reqSize,
+  udint read
+P     61
+ReadFromFile_L0:
+ LINK __SizeOf(ReadFromFile__temp__)
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 55 ;  adrVar := PTR_TO_UDINT( ADR( dstVar));
+ LDX  dstVar
+#debug pointer dstVar
+ WRX  adrVar
+#debug_left udint adrVar
+#srcline 56 ;  execTrig( CLK := exec);
+ LDX  exec
+#debug bool exec
+ WRX  execTrig~CLK
+#debug_left bool execTrig~CLK
+ LEAX execTrig
+ CAL  R_TRIG_L0
+#srcline 58 ;  // open file and seek position
+#srcline 59 ;  IF execTrig.Q THEN
+ LDX  execTrig~Q
+#debug bool execTrig.Q
+ JMC  ReadFromFile_L1
+#srcline 60 ;    busy := TRUE; done := FALSE; err := FALSE; errID := 0; actSize := 0;
+ LD   bool -1       ; true
+ WRX  busy
+#debug_left bool busy
+ LD   bool 0       ; false
+ WRX  done
+#debug_left bool done
+ LD   bool 0       ; false
+ WRX  err
+#debug_left bool err
+ LD   udint 0
+ WRX  errID
+#debug_left udint errID
+ LD   udint 0
+ WRX  actSize
+#debug_left udint actSize
+#srcline 61 ;    errTrig( CLK := FALSE);
+ LD   bool 0       ; false
+ WRX  errTrig~CLK
+#debug_left bool errTrig~CLK
+ LEAX errTrig
+ CAL  R_TRIG_L0
+#srcline 62 ;    hnd := FileOpen(fileName := fileName, mode := F_READ);
+ NXT
+ LDX  fileName
+ WR   __Instance__FileOpen~fileName
+#debug_left pointer __Instance__FileOpen.fileName
+ LD   udint 0  ; TF_MODE#F_READ
+ WR   __Instance__FileOpen~mode
+#debug_left usint __Instance__FileOpen~mode
+ PRV
+ LEA  __Instance__FileOpen
+ CAL  FileOpen_L0
+ WRX  hnd
+#debug_left udint hnd
+#srcline 63 ;    IF hnd = INVALID_HANDLE_VALUE THEN
+ LDX  hnd
+#debug udint hnd
+ LD   udint 0
+ EQ
+ JMC  ReadFromFile_L3
+#srcline 64 ;      err := TRUE; busy := FALSE;
+ LD   bool -1       ; true
+ WRX  err
+#debug_left bool err
+ LD   bool 0       ; false
+ WRX  busy
+#debug_left bool busy
+#srcline 65 ;    ELSE
+ JMP  ReadFromFile_L4
+ReadFromFile_L3:
+#srcline 66 ;      IF seek <> 0 THEN
+ LDX  seek
+#debug udint seek
+ LD   udint 0
+ EQ
+ NEG
+ JMC  ReadFromFile_L5
+#srcline 67 ;        IF FileSetPos( hFile := hnd, offset := seek) = FALSE THEN
+ NXT
+ LDX  hnd
+#debug udint hnd
+ WR   __Instance__FileSetPos~hFile
+#debug_left udint __Instance__FileSetPos~hFile
+ LDX  seek
+#debug udint seek
+ WR   __Instance__FileSetPos~offset
+#debug_left udint __Instance__FileSetPos~offset
+ PRV
+ LEA  __Instance__FileSetPos
+ CAL  FileSetPos_L0
+ LD   bool 0       ; false
+ XOR
+ NEG
+ JMC  ReadFromFile_L7
+#srcline 68 ;          err := TRUE; busy := FALSE;
+ LD   bool -1       ; true
+ WRX  err
+#debug_left bool err
+ LD   bool 0       ; false
+ WRX  busy
+#debug_left bool busy
+#srcline 69 ;        END_IF;
+ReadFromFile_L7:
+#srcline 70 ;      END_IF;
+ReadFromFile_L5:
+#srcline 71 ;    END_IF;
+ReadFromFile_L4:
+#srcline 72 ;  END_IF;
+ReadFromFile_L1:
+#srcline 74 ;  // read data from file to variable (one sector per one PLC cycle)
+#srcline 75 ;  IF busy THEN
+ LDX  busy
+#debug bool busy
+ JMC  ReadFromFile_L9
+#srcline 76 ;    IF size > actSize THEN
+ LDX  size
+#debug udint size
+ LDX  actSize
+#debug udint actSize
+ GT
+ JMC  ReadFromFile_L11
+#srcline 77 ;      restSize := size - actSize;
+ LDX  size
+#debug udint size
+ LDX  actSize
+#debug udint actSize
+ SUB
+ WRY  restSize
+#debug_left udint restSize
+#srcline 78 ;      IF restSize > 512 THEN reqSize := 512;          // more then one sector
+ LDY  restSize
+#debug udint restSize
+ LD   udint 512
+ GT
+ JMC  ReadFromFile_L13
+ LD   udint 512
+ WRY  reqSize
+#debug_left udint reqSize
+#srcline 79 ;                        ELSE reqSize := restSize;     // last sector
+ JMP  ReadFromFile_L14
+ReadFromFile_L13:
+ LDY  restSize
+#debug udint restSize
+ WRY  reqSize
+#debug_left udint reqSize
+#srcline 80 ;      END_IF;
+ReadFromFile_L14:
+#srcline 81 ;      read := FileRead( hFile := hnd, adrBuf := adrVar + actSize, size := reqSize);
+ NXT
+ LDX  hnd
+#debug udint hnd
+ WR   __Instance__FileRead~hFile
+#debug_left udint __Instance__FileRead~hFile
+ LDX  adrVar
+#debug udint adrVar
+ LDX  actSize
+#debug udint actSize
+ ADD
+ WR   __Instance__FileRead~adrBuf
+#debug_left udint __Instance__FileRead~adrBuf
+ LDY  reqSize
+#debug udint reqSize
+ WR   __Instance__FileRead~size
+#debug_left udint __Instance__FileRead~size
+ PRV
+ LEA  __Instance__FileRead
+ CAL  FileRead_L0
+ WRY  read
+#debug_left udint read
+#srcline 82 ;      actSize := actSize + read;
+ LDX  actSize
+#debug udint actSize
+ LDY  read
+#debug udint read
+ ADD
+ WRX  actSize
+#debug_left udint actSize
+#srcline 83 ;      IF read <> reqSize THEN
+ LDY  read
+#debug udint read
+ LDY  reqSize
+#debug udint reqSize
+ EQ
+ NEG
+ JMC  ReadFromFile_L15
+#srcline 84 ;        busy := FALSE;
+ LD   bool 0       ; false
+ WRX  busy
+#debug_left bool busy
+#srcline 85 ;        IF read > 0 THEN
+ LDY  read
+#debug udint read
+ LD   udint 0
+ GT
+ JMC  ReadFromFile_L17
+#srcline 86 ;          done := TRUE;           // end of file
+ LD   bool -1       ; true
+ WRX  done
+#debug_left bool done
+#srcline 87 ;        ELSE
+ JMP  ReadFromFile_L18
+ReadFromFile_L17:
+#srcline 88 ;          IF GetLastErr() = 0 THEN
+ LEA  __Instance__GetLastErr
+ CAL  GetLastErr_L0
+ LD   udint 0
+ EQ
+ JMC  ReadFromFile_L19
+#srcline 89 ;            done := TRUE;         // end of file
+ LD   bool -1       ; true
+ WRX  done
+#debug_left bool done
+#srcline 90 ;          ELSE
+ JMP  ReadFromFile_L20
+ReadFromFile_L19:
+#srcline 91 ;            err  := TRUE;         // propably any error
+ LD   bool -1       ; true
+ WRX  err
+#debug_left bool err
+#srcline 92 ;          END_IF;
+ReadFromFile_L20:
+#srcline 93 ;        END_IF;
+ReadFromFile_L18:
+#srcline 94 ;      ELSE
+ JMP  ReadFromFile_L16
+ReadFromFile_L15:
+#srcline 95 ;        IF actSize = size THEN
+ LDX  actSize
+#debug udint actSize
+ LDX  size
+#debug udint size
+ EQ
+ JMC  ReadFromFile_L21
+#srcline 96 ;          done := TRUE; busy := FALSE;
+ LD   bool -1       ; true
+ WRX  done
+#debug_left bool done
+ LD   bool 0       ; false
+ WRX  busy
+#debug_left bool busy
+#srcline 97 ;        END_IF;
+ReadFromFile_L21:
+#srcline 98 ;      END_IF;
+ReadFromFile_L16:
+#srcline 99 ;    ELSE
+ JMP  ReadFromFile_L12
+ReadFromFile_L11:
+#srcline 100 ;      done := TRUE;
+ LD   bool -1       ; true
+ WRX  done
+#debug_left bool done
+#srcline 101 ;    END_IF;
+ReadFromFile_L12:
+#srcline 102 ;  ELSE
+ JMP  ReadFromFile_L10
+ReadFromFile_L9:
+#srcline 103 ;    done := done AND exec;
+ LDX  done
+#debug bool done
+ LDX  exec
+#debug bool exec
+ AND
+ WRX  done
+#debug_left bool done
+#srcline 104 ;    err  := err  AND exec;
+ LDX  err
+#debug bool err
+ LDX  exec
+#debug bool exec
+ AND
+ WRX  err
+#debug_left bool err
+#srcline 105 ;  END_IF;
+ReadFromFile_L10:
+#srcline 107 ;  // set error code, if any
+#srcline 108 ;  errTrig( CLK := err);
+ LDX  err
+#debug bool err
+ WRX  errTrig~CLK
+#debug_left bool errTrig~CLK
+ LEAX errTrig
+ CAL  R_TRIG_L0
+#srcline 109 ;  IF errTrig.Q THEN
+ LDX  errTrig~Q
+#debug bool errTrig.Q
+ JMC  ReadFromFile_L23
+#srcline 110 ;    errID := GetLastErr();
+ LEA  __Instance__GetLastErr
+ CAL  GetLastErr_L0
+ WRX  errID
+#debug_left udint errID
+#srcline 111 ;  END_IF;
+ReadFromFile_L23:
+#srcline 113 ;  // close file
+#srcline 114 ;  IF errTrig.Q OR done THEN
+ LDX  errTrig~Q
+#debug bool errTrig.Q
+ LDX  done
+#debug bool done
+ OR  
+ JMC  ReadFromFile_L25
+#srcline 115 ;    IF hnd <> INVALID_HANDLE_VALUE THEN
+ LDX  hnd
+#debug udint hnd
+ LD   udint 0
+ EQ
+ NEG
+ JMC  ReadFromFile_L27
+#srcline 116 ;      IF FileClose( hFile := hnd) THEN
+ NXT
+ LDX  hnd
+#debug udint hnd
+ WR   __Instance__FileClose~hFile
+#debug_left udint __Instance__FileClose~hFile
+ PRV
+ LEA  __Instance__FileClose
+ CAL  FileClose_L0
+ JMC  ReadFromFile_L29
+#srcline 117 ;        hnd := INVALID_HANDLE_VALUE;
+ LD   udint 0
+ WRX  hnd
+#debug_left udint hnd
+#srcline 118 ;      END_IF;
+ReadFromFile_L29:
+#srcline 119 ;    END_IF;
+ReadFromFile_L27:
+#srcline 120 ;  END_IF;
+ReadFromFile_L25:
+#srcline 121 ;END_FUNCTION_BLOCK
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\FILELIB\FILELIB_V22\WRITETOFILE.ST'
+#pou WriteToFile
+#srcline 2 ;FUNCTION_BLOCK WriteToFile
+
+#struct WriteToFile__temp__
+  udint restSize,
+  udint written,
+  udint reqSize,
+  usint mode,
+  byte res
+P     61
+WriteToFile_L0:
+ LINK __SizeOf(WriteToFile__temp__)
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 61 ;  adrVar := PTR_TO_UDINT( ADR( srcVar));
+ LDX  srcVar
+#debug pointer srcVar
+ WRX  adrVar
+#debug_left udint adrVar
+#srcline 62 ;  eTrig(CLK := exec);
+ LDX  exec
+#debug bool exec
+ WRX  eTrig~CLK
+#debug_left bool eTrig~CLK
+ LEAX eTrig
+ CAL  R_TRIG_L0
+#srcline 63 ;  IF idle <> 0 THEN idle := idle - 1; RETURN; END_IF; // wait 32 cycles after file create
+ LDX  idle
+#debug uint idle
+ LD   uint 0
+ EQ
+ NEG
+ JMC  WriteToFile_L1
+ LDX  idle
+#debug uint idle
+ LD   uint 1
+ SUB
+ AND  $FFFF
+ WRX  idle
+#debug_left uint idle
+ JMP  WriteToFile_RET
+WriteToFile_L1:
+#srcline 65 ;  // open file and seek position
+#srcline 66 ;  IF eTrig.Q THEN
+ LDX  eTrig~Q
+#debug bool eTrig.Q
+ JMC  WriteToFile_L3
+#srcline 67 ;    IF hnd <> INVALID_HANDLE_VALUE THEN
+ LDX  hnd
+#debug udint hnd
+ LD   udint 0
+ EQ
+ NEG
+ JMC  WriteToFile_L5
+#srcline 68 ;      FileClose( hFile := hnd);
+ NXT
+ LDX  hnd
+#debug udint hnd
+ WR   __Instance__FileClose~hFile
+#debug_left udint __Instance__FileClose~hFile
+ PRV
+ LEA  __Instance__FileClose
+ CAL  FileClose_L0
+#srcline 69 ;    END_IF;
+WriteToFile_L5:
+#srcline 70 ;    busy := TRUE; done := FALSE; err := FALSE; errID := 0; actSize := 0;
+ LD   bool -1       ; true
+ WRX  busy
+#debug_left bool busy
+ LD   bool 0       ; false
+ WRX  done
+#debug_left bool done
+ LD   bool 0       ; false
+ WRX  err
+#debug_left bool err
+ LD   udint 0
+ WRX  errID
+#debug_left udint errID
+ LD   udint 0
+ WRX  actSize
+#debug_left udint actSize
+#srcline 71 ;    errTrig( CLK := FALSE);
+ LD   bool 0       ; false
+ WRX  errTrig~CLK
+#debug_left bool errTrig~CLK
+ LEAX errTrig
+ CAL  R_TRIG_L0
+#srcline 72 ;    IF seek = 0 THEN mode := F_WRITE; ELSE mode := F_APPEND; END_IF;
+ LDX  seek
+#debug udint seek
+ LD   udint 0
+ EQ
+ JMC  WriteToFile_L7
+ LD   udint 1  ; TF_MODE#F_WRITE
+ WRY  mode
+#debug_left usint mode
+ JMP  WriteToFile_L8
+WriteToFile_L7:
+ LD   udint 2  ; TF_MODE#F_APPEND
+ WRY  mode
+#debug_left usint mode
+WriteToFile_L8:
+#srcline 73 ;    hnd := FileOpen( fileName := fileName, mode := mode);
+ NXT
+ LDX  fileName
+ WR   __Instance__FileOpen~fileName
+#debug_left pointer __Instance__FileOpen.fileName
+ LDY  mode
+#debug usint mode
+ WR   __Instance__FileOpen~mode
+#debug_left usint __Instance__FileOpen~mode
+ PRV
+ LEA  __Instance__FileOpen
+ CAL  FileOpen_L0
+ WRX  hnd
+#debug_left udint hnd
+#srcline 74 ;    IF hnd = INVALID_HANDLE_VALUE THEN
+ LDX  hnd
+#debug udint hnd
+ LD   udint 0
+ EQ
+ JMC  WriteToFile_L9
+#srcline 75 ;      err := TRUE; busy := FALSE;
+ LD   bool -1       ; true
+ WRX  err
+#debug_left bool err
+ LD   bool 0       ; false
+ WRX  busy
+#debug_left bool busy
+#srcline 76 ;    ELSE
+ JMP  WriteToFile_L10
+WriteToFile_L9:
+#srcline 77 ;      idle := 32;
+ LD   uint 32
+ WRX  idle
+#debug_left uint idle
+#srcline 78 ;      IF seek <> 0 AND seek <> 16#FFFF_FFFF THEN
+ LDX  seek
+#debug udint seek
+ LD   udint 0
+ EQ
+ NEG
+ LDX  seek
+#debug udint seek
+ LD   udint $FFFFFFFF
+ EQ
+ NEG
+ AND
+ JMC  WriteToFile_L11
+#srcline 79 ;        IF FileSetPos( hFile := hnd, offset := seek) = FALSE THEN
+ NXT
+ LDX  hnd
+#debug udint hnd
+ WR   __Instance__FileSetPos~hFile
+#debug_left udint __Instance__FileSetPos~hFile
+ LDX  seek
+#debug udint seek
+ WR   __Instance__FileSetPos~offset
+#debug_left udint __Instance__FileSetPos~offset
+ PRV
+ LEA  __Instance__FileSetPos
+ CAL  FileSetPos_L0
+ LD   bool 0       ; false
+ XOR
+ NEG
+ JMC  WriteToFile_L13
+#srcline 80 ;          err := TRUE; busy := FALSE;
+ LD   bool -1       ; true
+ WRX  err
+#debug_left bool err
+ LD   bool 0       ; false
+ WRX  busy
+#debug_left bool busy
+#srcline 81 ;        END_IF;
+WriteToFile_L13:
+#srcline 82 ;      END_IF;
+WriteToFile_L11:
+#srcline 83 ;    END_IF;
+WriteToFile_L10:
+#srcline 84 ;  END_IF;
+WriteToFile_L3:
+#srcline 86 ;  // write data to file to variable (one sector per one PLC cycle)
+#srcline 87 ;  IF busy THEN
+ LDX  busy
+#debug bool busy
+ JMC  WriteToFile_L15
+#srcline 88 ;    IF size > actSize THEN
+ LDX  size
+#debug udint size
+ LDX  actSize
+#debug udint actSize
+ GT
+ JMC  WriteToFile_L17
+#srcline 89 ;      restSize := size - actSize;
+ LDX  size
+#debug udint size
+ LDX  actSize
+#debug udint actSize
+ SUB
+ WRY  restSize
+#debug_left udint restSize
+#srcline 90 ;      IF restSize > 512 THEN reqSize := 512;          // more then one sector
+ LDY  restSize
+#debug udint restSize
+ LD   udint 512
+ GT
+ JMC  WriteToFile_L19
+ LD   udint 512
+ WRY  reqSize
+#debug_left udint reqSize
+#srcline 91 ;                        ELSE reqSize := restSize;     // last sector
+ JMP  WriteToFile_L20
+WriteToFile_L19:
+ LDY  restSize
+#debug udint restSize
+ WRY  reqSize
+#debug_left udint reqSize
+#srcline 92 ;      END_IF;
+WriteToFile_L20:
+#srcline 93 ;      res := FindFreeCluster(fileName := fileName);
+ NXT
+ LDX  fileName
+ WR   __Instance__FindFreeCluster~fileName
+#debug_left pointer __Instance__FindFreeCluster.fileName
+ PRV
+ LEA  __Instance__FindFreeCluster
+ CAL  FindFreeCluster_L0
+ WRY  res
+#debug_left byte res
+#srcline 94 ;      IF res = 0 THEN
+ LDY  res
+#debug byte res
+ LD   byte 0
+ EQ
+ JMC  WriteToFile_L21
+#srcline 95 ;        written := FileWrite(hFile := hnd, adrBuf := adrVar + actSize, size := reqSize);
+ NXT
+ LDX  hnd
+#debug udint hnd
+ WR   __Instance__FileWrite~hFile
+#debug_left udint __Instance__FileWrite~hFile
+ LDX  adrVar
+#debug udint adrVar
+ LDX  actSize
+#debug udint actSize
+ ADD
+ WR   __Instance__FileWrite~adrBuf
+#debug_left udint __Instance__FileWrite~adrBuf
+ LDY  reqSize
+#debug udint reqSize
+ WR   __Instance__FileWrite~size
+#debug_left udint __Instance__FileWrite~size
+ PRV
+ LEA  __Instance__FileWrite
+ CAL  FileWrite_L0
+ WRY  written
+#debug_left udint written
+#srcline 96 ;        actSize := actSize + written;
+ LDX  actSize
+#debug udint actSize
+ LDY  written
+#debug udint written
+ ADD
+ WRX  actSize
+#debug_left udint actSize
+#srcline 97 ;        IF written <> reqSize THEN
+ LDY  written
+#debug udint written
+ LDY  reqSize
+#debug udint reqSize
+ EQ
+ NEG
+ JMC  WriteToFile_L23
+#srcline 98 ;          busy := FALSE; err := TRUE;
+ LD   bool 0       ; false
+ WRX  busy
+#debug_left bool busy
+ LD   bool -1       ; true
+ WRX  err
+#debug_left bool err
+#srcline 99 ;        ELSE
+ JMP  WriteToFile_L24
+WriteToFile_L23:
+#srcline 100 ;          IF actSize = size THEN
+ LDX  actSize
+#debug udint actSize
+ LDX  size
+#debug udint size
+ EQ
+ JMC  WriteToFile_L25
+#srcline 101 ;            done := TRUE; busy := FALSE;
+ LD   bool -1       ; true
+ WRX  done
+#debug_left bool done
+ LD   bool 0       ; false
+ WRX  busy
+#debug_left bool busy
+#srcline 102 ;          END_IF;
+WriteToFile_L25:
+#srcline 103 ;        END_IF;
+WriteToFile_L24:
+#srcline 104 ;      ELSE
+ JMP  WriteToFile_L22
+WriteToFile_L21:
+#srcline 105 ;        IF res <> 13 THEN
+ LDY  res
+#debug byte res
+ LD   byte 13
+ EQ
+ NEG
+ JMC  WriteToFile_L27
+#srcline 106 ;          busy := FALSE; err := TRUE;      // disk full or not mounted
+ LD   bool 0       ; false
+ WRX  busy
+#debug_left bool busy
+ LD   bool -1       ; true
+ WRX  err
+#debug_left bool err
+#srcline 107 ;        END_IF;
+WriteToFile_L27:
+#srcline 108 ;      END_IF;
+WriteToFile_L22:
+#srcline 109 ;    ELSE
+ JMP  WriteToFile_L18
+WriteToFile_L17:
+#srcline 110 ;      done := TRUE;
+ LD   bool -1       ; true
+ WRX  done
+#debug_left bool done
+#srcline 111 ;    END_IF;
+WriteToFile_L18:
+#srcline 112 ;  ELSE
+ JMP  WriteToFile_L16
+WriteToFile_L15:
+#srcline 113 ;    done := done AND exec;
+ LDX  done
+#debug bool done
+ LDX  exec
+#debug bool exec
+ AND
+ WRX  done
+#debug_left bool done
+#srcline 114 ;    err  := err  AND exec;
+ LDX  err
+#debug bool err
+ LDX  exec
+#debug bool exec
+ AND
+ WRX  err
+#debug_left bool err
+#srcline 115 ;  END_IF;
+WriteToFile_L16:
+#srcline 117 ;  // set error code, if any
+#srcline 118 ;  errTrig( CLK := err);
+ LDX  err
+#debug bool err
+ WRX  errTrig~CLK
+#debug_left bool errTrig~CLK
+ LEAX errTrig
+ CAL  R_TRIG_L0
+#srcline 119 ;  IF errTrig.Q THEN
+ LDX  errTrig~Q
+#debug bool errTrig.Q
+ JMC  WriteToFile_L29
+#srcline 120 ;    errID := GetLastErr();
+ LEA  __Instance__GetLastErr
+ CAL  GetLastErr_L0
+ WRX  errID
+#debug_left udint errID
+#srcline 121 ;  END_IF;
+WriteToFile_L29:
+#srcline 123 ;  // close file
+#srcline 124 ;  IF errTrig.Q OR done THEN
+ LDX  errTrig~Q
+#debug bool errTrig.Q
+ LDX  done
+#debug bool done
+ OR  
+ JMC  WriteToFile_L31
+#srcline 125 ;    IF hnd <> INVALID_HANDLE_VALUE THEN
+ LDX  hnd
+#debug udint hnd
+ LD   udint 0
+ EQ
+ NEG
+ JMC  WriteToFile_L33
+#srcline 126 ;      IF FileClose( hFile := hnd) THEN
+ NXT
+ LDX  hnd
+#debug udint hnd
+ WR   __Instance__FileClose~hFile
+#debug_left udint __Instance__FileClose~hFile
+ PRV
+ LEA  __Instance__FileClose
+ CAL  FileClose_L0
+ JMC  WriteToFile_L35
+#srcline 127 ;        hnd := INVALID_HANDLE_VALUE;
+ LD   udint 0
+ WRX  hnd
+#debug_left udint hnd
+#srcline 128 ;      END_IF;
+WriteToFile_L35:
+#srcline 129 ;    END_IF;
+WriteToFile_L33:
+#srcline 130 ;  END_IF;
+WriteToFile_L31:
+#srcline 132 ;  IF NOT busy THEN idle := 0; END_IF;      // od v1.3
+ LDX  busy
+#debug bool busy
+ NEG
+ JMC  WriteToFile_L37
+ LD   uint 0
+ WRX  idle
+#debug_left uint idle
+WriteToFile_L37:
+#srcline 133 ;END_FUNCTION_BLOCK
+WriteToFile_RET:
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\FILELIB\FILELIB_V22\CREATEPATH.ST'
+#pou CreatePath
+#srcline 1 ;FUNCTION_BLOCK CreatePath
+
+#struct CreatePath__temp__
+  string[81] tmp,
+  int pos,
+  bool ok,
+  byte res,
+  string[82] PS0__st__
+#data byte _str_CreatePath_0 = 
+  '',0
+#data byte _str_CreatePath_1 = 
+  '/',0
+P     61
+CreatePath_L0:
+ LINK __SizeOf(CreatePath__temp__)
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 58 ;  eTrig(CLK := exec);
+ LDX  exec
+#debug bool exec
+ WRX  eTrig~CLK
+#debug_left bool eTrig~CLK
+ LEAX eTrig
+ CAL  R_TRIG_L0
+#srcline 59 ;  IF eTrig.Q THEN
+ LDX  eTrig~Q
+#debug bool eTrig.Q
+ JMC  CreatePath_L1
+#srcline 60 ;    busy := TRUE; done := FALSE; err := FALSE; errID := 0; idle := 0;
+ LD   bool -1       ; true
+ WRX  busy
+#debug_left bool busy
+ LD   bool 0       ; false
+ WRX  done
+#debug_left bool done
+ LD   bool 0       ; false
+ WRX  err
+#debug_left bool err
+ LD   udint 0
+ WRX  errID
+#debug_left udint errID
+ LD   uint 0
+ WRX  idle
+#debug_left uint idle
+#srcline 61 ;    path := ''; copy := fileName; createDir := FALSE;
+ LD   0   ; null string
+ LEAX path
+ WRI  
+ LEAX path
+ LD   80
+ DST    ; Level 1
+ LEA  _str_CreatePath_0
+ SCON 
+#debug_left string path
+ PDST   ; Level 1
+ LD   0   ; null string
+ LEAX copy
+ WRI  
+ LEAX copy
+ LD   80
+ DST    ; Level 1
+ LDX  fileName
+#debug string fileName
+ SCON 
+#debug_left string copy
+ PDST   ; Level 1
+ LD   bool 0       ; false
+ WRX  createDir
+#debug_left bool createDir
+#srcline 62 ;    errTrig( CLK := FALSE);
+ LD   bool 0       ; false
+ WRX  errTrig~CLK
+#debug_left bool errTrig~CLK
+ LEAX errTrig
+ CAL  R_TRIG_L0
+#srcline 63 ;  END_IF;
+CreatePath_L1:
+#srcline 65 ;  IF idle <> 0 THEN idle := idle - 1; RETURN; END_IF;
+ LDX  idle
+#debug uint idle
+ LD   uint 0
+ EQ
+ NEG
+ JMC  CreatePath_L3
+ LDX  idle
+#debug uint idle
+ LD   uint 1
+ SUB
+ AND  $FFFF
+ WRX  idle
+#debug_left uint idle
+ JMP  CreatePath_RET
+CreatePath_L3:
+#srcline 66 ;  
+#srcline 67 ;  // check path and create it if path does not exist
+#srcline 68 ;  IF busy THEN
+ LDX  busy
+#debug bool busy
+ JMC  CreatePath_L5
+#srcline 69 ;    IF NOT createDir THEN
+ LDX  createDir
+#debug bool createDir
+ NEG
+ JMC  CreatePath_L7
+#srcline 70 ;      pos := FIND(IN1 := copy, IN2 := '/');
+ LEAX copy
+#debug string copy
+ LEA  _str_CreatePath_1
+ SFND 
+ WRY  pos
+#debug_left int pos
+#srcline 71 ;      IF pos <> 0 THEN
+ LDY  pos
+#debug int pos
+ EXTW 
+ LD   int 0
+ EQ
+ NEG
+ JMC  CreatePath_L9
+#srcline 72 ;        tmp  := LEFT(IN := copy, L := pos);
+ LD   0   ; null string
+ WRY  PS0__st__[0]
+ LEAY PS0__st__[0]
+ LD   80
+ DST    ; Level 1
+ LEAX copy
+#debug string copy
+ LDY  pos
+#debug int pos
+ EXTW 
+ SLFT 
+ PDST   ; Level 1
+ LD   0   ; null string
+ LEAY tmp
+ WRI  
+ LEAY tmp
+ LD   80
+ DST    ; Level 1
+ LEAY PS0__st__[0]
+ SCON 
+#debug_left string tmp
+ PDST   ; Level 1
+#srcline 73 ;        path := CONCAT(IN1 := path, IN2 := tmp);
+ LD   0   ; null string
+ WRY  PS0__st__[0]
+ LEAY PS0__st__[0]
+ LD   80
+ DST    ; Level 1
+ LEAX path
+#debug string path
+ SCON
+ LEAY tmp
+#debug string tmp
+
+ SCON 
+ PDST   ; Level 1
+ LD   0   ; null string
+ LEAX path
+ WRI  
+ LEAX path
+ LD   80
+ DST    ; Level 1
+ LEAY PS0__st__[0]
+ SCON 
+#debug_left string path
+ PDST   ; Level 1
+#srcline 74 ;        copy := DELETE(IN := copy, L := pos, P := 1);
+ LD   0   ; null string
+ WRY  PS0__st__[0]
+ LEAY PS0__st__[0]
+ LD   80
+ DST    ; Level 1
+ LEAX copy
+#debug string copy
+ LDY  pos
+#debug int pos
+ EXTW 
+ LD   1
+ SUB  1
+ SDEL 
+ PDST   ; Level 1
+ LD   0   ; null string
+ LEAX copy
+ WRI  
+ LEAX copy
+ LD   80
+ DST    ; Level 1
+ LEAY PS0__st__[0]
+ SCON 
+#debug_left string copy
+ PDST   ; Level 1
+#srcline 75 ;        IF NOT FileExists( fileName := path) THEN
+ NXT
+ LEAX path
+ WR   __Instance__FileExists~fileName
+#debug_left pointer __Instance__FileExists.fileName
+ PRV
+ LEA  __Instance__FileExists
+ CAL  FileExists_L0
+ NEG
+ JMC  CreatePath_L11
+#srcline 76 ;          createDir := TRUE;
+ LD   bool -1       ; true
+ WRX  createDir
+#debug_left bool createDir
+#srcline 77 ;        END_IF;
+CreatePath_L11:
+#srcline 78 ;      ELSE
+ JMP  CreatePath_L10
+CreatePath_L9:
+#srcline 79 ;        busy := FALSE; done := TRUE;
+ LD   bool 0       ; false
+ WRX  busy
+#debug_left bool busy
+ LD   bool -1       ; true
+ WRX  done
+#debug_left bool done
+#srcline 80 ;      END_IF;
+CreatePath_L10:
+#srcline 81 ;    ELSE
+ JMP  CreatePath_L8
+CreatePath_L7:
+#srcline 82 ;      res := FindFreeCluster(fileName := fileName);
+ NXT
+ LDX  fileName
+ WR   __Instance__FindFreeCluster~fileName
+#debug_left pointer __Instance__FindFreeCluster.fileName
+ PRV
+ LEA  __Instance__FindFreeCluster
+ CAL  FindFreeCluster_L0
+ WRY  res
+#debug_left byte res
+#srcline 83 ;      IF res = 0 THEN
+ LDY  res
+#debug byte res
+ LD   byte 0
+ EQ
+ JMC  CreatePath_L13
+#srcline 84 ;        createDir := FALSE; idle := 32;         // wait 32 cycles after dir create
+ LD   bool 0       ; false
+ WRX  createDir
+#debug_left bool createDir
+ LD   uint 32
+ WRX  idle
+#debug_left uint idle
+#srcline 85 ;        ok := DirCreate( dirName := path);
+ NXT
+ LEAX path
+ WR   __Instance__DirCreate~dirName
+#debug_left pointer __Instance__DirCreate.dirName
+ PRV
+ LEA  __Instance__DirCreate
+ CAL  DirCreate_L0
+ WRY  ok
+#debug_left bool ok
+#srcline 86 ;        IF NOT ok THEN
+ LDY  ok
+#debug bool ok
+ NEG
+ JMC  CreatePath_L15
+#srcline 87 ;          err := TRUE; busy := FALSE;             // dir was not created
+ LD   bool -1       ; true
+ WRX  err
+#debug_left bool err
+ LD   bool 0       ; false
+ WRX  busy
+#debug_left bool busy
+#srcline 88 ;        END_IF;
+CreatePath_L15:
+#srcline 89 ;      ELSE
+ JMP  CreatePath_L14
+CreatePath_L13:
+#srcline 90 ;        IF res <> 13 THEN
+ LDY  res
+#debug byte res
+ LD   byte 13
+ EQ
+ NEG
+ JMC  CreatePath_L17
+#srcline 91 ;          err := TRUE; busy := FALSE;             // error disk full or not mounted
+ LD   bool -1       ; true
+ WRX  err
+#debug_left bool err
+ LD   bool 0       ; false
+ WRX  busy
+#debug_left bool busy
+#srcline 92 ;        END_IF;
+CreatePath_L17:
+#srcline 93 ;      END_IF;
+CreatePath_L14:
+#srcline 94 ;    END_IF;
+CreatePath_L8:
+#srcline 95 ;  END_IF;
+CreatePath_L5:
+#srcline 97 ;  // set error code, if any
+#srcline 98 ;  errTrig( CLK := err);
+ LDX  err
+#debug bool err
+ WRX  errTrig~CLK
+#debug_left bool errTrig~CLK
+ LEAX errTrig
+ CAL  R_TRIG_L0
+#srcline 99 ;  IF errTrig.Q THEN
+ LDX  errTrig~Q
+#debug bool errTrig.Q
+ JMC  CreatePath_L19
+#srcline 100 ;    errID := GetLastErr();
+ LEA  __Instance__GetLastErr
+ CAL  GetLastErr_L0
+ WRX  errID
+#debug_left udint errID
+#srcline 101 ;  END_IF;
+CreatePath_L19:
+#srcline 103 ;END_FUNCTION_BLOCK
+CreatePath_RET:
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\FILELIB\FILELIB_V22\WRITEDBXTOFILE.ST'
+#pou WriteDbxToFile
+#srcline 1 ;FUNCTION_BLOCK WriteDbxToFile
+
+#struct WriteDbxToFile__temp__
+  udint restSize,
+  udint written,
+  udint reqSize,
+  usint mode,
+  byte res
+P     61
+WriteDbxToFile_L0:
+ LINK __SizeOf(WriteDbxToFile__temp__)
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 65 ;  adrVar := srcAdr + 16#8000_0000;         // + databox flag
+ LDX  srcAdr
+#debug udint srcAdr
+ LD   udint $80000000
+ ADD
+ WRX  adrVar
+#debug_left udint adrVar
+#srcline 66 ;  eTrig(CLK := exec);
+ LDX  exec
+#debug bool exec
+ WRX  eTrig~CLK
+#debug_left bool eTrig~CLK
+ LEAX eTrig
+ CAL  R_TRIG_L0
+#srcline 67 ;  IF idle <> 0 THEN idle := idle - 1; RETURN; END_IF; // wait 32 cycles after file create
+ LDX  idle
+#debug uint idle
+ LD   uint 0
+ EQ
+ NEG
+ JMC  WriteDbxToFile_L1
+ LDX  idle
+#debug uint idle
+ LD   uint 1
+ SUB
+ AND  $FFFF
+ WRX  idle
+#debug_left uint idle
+ JMP  WriteDbxToFile_RET
+WriteDbxToFile_L1:
+#srcline 69 ;  // open file and seek position
+#srcline 70 ;  IF eTrig.Q THEN
+ LDX  eTrig~Q
+#debug bool eTrig.Q
+ JMC  WriteDbxToFile_L3
+#srcline 71 ;    IF hnd <> INVALID_HANDLE_VALUE THEN
+ LDX  hnd
+#debug udint hnd
+ LD   udint 0
+ EQ
+ NEG
+ JMC  WriteDbxToFile_L5
+#srcline 72 ;      FileClose( hFile := hnd);
+ NXT
+ LDX  hnd
+#debug udint hnd
+ WR   __Instance__FileClose~hFile
+#debug_left udint __Instance__FileClose~hFile
+ PRV
+ LEA  __Instance__FileClose
+ CAL  FileClose_L0
+#srcline 73 ;    END_IF;
+WriteDbxToFile_L5:
+#srcline 74 ;    busy := TRUE; done := FALSE; err := FALSE; errID := 0; actSize := 0;
+ LD   bool -1       ; true
+ WRX  busy
+#debug_left bool busy
+ LD   bool 0       ; false
+ WRX  done
+#debug_left bool done
+ LD   bool 0       ; false
+ WRX  err
+#debug_left bool err
+ LD   udint 0
+ WRX  errID
+#debug_left udint errID
+ LD   udint 0
+ WRX  actSize
+#debug_left udint actSize
+#srcline 75 ;    errTrig( CLK := FALSE);
+ LD   bool 0       ; false
+ WRX  errTrig~CLK
+#debug_left bool errTrig~CLK
+ LEAX errTrig
+ CAL  R_TRIG_L0
+#srcline 76 ;    IF seek = 0 THEN mode := F_WRITE; ELSE mode := F_APPEND; END_IF;
+ LDX  seek
+#debug udint seek
+ LD   udint 0
+ EQ
+ JMC  WriteDbxToFile_L7
+ LD   udint 1  ; TF_MODE#F_WRITE
+ WRY  mode
+#debug_left usint mode
+ JMP  WriteDbxToFile_L8
+WriteDbxToFile_L7:
+ LD   udint 2  ; TF_MODE#F_APPEND
+ WRY  mode
+#debug_left usint mode
+WriteDbxToFile_L8:
+#srcline 77 ;    hnd := FileOpen( fileName := fileName, mode := mode);
+ NXT
+ LDX  fileName
+ WR   __Instance__FileOpen~fileName
+#debug_left pointer __Instance__FileOpen.fileName
+ LDY  mode
+#debug usint mode
+ WR   __Instance__FileOpen~mode
+#debug_left usint __Instance__FileOpen~mode
+ PRV
+ LEA  __Instance__FileOpen
+ CAL  FileOpen_L0
+ WRX  hnd
+#debug_left udint hnd
+#srcline 78 ;    IF hnd = INVALID_HANDLE_VALUE THEN
+ LDX  hnd
+#debug udint hnd
+ LD   udint 0
+ EQ
+ JMC  WriteDbxToFile_L9
+#srcline 79 ;      err := TRUE; busy := FALSE;
+ LD   bool -1       ; true
+ WRX  err
+#debug_left bool err
+ LD   bool 0       ; false
+ WRX  busy
+#debug_left bool busy
+#srcline 80 ;    ELSE
+ JMP  WriteDbxToFile_L10
+WriteDbxToFile_L9:
+#srcline 81 ;      idle := 32;
+ LD   uint 32
+ WRX  idle
+#debug_left uint idle
+#srcline 82 ;      IF seek <> 0 AND seek <> 16#FFFF_FFFF THEN
+ LDX  seek
+#debug udint seek
+ LD   udint 0
+ EQ
+ NEG
+ LDX  seek
+#debug udint seek
+ LD   udint $FFFFFFFF
+ EQ
+ NEG
+ AND
+ JMC  WriteDbxToFile_L11
+#srcline 83 ;        IF FileSetPos( hFile := hnd, offset := seek) = FALSE THEN
+ NXT
+ LDX  hnd
+#debug udint hnd
+ WR   __Instance__FileSetPos~hFile
+#debug_left udint __Instance__FileSetPos~hFile
+ LDX  seek
+#debug udint seek
+ WR   __Instance__FileSetPos~offset
+#debug_left udint __Instance__FileSetPos~offset
+ PRV
+ LEA  __Instance__FileSetPos
+ CAL  FileSetPos_L0
+ LD   bool 0       ; false
+ XOR
+ NEG
+ JMC  WriteDbxToFile_L13
+#srcline 84 ;          err := TRUE; busy := FALSE;
+ LD   bool -1       ; true
+ WRX  err
+#debug_left bool err
+ LD   bool 0       ; false
+ WRX  busy
+#debug_left bool busy
+#srcline 85 ;        END_IF;
+WriteDbxToFile_L13:
+#srcline 86 ;      END_IF;
+WriteDbxToFile_L11:
+#srcline 87 ;    END_IF;
+WriteDbxToFile_L10:
+#srcline 88 ;  END_IF;
+WriteDbxToFile_L3:
+#srcline 90 ;  // write data to file to variable (one sector per one PLC cycle)
+#srcline 91 ;  IF busy THEN
+ LDX  busy
+#debug bool busy
+ JMC  WriteDbxToFile_L15
+#srcline 92 ;    IF size > actSize THEN
+ LDX  size
+#debug udint size
+ LDX  actSize
+#debug udint actSize
+ GT
+ JMC  WriteDbxToFile_L17
+#srcline 93 ;      restSize := size - actSize;
+ LDX  size
+#debug udint size
+ LDX  actSize
+#debug udint actSize
+ SUB
+ WRY  restSize
+#debug_left udint restSize
+#srcline 94 ;      IF restSize > 512 THEN reqSize := 512;          // more then one sector
+ LDY  restSize
+#debug udint restSize
+ LD   udint 512
+ GT
+ JMC  WriteDbxToFile_L19
+ LD   udint 512
+ WRY  reqSize
+#debug_left udint reqSize
+#srcline 95 ;                        ELSE reqSize := restSize;     // last sector
+ JMP  WriteDbxToFile_L20
+WriteDbxToFile_L19:
+ LDY  restSize
+#debug udint restSize
+ WRY  reqSize
+#debug_left udint reqSize
+#srcline 96 ;      END_IF;
+WriteDbxToFile_L20:
+#srcline 97 ;      res := FindFreeCluster(fileName := fileName);
+ NXT
+ LDX  fileName
+ WR   __Instance__FindFreeCluster~fileName
+#debug_left pointer __Instance__FindFreeCluster.fileName
+ PRV
+ LEA  __Instance__FindFreeCluster
+ CAL  FindFreeCluster_L0
+ WRY  res
+#debug_left byte res
+#srcline 98 ;      IF res = 0 THEN
+ LDY  res
+#debug byte res
+ LD   byte 0
+ EQ
+ JMC  WriteDbxToFile_L21
+#srcline 99 ;        written := FileWrite(hFile := hnd, adrBuf := adrVar + actSize, size := reqSize);
+ NXT
+ LDX  hnd
+#debug udint hnd
+ WR   __Instance__FileWrite~hFile
+#debug_left udint __Instance__FileWrite~hFile
+ LDX  adrVar
+#debug udint adrVar
+ LDX  actSize
+#debug udint actSize
+ ADD
+ WR   __Instance__FileWrite~adrBuf
+#debug_left udint __Instance__FileWrite~adrBuf
+ LDY  reqSize
+#debug udint reqSize
+ WR   __Instance__FileWrite~size
+#debug_left udint __Instance__FileWrite~size
+ PRV
+ LEA  __Instance__FileWrite
+ CAL  FileWrite_L0
+ WRY  written
+#debug_left udint written
+#srcline 100 ;        actSize := actSize + written;
+ LDX  actSize
+#debug udint actSize
+ LDY  written
+#debug udint written
+ ADD
+ WRX  actSize
+#debug_left udint actSize
+#srcline 101 ;        IF written <> reqSize THEN
+ LDY  written
+#debug udint written
+ LDY  reqSize
+#debug udint reqSize
+ EQ
+ NEG
+ JMC  WriteDbxToFile_L23
+#srcline 102 ;          busy := FALSE; err := TRUE;
+ LD   bool 0       ; false
+ WRX  busy
+#debug_left bool busy
+ LD   bool -1       ; true
+ WRX  err
+#debug_left bool err
+#srcline 103 ;        ELSE
+ JMP  WriteDbxToFile_L24
+WriteDbxToFile_L23:
+#srcline 104 ;          IF actSize = size THEN
+ LDX  actSize
+#debug udint actSize
+ LDX  size
+#debug udint size
+ EQ
+ JMC  WriteDbxToFile_L25
+#srcline 105 ;            done := TRUE; busy := FALSE;
+ LD   bool -1       ; true
+ WRX  done
+#debug_left bool done
+ LD   bool 0       ; false
+ WRX  busy
+#debug_left bool busy
+#srcline 106 ;          END_IF;
+WriteDbxToFile_L25:
+#srcline 107 ;        END_IF;
+WriteDbxToFile_L24:
+#srcline 108 ;      ELSE
+ JMP  WriteDbxToFile_L22
+WriteDbxToFile_L21:
+#srcline 109 ;        IF res <> 13 THEN
+ LDY  res
+#debug byte res
+ LD   byte 13
+ EQ
+ NEG
+ JMC  WriteDbxToFile_L27
+#srcline 110 ;          busy := FALSE; err := TRUE;      // disk full or not mounted
+ LD   bool 0       ; false
+ WRX  busy
+#debug_left bool busy
+ LD   bool -1       ; true
+ WRX  err
+#debug_left bool err
+#srcline 111 ;        END_IF;
+WriteDbxToFile_L27:
+#srcline 112 ;      END_IF;
+WriteDbxToFile_L22:
+#srcline 113 ;    ELSE
+ JMP  WriteDbxToFile_L18
+WriteDbxToFile_L17:
+#srcline 114 ;      done := TRUE;
+ LD   bool -1       ; true
+ WRX  done
+#debug_left bool done
+#srcline 115 ;    END_IF;
+WriteDbxToFile_L18:
+#srcline 116 ;  ELSE
+ JMP  WriteDbxToFile_L16
+WriteDbxToFile_L15:
+#srcline 117 ;    done := done AND exec;
+ LDX  done
+#debug bool done
+ LDX  exec
+#debug bool exec
+ AND
+ WRX  done
+#debug_left bool done
+#srcline 118 ;    err  := err  AND exec;
+ LDX  err
+#debug bool err
+ LDX  exec
+#debug bool exec
+ AND
+ WRX  err
+#debug_left bool err
+#srcline 119 ;  END_IF;
+WriteDbxToFile_L16:
+#srcline 121 ;  // set error code, if any
+#srcline 122 ;  errTrig( CLK := err);
+ LDX  err
+#debug bool err
+ WRX  errTrig~CLK
+#debug_left bool errTrig~CLK
+ LEAX errTrig
+ CAL  R_TRIG_L0
+#srcline 123 ;  IF errTrig.Q THEN
+ LDX  errTrig~Q
+#debug bool errTrig.Q
+ JMC  WriteDbxToFile_L29
+#srcline 124 ;    errID := GetLastErr();
+ LEA  __Instance__GetLastErr
+ CAL  GetLastErr_L0
+ WRX  errID
+#debug_left udint errID
+#srcline 125 ;  END_IF;
+WriteDbxToFile_L29:
+#srcline 127 ;  // close file
+#srcline 128 ;  IF errTrig.Q OR done THEN
+ LDX  errTrig~Q
+#debug bool errTrig.Q
+ LDX  done
+#debug bool done
+ OR  
+ JMC  WriteDbxToFile_L31
+#srcline 129 ;    IF hnd <> INVALID_HANDLE_VALUE THEN
+ LDX  hnd
+#debug udint hnd
+ LD   udint 0
+ EQ
+ NEG
+ JMC  WriteDbxToFile_L33
+#srcline 130 ;      IF FileClose( hFile := hnd) THEN
+ NXT
+ LDX  hnd
+#debug udint hnd
+ WR   __Instance__FileClose~hFile
+#debug_left udint __Instance__FileClose~hFile
+ PRV
+ LEA  __Instance__FileClose
+ CAL  FileClose_L0
+ JMC  WriteDbxToFile_L35
+#srcline 131 ;        hnd := INVALID_HANDLE_VALUE;
+ LD   udint 0
+ WRX  hnd
+#debug_left udint hnd
+#srcline 132 ;      END_IF;
+WriteDbxToFile_L35:
+#srcline 133 ;    END_IF;
+WriteDbxToFile_L33:
+#srcline 134 ;  END_IF;
+WriteDbxToFile_L31:
+#srcline 136 ;  IF NOT busy THEN idle := 0; END_IF;      // od v1.3
+ LDX  busy
+#debug bool busy
+ NEG
+ JMC  WriteDbxToFile_L37
+ LD   uint 0
+ WRX  idle
+#debug_left uint idle
+WriteDbxToFile_L37:
+#srcline 137 ;END_FUNCTION_BLOCK
+WriteDbxToFile_RET:
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\FILELIB\FILELIB_V22\READDBXFROMFILE.ST'
+#pou ReadDbxFromFile
+#srcline 1 ;FUNCTION_BLOCK ReadDbxFromFile
+
+#struct ReadDbxFromFile__temp__
+  udint restSize,
+  udint reqSize,
+  udint read
+P     61
+ReadDbxFromFile_L0:
+ LINK __SizeOf(ReadDbxFromFile__temp__)
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 57 ;  adrVar := dstAdr + 16#8000_0000;         // + databox flag
+ LDX  dstAdr
+#debug udint dstAdr
+ LD   udint $80000000
+ ADD
+ WRX  adrVar
+#debug_left udint adrVar
+#srcline 58 ;  execTrig( CLK := exec);
+ LDX  exec
+#debug bool exec
+ WRX  execTrig~CLK
+#debug_left bool execTrig~CLK
+ LEAX execTrig
+ CAL  R_TRIG_L0
+#srcline 60 ;  // open file and seek position
+#srcline 61 ;  IF execTrig.Q THEN
+ LDX  execTrig~Q
+#debug bool execTrig.Q
+ JMC  ReadDbxFromFile_L1
+#srcline 62 ;    busy := TRUE; done := FALSE; err := FALSE; errID := 0; actSize := 0;
+ LD   bool -1       ; true
+ WRX  busy
+#debug_left bool busy
+ LD   bool 0       ; false
+ WRX  done
+#debug_left bool done
+ LD   bool 0       ; false
+ WRX  err
+#debug_left bool err
+ LD   udint 0
+ WRX  errID
+#debug_left udint errID
+ LD   udint 0
+ WRX  actSize
+#debug_left udint actSize
+#srcline 63 ;    errTrig( CLK := FALSE);
+ LD   bool 0       ; false
+ WRX  errTrig~CLK
+#debug_left bool errTrig~CLK
+ LEAX errTrig
+ CAL  R_TRIG_L0
+#srcline 64 ;    hnd := FileOpen(fileName := fileName, mode := F_READ);
+ NXT
+ LDX  fileName
+ WR   __Instance__FileOpen~fileName
+#debug_left pointer __Instance__FileOpen.fileName
+ LD   udint 0  ; TF_MODE#F_READ
+ WR   __Instance__FileOpen~mode
+#debug_left usint __Instance__FileOpen~mode
+ PRV
+ LEA  __Instance__FileOpen
+ CAL  FileOpen_L0
+ WRX  hnd
+#debug_left udint hnd
+#srcline 65 ;    IF hnd = INVALID_HANDLE_VALUE THEN
+ LDX  hnd
+#debug udint hnd
+ LD   udint 0
+ EQ
+ JMC  ReadDbxFromFile_L3
+#srcline 66 ;      err := TRUE; busy := FALSE;
+ LD   bool -1       ; true
+ WRX  err
+#debug_left bool err
+ LD   bool 0       ; false
+ WRX  busy
+#debug_left bool busy
+#srcline 67 ;    ELSE
+ JMP  ReadDbxFromFile_L4
+ReadDbxFromFile_L3:
+#srcline 68 ;      IF seek <> 0 THEN
+ LDX  seek
+#debug udint seek
+ LD   udint 0
+ EQ
+ NEG
+ JMC  ReadDbxFromFile_L5
+#srcline 69 ;        IF FileSetPos( hFile := hnd, offset := seek) = FALSE THEN
+ NXT
+ LDX  hnd
+#debug udint hnd
+ WR   __Instance__FileSetPos~hFile
+#debug_left udint __Instance__FileSetPos~hFile
+ LDX  seek
+#debug udint seek
+ WR   __Instance__FileSetPos~offset
+#debug_left udint __Instance__FileSetPos~offset
+ PRV
+ LEA  __Instance__FileSetPos
+ CAL  FileSetPos_L0
+ LD   bool 0       ; false
+ XOR
+ NEG
+ JMC  ReadDbxFromFile_L7
+#srcline 70 ;          err := TRUE; busy := FALSE;
+ LD   bool -1       ; true
+ WRX  err
+#debug_left bool err
+ LD   bool 0       ; false
+ WRX  busy
+#debug_left bool busy
+#srcline 71 ;        END_IF;
+ReadDbxFromFile_L7:
+#srcline 72 ;      END_IF;
+ReadDbxFromFile_L5:
+#srcline 73 ;    END_IF;
+ReadDbxFromFile_L4:
+#srcline 74 ;  END_IF;
+ReadDbxFromFile_L1:
+#srcline 76 ;  // read data from file to variable (one sector per one PLC cycle)
+#srcline 77 ;  IF busy THEN
+ LDX  busy
+#debug bool busy
+ JMC  ReadDbxFromFile_L9
+#srcline 78 ;    IF size > actSize THEN
+ LDX  size
+#debug udint size
+ LDX  actSize
+#debug udint actSize
+ GT
+ JMC  ReadDbxFromFile_L11
+#srcline 79 ;      restSize := size - actSize;
+ LDX  size
+#debug udint size
+ LDX  actSize
+#debug udint actSize
+ SUB
+ WRY  restSize
+#debug_left udint restSize
+#srcline 80 ;      IF restSize > 512 THEN reqSize := 512;          // more then one sector
+ LDY  restSize
+#debug udint restSize
+ LD   udint 512
+ GT
+ JMC  ReadDbxFromFile_L13
+ LD   udint 512
+ WRY  reqSize
+#debug_left udint reqSize
+#srcline 81 ;                        ELSE reqSize := restSize;     // last sector
+ JMP  ReadDbxFromFile_L14
+ReadDbxFromFile_L13:
+ LDY  restSize
+#debug udint restSize
+ WRY  reqSize
+#debug_left udint reqSize
+#srcline 82 ;      END_IF;
+ReadDbxFromFile_L14:
+#srcline 83 ;      read := FileRead( hFile := hnd, adrBuf := adrVar + actSize, size := reqSize);
+ NXT
+ LDX  hnd
+#debug udint hnd
+ WR   __Instance__FileRead~hFile
+#debug_left udint __Instance__FileRead~hFile
+ LDX  adrVar
+#debug udint adrVar
+ LDX  actSize
+#debug udint actSize
+ ADD
+ WR   __Instance__FileRead~adrBuf
+#debug_left udint __Instance__FileRead~adrBuf
+ LDY  reqSize
+#debug udint reqSize
+ WR   __Instance__FileRead~size
+#debug_left udint __Instance__FileRead~size
+ PRV
+ LEA  __Instance__FileRead
+ CAL  FileRead_L0
+ WRY  read
+#debug_left udint read
+#srcline 84 ;      actSize := actSize + read;
+ LDX  actSize
+#debug udint actSize
+ LDY  read
+#debug udint read
+ ADD
+ WRX  actSize
+#debug_left udint actSize
+#srcline 85 ;      IF read <> reqSize THEN
+ LDY  read
+#debug udint read
+ LDY  reqSize
+#debug udint reqSize
+ EQ
+ NEG
+ JMC  ReadDbxFromFile_L15
+#srcline 86 ;        busy := FALSE;
+ LD   bool 0       ; false
+ WRX  busy
+#debug_left bool busy
+#srcline 87 ;        IF read > 0 THEN
+ LDY  read
+#debug udint read
+ LD   udint 0
+ GT
+ JMC  ReadDbxFromFile_L17
+#srcline 88 ;          done := TRUE;           // end of file
+ LD   bool -1       ; true
+ WRX  done
+#debug_left bool done
+#srcline 89 ;        ELSE
+ JMP  ReadDbxFromFile_L18
+ReadDbxFromFile_L17:
+#srcline 90 ;          IF GetLastErr() = 0 THEN
+ LEA  __Instance__GetLastErr
+ CAL  GetLastErr_L0
+ LD   udint 0
+ EQ
+ JMC  ReadDbxFromFile_L19
+#srcline 91 ;            done := TRUE;         // end of file
+ LD   bool -1       ; true
+ WRX  done
+#debug_left bool done
+#srcline 92 ;          ELSE
+ JMP  ReadDbxFromFile_L20
+ReadDbxFromFile_L19:
+#srcline 93 ;            err  := TRUE;         // propably any error
+ LD   bool -1       ; true
+ WRX  err
+#debug_left bool err
+#srcline 94 ;          END_IF;
+ReadDbxFromFile_L20:
+#srcline 95 ;        END_IF;
+ReadDbxFromFile_L18:
+#srcline 96 ;      ELSE
+ JMP  ReadDbxFromFile_L16
+ReadDbxFromFile_L15:
+#srcline 97 ;        IF actSize = size THEN
+ LDX  actSize
+#debug udint actSize
+ LDX  size
+#debug udint size
+ EQ
+ JMC  ReadDbxFromFile_L21
+#srcline 98 ;          done := TRUE; busy := FALSE;
+ LD   bool -1       ; true
+ WRX  done
+#debug_left bool done
+ LD   bool 0       ; false
+ WRX  busy
+#debug_left bool busy
+#srcline 99 ;        END_IF;
+ReadDbxFromFile_L21:
+#srcline 100 ;      END_IF;
+ReadDbxFromFile_L16:
+#srcline 101 ;    ELSE
+ JMP  ReadDbxFromFile_L12
+ReadDbxFromFile_L11:
+#srcline 102 ;      done := TRUE;
+ LD   bool -1       ; true
+ WRX  done
+#debug_left bool done
+#srcline 103 ;    END_IF;
+ReadDbxFromFile_L12:
+#srcline 104 ;  ELSE
+ JMP  ReadDbxFromFile_L10
+ReadDbxFromFile_L9:
+#srcline 105 ;    done := done AND exec;
+ LDX  done
+#debug bool done
+ LDX  exec
+#debug bool exec
+ AND
+ WRX  done
+#debug_left bool done
+#srcline 106 ;    err  := err  AND exec;
+ LDX  err
+#debug bool err
+ LDX  exec
+#debug bool exec
+ AND
+ WRX  err
+#debug_left bool err
+#srcline 107 ;  END_IF;
+ReadDbxFromFile_L10:
+#srcline 109 ;  // set error code, if any
+#srcline 110 ;  errTrig( CLK := err);
+ LDX  err
+#debug bool err
+ WRX  errTrig~CLK
+#debug_left bool errTrig~CLK
+ LEAX errTrig
+ CAL  R_TRIG_L0
+#srcline 111 ;  IF errTrig.Q THEN
+ LDX  errTrig~Q
+#debug bool errTrig.Q
+ JMC  ReadDbxFromFile_L23
+#srcline 112 ;    errID := GetLastErr();
+ LEA  __Instance__GetLastErr
+ CAL  GetLastErr_L0
+ WRX  errID
+#debug_left udint errID
+#srcline 113 ;  END_IF;
+ReadDbxFromFile_L23:
+#srcline 115 ;  // close file
+#srcline 116 ;  IF errTrig.Q OR done THEN
+ LDX  errTrig~Q
+#debug bool errTrig.Q
+ LDX  done
+#debug bool done
+ OR  
+ JMC  ReadDbxFromFile_L25
+#srcline 117 ;    IF hnd <> INVALID_HANDLE_VALUE THEN
+ LDX  hnd
+#debug udint hnd
+ LD   udint 0
+ EQ
+ NEG
+ JMC  ReadDbxFromFile_L27
+#srcline 118 ;      IF FileClose( hFile := hnd) THEN
+ NXT
+ LDX  hnd
+#debug udint hnd
+ WR   __Instance__FileClose~hFile
+#debug_left udint __Instance__FileClose~hFile
+ PRV
+ LEA  __Instance__FileClose
+ CAL  FileClose_L0
+ JMC  ReadDbxFromFile_L29
+#srcline 119 ;        hnd := INVALID_HANDLE_VALUE;
+ LD   udint 0
+ WRX  hnd
+#debug_left udint hnd
+#srcline 120 ;      END_IF;
+ReadDbxFromFile_L29:
+#srcline 121 ;    END_IF;
+ReadDbxFromFile_L27:
+#srcline 122 ;  END_IF;
+ReadDbxFromFile_L25:
+#srcline 123 ;END_FUNCTION_BLOCK
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\FILELIB\FILELIB_V22\WRITETOFILESEQ.ST'
+#pou WriteToFileSeq
+#srcline 1 ;FUNCTION_BLOCK WriteToFileSeq
+P     61
+WriteToFileSeq_L0:
+ LINK 0
+#srcline 52 ;  IF NOT open THEN
+ LDX  open
+#debug bool open
+ NEG
+ JMC  WriteToFileSeq_L1
+#srcline 53 ;    actSize := 0;
+ LD   udint 0
+ WRX  actSize
+#debug_left udint actSize
+#srcline 54 ;    IF write THEN
+ LDX  write
+#debug bool write
+ JMC  WriteToFileSeq_L3
+#srcline 55 ;      hnd := FileOpen(F_WRITE, fileName);
+ NXT
+ LD   udint 1  ; TF_MODE#F_WRITE
+ WR   __Instance__FileOpen~mode
+#debug_left usint __Instance__FileOpen~mode
+ LDX  fileName
+ WR   __Instance__FileOpen~fileName
+#debug_left pointer __Instance__FileOpen.fileName
+ PRV
+ LEA  __Instance__FileOpen
+ CAL  FileOpen_L0
+ WRX  hnd
+#debug_left udint hnd
+#srcline 56 ;      open := hnd <> INVALID_HANDLE_VALUE;
+ LDX  hnd
+#debug udint hnd
+ LD   udint 0
+ EQ
+ NEG
+ WRX  open
+#debug_left bool open
+#srcline 57 ;      err := NOT open;
+ LDX  open
+#debug bool open
+ NEG
+ WRX  err
+#debug_left bool err
+#srcline 58 ;    END_IF;
+WriteToFileSeq_L3:
+#srcline 59 ;  END_IF;
+WriteToFileSeq_L1:
+#srcline 61 ;  IF open THEN
+ LDX  open
+#debug bool open
+ JMC  WriteToFileSeq_L5
+#srcline 62 ;    IF write THEN
+ LDX  write
+#debug bool write
+ JMC  WriteToFileSeq_L7
+#srcline 63 ;      IF size > 0 THEN
+ LDX  size
+#debug udint size
+ LD   udint 0
+ GT
+ JMC  WriteToFileSeq_L9
+#srcline 64 ;        wrSize := FileWrite(hnd, PTR_TO_UDINT(ADR(srcVar)), size);
+ NXT
+ LDX  hnd
+#debug udint hnd
+ WR   __Instance__FileWrite~hFile
+#debug_left udint __Instance__FileWrite~hFile
+ LDX  srcVar
+#debug pointer srcVar
+ WR   __Instance__FileWrite~adrBuf
+#debug_left udint __Instance__FileWrite~adrBuf
+ LDX  size
+#debug udint size
+ WR   __Instance__FileWrite~size
+#debug_left udint __Instance__FileWrite~size
+ PRV
+ LEA  __Instance__FileWrite
+ CAL  FileWrite_L0
+ WRX  wrSize
+#debug_left udint wrSize
+#srcline 65 ;        err := size <> wrSize;
+ LDX  size
+#debug udint size
+ LDX  wrSize
+#debug udint wrSize
+ EQ
+ NEG
+ WRX  err
+#debug_left bool err
+#srcline 66 ;        actSize := actSize + wrSize;
+ LDX  actSize
+#debug udint actSize
+ LDX  wrSize
+#debug udint wrSize
+ ADD
+ WRX  actSize
+#debug_left udint actSize
+#srcline 67 ;      END_IF;
+WriteToFileSeq_L9:
+#srcline 68 ;    END_IF;
+WriteToFileSeq_L7:
+#srcline 70 ;    IF close THEN
+ LDX  close
+#debug bool close
+ JMC  WriteToFileSeq_L11
+#srcline 71 ;      FileClose(hnd);
+ NXT
+ LDX  hnd
+#debug udint hnd
+ WR   __Instance__FileClose~hFile
+#debug_left udint __Instance__FileClose~hFile
+ PRV
+ LEA  __Instance__FileClose
+ CAL  FileClose_L0
+#srcline 72 ;      hnd := INVALID_HANDLE_VALUE;
+ LD   udint 0
+ WRX  hnd
+#debug_left udint hnd
+#srcline 73 ;      open := false;
+ LD   bool 0       ; false
+ WRX  open
+#debug_left bool open
+#srcline 74 ;    END_IF;
+WriteToFileSeq_L11:
+#srcline 75 ;  END_IF;
+WriteToFileSeq_L5:
+#srcline 77 ;  //kod chyby
+#srcline 78 ;  errTrig(CLK := err);
+ LDX  err
+#debug bool err
+ WRX  errTrig~CLK
+#debug_left bool errTrig~CLK
+ LEAX errTrig
+ CAL  R_TRIG_L0
+#srcline 79 ;  IF errTrig.Q THEN
+ LDX  errTrig~Q
+#debug bool errTrig.Q
+ JMC  WriteToFileSeq_L13
+#srcline 80 ;    errID := GetLastErr();
+ LEA  __Instance__GetLastErr
+ CAL  GetLastErr_L0
+ WRX  errID
+#debug_left udint errID
+#srcline 81 ;  END_IF;
+WriteToFileSeq_L13:
+#srcline 83 ;END_FUNCTION_BLOCK
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\FILELIB\FILELIB_V22\DELETEDIRECTORIES.ST'
+#pou DeleteDirectories
+#srcline 1 ;FUNCTION_BLOCK DeleteDirectories
+
+#struct DeleteDirectories__temp__
+  usint P0__st__,
+  string[82] PS0__st__
+#data byte _str_DeleteDirectories_0 = 
+  '',0
+#data byte _str_DeleteDirectories_1 = 
+  '/',0
+#data byte _str_DeleteDirectories_2 = 
+  '',0
+#data byte _str_DeleteDirectories_3 = 
+  '',0
+P     61
+DeleteDirectories_L0:
+ LINK __SizeOf(DeleteDirectories__temp__)
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+; R_EDGE, F_EDGE 
+ LDX  exec
+ LETX __EDGE_R__exec
+ WRX  exec
+#srcline 34 ;  Err := false;
+ LD   bool 0       ; false
+ WRX  Err
+#debug_left bool Err
+#srcline 35 ;  Done := false;
+ LD   bool 0       ; false
+ WRX  Done
+#debug_left bool Done
+#srcline 37 ;  IF exec THEN
+ LDX  exec
+#debug bool exec
+ JMC  DeleteDirectories_L1
+#srcline 38 ;    FOR i := 0 TO dirStackLev DO
+ LD   usint 0
+ WRX  i
+ LDX  dirStackLev
+#debug usint dirStackLev
+ WRY  P0__st__
+DeleteDirectories_L3:
+ LDX  i
+ LDY  P0__st__
+ GT   
+ JMD  DeleteDirectories_L4
+ DBG  
+#srcline 39 ;      IF dirStack[i].hDir <> INVALID_HANDLE_VALUE THEN
+ LEAX dirStack
+ LDX  i
+#debug usint i
+ RCHK 4   ; Range Check
+ MUL  17   ; SizeOf(...)
+ ADD     ; + offset 
+ LDIL 
+#debug udint dirStack[i].hDir
+ LD   udint 0
+ EQ
+ NEG
+ JMC  DeleteDirectories_L5
+#srcline 40 ;        DirClose(hDir := dirStack[i].hDir);
+ NXT
+ LEAX dirStack
+ LDX  i
+#debug usint i
+ RCHK 4   ; Range Check
+ MUL  17   ; SizeOf(...)
+ ADD     ; + offset 
+ LDIL 
+#debug udint dirStack[i].hDir
+ WR   __Instance__DirClose~hDir
+#debug_left udint __Instance__DirClose~hDir
+ PRV
+ LEA  __Instance__DirClose
+ CAL  DirClose_L0
+#srcline 41 ;        dirStack[i].hDir := INVALID_HANDLE_VALUE;
+ LD   udint 0
+ LEAX dirStack
+ LDX  i
+#debug usint i
+ RCHK 4   ; Range Check
+ MUL  17   ; SizeOf(...)
+ ADD     ; + offset 
+ WRIL 
+#debug_left udint dirStack[i].hDir
+#srcline 42 ;        dirStack[i].sDir := '';
+ LD   0   ; null string
+ LEAX dirStack
+ LDX  i
+#debug usint i
+ RCHK 4   ; Range Check
+ MUL  17   ; SizeOf(...)
+ ADD     ; + offset 
+ ADD  4  ; + offset 
+ WRI  
+ LEAX dirStack
+ LDX  i
+#debug usint i
+ RCHK 4   ; Range Check
+ MUL  17   ; SizeOf(...)
+ ADD     ; + offset 
+ ADD  4  ; + offset 
+ LD   12
+ DST    ; Level 1
+ LEA  _str_DeleteDirectories_0
+ SCON 
+#debug_left string dirStack[i].sDir
+ PDST   ; Level 1
+#srcline 43 ;      END_IF;
+DeleteDirectories_L5:
+#srcline 45 ;      dirStack[0].hDir := DirOpen(dirName := DirName, dirInfo := lLocalFileInfo);
+ NXT
+ LDX  DirName
+ WR   __Instance__DirOpen~dirName
+#debug_left pointer __Instance__DirOpen.dirName
+ LEAX lLocalFileInfo
+ WR   __Instance__DirOpen~dirInfo
+#debug_left pointer __Instance__DirOpen.dirInfo
+ PRV
+ LEA  __Instance__DirOpen
+ CAL  DirOpen_L0
+ LEAX dirStack
+ WRIL 
+#debug_left udint dirStack[0].hDir
+#srcline 46 ;      IF dirStack[0].hDir <> INVALID_HANDLE_VALUE THEN
+ LEAX dirStack
+ LDIL 
+#debug udint dirStack[0].hDir
+ LD   udint 0
+ EQ
+ NEG
+ JMC  DeleteDirectories_L7
+#srcline 47 ;        Busy  := true;
+ LD   bool -1       ; true
+ WRX  Busy
+#debug_left bool Busy
+#srcline 48 ;      ELSE
+ JMP  DeleteDirectories_L8
+DeleteDirectories_L7:
+#srcline 49 ;        Err   := true;
+ LD   bool -1       ; true
+ WRX  Err
+#debug_left bool Err
+#srcline 50 ;      END_IF;
+DeleteDirectories_L8:
+#srcline 52 ;    END_FOR;
+ LDX  i
+ LD   1
+ ADD  
+ WRX  i
+ JMP  DeleteDirectories_L3
+DeleteDirectories_L4:
+#srcline 54 ;    dirStackLev := 0;
+ LD   usint 0
+ WRX  dirStackLev
+#debug_left usint dirStackLev
+#srcline 55 ;    Busy := 1;
+ LD   bool -1      ; true
+ WRX  Busy
+#debug_left bool Busy
+#srcline 56 ;  END_IF;
+DeleteDirectories_L1:
+#srcline 58 ;  IF Busy THEN
+ LDX  Busy
+#debug bool Busy
+ JMC  DeleteDirectories_L9
+#srcline 59 ;//    Stop := true;          // pro ladeni
+#srcline 60 ;    IF dirStack[dirStackLev].hDir <> INVALID_HANDLE_VALUE THEN //je adresar
+ LEAX dirStack
+ LDX  dirStackLev
+#debug usint dirStackLev
+ RCHK 4   ; Range Check
+ MUL  17   ; SizeOf(...)
+ ADD     ; + offset 
+ LDIL 
+#debug udint dirStack[dirStackLev].hDir
+ LD   udint 0
+ EQ
+ NEG
+ JMC  DeleteDirectories_L11
+#srcline 61 ;      CurrFile := DirName + dirStack[1].sDir + dirStack[2].sDir + dirStack[3].sDir + dirStack[4].sDir + lLocalFileInfo.fileName;
+ LD   0   ; null string
+ WRY  PS0__st__[0]
+ LEAY PS0__st__[0]
+ LD   80
+ DST    ; Level 1
+ LDX  DirName
+#debug string DirName
+ SCON 
+ LEAX dirStack
+ ADD  21  ; + offset 
+#debug string dirStack[1].sDir
+ SCON 
+ LEAX dirStack
+ ADD  38  ; + offset 
+#debug string dirStack[2].sDir
+ SCON 
+ LEAX dirStack
+ ADD  55  ; + offset 
+#debug string dirStack[3].sDir
+ SCON 
+ LEAX dirStack
+ ADD  72  ; + offset 
+#debug string dirStack[4].sDir
+ SCON 
+ LEAX lLocalFileInfo
+ ADD  24  ; + offset 
+#debug string lLocalFileInfo.fileName
+ SCON 
+ PDST   ; Level 1
+ LD   0   ; null string
+ LEAX CurrFile
+ WRI  
+ LEAX CurrFile
+ LD   80
+ DST    ; Level 1
+ LEAY PS0__st__[0]
+ SCON 
+#debug_left string CurrFile
+ PDST   ; Level 1
+#srcline 62 ;      IF lLocalFileInfo.attrib AND 16#10 =  16#10 THEN
+ LDX  lLocalFileInfo~attrib
+#debug dword lLocalFileInfo.attrib
+ LD   dword $10
+ AND
+ LD   dword $10
+ EQ
+ JMC  DeleteDirectories_L13
+#srcline 63 ;        IF dirStackLev < DIR_STACK_MAX_LEVEL THEN
+ LDX  dirStackLev
+#debug usint dirStackLev
+ LD   usint 4
+ LT
+ JMC  DeleteDirectories_L15
+#srcline 64 ;          dirStackLev := dirStackLev + 1;
+ LDX  dirStackLev
+#debug usint dirStackLev
+ LD   usint 1
+ ADD
+ AND  $FF
+ WRX  dirStackLev
+#debug_left usint dirStackLev
+#srcline 65 ;          dirStack[dirStackLev].sDir := lLocalFileInfo.fileName + '/';
+ LD   0   ; null string
+ WRY  PS0__st__[0]
+ LEAY PS0__st__[0]
+ LD   12
+ DST    ; Level 1
+ LEAX lLocalFileInfo
+ ADD  24  ; + offset 
+#debug string lLocalFileInfo.fileName
+ SCON 
+ LEA  _str_DeleteDirectories_1
+ SCON 
+ PDST   ; Level 1
+ LD   0   ; null string
+ LEAX dirStack
+ LDX  dirStackLev
+#debug usint dirStackLev
+ RCHK 4   ; Range Check
+ MUL  17   ; SizeOf(...)
+ ADD     ; + offset 
+ ADD  4  ; + offset 
+ WRI  
+ LEAX dirStack
+ LDX  dirStackLev
+#debug usint dirStackLev
+ RCHK 4   ; Range Check
+ MUL  17   ; SizeOf(...)
+ ADD     ; + offset 
+ ADD  4  ; + offset 
+ LD   12
+ DST    ; Level 1
+ LEAY PS0__st__[0]
+ SCON 
+#debug_left string dirStack[dirStackLev].sDir
+ PDST   ; Level 1
+#srcline 66 ;          dirStack[dirStackLev].hDir := DirOpen(dirName := CurrFile, dirInfo := lLocalFileInfo);
+ NXT
+ LEAX CurrFile
+ WR   __Instance__DirOpen~dirName
+#debug_left pointer __Instance__DirOpen.dirName
+ LEAX lLocalFileInfo
+ WR   __Instance__DirOpen~dirInfo
+#debug_left pointer __Instance__DirOpen.dirInfo
+ PRV
+ LEA  __Instance__DirOpen
+ CAL  DirOpen_L0
+ LEAX dirStack
+ LDX  dirStackLev
+#debug usint dirStackLev
+ RCHK 4   ; Range Check
+ MUL  17   ; SizeOf(...)
+ ADD     ; + offset 
+ WRIL 
+#debug_left udint dirStack[dirStackLev].hDir
+#srcline 67 ;          IF dirStack[dirStackLev].hDir = INVALID_HANDLE_VALUE THEN
+ LEAX dirStack
+ LDX  dirStackLev
+#debug usint dirStackLev
+ RCHK 4   ; Range Check
+ MUL  17   ; SizeOf(...)
+ ADD     ; + offset 
+ LDIL 
+#debug udint dirStack[dirStackLev].hDir
+ LD   udint 0
+ EQ
+ JMC  DeleteDirectories_L17
+#srcline 68 ;            FileDelete(fileName := CurrFile);
+ NXT
+ LEAX CurrFile
+ WR   __Instance__FileDelete~fileName
+#debug_left pointer __Instance__FileDelete.fileName
+ PRV
+ LEA  __Instance__FileDelete
+ CAL  FileDelete_L0
+#srcline 69 ;            (* ignorovat chybu, vznikne na prazdnem adresary     *)
+#srcline 70 ;            dirStack[dirStackLev].sDir := '';
+ LD   0   ; null string
+ LEAX dirStack
+ LDX  dirStackLev
+#debug usint dirStackLev
+ RCHK 4   ; Range Check
+ MUL  17   ; SizeOf(...)
+ ADD     ; + offset 
+ ADD  4  ; + offset 
+ WRI  
+ LEAX dirStack
+ LDX  dirStackLev
+#debug usint dirStackLev
+ RCHK 4   ; Range Check
+ MUL  17   ; SizeOf(...)
+ ADD     ; + offset 
+ ADD  4  ; + offset 
+ LD   12
+ DST    ; Level 1
+ LEA  _str_DeleteDirectories_2
+ SCON 
+#debug_left string dirStack[dirStackLev].sDir
+ PDST   ; Level 1
+#srcline 71 ;            dirStackLev := dirStackLev - 1;
+ LDX  dirStackLev
+#debug usint dirStackLev
+ LD   usint 1
+ SUB
+ AND  $FF
+ WRX  dirStackLev
+#debug_left usint dirStackLev
+#srcline 72 ;          END_IF;
+DeleteDirectories_L17:
+#srcline 73 ;        ELSE
+ JMP  DeleteDirectories_L16
+DeleteDirectories_L15:
+#srcline 74 ;          Busy := false;
+ LD   bool 0       ; false
+ WRX  Busy
+#debug_left bool Busy
+#srcline 75 ;          Err := true;
+ LD   bool -1       ; true
+ WRX  Err
+#debug_left bool Err
+#srcline 76 ;          RETURN;
+ JMP  DeleteDirectories_RET
+#srcline 77 ;            //eErrId := 5; //to many subdirectories
+#srcline 78 ;        END_IF;
+DeleteDirectories_L16:
+#srcline 79 ;        RETURN;
+ JMP  DeleteDirectories_RET
+#srcline 80 ;      ELSE
+ JMP  DeleteDirectories_L14
+DeleteDirectories_L13:
+#srcline 81 ;        FileDelete(fileName := CurrFile);
+ NXT
+ LEAX CurrFile
+ WR   __Instance__FileDelete~fileName
+#debug_left pointer __Instance__FileDelete.fileName
+ PRV
+ LEA  __Instance__FileDelete
+ CAL  FileDelete_L0
+#srcline 82 ;      END_IF;
+DeleteDirectories_L14:
+#srcline 84 ;      IF NOT DirRead(hDir := dirStack[dirStackLev].hDir, dirInfo := lLocalFileInfo) THEN        //nacist dalsi jmeno
+ NXT
+ LEAX dirStack
+ LDX  dirStackLev
+#debug usint dirStackLev
+ RCHK 4   ; Range Check
+ MUL  17   ; SizeOf(...)
+ ADD     ; + offset 
+ LDIL 
+#debug udint dirStack[dirStackLev].hDir
+ WR   __Instance__DirRead~hDir
+#debug_left udint __Instance__DirRead~hDir
+ LEAX lLocalFileInfo
+ WR   __Instance__DirRead~dirInfo
+#debug_left pointer __Instance__DirRead.dirInfo
+ PRV
+ LEA  __Instance__DirRead
+ CAL  DirRead_L0
+ NEG
+ JMC  DeleteDirectories_L19
+#srcline 85 ;        DirClose(hDir := dirStack[dirStackLev].hDir);
+ NXT
+ LEAX dirStack
+ LDX  dirStackLev
+#debug usint dirStackLev
+ RCHK 4   ; Range Check
+ MUL  17   ; SizeOf(...)
+ ADD     ; + offset 
+ LDIL 
+#debug udint dirStack[dirStackLev].hDir
+ WR   __Instance__DirClose~hDir
+#debug_left udint __Instance__DirClose~hDir
+ PRV
+ LEA  __Instance__DirClose
+ CAL  DirClose_L0
+#srcline 86 ;        CurrFile := DirName + dirStack[1].sDir + dirStack[2].sDir + dirStack[3].sDir + dirStack[4].sDir;
+ LD   0   ; null string
+ WRY  PS0__st__[0]
+ LEAY PS0__st__[0]
+ LD   80
+ DST    ; Level 1
+ LDX  DirName
+#debug string DirName
+ SCON 
+ LEAX dirStack
+ ADD  21  ; + offset 
+#debug string dirStack[1].sDir
+ SCON 
+ LEAX dirStack
+ ADD  38  ; + offset 
+#debug string dirStack[2].sDir
+ SCON 
+ LEAX dirStack
+ ADD  55  ; + offset 
+#debug string dirStack[3].sDir
+ SCON 
+ LEAX dirStack
+ ADD  72  ; + offset 
+#debug string dirStack[4].sDir
+ SCON 
+ PDST   ; Level 1
+ LD   0   ; null string
+ LEAX CurrFile
+ WRI  
+ LEAX CurrFile
+ LD   80
+ DST    ; Level 1
+ LEAY PS0__st__[0]
+ SCON 
+#debug_left string CurrFile
+ PDST   ; Level 1
+#srcline 87 ;        dirStack[dirStackLev].hDir := INVALID_HANDLE_VALUE;
+ LD   udint 0
+ LEAX dirStack
+ LDX  dirStackLev
+#debug usint dirStackLev
+ RCHK 4   ; Range Check
+ MUL  17   ; SizeOf(...)
+ ADD     ; + offset 
+ WRIL 
+#debug_left udint dirStack[dirStackLev].hDir
+#srcline 88 ;        dirStack[dirStackLev].sDir := '';
+ LD   0   ; null string
+ LEAX dirStack
+ LDX  dirStackLev
+#debug usint dirStackLev
+ RCHK 4   ; Range Check
+ MUL  17   ; SizeOf(...)
+ ADD     ; + offset 
+ ADD  4  ; + offset 
+ WRI  
+ LEAX dirStack
+ LDX  dirStackLev
+#debug usint dirStackLev
+ RCHK 4   ; Range Check
+ MUL  17   ; SizeOf(...)
+ ADD     ; + offset 
+ ADD  4  ; + offset 
+ LD   12
+ DST    ; Level 1
+ LEA  _str_DeleteDirectories_3
+ SCON 
+#debug_left string dirStack[dirStackLev].sDir
+ PDST   ; Level 1
+#srcline 89 ;        IF dirStackLev > 0 THEN
+ LDX  dirStackLev
+#debug usint dirStackLev
+ LD   usint 0
+ GT
+ JMC  DeleteDirectories_L21
+#srcline 90 ;          FileDelete(fileName := CurrFile);
+ NXT
+ LEAX CurrFile
+ WR   __Instance__FileDelete~fileName
+#debug_left pointer __Instance__FileDelete.fileName
+ PRV
+ LEA  __Instance__FileDelete
+ CAL  FileDelete_L0
+#srcline 91 ;          dirStackLev := dirStackLev - 1;
+ LDX  dirStackLev
+#debug usint dirStackLev
+ LD   usint 1
+ SUB
+ AND  $FF
+ WRX  dirStackLev
+#debug_left usint dirStackLev
+#srcline 92 ;        END_IF;
+DeleteDirectories_L21:
+#srcline 93 ;      END_IF;
+DeleteDirectories_L19:
+#srcline 95 ;      IF dirStack[0].hDir = INVALID_HANDLE_VALUE THEN //adresar skoncil konec
+ LEAX dirStack
+ LDIL 
+#debug udint dirStack[0].hDir
+ LD   udint 0
+ EQ
+ JMC  DeleteDirectories_L23
+#srcline 96 ;        Busy := false;
+ LD   bool 0       ; false
+ WRX  Busy
+#debug_left bool Busy
+#srcline 97 ;        Done := true;
+ LD   bool -1       ; true
+ WRX  Done
+#debug_left bool Done
+#srcline 98 ;      END_IF;
+DeleteDirectories_L23:
+#srcline 99 ;    END_IF;
+DeleteDirectories_L11:
+#srcline 100 ;  END_IF;
+DeleteDirectories_L9:
+#srcline 102 ;END_FUNCTION_BLOCK
+DeleteDirectories_RET:
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+#srcfile 'C:\TECOLIBSRC\FILELIB\FILELIB_V22\FBREADLINEFROMFILE.ST'
+#pou ReadLine
+#srcline 1 ;FUNCTION_BLOCK ReadLine
+
+#struct ReadLine__temp__
+  bool ok,
+  string[257] PS0__st__
+#data byte _str_ReadLine_0 = 
+  '',0
+#data byte _str_ReadLine_1 = 
+  '',0
+#data byte _str_ReadLine_2 = 
+  '',0
+#data byte _str_ReadLine_3 = 
+  '',0
+#data byte _str_ReadLine_4 = 
+  'F','i','l','e',' ','n','o','t',' ','f','o','u','n','d',0
+#data byte _str_ReadLine_5 = 
+  'E','n','d',' ','o','f',' ','f','i','l','e','.',' ','L','i','n','e',' ','n','o',
+  't',' ','f','o','u','n','d',0
+P     61
+ReadLine_L0:
+ LINK __SizeOf(ReadLine__temp__)
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 72 ;  done := 0;                                                        // done nastavovat pouze na 1 cykl
+ LD   bool 0       ; false
+ WRX  done
+#debug_left bool done
+#srcline 73 ;  IF line = 0 THEN                                                  // pokud je radek 0 smazat vsechny priznaky
+ LDX  line
+#debug udint line
+ LD   udint 0
+ EQ
+ JMC  ReadLine_L1
+#srcline 74 ;    busy := 0; errID := 0; errTxt := ''; lastFile := '';
+ LD   bool 0       ; false
+ WRX  busy
+#debug_left bool busy
+ LD   udint 0
+ WRX  errID
+#debug_left udint errID
+ LD   0   ; null string
+ LEAX errTxt
+ WRI  
+ LEAX errTxt
+ LD   80
+ DST    ; Level 1
+ LEA  _str_ReadLine_0
+ SCON 
+#debug_left string errTxt
+ PDST   ; Level 1
+ LD   0   ; null string
+ LEAX lastFile
+ WRI  
+ LEAX lastFile
+ LD   80
+ DST    ; Level 1
+ LEA  _str_ReadLine_1
+ SCON 
+#debug_left string lastFile
+ PDST   ; Level 1
+#srcline 75 ;  ELSIF LEN(filename) > 0 THEN
+ JMP  ReadLine_L2
+ReadLine_L1:
+ LDX  filename
+#debug string filename
+ SLEN 
+ LD   int 0
+ GTS
+ JMC  ReadLine_L3
+#srcline 76 ;     newFile := fileName <> lastFile;                               // novy soubor
+ LDX  fileName
+#debug string fileName
+ LEAX lastFile
+#debug string lastFile
+ SCMP 
+ EQ   0
+ NEG
+ WRX  newFile
+#debug_left bool newFile
+#srcline 77 ;     IF (lastLine <> line) OR newFile THEN                          // zmena radku nebo jiny soubor
+ LDX  lastLine
+#debug udint lastLine
+ LDX  line
+#debug udint line
+ EQ
+ NEG
+ LDX  newFile
+#debug bool newFile
+ OR  
+ JMC  ReadLine_L4
+#srcline 78 ;       outidx := 0;                                                 // zacit plnit vystup od zacatku (potreba pro vetsi nez je bufTxt)
+ LD   uint 0
+ WRX  outidx
+#debug_left uint outidx
+#srcline 79 ;       busy := 1; err := 0; errID :=0; errTxt := '';                // zahajit cteni
+ LD   bool -1      ; true
+ WRX  busy
+#debug_left bool busy
+ LD   bool 0       ; false
+ WRX  err
+#debug_left bool err
+ LD   udint 0
+ WRX  errID
+#debug_left udint errID
+ LD   0   ; null string
+ LEAX errTxt
+ WRI  
+ LEAX errTxt
+ LD   80
+ DST    ; Level 1
+ LEA  _str_ReadLine_2
+ SCON 
+#debug_left string errTxt
+ PDST   ; Level 1
+#srcline 80 ;       txtLine := ''; lineContinues := 0;                           // nulovat vystup
+ LD   0   ; null string
+ LDX  txtLine
+ WRI  
+ LDX  txtLine
+ LD   255
+ DST    ; Level 1
+ LEA  _str_ReadLine_3
+ SCON 
+#debug_left string txtLine
+ PDST   ; Level 1
+ LD   bool 0       ; false
+ WRX  lineContinues
+#debug_left bool lineContinues
+#srcline 81 ;       IF (line < lastLine) OR (lastLine = 0) OR newFile THEN
+ LDX  line
+#debug udint line
+ LDX  lastLine
+#debug udint lastLine
+ LT
+ LDX  lastLine
+#debug udint lastLine
+ LD   udint 0
+ EQ
+ OR  
+ LDX  newFile
+#debug bool newFile
+ OR  
+ JMC  ReadLine_L6
+#srcline 82 ;         actPos := 0; actLine := 0;                                 // od zacatku souboru
+ LD   udint 0
+ WRX  actPos
+#debug_left udint actPos
+ LD   udint 0
+ WRX  actLine
+#debug_left udint actLine
+#srcline 83 ;         ok := FileInfo(fileName := FileName, fileDesc := fileInf); // informace o souboru
+ NXT
+ LDX  FileName
+ WR   __Instance__FileInfo~fileName
+#debug_left pointer __Instance__FileInfo.fileName
+ LEAX fileInf
+ WR   __Instance__FileInfo~fileDesc
+#debug_left pointer __Instance__FileInfo.fileDesc
+ PRV
+ LEA  __Instance__FileInfo
+ CAL  FileInfo_L0
+ WRY  ok
+#debug_left bool ok
+#srcline 84 ;         IF not ok THEN
+ LDY  ok
+#debug bool ok
+ NEG
+ JMC  ReadLine_L8
+#srcline 85 ;           busy := 0; err := 1; errID := 10002; errTxt := 'File not found';
+ LD   bool 0       ; false
+ WRX  busy
+#debug_left bool busy
+ LD   bool -1      ; true
+ WRX  err
+#debug_left bool err
+ LD   udint 10002
+ WRX  errID
+#debug_left udint errID
+ LD   0   ; null string
+ LEAX errTxt
+ WRI  
+ LEAX errTxt
+ LD   80
+ DST    ; Level 1
+ LEA  _str_ReadLine_4
+ SCON 
+#debug_left string errTxt
+ PDST   ; Level 1
+#srcline 86 ;         END_IF;
+ReadLine_L8:
+#srcline 87 ;         lastFile := fileName;                                      // pamatovat si jmeno souboru
+ LD   0   ; null string
+ LEAX lastFile
+ WRI  
+ LEAX lastFile
+ LD   80
+ DST    ; Level 1
+ LDX  fileName
+#debug string fileName
+ SCON 
+#debug_left string lastFile
+ PDST   ; Level 1
+#srcline 88 ;       END_IF;
+ReadLine_L6:
+#srcline 89 ;       bufTxtReady := 0;                                            // priznak nacteneho bufferu
+ LD   bool 0       ; false
+ WRX  bufTxtReady
+#debug_left bool bufTxtReady
+#srcline 90 ;     END_IF;
+ReadLine_L4:
+#srcline 92 ;     IF Busy OR lineContinues THEN
+ LDX  Busy
+#debug bool Busy
+ LDX  lineContinues
+#debug bool lineContinues
+ OR  
+ JMC  ReadLine_L10
+#srcline 93 ;       // nacist cast souboru
+#srcline 94 ;       IF actPos < fileInf.fileSize THEN
+ LDX  actPos
+#debug udint actPos
+ LDX  fileInf~fileSize
+#debug udint fileInf.fileSize
+ LT
+ JMC  ReadLine_L12
+#srcline 95 ;         ReadFile(fileName := fileName, dstVar := void(txtLine), actSize => actSize, exec := true, seek := actPos, size := maxLen);// SIZEOF(bufTxt)-1);
+ LDX  fileName
+ WRX  ReadFile~fileName
+#debug_left pointer ReadFile.fileName
+ LDX  txtLine
+ WRX  ReadFile~dstVar
+#debug_left pointer ReadFile.dstVar
+ LD   bool -1       ; true
+ WRX  ReadFile~exec
+#debug_left bool ReadFile~exec
+ LDX  actPos
+#debug udint actPos
+ WRX  ReadFile~seek
+#debug_left udint ReadFile~seek
+ LDX  maxLen
+#debug udint maxLen
+ WRX  ReadFile~size
+#debug_left udint ReadFile~size
+ LEAX ReadFile
+ CAL  ReadFromFile_L0
+; output assigment 
+ LDX  ReadFile~actSize
+#debug udint ReadFile~actSize
+ WRX  actSize
+#debug_left udint actSize
+#srcline 96 ;         IF ReadFile.done OR ReadFile.err THEN
+ LDX  ReadFile~done
+#debug bool ReadFile.done
+ LDX  ReadFile~err
+#debug bool ReadFile.err
+ OR  
+ JMC  ReadLine_L14
+#srcline 97 ;           IF ReadFile.errID = 0 THEN
+ LDX  ReadFile~errID
+#debug udint ReadFile.errID
+ LD   udint 0
+ EQ
+ JMC  ReadLine_L16
+#srcline 98 ;             IF ReadFile.actSize <> 0 THEN
+ LDX  ReadFile~actSize
+#debug udint ReadFile.actSize
+ LD   udint 0
+ EQ
+ NEG
+ JMC  ReadLine_L18
+#srcline 99 ;               bufTxtReady := 1;
+ LD   bool -1      ; true
+ WRX  bufTxtReady
+#debug_left bool bufTxtReady
+#srcline 100 ;             ELSE
+ JMP  ReadLine_L19
+ReadLine_L18:
+#srcline 101 ;               busy := 0; err := 1; errID := 10001;
+ LD   bool 0       ; false
+ WRX  busy
+#debug_left bool busy
+ LD   bool -1      ; true
+ WRX  err
+#debug_left bool err
+ LD   udint 10001
+ WRX  errID
+#debug_left udint errID
+#srcline 102 ;             END_IF;
+ReadLine_L19:
+#srcline 103 ;           ELSE
+ JMP  ReadLine_L17
+ReadLine_L16:
+#srcline 104 ;             errID := ReadFile.errID; busy := 0; err := 1;        // chyba cteni ze souboru
+ LDX  ReadFile~errID
+#debug udint ReadFile.errID
+ WRX  errID
+#debug_left udint errID
+ LD   bool 0       ; false
+ WRX  busy
+#debug_left bool busy
+ LD   bool -1      ; true
+ WRX  err
+#debug_left bool err
+#srcline 105 ;             GetLastErrTxt(errCode := ReadFile.errID(*GetLastErr()*), errMessage := errTxt);
+ NXT
+ LDX  ReadFile~errID
+#debug udint ReadFile.errID
+ WR   __Instance__GetLastErrTxt~errCode
+#debug_left udint __Instance__GetLastErrTxt~errCode
+ LEAX errTxt
+ WR   __Instance__GetLastErrTxt~errMessage
+#debug_left pointer __Instance__GetLastErrTxt.errMessage
+ PRV
+ LEA  __Instance__GetLastErrTxt
+ CAL  GetLastErrTxt_L0
+#srcline 106 ;           END_IF;
+ReadLine_L17:
+#srcline 107 ;           // osetrit koncovou nulu v bufferu
+#srcline 108 ;        	{asm}
+#srcline 109
+          	LD    0        ; null = end of string
+#srcline 110
+            LDX	  txtLine  ; adr dest
+#srcline 111
+          	LDX   actSize  ; length
+#srcline 112
+          	ADD            ; adr end of string
+#srcline 113
+          	WRI
+#srcline 114 ;        	{end_asm}
+#srcline 115 ;           // shodit exec pro pristi cteni souboru
+#srcline 116 ;           ReadFile(fileName := FileName, dstVar := void(txtLine), exec := 0);
+ LDX  FileName
+ WRX  ReadFile~fileName
+#debug_left pointer ReadFile.fileName
+ LDX  txtLine
+ WRX  ReadFile~dstVar
+#debug_left pointer ReadFile.dstVar
+ LD   bool 0       ; false
+ WRX  ReadFile~exec
+#debug_left bool ReadFile~exec
+ LEAX ReadFile
+ CAL  ReadFromFile_L0
+#srcline 117 ;         END_IF;
+ReadLine_L14:
+#srcline 118 ;       ELSE
+ JMP  ReadLine_L13
+ReadLine_L12:
+#srcline 119 ;         busy := 0; err := 1; errID := 10001;
+ LD   bool 0       ; false
+ WRX  busy
+#debug_left bool busy
+ LD   bool -1      ; true
+ WRX  err
+#debug_left bool err
+ LD   udint 10001
+ WRX  errID
+#debug_left udint errID
+#srcline 120 ;       END_IF;
+ReadLine_L13:
+#srcline 122 ;       // hledat pozadovany radek v bufferu
+#srcline 123 ;       IF bufTxtReady AND (busy OR lineContinues) THEN
+ LDX  bufTxtReady
+#debug bool bufTxtReady
+ LDX  busy
+#debug bool busy
+ LDX  lineContinues
+#debug bool lineContinues
+ OR  
+ AND
+ JMC  ReadLine_L20
+#srcline 124 ;         index := 0;
+ LD   int 0
+ WRX  index
+#debug_left int index
+#srcline 125 ;         WHILE actLine <> line DO
+ReadLine_L22:
+ LDX  actLine
+#debug udint actLine
+ LDX  line
+#debug udint line
+ EQ
+ NEG
+ JMC  ReadLine_L23
+ DBG 
+#srcline 126 ;           //i := FIND( IN1 := bufTxt + index, IN2 := '$0A');  // najit konec radku
+#srcline 127 ;           {asm}
+#srcline 128
+             LDX  txtLine
+#srcline 129
+             LDX  index
+#srcline 130
+             ADD
+#srcline 131
+             LEA  __Const__ReadLine_SEPARATOR
+#srcline 132
+             SFND
+#srcline 133
+             WRX  i
+#srcline 134 ;           {end_asm}
+#srcline 135 ;           IF i <> 0 THEN                                       // byl nalezen konec radku
+ LDX  i
+#debug int i
+ EXTW 
+ LD   int 0
+ EQ
+ NEG
+ JMC  ReadLine_L24
+#srcline 136 ;             actLine := actLine + 1;                            // zvysit pocitadla
+ LDX  actLine
+#debug udint actLine
+ LD   udint 1
+ ADD
+ WRX  actLine
+#debug_left udint actLine
+#srcline 137 ;             IF actLine <> line THEN
+ LDX  actLine
+#debug udint actLine
+ LDX  line
+#debug udint line
+ EQ
+ NEG
+ JMC  ReadLine_L26
+#srcline 138 ;               index := index + i;                              // hledat dal
+ LDX  index
+#debug int index
+ EXTW 
+ LDX  i
+#debug int i
+ EXTW 
+ ADD
+ EXTW
+ WRX  index
+#debug_left int index
+#srcline 139 ;             ELSE
+ JMP  ReadLine_L27
+ReadLine_L26:
+#srcline 140 ;               lineContinues := 0;                              // nalezeno LF, radek uz je cely
+ LD   bool 0       ; false
+ WRX  lineContinues
+#debug_left bool lineContinues
+#srcline 141 ;             END_IF;
+ReadLine_L27:
+#srcline 142 ;           ELSE                                                 //  nebyl nalezen konec radku
+ JMP  ReadLine_L25
+ReadLine_L24:
+#srcline 143 ;             IF (index = 0) AND (i = 0) THEN                    //  hledali jsme od zacatku a presto nebyl nalezen
+ LDX  index
+#debug int index
+ EXTW 
+ LD   int 0
+ EQ
+ LDX  i
+#debug int i
+ EXTW 
+ LD   int 0
+ EQ
+ AND
+ JMC  ReadLine_L28
+#srcline 144 ;               i := UDINT_TO_INT(maxLen);// + 2; //sizeof(bufTxt) + 1            // radek v csv je delsi nez buffer, posunout pro dalsi cteni
+ LDX  maxLen
+#debug udint maxLen
+ EXTW
+ WRX  i
+#debug_left int i
+#srcline 145 ;               IF actLine = (line - 1) THEN
+ LDX  actLine
+#debug udint actLine
+ LDX  line
+#debug udint line
+ LD   udint 1
+ SUB
+ EQ
+ JMC  ReadLine_L30
+#srcline 146 ;                 lineContinues := 1;                            // predat zacatek radku + info, ze radek bude pokracovat
+ LD   bool -1      ; true
+ WRX  lineContinues
+#debug_left bool lineContinues
+#srcline 147 ;               END_IF;
+ReadLine_L30:
+#srcline 148 ;             END_IF;
+ReadLine_L28:
+#srcline 149 ;             EXIT;                                              // v bufferu uz neni dalsi LF, pokracovat pristi cyklus
+ JMP  ReadLine_L23
+#srcline 150 ;           END_IF;
+ReadLine_L25:
+#srcline 151 ;         END_WHILE;
+ JMP  ReadLine_L22
+ReadLine_L23:
+#srcline 153 ;         bufTxtReady := 0;                                      // pristi cykl se bude zase cist ze souboru
+ LD   bool 0       ; false
+ WRX  bufTxtReady
+#debug_left bool bufTxtReady
+#srcline 154 ;//         IF lineContinues THEN
+#srcline 155 ;//           actPos := actPos + INT_TO_UDINT(i-2);                // offset v souboru pro dalsi cteni
+#srcline 156 ;//         ELSE
+#srcline 157 ;           actPos := actPos + INT_TO_UDINT(index + i);          // offset v souboru pro dalsi cteni
+ LDX  actPos
+#debug udint actPos
+ LDX  index
+#debug int index
+ EXTW 
+ LDX  i
+#debug int i
+ EXTW 
+ ADD
+ EXTW
+ ADD
+ WRX  actPos
+#debug_left udint actPos
+#srcline 158 ;//         END_IF;
+#srcline 159 ;         IF actLine = line OR lineContinues THEN
+ LDX  actLine
+#debug udint actLine
+ LDX  line
+#debug udint line
+ EQ
+ LDX  lineContinues
+#debug bool lineContinues
+ OR  
+ JMC  ReadLine_L32
+#srcline 160 ;           done := 1;                            // radek nalezen
+ LD   bool -1      ; true
+ WRX  done
+#debug_left bool done
+#srcline 161 ;           busy := 0;
+ LD   bool 0       ; false
+ WRX  busy
+#debug_left bool busy
+#srcline 162 ;           err := 0;
+ LD   bool 0       ; false
+ WRX  err
+#debug_left bool err
+#srcline 163 ;           //koncova nula za CRLF
+#srcline 164 ;        	{asm}
+#srcline 165
+        	  #def __READLINEFROMFILE_X0__ %X0
+#srcline 166
+        	  LDX txtLine
+#srcline 167
+        	  LDX index
+#srcline 168
+        	  ADD
+#srcline 169
+            SRC __READLINEFROMFILE_X0__
+#srcline 170
+        	  LDX txtLine
+#srcline 171
+        	  LDX  i
+#srcline 172
+            MOV __READLINEFROMFILE_X0__
+#srcline 173
+          	LD    0        ; null = end of string
+#srcline 174
+            LDX	  txtLine  ; adr dest
+#srcline 175
+          	LDX   i	       ; length (including CRLF)
+#srcline 176
+          	ADD            ; adr of ending null
+#srcline 177
+          	WRI
+#srcline 178 ;        	{end_asm}
+#srcline 180 ;         ELSE
+ JMP  ReadLine_L33
+ReadLine_L32:
+#srcline 181 ;           IF actPos >= fileInf.fileSize THEN
+ LDX  actPos
+#debug udint actPos
+ LDX  fileInf~fileSize
+#debug udint fileInf.fileSize
+ LT
+ NEG
+ JMC  ReadLine_L34
+#srcline 182 ;             // pozadovany radek v souboru nenalezen (soubor nema tolik radku)
+#srcline 183 ;             busy := 0; err := 1; errID := 10001;
+ LD   bool 0       ; false
+ WRX  busy
+#debug_left bool busy
+ LD   bool -1      ; true
+ WRX  err
+#debug_left bool err
+ LD   udint 10001
+ WRX  errID
+#debug_left udint errID
+#srcline 184 ;           END_IF;
+ReadLine_L34:
+#srcline 185 ;         END_IF;
+ReadLine_L33:
+#srcline 186 ;       END_IF;
+ReadLine_L20:
+#srcline 187 ;     END_IF;
+ReadLine_L10:
+#srcline 188 ;     lastLine := line;                                             // pamatovat si naposledy hledany radek
+ LDX  line
+#debug udint line
+ WRX  lastLine
+#debug_left udint lastLine
+#srcline 189 ;  END_IF;
+ JMP  ReadLine_L2
+ReadLine_L3:
+ReadLine_L2:
+#srcline 191 ;  IF err THEN
+ LDX  err
+#debug bool err
+ JMC  ReadLine_L36
+#srcline 192 ;    IF errID = 10001 THEN
+ LDX  errID
+#debug udint errID
+ LD   udint 10001
+ EQ
+ JMC  ReadLine_L38
+#srcline 193 ;      errTxt := 'End of file. Line not found';                  // spolecne chybove hlaseni
+ LD   0   ; null string
+ LEAX errTxt
+ WRI  
+ LEAX errTxt
+ LD   80
+ DST    ; Level 1
+ LEA  _str_ReadLine_5
+ SCON 
+#debug_left string errTxt
+ PDST   ; Level 1
+#srcline 194 ;    END_IF;
+ReadLine_L38:
+#srcline 195 ;  END_IF;
+ReadLine_L36:
+#srcline 196 ;END_FUNCTION_BLOCK
+ ULNK
+RET
+E     61
+
+; Initialize - variables
+P     61
+ReadLine__InstanceInit__:
+ LINK 0
+ ULNK
+RET
+E     61
+; End initialize - variables
+#endpou 
+
+
+
+ 
+
+#srcfile ''
+Ð¦  Ø  
