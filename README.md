@@ -9,7 +9,7 @@ Although I have experience in software as well as a degree in embedded engineeri
 I hope providing a working, although far from perfect example will help other PLC projects to gain more motion.
 
 ### "I'm going to hack your home!"
-Nothing is exposed on the public internet and all systems included run on wired connection. I hope that is a high enough bar, but if isn't let me knoe!
+Nothing is exposed on the public internet and all systems included run on wired connection. I hope that is a high enough bar, but if isn't let me know!
 
 
 # Details
