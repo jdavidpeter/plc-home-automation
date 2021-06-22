@@ -5,7 +5,7 @@ PROGRAM AlarmControl
   END_VAR
   VAR
      i: UINT;
-     sumAktivitas : BOOL := FALSE;
+     sumActivity : BOOL := FALSE;
      heatingVezerles : InPlaceOnOff;
      melegVizVezerles : InPlaceOnOff;
 
@@ -20,11 +20,11 @@ PROGRAM AlarmControl
       (NOT ALARM_ZONES_INACTIVITY[C_GARAGE_DOOR_OPENING] OR NOT ALARM_ZONES_INACTIVITY[C_FRONT_DOOR_OPENING]);
 
   // Detecting if house is no longer occupied or everyone is sleeping
-  sumAktivitas := FALSE;
+  sumActivity := FALSE;
   FOR i := 1 TO C_ALARM_ZONES DO
-      sumAktivitas := sumAktivitas OR (NOT ALARM_ZONES_INACTIVITY[i]);
+     sumActivity := sumActivity OR (NOT ALARM_ZONES_INACTIVITY[i]);
   END_FOR;
-  AWAY_TIMER(IN := NOT sumAktivitas, PT := T#20d);
+  AWAY_TIMER(IN := NOT sumActivity, PT := T#20d);
   GONE_FOR_5_MINUTES := awayFromHomeFor(awayFor := T#5m);
   GONE_FOR_SHORT_TIME := awayFromHomeFor(TIME_AWAY_SHORT);
   GONE_FOR_LONG_TIME := awayFromHomeFor(TIME_AWAY_LONG);
