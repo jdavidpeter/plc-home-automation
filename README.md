@@ -58,3 +58,14 @@ There is significant project configuration (e.g. naming and mapping physical por
 # Contribution
 This is the live system of my home and frankly, I have doubts that anyone would like to contribute to the code.
 Still, suggestions are warmly welcome and I'm happy to merge changes that improve code quality.
+
+# Things I would do differently next time
+
+## For sure
+ - Making shutters electric and controlling them centrally as well
+ -- It doesn't even need more input, just control it by pressing the light switches longer or multiple times
+ -- They are important part of heat regulation
+ - Using soil moisture sensors in the garden for more efficient watering
+
+## Maybe
+ - Thinking about KNX to make the system decentralised with no single point of failure like the central PLC unit
