@@ -15,18 +15,18 @@
 <title>
 <xsl:value-of select="/PAGE/@TITLE" />
 Világítás</title>
-<script src="LIGHTS.JS?U=1624378044" language="JavaScript" charset="utf-8" />
+<script src="LIGHTS.JS?U=1624447920" language="JavaScript" charset="utf-8" />
 <style type="text/css">.mono {font-family: Verdana, Arial, FreeSans, sans-serif;}</style>
 </head>
 <body onload="GetXML('LIGHTS.XML'); FunWatchDog();">
-<xsl:if test="1624378044 != ACCESS/@UCID">
+<xsl:if test="1624447920 != ACCESS/@UCID">
 <xsl:attribute name="onload">
 null;
 </xsl:attribute>
 <div id="cachewarning" style="text-align: left;"></div>
 <script src="REFCLR.JS" language="JavaScript" charset="utf-8"></script>
 </xsl:if>
-<xsl:if test="1624378044 = ACCESS/@UCID">
+<xsl:if test="1624447920 = ACCESS/@UCID">
 <table cellpadding="0" cellspacing="0">
 <tr style="height: 40px;">
 <!--logo-->
@@ -901,6 +901,9 @@ Világítás</span>
 <xsl:if test="INPUT[70]/@VALUE = 0">
 <div title="Zona aktiv" style="position: absolute; top: 378px; left: 531px; z-index: 111; background-image: url(IMAGES/PIR1_O_2.PNG); line-height: 24px; height: 24px; width: 24px;" id="INPUT109"></div>
 </xsl:if>
+<div style="position: absolute; top: 45px; left: 675px; z-index: 113; font-weight: bold;">3</div>
+<div style="position: absolute; top: 100px; left: 525px; z-index: 114; font-weight: bold;">1</div>
+<div style="position: absolute; top: 305px; left: 505px; z-index: 115; font-weight: bold;">2</div>
 </div>
 </td>
 </tr>
