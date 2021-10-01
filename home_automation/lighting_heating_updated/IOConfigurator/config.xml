@@ -344,7 +344,7 @@
                           <ObjectAlias name="r{RACK}_p{POSITION}_OUT.DOs.DO8" public="false" publicAPI="false" userDef="true">GARAGE_LIGHTS_OUT</ObjectAlias>
                           <ObjectAlias name="r{RACK}_p{POSITION}_OUT.DOs.DO9" public="false" publicAPI="false" userDef="true">STORAGE_PUMP</ObjectAlias>
                           <ObjectAlias name="r{RACK}_p{POSITION}_OUT.DOs.DO10" public="false" publicAPI="false" userDef="true">EXHAUST_FAN_OUT</ObjectAlias>
-                          <ObjectAlias name="r{RACK}_p{POSITION}_OUT.DOs.DO11" public="false" publicAPI="false" userDef="true">UPSTAIRS_BATH_PROGRAMABLE_PLUG</ObjectAlias>
+                          <ObjectAlias name="r{RACK}_p{POSITION}_OUT.DOs.DO11" public="false" publicAPI="false" userDef="true">UPSTAIRS_BATH_TimerABLE_PLUG</ObjectAlias>
                         </Aliases>
                         <Notes>
                           <ObjectNote name="r{RACK}_p{POSITION}_C_HM_1113M_init">Initialization table of C-HM-1113M unit</ObjectNote>

@@ -24,7 +24,7 @@ FUNCTION_BLOCK TurnOffLightsHelper
   
 END_FUNCTION_BLOCK // Helper function block
   
-PROGRAM LightingControl
+Program LightingControl
 
   VAR
     domesticHotWaterCirculation_in : OnThenOffPulse;
@@ -56,7 +56,8 @@ PROGRAM LightingControl
     wcExhaustDelay(IN := UPSTAIRS_WC_LIGHTS_OUT, PT := wcExhaustDelayTime);
     upstairsBathroomExhaustDelay(IN := UPSTAIRS_BATH_MAJOR_LIGHTS_OUT, PT := upstairsBathroomExhaustDelayTime);
     upstairsShowerExhaustDelay(IN := UPSTAIRS_BATH_SHOWER_LIGHTS_OUT, PT := upstairsShowerExhaustDelayTime);
-    //exhaustRequest := wcExhaustDelay.Q OR upstairsBathroomExhaustDelay.Q OR upstairsShowerExhaustDelay.Q;
+    // No longer needed since we have a full house ventillation system
+    // exhaustRequest := wcExhaustDelay.Q OR upstairsBathroomExhaustDelay.Q OR upstairsShowerExhaustDelay.Q;
     exhaustRequest := FALSE;
     exhaustFan_in(timeOn := exhaustFanRuntime, feedOn := exhaustRequest, feedOff := NOT exhaustRequest, change := EXHAUST_FAN_IN OR VIRTUAL_EXHAUST_FAN_IN, name := 'Elszivo ventillator');
     EXHAUST_FAN_OUT := exhaustFan_in.out;

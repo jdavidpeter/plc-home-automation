@@ -6,17 +6,9 @@ contentversion=1
 [Watch2Bank0]
 bankname="Bank1"
 shortcut=1
-watchcnt=5
+watchcnt=1
 bindfile=""
-watchobjEx0=0,"IO_LOGGER|"
-watchobj0="IO_LOGGER",1,0,0,""
-watchobjEx1=0,"FILE_PROBLEM_TRACKER|"
-watchobj1="FILE_PROBLEM_TRACKER",1,0,0,""
-watchobjEx2=0,"Alarm_Control.sumActivity|"
-watchobj2="Alarm_Control.sumActivity",1,0,0,""
-watchobjEx3=0,"AWAY_TIMER|"
-watchobj3="AWAY_TIMER",1,0,0,""
-watchobjEx4=0,"PARADOX_COM|{+}"
-watchobj4="PARADOX_COM",1,0,0,""
+watchobjEx0=0,"Heating_Control.vaillant_opentherm|"
+watchobj0="Heating_Control.vaillant_opentherm",1,0,0,""
 [/Watch2Bank0]
 

@@ -4,7 +4,7 @@
 	<Grid Enable="1" X="5" Y="5" />
 	<globalset newdim="1" />
 	<group caption="Home control" level="0" locked="0" altdim="true" notforid="false" width="960" height="650" Uid="11407">
-		<page caption="Világítás" name="LIGHTS.XML" background="" bgcolor="16777215" repeat="false" hidden="false" ajax="true" pause="1000" level="0" default="true" ucid="1624447920" width="729" height="587" Uid="11406">
+		<page caption="Világítás" name="LIGHTS.XML" background="" bgcolor="16777215" repeat="false" hidden="false" ajax="true" pause="1000" level="0" default="true" ucid="1633075151" width="729" height="587" Uid="11406">
 			<object caption="" X="2" Y="2" xoff="2" yoff="7" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="11187">
 				<picture href="" img="BR_44__4.PNG" />
 			</object>

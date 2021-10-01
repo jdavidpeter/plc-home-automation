@@ -7,30 +7,30 @@ PROGRAM HeatingControl
     vaillant_opentherm : fbOpenTherm;
     commEnable : BOOL := true;
 
-    termosztatok : ARRAY [0 .. C_HEATING_ZONES - 1] OF IPidHeatController;
-    eloremenoVizhoRequests : ARRAY [0 .. C_HEATING_ZONES - 1] OF REAL;
+    thermostats : ARRAY [0 .. C_HEATING_ZONES - 1] OF IPidHeatController;
+    forwardWaterTemperatureRequests : ARRAY [0 .. C_HEATING_ZONES - 1] OF REAL;
     
     // Boiler heating state
-    heating_inditas : BOOL := false;
+    heating_start : BOOL := false;
 
     i : INT := 0;
-    activeZones : REAL := 0;
+    activeZones : REAL := 0; // As it is an integer that will be used for division
     
-    downstairsPumpRequest : BOOL := false;
-    upstairsPumpRequest : BOOL := false;
-    downstairsPumpActivationIdozito: TON;
-    upstairsPumpActivationIdozito: TON;
-    downstairsPumpDeactivationIdozito : TOF;
-    upstairsPumpDeactivationIdozito : TOF;
-    pumpActivationDelay : TIME := T#10m;
-    pumpDeactivationDelay : TIME := T#1m;
+    downstairsPumpRequest :            BOOL := false;
+    upstairsPumpRequest :              BOOL := false;
+    downstairsPumpActivationTimer :    TON;
+    upstairsPumpActivationTimer :      TON;
+    downstairsPumpDeactivationTimer :  TOF;
+    upstairsPumpDeactivationTimer :    TOF;
+    pumpActivationDelay :              TIME := T#10m;
+    pumpDeactivationDelay :            TIME := T#1m;
     
   END_VAR
 
-    // Eredõ vezérlés
+    // Actual control signals
     SUM_HEATING_REQUIREMENT := false;
-    downstairsPumpRequest := false;
-    upstairsPumpRequest := false;
+    downstairsPumpRequest   := false;
+    upstairsPumpRequest     := false;
     SUM_HEATING_WATER_TEMPERATURE_REQUIREMENT := 0;
     activeZones := 0;
     
@@ -46,10 +46,10 @@ PROGRAM HeatingControl
     FOR i := 0 TO C_HEATING_ZONES - 1 DO
         // avoid unlimited accumlation of integrative error
         IF HEATING_ENABLE THEN
-            termosztatok[i](
+            thermostats[i](
                 actualTemperature := MEASURED_TEMPERATURES[i]^,
                 setpoint := DESIRED_TEMPERATURES[i]^,
-                actualHeatingTemperature := eloremenoVizhoRequests[i],
+                actualHeatingTemperature := forwardWaterTemperatureRequests[i],
                 samplingTime := HEATING_CONTROL_SAMPLING_TIME,
                 k := IPID_K,
                 tI := IPID_TI,
@@ -60,11 +60,11 @@ PROGRAM HeatingControl
             );
         END_IF;
         // Enable heat request for a zone only if global control flag is enabled
-        heatingRequests[i] := termosztatok[i].heatRequest AND HEATING_ENABLE;
-        eloremenoVizhoRequests[i] := termosztatok[i].heatingTemperature;
+        heatingRequests[i] := thermostats[i].heatRequest AND HEATING_ENABLE;
+        forwardWaterTemperatureRequests[i] := thermostats[i].heatingTemperature;
         SUM_HEATING_REQUIREMENT := SUM_HEATING_REQUIREMENT OR heatingRequests[i];
         IF heatingRequests[i] THEN
-            SUM_HEATING_WATER_TEMPERATURE_REQUIREMENT := SUM_HEATING_WATER_TEMPERATURE_REQUIREMENT + eloremenoVizhoRequests[i];
+            SUM_HEATING_WATER_TEMPERATURE_REQUIREMENT := SUM_HEATING_WATER_TEMPERATURE_REQUIREMENT + forwardWaterTemperatureRequests[i];
             activeZones := activeZones + 1;
         END_IF;
 
@@ -95,23 +95,22 @@ PROGRAM HeatingControl
         END_IF;
     END_FOR;
 
-    downstairsPumpActivationIdozito(IN := downstairsPumpRequest, PT := pumpActivationDelay);
-    downstairsPumpDeactivationIdozito(IN := downstairsPumpActivationIdozito.Q, PT := pumpDeactivationDelay);
-    upstairsPumpActivationIdozito(IN := upstairsPumpRequest, PT := pumpActivationDelay);
-    upstairsPumpDeactivationIdozito(IN := upstairsPumpActivationIdozito.Q, PT := pumpActivationDelay);
+    downstairsPumpActivationTimer(IN := downstairsPumpRequest, PT := pumpActivationDelay);
+    downstairsPumpDeactivationTimer(IN := downstairsPumpActivationTimer.Q, PT := pumpDeactivationDelay);
+    upstairsPumpActivationTimer(IN := upstairsPumpRequest, PT := pumpActivationDelay);
+    upstairsPumpDeactivationTimer(IN := upstairsPumpActivationTimer.Q, PT := pumpActivationDelay);
 
-    STORAGE_PUMP := downstairsPumpDeactivationIdozito.Q;
-    BOILER_PUMP_PLUG_LEFT := upstairsPumpDeactivationIdozito.Q;
+    STORAGE_PUMP := downstairsPumpDeactivationTimer.Q;
+    BOILER_PUMP_PLUG_LEFT := upstairsPumpDeactivationTimer.Q;
     
-    futoviz_temperature := SUM_HEATING_WATER_TEMPERATURE_REQUIREMENT;
-    heating_inditas := downstairsPumpActivationIdozito.Q OR upstairsPumpActivationIdozito.Q;
+    heating_start := downstairsPumpActivationTimer.Q OR upstairsPumpActivationTimer.Q;
 
     // Actual OpenTherm communication
     vaillant_opentherm(
       in_communicate := commEnable,
-      in_CH_en := heating_inditas AND HEATING_ENABLE,
+      in_CH_en := heating_start AND HEATING_ENABLE,
       in_DHW_en := HOT_WATER_ENABLE,
-      in_CH_temp := futoviz_temperature,
+      in_CH_temp := SUM_HEATING_WATER_TEMPERATURE_REQUIREMENT,
       in_max_CH_temp := C_MAXIMUM_HEATING_TEMPERATURE,
       in_DHW_temp := HOT_WATER_TEMPERATURE,
       in_timeOut := T#10s,
@@ -137,21 +136,6 @@ PROGRAM HeatingControl
     VAILANT_ERROR := vaillant_opentherm.out_com_error;
     VAILLANT_DIAG_CODE := vaillant_opentherm.out_diag_code;
     VAILANT_COMMUNICATIONO_ERROR := vaillant_opentherm.out_com_error;
-
-
-(*
-  timer(IN := true, PT := T#5s);
-  IF timer.Q THEN
-    UcOut.cont.ACN := ack;
-    UcOut.MSG_TYPE := 0;
-    UcOut.DATA_ID := dataID;
-    UcOut.DATA_VAL := 0;
-    VAILLANT_OPENTHERM_OUT := UcOut;
-    UcIn := VAILLANT_OPENTHERM_IN;
-    timer(IN := false, PT := T#5s);
-  END_IF;
- *)
-
    
 
 END_PROGRAM

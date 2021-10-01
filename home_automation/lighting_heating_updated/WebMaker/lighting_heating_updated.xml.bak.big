@@ -1,332 +1,332 @@
 <?xml version="1.0" encoding="windows-1250" ?>
-<web version="8.1" propfont="true" foot="" MaxUid="11421" height="560" width="980" menu="true" title="true" border="true" top="8" left="8" iniScale="100" maxScale="100" useIniScale="false" useMaxScale="false" userScale="true" webApp="false" bgdupl="false" bgcolor="16777215" icon="" id18="0" author="" encoding="windows-1255">
+<web version="8.1" propfont="true" foot="" MaxUid="11425" height="560" width="980" menu="true" title="true" border="true" top="8" left="8" iniScale="100" maxScale="100" useIniScale="false" useMaxScale="false" userScale="true" webApp="false" bgdupl="false" bgcolor="16777215" icon="" id18="0" author="" encoding="windows-1255">
 	<panels></panels>
 	<Grid Enable="1" X="5" Y="5" />
 	<globalset newdim="1" />
 	<group caption="Home control" level="0" locked="0" altdim="true" notforid="false" width="960" height="650" Uid="11407">
-		<page caption="Világítás" name="LIGHTING.XML" background="" bgcolor="16777215" repeat="false" hidden="false" ajax="true" pause="1000" level="0" default="true" ucid="1586007135" width="729" height="587" Uid="11406">
+		<page caption="Világítás" name="LIGHTS.XML" background="" bgcolor="16777215" repeat="false" hidden="false" ajax="true" pause="1000" level="0" default="true" ucid="1624447920" width="729" height="587" Uid="11406">
 			<object caption="" X="2" Y="2" xoff="2" yoff="7" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="11187">
 				<picture href="" img="BR_44__4.PNG" />
 			</object>
 			<object caption="" X="47" Y="2" xoff="2" yoff="7" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="11221">
 				<picture href="" img="BR_44__3.PNG" />
 			</object>
-			<object caption="" X="13" Y="19" xoff="4" yoff="6" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="NAPPALI_VILAGITAS_OUT" vistype="BOOL" visneg="false" Uid="11188">
-				<imagebtn variable="VIRTUALIS_NAPPALI_VILAGITAS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_2.PNG" />
+			<object caption="" X="13" Y="19" xoff="4" yoff="6" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="LIVING_ROOM_LIGHTS_OUT" vistype="BOOL" visneg="false" Uid="11188">
+				<imagebtn variable="VIRTUAL_LIVING_ROOM_LIGHTS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_2.PNG" />
 			</object>
-			<object caption="" X="13" Y="19" xoff="4" yoff="6" level="0" readonly="false" front="0" back="16777215" strong="false" italic="true" size="13" transparent="true" visvar="NAPPALI_VILAGITAS_OUT" vistype="BOOL" visneg="true" Uid="11190">
-				<imagebtn variable="VIRTUALIS_NAPPALI_VILAGITAS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_1.PNG" />
+			<object caption="" X="13" Y="19" xoff="4" yoff="6" level="0" readonly="false" front="0" back="16777215" strong="false" italic="true" size="13" transparent="true" visvar="LIVING_ROOM_LIGHTS_OUT" vistype="BOOL" visneg="true" Uid="11190">
+				<imagebtn variable="VIRTUAL_LIVING_ROOM_LIGHTS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_1.PNG" />
 			</object>
-			<object caption="" X="57" Y="27" xoff="7" yoff="2" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="GYEREKSZOBA_1_BELSO_VILAGITAS_OUT" vistype="BOOL" visneg="false" Uid="11191">
-				<imagebtn variable="VIRTUALIS_GYEREKSZOBA_1_BELSO_VILAGITAS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_2.PNG" />
+			<object caption="" X="57" Y="27" xoff="7" yoff="2" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="CHILDRENS_ROOM_1_INNER_LIGHTS_OUT" vistype="BOOL" visneg="false" Uid="11191">
+				<imagebtn variable="VIRTUAL_CHILDRENS_ROOM_1_INNER_LIGHTS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_2.PNG" />
 			</object>
-			<object caption="" X="57" Y="27" xoff="7" yoff="2" level="0" readonly="false" front="0" back="16777215" strong="false" italic="true" size="13" transparent="true" visvar="GYEREKSZOBA_1_BELSO_VILAGITAS_OUT" vistype="BOOL" visneg="true" Uid="11192">
-				<imagebtn variable="VIRTUALIS_GYEREKSZOBA_1_BELSO_VILAGITAS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_1.PNG" />
+			<object caption="" X="57" Y="27" xoff="7" yoff="2" level="0" readonly="false" front="0" back="16777215" strong="false" italic="true" size="13" transparent="true" visvar="CHILDRENS_ROOM_1_INNER_LIGHTS_OUT" vistype="BOOL" visneg="true" Uid="11192">
+				<imagebtn variable="VIRTUAL_CHILDRENS_ROOM_1_INNER_LIGHTS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_1.PNG" />
 			</object>
-			<object caption="" X="9" Y="51" xoff="7" yoff="3" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="KONYHA_VILAGITAS_OUT" vistype="BOOL" visneg="false" Uid="11193">
-				<imagebtn variable="VIRTUALIS_KONYHA_VILAGITAS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_2.PNG" />
+			<object caption="" X="9" Y="51" xoff="7" yoff="3" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="KITCHEN_LIGHTS_OUT" vistype="BOOL" visneg="false" Uid="11193">
+				<imagebtn variable="VIRTUAL_KITCHEN_LIGHTS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_2.PNG" />
 			</object>
-			<object caption="" X="9" Y="51" xoff="7" yoff="3" level="0" readonly="false" front="0" back="16777215" strong="false" italic="true" size="13" transparent="true" visvar="KONYHA_VILAGITAS_OUT" vistype="BOOL" visneg="true" Uid="11194">
-				<imagebtn variable="VIRTUALIS_KONYHA_VILAGITAS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_1.PNG" />
+			<object caption="" X="9" Y="51" xoff="7" yoff="3" level="0" readonly="false" front="0" back="16777215" strong="false" italic="true" size="13" transparent="true" visvar="KITCHEN_LIGHTS_OUT" vistype="BOOL" visneg="true" Uid="11194">
+				<imagebtn variable="VIRTUAL_KITCHEN_LIGHTS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_1.PNG" />
 			</object>
-			<object caption="" X="80" Y="27" xoff="3" yoff="7" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="KAZAN_VILAGITAS_OUT" vistype="BOOL" visneg="false" Uid="11195">
-				<imagebtn variable="VIRTUALIS_KAZAN_VILAGITAS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_2.PNG" />
+			<object caption="" X="80" Y="27" xoff="3" yoff="7" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="BOILER_LIGHTS_OUT" vistype="BOOL" visneg="false" Uid="11195">
+				<imagebtn variable="VIRTUAL_BOILER_LIGHTS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_2.PNG" />
 			</object>
-			<object caption="" X="80" Y="27" xoff="3" yoff="7" level="0" readonly="false" front="0" back="16777215" strong="false" italic="true" size="13" transparent="true" visvar="KAZAN_VILAGITAS_OUT" vistype="BOOL" visneg="true" Uid="11196">
-				<imagebtn variable="VIRTUALIS_KAZAN_VILAGITAS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_1.PNG" />
+			<object caption="" X="80" Y="27" xoff="3" yoff="7" level="0" readonly="false" front="0" back="16777215" strong="false" italic="true" size="13" transparent="true" visvar="BOILER_LIGHTS_OUT" vistype="BOOL" visneg="true" Uid="11196">
+				<imagebtn variable="VIRTUAL_BOILER_LIGHTS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_1.PNG" />
 			</object>
-			<object caption="" X="9" Y="5" xoff="6" yoff="3" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="TERASZ_VILAGITAS_OUT" vistype="BOOL" visneg="false" Uid="11197">
-				<imagebtn variable="VIRTUALIS_TERASZ_VILAGITAS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_2.PNG" />
+			<object caption="" X="9" Y="5" xoff="6" yoff="3" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="TERRACE_LIGHTS_OUT" vistype="BOOL" visneg="false" Uid="11197">
+				<imagebtn variable="VIRTUAL_TERRACE_LIGHTS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_2.PNG" />
 			</object>
-			<object caption="" X="9" Y="5" xoff="6" yoff="3" level="0" readonly="false" front="0" back="16777215" strong="false" italic="true" size="13" transparent="true" visvar="TERASZ_VILAGITAS_OUT" vistype="BOOL" visneg="true" Uid="11198">
-				<imagebtn variable="VIRTUALIS_TERASZ_VILAGITAS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_1.PNG" />
+			<object caption="" X="9" Y="5" xoff="6" yoff="3" level="0" readonly="false" front="0" back="16777215" strong="false" italic="true" size="13" transparent="true" visvar="TERRACE_LIGHTS_OUT" vistype="BOOL" visneg="true" Uid="11198">
+				<imagebtn variable="VIRTUAL_TERRACE_LIGHTS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_1.PNG" />
 			</object>
-			<object caption="" X="27" Y="61" xoff="7" yoff="5" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="KULTERI_VILAGITAS_OUT" vistype="BOOL" visneg="false" Uid="11199">
-				<imagebtn variable="VIRTUALIS_KULTERI_VILAGITAS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_2.PNG" />
+			<object caption="" X="27" Y="61" xoff="7" yoff="5" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="OUTDOOR_LIGHTS_OUT" vistype="BOOL" visneg="false" Uid="11199">
+				<imagebtn variable="VIRTUAL_OUTDOOR_LIGHTS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_2.PNG" />
 			</object>
-			<object caption="" X="27" Y="61" xoff="7" yoff="5" level="0" readonly="false" front="0" back="16777215" strong="false" italic="true" size="13" transparent="true" visvar="KULTERI_VILAGITAS_OUT" vistype="BOOL" visneg="true" Uid="11200">
-				<imagebtn variable="VIRTUALIS_KULTERI_VILAGITAS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_1.PNG" />
+			<object caption="" X="27" Y="61" xoff="7" yoff="5" level="0" readonly="false" front="0" back="16777215" strong="false" italic="true" size="13" transparent="true" visvar="OUTDOOR_LIGHTS_OUT" vistype="BOOL" visneg="true" Uid="11200">
+				<imagebtn variable="VIRTUAL_OUTDOOR_LIGHTS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_1.PNG" />
 			</object>
-			<object caption="" X="67" Y="42" xoff="7" yoff="7" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="FOLYOSO_VILAGITAS_OUT" vistype="BOOL" visneg="false" Uid="11201">
-				<imagebtn variable="VIRTUALIS_FOLYOSO_VILAGITAS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_2.PNG" />
+			<object caption="" X="67" Y="42" xoff="7" yoff="7" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="HALLWAY_LIGHTS_OUT" vistype="BOOL" visneg="false" Uid="11201">
+				<imagebtn variable="VIRTUAL_HALLWAY_LIGHTS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_2.PNG" />
 			</object>
-			<object caption="" X="67" Y="42" xoff="7" yoff="7" level="0" readonly="false" front="0" back="16777215" strong="false" italic="true" size="13" transparent="true" visvar="FOLYOSO_VILAGITAS_OUT" vistype="BOOL" visneg="true" Uid="11202">
-				<imagebtn variable="VIRTUALIS_FOLYOSO_VILAGITAS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_1.PNG" />
+			<object caption="" X="67" Y="42" xoff="7" yoff="7" level="0" readonly="false" front="0" back="16777215" strong="false" italic="true" size="13" transparent="true" visvar="HALLWAY_LIGHTS_OUT" vistype="BOOL" visneg="true" Uid="11202">
+				<imagebtn variable="VIRTUAL_HALLWAY_LIGHTS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_1.PNG" />
 			</object>
-			<object caption="" X="57" Y="19" xoff="6" yoff="0" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="GYEREKSZOBA_1_KULSO_VILAGITAS_OUT" vistype="BOOL" visneg="false" Uid="11203">
-				<imagebtn variable="VIRTUALIS_GYEREKSZOBA_1_KULSO_VILAGITAS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_2.PNG" />
+			<object caption="" X="57" Y="19" xoff="6" yoff="0" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="CHILDRENS_ROOM_1_OUTER_LIGHTS_OUT" vistype="BOOL" visneg="false" Uid="11203">
+				<imagebtn variable="VIRTUAL_CHILDRENS_ROOM_1_OUTER_LIGHTS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_2.PNG" />
 			</object>
-			<object caption="" X="57" Y="19" xoff="6" yoff="0" level="0" readonly="false" front="0" back="16777215" strong="false" italic="true" size="13" transparent="true" visvar="GYEREKSZOBA_1_KULSO_VILAGITAS_OUT" vistype="BOOL" visneg="true" Uid="11204">
-				<imagebtn variable="VIRTUALIS_GYEREKSZOBA_1_KULSO_VILAGITAS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_1.PNG" />
+			<object caption="" X="57" Y="19" xoff="6" yoff="0" level="0" readonly="false" front="0" back="16777215" strong="false" italic="true" size="13" transparent="true" visvar="CHILDRENS_ROOM_1_OUTER_LIGHTS_OUT" vistype="BOOL" visneg="true" Uid="11204">
+				<imagebtn variable="VIRTUAL_CHILDRENS_ROOM_1_OUTER_LIGHTS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_1.PNG" />
 			</object>
-			<object caption="" X="22" Y="42" xoff="6" yoff="3" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="NAGY_TAROLO_VILAGITAS_OUT" vistype="BOOL" visneg="false" Uid="11205">
-				<imagebtn variable="VIRTUALIS_NAGY_TAROLO_VILAGITAS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_2.PNG" />
+			<object caption="" X="22" Y="42" xoff="6" yoff="3" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="MAJOR_STORAGE_LIGHTS_OUT" vistype="BOOL" visneg="false" Uid="11205">
+				<imagebtn variable="VIRTUAL_MAJOR_STORAGE_LIGHTS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_2.PNG" />
 			</object>
-			<object caption="" X="22" Y="42" xoff="6" yoff="3" level="0" readonly="false" front="0" back="16777215" strong="false" italic="true" size="13" transparent="true" visvar="NAGY_TAROLO_VILAGITAS_OUT" vistype="BOOL" visneg="true" Uid="11206">
-				<imagebtn variable="VIRTUALIS_NAGY_TAROLO_VILAGITAS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_1.PNG" />
+			<object caption="" X="22" Y="42" xoff="6" yoff="3" level="0" readonly="false" front="0" back="16777215" strong="false" italic="true" size="13" transparent="true" visvar="MAJOR_STORAGE_LIGHTS_OUT" vistype="BOOL" visneg="true" Uid="11206">
+				<imagebtn variable="VIRTUAL_MAJOR_STORAGE_LIGHTS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_1.PNG" />
 			</object>
-			<object caption="" X="6" Y="58" xoff="0" yoff="4" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="DOWNSTAIRS_FURDO_SHOWER_VILAGITAS_OUT" vistype="BOOL" visneg="false" Uid="11207">
-				<imagebtn variable="VIRTUALIS_DOWNSTAIRS_FURDO_SHOWER_VILAGITAS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_2.PNG" />
+			<object caption="" X="6" Y="58" xoff="0" yoff="4" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="DOWNSTAIRS_BATH_SHOWER_LIGHTS_OUT" vistype="BOOL" visneg="false" Uid="11207">
+				<imagebtn variable="VIRTUAL_DOWNSTAIRS_BATH_SHOWER_LIGHTS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_2.PNG" />
 			</object>
-			<object caption="" X="6" Y="58" xoff="0" yoff="4" level="0" readonly="false" front="0" back="16777215" strong="false" italic="true" size="13" transparent="true" visvar="DOWNSTAIRS_FURDO_SHOWER_VILAGITAS_OUT" vistype="BOOL" visneg="true" Uid="11208">
-				<imagebtn variable="VIRTUALIS_DOWNSTAIRS_FURDO_SHOWER_VILAGITAS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_1.PNG" />
+			<object caption="" X="6" Y="58" xoff="0" yoff="4" level="0" readonly="false" front="0" back="16777215" strong="false" italic="true" size="13" transparent="true" visvar="DOWNSTAIRS_BATH_SHOWER_LIGHTS_OUT" vistype="BOOL" visneg="true" Uid="11208">
+				<imagebtn variable="VIRTUAL_DOWNSTAIRS_BATH_SHOWER_LIGHTS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_1.PNG" />
 			</object>
-			<object caption="" X="32" Y="14" xoff="7" yoff="4" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="FOLDSZINT_HALO_VILAGITAS_OUT" vistype="BOOL" visneg="false" Uid="11209">
-				<imagebtn variable="VIRTUALIS_FOLDSZINT_HALO_VILAGITAS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_2.PNG" />
+			<object caption="" X="32" Y="14" xoff="7" yoff="4" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="DOWNSTAIRS_BEDROOM_LIGHTS_OUT" vistype="BOOL" visneg="false" Uid="11209">
+				<imagebtn variable="VIRTUAL_DOWNSTAIRS_BEDROOM_LIGHTS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_2.PNG" />
 			</object>
-			<object caption="" X="32" Y="14" xoff="7" yoff="3" level="0" readonly="false" front="0" back="16777215" strong="false" italic="true" size="13" transparent="true" visvar="FOLDSZINT_HALO_VILAGITAS_OUT" vistype="BOOL" visneg="true" Uid="11210">
-				<imagebtn variable="VIRTUALIS_FOLDSZINT_HALO_VILAGITAS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_1.PNG" />
+			<object caption="" X="32" Y="14" xoff="7" yoff="3" level="0" readonly="false" front="0" back="16777215" strong="false" italic="true" size="13" transparent="true" visvar="DOWNSTAIRS_BEDROOM_LIGHTS_OUT" vistype="BOOL" visneg="true" Uid="11210">
+				<imagebtn variable="VIRTUAL_DOWNSTAIRS_BEDROOM_LIGHTS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_1.PNG" />
 			</object>
-			<object caption="" X="33" Y="39" xoff="4" yoff="1" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="GARAZS_VILAGITAS_OUT" vistype="BOOL" visneg="false" Uid="11211">
-				<imagebtn variable="VIRTUALIS_GARAZS_VILAGITAS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_2.PNG" />
+			<object caption="" X="33" Y="39" xoff="4" yoff="1" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="GARAGE_LIGHTS_OUT" vistype="BOOL" visneg="false" Uid="11211">
+				<imagebtn variable="VIRTUAL_GARAGE_LIGHTS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_2.PNG" />
 			</object>
-			<object caption="" X="33" Y="39" xoff="4" yoff="1" level="0" readonly="false" front="0" back="16777215" strong="false" italic="true" size="13" transparent="true" visvar="GARAZS_VILAGITAS_OUT" vistype="BOOL" visneg="true" Uid="11212">
-				<imagebtn variable="VIRTUALIS_GARAZS_VILAGITAS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_1.PNG" />
+			<object caption="" X="33" Y="39" xoff="4" yoff="1" level="0" readonly="false" front="0" back="16777215" strong="false" italic="true" size="13" transparent="true" visvar="GARAGE_LIGHTS_OUT" vistype="BOOL" visneg="true" Uid="11212">
+				<imagebtn variable="VIRTUAL_GARAGE_LIGHTS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_1.PNG" />
 			</object>
-			<object caption="" X="20" Y="56" xoff="5" yoff="3" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="ELOSZOBA_VILAGITAS_OUT" vistype="BOOL" visneg="false" Uid="11213">
-				<imagebtn variable="VIRTUALIS_ELOSZOBA_VILAGITAS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_2.PNG" />
+			<object caption="" X="20" Y="56" xoff="5" yoff="3" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="HALL_LIGHTS_OUT" vistype="BOOL" visneg="false" Uid="11213">
+				<imagebtn variable="VIRTUAL_HALL_LIGHTS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_2.PNG" />
 			</object>
-			<object caption="" X="20" Y="56" xoff="5" yoff="3" level="0" readonly="false" front="0" back="16777215" strong="false" italic="true" size="13" transparent="true" visvar="ELOSZOBA_VILAGITAS_OUT" vistype="BOOL" visneg="true" Uid="11214">
-				<imagebtn variable="VIRTUALIS_ELOSZOBA_VILAGITAS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_1.PNG" />
+			<object caption="" X="20" Y="56" xoff="5" yoff="3" level="0" readonly="false" front="0" back="16777215" strong="false" italic="true" size="13" transparent="true" visvar="HALL_LIGHTS_OUT" vistype="BOOL" visneg="true" Uid="11214">
+				<imagebtn variable="VIRTUAL_HALL_LIGHTS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_1.PNG" />
 			</object>
-			<object caption="" X="12" Y="58" xoff="2" yoff="4" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="DOWNSTAIRS_FURDO_NAGY_VILAGITAS_OUT" vistype="BOOL" visneg="false" Uid="11215">
-				<imagebtn variable="VIRTUALIS_DOWNSTAIRS_FURDO_NAGY_VILAGITAS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_2.PNG" />
+			<object caption="" X="12" Y="58" xoff="2" yoff="4" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="DOWNSTAIRS_BATH_MAJOR_LIGHTS_OUT" vistype="BOOL" visneg="false" Uid="11215">
+				<imagebtn variable="VIRTUAL_DOWNSTAIRS_BATH_MAJOR_LIGHTS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_2.PNG" />
 			</object>
-			<object caption="" X="12" Y="58" xoff="2" yoff="4" level="0" readonly="false" front="0" back="16777215" strong="false" italic="true" size="13" transparent="true" visvar="DOWNSTAIRS_FURDO_NAGY_VILAGITAS_OUT" vistype="BOOL" visneg="true" Uid="11216">
-				<imagebtn variable="VIRTUALIS_DOWNSTAIRS_FURDO_NAGY_VILAGITAS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_1.PNG" />
+			<object caption="" X="12" Y="58" xoff="2" yoff="4" level="0" readonly="false" front="0" back="16777215" strong="false" italic="true" size="13" transparent="true" visvar="DOWNSTAIRS_BATH_MAJOR_LIGHTS_OUT" vistype="BOOL" visneg="true" Uid="11216">
+				<imagebtn variable="VIRTUAL_DOWNSTAIRS_BATH_MAJOR_LIGHTS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_1.PNG" />
 			</object>
-			<object caption="" X="11" Y="37" xoff="0" yoff="2" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="ETKEZO_VILAGITAS_OUT" vistype="BOOL" visneg="false" Uid="11217">
-				<imagebtn variable="VIRTUALIS_ETKEZO_VILAGITAS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_2.PNG" />
+			<object caption="" X="11" Y="37" xoff="0" yoff="2" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="DINING_ROOM_LIGHTS_OUT" vistype="BOOL" visneg="false" Uid="11217">
+				<imagebtn variable="VIRTUAL_DINING_ROOM_LIGHTS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_2.PNG" />
 			</object>
-			<object caption="" X="11" Y="37" xoff="0" yoff="2" level="0" readonly="false" front="0" back="16777215" strong="false" italic="true" size="13" transparent="true" visvar="ETKEZO_VILAGITAS_OUT" vistype="BOOL" visneg="true" Uid="11218">
-				<imagebtn variable="VIRTUALIS_ETKEZO_VILAGITAS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_1.PNG" />
+			<object caption="" X="11" Y="37" xoff="0" yoff="2" level="0" readonly="false" front="0" back="16777215" strong="false" italic="true" size="13" transparent="true" visvar="DINING_ROOM_LIGHTS_OUT" vistype="BOOL" visneg="true" Uid="11218">
+				<imagebtn variable="VIRTUAL_DINING_ROOM_LIGHTS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_1.PNG" />
 			</object>
-			<object caption="" X="18" Y="5" xoff="4" yoff="3" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="TERASZ_VILAGITAS_OUT" vistype="BOOL" visneg="false" Uid="11219">
-				<imagebtn variable="VIRTUALIS_TERASZ_VILAGITAS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_2.PNG" />
+			<object caption="" X="18" Y="5" xoff="4" yoff="3" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="TERRACE_LIGHTS_OUT" vistype="BOOL" visneg="false" Uid="11219">
+				<imagebtn variable="VIRTUAL_TERRACE_LIGHTS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_2.PNG" />
 			</object>
-			<object caption="" X="18" Y="5" xoff="4" yoff="3" level="0" readonly="false" front="0" back="16777215" strong="false" italic="true" size="13" transparent="true" visvar="TERASZ_VILAGITAS_OUT" vistype="BOOL" visneg="true" Uid="11220">
-				<imagebtn variable="VIRTUALIS_TERASZ_VILAGITAS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_1.PNG" />
+			<object caption="" X="18" Y="5" xoff="4" yoff="3" level="0" readonly="false" front="0" back="16777215" strong="false" italic="true" size="13" transparent="true" visvar="TERRACE_LIGHTS_OUT" vistype="BOOL" visneg="true" Uid="11220">
+				<imagebtn variable="VIRTUAL_TERRACE_LIGHTS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_1.PNG" />
 			</object>
-			<object caption="" X="67" Y="29" xoff="7" yoff="6" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="FOLYOSO_VILAGITAS_OUT" vistype="BOOL" visneg="false" Uid="11222">
-				<imagebtn variable="VIRTUALIS_FOLYOSO_VILAGITAS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_2.PNG" />
+			<object caption="" X="67" Y="29" xoff="7" yoff="6" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="HALLWAY_LIGHTS_OUT" vistype="BOOL" visneg="false" Uid="11222">
+				<imagebtn variable="VIRTUAL_HALLWAY_LIGHTS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_2.PNG" />
 			</object>
-			<object caption="" X="67" Y="29" xoff="7" yoff="6" level="0" readonly="false" front="0" back="16777215" strong="false" italic="true" size="13" transparent="true" visvar="FOLYOSO_VILAGITAS_OUT" vistype="BOOL" visneg="true" Uid="11223">
-				<imagebtn variable="VIRTUALIS_FOLYOSO_VILAGITAS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_1.PNG" />
+			<object caption="" X="67" Y="29" xoff="7" yoff="6" level="0" readonly="false" front="0" back="16777215" strong="false" italic="true" size="13" transparent="true" visvar="HALLWAY_LIGHTS_OUT" vistype="BOOL" visneg="true" Uid="11223">
+				<imagebtn variable="VIRTUAL_HALLWAY_LIGHTS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_1.PNG" />
 			</object>
-			<object caption="" X="80" Y="37" xoff="7" yoff="6" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="UPSTAIRS_WC_VILAGITAS_OUT" vistype="BOOL" visneg="false" Uid="11224">
-				<imagebtn variable="VIRTUALIS_UPSTAIRS_WC_VILAGITAS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_2.PNG" />
+			<object caption="" X="80" Y="37" xoff="7" yoff="6" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="UPSTAIRS_WC_LIGHTS_OUT" vistype="BOOL" visneg="false" Uid="11224">
+				<imagebtn variable="VIRTUAL_UPSTAIRS_WC_LIGHTS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_2.PNG" />
 			</object>
-			<object caption="" X="80" Y="37" xoff="7" yoff="6" level="0" readonly="false" front="0" back="16777215" strong="false" italic="true" size="13" transparent="true" visvar="UPSTAIRS_WC_VILAGITAS_OUT" vistype="BOOL" visneg="true" Uid="11225">
-				<imagebtn variable="VIRTUALIS_UPSTAIRS_WC_VILAGITAS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_1.PNG" />
+			<object caption="" X="80" Y="37" xoff="7" yoff="6" level="0" readonly="false" front="0" back="16777215" strong="false" italic="true" size="13" transparent="true" visvar="UPSTAIRS_WC_LIGHTS_OUT" vistype="BOOL" visneg="true" Uid="11225">
+				<imagebtn variable="VIRTUAL_UPSTAIRS_WC_LIGHTS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_1.PNG" />
 			</object>
-			<object caption="" X="80" Y="45" xoff="7" yoff="7" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="UPSTAIRS_FURDO_NAGY_VILAGITAS_OUT" vistype="BOOL" visneg="false" Uid="11226">
-				<imagebtn variable="VIRTUALIS_UPSTAIRS_FURDO_NAGY_VILAGITAS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_2.PNG" />
+			<object caption="" X="80" Y="45" xoff="7" yoff="7" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="UPSTAIRS_BATH_MAJOR_LIGHTS_OUT" vistype="BOOL" visneg="false" Uid="11226">
+				<imagebtn variable="VIRTUAL_UPSTAIRS_BATH_MAJOR_LIGHTS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_2.PNG" />
 			</object>
-			<object caption="" X="80" Y="45" xoff="7" yoff="7" level="0" readonly="false" front="0" back="16777215" strong="false" italic="true" size="13" transparent="true" visvar="UPSTAIRS_FURDO_NAGY_VILAGITAS_OUT" vistype="BOOL" visneg="true" Uid="11227">
-				<imagebtn variable="VIRTUALIS_UPSTAIRS_FURDO_NAGY_VILAGITAS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_1.PNG" />
+			<object caption="" X="80" Y="45" xoff="7" yoff="7" level="0" readonly="false" front="0" back="16777215" strong="false" italic="true" size="13" transparent="true" visvar="UPSTAIRS_BATH_MAJOR_LIGHTS_OUT" vistype="BOOL" visneg="true" Uid="11227">
+				<imagebtn variable="VIRTUAL_UPSTAIRS_BATH_MAJOR_LIGHTS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_1.PNG" />
 			</object>
-			<object caption="" X="74" Y="53" xoff="5" yoff="3" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="UPSTAIRS_FURDO_SHOWER_VILAGITAS_OUT" vistype="BOOL" visneg="false" Uid="11228">
-				<imagebtn variable="VIRTUALIS_UPSTAIRS_FURDO_SHOWER_VILAGITAS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_2.PNG" />
+			<object caption="" X="74" Y="53" xoff="5" yoff="3" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="UPSTAIRS_BATH_SHOWER_LIGHTS_OUT" vistype="BOOL" visneg="false" Uid="11228">
+				<imagebtn variable="VIRTUAL_UPSTAIRS_BATH_SHOWER_LIGHTS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_2.PNG" />
 			</object>
-			<object caption="" X="74" Y="53" xoff="5" yoff="3" level="0" readonly="false" front="0" back="16777215" strong="false" italic="true" size="13" transparent="true" visvar="UPSTAIRS_FURDO_SHOWER_VILAGITAS_OUT" vistype="BOOL" visneg="true" Uid="11229">
-				<imagebtn variable="VIRTUALIS_UPSTAIRS_FURDO_SHOWER_VILAGITAS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_1.PNG" />
+			<object caption="" X="74" Y="53" xoff="5" yoff="3" level="0" readonly="false" front="0" back="16777215" strong="false" italic="true" size="13" transparent="true" visvar="UPSTAIRS_BATH_SHOWER_LIGHTS_OUT" vistype="BOOL" visneg="true" Uid="11229">
+				<imagebtn variable="VIRTUAL_UPSTAIRS_BATH_SHOWER_LIGHTS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_1.PNG" />
 			</object>
-			<object caption="" X="69" Y="53" xoff="0" yoff="3" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="KIS_TAROLO_VILAGITAS_OUT" vistype="BOOL" visneg="false" Uid="11230">
-				<imagebtn variable="VIRTUALIS_KIS_TAROLO_VILAGITAS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_2.PNG" />
+			<object caption="" X="69" Y="53" xoff="0" yoff="3" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="MINOR_STORAGE_LIGHTS_OUT" vistype="BOOL" visneg="false" Uid="11230">
+				<imagebtn variable="VIRTUAL_MINOR_STORAGE_LIGHTS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_2.PNG" />
 			</object>
-			<object caption="" X="69" Y="53" xoff="0" yoff="3" level="0" readonly="false" front="0" back="16777215" strong="false" italic="true" size="13" transparent="true" visvar="KIS_TAROLO_VILAGITAS_OUT" vistype="BOOL" visneg="true" Uid="11231">
-				<imagebtn variable="VIRTUALIS_KIS_TAROLO_VILAGITAS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_1.PNG" />
+			<object caption="" X="69" Y="53" xoff="0" yoff="3" level="0" readonly="false" front="0" back="16777215" strong="false" italic="true" size="13" transparent="true" visvar="MINOR_STORAGE_LIGHTS_OUT" vistype="BOOL" visneg="true" Uid="11231">
+				<imagebtn variable="VIRTUAL_MINOR_STORAGE_LIGHTS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_1.PNG" />
 			</object>
-			<object caption="" X="55" Y="45" xoff="7" yoff="7" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="GYEREKSZOBA_2_VILAGITAS_OUT" vistype="BOOL" visneg="false" Uid="11232">
-				<imagebtn variable="VIRTUALIS_GYEREKSZOBA_2_VILAGITAS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_2.PNG" />
+			<object caption="" X="55" Y="45" xoff="7" yoff="7" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="CHILDRENS_ROOM_2_LIGHTS_OUT" vistype="BOOL" visneg="false" Uid="11232">
+				<imagebtn variable="VIRTUAL_CHILDRENS_ROOM_2_LIGHTS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_2.PNG" />
 			</object>
-			<object caption="" X="55" Y="45" xoff="7" yoff="7" level="0" readonly="false" front="0" back="16777215" strong="false" italic="true" size="13" transparent="true" visvar="GYEREKSZOBA_2_VILAGITAS_OUT" vistype="BOOL" visneg="true" Uid="11233">
-				<imagebtn variable="VIRTUALIS_GYEREKSZOBA_2_VILAGITAS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_1.PNG" />
+			<object caption="" X="55" Y="45" xoff="7" yoff="7" level="0" readonly="false" front="0" back="16777215" strong="false" italic="true" size="13" transparent="true" visvar="CHILDRENS_ROOM_2_LIGHTS_OUT" vistype="BOOL" visneg="true" Uid="11233">
+				<imagebtn variable="VIRTUAL_CHILDRENS_ROOM_2_LIGHTS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_1.PNG" />
 			</object>
-			<object caption="" X="77" Y="13" xoff="6" yoff="1" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="GYEREKSZOBA_3_VILAGITAS_OUT" vistype="BOOL" visneg="false" Uid="11234">
-				<imagebtn variable="VIRTUALIS_GYEREKSZOBA_3_VILAGITAS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_2.PNG" />
+			<object caption="" X="77" Y="13" xoff="6" yoff="1" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="CHILDRENS_ROOM_3_LIGHTS_OUT" vistype="BOOL" visneg="false" Uid="11234">
+				<imagebtn variable="VIRTUAL_CHILDRENS_ROOM_3_LIGHTS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_2.PNG" />
 			</object>
-			<object caption="" X="77" Y="13" xoff="6" yoff="1" level="0" readonly="false" front="0" back="16777215" strong="false" italic="true" size="13" transparent="true" visvar="GYEREKSZOBA_3_VILAGITAS_OUT" vistype="BOOL" visneg="true" Uid="11235">
-				<imagebtn variable="VIRTUALIS_GYEREKSZOBA_3_VILAGITAS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_1.PNG" />
+			<object caption="" X="77" Y="13" xoff="6" yoff="1" level="0" readonly="false" front="0" back="16777215" strong="false" italic="true" size="13" transparent="true" visvar="CHILDRENS_ROOM_3_LIGHTS_OUT" vistype="BOOL" visneg="true" Uid="11235">
+				<imagebtn variable="VIRTUAL_CHILDRENS_ROOM_3_LIGHTS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_1.PNG" />
 			</object>
-			<object caption="" X="59" Y="62" xoff="5" yoff="1" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="KAPU_ERKELY_VILAGITAS_OUT" vistype="BOOL" visneg="false" Uid="11236">
-				<imagebtn variable="VIRTUALIS_KAPU_ERKELY_VILAGITAS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_2.PNG" />
+			<object caption="" X="59" Y="62" xoff="5" yoff="1" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="GATE_BALCONY_LIGHTS_OUT" vistype="BOOL" visneg="false" Uid="11236">
+				<imagebtn variable="VIRTUAL_GATE_BALCONY_LIGHTS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_2.PNG" />
 			</object>
-			<object caption="" X="59" Y="62" xoff="5" yoff="1" level="0" readonly="false" front="0" back="16777215" strong="false" italic="true" size="13" transparent="true" visvar="KAPU_ERKELY_VILAGITAS_OUT" vistype="BOOL" visneg="true" Uid="11237">
-				<imagebtn variable="VIRTUALIS_KAPU_ERKELY_VILAGITAS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_1.PNG" />
+			<object caption="" X="59" Y="62" xoff="5" yoff="1" level="0" readonly="false" front="0" back="16777215" strong="false" italic="true" size="13" transparent="true" visvar="GATE_BALCONY_LIGHTS_OUT" vistype="BOOL" visneg="true" Uid="11237">
+				<imagebtn variable="VIRTUAL_GATE_BALCONY_LIGHTS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_1.PNG" />
 			</object>
-			<object caption="" X="52" Y="62" xoff="1" yoff="1" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="KAPU_ERKELY_VILAGITAS_OUT" vistype="BOOL" visneg="false" Uid="11238">
-				<imagebtn variable="VIRTUALIS_KAPU_ERKELY_VILAGITAS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_2.PNG" />
+			<object caption="" X="52" Y="62" xoff="1" yoff="1" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="GATE_BALCONY_LIGHTS_OUT" vistype="BOOL" visneg="false" Uid="11238">
+				<imagebtn variable="VIRTUAL_GATE_BALCONY_LIGHTS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_2.PNG" />
 			</object>
-			<object caption="" X="52" Y="62" xoff="1" yoff="1" level="0" readonly="false" front="0" back="16777215" strong="false" italic="true" size="13" transparent="true" visvar="KAPU_ERKELY_VILAGITAS_OUT" vistype="BOOL" visneg="true" Uid="11239">
-				<imagebtn variable="VIRTUALIS_KAPU_ERKELY_VILAGITAS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_1.PNG" />
+			<object caption="" X="52" Y="62" xoff="1" yoff="1" level="0" readonly="false" front="0" back="16777215" strong="false" italic="true" size="13" transparent="true" visvar="GATE_BALCONY_LIGHTS_OUT" vistype="BOOL" visneg="true" Uid="11239">
+				<imagebtn variable="VIRTUAL_GATE_BALCONY_LIGHTS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_1.PNG" />
 			</object>
-			<object caption="" X="64" Y="6" xoff="0" yoff="4" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="UDVAR_ERKELY_VILAGITAS_OUT" vistype="BOOL" visneg="false" Uid="11240">
-				<imagebtn variable="VIRTUALIS_UDVAR_ERKELY_VILAGITAS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_2.PNG" />
+			<object caption="" X="64" Y="6" xoff="0" yoff="4" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="GARDEN_BALCONY_LIGHTS_OUT" vistype="BOOL" visneg="false" Uid="11240">
+				<imagebtn variable="VIRTUAL_GARDEN_BALCONY_LIGHTS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_2.PNG" />
 			</object>
-			<object caption="" X="64" Y="6" xoff="0" yoff="4" level="0" readonly="false" front="0" back="16777215" strong="false" italic="true" size="13" transparent="true" visvar="UDVAR_ERKELY_VILAGITAS_OUT" vistype="BOOL" visneg="true" Uid="11241">
-				<imagebtn variable="VIRTUALIS_UDVAR_ERKELY_VILAGITAS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_1.PNG" />
+			<object caption="" X="64" Y="6" xoff="0" yoff="4" level="0" readonly="false" front="0" back="16777215" strong="false" italic="true" size="13" transparent="true" visvar="GARDEN_BALCONY_LIGHTS_OUT" vistype="BOOL" visneg="true" Uid="11241">
+				<imagebtn variable="VIRTUAL_GARDEN_BALCONY_LIGHTS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_1.PNG" />
 			</object>
-			<object caption="" X="56" Y="6" xoff="4" yoff="4" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="UDVAR_ERKELY_VILAGITAS_OUT" vistype="BOOL" visneg="false" Uid="11242">
-				<imagebtn variable="VIRTUALIS_UDVAR_ERKELY_VILAGITAS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_2.PNG" />
+			<object caption="" X="56" Y="6" xoff="4" yoff="4" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="GARDEN_BALCONY_LIGHTS_OUT" vistype="BOOL" visneg="false" Uid="11242">
+				<imagebtn variable="VIRTUAL_GARDEN_BALCONY_LIGHTS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_2.PNG" />
 			</object>
-			<object caption="" X="56" Y="6" xoff="4" yoff="4" level="0" readonly="false" front="0" back="16777215" strong="false" italic="true" size="13" transparent="true" visvar="UDVAR_ERKELY_VILAGITAS_OUT" vistype="BOOL" visneg="true" Uid="11243">
-				<imagebtn variable="VIRTUALIS_UDVAR_ERKELY_VILAGITAS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_1.PNG" />
+			<object caption="" X="56" Y="6" xoff="4" yoff="4" level="0" readonly="false" front="0" back="16777215" strong="false" italic="true" size="13" transparent="true" visvar="GARDEN_BALCONY_LIGHTS_OUT" vistype="BOOL" visneg="true" Uid="11243">
+				<imagebtn variable="VIRTUAL_GARDEN_BALCONY_LIGHTS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_1.PNG" />
 			</object>
-			<object caption="" X="89" Y="49" xoff="1" yoff="1" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="ELSZIVO_FAN_OUT" vistype="BOOL" visneg="false" Uid="11272">
-				<imagebtn variable="VIRTUALIS_ELSZIVO_FAN_IN" value="1" timeout="500" type="BOOL" on="" off="FAN1_O_1.PNG" />
+			<object caption="" X="89" Y="49" xoff="1" yoff="1" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="EXHAUST_FAN_OUT" vistype="BOOL" visneg="false" Uid="11272">
+				<imagebtn variable="VIRTUAL_EXHAUST_FAN_IN" value="1" timeout="500" type="BOOL" on="" off="FAN1_O_1.PNG" />
 			</object>
-			<object caption="" X="89" Y="49" xoff="1" yoff="1" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="ELSZIVO_FAN_OUT" vistype="BOOL" visneg="true" Uid="11273">
-				<imagebtn variable="VIRTUALIS_ELSZIVO_FAN_IN" value="1" timeout="500" type="BOOL" on="" off="FAN1_O_2.PNG" />
+			<object caption="" X="89" Y="49" xoff="1" yoff="1" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="EXHAUST_FAN_OUT" vistype="BOOL" visneg="true" Uid="11273">
+				<imagebtn variable="VIRTUAL_EXHAUST_FAN_IN" value="1" timeout="500" type="BOOL" on="" off="FAN1_O_2.PNG" />
 			</object>
-			<object caption="" X="24" Y="66" xoff="6" yoff="0" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="KULTERI_VILAGITAS_OUT" vistype="BOOL" visneg="false" Uid="11335">
-				<imagebtn variable="VIRTUALIS_KULTERI_VILAGITAS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_2.PNG" />
+			<object caption="" X="24" Y="66" xoff="6" yoff="0" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="OUTDOOR_LIGHTS_OUT" vistype="BOOL" visneg="false" Uid="11335">
+				<imagebtn variable="VIRTUAL_OUTDOOR_LIGHTS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_2.PNG" />
 			</object>
-			<object caption="" X="24" Y="66" xoff="6" yoff="0" level="0" readonly="false" front="0" back="16777215" strong="false" italic="true" size="13" transparent="true" visvar="KULTERI_VILAGITAS_OUT" vistype="BOOL" visneg="true" Uid="11336">
-				<imagebtn variable="VIRTUALIS_KULTERI_VILAGITAS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_1.PNG" />
+			<object caption="" X="24" Y="66" xoff="6" yoff="0" level="0" readonly="false" front="0" back="16777215" strong="false" italic="true" size="13" transparent="true" visvar="OUTDOOR_LIGHTS_OUT" vistype="BOOL" visneg="true" Uid="11336">
+				<imagebtn variable="VIRTUAL_OUTDOOR_LIGHTS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_1.PNG" />
 			</object>
 			<object caption="" X="10" Y="32" xoff="2" yoff="2" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="11338">
-				<edit variable="NAPPALI_KIVANT_HOMERSEKLET" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="50" height="22" tabindex="1" />
+				<edit variable="LIVING_ROOM_DESIRED_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="50" height="22" tabindex="1" />
 			</object>
 			<object caption="" X="10" Y="29" xoff="2" yoff="1" level="0" readonly="false" front="32768" back="16777215" strong="true" italic="false" size="13" transparent="false" visneg="false" Uid="11339">
-				<edit variable="NAPPALI_HOMERSEKLET" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="true" border="true" width="55" height="22" tabindex="2" />
+				<edit variable="LIVING_ROOM_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="true" border="true" width="55" height="22" tabindex="2" />
 			</object>
-			<object caption="" X="14" Y="37" xoff="1" yoff="3" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="futesRequests[C_NAPPALI_1_INDEX]" vistype="BOOL" visneg="false" Uid="11340">
+			<object caption="" X="14" Y="37" xoff="1" yoff="3" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="heatingRequests[C_LIVING_ROOM_1_INDEX]" vistype="BOOL" visneg="false" Uid="11340">
 				<picture href="" img="HEAT1__4.PNG" />
 			</object>
 			<object caption="" X="4" Y="62" xoff="7" yoff="2" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="8" transparent="false" visneg="false" Uid="11341">
-				<edit variable="DOWNSTAIRS_FURDO_KIVANT_HOMERSEKLET" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="35" height="16" tabindex="3" />
+				<edit variable="DOWNSTAIRS_BATH_DESIRED_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="35" height="16" tabindex="3" />
 			</object>
 			<object caption="" X="11" Y="62" xoff="7" yoff="2" level="0" readonly="false" front="32768" back="16777215" strong="true" italic="false" size="8" transparent="false" visneg="false" Uid="11342">
-				<edit variable="DOWNSTAIRS_FURDO_HOMERSEKLET" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="true" border="true" width="40" height="16" tabindex="4" />
+				<edit variable="DOWNSTAIRS_BATH_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="true" border="true" width="40" height="16" tabindex="4" />
 			</object>
-			<object caption="" X="10" Y="58" xoff="1" yoff="7" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="futesRequests[C_DOWNSTAIRS_FURDO_INDEX]" vistype="BOOL" visneg="false" Uid="11343">
+			<object caption="" X="10" Y="58" xoff="1" yoff="7" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="heatingRequests[C_DOWNSTAIRS_BATH_INDEX]" vistype="BOOL" visneg="false" Uid="11343">
 				<picture href="" img="HEAT1__5.PNG" />
 			</object>
 			<object caption="" X="31" Y="47" xoff="2" yoff="1" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="11344">
-				<edit variable="GARAZS_KIVANT_HOMERSEKLET" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="50" height="22" tabindex="5" />
+				<edit variable="GARAGE_DESIRED_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="50" height="22" tabindex="5" />
 			</object>
 			<object caption="" X="31" Y="44" xoff="2" yoff="0" level="0" readonly="false" front="32768" back="16777215" strong="true" italic="false" size="13" transparent="false" visneg="false" Uid="11345">
-				<edit variable="GARAZS_HOMERSEKLET" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="true" border="true" width="55" height="22" tabindex="6" />
+				<edit variable="GARAGE_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="true" border="true" width="55" height="22" tabindex="6" />
 			</object>
-			<object caption="" X="37" Y="39" xoff="2" yoff="3" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="futesRequests[C_GARAZS_INDEX]" vistype="BOOL" visneg="false" Uid="11346">
+			<object caption="" X="37" Y="39" xoff="2" yoff="3" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="heatingRequests[C_GARAGE_INDEX]" vistype="BOOL" visneg="false" Uid="11346">
 				<picture href="" img="HEAT1__4.PNG" />
 			</object>
-			<object caption="" X="13" Y="51" xoff="0" yoff="4" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="futesRequests[C_NAPPALI_1_INDEX]" vistype="BOOL" visneg="false" Uid="11348">
+			<object caption="" X="13" Y="51" xoff="0" yoff="4" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="heatingRequests[C_LIVING_ROOM_1_INDEX]" vistype="BOOL" visneg="false" Uid="11348">
 				<picture href="" img="HEAT1__4.PNG" />
 			</object>
 			<object caption="" X="31" Y="21" xoff="2" yoff="3" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="11349">
-				<edit variable="HALOSZOBA_KIVANT_HOMERSEKLET" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="50" height="22" tabindex="8" />
+				<edit variable="BEDROOM_DESIRED_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="50" height="22" tabindex="8" />
 			</object>
 			<object caption="" X="31" Y="18" xoff="2" yoff="2" level="0" readonly="false" front="32768" back="16777215" strong="true" italic="false" size="13" transparent="false" visneg="false" Uid="11350">
-				<edit variable="HALOSZOBA_HOMERSEKLET" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="true" border="true" width="55" height="22" tabindex="9" />
+				<edit variable="BEDROOM_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="true" border="true" width="55" height="22" tabindex="9" />
 			</object>
-			<object caption="" X="36" Y="14" xoff="5" yoff="4" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="futesRequests[C_HALO_INDEX]" vistype="BOOL" visneg="false" Uid="11351">
+			<object caption="" X="36" Y="14" xoff="5" yoff="4" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="heatingRequests[C_BEDROOM_INDEX]" vistype="BOOL" visneg="false" Uid="11351">
 				<picture href="" img="HEAT1__4.PNG" />
 			</object>
 			<object caption="" X="19" Y="62" xoff="3" yoff="2" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="8" transparent="false" visneg="false" Uid="11352">
-				<edit variable="DOWNSTAIRS_FURDO_KIVANT_HOMERSEKLET" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="35" height="16" tabindex="10" />
+				<edit variable="HALL_DESIRED_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="35" height="16" tabindex="10" />
 			</object>
 			<object caption="" X="19" Y="59" xoff="3" yoff="6" level="0" readonly="false" front="32768" back="16777215" strong="true" italic="false" size="8" transparent="false" visneg="false" Uid="11353">
-				<edit variable="DOWNSTAIRS_FURDO_HOMERSEKLET" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="true" border="true" width="40" height="16" tabindex="11" />
+				<edit variable="HALL_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="true" border="true" width="40" height="16" tabindex="11" />
 			</object>
-			<object caption="" X="17" Y="19" xoff="2" yoff="7" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="futesRequests[C_NAPPALI_1_INDEX]" vistype="BOOL" visneg="false" Uid="11347">
+			<object caption="" X="17" Y="19" xoff="2" yoff="7" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="heatingRequests[C_LIVING_ROOM_1_INDEX]" vistype="BOOL" visneg="false" Uid="11347">
 				<picture href="" img="HEAT1__4.PNG" />
 			</object>
-			<object caption="" X="20" Y="53" xoff="6" yoff="6" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="futesRequests[C_ELOSZOBA_INDEX]" vistype="BOOL" visneg="false" Uid="11354">
+			<object caption="" X="20" Y="53" xoff="6" yoff="6" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="heatingRequests[C_HALL_INDEX]" vistype="BOOL" visneg="false" Uid="11354">
 				<picture href="" img="HEAT1__5.PNG" />
 			</object>
 			<object caption="" X="80" Y="54" xoff="0" yoff="6" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="8" transparent="false" visneg="false" Uid="11355">
-				<edit variable="UPSTAIRS_FURDO_KIVANT_HOMERSEKLET" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="35" height="16" tabindex="12" />
+				<edit variable="UPSTAIRS_BATH_DESIRED_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="35" height="16" tabindex="12" />
 			</object>
 			<object caption="" X="80" Y="49" xoff="0" yoff="6" level="0" readonly="false" front="32768" back="16777215" strong="true" italic="false" size="8" transparent="false" visneg="false" Uid="11356">
-				<edit variable="UPSTAIRS_FURDO_HOMERSEKLET" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="true" border="true" width="40" height="16" tabindex="13" />
+				<edit variable="UPSTAIRS_BATH_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="true" border="true" width="40" height="16" tabindex="13" />
 			</object>
-			<object caption="" X="84" Y="46" xoff="1" yoff="2" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="futesRequests[C_UPSTAIRS_FURDO_INDEX]" vistype="BOOL" visneg="false" Uid="11357">
+			<object caption="" X="84" Y="46" xoff="1" yoff="2" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="heatingRequests[C_UPSTAIRS_BATH_INDEX]" vistype="BOOL" visneg="false" Uid="11357">
 				<picture href="" img="HEAT1__5.PNG" />
 			</object>
 			<object caption="" X="51" Y="42" xoff="2" yoff="3" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="11358">
-				<edit variable="GYEREKSZOBA_2_KIVANT_HOMERSEKLET" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="50" height="22" tabindex="14" />
+				<edit variable="CHILDRENS_ROOM_2_DESIRED_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="50" height="22" tabindex="14" />
 			</object>
 			<object caption="" X="51" Y="39" xoff="2" yoff="1" level="0" readonly="false" front="32768" back="16777215" strong="true" italic="false" size="13" transparent="false" visneg="false" Uid="11359">
-				<edit variable="GYEREKSZOBA_2_HOMERSEKLET" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="true" border="true" width="55" height="22" tabindex="15" />
+				<edit variable="CHILDRENS_ROOM_2_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="true" border="true" width="55" height="22" tabindex="15" />
 			</object>
-			<object caption="" X="59" Y="46" xoff="1" yoff="0" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="futesRequests[C_GYEREKSZOBA_2_INDEX]" vistype="BOOL" visneg="false" Uid="11360">
+			<object caption="" X="59" Y="46" xoff="1" yoff="0" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="heatingRequests[C_CHILDRENS_ROOM_2_INDEX]" vistype="BOOL" visneg="false" Uid="11360">
 				<picture href="" img="HEAT1__4.PNG" />
 			</object>
 			<object caption="" X="53" Y="23" xoff="1" yoff="4" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="11361">
-				<edit variable="GYEREKSZOBA_1_KIVANT_HOMERSEKLET" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="50" height="22" tabindex="16" />
+				<edit variable="CHILDRENS_ROOM_1_DESIRED_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="50" height="22" tabindex="16" />
 			</object>
 			<object caption="" X="53" Y="15" xoff="1" yoff="3" level="0" readonly="false" front="32768" back="16777215" strong="true" italic="false" size="13" transparent="false" visneg="false" Uid="11362">
-				<edit variable="GYEREKSZOBA_1_HOMERSEKLET" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="true" border="true" width="55" height="22" tabindex="17" />
+				<edit variable="CHILDRENS_ROOM_1_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="true" border="true" width="55" height="22" tabindex="17" />
 			</object>
-			<object caption="" X="61" Y="19" xoff="0" yoff="2" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="futesRequests[C_GYEREKSZOBA_1_INDEX]" vistype="BOOL" visneg="false" Uid="11363">
+			<object caption="" X="61" Y="19" xoff="0" yoff="2" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="heatingRequests[C_CHILDRENS_ROOM_1_INDEX]" vistype="BOOL" visneg="false" Uid="11363">
 				<picture href="" img="HEAT1__4.PNG" />
 			</object>
 			<object caption="" X="76" Y="19" xoff="4" yoff="5" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="11364">
-				<edit variable="GYEREKSZOBA_3_KIVANT_HOMERSEKLET" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="50" height="22" tabindex="18" />
+				<edit variable="CHILDRENS_ROOM_3_DESIRED_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="50" height="22" tabindex="18" />
 			</object>
 			<object caption="" X="76" Y="16" xoff="4" yoff="4" level="0" readonly="false" front="32768" back="16777215" strong="true" italic="false" size="13" transparent="false" visneg="false" Uid="11365">
-				<edit variable="GYEREKSZOBA_3_HOMERSEKLET" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="true" border="true" width="55" height="22" tabindex="19" />
+				<edit variable="CHILDRENS_ROOM_3_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="true" border="true" width="55" height="22" tabindex="19" />
 			</object>
-			<object caption="" X="74" Y="13" xoff="6" yoff="2" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="futesRequests[C_GYEREKSZOBA_3_INDEX]" vistype="BOOL" visneg="false" Uid="11366">
+			<object caption="" X="74" Y="13" xoff="6" yoff="2" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="heatingRequests[C_CHILDRENS_ROOM_3_INDEX]" vistype="BOOL" visneg="false" Uid="11366">
 				<picture href="" img="HEAT1__4.PNG" />
 			</object>
-			<object caption="" X="19" Y="66" xoff="6" yoff="5" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="PARADOX_DATA.zone[C_BEJARATI_AJTO_NYITAS].state" vistype="BOOL" visneg="true" Uid="11374">
+			<object caption="" X="19" Y="66" xoff="6" yoff="5" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="PARADOX_DATA.zone[C_FRONT_DOOR_OPENING].state" vistype="BOOL" visneg="true" Uid="11374">
 				<picture href="" img="DOOR1__2.PNG" />
 			</object>
-			<object caption="" X="19" Y="66" xoff="6" yoff="5" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="PARADOX_DATA.zone[C_BEJARATI_AJTO_NYITAS].state" vistype="BOOL" visneg="false" Uid="11375">
+			<object caption="" X="19" Y="66" xoff="6" yoff="5" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="PARADOX_DATA.zone[C_FRONT_DOOR_OPENING].state" vistype="BOOL" visneg="false" Uid="11375">
 				<picture href="" img="DOOR1__1.PNG" />
 			</object>
-			<object caption="" X="34" Y="59" xoff="1" yoff="6" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="PARADOX_DATA.zone[C_GARAZS_AJTO_NYITAS].state" vistype="BOOL" visneg="true" Uid="11376">
+			<object caption="" X="34" Y="59" xoff="1" yoff="6" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="PARADOX_DATA.zone[C_GARAGE_DOOR_OPENING].state" vistype="BOOL" visneg="true" Uid="11376">
 				<imagebtn variable="VIRTUAL_GARAGE_DOOR_OPENER" value="1" timeout="500" type="BOOL" on="" off="DOOR1__2.PNG" />
 			</object>
-			<object caption="" X="34" Y="59" xoff="1" yoff="6" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="PARADOX_DATA.zone[C_GARAZS_AJTO_NYITAS].state" vistype="BOOL" visneg="false" Uid="11377">
+			<object caption="" X="34" Y="59" xoff="1" yoff="6" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="PARADOX_DATA.zone[C_GARAGE_DOOR_OPENING].state" vistype="BOOL" visneg="false" Uid="11377">
 				<imagebtn variable="VIRTUAL_GARAGE_DOOR_OPENER" value="1" timeout="500" type="BOOL" on="" off="DOOR1__1.PNG" />
 			</object>
-			<object caption="" X="14" Y="67" xoff="2" yoff="0" level="0" readonly="false" front="0" back="16777215" strong="false" italic="true" size="13" transparent="true" visvar="KAZAN_SZIVATTYU_DUGALJ_JOBB" vistype="BOOL" visneg="true" Uid="11380">
-				<imagebtn variable="VIRTUALIS_KERINGETES_KAPCSOLO_IN" value="1" timeout="500" type="BOOL" on="" off="LED_RE_1.PNG" />
+			<object caption="" X="14" Y="67" xoff="2" yoff="0" level="0" readonly="false" front="0" back="16777215" strong="false" italic="true" size="13" transparent="true" visvar="BOILER_PUMP_PLUG_RIGHT" vistype="BOOL" visneg="true" Uid="11380">
+				<imagebtn variable="VIRTUAL_CIRCULATION_SWITCH_IN" value="1" timeout="500" type="BOOL" on="" off="LED_RE_1.PNG" />
 			</object>
-			<object caption="" X="14" Y="67" xoff="2" yoff="0" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="KAZAN_SZIVATTYU_DUGALJ_JOBB" vistype="BOOL" visneg="false" Uid="11382" hint="Kerintgeto szivattyu bekapcsolva">
+			<object caption="" X="14" Y="67" xoff="2" yoff="0" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="BOILER_PUMP_PLUG_RIGHT" vistype="BOOL" visneg="false" Uid="11382" hint="Kerintgeto pump bekapcsolva">
 				<picture href="" img="LED_RE_2.PNG" />
 			</object>
-			<object caption="" X="1" Y="70" xoff="5" yoff="3" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="RIASZTO_ELES" vistype="BOOL" visneg="false" Uid="11384" hint="Riaszto elesitve">
+			<object caption="" X="1" Y="70" xoff="5" yoff="3" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="ALARM_ACTIVE" vistype="BOOL" visneg="false" Uid="11384" hint="Alarm activated">
 				<picture href="" img="ALARM1_1.PNG" />
 			</object>
-			<object caption="" X="8" Y="57" xoff="5" yoff="4" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="RIASZTO_ZONAK_NYUGALOM[C_DOWNSTAIRS_FURDO_ZONA]" vistype="BOOL" visneg="true" Uid="11388" hint="Zona aktiv">
+			<object caption="" X="8" Y="57" xoff="5" yoff="4" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="ALARM_ZONES_INACTIVITY[C_DOWNSTAIRS_BATH_ZONE]" vistype="BOOL" visneg="true" Uid="11388" hint="Zona aktiv">
 				<picture href="" img="PIR1_O_1.PNG" />
 			</object>
-			<object caption="" X="38" Y="28" xoff="7" yoff="7" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="RIASZTO_ZONAK_NYUGALOM[C_GARAZS_ZONA]" vistype="BOOL" visneg="true" Uid="11389" hint="Zona aktiv">
+			<object caption="" X="38" Y="28" xoff="7" yoff="7" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="ALARM_ZONES_INACTIVITY[C_GARAGE_ZONE]" vistype="BOOL" visneg="true" Uid="11389" hint="Zona aktiv">
 				<picture href="" img="PIR1_O_4.PNG" />
 			</object>
-			<object caption="" X="18" Y="52" xoff="0" yoff="4" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="RIASZTO_ZONAK_NYUGALOM[C_ELOSZOBA_ZONA]" vistype="BOOL" visneg="true" Uid="11391" hint="Zona aktiv">
+			<object caption="" X="18" Y="52" xoff="0" yoff="4" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="ALARM_ZONES_INACTIVITY[C_HALL_ZONE]" vistype="BOOL" visneg="true" Uid="11391" hint="Zona aktiv">
 				<picture href="" img="PIR1_O_1.PNG" />
 			</object>
-			<object caption="" X="4" Y="35" xoff="4" yoff="1" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="RIASZTO_ZONAK_NYUGALOM[C_KONYHA_ZONA]" vistype="BOOL" visneg="true" Uid="11392" hint="Zona aktiv">
+			<object caption="" X="4" Y="35" xoff="4" yoff="1" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="ALARM_ZONES_INACTIVITY[C_KITCHEN_ZONE]" vistype="BOOL" visneg="true" Uid="11392" hint="Zona aktiv">
 				<picture href="" img="PIR1_O_1.PNG" />
 			</object>
-			<object caption="" X="7" Y="32" xoff="0" yoff="0" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="RIASZTO_ZONAK_NYUGALOM[C_NAPPALI_ZONA]" vistype="BOOL" visneg="true" Uid="11393" hint="Zona aktiv">
+			<object caption="" X="7" Y="32" xoff="0" yoff="0" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="ALARM_ZONES_INACTIVITY[C_LIVING_ROOM_ZONE]" vistype="BOOL" visneg="true" Uid="11393" hint="Zona aktiv">
 				<picture href="" img="PIR1_O_2.PNG" />
 			</object>
-			<object caption="" X="38" Y="24" xoff="7" yoff="2" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="RIASZTO_ZONAK_NYUGALOM[C_HALO_ZONA]" vistype="BOOL" visneg="true" Uid="11394" hint="Zona aktiv">
+			<object caption="" X="38" Y="24" xoff="7" yoff="2" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="ALARM_ZONES_INACTIVITY[C_BEDROOM_ZONE]" vistype="BOOL" visneg="true" Uid="11394" hint="Zona aktiv">
 				<picture href="" img="PIR1_O_3.PNG" />
 			</object>
-			<object caption="" X="84" Y="20" xoff="4" yoff="0" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="RIASZTO_ZONAK_NYUGALOM[C_GYEREKSZOBA_3_ZONA]" vistype="BOOL" visneg="true" Uid="11395" hint="Zona aktiv">
+			<object caption="" X="84" Y="20" xoff="4" yoff="0" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="ALARM_ZONES_INACTIVITY[C_CHILDRENS_ROOM_3_ZONE]" vistype="BOOL" visneg="true" Uid="11395" hint="Zona aktiv">
 				<picture href="" img="PIR1_O_3.PNG" />
 			</object>
-			<object caption="" X="52" Y="32" xoff="5" yoff="0" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="RIASZTO_ZONAK_NYUGALOM[C_GYEREKSZOBA_1_ZONA]" vistype="BOOL" visneg="true" Uid="11397" hint="Zona aktiv">
+			<object caption="" X="52" Y="32" xoff="5" yoff="0" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="ALARM_ZONES_INACTIVITY[C_CHILDRENS_ROOM_1_ZONE]" vistype="BOOL" visneg="true" Uid="11397" hint="Zona aktiv">
 				<picture href="" img="PIR1_O_2.PNG" />
 			</object>
-			<object caption="" X="63" Y="55" xoff="6" yoff="0" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="RIASZTO_ZONAK_NYUGALOM[C_GYEREKSZOBA_2_ZONA]" vistype="BOOL" visneg="true" Uid="11398" hint="Zona aktiv">
+			<object caption="" X="63" Y="55" xoff="6" yoff="0" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="ALARM_ZONES_INACTIVITY[C_CHILDRENS_ROOM_2_ZONE]" vistype="BOOL" visneg="true" Uid="11398" hint="Zona aktiv">
 				<picture href="" img="PIR1_O_3.PNG" />
 			</object>
-			<object caption="" X="84" Y="35" xoff="1" yoff="6" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="RIASZTO_ZONAK_NYUGALOM[C_WC_ZONA]" vistype="BOOL" visneg="true" Uid="11399" hint="Zona aktiv">
+			<object caption="" X="84" Y="35" xoff="1" yoff="6" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="ALARM_ZONES_INACTIVITY[C_WC_ZONE]" vistype="BOOL" visneg="true" Uid="11399" hint="Zona aktiv">
 				<picture href="" img="PIR1_O_4.PNG" />
 			</object>
-			<object caption="" X="84" Y="43" xoff="1" yoff="3" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="RIASZTO_ZONAK_NYUGALOM[C_UPSTAIRS_FURDO_ZONA]" vistype="BOOL" visneg="true" Uid="11400" hint="Zona aktiv">
+			<object caption="" X="84" Y="43" xoff="1" yoff="3" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="ALARM_ZONES_INACTIVITY[C_UPSTAIRS_BATH_ZONE]" vistype="BOOL" visneg="true" Uid="11400" hint="Zona aktiv">
 				<picture href="" img="PIR1_O_4.PNG" />
 			</object>
-			<object caption="" X="84" Y="24" xoff="1" yoff="5" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="RIASZTO_ZONAK_NYUGALOM[C_KAZAN_ZONA]" vistype="BOOL" visneg="true" Uid="11401" hint="Zona aktiv">
+			<object caption="" X="84" Y="24" xoff="1" yoff="5" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="ALARM_ZONES_INACTIVITY[C_BOILER_ZONE]" vistype="BOOL" visneg="true" Uid="11401" hint="Zona aktiv">
 				<picture href="" img="PIR1_O_4.PNG" />
 			</object>
 			<object caption="" X="6" Y="70" xoff="5" yoff="3" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="GONE_FOR_LONG_TIME" vistype="BOOL" visneg="false" Uid="11403" hint="Hosszú ideje elmentek otthonról">
@@ -335,14 +335,23 @@
 			<object caption="" X="11" Y="70" xoff="3" yoff="3" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="GONE_FOR_SHORT_TIME" vistype="BOOL" visneg="false" Uid="11404" hint="Rövid ideje elmentek otthonról">
 				<picture href="" img="ALARM1_3.PNG" />
 			</object>
-			<object caption="" X="67" Y="48" xoff="3" yoff="2" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="RIASZTO_ZONAK_NYUGALOM[C_FOLYOSO_ZONA]" vistype="BOOL" visneg="true" Uid="11405" hint="Zona aktiv">
+			<object caption="" X="67" Y="48" xoff="3" yoff="2" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="ALARM_ZONES_INACTIVITY[C_HALLWAY_ZONE]" vistype="BOOL" visneg="true" Uid="11405" hint="Zona aktiv">
 				<picture href="" img="PIR1_O_2.PNG" />
 			</object>
 			<object caption="" X="18" Y="71" xoff="1" yoff="4" level="0" readonly="false" front="32768" back="16777215" strong="true" italic="false" size="13" transparent="false" visneg="false" Uid="11420" hint="External temperature">
 				<edit variable="EXTERNAL_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="true" border="true" width="55" height="22" tabindex="7" />
 			</object>
+			<object caption="3" X="85" Y="6" xoff="3" yoff="5" level="0" readonly="false" front="0" back="16777215" strong="true" italic="false" size="13" transparent="true" visneg="false" Uid="11422">
+				<label />
+			</object>
+			<object caption="1" X="66" Y="13" xoff="5" yoff="4" level="0" readonly="false" front="0" back="16777215" strong="true" italic="false" size="13" transparent="true" visneg="false" Uid="11423">
+				<label />
+			</object>
+			<object caption="2" X="64" Y="39" xoff="1" yoff="1" level="0" readonly="false" front="0" back="16777215" strong="true" italic="false" size="13" transparent="true" visneg="false" Uid="11424">
+				<label />
+			</object>
 		</page>
-		<page caption="Fűtés" name="HEATING.XML" background="" bgcolor="16777215" repeat="false" hidden="false" ajax="true" pause="1000" level="0" ucid="1564647890" width="641" height="442" Uid="11328">
+		<page caption="Fűtés" name="HEATING.XML" background="" bgcolor="16777215" repeat="false" hidden="false" ajax="true" pause="1000" level="0" ucid="1623080484" width="641" height="442" Uid="11328">
 			<object caption="" X="40" Y="6" xoff="7" yoff="5" level="0" readonly="false" front="0" back="33023" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="11161">
 				<block width="70" height="70" border="true" />
 			</object>
@@ -350,13 +359,13 @@
 				<block width="140" height="140" border="true" />
 			</object>
 			<object caption="" X="13" Y="5" xoff="6" yoff="3" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="11133">
-				<edit variable="NAPPALI_KIVANT_HOMERSEKLET" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="50" height="22" tabindex="1" />
+				<edit variable="LIVING_ROOM_DESIRED_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="50" height="22" tabindex="1" />
 			</object>
 			<object caption="Kívánt és valós hőmérsékletek" X="2" Y="2" xoff="2" yoff="2" level="0" readonly="false" front="0" back="16777215" strong="true" italic="false" size="13" transparent="true" visneg="false" Uid="11134">
 				<label />
 			</object>
 			<object caption="" X="25" Y="5" xoff="5" yoff="3" level="0" readonly="false" front="32768" back="16777215" strong="true" italic="false" size="13" transparent="false" visneg="false" Uid="11136">
-				<edit variable="NAPPALI_HOMERSEKLET" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="true" border="true" width="55" height="22" tabindex="2" />
+				<edit variable="LIVING_ROOM_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="true" border="true" width="55" height="22" tabindex="2" />
 			</object>
 			<object caption="Kazán kikapcsolva" X="64" Y="22" xoff="2" yoff="2" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="11139">
 				<image optcap="Kazán bekapcsolva" variable="VAILANT_BURNER_ON" type="BOOL" on="HEAT1__2.PNG" off="HEAT1__1.PNG" />
@@ -368,28 +377,28 @@
 				<label />
 			</object>
 			<object caption="" X="75" Y="5" xoff="7" yoff="3" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="11145" hint="Eredő hőmérséklet igény">
-				<edit variable="EREDO_ELOREMENO_VIZHO_IGENY" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="4" global="true" border="true" width="42" height="22" tabindex="4" />
+				<edit variable="SUM_HEATING_WATER_TEMPERATURE_REQUIREMENT" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="4" global="true" border="true" width="42" height="22" tabindex="4" />
 			</object>
-			<object caption="Nappali" X="2" Y="5" xoff="2" yoff="6" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="11148">
+			<object caption="Living room" X="2" Y="5" xoff="2" yoff="6" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="11148">
 				<label />
 			</object>
 			<object caption="" X="2" Y="4" xoff="2" yoff="4" level="0" readonly="false" front="0" back="0" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="11149">
 				<block width="280" height="2" border="true" />
 			</object>
 			<object caption="" X="13" Y="9" xoff="6" yoff="1" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="11150">
-				<edit variable="DOWNSTAIRS_FURDO_KIVANT_HOMERSEKLET" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="50" height="22" tabindex="5" />
+				<edit variable="DOWNSTAIRS_BATH_DESIRED_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="50" height="22" tabindex="5" />
 			</object>
 			<object caption="" X="25" Y="9" xoff="5" yoff="1" level="0" readonly="false" front="32768" back="16777215" strong="true" italic="false" size="13" transparent="false" visneg="false" Uid="11151">
-				<edit variable="DOWNSTAIRS_FURDO_HOMERSEKLET" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="true" border="true" width="55" height="22" tabindex="6" />
+				<edit variable="DOWNSTAIRS_BATH_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="true" border="true" width="55" height="22" tabindex="6" />
 			</object>
 			<object caption="Alsó fürdő" X="2" Y="9" xoff="2" yoff="4" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="11152">
 				<label />
 			</object>
 			<object caption="" X="13" Y="12" xoff="6" yoff="7" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="11153">
-				<edit variable="GARAZS_KIVANT_HOMERSEKLET" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="50" height="22" tabindex="7" />
+				<edit variable="GARAGE_DESIRED_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="50" height="22" tabindex="7" />
 			</object>
 			<object caption="" X="25" Y="12" xoff="5" yoff="7" level="0" readonly="false" front="32768" back="16777215" strong="true" italic="false" size="13" transparent="false" visneg="false" Uid="11154">
-				<edit variable="GARAZS_HOMERSEKLET" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="true" border="true" width="55" height="22" tabindex="8" />
+				<edit variable="GARAGE_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="true" border="true" width="55" height="22" tabindex="8" />
 			</object>
 			<object caption="Garázs" X="2" Y="13" xoff="3" yoff="2" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="11155">
 				<label />
@@ -403,11 +412,11 @@
 			<object caption="Előremenő T" X="63" Y="13" xoff="3" yoff="2" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="11158">
 				<label />
 			</object>
-			<object caption="" X="41" Y="7" xoff="2" yoff="0" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="FUTES_ENGEDELYEZES" vistype="BOOL" visneg="false" Uid="11159">
-				<imagebtn variable="FUTES_ENGEDELYEZES" value="0" timeout="500" type="BOOL" on="" off="SW747C_1.PNG" />
+			<object caption="" X="41" Y="7" xoff="2" yoff="0" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="HEATING_ENABLE" vistype="BOOL" visneg="false" Uid="11159">
+				<imagebtn variable="HEATING_ENABLE" value="0" timeout="500" type="BOOL" on="" off="SW747C_1.PNG" />
 			</object>
-			<object caption="" X="41" Y="7" xoff="2" yoff="0" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="FUTES_ENGEDELYEZES" vistype="BOOL" visneg="true" Uid="11160">
-				<imagebtn variable="FUTES_ENGEDELYEZES" value="1" timeout="500" type="BOOL" on="" off="SW7D18_1.PNG" />
+			<object caption="" X="41" Y="7" xoff="2" yoff="0" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="HEATING_ENABLE" vistype="BOOL" visneg="true" Uid="11160">
+				<imagebtn variable="HEATING_ENABLE" value="1" timeout="500" type="BOOL" on="" off="SW7D18_1.PNG" />
 			</object>
 			<object caption="Kazán engedélyezés" X="40" Y="2" xoff="7" yoff="2" level="0" readonly="false" front="0" back="16777215" strong="true" italic="false" size="13" transparent="true" visneg="false" Uid="11162">
 				<label />
@@ -418,11 +427,11 @@
 			<object caption="" X="50" Y="6" xoff="7" yoff="5" level="0" readonly="false" front="0" back="255" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="11164">
 				<block width="70" height="70" border="true" />
 			</object>
-			<object caption="" X="51" Y="7" xoff="2" yoff="0" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="HASZNALATI_MELEGVIZ_ENGEDELYEZES" vistype="BOOL" visneg="false" Uid="11165">
-				<imagebtn variable="HASZNALATI_MELEGVIZ_ENGEDELYEZES" value="0" timeout="500" type="BOOL" on="" off="SW747C_1.PNG" />
+			<object caption="" X="51" Y="7" xoff="2" yoff="0" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="HOT_WATER_ENABLE" vistype="BOOL" visneg="false" Uid="11165">
+				<imagebtn variable="HOT_WATER_ENABLE" value="0" timeout="500" type="BOOL" on="" off="SW747C_1.PNG" />
 			</object>
-			<object caption="" X="51" Y="7" xoff="2" yoff="0" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="HASZNALATI_MELEGVIZ_ENGEDELYEZES" vistype="BOOL" visneg="true" Uid="11166">
-				<imagebtn variable="HASZNALATI_MELEGVIZ_ENGEDELYEZES" value="1" timeout="500" type="BOOL" on="" off="SW7D18_1.PNG" />
+			<object caption="" X="51" Y="7" xoff="2" yoff="0" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="HOT_WATER_ENABLE" vistype="BOOL" visneg="true" Uid="11166">
+				<imagebtn variable="HOT_WATER_ENABLE" value="1" timeout="500" type="BOOL" on="" off="SW7D18_1.PNG" />
 			</object>
 			<object caption="Fűtés" X="42" Y="16" xoff="7" yoff="1" level="0" readonly="false" front="0" back="16777215" strong="true" italic="false" size="13" transparent="true" visneg="false" Uid="11167">
 				<label />
@@ -437,99 +446,99 @@
 				<label />
 			</object>
 			<object caption="" X="13" Y="16" xoff="6" yoff="5" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="11246">
-				<edit variable="HALOSZOBA_KIVANT_HOMERSEKLET" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="50" height="22" tabindex="11" />
+				<edit variable="BEDROOM_DESIRED_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="50" height="22" tabindex="11" />
 			</object>
 			<object caption="" X="25" Y="16" xoff="5" yoff="5" level="0" readonly="false" front="32768" back="16777215" strong="true" italic="false" size="13" transparent="false" visneg="false" Uid="11247">
-				<edit variable="HALOSZOBA_HOMERSEKLET" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="true" border="true" width="55" height="22" tabindex="13" />
+				<edit variable="BEDROOM_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="true" border="true" width="55" height="22" tabindex="13" />
 			</object>
 			<object caption="Vendégszoba" X="2" Y="17" xoff="2" yoff="0" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="11248">
 				<label />
 			</object>
 			<object caption="" X="13" Y="24" xoff="6" yoff="1" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="11249">
-				<edit variable="GYEREKSZOBA_3_KIVANT_HOMERSEKLET" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="50" height="22" tabindex="14" />
+				<edit variable="CHILDRENS_ROOM_3_DESIRED_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="50" height="22" tabindex="14" />
 			</object>
 			<object caption="" X="25" Y="24" xoff="5" yoff="1" level="0" readonly="false" front="32768" back="16777215" strong="true" italic="false" size="13" transparent="false" visneg="false" Uid="11250">
-				<edit variable="GYEREKSZOBA_3_HOMERSEKLET" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="true" border="true" width="55" height="22" tabindex="15" />
+				<edit variable="CHILDRENS_ROOM_3_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="true" border="true" width="55" height="22" tabindex="15" />
 			</object>
 			<object caption="Háló" X="2" Y="24" xoff="2" yoff="4" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="11251">
 				<label />
 			</object>
 			<object caption="" X="13" Y="27" xoff="6" yoff="7" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="11252">
-				<edit variable="GYEREKSZOBA_2_KIVANT_HOMERSEKLET" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="50" height="22" tabindex="16" />
+				<edit variable="CHILDRENS_ROOM_2_DESIRED_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="50" height="22" tabindex="16" />
 			</object>
 			<object caption="" X="25" Y="27" xoff="5" yoff="7" level="0" readonly="false" front="32768" back="16777215" strong="true" italic="false" size="13" transparent="false" visneg="false" Uid="11253">
-				<edit variable="GYEREKSZOBA_2_HOMERSEKLET" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="true" border="true" width="55" height="22" tabindex="17" />
+				<edit variable="CHILDRENS_ROOM_2_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="true" border="true" width="55" height="22" tabindex="17" />
 			</object>
 			<object caption="Raktárszoba" X="2" Y="28" xoff="3" yoff="2" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="11254">
 				<label />
 			</object>
 			<object caption="" X="13" Y="31" xoff="6" yoff="5" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="11255">
-				<edit variable="GYEREKSZOBA_1_KIVANT_HOMERSEKLET" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="50" height="22" tabindex="18" />
+				<edit variable="CHILDRENS_ROOM_1_DESIRED_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="50" height="22" tabindex="18" />
 			</object>
 			<object caption="" X="25" Y="31" xoff="5" yoff="5" level="0" readonly="false" front="32768" back="16777215" strong="true" italic="false" size="13" transparent="false" visneg="false" Uid="11256">
-				<edit variable="GYEREKSZOBA_1_HOMERSEKLET" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="true" border="true" width="55" height="22" tabindex="19" />
+				<edit variable="CHILDRENS_ROOM_1_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="true" border="true" width="55" height="22" tabindex="19" />
 			</object>
-			<object caption="Gyerekszoba" X="2" Y="32" xoff="2" yoff="0" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="11257">
+			<object caption="Childrens room" X="2" Y="32" xoff="2" yoff="0" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="11257">
 				<label />
 			</object>
 			<object caption="" X="13" Y="35" xoff="6" yoff="3" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="11258">
-				<edit variable="UPSTAIRS_FURDO_KIVANT_HOMERSEKLET" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="50" height="22" tabindex="20" />
+				<edit variable="UPSTAIRS_BATH_DESIRED_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="50" height="22" tabindex="20" />
 			</object>
 			<object caption="" X="25" Y="35" xoff="5" yoff="3" level="0" readonly="false" front="32768" back="16777215" strong="true" italic="false" size="13" transparent="false" visneg="false" Uid="11259">
-				<edit variable="UPSTAIRS_FURDO_HOMERSEKLET" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="true" border="true" width="55" height="22" tabindex="21" />
+				<edit variable="UPSTAIRS_BATH_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="true" border="true" width="55" height="22" tabindex="21" />
 			</object>
 			<object caption="Felső fürdő" X="2" Y="35" xoff="3" yoff="6" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="11260">
 				<label />
 			</object>
-			<object caption="" X="34" Y="5" xoff="1" yoff="2" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="futesRequests[C_NAPPALI_1_INDEX]" vistype="BOOL" visneg="false" Uid="11263">
+			<object caption="" X="34" Y="5" xoff="1" yoff="2" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="heatingRequests[C_LIVING_ROOM_1_INDEX]" vistype="BOOL" visneg="false" Uid="11263">
 				<picture href="" img="HEAT1__4.PNG" />
 			</object>
-			<object caption="" X="34" Y="9" xoff="1" yoff="0" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="futesRequests[C_DOWNSTAIRS_FURDO_INDEX]" vistype="BOOL" visneg="false" Uid="11264">
+			<object caption="" X="34" Y="9" xoff="1" yoff="0" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="heatingRequests[C_DOWNSTAIRS_BATH_INDEX]" vistype="BOOL" visneg="false" Uid="11264">
 				<picture href="" img="HEAT1__4.PNG" />
 			</object>
-			<object caption="" X="34" Y="12" xoff="1" yoff="7" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="futesRequests[C_GARAZS_INDEX]" vistype="BOOL" visneg="false" Uid="11265">
+			<object caption="" X="34" Y="12" xoff="1" yoff="7" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="heatingRequests[C_GARAGE_INDEX]" vistype="BOOL" visneg="false" Uid="11265">
 				<picture href="" img="HEAT1__4.PNG" />
 			</object>
-			<object caption="" X="34" Y="16" xoff="1" yoff="5" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="futesRequests[C_HALO_INDEX]" vistype="BOOL" visneg="false" Uid="11266">
+			<object caption="" X="34" Y="16" xoff="1" yoff="5" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="heatingRequests[C_BEDROOM_INDEX]" vistype="BOOL" visneg="false" Uid="11266">
 				<picture href="" img="HEAT1__4.PNG" />
 			</object>
-			<object caption="" X="34" Y="24" xoff="1" yoff="1" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="futesRequests[C_GYEREKSZOBA_3_INDEX]" vistype="BOOL" visneg="false" Uid="11267">
+			<object caption="" X="34" Y="24" xoff="1" yoff="1" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="heatingRequests[C_CHILDRENS_ROOM_3_INDEX]" vistype="BOOL" visneg="false" Uid="11267">
 				<picture href="" img="HEAT1__4.PNG" />
 			</object>
-			<object caption="" X="34" Y="28" xoff="1" yoff="0" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="futesRequests[C_GYEREKSZOBA_2_INDEX]" vistype="BOOL" visneg="false" Uid="11268">
+			<object caption="" X="34" Y="28" xoff="1" yoff="0" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="heatingRequests[C_CHILDRENS_ROOM_2_INDEX]" vistype="BOOL" visneg="false" Uid="11268">
 				<picture href="" img="HEAT1__4.PNG" />
 			</object>
-			<object caption="" X="34" Y="31" xoff="1" yoff="6" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="futesRequests[C_GYEREKSZOBA_1_INDEX]" vistype="BOOL" visneg="false" Uid="11269">
+			<object caption="" X="34" Y="31" xoff="1" yoff="6" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="heatingRequests[C_CHILDRENS_ROOM_1_INDEX]" vistype="BOOL" visneg="false" Uid="11269">
 				<picture href="" img="HEAT1__4.PNG" />
 			</object>
-			<object caption="" X="34" Y="35" xoff="1" yoff="2" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="futesRequests[C_UPSTAIRS_FURDO_INDEX]" vistype="BOOL" visneg="false" Uid="11270">
+			<object caption="" X="34" Y="35" xoff="1" yoff="2" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="heatingRequests[C_UPSTAIRS_BATH_INDEX]" vistype="BOOL" visneg="false" Uid="11270">
 				<picture href="" img="HEAT1__4.PNG" />
 			</object>
 			<object caption="" X="13" Y="45" xoff="6" yoff="5" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="11286">
-				<edit variable="WC_KIVANT_HOMERSEKLET" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="50" height="22" tabindex="22" />
+				<edit variable="WC_DESIRED_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="50" height="22" tabindex="22" />
 			</object>
 			<object caption="WC" X="2" Y="46" xoff="2" yoff="0" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="11288">
 				<label />
 			</object>
 			<object caption="" X="13" Y="49" xoff="6" yoff="3" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="11289">
-				<edit variable="FOLYOSO_KIVANT_HOMERSEKLET" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="50" height="22" tabindex="23" />
+				<edit variable="HALLWAY_DESIRED_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="50" height="22" tabindex="23" />
 			</object>
 			<object caption="Folyosó" X="2" Y="49" xoff="3" yoff="6" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="11291">
 				<label />
 			</object>
-			<object caption="" X="13" Y="53" xoff="6" yoff="1" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="11292" hint="Nappali kívánt hőmérséklet">
-				<edit variable="KAZAN_KIVANT_HOMERSEKLET" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="50" height="22" tabindex="24" />
+			<object caption="" X="13" Y="53" xoff="6" yoff="1" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="11292" hint="Living room kívánt hőmérséklet">
+				<edit variable="BOILER_DESIRED_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="50" height="22" tabindex="24" />
 			</object>
 			<object caption="Kazán" X="2" Y="53" xoff="2" yoff="4" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="11294">
 				<label />
 			</object>
-			<object caption="" X="36" Y="45" xoff="5" yoff="5" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="futesRequests[C_WC_INDEX]" vistype="BOOL" visneg="false" Uid="11298">
+			<object caption="" X="36" Y="45" xoff="5" yoff="5" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="heatingRequests[C_WC_INDEX]" vistype="BOOL" visneg="false" Uid="11298">
 				<picture href="" img="HEAT1__4.PNG" />
 			</object>
-			<object caption="" X="36" Y="49" xoff="5" yoff="4" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="futesRequests[C_FOLYOSO_INDEX]" vistype="BOOL" visneg="false" Uid="11299">
+			<object caption="" X="36" Y="49" xoff="5" yoff="4" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="heatingRequests[C_HALLWAY_INDEX]" vistype="BOOL" visneg="false" Uid="11299">
 				<picture href="" img="HEAT1__4.PNG" />
 			</object>
-			<object caption="" X="36" Y="53" xoff="5" yoff="2" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="futesRequests[C_KAZAN_INDEX]" vistype="BOOL" visneg="false" Uid="11300">
+			<object caption="" X="36" Y="53" xoff="5" yoff="2" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="heatingRequests[C_BOILER_INDEX]" vistype="BOOL" visneg="false" Uid="11300">
 				<picture href="" img="HEAT1__4.PNG" />
 			</object>
 			<object caption="Szimulálási hőmérsékletek" X="2" Y="41" xoff="2" yoff="5" level="0" readonly="false" front="0" back="16777215" strong="true" italic="false" size="13" transparent="true" visneg="false" Uid="11302">
@@ -539,28 +548,28 @@
 				<block width="280" height="2" border="true" />
 			</object>
 			<object caption="" X="25" Y="45" xoff="5" yoff="5" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="11305">
-				<edit variable="WC_HOMERSEKLET" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="50" height="22" tabindex="25" />
+				<edit variable="WC_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="50" height="22" tabindex="25" />
 			</object>
 			<object caption="" X="25" Y="49" xoff="5" yoff="3" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="11306">
-				<edit variable="FOLYOSO_HOMERSEKLET" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="50" height="22" tabindex="26" />
+				<edit variable="HALLWAY_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="50" height="22" tabindex="26" />
 			</object>
-			<object caption="" X="25" Y="53" xoff="5" yoff="1" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="11307" hint="Nappali kívánt hőmérséklet">
-				<edit variable="KAZAN_HOMERSEKLET" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="50" height="22" tabindex="27" />
+			<object caption="" X="25" Y="53" xoff="5" yoff="1" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="11307" hint="Living room kívánt hőmérséklet">
+				<edit variable="BOILER_ROOM_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="50" height="22" tabindex="27" />
 			</object>
 			<object caption="" X="13" Y="20" xoff="6" yoff="3" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="11309">
-				<edit variable="DOWNSTAIRS_FURDO_KIVANT_HOMERSEKLET" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="50" height="22" tabindex="28" />
+				<edit variable="HALL_DESIRED_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="50" height="22" tabindex="28" />
 			</object>
 			<object caption="" X="25" Y="20" xoff="5" yoff="3" level="0" readonly="false" front="32768" back="16777215" strong="true" italic="false" size="13" transparent="false" visneg="false" Uid="11310">
-				<edit variable="DOWNSTAIRS_FURDO_HOMERSEKLET" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="true" border="true" width="55" height="22" tabindex="29" />
+				<edit variable="HALL_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="true" border="true" width="55" height="22" tabindex="29" />
 			</object>
 			<object caption="Előszoba" X="2" Y="20" xoff="3" yoff="6" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="11311">
 				<label />
 			</object>
-			<object caption="" X="34" Y="20" xoff="1" yoff="2" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="futesRequests[C_ELOSZOBA_INDEX]" vistype="BOOL" visneg="false" Uid="11312">
+			<object caption="" X="34" Y="20" xoff="1" yoff="2" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="heatingRequests[C_HALL_INDEX]" vistype="BOOL" visneg="false" Uid="11312">
 				<picture href="" img="HEAT1__4.PNG" />
 			</object>
 			<object caption="" X="51" Y="18" xoff="7" yoff="7" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="11408">
-				<edit variable="HASZNALATI_MELEGVIZ_HOMERSEKLET" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="50" height="22" tabindex="12" />
+				<edit variable="HOT_WATER_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="50" height="22" tabindex="12" />
 			</object>
 			<object caption="Meleg víz hő" X="40" Y="19" xoff="3" yoff="2" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="11409">
 				<label />
@@ -568,11 +577,11 @@
 			<object caption="" X="41" Y="27" xoff="0" yoff="1" level="0" readonly="false" front="0" back="16711680" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="11410">
 				<block width="70" height="70" border="true" />
 			</object>
-			<object caption="" X="41" Y="27" xoff="3" yoff="4" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="JELENLET_ALAPU_FUTES_VEZERLES" vistype="BOOL" visneg="false" Uid="11411">
-				<imagebtn variable="JELENLET_ALAPU_FUTES_VEZERLES" value="0" timeout="500" type="BOOL" on="" off="SW747C_1.PNG" />
+			<object caption="" X="41" Y="27" xoff="3" yoff="4" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="PRESENCE_BASED_HEATING_CONTROL" vistype="BOOL" visneg="false" Uid="11411">
+				<imagebtn variable="PRESENCE_BASED_HEATING_CONTROL" value="0" timeout="500" type="BOOL" on="" off="SW747C_1.PNG" />
 			</object>
-			<object caption="" X="41" Y="27" xoff="3" yoff="4" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="JELENLET_ALAPU_FUTES_VEZERLES" vistype="BOOL" visneg="true" Uid="11412">
-				<imagebtn variable="JELENLET_ALAPU_FUTES_VEZERLES" value="1" timeout="500" type="BOOL" on="" off="SW7D18_1.PNG" />
+			<object caption="" X="41" Y="27" xoff="3" yoff="4" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="PRESENCE_BASED_HEATING_CONTROL" vistype="BOOL" visneg="true" Uid="11412">
+				<imagebtn variable="PRESENCE_BASED_HEATING_CONTROL" value="1" timeout="500" type="BOOL" on="" off="SW7D18_1.PNG" />
 			</object>
 			<object caption="Jelenlét alapú vezérlés" X="41" Y="22" xoff="0" yoff="6" level="0" readonly="false" front="0" back="16777215" strong="true" italic="false" size="13" transparent="true" visneg="false" Uid="11413">
 				<label />
@@ -583,11 +592,11 @@
 			<object caption="" X="51" Y="27" xoff="0" yoff="1" level="0" readonly="false" front="0" back="16711680" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="11415">
 				<block width="70" height="70" border="true" />
 			</object>
-			<object caption="" X="51" Y="27" xoff="3" yoff="4" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="JELENLET_ALAPU_MELEGVIZ_ENGEDELYEZES" vistype="BOOL" visneg="false" Uid="11416">
-				<imagebtn variable="JELENLET_ALAPU_MELEGVIZ_ENGEDELYEZES" value="0" timeout="500" type="BOOL" on="" off="SW747C_1.PNG" />
+			<object caption="" X="51" Y="27" xoff="3" yoff="4" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="PRESENCE_BASED_HOT_WATER_ENABLE" vistype="BOOL" visneg="false" Uid="11416">
+				<imagebtn variable="PRESENCE_BASED_HOT_WATER_ENABLE" value="0" timeout="500" type="BOOL" on="" off="SW747C_1.PNG" />
 			</object>
-			<object caption="" X="51" Y="27" xoff="3" yoff="4" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="JELENLET_ALAPU_MELEGVIZ_ENGEDELYEZES" vistype="BOOL" visneg="true" Uid="11417">
-				<imagebtn variable="JELENLET_ALAPU_MELEGVIZ_ENGEDELYEZES" value="1" timeout="500" type="BOOL" on="" off="SW7D18_1.PNG" />
+			<object caption="" X="51" Y="27" xoff="3" yoff="4" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="PRESENCE_BASED_HOT_WATER_ENABLE" vistype="BOOL" visneg="true" Uid="11417">
+				<imagebtn variable="PRESENCE_BASED_HOT_WATER_ENABLE" value="1" timeout="500" type="BOOL" on="" off="SW7D18_1.PNG" />
 			</object>
 			<object caption="Fűtés" X="43" Y="36" xoff="0" yoff="5" level="0" readonly="false" front="0" back="16777215" strong="true" italic="false" size="13" transparent="true" visneg="false" Uid="11418">
 				<label />
@@ -609,7 +618,7 @@
 			<object caption="IPID Td" X="4" Y="38" xoff="2" yoff="4" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="11317">
 				<label />
 			</object>
-			<object caption="" X="27" Y="41" xoff="2" yoff="7" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="11318" hint="Nappali kívánt hőmérséklet">
+			<object caption="" X="27" Y="41" xoff="2" yoff="7" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="11318" hint="Living room kívánt hőmérséklet">
 				<edit variable="IPID_K" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="8" global="false" border="true" width="74" height="22" />
 			</object>
 			<object caption="IPID k" X="4" Y="42" xoff="1" yoff="2" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="11319">
@@ -627,7 +636,7 @@
 			<object caption="Hiszterézis" X="4" Y="46" xoff="2" yoff="0" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="11332">
 				<label />
 			</object>
-			<object caption="" X="27" Y="49" xoff="2" yoff="3" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="11333" hint="Nappali kívánt hőmérséklet">
+			<object caption="" X="27" Y="49" xoff="2" yoff="3" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="11333" hint="Living room kívánt hőmérséklet">
 				<edit variable="HEATING_CONTROL_SAMPLING_TIME" type="TIME" intf="0" timf="mm:ss" align="left" zero="false" prec="2" size="8" global="false" border="true" width="74" height="22" />
 			</object>
 			<object caption="Mintavételezés" X="4" Y="49" xoff="1" yoff="6" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="11334">
@@ -649,8 +658,8 @@
 		<img name="HEAT1__4.PNG" type="PNG" height="24" width="24" longname="HEAT1_ON_24TR" />
 		<img name="FAN1_O_1.PNG" type="PNG" height="24" width="24" longname="FAN1_ON_24TR" />
 		<img name="FAN1_O_2.PNG" type="PNG" height="24" width="24" longname="FAN1_OFF_24TR" />
-		<img name="BR_44__4.PNG" type="PNG" height="513" width="334" longname="br_44_foldszint_nagy" />
-		<img name="BR_44__3.PNG" type="PNG" height="519" width="340" longname="br_44_emelet_nagy" />
+		<img name="BR_44__4.PNG" type="PNG" height="513" width="334" longname="br_44_foldszint_major" />
+		<img name="BR_44__3.PNG" type="PNG" height="519" width="340" longname="br_44_emelet_major" />
 		<img name="HEAT1__5.PNG" type="PNG" height="20" width="20" longname="HEAT1_ON_20TR" />
 		<img name="DOOR1__1.PNG" type="PNG" height="24" width="24" longname="DOOR1_CLOSE_24TR" />
 		<img name="DOOR1__2.PNG" type="PNG" height="24" width="24" longname="DOOR1_OPEN_24TR" />
