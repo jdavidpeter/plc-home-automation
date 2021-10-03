@@ -3,17 +3,46 @@ Version="xPRO","4.3.00"
 [/desktop]
 
 [dockinfo]
-centralpc=50541076,1,1,1
-leftpane=50532268,0,0,1,374,0
-bottompane=50539372,1,268
-rightpane=65548524,1,408,0
+centralpc=52463956,1,1,1
+leftpane=52174028,0,0,1,374,0
+bottompane=52181264,1,268
+rightpane=52461568,1,408,0
 [/dockinfo]
 
 [closedtextpaneleditors]
 [/closedtextpaneleditors]
 
+[txtextsyneditor]
+smatchcase=0
+swholewords=0
+sbackword=0
+sseltext=0
+sglobal=0
+sprompt=0
+iecoperands=0
+ieccomments=0
+fifmatchcase=0
+fifwholewords=0
+fifoutinstr=0
+fifwhere=0
+fifsubdirs=0
+fif2ndmsg=1
+fif2ndmsg=1
+findhistory=""
+replacehistory=""
+dirhistory=""
+maskhistory=""
+[/txtextsyneditor]
+
 [closedtextsyneditors]
-txsyned="LOCALLIB\OpenThermLib_V13_20150819.mlb",114,1,1,1,1,1,252988160,30826290,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+txsyned="PersistData.ST",24,1,1,1,1,1,1603160320,30914205,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+txsyned="PersistInit.st",67,12,1,1,1,1,1523160320,30914205,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+txsyned="Alarm.ST",45,12,1,1,1,1,1403160320,30914205,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+txsyned="AlarmInit.ST",21,12,1,1,1,1,1303160320,30914205,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+txsyned="LightingInit.st",1,8,1,1,1,1,1158127616,30914204,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+txsyned="lighting.ST",1,1,1,1,1,1,698127616,30914204,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+txsyned="lighting_heating_updated.mak",1,1,1,1,1,1,3266389760,30891065,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+txsyned="HeatingInint.ST",56,12,1,1,1,1,1158127616,30914204,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 txsyned="AlarmRead.st",7,63,1,1,1,1,615470336,30890884,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 txsyned="AlarmGlobals.st",9,103,1,1,1,1,1055470336,30890884,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 txsyned="StringRecorder.st",26,10,1,1,1,1,2432007424,30890931,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
@@ -52,7 +81,7 @@ sprompt=0
 iecoperands=1
 ieccomments=1
 implicitseltext=1
-findhistory="SUM_HEATING_WATER_TEMPERATURE_REQUIREMENT","activeZones","OT_COMM_ARRAY_GEMINOX_THRI_MOD","vaillant_opentherm","presence","PARADOX_COM","C_PERSIST_DIRECTORY_ROOT","ROOT/PERSIST","void","C_FRONT_DOOR","ALARM_ZONES_INACTIVITY","C_CHILDRENS_ROOM_3_ZONE","9600","196","GONE_FOR_SHORT_TIME","remanent"
+findhistory="TLIB_COMM_ARRAY","SUM_HEATING_WATER_TEMPERATURE_REQUIREMENT","activeZones","OT_COMM_ARRAY_GEMINOX_THRI_MOD","vaillant_opentherm","presence","PARADOX_COM","C_PERSIST_DIRECTORY_ROOT","ROOT/PERSIST","void","C_FRONT_DOOR","ALARM_ZONES_INACTIVITY","C_CHILDRENS_ROOM_3_ZONE","9600","196","GONE_FOR_SHORT_TIME"
 fifmatchcase=0
 fifwholewords=0
 fifoutinstr=0
@@ -99,36 +128,39 @@ lastdir="//BRA1/RIASZTO/2021/06/23/"
 showdetails=1
 [/plcdiskdlg]
 
+[prjmngr]
+shownds=0
+[/prjmngr]
+
 [msgwin2]
-window=50539372,1,0,0,239,1912,39,429,239,850,0,0,1
+window=52181264,1,0,0,238,1699,39,429,239,850,0,0,1
 [/msgwin2]
 
 [msgwin1]
-window=50539372,1,0,0,239,1912,39,429,239,850,0,0,0
+window=52181264,1,0,0,238,1699,39,429,239,850,0,0,0
 [/msgwin1]
 
 [symbwin]
-window=50539372,1,0,0,239,1912,39,429,239,850,0,0,2
+window=52181264,1,0,0,238,1699,39,429,239,850,0,0,2
 hdrwidth2=100
 hdrwidth3=100
 [/symbwin]
 
 [openfileswin]
-window=50532268,1,0,0,655,366,676,100,676,366,0,0,2
+window=52174028,1,0,0,534,366,676,100,676,366,0,0,2
 [/openfileswin]
 
 [prjfileswin]
-window=50532268,1,0,0,655,366,676,100,676,366,0,0,1
+window=52174028,1,0,0,534,366,676,100,676,366,0,0,1
 filesheight=144
-relatednamew=110
 relatedcnt=3
-relfile0="SendRoot\iFoxtrot.pub"
-relfile1="SendRoot\TecoApi.pub"
-relfile2="Sysgen\lighting_heating_updated.map"
+relfile0="Sysgen\lighting_heating_updated.map"
+relfile1="SendRoot\iFoxtrot.pub"
+relfile2="SendRoot\TecoApi.pub"
 [/prjfileswin]
 
 [ctrlswin]
-window=50532268,1,0,0,655,366,600,42,600,366,0,0,0
+window=52174028,1,0,0,534,366,600,42,600,366,0,0,0
 [/ctrlswin]
 
 [accwin]
@@ -146,7 +178,7 @@ fixed=0
 cols=6
 byteoffs=0
 decaddr=1
-font="courier new",1,0,9,-12,0,0,0
+font="Consolas",1,0,10,-13,-2147483640,0,0
 [/memwin1]
 
 [memwin2]
@@ -158,45 +190,54 @@ fixed=0
 cols=6
 byteoffs=0
 decaddr=1
-font="courier new",1,0,9,-12,0,0,0
+font="Consolas",1,0,10,-13,-2147483640,0,0
 [/memwin2]
 
 [watch2win]
-window=50539372,1,0,0,239,1912,39,429,239,850,0,0,4
-hdrnamew=447,165,0
-font="courier new",238,0,10,-13,-2147483640,0,0
+window=52181264,1,0,0,238,1699,39,429,239,850,0,0,4
+hdrnamew=447,210,0
+font96dpi="Courier New",10
+fonthires="Consolas",10
+hiresreadability=0
 defbank="Bank1"
 toolbvis=1
 alignnumbers=0
 showanalyserr=0
 accsvisible=0
 accsw=152
-mem1w=287
+mem1w=275
 mem1visible=1
 mem2w=190
 mem2visible=0
-storednames="Heating_Control.vaillant_opentherm","OPENTHERM_IN","OT_COMM_ARRAY","OT_COMM_ARRAY_GEMINOX_THRI","PARADOX_COM","AWAY_TIMER","Alarm_Control.sumActivity","FILE_PROBLEM_TRACKER","IO_LOGGER","Persist_Data.boolPersistors.variableToPersist","readVariable","Persist_Data.boolPersistors.readVariable","Persist_Data.boolPersistors[1]","Persist_Data.boolPersistors[1].variableToPersist","GONE_FOR_5_MINUTES","GONE_FOR_SHORT_TIME"
+storednames="OPENTHERM_OUT","OPENTHERM_IN","Heating_Control.vaillant_opentherm.UC1204_OUT","Heating_Control.vaillant_opentherm","OT_COMM_ARRAY","OT_COMM_ARRAY_GEMINOX_THRI","PARADOX_COM","AWAY_TIMER","Alarm_Control.sumActivity","FILE_PROBLEM_TRACKER","IO_LOGGER","Persist_Data.boolPersistors.variableToPersist","readVariable","Persist_Data.boolPersistors.readVariable","Persist_Data.boolPersistors[1]","Persist_Data.boolPersistors[1].variableToPersist"
 [/watch2win]
 
 [weblc]
+lastfile=""
+listwidth=121
+findhistory=""
+replacehistory=""
 window=0,0,0,0,420,638,336,227,549,960,0,1,-1
 [/weblc]
-
-[paneltexted]
-editor="XClip-Panel",1,0,1,1,1,1,5080346,1700396,844108476,1700304,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-window=0,0,-544,-987,313,483,313,463,313,483,0,1,-1
-font="Fixedsys",9
-[/paneltexted]
 
 [evalmodifdlg]
 [/evalmodifdlg]
 
+[paneltexted]
+editor="XClip-Panel",1,0,1,1,1,1,5135730,1694232,202839812,1694624,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+window=0,0,0,94,313,483,313,463,313,483,0,1,-1
+font="Lucida Console",11
+[/paneltexted]
+
 [Datalogger]
-window=50541076,0,0,0,655,1122,187,259,517,1109,0,0,0
+window=52463956,0,0,0,615,1528,187,259,517,1109,0,0,0
 [/Datalogger]
 
+[CFC_Editors]
+[/CFC_Editors]
+
 [IOConfigurator]
-window=65548524,1,0,0,655,400,684,136,551,400,0,0,0
+window=52461568,1,0,0,534,400,564,136,551,400,0,0,0
 [/IOConfigurator]
 
 [PanelSIM_1]
@@ -213,105 +254,45 @@ SortPlcs=1
 window=0,0,0,0,420,272,642,134,642,272,0,0,-1
 [/PlcNetManager]
 
-[FormDesign1]
-window=50541076,0,0,0,655,1122,956,1920,564,917,0,0,1
-[/FormDesign1]
-
 [textsyneditor]
-editor="lighting_heating_updated.mak",1,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=50541076,1,0,0,655,1122,684,1130,684,1130,0,0,2
-localparams=0,1,1,1,1,30,0,80,1,8,0,0
-font="Lucida Console",10
+editor="heating.ST",1,0,0,121,60,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
+window=52463956,1,0,0,534,909,836,1707,684,1130,0,0,1
+localparams=0,1,1,1,1,30,0,80,1,2,1,0
+font="Courier New",10
+fonthires="Lucida Console",11
 relay=0,0,0,0,0,"",0,0
 inspectorctx=""
 debugparams=1,0,1
 [/textsyneditor]
 
 [textsyneditor]
-editor="heating.ST",1,0,0,105,5,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=50541076,1,0,0,655,1122,684,1130,684,1130,0,0,3
+editor="LOCALLIB\OpenThermLib_V13_20150819.mlb",1,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
+window=52463956,1,0,0,534,909,836,1707,684,1130,0,0,2
 localparams=0,1,1,1,1,30,0,80,1,2,1,0
 font="Courier New",10
+fonthires="Lucida Console",11
 relay=0,0,0,0,0,"",0,0
 inspectorctx=""
 debugparams=1,0,1
 [/textsyneditor]
 
 [textsyneditor]
-editor="HeatingInint.ST",1,0,0,56,12,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=50541076,1,0,0,655,1122,684,1130,684,1130,0,0,4
+editor="IOCONFIGURATOR\CONFIG.ST",1,0,0,545,4,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
+window=52463956,1,0,0,534,909,836,1707,684,1130,0,0,3
 localparams=0,1,1,1,1,30,0,80,1,2,1,0
 font="Courier New",10
+fonthires="Lucida Console",11
 relay=0,0,0,0,0,"",0,0
 inspectorctx=""
 debugparams=1,0,1
 [/textsyneditor]
 
 [textsyneditor]
-editor="HeatingGlobals.st",1,0,0,75,20,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=50541076,1,0,0,655,1122,684,1130,684,1130,0,0,5
+editor="HeatingGlobals.st",1,1,0,6,89,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
+window=52463956,1,0,0,534,909,836,1707,684,1130,0,0,4
 localparams=0,1,1,1,1,30,0,80,1,2,1,0
 font="Courier New",10
-relay=0,0,0,0,0,"",0,0
-inspectorctx=""
-debugparams=1,0,1
-[/textsyneditor]
-
-[textsyneditor]
-editor="lighting.ST",1,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=50541076,1,0,0,655,1122,684,1130,684,1130,0,0,6
-localparams=0,1,1,1,1,30,0,80,1,2,1,0
-font="Courier New",10
-relay=0,0,0,0,0,"",0,0
-inspectorctx=""
-debugparams=1,0,1
-[/textsyneditor]
-
-[textsyneditor]
-editor="LightingInit.st",1,0,0,1,8,1,1,1,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=50541076,1,0,0,655,1122,684,1130,684,1130,0,0,7
-localparams=0,1,1,1,1,30,0,80,1,2,1,0
-font="Courier New",10
-relay=0,0,0,0,0,"",0,0
-inspectorctx=""
-debugparams=1,0,1
-[/textsyneditor]
-
-[textsyneditor]
-editor="AlarmInit.ST",1,0,0,21,12,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=50541076,1,0,0,655,1122,684,1130,684,1130,0,0,8
-localparams=0,1,1,1,1,30,0,80,1,2,1,0
-font="Courier New",10
-relay=0,0,0,0,0,"",0,0
-inspectorctx=""
-debugparams=1,0,1
-[/textsyneditor]
-
-[textsyneditor]
-editor="Alarm.ST",1,0,0,45,12,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=50541076,1,0,0,655,1122,684,1130,684,1130,0,0,9
-localparams=0,1,1,1,1,30,0,80,1,2,1,0
-font="Courier New",10
-relay=0,0,0,0,0,"",0,0
-inspectorctx=""
-debugparams=1,0,1
-[/textsyneditor]
-
-[textsyneditor]
-editor="PersistInit.st",1,0,0,67,12,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=50541076,1,0,0,655,1122,684,1130,684,1130,0,0,10
-localparams=0,1,1,1,1,30,0,80,1,2,1,0
-font="Courier New",10
-relay=0,0,0,0,0,"",0,0
-inspectorctx=""
-debugparams=1,0,1
-[/textsyneditor]
-
-[textsyneditor]
-editor="PersistData.ST",1,1,0,34,12,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=50541076,1,0,0,655,1122,684,1130,684,1130,0,0,11
-localparams=0,1,1,1,1,30,0,80,1,2,1,0
-font="Courier New",10
+fonthires="Lucida Console",11
 relay=0,0,0,0,0,"",0,0
 inspectorctx=""
 debugparams=1,0,1

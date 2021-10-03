@@ -1,6 +1,6 @@
 <TecoConfiguration xmlns="http://www.tecomat.com">
-  <Configuration version="2019.2b" system="FOXTROT">
-    <Device xmlns="http://www.tecomat.com" alias="Central Unit" rack="0" position="0" statLoc="%S100" validStat="A2" expanded="true">
+  <Configuration version="2020.2a" system="FOXTROT">
+    <Device xmlns="http://www.tecomat.com" alias="Central Unit" rack="0" position="0" expanded="true" statLoc="%S100" validStat="A2">
       <Info>
         <ProductCode>1000</ProductCode>
         <ProductName>CP-1000</ProductName>
@@ -10,9 +10,10 @@
       </Info>
       <Objects>
         <Data/>
+        <Tags xmlns="http://www.tecomat.com"/>
       </Objects>
       <SerialChannels expandable="3">
-        <Channel xmlns="http://www.tecomat.com" Mode="UNI" Alias="General channel" Options="PC PLC UNI MPC MDB PFB" Name="CH1" LAddr="0101" SysMap="CH1" SysMapCode="0101" enabled="true">
+        <Channel xmlns="http://www.tecomat.com" Mode="UNI" Alias="General channel" enabled="true" Options="PC PLC UNI MPC MDB PFB" Name="CH1" LAddr="0101" SysMap="CH1" SysMapCode="0101">
           <Info>
             <Descriptor>UNI_SC.tdd</Descriptor>
           </Info>
@@ -22,7 +23,7 @@
               <ObjectAlias name="r{RACK}_p{POSITION}_UNI_{CHANNEL}_OUT.DATA" public="false" publicAPI="false" userDef="true">CH1_ZoneOUT</ObjectAlias>
             </Aliases>
             <Data>
-              <ObjectData name="r{RACK}_p{POSITION}_Settings_UNI_{CHANNEL}.BaudRate">0A000000</ObjectData>
+              <ObjectData name="r{RACK}_p{POSITION}_Settings_UNI_{CHANNEL}.BaudRate_FOXTROT">0A000000</ObjectData>
               <ObjectData name="r{RACK}_p{POSITION}_Settings_UNI_{CHANNEL}.TransmitZoneSize">3200</ObjectData>
               <ObjectData name="r{RACK}_p{POSITION}_Table_UNI_{CHANNEL}.speed">0A</ObjectData>
               <ObjectData name="r{RACK}_p{POSITION}_Table_UNI_{CHANNEL}.lendo">3600</ObjectData>
@@ -31,6 +32,7 @@
               <ObjectNote name="r{RACK}_p{POSITION}_Table_UNI_{CHANNEL}">Initialization table of UNI channel mode</ObjectNote>
               <ObjectNote name="r{RACK}_p{POSITION}_Module_UNI_{CHANNEL}">UNI_SC declaration</ObjectNote>
             </Notes>
+            <Tags xmlns="http://www.tecomat.com"/>
           </Objects>
           <Interfaces/>
           <Editor/>
@@ -39,18 +41,18 @@
       </SerialChannels>
       <Ethernets>
         <Ethernet Name="ETH1" LAddr="E1">
-          <Channel Name="SOCK0" Options="PC"/>
-          <Channel Name="SOCK1" Options="PLC"/>
-          <Channel Name="SOCK2" Options="PLCx"/>
-          <Channel Name="SOCK3" Options="BAC"/>
-          <Channel Name="SOCK4" Options="UNI"/>
-          <Channel Name="SOCK5" Options="UNI"/>
-          <Channel Name="SOCK6" Options="UNI"/>
-          <Channel Name="SOCK7" Options="UNI"/>
-          <Channel Name="SOCK8" Options="UNI"/>
-          <Channel Name="SOCK9" Options="UNI"/>
-          <Channel Name="SOCK10" Options="UNI"/>
-          <Channel Name="SOCK11" Options="UNI"/>
+          <Channel Options="PC" Name="SOCK0"/>
+          <Channel Options="PLC" Name="SOCK1"/>
+          <Channel Options="PLCx" Name="SOCK2"/>
+          <Channel Options="BAC" Name="SOCK3"/>
+          <Channel Options="UNI" Name="SOCK4"/>
+          <Channel Options="UNI" Name="SOCK5"/>
+          <Channel Options="UNI" Name="SOCK6"/>
+          <Channel Options="UNI" Name="SOCK7"/>
+          <Channel Options="UNI" Name="SOCK8"/>
+          <Channel Options="UNI" Name="SOCK9"/>
+          <Channel Options="UNI" Name="SOCK10"/>
+          <Channel Options="UNI" Name="SOCK11"/>
         </Ethernet>
       </Ethernets>
       <Piggybacks expanded="true">
@@ -64,6 +66,7 @@
           </Info>
           <Objects>
             <Data/>
+            <Tags xmlns="http://www.tecomat.com"/>
           </Objects>
           <SerialChannels>
             <Channel xmlns="http://www.tecomat.com" Mode="UNI" Alias="General channel" Options="PC PLC UNI MPC MDB PFB" Name="CH2" LAddr="0102" SysMap="CH2" SysMapCode="0202">
@@ -83,6 +86,7 @@
                   <ObjectNote name="r{RACK}_p{POSITION}_Table_UNI_{CHANNEL}">Initialization table of UNI channel mode</ObjectNote>
                   <ObjectNote name="r{RACK}_p{POSITION}_Module_UNI_{CHANNEL}">UNI_SC declaration</ObjectNote>
                 </Notes>
+                <Tags xmlns="http://www.tecomat.com"/>
               </Objects>
               <Interfaces/>
               <Editor/>
@@ -96,9 +100,9 @@
         </Piggyback>
       </Piggybacks>
       <Interfaces>
-        <Interface Class="TCL2" SubClass="INTERN" alias="Internal bus" rackOffset="0" busID="0" expanded="true">
+        <Interface Class="TCL2" SubClass="INTERN" alias="Internal bus" rackOffset="0" busID="0" Icon="tcl2_interface" expanded="true">
           <Peripheries>
-            <Device xmlns="http://www.tecomat.com" alias="CIB Master" rack="0" position="2" statLoc="%S102" validStat="A2" default="true" sw="2.5" tfw="2.5" hw="0.1" expanded="true">
+            <Device xmlns="http://www.tecomat.com" alias="CIB Master" rack="0" position="2" default="true" sw="2.5" tfw="2.5" hw="0.1" expanded="true" statLoc="%S102" validStat="A2">
               <Info>
                 <ProductCode>1141</ProductCode>
                 <ProductName>CF-1140</ProductName>
@@ -115,14 +119,15 @@
                   <ObjectNote name="r{RACK}_p{POSITION}_CF_1140_init">Initialization table of CP-1140 unit</ObjectNote>
                 </Notes>
                 <Data/>
+                <Tags xmlns="http://www.tecomat.com"/>
               </Objects>
               <SerialChannels/>
               <Ethernets/>
               <Piggybacks/>
               <Interfaces>
-                <Interface Class="CIB" SubClass="UNDEF" rackOffset="0" busID="8" expanded="true">
+                <Interface Class="CIB" SubClass="UNDEF" rackOffset="0" busID="8" Icon="cib_interface" expanded="true">
                   <Peripheries>
-                    <Device xmlns="http://www.tecomat.com" physAddr="9FD9" rack="8" position="0" statLoc="r0_p2_CIB_STAT[0]" validStat="87" logAddr="3" default="false" sw="1.1" tfw="1.1" hw="0.1" alias="C-IR-0303M-9FD9" errLoc="r0_p2_CIB_ERR[0]">
+                    <Device xmlns="http://www.tecomat.com" physAddr="9FD9" rack="8" position="0" logAddr="3" default="false" sw="1.1" tfw="1.1" hw="0.1" alias="C-IR-0303M-9FD9" statLoc="r0_p2_CIB_STAT[0]" validStat="87" errLoc="r0_p2_CIB_ERR[0]">
                       <Info>
                         <ProductCode>3360</ProductCode>
                         <ProductName>C-IR-0303M</ProductName>
@@ -130,7 +135,7 @@
                         <DeviceGroup>CFOX</DeviceGroup>
                         <Descriptor>3360_C-IR-0303M.tdd</Descriptor>
                       </Info>
-                      <Objects xmlns="http://www.tecomat.com" inputsAddr="r0_p2_CIB_IN" inputsLen="15" outputsAddr="r0_p2_CIB_OUT" outputsLen="1">
+                      <Objects xmlns="http://www.tecomat.com" inputsAddr="r0_p2_CIB_IN" outputsAddr="r0_p2_CIB_OUT" inputsLen="15" outputsLen="1">
                         <Aliases>
                           <ObjectAlias name="r{RACK}_p{POSITION}_IN" public="false" publicAPI="false" userDef="false">C_IR_0303M_9FD9_IN</ObjectAlias>
                           <ObjectAlias name="r{RACK}_p{POSITION}_OUT" public="false" publicAPI="false" userDef="false">C_IR_0303M_9FD9_OUT</ObjectAlias>
@@ -149,6 +154,7 @@
                           <ObjectData name="r{RACK}_p{POSITION}_C_IR_0303M_init.ai2type">22</ObjectData>
                           <ObjectData name="r{RACK}_p{POSITION}_C_IR_0303M_init.ai3type">22</ObjectData>
                         </Data>
+                        <Tags xmlns="http://www.tecomat.com"/>
                       </Objects>
                       <SerialChannels/>
                       <Ethernets/>
@@ -160,7 +166,7 @@
                         </ExpansionMaps>
                       </Editor>
                     </Device>
-                    <Device xmlns="http://www.tecomat.com" physAddr="9FDA" rack="8" position="1" statLoc="r0_p2_CIB_STAT[1]" validStat="87" logAddr="4" default="false" sw="1.1" tfw="1.1" hw="0.1" alias="C-IR-0303M-9FDA" errLoc="r0_p2_CIB_ERR[1]">
+                    <Device xmlns="http://www.tecomat.com" physAddr="9FDA" rack="8" position="1" logAddr="4" default="false" sw="1.1" tfw="1.1" hw="0.1" alias="C-IR-0303M-9FDA" statLoc="r0_p2_CIB_STAT[1]" validStat="87" errLoc="r0_p2_CIB_ERR[1]">
                       <Info>
                         <ProductCode>3360</ProductCode>
                         <ProductName>C-IR-0303M</ProductName>
@@ -168,7 +174,7 @@
                         <DeviceGroup>CFOX</DeviceGroup>
                         <Descriptor>3360_C-IR-0303M.tdd</Descriptor>
                       </Info>
-                      <Objects xmlns="http://www.tecomat.com" inputsAddr="r0_p2_CIB_IN" inputsLen="15" outputsAddr="r0_p2_CIB_OUT" outputsLen="1">
+                      <Objects xmlns="http://www.tecomat.com" inputsAddr="r0_p2_CIB_IN" outputsAddr="r0_p2_CIB_OUT" inputsLen="15" outputsLen="1">
                         <Aliases>
                           <ObjectAlias name="r{RACK}_p{POSITION}_IN" public="false" publicAPI="false" userDef="false">C_IR_0303M_9FDA_IN</ObjectAlias>
                           <ObjectAlias name="r{RACK}_p{POSITION}_IN.AI1" public="true" publicAPI="false" userDef="true">HALL_TEMPERATURE</ObjectAlias>
@@ -188,6 +194,7 @@
                           <ObjectData name="r{RACK}_p{POSITION}_C_IR_0303M_init.ai2type">22</ObjectData>
                           <ObjectData name="r{RACK}_p{POSITION}_C_IR_0303M_init.ai3type">22</ObjectData>
                         </Data>
+                        <Tags xmlns="http://www.tecomat.com"/>
                       </Objects>
                       <SerialChannels/>
                       <Ethernets/>
@@ -199,7 +206,7 @@
                         </ExpansionMaps>
                       </Editor>
                     </Device>
-                    <Device xmlns="http://www.tecomat.com" physAddr="9FDC" rack="8" position="2" statLoc="r0_p2_CIB_STAT[2]" validStat="87" logAddr="0" default="false" sw="1.1" tfw="1.1" hw="0.1" errLoc="r0_p2_CIB_ERR[2]" enabled="true" alias="C-IR-0303M-9FDC">
+                    <Device xmlns="http://www.tecomat.com" physAddr="9FDC" rack="8" position="2" logAddr="0" default="false" sw="1.1" tfw="1.1" hw="0.1" enabled="true" alias="C-IR-0303M-9FDC" statLoc="r0_p2_CIB_STAT[2]" validStat="87" errLoc="r0_p2_CIB_ERR[2]">
                       <Info>
                         <ProductCode>3360</ProductCode>
                         <ProductName>C-IR-0303M</ProductName>
@@ -220,6 +227,7 @@
                           <ObjectData name="r{RACK}_p{POSITION}_C_IR_0303M_init.ai2type">22</ObjectData>
                           <ObjectData name="r{RACK}_p{POSITION}_C_IR_0303M_init.ai3type">22</ObjectData>
                         </Data>
+                        <Tags xmlns="http://www.tecomat.com"/>
                       </Objects>
                       <SerialChannels/>
                       <Ethernets/>
@@ -227,7 +235,7 @@
                       <Interfaces/>
                       <Editor xmlns="http://www.tecomat.com"/>
                     </Device>
-                    <Device xmlns="http://www.tecomat.com" physAddr="F62C" rack="8" position="3" statLoc="r0_p2_CIB_STAT[3]" validStat="87" logAddr="0" default="false" sw="1.6" tfw="1.6" hw="0.3" alias="C-HM-1113M-F62C" errLoc="r0_p2_CIB_ERR[3]">
+                    <Device xmlns="http://www.tecomat.com" physAddr="F62C" rack="8" position="3" logAddr="0" default="false" sw="1.6" tfw="1.6" hw="0.3" alias="C-HM-1113M-F62C" statLoc="r0_p2_CIB_STAT[3]" validStat="87" errLoc="r0_p2_CIB_ERR[3]">
                       <Info>
                         <ProductCode>3310</ProductCode>
                         <ProductName>C-HM-1113M</ProductName>
@@ -264,6 +272,9 @@
                           <ObjectNote name="r{RACK}_p{POSITION}_C_HM_1113M_init">Initialization table of C-HM-1113M unit</ObjectNote>
                         </Notes>
                         <Data/>
+                        <Tags xmlns="http://www.tecomat.com">
+                          <Tag name="manual_mode">r8_p3_IN.STAT.ManMode</Tag>
+                        </Tags>
                       </Objects>
                       <SerialChannels/>
                       <Ethernets/>
@@ -271,7 +282,7 @@
                       <Interfaces/>
                       <Editor/>
                     </Device>
-                    <Device xmlns="http://www.tecomat.com" physAddr="F62D" rack="8" position="4" statLoc="r0_p2_CIB_STAT[4]" validStat="87" logAddr="1" default="false" sw="1.6" tfw="1.6" hw="0.3" alias="C-HM-1113M-F62D" errLoc="r0_p2_CIB_ERR[4]">
+                    <Device xmlns="http://www.tecomat.com" physAddr="F62D" rack="8" position="4" logAddr="1" default="false" sw="1.6" tfw="1.6" hw="0.3" alias="C-HM-1113M-F62D" statLoc="r0_p2_CIB_STAT[4]" validStat="87" errLoc="r0_p2_CIB_ERR[4]">
                       <Info>
                         <ProductCode>3310</ProductCode>
                         <ProductName>C-HM-1113M</ProductName>
@@ -310,6 +321,9 @@
                           <ObjectNote name="r{RACK}_p{POSITION}_C_HM_1113M_init">Initialization table of C-HM-1113M unit</ObjectNote>
                         </Notes>
                         <Data/>
+                        <Tags xmlns="http://www.tecomat.com">
+                          <Tag name="manual_mode">r8_p4_IN.STAT.ManMode</Tag>
+                        </Tags>
                       </Objects>
                       <SerialChannels/>
                       <Ethernets/>
@@ -317,7 +331,7 @@
                       <Interfaces/>
                       <Editor/>
                     </Device>
-                    <Device xmlns="http://www.tecomat.com" physAddr="F62E" rack="8" position="5" statLoc="r0_p2_CIB_STAT[5]" validStat="87" logAddr="2" default="false" sw="1.6" tfw="1.6" hw="0.3" alias="C-HM-1113M-F62E" errLoc="r0_p2_CIB_ERR[5]">
+                    <Device xmlns="http://www.tecomat.com" physAddr="F62E" rack="8" position="5" logAddr="2" default="false" sw="1.6" tfw="1.6" hw="0.3" alias="C-HM-1113M-F62E" statLoc="r0_p2_CIB_STAT[5]" validStat="87" errLoc="r0_p2_CIB_ERR[5]">
                       <Info>
                         <ProductCode>3310</ProductCode>
                         <ProductName>C-HM-1113M</ProductName>
@@ -350,6 +364,9 @@
                           <ObjectNote name="r{RACK}_p{POSITION}_C_HM_1113M_init">Initialization table of C-HM-1113M unit</ObjectNote>
                         </Notes>
                         <Data/>
+                        <Tags xmlns="http://www.tecomat.com">
+                          <Tag name="manual_mode">r8_p5_IN.STAT.ManMode</Tag>
+                        </Tags>
                       </Objects>
                       <SerialChannels/>
                       <Ethernets/>
@@ -362,7 +379,7 @@
               </Interfaces>
               <Editor/>
             </Device>
-            <Device xmlns="http://www.tecomat.com" alias="CIB Master" rack="0" position="3" statLoc="%S103" validStat="A2" default="true" sw="2.5" tfw="2.5" hw="0.1" expanded="true">
+            <Device xmlns="http://www.tecomat.com" alias="CIB Master" rack="0" position="3" default="true" sw="2.5" tfw="2.5" hw="0.1" expanded="true" statLoc="%S103" validStat="A2">
               <Info>
                 <ProductCode>1141</ProductCode>
                 <ProductName>CF-1140</ProductName>
@@ -379,18 +396,19 @@
                   <ObjectNote name="r{RACK}_p{POSITION}_CF_1140_init">Initialization table of CP-1140 unit</ObjectNote>
                 </Notes>
                 <Data/>
+                <Tags xmlns="http://www.tecomat.com"/>
               </Objects>
               <SerialChannels/>
               <Ethernets/>
               <Piggybacks/>
               <Interfaces>
-                <Interface Class="CIB" SubClass="UNDEF" rackOffset="1" busID="9">
+                <Interface Class="CIB" SubClass="UNDEF" rackOffset="1" busID="9" Icon="cib_interface">
                   <Peripheries/>
                 </Interface>
               </Interfaces>
               <Editor/>
             </Device>
-            <Device xmlns="http://www.tecomat.com" rack="0" position="5" statLoc="%S105" validStat="A2" default="true" sw="1.3" tfw="1.3" hw="0.1">
+            <Device xmlns="http://www.tecomat.com" rack="0" position="5" default="true" sw="1.3" tfw="1.3" hw="0.1" statLoc="%S105" validStat="A2">
               <Info>
                 <ProductCode>1061</ProductCode>
                 <ProductName>IR-1061</ProductName>
@@ -425,6 +443,7 @@
                   <ObjectNote name="r{RACK}_p{POSITION}_Table">Initialization table of IR-1061 device</ObjectNote>
                   <ObjectNote name="r{RACK}_p{POSITION}_Module">IR-1061 device declaration</ObjectNote>
                 </Notes>
+                <Tags xmlns="http://www.tecomat.com"/>
               </Objects>
               <SerialChannels/>
               <Ethernets/>
@@ -434,9 +453,9 @@
             </Device>
           </Peripheries>
         </Interface>
-        <Interface Class="TCL2" SubClass="EXTERN" rackSize="4" alias="External bus" rackOffset="0" busID="0" expanded="true">
+        <Interface Class="TCL2" SubClass="EXTERN" rackSize="4" alias="External bus" rackOffset="0" busID="0" Icon="tcl2_interface" expanded="true">
           <Peripheries>
-            <Device xmlns="http://www.tecomat.com" rack="1" position="0" statLoc="%S116" validStat="A2" default="false" sw="2.7" tfw="2.7" hw="0.5">
+            <Device xmlns="http://www.tecomat.com" rack="1" position="0" default="false" sw="2.7" tfw="2.7" hw="0.5" statLoc="%S116" validStat="A2">
               <Info>
                 <ProductCode>1301</ProductCode>
                 <ProductName>IB-1301</ProductName>
@@ -464,6 +483,7 @@
                   <ObjectNote name="r{RACK}_p{POSITION}_ModulE1">IB-1301 module declaration</ObjectNote>
                 </Notes>
                 <Data/>
+                <Tags xmlns="http://www.tecomat.com"/>
               </Objects>
               <SerialChannels/>
               <Ethernets/>
@@ -471,7 +491,7 @@
               <Interfaces/>
               <Editor/>
             </Device>
-            <Device xmlns="http://www.tecomat.com" rack="1" position="1" statLoc="%S117" validStat="A2" default="false" sw="2.7" tfw="2.7" hw="0.5">
+            <Device xmlns="http://www.tecomat.com" rack="1" position="1" default="false" sw="2.7" tfw="2.7" hw="0.5" statLoc="%S117" validStat="A2">
               <Info>
                 <ProductCode>1401</ProductCode>
                 <ProductName>OS-1401</ProductName>
@@ -494,6 +514,7 @@
                   <ObjectNote name="r{RACK}_p{POSITION}_ModulE1">OS-1401 module declaration</ObjectNote>
                 </Notes>
                 <Data/>
+                <Tags xmlns="http://www.tecomat.com"/>
               </Objects>
               <SerialChannels/>
               <Ethernets/>
@@ -501,7 +522,7 @@
               <Interfaces/>
               <Editor/>
             </Device>
-            <Device xmlns="http://www.tecomat.com" rack="1" position="2" statLoc="%S118" validStat="A2" default="false" sw="2.7" tfw="2.7" hw="0.5">
+            <Device xmlns="http://www.tecomat.com" rack="1" position="2" default="false" sw="2.7" tfw="2.7" hw="0.5" statLoc="%S118" validStat="A2">
               <Info>
                 <ProductCode>1401</ProductCode>
                 <ProductName>OS-1401</ProductName>
@@ -524,6 +545,7 @@
                   <ObjectNote name="r{RACK}_p{POSITION}_ModulE1">OS-1401 module declaration</ObjectNote>
                 </Notes>
                 <Data/>
+                <Tags xmlns="http://www.tecomat.com"/>
               </Objects>
               <SerialChannels/>
               <Ethernets/>
@@ -531,7 +553,7 @@
               <Interfaces/>
               <Editor/>
             </Device>
-            <Device xmlns="http://www.tecomat.com" rack="1" position="9" statLoc="%S125" validStat="A2" default="false" sw="1.1" tfw="1.1" hw="0.1">
+            <Device xmlns="http://www.tecomat.com" rack="1" position="9" default="false" sw="1.1" tfw="1.1" hw="0.1" statLoc="%S125" validStat="A2">
               <Info>
                 <ProductCode>1204</ProductCode>
                 <ProductName>UC-1204</ProductName>
@@ -551,6 +573,7 @@
                 <Notes>
                   <ObjectNote name="r{RACK}_p{POSITION}_ModulE1">UC-1204 device declaration</ObjectNote>
                 </Notes>
+                <Tags xmlns="http://www.tecomat.com"/>
               </Objects>
               <SerialChannels/>
               <Ethernets/>
@@ -560,11 +583,11 @@
             </Device>
           </Peripheries>
         </Interface>
+        <Interface Class="RF2" SubClass="UNDEF" alias="RFox2 bus" rackOffset="0" busID="40" Icon="rf2_interface" ChannelRefOnly="true" DevGroupRefOnly="RFM2">
+          <Peripheries/>
+        </Interface>
       </Interfaces>
       <Editor/>
     </Device>
-    <Global>
-      <Editor left="212" top="70" width="1283" height="780" maximized="false"/>
-    </Global>
   </Configuration>
 </TecoConfiguration>

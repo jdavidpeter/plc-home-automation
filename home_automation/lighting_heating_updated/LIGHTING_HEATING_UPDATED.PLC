@@ -6,11 +6,6 @@ Version="xPRO","4.3.00"
 iocfg=1
 [/ioconfig]
 
-[versionlock]
-version=335609856
-permission=0
-[/versionlock]
-
 [compiler]
 options=2101
 remzs=2
@@ -79,34 +74,7 @@ onlinechngs=0
 mustcompile=0
 [/plcwusb]
 
-[prjmngr]
-shownds=0
-nodeplus="PlcComnPrj"
-nodeplus="PlcSw"
-nodeplus="PlcIde"
-nodeplus="PlcDoc"
-[/prjmngr]
-
 [txtextsyneditor]
-smatchcase=1
-swholewords=0
-sbackword=0
-sseltext=0
-sglobal=0
-sprompt=0
-iecoperands=0
-ieccomments=0
-fifmatchcase=0
-fifwholewords=0
-fifoutinstr=0
-fifwhere=0
-fifsubdirs=0
-fif2ndmsg=1
-fif2ndmsg=1
-findhistory="SUM_HEATING_WATER_TEMPERATURE_REQUIREMENT"
-replacehistory=""
-dirhistory=""
-maskhistory=""
 GModif=0
 GMakeBackup=1
 GAutoIndent=1
@@ -178,11 +146,7 @@ initiallibtestpassed=1
 [weblc]
 lcifile=""
 maymod=""
-lastfile=""
 modlock=1
-listwidth=121
-findhistory=""
-replacehistory=""
 [/weblc]
 
 [compileropts]
@@ -191,6 +155,8 @@ autosavebincodedir=""
 autosavebincodefname=""
 extrainittables=0
 abszonesize=0
+abszonexsize=0
+abszoneysize=0
 genbin=0
 [/compileropts]
 
