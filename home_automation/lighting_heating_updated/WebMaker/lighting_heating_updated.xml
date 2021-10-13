@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="windows-1250" ?>
-<web version="8.1" propfont="true" foot="" MaxUid="11496" height="560" width="980" menu="true" title="true" border="true" top="8" left="8" iniScale="100" maxScale="100" useIniScale="false" useMaxScale="false" userScale="true" webApp="false" bgdupl="false" bgcolor="16777215" icon="" id18="0" author="" encoding="windows-1255">
+<web version="8.1" propfont="true" foot="" MaxUid="11497" height="560" width="980" menu="true" title="true" border="true" top="8" left="8" iniScale="100" maxScale="100" useIniScale="false" useMaxScale="false" userScale="true" webApp="false" bgdupl="false" bgcolor="16777215" icon="" id18="0" author="" encoding="windows-1255">
 	<panels></panels>
 	<Grid Enable="1" X="5" Y="5" />
 	<globalset newdim="1" />
-	<group caption="Home control" level="0" locked="0" altdim="true" notforid="false" width="530" height="1200" dwMode="0" useIniScale="false" useMaxScale="false" userScale="true" iniScale="100" maxScale="100">
+	<group caption="Home control" level="0" locked="0" altdim="true" notforid="false" width="530" height="1200" dwMode="0" useIniScale="false" useMaxScale="false" userScale="true" iniScale="100" maxScale="100" Uid="11496">
 		<page caption="Világítás" name="LIGHTS.XML" background="" bgcolor="16777215" repeat="false" hidden="false" ajax="true" pause="1000" level="0" default="true" ucid="1633887697" width="364" height="1119" Uid="11406">
 			<object caption="" X="2" Y="7" xoff="2" yoff="7" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="11187">
 				<picture href="" img="BR_44__4.PNG" />
@@ -87,7 +87,7 @@
 				<imagebtn variable="VIRTUAL_OUTDOOR_LIGHTS_IN" value="1" timeout="500" type="BOOL" on="" off="LIGHT1_1.PNG" />
 			</object>
 			<object caption="" X="10" Y="37" xoff="2" yoff="2" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="11338">
-				<edit variable="LIVING_ROOM_DESIRED_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="55" height="22" tabindex="1" />
+				<edit variable="LIVING_ROOM_DESIRED_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="50" height="22" tabindex="1" />
 			</object>
 			<object caption="" X="10" Y="34" xoff="2" yoff="1" level="0" readonly="false" front="32768" back="16777215" strong="true" italic="false" size="13" transparent="false" visneg="false" Uid="11339">
 				<edit variable="LIVING_ROOM_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="true" border="true" width="55" height="22" tabindex="2" />
@@ -96,16 +96,16 @@
 				<picture href="" img="HEAT1__4.PNG" />
 			</object>
 			<object caption="" X="4" Y="67" xoff="7" yoff="2" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="8" transparent="false" visneg="false" Uid="11341">
-				<edit variable="DOWNSTAIRS_BATH_DESIRED_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="35" height="15" tabindex="3" />
+				<edit variable="DOWNSTAIRS_BATH_DESIRED_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="35" height="16" tabindex="3" />
 			</object>
 			<object caption="" X="11" Y="67" xoff="7" yoff="2" level="0" readonly="false" front="32768" back="16777215" strong="true" italic="false" size="8" transparent="false" visneg="false" Uid="11342">
-				<edit variable="DOWNSTAIRS_BATH_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="true" border="true" width="40" height="15" tabindex="4" />
+				<edit variable="DOWNSTAIRS_BATH_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="true" border="true" width="40" height="16" tabindex="4" />
 			</object>
 			<object caption="" X="10" Y="63" xoff="1" yoff="7" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="heatingRequests[C_DOWNSTAIRS_BATH_INDEX]" vistype="BOOL" visneg="false" Uid="11343">
 				<picture href="" img="HEAT1__5.PNG" />
 			</object>
 			<object caption="" X="31" Y="52" xoff="2" yoff="1" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="11344">
-				<edit variable="GARAGE_DESIRED_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="55" height="22" tabindex="5" />
+				<edit variable="GARAGE_DESIRED_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="50" height="22" tabindex="5" />
 			</object>
 			<object caption="" X="31" Y="49" xoff="2" yoff="0" level="0" readonly="false" front="32768" back="16777215" strong="true" italic="false" size="13" transparent="false" visneg="false" Uid="11345">
 				<edit variable="GARAGE_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="true" border="true" width="55" height="22" tabindex="6" />
@@ -117,7 +117,7 @@
 				<picture href="" img="HEAT1__4.PNG" />
 			</object>
 			<object caption="" X="31" Y="26" xoff="2" yoff="3" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="11349">
-				<edit variable="BEDROOM_DESIRED_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="55" height="22" tabindex="8" />
+				<edit variable="BEDROOM_DESIRED_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="50" height="22" tabindex="8" />
 			</object>
 			<object caption="" X="31" Y="23" xoff="2" yoff="2" level="0" readonly="false" front="32768" back="16777215" strong="true" italic="false" size="13" transparent="false" visneg="false" Uid="11350">
 				<edit variable="BEDROOM_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="true" border="true" width="55" height="22" tabindex="9" />
@@ -126,10 +126,10 @@
 				<picture href="" img="HEAT1__4.PNG" />
 			</object>
 			<object caption="" X="19" Y="67" xoff="3" yoff="2" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="8" transparent="false" visneg="false" Uid="11352">
-				<edit variable="HALL_DESIRED_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="35" height="15" tabindex="10" />
+				<edit variable="HALL_DESIRED_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="35" height="16" tabindex="10" />
 			</object>
 			<object caption="" X="19" Y="64" xoff="3" yoff="6" level="0" readonly="false" front="32768" back="16777215" strong="true" italic="false" size="8" transparent="false" visneg="false" Uid="11353">
-				<edit variable="HALL_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="true" border="true" width="40" height="15" tabindex="11" />
+				<edit variable="HALL_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="true" border="true" width="40" height="16" tabindex="11" />
 			</object>
 			<object caption="" X="17" Y="24" xoff="2" yoff="7" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="heatingRequests[C_LIVING_ROOM_1_INDEX]" vistype="BOOL" visneg="false" Uid="11347">
 				<picture href="" img="HEAT1__4.PNG" />
@@ -273,16 +273,16 @@
 				<imagebtn variable="VIRTUAL_EXHAUST_FAN_IN" value="1" timeout="500" type="BOOL" on="" off="FAN1_O_2.PNG" />
 			</object>
 			<object caption="" X="34" Y="127" xoff="3" yoff="7" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="8" transparent="false" visneg="false" Uid="11462">
-				<edit variable="UPSTAIRS_BATH_DESIRED_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="35" height="15" tabindex="12" />
+				<edit variable="UPSTAIRS_BATH_DESIRED_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="35" height="16" tabindex="12" />
 			</object>
 			<object caption="" X="34" Y="122" xoff="3" yoff="7" level="0" readonly="false" front="32768" back="16777215" strong="true" italic="false" size="8" transparent="false" visneg="false" Uid="11463">
-				<edit variable="UPSTAIRS_BATH_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="true" border="true" width="40" height="15" tabindex="13" />
+				<edit variable="UPSTAIRS_BATH_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="true" border="true" width="40" height="16" tabindex="13" />
 			</object>
 			<object caption="" X="38" Y="119" xoff="4" yoff="3" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="heatingRequests[C_UPSTAIRS_BATH_INDEX]" vistype="BOOL" visneg="false" Uid="11464">
 				<picture href="" img="HEAT1__5.PNG" />
 			</object>
 			<object caption="" X="5" Y="115" xoff="5" yoff="4" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="11465">
-				<edit variable="CHILDRENS_ROOM_2_DESIRED_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="55" height="22" tabindex="14" />
+				<edit variable="CHILDRENS_ROOM_2_DESIRED_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="50" height="22" tabindex="14" />
 			</object>
 			<object caption="" X="5" Y="112" xoff="5" yoff="2" level="0" readonly="false" front="32768" back="16777215" strong="true" italic="false" size="13" transparent="false" visneg="false" Uid="11466">
 				<edit variable="CHILDRENS_ROOM_2_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="true" border="true" width="55" height="22" tabindex="15" />
@@ -291,7 +291,7 @@
 				<picture href="" img="HEAT1__4.PNG" />
 			</object>
 			<object caption="" X="7" Y="96" xoff="4" yoff="5" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="11468">
-				<edit variable="CHILDRENS_ROOM_1_DESIRED_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="55" height="22" tabindex="16" />
+				<edit variable="CHILDRENS_ROOM_1_DESIRED_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="50" height="22" tabindex="16" />
 			</object>
 			<object caption="" X="7" Y="88" xoff="4" yoff="4" level="0" readonly="false" front="32768" back="16777215" strong="true" italic="false" size="13" transparent="false" visneg="false" Uid="11469">
 				<edit variable="CHILDRENS_ROOM_1_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="true" border="true" width="55" height="22" tabindex="17" />
@@ -300,7 +300,7 @@
 				<picture href="" img="HEAT1__4.PNG" />
 			</object>
 			<object caption="" X="30" Y="92" xoff="7" yoff="6" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="11471">
-				<edit variable="CHILDRENS_ROOM_3_DESIRED_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="55" height="22" tabindex="18" />
+				<edit variable="CHILDRENS_ROOM_3_DESIRED_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="50" height="22" tabindex="18" />
 			</object>
 			<object caption="" X="30" Y="89" xoff="7" yoff="5" level="0" readonly="false" front="32768" back="16777215" strong="true" italic="false" size="13" transparent="false" visneg="false" Uid="11472">
 				<edit variable="CHILDRENS_ROOM_3_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="true" border="true" width="55" height="22" tabindex="19" />

@@ -11,5 +11,7 @@ CONFIGURATION lighting_heating_updated
     PROGRAM Alarm_Init WITH InitialisationBlock : AlarmInit ();
     PROGRAM Persist_Data WITH FileIO : PersistData ();
     PROGRAM Persist_Init WITH InitialisationBlock : PersistInit ();
+    PROGRAM Ventillation_Init WITH InitialisationBlock : VentillationInit ();
+    PROGRAM VentillationControl WITH FreeWheeling : Ventillation_Control ();
   END_RESOURCE
 END_CONFIGURATION

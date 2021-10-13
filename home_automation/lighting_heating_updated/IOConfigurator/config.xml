@@ -69,7 +69,7 @@
             <Tags xmlns="http://www.tecomat.com"/>
           </Objects>
           <SerialChannels>
-            <Channel xmlns="http://www.tecomat.com" Mode="UNI" Alias="General channel" Options="PC PLC UNI MPC MDB PFB" Name="CH2" LAddr="0102" SysMap="CH2" SysMapCode="0202">
+            <Channel xmlns="http://www.tecomat.com" Mode="UNI" Alias="General channel" Options="PC PLC UNI MPC MDB PFB" Name="CH2" LAddr="0102" SysMap="CH2" SysMapCode="0202" enabled="true">
               <Info>
                 <Descriptor>UNI_SC.tdd</Descriptor>
               </Info>
@@ -79,7 +79,13 @@
                   <ObjectAlias name="r{RACK}_p{POSITION}_UNI_{CHANNEL}_OUT.DATA" public="false" publicAPI="false" userDef="true">CH2_ZoneOUT</ObjectAlias>
                 </Aliases>
                 <Data>
+                  <ObjectData name="r{RACK}_p{POSITION}_Settings_UNI_{CHANNEL}.BaudRate_FOXTROT">0C000000</ObjectData>
                   <ObjectData name="r{RACK}_p{POSITION}_Settings_UNI_{CHANNEL}.Parity">03</ObjectData>
+                  <ObjectData name="r{RACK}_p{POSITION}_Settings_UNI_{CHANNEL}.ReceiveZoneSize">FF00</ObjectData>
+                  <ObjectData name="r{RACK}_p{POSITION}_Settings_UNI_{CHANNEL}.TransmitZoneSize">FF00</ObjectData>
+                  <ObjectData name="r{RACK}_p{POSITION}_Table_UNI_{CHANNEL}.speed">0C</ObjectData>
+                  <ObjectData name="r{RACK}_p{POSITION}_Table_UNI_{CHANNEL}.lendi">0301</ObjectData>
+                  <ObjectData name="r{RACK}_p{POSITION}_Table_UNI_{CHANNEL}.lendo">0301</ObjectData>
                   <ObjectData name="r{RACK}_p{POSITION}_Table_UNI_{CHANNEL}.lnc">18</ObjectData>
                 </Data>
                 <Notes>
@@ -589,5 +595,11 @@
       </Interfaces>
       <Editor/>
     </Device>
+    <Global>
+      <Editor left="208" top="70" width="1290" height="780" maximized="false">
+        <ProcessData AliasColWidth="120" NoteColWidth="170"/>
+      </Editor>
+      <Selector left="-85" top="-916" width="1003" height="713" maximized="false" params="0"/>
+    </Global>
   </Configuration>
 </TecoConfiguration>
