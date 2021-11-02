@@ -1,24 +1,24 @@
 VAR_GLOBAL CONSTANT
 
-   C_FRONT_DOOR_OPENING : INT := 1;
+   C_FRONT_DOOR_OPENING : INT     := 1;
    C_GARAGE_DOOR_OPENING : UINT   := 2;
-   C_HALL_ZONE : UINT        := 4;
-   C_GARAGE_ZONE : UINT          := 5;
+   C_HALL_ZONE : UINT             := 4;
+   C_GARAGE_ZONE : UINT           := 5;
    C_KITCHEN_ZONE : UINT          := 6;
-   C_LIVING_ROOM_ZONE : UINT         := 7;
-   C_BEDROOM_ZONE : UINT            := 8;
-   C_DOWNSTAIRS_BATH_ZONE : UINT      := 9;
-   C_HALLWAY_ZONE : UINT         := 10;
-   C_CHILDRENS_ROOM_3_ZONE : UINT   := 11;
-   C_CHILDRENS_ROOM_1_ZONE : UINT   := 12;
-   C_CHILDRENS_ROOM_2_ZONE : UINT   := 13;
-   C_UPSTAIRS_BATH_ZONE : UINT     := 14;
-   C_WC_ZONE : UINT              := 15;
+   C_LIVING_ROOM_ZONE : UINT      := 7;
+   C_BEDROOM_ZONE : UINT          := 8;
+   C_DOWNSTAIRS_BATH_ZONE : UINT  := 9;
+   C_HALLWAY_ZONE : UINT          := 10;
+   C_CHILDRENS_ROOM_3_ZONE : UINT := 11;
+   C_CHILDRENS_ROOM_1_ZONE : UINT := 12;
+   C_CHILDRENS_ROOM_2_ZONE : UINT := 13;
+   C_UPSTAIRS_BATH_ZONE : UINT    := 14;
+   C_WC_ZONE : UINT               := 15;
    C_BOILER_ZONE : UINT           := 16;
 
-   C_UNCONNECTED_NO_OP : UINT    := 3;
+   C_UNCONNECTED_NO_OP : UINT     := 3;
 
-   C_ALARM_ZONES : UINT      := 16;
+   C_ALARM_ZONES : UINT           := 16;
 END_VAR
 
 VAR_GLOBAL
@@ -29,6 +29,11 @@ VAR_GLOBAL
     ALARM_ZONES_ERROR : ARRAY [1 .. C_ALARM_ZONES] OF BOOL;
     ALARM_ACTIVE : BOOL;
     
+    PRESENCE_BASED_HEATING_CONTROL : BOOL   := true;
+    PRESENCE_BASED_HOT_WATER_CONTROL : BOOL := true;
+    PRESENCE_BASED_HEATING_ENABLE : BOOL    := false;
+    PRESENCE_BASED_HOT_WATER_ENABLE : BOOL  := false;
+
     AWAY_TIMER: TON;
 
     TIME_AWAY_SHORT : TIME := T#20m;

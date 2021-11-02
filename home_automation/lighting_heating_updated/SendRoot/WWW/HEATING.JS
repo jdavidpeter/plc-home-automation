@@ -45,7 +45,7 @@ if(xmlhttpGET.status != 200){
 alert('Problem retrieving XML data ' + xmlhttpGET.statusText + '(' + xmlhttpGET.status + ')');
 document.location.reload(true)
 return;}
-var access = xmlhttpGET.responseXML.documentElement.getElementsByTagName('ACCESS')[0]; if(!access || access.getAttribute('UCID') != 1633887533) {document.location.reload(true); return;}
+var access = xmlhttpGET.responseXML.documentElement.getElementsByTagName('ACCESS')[0]; if(!access || access.getAttribute('UCID') != 1635877985) {document.location.reload(true); return;}
 var pd = '';
 var x=xmlhttpGET.responseXML.documentElement.getElementsByTagName('INPUT');
 if(x[0]) {
@@ -434,22 +434,22 @@ PostXML('HEATING.XML', encodeURIComponent(Input46.name+'='+Input46.value)); Inpu
 }
 }
 function PostXML47() {
-PostXML('HEATING.XML', encodeURIComponent('__R15769.2_BOOL_i=0')); 
+PostXML('HEATING.XML', encodeURIComponent('__R15717.1_BOOL_i=0')); 
 SetBg('INPUT47', '');
 setTimeout("SetBg('INPUT47', 'SW747C_1.PNG');",500);
 }
 function PostXML48() {
-PostXML('HEATING.XML', encodeURIComponent('__R15769.2_BOOL_i=1')); 
+PostXML('HEATING.XML', encodeURIComponent('__R15717.1_BOOL_i=1')); 
 SetBg('INPUT48', '');
 setTimeout("SetBg('INPUT48', 'SW7D18_1.PNG');",500);
 }
 function PostXML49() {
-PostXML('HEATING.XML', encodeURIComponent('__R15769.3_BOOL_i=0')); 
+PostXML('HEATING.XML', encodeURIComponent('__R15717.2_BOOL_i=0')); 
 SetBg('INPUT49', '');
 setTimeout("SetBg('INPUT49', 'SW747C_1.PNG');",500);
 }
 function PostXML50() {
-PostXML('HEATING.XML', encodeURIComponent('__R15769.3_BOOL_i=1')); 
+PostXML('HEATING.XML', encodeURIComponent('__R15717.2_BOOL_i=1')); 
 SetBg('INPUT50', '');
 setTimeout("SetBg('INPUT50', 'SW7D18_1.PNG');",500);
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="windows-1255" ?>
-<?xml-stylesheet type="text/xsl" href="HEATING.XSL?U=1633887533" version="1.0" ?>
+<?xml-stylesheet type="text/xsl" href="HEATING.XSL?U=1635877985" version="1.0" ?>
 <PAGE TITLE="                                  ">
-<ACCESS PAGE_LEVEL="0" USER_LEVEL="0" UCID="1633887533" />
+<ACCESS PAGE_LEVEL="0" USER_LEVEL="0" UCID="1635877985" />
 <INPUT NAME="__R15778_REAL_.2f" VALUE="0" />
 <INPUT NAME="__X138_REAL_.2f" VALUE="0" />
 <INPUT NAME="__R16043.4_BOOL_i" VALUE="0" />
@@ -46,6 +46,6 @@
 <INPUT NAME="__X96_REAL_.2f" VALUE="0" />
 <INPUT NAME="__R15747.5_BOOL_i" VALUE="0" />
 <INPUT NAME="__R15774_REAL_.2f" VALUE="0" />
-<INPUT NAME="__R15769.2_BOOL_i" VALUE="0" />
-<INPUT NAME="__R15769.3_BOOL_i" VALUE="0" />
+<INPUT NAME="__R15717.1_BOOL_i" VALUE="0" />
+<INPUT NAME="__R15717.2_BOOL_i" VALUE="0" />
 </PAGE>

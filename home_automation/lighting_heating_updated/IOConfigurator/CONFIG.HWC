@@ -616,7 +616,7 @@
                                           __offset32(r0_p0_UNI_CH2_IN),
                                           __offset32(r0_p0_UNI_CH2_OUT),
                                           24,
-                                          128,
+                                          192,
                                           0,
                                           0,
                                           0,

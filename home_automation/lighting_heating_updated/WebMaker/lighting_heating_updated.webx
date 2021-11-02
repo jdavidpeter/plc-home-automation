@@ -14,7 +14,7 @@ Left=569
 DockPos=1
 StayOnTop=0
 CanDock=0
-Height=613
+Height=504
 Width=902
 Top=0
 Left=0
@@ -31,4 +31,4 @@ Top=-301
 Left=-1175
 [TimeStamps]
 SaveTD=1633887710
-CompileTD=1633955618
+CompileTD=1635885685

@@ -1,7 +1,7 @@
 FUNCTION_BLOCK InPlaceOnOff
     VAR_INPUT
-      onSignal : BOOL R_EDGE;
-      offSignal : BOOL R_EDGE;
+      requestOn :  BOOL R_EDGE;
+      requestOff : BOOL R_EDGE;
     END_VAR
     VAR_IN_OUT
       name: STRING;
@@ -12,12 +12,12 @@ FUNCTION_BLOCK InPlaceOnOff
       sentence : STRING;
     END_VAR
 
-    IF onSignal THEN
+    IF requestOn THEN
        controlledVariable := TRUE;
        sentence := CONCAT(name, ' is ON');
        SWITCH_TRACKER(name := sentence);
     END_IF;
-    IF offSignal THEN
+    IF requestOff THEN
        controlledVariable := FALSE;
        sentence := CONCAT(name, ' is OFF');
        SWITCH_TRACKER(name := sentence);

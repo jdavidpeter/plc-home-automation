@@ -205,7 +205,7 @@ ShowHWAddrsChecked=1
 SortByLogAddrChecked=1
 SortByHWAddrChecked=0
 SortByNameChecked=0
-SplitterPosition=403
+SplitterPosition=201
 [/IOConfigurator]
 
 [KnxImport]

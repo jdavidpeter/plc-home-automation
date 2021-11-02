@@ -63,29 +63,29 @@ Finomhangolás</span>
 <div style="background-color:#FFFFFF;position: relative; width: 370px; height: 1160px;">
 <form action="javascript:PostGlobal();"></form>
 <form action="javascript:PostXML1()" style="position: absolute; top: 52px; left: 200px; z-index: 1; font-size: 13px;">
-<input id="INPUT1" onfocus="document.getElementById('INPUT1x').style.visibility='visible';SetInputEdited(1, event);" onblur="InputFocused[0]=0" onkeydown="SetInputEdited(1, event);" class="mono" tabindex="1" type="text" style="width: 68px; background-color: #FFFFFF;" name="{INPUT[1]/@NAME}" value="{INPUT[1]/@VALUE}" />
+<input id="INPUT1" onfocus="document.getElementById('INPUT1x').style.visibility='visible';SetInputEdited(1, event);" onblur="InputFocused[0]=0" onkeydown="SetInputEdited(1, event);" class="mono" tabindex="1" type="text" style="width: 76px; background-color: #FFFFFF;" name="{INPUT[1]/@NAME}" value="{INPUT[1]/@VALUE}" />
 <input type="submit" id="INPUT1x" style="position: absolute; top: 0px; height: 22px; width: 22px; visibility: hidden;" value="&gt;" />
 </form>
 <div style="position: absolute; top: 55px; left: 15px; z-index: 2;">IPID Ti</div>
 <form action="javascript:PostXML2()" style="position: absolute; top: 82px; left: 200px; z-index: 3; font-size: 13px;">
-<input id="INPUT2" onfocus="document.getElementById('INPUT2x').style.visibility='visible';SetInputEdited(2, event);" onblur="InputFocused[1]=0" onkeydown="SetInputEdited(2, event);" class="mono" tabindex="2" type="text" style="width: 68px; background-color: #FFFFFF;" name="{INPUT[2]/@NAME}" value="{INPUT[2]/@VALUE}" />
+<input id="INPUT2" onfocus="document.getElementById('INPUT2x').style.visibility='visible';SetInputEdited(2, event);" onblur="InputFocused[1]=0" onkeydown="SetInputEdited(2, event);" class="mono" tabindex="2" type="text" style="width: 76px; background-color: #FFFFFF;" name="{INPUT[2]/@NAME}" value="{INPUT[2]/@VALUE}" />
 <input type="submit" id="INPUT2x" style="position: absolute; top: 0px; height: 22px; width: 22px; visibility: hidden;" value="&gt;" />
 </form>
 <div style="position: absolute; top: 85px; left: 16px; z-index: 4;">IPID Td</div>
 <form action="javascript:PostXML3()" style="position: absolute; top: 112px; left: 200px; z-index: 5; font-size: 13px;">
-<input title="Living room kívánt hőmérséklet" id="INPUT3" onfocus="document.getElementById('INPUT3x').style.visibility='visible';SetInputEdited(3, event);" onblur="InputFocused[2]=0" onkeydown="SetInputEdited(3, event);" class="mono" tabindex="3" type="text" style="width: 68px; background-color: #FFFFFF;" name="{INPUT[3]/@NAME}" value="{INPUT[3]/@VALUE}" />
+<input title="Living room kívánt hőmérséklet" id="INPUT3" onfocus="document.getElementById('INPUT3x').style.visibility='visible';SetInputEdited(3, event);" onblur="InputFocused[2]=0" onkeydown="SetInputEdited(3, event);" class="mono" tabindex="3" type="text" style="width: 76px; background-color: #FFFFFF;" name="{INPUT[3]/@NAME}" value="{INPUT[3]/@VALUE}" />
 <input type="submit" id="INPUT3x" style="position: absolute; top: 0px; height: 22px; width: 22px; visibility: hidden;" value="&gt;" />
 </form>
 <div style="position: absolute; top: 115px; left: 15px; z-index: 6;">IPID k</div>
 <div style="position: absolute; top: 20px; left: 15px; z-index: 7; font-weight: bold;">Fűtés szabályozási állandók</div>
 <div style="position: absolute; top: 38px; left: 15px; z-index: 8;height: 0px; width: 278px; border: 1px solid #000000; background-color: #000000;"></div>
 <form action="javascript:PostXML4()" style="position: absolute; top: 142px; left: 200px; z-index: 9; font-size: 13px;">
-<input id="INPUT4" onfocus="document.getElementById('INPUT4x').style.visibility='visible';SetInputEdited(4, event);" onblur="InputFocused[3]=0" onkeydown="SetInputEdited(4, event);" class="mono" tabindex="4" type="text" style="width: 68px; background-color: #FFFFFF;" name="{INPUT[4]/@NAME}" value="{INPUT[4]/@VALUE}" />
+<input id="INPUT4" onfocus="document.getElementById('INPUT4x').style.visibility='visible';SetInputEdited(4, event);" onblur="InputFocused[3]=0" onkeydown="SetInputEdited(4, event);" class="mono" tabindex="4" type="text" style="width: 76px; background-color: #FFFFFF;" name="{INPUT[4]/@NAME}" value="{INPUT[4]/@VALUE}" />
 <input type="submit" id="INPUT4x" style="position: absolute; top: 0px; height: 22px; width: 22px; visibility: hidden;" value="&gt;" />
 </form>
 <div style="position: absolute; top: 145px; left: 16px; z-index: 10;">Hiszterézis</div>
 <form action="javascript:PostXML5()" style="position: absolute; top: 172px; left: 200px; z-index: 11; font-size: 13px;">
-<input title="Living room kívánt hőmérséklet" id="INPUT5" onfocus="document.getElementById('INPUT5x').style.visibility='visible';SetInputEdited(5, event);" onblur="InputFocused[4]=0" onkeydown="SetInputEdited(5, event);" class="mono" tabindex="5" type="text" style="width: 68px; background-color: #FFFFFF;" name="{INPUT[5]/@NAME}" value="{INPUT[5]/@VALUE}" />
+<input title="Living room kívánt hőmérséklet" id="INPUT5" onfocus="document.getElementById('INPUT5x').style.visibility='visible';SetInputEdited(5, event);" onblur="InputFocused[4]=0" onkeydown="SetInputEdited(5, event);" class="mono" tabindex="5" type="text" style="width: 76px; background-color: #FFFFFF;" name="{INPUT[5]/@NAME}" value="{INPUT[5]/@VALUE}" />
 <input type="submit" id="INPUT5x" style="position: absolute; top: 0px; height: 22px; width: 22px; visibility: hidden;" value="&gt;" />
 </form>
 <div style="position: absolute; top: 175px; left: 15px; z-index: 12;">Mintavételezés</div>

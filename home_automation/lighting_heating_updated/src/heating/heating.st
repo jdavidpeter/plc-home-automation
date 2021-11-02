@@ -11,13 +11,13 @@ PROGRAM HeatingControl
     forwardWaterTemperatureRequests : ARRAY [0 .. C_HEATING_ZONES - 1] OF REAL;
     
     // Boiler heating state
-    heating_start : BOOL := false;
+    heating_start : BOOL := FALSE;
 
     i : INT := 0;
     activeZones : REAL := 0; // As it is an integer that will be used for division
     
-    downstairsPumpRequest :            BOOL := false;
-    upstairsPumpRequest :              BOOL := false;
+    downstairsPumpRequest :            BOOL := FALSE;
+    upstairsPumpRequest :              BOOL := FALSE;
     downstairsPumpActivationTimer :    TON;
     upstairsPumpActivationTimer :      TON;
     downstairsPumpDeactivationTimer :  TOF;
@@ -25,12 +25,27 @@ PROGRAM HeatingControl
     pumpActivationDelay :              TIME := T#10m;
     pumpDeactivationDelay :            TIME := T#1m;
     
+    presenceBasedHeatingControl :      InPlaceOnOff;
+    presenceBasedHotWaterControl :     InPlaceOnOff;
+    heatingControlName :               STRING := 'Presence based heating control';
+    hotWaterControlName :              STRING := 'Presence based hot water control';
+     
   END_VAR
 
     // Actual control signals
-    SUM_HEATING_REQUIREMENT := false;
-    downstairsPumpRequest   := false;
-    upstairsPumpRequest     := false;
+    presenceBasedHeatingControl(requestOn := PRESENCE_BASED_HEATING_ENABLE,
+                   requestOff := NOT PRESENCE_BASED_HEATING_ENABLE,
+                   name := heatingControlName,
+                   controlledVariable := HEATING_ENABLE);
+    
+    presenceBasedHotWaterControl(requestOn := PRESENCE_BASED_HOT_WATER_ENABLE,
+                   requestOff := NOT PRESENCE_BASED_HOT_WATER_ENABLE,
+                   name := hotWaterControlName,
+                   controlledVariable := HOT_WATER_ENABLE);
+
+    SUM_HEATING_REQUIREMENT := FALSE;
+    downstairsPumpRequest   := FALSE;
+    upstairsPumpRequest     := FALSE;
     SUM_HEATING_WATER_TEMPERATURE_REQUIREMENT := 0;
     activeZones := 0;
     
@@ -70,9 +85,9 @@ PROGRAM HeatingControl
 
         IF heatingRequests[i] THEN
             IF i < C_DOWNSTAIRS_ZONE_MAX_INDEX_PLUS_ONE THEN
-                downstairsPumpRequest := true;
+                downstairsPumpRequest := TRUE;
             ELSE
-                upstairsPumpRequest := true;
+                upstairsPumpRequest := TRUE;
             END_IF;
         END_IF;
     END_FOR;

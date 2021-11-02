@@ -1,16 +1,16 @@
 TYPE
 
   TemperatureDataBlock : STRUCT
-    controllerBoardTemperature : REAL;
-    IntakeTemperature : REAL;
-    inletTemperature : REAL;
-    exhaustTemparature : REAL;
-    outletTemperature : REAL;
-    condenserTemperature : REAL;
-    evaporatorTemperature : REAL;
-    afterHeatingInletTemperature : REAL;
-    outdoorTemperature : REAL;
-    heatingSurfaceTemperature : REAL;
+    controllerBoardTemperature : INT;
+    IntakeTemperature : INT;
+    inletTemperature : INT;
+    exhaustTemparature : INT;
+    outletTemperature : INT;
+    condenserTemperature : INT;
+    evaporatorTemperature : INT;
+    afterHeatingInletTemperature : INT;
+    outdoorTemperature : INT;
+    heatingSurfaceTemperature : INT;
 END_STRUCT;
 
 END_TYPE
@@ -32,13 +32,19 @@ PROGRAM Ventillation_Control
   END_VAR
   VAR
      modbusUnit: ModbusRTUmas;
+     errorMessage: String;
   END_VAR
   VAR_TEMP
   END_VAR
   
-  ModbusCmd(Gr:=1, FNC:=03, SNo:=1,
+  ModbusCmd(Gr:=1, FNC:=04, SNo:=30,
   StAdr:=200, NoPoint:=SIZEOF(Temps)/2,
   PtrData:=adr(Temps), Cmd:=CmdCH2[1]);
+
+  IF modbusUnit.ErrCode > 0 THEN
+    GetModbusErrTxt(modbusUnit.ErrCode, errorMessage);
+  END_IF;
+
   
   modbusUnit(EN := true, GrSel := 1, MaxCmd := C_NUMBER_OF_COMMANDS, chanCode := CH2_uni, Endian := 0, Commands := CmdCH2[1]);
 
