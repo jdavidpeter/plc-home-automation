@@ -1,0 +1,47 @@
+PROGRAM Ventillation_Control
+
+  VAR_INPUT
+  END_VAR
+  VAR_OUTPUT
+  END_VAR
+  VAR
+     modbusUnit: ModbusRTUmas;
+     errorMessage: String;
+     
+     readCommands : ARRAY [1..C_NUMBER_OF_READ_COMMANDS] OF TCmdStruct;
+     
+  END_VAR
+  VAR_TEMP
+  END_VAR
+  
+  ModbusCmd(Gr:=1, FNC:=C_NILAN_STATUS_MODBUS_FNC, SNo:=C_NILAN_MODBUS_ADDRESS,
+  StAdr:=C_NILAN_STATUS_BASE_ADDRESS, NoPoint:=C_NILAN_STATUS_SIZE,
+  PtrData:=adr(NILAN_STATUS), Cmd:=readCommands[1]);
+
+  ModbusCmd(Gr:=1, FNC:=C_NILAN_ACTUAL_OPERATION_MODBUS_FNC, SNo:=C_NILAN_MODBUS_ADDRESS,
+  StAdr:=C_NILAN_ACTUAL_OPERATION_BASE_ADDRESS, NoPoint:=C_NILAN_STATUS_SIZE,
+  PtrData:=adr(NILAN_ACTUAL_OPERATION), Cmd:=readCommands[2]);
+
+  ModbusCmd(Gr:=1, FNC:=C_NILAN_ACTUAL_VENTILLATION_MODBUS_FNC, SNo:=C_NILAN_MODBUS_ADDRESS,
+  StAdr:=C_NILAN_ACTUAL_VENTILLATION_BASE_ADDRESS, NoPoint:=C_NILAN_ACTUAL_VENTILLATION_SIZE,
+  PtrData:=adr(NILAN_ACTUAL_VENTILLATION), Cmd:=readCommands[3]);
+
+  ModbusCmd(Gr:=1, FNC:=C_CORE_TEMPERATURES_MODBUS_FNC, SNo:=C_NILAN_MODBUS_ADDRESS,
+  StAdr:=C_CORE_TEMPERATURES_BASE_ADDRESS, NoPoint:=C_CORE_TEMPERATURES_SIZE,
+  PtrData:=adr(CORE_TEMPARATURES), Cmd:=readCommands[4]);
+  
+  ModbusCmd(Gr:=1, FNC:=C_CONTROLLED_TEMPERATURES_MODBUS_FNC, SNo:=C_NILAN_MODBUS_ADDRESS,
+  StAdr:=C_CONTROLLED_TEMPERATURES_BASE_ADDRESS, NoPoint:=C_CONTROLLED_TEMPERATURES_SIZE,
+  PtrData:=adr(CONTROLLED_TEMPARATURES), Cmd:=readCommands[5]);
+
+  IF modbusUnit.ErrCode > 0 THEN
+    GetModbusErrTxt(modbusUnit.ErrCode, errorMessage);
+  END_IF;
+
+  
+  modbusUnit(EN := true, GrSel := 1, MaxCmd := C_NUMBER_OF_READ_COMMANDS, chanCode := CH2_uni, Endian := 0, Commands := readCommands[1]);
+
+  
+END_PROGRAM
+
+

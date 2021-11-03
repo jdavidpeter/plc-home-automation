@@ -54,6 +54,7 @@
 #usefile "src\heating\HeatingGlobals.st"
 #usefile "src\heating\VaillantGlobals.st"
 #usefile "src\lighting\LightingGlobals.st"
+#usefile "src\ventillation\VentillationGlobals.st"
 #usefile "src\lighting\LightingInit.st"
 #usefile "src\lighting\Lighting.st"
 #usefile "src\utils\control\LinearHeatController.st"
@@ -67,7 +68,7 @@
 #usefile "src\utils\persist\PersistFramework.st"
 #usefile "src\persist\PersistGlobals.st"
 #usefile "src\persist\PersistInit.st"
-#usefile "src\persist\PersistData.st"
+#usefile "src\persist\Persist.st"
 #usefile "src\ventillation\VentillationInit.st"
-#usefile "src\ventillation\Ventillation_Control.st"
+#usefile "src\ventillation\Ventillation.st"
 #usefile "lighting_heating_updated.mcf", 'auto'

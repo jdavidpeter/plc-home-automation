@@ -45,7 +45,7 @@ if(xmlhttpGET.status != 200){
 alert('Problem retrieving XML data ' + xmlhttpGET.statusText + '(' + xmlhttpGET.status + ')');
 document.location.reload(true)
 return;}
-var access = xmlhttpGET.responseXML.documentElement.getElementsByTagName('ACCESS')[0]; if(!access || access.getAttribute('UCID') != 1633887697) {document.location.reload(true); return;}
+var access = xmlhttpGET.responseXML.documentElement.getElementsByTagName('ACCESS')[0]; if(!access || access.getAttribute('UCID') != 1635959279) {document.location.reload(true); return;}
 var pd = '';
 var x=xmlhttpGET.responseXML.documentElement.getElementsByTagName('INPUT');
 if(x[0]) {
@@ -652,6 +652,30 @@ Input109.style.visibility = 'visible';
 var Input110 = document.getElementById('INPUT110');
 if(!InputEdited[109]) {
 UpdateValue(Input110, x[70], '#008000');}
+var Input111 = document.getElementById('INPUT111');
+var Input111h = document.getElementById('INPUT111h');
+if(Input111h) { vz = x[71].getAttribute('VALUE') == '0'; iz = Input111h.value == '0';
+if(vz == iz) {
+if(vz) {
+Input111h.value = '1';
+Input111.style.backgroundImage = 'url("IMAGES/FAN1_O_2.PNG")';
+if(Input111.getAttribute('value') != null) {Input111.value = 'Szellőztető';} else {Input111.innerHTML = 'Szellőztető';}
+} else {
+Input111h.value = '0';
+Input111.style.backgroundImage = 'url("IMAGES/FAN1_O_1.PNG")';
+if(Input111.getAttribute('value') != null) {Input111.value = 'Szellőztető';
+} else {Input111.innerHTML = 'Szellőztető';}
+}}} else {
+if(x[71].getAttribute('VALUE') == '0') {
+SetBg('INPUT111', 'FAN1_O_2.PNG');
+Input111.innerHTML = 'Szellőztető';
+} else {
+SetBg('INPUT111', 'FAN1_O_1.PNG');
+Input111.innerHTML = 'Szellőztető';
+}}
+var Input112 = document.getElementById('INPUT112');
+if(!InputEdited[111]) {
+UpdateValue(Input112, x[72], '#000000');}
 } else {document.location.reload(true); return;}
 } catch(err) {console.log(err.message)}
 if(pd!=''){setTimeout("GetXML('LIGHTS.XML','"+pd+"')",1);}else{setTimeout("GetXML('LIGHTS.XML')",1000);}}
@@ -1021,6 +1045,16 @@ function PostXML97() {
 var Input97 = document.getElementById('INPUT97');
 document.getElementById('INPUT97x').style.visibility = 'hidden';if(InputEdited[96]) {
 PostXML('LIGHTS.XML', encodeURIComponent(Input97.name+'='+Input97.value)); InputEdited[96] = 0;
+}
+}
+function PostXML111() {
+var Input111h = document.getElementById('INPUT111h');
+PostXML('LIGHTS.XML', encodeURIComponent(Input111h.name+'='+Input111h.value));
+}
+function PostXML112() {
+var Input112 = document.getElementById('INPUT112');
+document.getElementById('INPUT112x').style.visibility = 'hidden';if(InputEdited[111]) {
+PostXML('LIGHTS.XML', encodeURIComponent(Input112.name+'='+Input112.value)); InputEdited[111] = 0;
 }
 }
 
