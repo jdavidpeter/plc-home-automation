@@ -3,10 +3,10 @@ Version="xPRO","4.3.00"
 [/desktop]
 
 [dockinfo]
-centralpc=52215796,1,1,1
-leftpane=52211476,0,0,1,374,0
-bottompane=51900444,1,298
-rightpane=51902196,1,415,0
+centralpc=52412404,1,1,1
+leftpane=52408084,0,0,1,374,0
+bottompane=52097052,1,298
+rightpane=52098804,1,415,0
 [/dockinfo]
 
 [closedtextpaneleditors]
@@ -138,25 +138,25 @@ nodeplus="PlcIde"
 [/prjmngr]
 
 [msgwin2]
-window=51900444,1,0,0,268,1699,39,429,268,850,0,0,1
+window=52097052,1,0,0,268,1699,39,429,268,850,0,0,1
 [/msgwin2]
 
 [msgwin1]
-window=51900444,1,0,0,268,1699,39,429,268,850,0,0,0
+window=52097052,1,0,0,268,1699,39,429,268,850,0,0,0
 [/msgwin1]
 
 [symbwin]
-window=51900444,1,0,0,268,1699,39,429,268,850,0,0,2
+window=52097052,1,0,0,268,1699,39,429,268,850,0,0,2
 hdrwidth2=100
 hdrwidth3=100
 [/symbwin]
 
 [openfileswin]
-window=52211476,1,0,0,504,366,676,100,676,366,0,0,2
+window=52408084,1,0,0,504,366,676,100,676,366,0,0,2
 [/openfileswin]
 
 [prjfileswin]
-window=52211476,1,0,0,504,366,676,100,676,366,0,0,1
+window=52408084,1,0,0,504,366,676,100,676,366,0,0,1
 filesheight=221
 relatedcnt=3
 relfile0="Sysgen\lighting_heating_updated.map"
@@ -165,7 +165,7 @@ relfile2="SendRoot\TecoApi.pub"
 [/prjfileswin]
 
 [ctrlswin]
-window=52211476,1,0,0,504,366,600,42,600,366,0,0,0
+window=52408084,1,0,0,504,366,600,42,600,366,0,0,0
 [/ctrlswin]
 
 [accwin]
@@ -192,14 +192,14 @@ regmod=66
 format=2
 context=0
 fixed=0
-cols=5
+cols=6
 byteoffs=0
 decaddr=1
 font="Consolas",1,0,10,-13,-2147483640,0,0
 [/memwin2]
 
 [watch2win]
-window=51900444,1,0,0,268,1699,39,429,268,850,0,0,4
+window=52097052,1,0,0,268,1699,39,429,268,850,0,0,4
 hdrnamew=447,210,0
 font96dpi="Courier New",10
 fonthires="Consolas",10
@@ -210,7 +210,7 @@ alignnumbers=0
 showanalyserr=0
 accsvisible=0
 accsw=152
-mem1w=219
+mem1w=215
 mem1visible=1
 mem2w=190
 mem2visible=0
@@ -235,14 +235,14 @@ font="Lucida Console",11
 [/paneltexted]
 
 [Datalogger]
-window=52215796,0,0,0,615,1528,187,259,517,1109,0,0,0
+window=52412404,0,0,0,615,1528,187,259,517,1109,0,0,0
 [/Datalogger]
 
 [CFC_Editors]
 [/CFC_Editors]
 
 [IOConfigurator]
-window=51902196,1,0,0,504,407,534,136,551,407,0,0,0
+window=52098804,1,0,0,504,407,534,136,551,407,0,0,0
 [/IOConfigurator]
 
 [PanelSIM_1]
@@ -260,12 +260,12 @@ window=0,0,0,0,420,272,642,134,642,272,0,0,-1
 [/PlcNetManager]
 
 [FormDesign1]
-window=52215796,1,0,0,504,902,836,1707,534,910,0,0,1
+window=52412404,1,0,0,504,902,836,1707,534,910,0,0,1
 [/FormDesign1]
 
 [textsyneditor]
-editor="src\ventillation\Ventillation.st",1,0,0,18,58,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=52215796,1,0,0,504,902,836,1707,654,1123,0,0,2
+editor="src\ventillation\Ventillation.st",1,0,0,21,57,21,33,21,57,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
+window=52412404,1,0,0,504,902,836,1707,654,1123,0,0,2
 localparams=0,1,1,1,1,30,0,80,1,2,1,0
 font="Courier New",10
 fonthires="Lucida Console",11
@@ -275,8 +275,8 @@ debugparams=1,0,1
 [/textsyneditor]
 
 [textsyneditor]
-editor="src\ventillation\VentillationGlobals.st",1,0,0,26,91,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=52215796,1,0,0,504,902,836,1707,654,1123,0,0,3
+editor="src\ventillation\VentillationGlobals.st",1,0,0,6,42,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
+window=52412404,1,0,0,504,902,836,1707,654,1123,0,0,3
 localparams=0,1,1,1,1,30,0,80,1,2,1,0
 font="Courier New",10
 fonthires="Lucida Console",11
@@ -286,8 +286,8 @@ debugparams=1,0,1
 [/textsyneditor]
 
 [textsyneditor]
-editor="src\ventillation\VentillationInit.st",1,1,0,44,58,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=52215796,1,0,0,504,902,836,1707,534,910,0,0,4
+editor="src\ventillation\VentillationInit.st",1,1,0,41,15,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
+window=52412404,1,0,0,504,902,836,1707,534,910,0,0,4
 localparams=0,1,1,1,1,30,0,80,1,2,1,0
 font="Courier New",10
 fonthires="Lucida Console",11
@@ -297,8 +297,8 @@ debugparams=1,0,1
 [/textsyneditor]
 
 [textsyneditor]
-editor="LOCALLIB\ModbusRTU_V40_20210826.mlb",1,0,0,69,8,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=52215796,1,0,0,504,902,654,1123,654,1123,0,0,5
+editor="LOCALLIB\ModbusRTU_V40_20210826.mlb",1,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
+window=52412404,1,0,0,504,902,836,1707,654,1123,0,0,5
 localparams=0,1,1,1,1,30,0,80,1,2,1,0
 font="Courier New",10
 fonthires="Lucida Console",11
@@ -309,7 +309,7 @@ debugparams=1,0,1
 
 [textsyneditor]
 editor="src\persist\Persist.st",1,0,0,34,8,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=52215796,1,0,0,504,902,654,1123,654,1123,0,0,6
+window=52412404,1,0,0,504,902,836,1707,654,1123,0,0,6
 localparams=0,1,1,1,1,30,0,80,1,2,1,0
 font="Courier New",10
 fonthires="Lucida Console",11
@@ -320,7 +320,7 @@ debugparams=1,0,1
 
 [textsyneditor]
 editor="SRC\LIGHTING\LightingInit.st",1,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=52215796,1,0,0,504,902,654,1123,654,1123,0,0,7
+window=52412404,1,0,0,504,902,836,1707,654,1123,0,0,7
 localparams=0,1,1,1,1,30,0,80,1,2,1,0
 font="Courier New",10
 fonthires="Lucida Console",11
@@ -330,8 +330,8 @@ debugparams=1,0,1
 [/textsyneditor]
 
 [textsyneditor]
-editor="src\heating\Heating.st",1,0,0,1,1,61,5,61,41,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=52215796,1,0,0,504,902,654,1123,654,1123,0,0,8
+editor="src\heating\Heating.st",1,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
+window=52412404,1,0,0,504,902,836,1707,654,1123,0,0,8
 localparams=0,1,1,1,1,30,0,80,1,2,1,0
 font="Courier New",10
 fonthires="Lucida Console",11

@@ -6,31 +6,24 @@ PROGRAM VentillationControl
   END_VAR
   VAR
      commUnit: fbModbusRTUmas2;
-     writeUnit : ModbusRTUmas;
-     readErrorMessage: String;
-     writeErrorMessage: String;
+     modbusErrorMessage: String;
+     
      formerDesiredVentillationLevel : INT := 0;
+     actualModbusCommandGroup : USINT := C_NILAN_READ_COMMAND_GROUP;
   END_VAR
   VAR_TEMP
   END_VAR
   
+  IF NOT formerDesiredVentillationLevel = DESIRED_VENTILLATION_LEVEL THEN
+
+  END_IF;
   
-  commUnit(EN := true, GrSel := 1, MaxCmd := C_NUMBER_OF_READ_COMMANDS,
-             chanCode := CH2_uni, Endian := 0, Commands := VENTILLATION_READ_COMMANDS[1],
+  commUnit(EN := true, GrSel := actualModbusCommandGroup, MaxCmd := C_NUMBER_OF_NILAN_COMMANDS,
+             chanCode := CH2_uni, Endian := 0, Commands := NILAN_COMMANDS[1],
              MBtimeOut := T#30s, Delay := T#500ms);
 
   IF commUnit.ErrCode > 0 THEN
-    GetModbusErrTxt(commUnit.ErrCode, readErrorMessage);
-  END_IF;
-
-  IF NOT (formerDesiredVentillationLevel = DESIRED_VENTILLATION_LEVEL) THEN
-    commUnit(EN := true, GrSel := 1, MaxCmd := 1,
-               chanCode := CH2_uni, Endian := 0, Commands := VENTILLATION_SET_FAN_LEVEL_COMMAND[1],
-               MBtimeOut := T#30s);
-    IF commUnit.ErrCode > 0 THEN
-      GetModbusErrTxt(commUnit.ErrCode, writeErrorMessage);
-    END_IF;
-    formerDesiredVentillationLevel := DESIRED_VENTILLATION_LEVEL;
+    GetModbusErrTxt(commUnit.ErrCode, modbusErrorMessage);
   END_IF;
 
   
