@@ -45,7 +45,7 @@ if(xmlhttpGET.status != 200){
 alert('Problem retrieving XML data ' + xmlhttpGET.statusText + '(' + xmlhttpGET.status + ')');
 document.location.reload(true)
 return;}
-var access = xmlhttpGET.responseXML.documentElement.getElementsByTagName('ACCESS')[0]; if(!access || access.getAttribute('UCID') != 1635959279) {document.location.reload(true); return;}
+var access = xmlhttpGET.responseXML.documentElement.getElementsByTagName('ACCESS')[0]; if(!access || access.getAttribute('UCID') != 1635972962) {document.location.reload(true); return;}
 var pd = '';
 var x=xmlhttpGET.responseXML.documentElement.getElementsByTagName('INPUT');
 if(x[0]) {
@@ -659,23 +659,24 @@ if(vz == iz) {
 if(vz) {
 Input111h.value = '1';
 Input111.style.backgroundImage = 'url("IMAGES/FAN1_O_2.PNG")';
-if(Input111.getAttribute('value') != null) {Input111.value = 'Szellőztető';} else {Input111.innerHTML = 'Szellőztető';}
+if(Input111.getAttribute('value') != null) {Input111.value = '';} else {}
 } else {
 Input111h.value = '0';
 Input111.style.backgroundImage = 'url("IMAGES/FAN1_O_1.PNG")';
-if(Input111.getAttribute('value') != null) {Input111.value = 'Szellőztető';
-} else {Input111.innerHTML = 'Szellőztető';}
+if(Input111.getAttribute('value') != null) {Input111.value = '';
+} else {}
 }}} else {
 if(x[71].getAttribute('VALUE') == '0') {
 SetBg('INPUT111', 'FAN1_O_2.PNG');
-Input111.innerHTML = 'Szellőztető';
 } else {
 SetBg('INPUT111', 'FAN1_O_1.PNG');
-Input111.innerHTML = 'Szellőztető';
 }}
 var Input112 = document.getElementById('INPUT112');
 if(!InputEdited[111]) {
 UpdateValue(Input112, x[72], '#000000');}
+var Input113 = document.getElementById('INPUT113');
+if(!InputEdited[112]) {
+UpdateValue(Input113, x[71], '#008000');}
 } else {document.location.reload(true); return;}
 } catch(err) {console.log(err.message)}
 if(pd!=''){setTimeout("GetXML('LIGHTS.XML','"+pd+"')",1);}else{setTimeout("GetXML('LIGHTS.XML')",1000);}}
@@ -1069,7 +1070,8 @@ var Input92 = document.getElementById('INPUT92');
 var Input95 = document.getElementById('INPUT95');
 var Input98 = document.getElementById('INPUT98');
 var Input110 = document.getElementById('INPUT110');
-PostXML('LIGHTS.XML', (InputEdited[27] ? encodeURIComponent(Input28.name)+'='+encodeURIComponent(Input28.value)+'&' : '')+(InputEdited[30] ? encodeURIComponent(Input31.name)+'='+encodeURIComponent(Input31.value)+'&' : '')+(InputEdited[33] ? encodeURIComponent(Input34.name)+'='+encodeURIComponent(Input34.value)+'&' : '')+(InputEdited[37] ? encodeURIComponent(Input38.name)+'='+encodeURIComponent(Input38.value)+'&' : '')+(InputEdited[40] ? encodeURIComponent(Input41.name)+'='+encodeURIComponent(Input41.value)+'&' : '')+(InputEdited[88] ? encodeURIComponent(Input89.name)+'='+encodeURIComponent(Input89.value)+'&' : '')+(InputEdited[91] ? encodeURIComponent(Input92.name)+'='+encodeURIComponent(Input92.value)+'&' : '')+(InputEdited[94] ? encodeURIComponent(Input95.name)+'='+encodeURIComponent(Input95.value)+'&' : '')+(InputEdited[97] ? encodeURIComponent(Input98.name)+'='+encodeURIComponent(Input98.value)+'&' : '')+(InputEdited[109] ? encodeURIComponent(Input110.name)+'='+encodeURIComponent(Input110.value)+'&' : ''));
+var Input113 = document.getElementById('INPUT113');
+PostXML('LIGHTS.XML', (InputEdited[27] ? encodeURIComponent(Input28.name)+'='+encodeURIComponent(Input28.value)+'&' : '')+(InputEdited[30] ? encodeURIComponent(Input31.name)+'='+encodeURIComponent(Input31.value)+'&' : '')+(InputEdited[33] ? encodeURIComponent(Input34.name)+'='+encodeURIComponent(Input34.value)+'&' : '')+(InputEdited[37] ? encodeURIComponent(Input38.name)+'='+encodeURIComponent(Input38.value)+'&' : '')+(InputEdited[40] ? encodeURIComponent(Input41.name)+'='+encodeURIComponent(Input41.value)+'&' : '')+(InputEdited[88] ? encodeURIComponent(Input89.name)+'='+encodeURIComponent(Input89.value)+'&' : '')+(InputEdited[91] ? encodeURIComponent(Input92.name)+'='+encodeURIComponent(Input92.value)+'&' : '')+(InputEdited[94] ? encodeURIComponent(Input95.name)+'='+encodeURIComponent(Input95.value)+'&' : '')+(InputEdited[97] ? encodeURIComponent(Input98.name)+'='+encodeURIComponent(Input98.value)+'&' : '')+(InputEdited[109] ? encodeURIComponent(Input110.name)+'='+encodeURIComponent(Input110.value)+'&' : '')+(InputEdited[112] ? encodeURIComponent(Input113.name)+'='+encodeURIComponent(Input113.value)+'&' : ''));
 InputEdited[27]=0;
 InputEdited[30]=0;
 InputEdited[33]=0;
@@ -1080,4 +1082,5 @@ InputEdited[91]=0;
 InputEdited[94]=0;
 InputEdited[97]=0;
 InputEdited[109]=0;
+InputEdited[112]=0;
 }

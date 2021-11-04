@@ -1,45 +1,37 @@
-PROGRAM Ventillation_Control
+PROGRAM VentillationControl
 
   VAR_INPUT
   END_VAR
   VAR_OUTPUT
   END_VAR
   VAR
-     modbusUnit: ModbusRTUmas;
-     errorMessage: String;
-     
-     readCommands : ARRAY [1..C_NUMBER_OF_READ_COMMANDS] OF TCmdStruct;
-     
+     commUnit: fbModbusRTUmas2;
+     writeUnit : ModbusRTUmas;
+     readErrorMessage: String;
+     writeErrorMessage: String;
+     formerDesiredVentillationLevel : INT := 0;
   END_VAR
   VAR_TEMP
   END_VAR
   
-  ModbusCmd(Gr:=1, FNC:=C_NILAN_STATUS_MODBUS_FNC, SNo:=C_NILAN_MODBUS_ADDRESS,
-  StAdr:=C_NILAN_STATUS_BASE_ADDRESS, NoPoint:=C_NILAN_STATUS_SIZE,
-  PtrData:=adr(NILAN_STATUS), Cmd:=readCommands[1]);
-
-  ModbusCmd(Gr:=1, FNC:=C_NILAN_ACTUAL_OPERATION_MODBUS_FNC, SNo:=C_NILAN_MODBUS_ADDRESS,
-  StAdr:=C_NILAN_ACTUAL_OPERATION_BASE_ADDRESS, NoPoint:=C_NILAN_STATUS_SIZE,
-  PtrData:=adr(NILAN_ACTUAL_OPERATION), Cmd:=readCommands[2]);
-
-  ModbusCmd(Gr:=1, FNC:=C_NILAN_ACTUAL_VENTILLATION_MODBUS_FNC, SNo:=C_NILAN_MODBUS_ADDRESS,
-  StAdr:=C_NILAN_ACTUAL_VENTILLATION_BASE_ADDRESS, NoPoint:=C_NILAN_ACTUAL_VENTILLATION_SIZE,
-  PtrData:=adr(NILAN_ACTUAL_VENTILLATION), Cmd:=readCommands[3]);
-
-  ModbusCmd(Gr:=1, FNC:=C_CORE_TEMPERATURES_MODBUS_FNC, SNo:=C_NILAN_MODBUS_ADDRESS,
-  StAdr:=C_CORE_TEMPERATURES_BASE_ADDRESS, NoPoint:=C_CORE_TEMPERATURES_SIZE,
-  PtrData:=adr(CORE_TEMPARATURES), Cmd:=readCommands[4]);
   
-  ModbusCmd(Gr:=1, FNC:=C_CONTROLLED_TEMPERATURES_MODBUS_FNC, SNo:=C_NILAN_MODBUS_ADDRESS,
-  StAdr:=C_CONTROLLED_TEMPERATURES_BASE_ADDRESS, NoPoint:=C_CONTROLLED_TEMPERATURES_SIZE,
-  PtrData:=adr(CONTROLLED_TEMPARATURES), Cmd:=readCommands[5]);
+  commUnit(EN := true, GrSel := 1, MaxCmd := C_NUMBER_OF_READ_COMMANDS,
+             chanCode := CH2_uni, Endian := 0, Commands := VENTILLATION_READ_COMMANDS[1],
+             MBtimeOut := T#30s, Delay := T#500ms);
 
-  IF modbusUnit.ErrCode > 0 THEN
-    GetModbusErrTxt(modbusUnit.ErrCode, errorMessage);
+  IF commUnit.ErrCode > 0 THEN
+    GetModbusErrTxt(commUnit.ErrCode, readErrorMessage);
   END_IF;
 
-  
-  modbusUnit(EN := true, GrSel := 1, MaxCmd := C_NUMBER_OF_READ_COMMANDS, chanCode := CH2_uni, Endian := 0, Commands := readCommands[1]);
+  IF NOT (formerDesiredVentillationLevel = DESIRED_VENTILLATION_LEVEL) THEN
+    commUnit(EN := true, GrSel := 1, MaxCmd := 1,
+               chanCode := CH2_uni, Endian := 0, Commands := VENTILLATION_SET_FAN_LEVEL_COMMAND[1],
+               MBtimeOut := T#30s);
+    IF commUnit.ErrCode > 0 THEN
+      GetModbusErrTxt(commUnit.ErrCode, writeErrorMessage);
+    END_IF;
+    formerDesiredVentillationLevel := DESIRED_VENTILLATION_LEVEL;
+  END_IF;
 
   
 END_PROGRAM
