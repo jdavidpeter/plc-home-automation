@@ -3,10 +3,10 @@ Version="xPRO","4.3.00"
 [/desktop]
 
 [dockinfo]
-centralpc=52215264,1,1,1
-leftpane=51900412,0,0,1,374,0
-bottompane=51903760,1,189
-rightpane=52213288,1,415,0
+centralpc=52412404,1,1,1
+leftpane=52408084,0,0,1,374,0
+bottompane=52097052,1,298
+rightpane=52098804,1,415,0
 [/dockinfo]
 
 [closedtextpaneleditors]
@@ -17,7 +17,7 @@ smatchcase=0
 swholewords=0
 sbackword=0
 sseltext=0
-sglobal=0
+sglobal=1
 sprompt=0
 iecoperands=0
 ieccomments=0
@@ -28,51 +28,50 @@ fifwhere=0
 fifsubdirs=0
 fif2ndmsg=1
 fif2ndmsg=1
-findhistory=""
-replacehistory=""
+findhistory="GONE_FOR_5_MINUTES"
+replacehistory="PRESENCE_BASED_HOT_WATER_CONTROL"
 dirhistory=""
 maskhistory=""
 [/txtextsyneditor]
 
 [closedtextsyneditors]
+txsyned="SRC\VENTILLATION\VENTILLATIONINIT.ST",52,1,1,1,1,1,488294656,30921089,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+txsyned="SRC\LIGHTING\LightingInit.st",1,1,1,1,1,1,1158127616,30914204,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+txsyned="src\persist\PersistGlobals.st",11,5,1,1,1,1,3548617984,30920946,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+txsyned="src\utils\persist\PersistFramework.st",316,38,1,1,1,1,3428617984,30920946,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+txsyned="lighting_heating_updated.mcf",14,59,1,1,1,1,812019200,30921050,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+txsyned="SRC\LIGHTING\LightingGlobals.st",37,5,1,1,1,1,2647309824,30920906,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+txsyned="src\lighting\Lighting.st",1,1,1,1,1,1,952011776,30920744,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+txsyned="src\heating\HeatingGlobals.st",1,1,1,1,1,1,2986455808,30920727,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+txsyned="src\heating\VaillantGlobals.st",1,1,1,1,1,1,252988160,30826290,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+txsyned="SRC\UTILS\IO\ChangeOnOff.st",9,33,1,1,1,1,1226979072,30920743,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+txsyned="SRC\UTILS\IO\InPlaceOnOff.st",23,14,1,1,1,1,611488512,30920728,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+txsyned="src\ventillation\Ventillation_Control.st",1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+txsyned="IOCONFIGURATOR\CONFIG.HWC",686,1,1,1,1,1,1633036032,30919858,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+txsyned="lighting_heating_updated.mak",48,30,1,1,1,1,1787087616,30919829,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+txsyned="Ventillation_Control.ST",1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+txsyned="VentillationInit.ST",1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+txsyned="SRC\PERSIST\PersistData.st",1,1,1,1,1,1,1603160320,30914205,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+txsyned="HeatingGlobals.st",1,90,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+txsyned="IOCONFIGURATOR\CONFIG.ST",545,4,1,1,1,1,614124288,30916222,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+txsyned="LOCALLIB\OpenThermLib_V13_20150819.mlb",1,1,1,1,1,1,252988160,30826290,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+txsyned="heating.ST",1,60,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 txsyned="PersistData.ST",24,1,1,1,1,1,1603160320,30914205,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 txsyned="PersistInit.st",67,12,1,1,1,1,1523160320,30914205,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 txsyned="Alarm.ST",45,12,1,1,1,1,1403160320,30914205,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 txsyned="AlarmInit.ST",21,12,1,1,1,1,1303160320,30914205,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 txsyned="LightingInit.st",1,8,1,1,1,1,1158127616,30914204,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 txsyned="lighting.ST",1,1,1,1,1,1,698127616,30914204,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-txsyned="lighting_heating_updated.mak",1,1,1,1,1,1,3266389760,30891065,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 txsyned="HeatingInint.ST",56,12,1,1,1,1,1158127616,30914204,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-txsyned="AlarmRead.st",7,63,1,1,1,1,615470336,30890884,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-txsyned="AlarmGlobals.st",9,103,1,1,1,1,1055470336,30890884,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-txsyned="StringRecorder.st",26,10,1,1,1,1,2432007424,30890931,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-txsyned="PersistFramework.st",238,14,1,1,1,1,3073053952,30890963,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-txsyned="PersistGlobals.st",18,78,1,1,1,1,180838912,30893953,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-txsyned="LOCALLIB\ParadoxLib_V17_20141014.mlb",134,8,1,1,1,1,252988160,30826290,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-txsyned="LOCALLIB\FileLib_V28_20200709.mlb",334,8,1,1,1,1,252988160,30826290,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-txsyned="lighting_heating_updated.mcf",12,55,1,1,1,1,2016778496,30890924,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-txsyned="PidController.st",36,63,1,1,1,1,91505920,30883730,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-txsyned="PidHeatController.st",26,17,1,1,1,1,252988160,30826290,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-txsyned="ChangeOnOff.st",9,19,1,1,1,1,252988160,30826290,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-txsyned="LightingGlobals.st",36,24,36,5,36,24,372988160,30826290,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-txsyned="LOCALLIB\ComLib_V30_20181220.mlb",690,50,1,1,1,1,252988160,30826290,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-txsyned="LOCALLIB\StdLib_V22_20180619.mlb",159,18,1,1,1,1,252988160,30826290,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-txsyned="DURATIONOUT.ST",100,1,1,1,1,1,3958172928,30811007,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-txsyned="InPlaceOnOff.st",1,1,1,1,1,1,4078172928,30811007,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-txsyned="..\home_automation.hwn",1,1,1,1,1,1,902204160,30820915,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-txsyned="LOCALLIB\FileLib_V23_20180116.mlb",425,8,1,1,1,1,3534808919,30750937,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-txsyned="OnThenOffPulse.st",1,1,1,1,1,1,2188263442,30754876,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-txsyned="Persist.st",1,1,1,1,1,1,1308681828,30750937,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-txsyned="LOCALLIB\FileLib_V22_20160316.mlb",274,8,1,1,1,1,3678039205,30736767,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 [/closedtextsyneditors]
 
 [finddialog]
-matchcase=1
+matchcase=0
 wholewords=0
 backword=0
 seltext=0
 global=0
-smatchcase=1
+smatchcase=0
 swholewords=0
 sbackword=0
 sseltext=0
@@ -81,7 +80,7 @@ sprompt=0
 iecoperands=1
 ieccomments=1
 implicitseltext=1
-findhistory="TLIB_COMM_ARRAY","SUM_HEATING_WATER_TEMPERATURE_REQUIREMENT","activeZones","OT_COMM_ARRAY_GEMINOX_THRI_MOD","vaillant_opentherm","presence","PARADOX_COM","C_PERSIST_DIRECTORY_ROOT","ROOT/PERSIST","void","C_FRONT_DOOR","ALARM_ZONES_INACTIVITY","C_CHILDRENS_ROOM_3_ZONE","9600","196","GONE_FOR_SHORT_TIME"
+findhistory="GONE_FOR_5_MINUTES","ADR","POINTER","HEATING_ENABLE","heatingControl","onoff","onoffswitch","InPlace","03","ERRr","TLIB_COMM_ARRAY","SUM_HEATING_WATER_TEMPERATURE_REQUIREMENT","activeZones","OT_COMM_ARRAY_GEMINOX_THRI_MOD","vaillant_opentherm","presence"
 fifmatchcase=0
 fifwholewords=0
 fifoutinstr=0
@@ -106,12 +105,12 @@ iecothers=1
 [/finddialog]
 
 [replacedialog]
-matchcase=1
+matchcase=0
 wholewords=0
 backword=0
 seltext=0
 global=1
-smatchcase=1
+smatchcase=0
 swholewords=0
 sbackword=0
 sseltext=0
@@ -120,7 +119,7 @@ sprompt=0
 iecoperands=1
 ieccomments=1
 promptonreplace=0
-findhistory="datasize","dummy","variableToPersist","C_GARAGE_DOOR_NYITAS","C_FRONT_DOOR_NYITAS","INT","ROVID_IDEJE_ELMENTEK_OTTHONROL","HOSSZU_IDEJE_ELMENTEK_OTTHONROL","goneFor5Minutes","writeEdge","variableToWrite","RIASZTO_ZONAK_AKTIVITAS"
+findhistory="PRESENCE_BASED_HOT_WATER_ENABLE","datasize","dummy","variableToPersist","C_GARAGE_DOOR_NYITAS","C_FRONT_DOOR_NYITAS","INT","ROVID_IDEJE_ELMENTEK_OTTHONROL","HOSSZU_IDEJE_ELMENTEK_OTTHONROL","goneFor5Minutes","writeEdge","variableToWrite","RIASZTO_ZONAK_AKTIVITAS"
 [/replacedialog]
 
 [plcdiskdlg]
@@ -130,29 +129,32 @@ showdetails=1
 
 [prjmngr]
 shownds=0
+nodeplus="PlcComnPrj"
+nodeplus="PlcSw"
+nodeplus="PlcIde"
 [/prjmngr]
 
 [msgwin2]
-window=51903760,1,0,0,159,1699,39,429,159,850,0,0,1
+window=52097052,1,0,0,268,1699,39,429,268,850,0,0,1
 [/msgwin2]
 
 [msgwin1]
-window=51903760,1,0,0,159,1699,39,429,159,850,0,0,0
+window=52097052,1,0,0,268,1699,39,429,268,850,0,0,0
 [/msgwin1]
 
 [symbwin]
-window=51903760,1,0,0,159,1699,39,429,159,850,0,0,2
+window=52097052,1,0,0,268,1699,39,429,268,850,0,0,2
 hdrwidth2=100
 hdrwidth3=100
 [/symbwin]
 
 [openfileswin]
-window=51900412,1,0,0,613,366,676,100,676,366,0,0,2
+window=52408084,1,0,0,504,366,676,100,676,366,0,0,2
 [/openfileswin]
 
 [prjfileswin]
-window=51900412,1,0,0,613,366,676,100,676,366,0,0,1
-filesheight=144
+window=52408084,1,0,0,504,366,676,100,676,366,0,0,1
+filesheight=221
 relatedcnt=3
 relfile0="Sysgen\lighting_heating_updated.map"
 relfile1="SendRoot\iFoxtrot.pub"
@@ -160,7 +162,7 @@ relfile2="SendRoot\TecoApi.pub"
 [/prjfileswin]
 
 [ctrlswin]
-window=51900412,1,0,0,613,366,600,42,600,366,0,0,0
+window=52408084,1,0,0,504,366,600,42,600,366,0,0,0
 [/ctrlswin]
 
 [accwin]
@@ -175,7 +177,7 @@ regmod=66
 format=4
 context=0
 fixed=0
-cols=6
+cols=4
 byteoffs=0
 decaddr=1
 font="Consolas",1,0,10,-13,-2147483640,0,0
@@ -194,7 +196,7 @@ font="Consolas",1,0,10,-13,-2147483640,0,0
 [/memwin2]
 
 [watch2win]
-window=51903760,1,0,0,159,1699,39,429,159,850,0,0,4
+window=52097052,1,0,0,268,1699,39,429,268,850,0,0,4
 hdrnamew=447,210,0
 font96dpi="Courier New",10
 fonthires="Consolas",10
@@ -205,11 +207,11 @@ alignnumbers=0
 showanalyserr=0
 accsvisible=0
 accsw=152
-mem1w=263
+mem1w=215
 mem1visible=1
 mem2w=190
 mem2visible=0
-storednames="OPENTHERM_OUT","OPENTHERM_IN","Heating_Control.vaillant_opentherm.UC1204_OUT","Heating_Control.vaillant_opentherm","OT_COMM_ARRAY","OT_COMM_ARRAY_GEMINOX_THRI","PARADOX_COM","AWAY_TIMER","Alarm_Control.sumActivity","FILE_PROBLEM_TRACKER","IO_LOGGER","Persist_Data.boolPersistors.variableToPersist","readVariable","Persist_Data.boolPersistors.readVariable","Persist_Data.boolPersistors[1]","Persist_Data.boolPersistors[1].variableToPersist"
+storednames="Ventillation_Control.setPresenceBasedVentillationToZero","Ventillation_Control.setPresenceBasedVentillationToACtive","Ventillation_Control.presenceBasedActivity","Ventillation_Control.setPresenceBasedVentillationToACtive.Q","Ventillation_Control.commUnit.LastCmd","Ventillation_Control.modbusErrorMessage","Ventillation_Control.commUnit.Done","Ventillation_Control.commUnit","DESIRED_VENTILLATION_LEVEL","Ventillation_Control.formerDesiredVentillationLevel","Ventillation_Control.actualModbusCommandGroup","NILAN_CONTROLLED_TEMPARATURES","NILAN_CORE_TEMPARATURES","NILAN_ACTUAL_VENTILLATION","NILAN_ACTUAL_OPERATION","NILAN_STATUS"
 [/watch2win]
 
 [weblc]
@@ -224,20 +226,20 @@ window=0,0,0,0,420,638,336,227,549,960,0,1,-1
 [/evalmodifdlg]
 
 [paneltexted]
-editor="XClip-Panel",1,0,1,1,1,1,5135730,1700388,178460932,1700780,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+editor="XClip-Panel",1,0,1,1,1,1,5145490,1694232,202709412,1694624,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 window=0,0,0,94,313,483,313,463,313,483,0,1,-1
 font="Lucida Console",11
 [/paneltexted]
 
 [Datalogger]
-window=52215264,0,0,0,615,1528,187,259,517,1109,0,0,0
+window=52412404,0,0,0,615,1528,187,259,517,1109,0,0,0
 [/Datalogger]
 
 [CFC_Editors]
 [/CFC_Editors]
 
 [IOConfigurator]
-window=52213288,1,0,0,613,407,564,136,551,407,0,0,0
+window=52098804,1,0,0,504,407,534,136,551,407,0,0,0
 [/IOConfigurator]
 
 [PanelSIM_1]
@@ -255,12 +257,12 @@ window=0,0,0,0,420,272,642,134,642,272,0,0,-1
 [/PlcNetManager]
 
 [FormDesign1]
-window=52215264,1,0,0,613,902,836,1707,564,917,0,0,5
+window=52412404,1,0,0,504,902,836,1707,534,910,0,0,1
 [/FormDesign1]
 
 [textsyneditor]
-editor="heating.ST",1,0,0,1,60,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=52215264,1,0,0,613,902,836,1707,684,1130,0,0,1
+editor="src\ventillation\Ventillation.st",1,0,0,24,68,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
+window=52412404,1,0,0,504,902,836,1707,654,1123,0,0,2
 localparams=0,1,1,1,1,30,0,80,1,2,1,0
 font="Courier New",10
 fonthires="Lucida Console",11
@@ -270,8 +272,8 @@ debugparams=1,0,1
 [/textsyneditor]
 
 [textsyneditor]
-editor="LOCALLIB\OpenThermLib_V13_20150819.mlb",1,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=52215264,1,0,0,613,902,836,1707,684,1130,0,0,2
+editor="src\ventillation\VentillationGlobals.st",1,0,0,19,39,19,3,19,39,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
+window=52412404,1,0,0,504,902,836,1707,654,1123,0,0,3
 localparams=0,1,1,1,1,30,0,80,1,2,1,0
 font="Courier New",10
 fonthires="Lucida Console",11
@@ -281,8 +283,19 @@ debugparams=1,0,1
 [/textsyneditor]
 
 [textsyneditor]
-editor="IOCONFIGURATOR\CONFIG.ST",1,0,0,545,4,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=52215264,1,0,0,613,902,836,1707,684,1130,0,0,3
+editor="src\ventillation\VentillationInit.st",1,0,0,45,105,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
+window=52412404,1,0,0,504,902,836,1707,534,910,0,0,4
+localparams=0,1,1,1,1,30,0,80,1,2,1,0
+font="Courier New",10
+fonthires="Lucida Console",11
+relay=0,0,0,0,0,"",0,0
+inspectorctx="Ventillation_Init"
+debugparams=1,0,1
+[/textsyneditor]
+
+[textsyneditor]
+editor="LOCALLIB\ModbusRTU_V40_20210826.mlb",1,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
+window=52412404,1,0,0,504,902,836,1707,654,1123,0,0,5
 localparams=0,1,1,1,1,30,0,80,1,2,1,0
 font="Courier New",10
 fonthires="Lucida Console",11
@@ -292,13 +305,68 @@ debugparams=1,0,1
 [/textsyneditor]
 
 [textsyneditor]
-editor="HeatingGlobals.st",1,0,0,1,90,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=52215264,1,0,0,613,902,836,1707,684,1130,0,0,4
+editor="src\heating\Heating.st",1,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
+window=52412404,1,0,0,504,902,836,1707,654,1123,0,0,6
 localparams=0,1,1,1,1,30,0,80,1,2,1,0
 font="Courier New",10
 fonthires="Lucida Console",11
 relay=0,0,0,0,0,"",0,0
 inspectorctx=""
+debugparams=1,0,1
+[/textsyneditor]
+
+[textsyneditor]
+editor="src\persist\Persist.st",1,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
+window=52412404,1,0,0,504,902,534,910,534,910,0,0,7
+localparams=0,1,1,1,1,30,0,80,1,2,1,0
+font="Courier New",10
+fonthires="Lucida Console",11
+relay=0,0,0,0,0,"",0,0
+inspectorctx=""
+debugparams=1,0,1
+[/textsyneditor]
+
+[textsyneditor]
+editor="src\persist\PersistInit.st",1,0,0,63,64,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
+window=52412404,1,0,0,504,902,534,910,534,910,0,0,8
+localparams=0,1,1,1,1,30,0,80,1,2,1,0
+font="Courier New",10
+fonthires="Lucida Console",11
+relay=0,0,0,0,0,"",0,0
+inspectorctx=""
+debugparams=1,0,1
+[/textsyneditor]
+
+[textsyneditor]
+editor="SRC\ALARM\AlarmGlobals.st",1,0,0,42,5,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
+window=52412404,1,0,0,504,902,534,910,534,910,0,0,9
+localparams=0,1,1,1,1,30,0,80,1,2,1,0
+font="Courier New",10
+fonthires="Lucida Console",11
+relay=0,0,0,0,0,"",0,0
+inspectorctx=""
+debugparams=1,0,1
+[/textsyneditor]
+
+[textsyneditor]
+editor="SRC\ALARM\Alarm.st",1,1,0,29,57,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
+window=52412404,1,0,0,504,902,534,910,534,910,0,0,10
+localparams=0,1,1,1,1,30,0,80,1,2,1,0
+font="Courier New",10
+fonthires="Lucida Console",11
+relay=0,0,0,0,0,"",0,0
+inspectorctx="Alarm_Control"
+debugparams=1,0,1
+[/textsyneditor]
+
+[textsyneditor]
+editor="LOCALLIB\StdLib_V22_20180619.mlb",1,0,0,50,8,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
+window=52412404,1,0,0,504,902,534,910,534,910,0,0,11
+localparams=0,1,1,1,1,30,0,80,1,2,1,0
+font="Courier New",10
+fonthires="Lucida Console",11
+relay=0,0,0,0,0,"",0,0
+inspectorctx="Alarm_Control"
 debugparams=1,0,1
 [/textsyneditor]
 
@@ -306,5 +374,6 @@ debugparams=1,0,1
 [/inspectors]
 
 [traps]
+trap=1,"","","",0,0,0,1,1,0,1,0,0,"D:\PROJEKTEK\PROGRAMOZAS\MOSAIC\PROJECTS\BRA1\GITHUB\HOME_AUTOMATION\LIGHTING_HEATING_UPDATED\src\ventillation\VentillationInit.st",52,0,545,"Ventillation_Init"
 [/traps]
 

@@ -1,31 +1,31 @@
 VAR_GLOBAL CONSTANT
 
     C_DOWNSTAIRS_BATH_MAJOR_LIGHTS_INDEX      : INT := 0;
-    C_DOWNSTAIRS_BATH_SHOWER_LIGHTS_INDEX    : INT := 1;
-    C_UPSTAIRS_BATH_MAJOR_LIGHTS_INDEX     : INT := 2;
-    C_UPSTAIRS_WC_LIGHTS_INDEX             : INT := 3;
-    C_UPSTAIRS_BATH_SHOWER_LIGHTS_INDEX   : INT := 4;
-    C_HALLWAY_LIGHTS_INDEX              : INT := 5;
-    C_OUTDOOR_LIGHTS_INDEX              : INT := 6;
-    C_HALL_LIGHTS_INDEX             : INT := 7;
-    C_GARAGE_LIGHTS_INDEX               : INT := 8;
-    C_BOILER_LIGHTS_INDEX                : INT := 9;
-    C_MAJOR_STORAGE_LIGHTS_INDEX          : INT := 10;
-    C_MINOR_STORAGE_LIGHTS_INDEX           : INT := 11;
-    C_GARDEN_BALCONY_LIGHTS_INDEX         : INT := 12;
-    C_CHILDRENS_ROOM_2_LIGHTS_INDEX        : INT := 13;
-    C_CHILDRENS_ROOM_1_OUTER_LIGHTS_INDEX  : INT := 14;
-    C_CHILDRENS_ROOM_1_INNER_LIGHTS_INDEX  : INT := 15;
-    C_CHILDRENS_ROOM_3_LIGHTS_INDEX        : INT := 16;
-    C_GATE_BALCONY_LIGHTS_INDEX          : INT := 17;
-    C_DOWNSTAIRS_BEDROOM_LIGHTS_INDEX       : INT := 18;
-    C_KITCHEN_LIGHTS_INDEX               : INT := 19;
-    C_DINING_ROOM_LIGHTS_INDEX               : INT := 20;
-    C_LIVING_ROOM_LIGHTS_INDEX              : INT := 21;
-    C_TERRACE_LIGHTS_INDEX               : INT := 22;
+    C_DOWNSTAIRS_BATH_SHOWER_LIGHTS_INDEX     : INT := 1;
+    C_UPSTAIRS_BATH_MAJOR_LIGHTS_INDEX        : INT := 2;
+    C_UPSTAIRS_WC_LIGHTS_INDEX                : INT := 3;
+    C_UPSTAIRS_BATH_SHOWER_LIGHTS_INDEX       : INT := 4;
+    C_HALLWAY_LIGHTS_INDEX                    : INT := 5;
+    C_OUTDOOR_LIGHTS_INDEX                    : INT := 6;
+    C_HALL_LIGHTS_INDEX                       : INT := 7;
+    C_GARAGE_LIGHTS_INDEX                     : INT := 8;
+    C_BOILER_LIGHTS_INDEX                     : INT := 9;
+    C_MAJOR_STORAGE_LIGHTS_INDEX              : INT := 10;
+    C_MINOR_STORAGE_LIGHTS_INDEX              : INT := 11;
+    C_GARDEN_BALCONY_LIGHTS_INDEX             : INT := 12;
+    C_CHILDRENS_ROOM_2_LIGHTS_INDEX           : INT := 13;
+    C_CHILDRENS_ROOM_1_OUTER_LIGHTS_INDEX     : INT := 14;
+    C_CHILDRENS_ROOM_1_INNER_LIGHTS_INDEX     : INT := 15;
+    C_CHILDRENS_ROOM_3_LIGHTS_INDEX           : INT := 16;
+    C_GATE_BALCONY_LIGHTS_INDEX               : INT := 17;
+    C_DOWNSTAIRS_BEDROOM_LIGHTS_INDEX         : INT := 18;
+    C_KITCHEN_LIGHTS_INDEX                    : INT := 19;
+    C_DINING_ROOM_LIGHTS_INDEX                : INT := 20;
+    C_LIVING_ROOM_LIGHTS_INDEX                : INT := 21;
+    C_TERRACE_LIGHTS_INDEX                    : INT := 22;
 //    C_STAIRS_LIGHTS_INDEX               : INT := 23;
 
-    C_LIGHTS_ZONES_COUNT               : INT := 23;
+    C_LIGHTS_ZONES_COUNT                      : INT := 23;
     
 END_VAR
 
@@ -38,34 +38,34 @@ VAR_GLOBAL
     
     HALLWAY_LIGHTS_COMBINED_IN : BOOL                      := FALSE;
 
-    VIRTUAL_DOWNSTAIRS_BATH_MAJOR_LIGHTS_IN : BOOL              := FALSE;
-    VIRTUAL_DOWNSTAIRS_BATH_SHOWER_LIGHTS_IN : BOOL            := FALSE;
-    VIRTUAL_UPSTAIRS_BATH_MAJOR_LIGHTS_IN : BOOL             := FALSE;
-    VIRTUAL_UPSTAIRS_WC_LIGHTS_IN : BOOL                     := FALSE;
-    VIRTUAL_UPSTAIRS_BATH_SHOWER_LIGHTS_IN : BOOL           := FALSE;
-    VIRTUAL_OUTDOOR_LIGHTS_IN : BOOL                      := FALSE;
-    VIRTUAL_HALL_LIGHTS_IN : BOOL                     := FALSE;
-    VIRTUAL_GARAGE_LIGHTS_IN : BOOL                       := FALSE;
-    VIRTUAL_MAJOR_STORAGE_LIGHTS_IN : BOOL                  := FALSE;
-    VIRTUAL_MINOR_STORAGE_LIGHTS_IN : BOOL                   := FALSE;
-    VIRTUAL_GARDEN_BALCONY_LIGHTS_IN : BOOL                 := FALSE;
-    VIRTUAL_CHILDRENS_ROOM_2_LIGHTS_IN : BOOL                := FALSE;
-    VIRTUAL_CHILDRENS_ROOM_1_OUTER_LIGHTS_IN : BOOL          := FALSE;
-    VIRTUAL_CHILDRENS_ROOM_1_INNER_LIGHTS_IN : BOOL          := FALSE;
-    VIRTUAL_CHILDRENS_ROOM_3_LIGHTS_IN : BOOL                := FALSE;
+    VIRTUAL_DOWNSTAIRS_BATH_MAJOR_LIGHTS_IN : BOOL         := FALSE;
+    VIRTUAL_DOWNSTAIRS_BATH_SHOWER_LIGHTS_IN : BOOL        := FALSE;
+    VIRTUAL_UPSTAIRS_BATH_MAJOR_LIGHTS_IN : BOOL           := FALSE;
+    VIRTUAL_UPSTAIRS_WC_LIGHTS_IN : BOOL                   := FALSE;
+    VIRTUAL_UPSTAIRS_BATH_SHOWER_LIGHTS_IN : BOOL          := FALSE;
+    VIRTUAL_OUTDOOR_LIGHTS_IN : BOOL                       := FALSE;
+    VIRTUAL_HALL_LIGHTS_IN : BOOL                          := FALSE;
+    VIRTUAL_GARAGE_LIGHTS_IN : BOOL                        := FALSE;
+    VIRTUAL_MAJOR_STORAGE_LIGHTS_IN : BOOL                 := FALSE;
+    VIRTUAL_MINOR_STORAGE_LIGHTS_IN : BOOL                 := FALSE;
+    VIRTUAL_GARDEN_BALCONY_LIGHTS_IN : BOOL                := FALSE;
+    VIRTUAL_CHILDRENS_ROOM_2_LIGHTS_IN : BOOL              := FALSE;
+    VIRTUAL_CHILDRENS_ROOM_1_OUTER_LIGHTS_IN : BOOL        := FALSE;
+    VIRTUAL_CHILDRENS_ROOM_1_INNER_LIGHTS_IN : BOOL        := FALSE;
+    VIRTUAL_CHILDRENS_ROOM_3_LIGHTS_IN : BOOL              := FALSE;
     VIRTUAL_GATE_BALCONY_LIGHTS_IN : BOOL                  := FALSE;
-    VIRTUAL_DOWNSTAIRS_BEDROOM_LIGHTS_IN : BOOL               := FALSE;
+    VIRTUAL_DOWNSTAIRS_BEDROOM_LIGHTS_IN : BOOL            := FALSE;
     VIRTUAL_KITCHEN_LIGHTS_IN : BOOL                       := FALSE;
-    VIRTUAL_DINING_ROOM_LIGHTS_IN : BOOL                       := FALSE;
-    VIRTUAL_LIVING_ROOM_LIGHTS_IN : BOOL                      := FALSE;
+    VIRTUAL_DINING_ROOM_LIGHTS_IN : BOOL                   := FALSE;
+    VIRTUAL_LIVING_ROOM_LIGHTS_IN : BOOL                   := FALSE;
     VIRTUAL_TERRACE_LIGHTS_IN : BOOL                       := FALSE;
-    VIRTUAL_HALLWAY_LIGHTS_IN : BOOL                      := FALSE;
+    VIRTUAL_HALLWAY_LIGHTS_IN : BOOL                       := FALSE;
     VIRTUAL_BOILER_LIGHTS_IN : BOOL                        := FALSE;
 //    VIRTUAL_STAIRS_LIGHTS_IN : BOOL                       := FALSE;
 
 
     VIRTUAL_EXHAUST_FAN_IN : BOOL                    := FALSE;
-    VIRTUAL_CIRCULATION_SWITCH_IN : BOOL                    := FALSE;
-    VIRTUAL_GARAGE_DOOR_OPENER       : BOOL                    := FALSE;
+    VIRTUAL_CIRCULATION_SWITCH_IN : BOOL             := FALSE;
+    VIRTUAL_GARAGE_DOOR_OPENER       : BOOL          := FALSE;
     
 END_VAR

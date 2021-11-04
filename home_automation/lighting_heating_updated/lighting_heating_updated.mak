@@ -32,6 +32,8 @@
 #uselib "LocalLib\ConvertLib_V21_20170222.mlb"
 #uselib "LocalLib\InternetLib_V56_20200402.mlb"
 #uselib "LocalLib\MQTTLib_V14_20200528.mlb"
+#uselib "LocalLib\CrcLib_V13_20170224.mlb"
+#uselib "LocalLib\ModbusRTU_V40_20210826.mlb"
 #endlibs
 
 ;**************************************
@@ -52,6 +54,7 @@
 #usefile "src\heating\HeatingGlobals.st"
 #usefile "src\heating\VaillantGlobals.st"
 #usefile "src\lighting\LightingGlobals.st"
+#usefile "src\ventillation\VentillationGlobals.st"
 #usefile "src\lighting\LightingInit.st"
 #usefile "src\lighting\Lighting.st"
 #usefile "src\utils\control\LinearHeatController.st"
@@ -59,11 +62,13 @@
 #usefile "src\utils\control\PidHeatController.st"
 #usefile "src\heating\HeatingInint.st"
 #usefile "src\heating\Heating.st"
+#usefile "src\ventillation\VentillationInit.st"
 #usefile "src\alarm\AlarmInit.st"
 #usefile "src\alarm\AlarmRead.st"
 #usefile "src\alarm\Alarm.st"
 #usefile "src\utils\persist\PersistFramework.st"
 #usefile "src\persist\PersistGlobals.st"
 #usefile "src\persist\PersistInit.st"
-#usefile "src\persist\PersistData.ST"
+#usefile "src\persist\Persist.st"
+#usefile "src\ventillation\Ventillation.st"
 #usefile "lighting_heating_updated.mcf", 'auto'

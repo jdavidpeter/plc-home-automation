@@ -6,11 +6,11 @@ PROGRAM AlarmControl
   VAR
      i: UINT;
      sumActivity : BOOL := FALSE;
-     heatingVezerles : InPlaceOnOff;
-     melegVizVezerles : InPlaceOnOff;
+     heatingControl : ChangeOnOff;
+     hotWaterControl : ChangeOnOff;
 
-     heatingVezerloNev : STRING := 'Alarm heating control';
-     melegVizVezerloNev : STRING := 'Alarm meleg viz control';
+     heatingControllerName : STRING := 'Alarm heating control';
+     hotWaterControllerName : STRING := 'Alarm hot water control';
   END_VAR
   
   alarmRead();
@@ -25,21 +25,22 @@ PROGRAM AlarmControl
      sumActivity := sumActivity OR (NOT ALARM_ZONES_INACTIVITY[i]);
   END_FOR;
   AWAY_TIMER(IN := NOT sumActivity, PT := T#20d);
-  GONE_FOR_5_MINUTES := awayFromHomeFor(awayFor := T#5m);
+  GONE_FOR_5_MINUTES  := awayFromHomeFor(awayFor := T#5m);
+  GONE_FOR_5_HOURS    := awayFromHomeFor(awayFor := T#5h);
   GONE_FOR_SHORT_TIME := awayFromHomeFor(TIME_AWAY_SHORT);
-  GONE_FOR_LONG_TIME := awayFromHomeFor(TIME_AWAY_LONG);
+  GONE_FOR_LONG_TIME  := awayFromHomeFor(TIME_AWAY_LONG);
   
   IF PRESENCE_BASED_HEATING_CONTROL THEN
-     heatingVezerles(onSignal := NOT GONE_FOR_LONG_TIME,
-         offSignal := ((ALARM_ACTIVE AND GONE_FOR_5_MINUTES) OR GONE_FOR_LONG_TIME),
-         name := heatingVezerloNev,
-         controlledVariable := HEATING_ENABLE);
+     heatingControl(requestOn := NOT GONE_FOR_LONG_TIME,
+         requestOff := ((ALARM_ACTIVE AND GONE_FOR_5_MINUTES) OR GONE_FOR_LONG_TIME),
+         name := heatingControllerName);
+     PRESENCE_BASED_HEATING_ENABLE := heatingControl.output;
   END_IF;
-  IF PRESENCE_BASED_HOT_WATER_ENABLE THEN
-     melegVizVezerles(onSignal := NOT GONE_FOR_SHORT_TIME,
-         offSignal := ((ALARM_ACTIVE AND GONE_FOR_5_MINUTES) OR GONE_FOR_SHORT_TIME),
-         name := melegVizVezerloNev,
-         controlledVariable := HOT_WATER_ENABLE);
+  IF PRESENCE_BASED_HOT_WATER_CONTROL THEN
+     hotWaterControl(requestOn := NOT GONE_FOR_SHORT_TIME,
+         requestOff := ((ALARM_ACTIVE AND GONE_FOR_5_MINUTES) OR GONE_FOR_SHORT_TIME),
+         name := hotWaterControllerName);
+     PRESENCE_BASED_HOT_WATER_ENABLE := hotWaterControl.output;
   END_IF;
 
 END_PROGRAM

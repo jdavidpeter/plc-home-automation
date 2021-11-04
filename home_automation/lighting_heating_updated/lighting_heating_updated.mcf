@@ -3,6 +3,7 @@ CONFIGURATION lighting_heating_updated
     TASK FreeWheeling(Number := 0);
     TASK InitialisationBlock(Number := 63);
     TASK FileIO(Number := 6);
+    TASK LazyDigitalIO(Number := 5);
     PROGRAM Lighting_Init WITH InitialisationBlock : LightingInit ();
     PROGRAM Ligting_Control WITH FreeWheeling : LightingControl ();
     PROGRAM Heating_Init WITH InitialisationBlock : HeatingInint ();
@@ -11,5 +12,7 @@ CONFIGURATION lighting_heating_updated
     PROGRAM Alarm_Init WITH InitialisationBlock : AlarmInit ();
     PROGRAM Persist_Data WITH FileIO : PersistData ();
     PROGRAM Persist_Init WITH InitialisationBlock : PersistInit ();
+    PROGRAM Ventillation_Init WITH InitialisationBlock : VentillationInit ();
+    PROGRAM Ventillation_Control WITH FreeWheeling : VentillationControl ();
   END_RESOURCE
 END_CONFIGURATION

@@ -10,6 +10,7 @@ PROGRAM PersistInit
     heatingRootPath : STRING;
     roomTempPath : STRING;
     boilerControlPath : STRING;
+    ventillationControlPath : STRING;
   END_VAR
   VAR_TEMP
   END_VAR
@@ -18,6 +19,7 @@ PROGRAM PersistInit
   heatingRootPath := CONCAT(C_PERSIST_DIRECTORY_ROOT, C_PERSIST_HEATING_SUBDIR);
   roomTempPath := CONCAT(heatingRootPath, C_PERSIST_ROOM_TEMPERATURE_SUBDIR);
   boilerControlPath := CONCAT(heatingRootPath, C_PERSIST_BOILER_CONTROL_SUBDIR);
+  ventillationControlPath := CONCAT(C_PERSIST_DIRECTORY_ROOT, C_VENTILLATION_SUBDIR);
   
   createDirectory(dirPath := C_PERSIST_DIRECTORY_ROOT);
     createDirectory(dirPath := ipidPath);
@@ -54,9 +56,13 @@ PROGRAM PersistInit
     BOOLS_TO_PERSIST[3]       := ADR(PRESENCE_BASED_HEATING_CONTROL);
     BOOLS_TO_PERSIST_NAMES[3] := 'BOILERPC';
     BOOLS_TO_PERSIST_DIRS[3]  := boilerControlPath;
-    BOOLS_TO_PERSIST[4]       := ADR(PRESENCE_BASED_HOT_WATER_ENABLE);
+    BOOLS_TO_PERSIST[4]       := ADR(PRESENCE_BASED_HOT_WATER_CONTROL);
     BOOLS_TO_PERSIST_DIRS[4]  := boilerControlPath;
     BOOLS_TO_PERSIST_NAMES[4] := 'HOTWPC';
+
+    INTS_TO_PERSIST[1]        := ADR(DESIRED_VENTILLATION_LEVEL);
+    INTS_TO_PERSIST_DIRS[1]   := ventillationControlPath;
+    INTS_TO_PERSIST_NAMES[1]  := 'FANLEVEL';
     init := TRUE;
 
   ELSE

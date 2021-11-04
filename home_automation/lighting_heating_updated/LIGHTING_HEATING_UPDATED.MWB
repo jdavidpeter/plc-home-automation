@@ -6,13 +6,15 @@ contentversion=1
 [Watch2Bank0]
 bankname="Bank1"
 shortcut=1
-watchcnt=3
+watchcnt=4
 bindfile=""
-watchobjEx0=0,"Heating_Control.vaillant_opentherm.UC1204_OUT|"
-watchobj0="Heating_Control.vaillant_opentherm.UC1204_OUT",1,0,0,""
-watchobjEx1=0,"OPENTHERM_IN|{+}"
-watchobj1="OPENTHERM_IN",1,0,0,""
-watchobjEx2=0,"OPENTHERM_OUT|{+}"
-watchobj2="OPENTHERM_OUT",1,0,0,""
+watchobjEx0=0,"Ventillation_Control.setPresenceBasedVentillationToACtive.Q|"
+watchobj0="Ventillation_Control.setPresenceBasedVentillationToACtive.Q",1,0,0,""
+watchobjEx1=0,"Ventillation_Control.presenceBasedActivity|"
+watchobj1="Ventillation_Control.presenceBasedActivity",1,0,0,""
+watchobjEx2=0,"Ventillation_Control.setPresenceBasedVentillationToACtive|"
+watchobj2="Ventillation_Control.setPresenceBasedVentillationToACtive",1,0,0,""
+watchobjEx3=0,"Ventillation_Control.setPresenceBasedVentillationToZero|"
+watchobj3="Ventillation_Control.setPresenceBasedVentillationToZero",1,0,0,""
 [/Watch2Bank0]
 
