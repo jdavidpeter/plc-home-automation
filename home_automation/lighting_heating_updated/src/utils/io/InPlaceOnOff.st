@@ -12,12 +12,12 @@ FUNCTION_BLOCK InPlaceOnOff
       sentence : STRING;
     END_VAR
 
-    IF requestOn THEN
+    IF requestOn AND NOT requestOff THEN
        controlledVariable := TRUE;
        sentence := CONCAT(name, ' is ON');
        SWITCH_TRACKER(name := sentence);
     END_IF;
-    IF requestOff THEN
+    IF requestOff AND NOT requestOn THEN
        controlledVariable := FALSE;
        sentence := CONCAT(name, ' is OFF');
        SWITCH_TRACKER(name := sentence);

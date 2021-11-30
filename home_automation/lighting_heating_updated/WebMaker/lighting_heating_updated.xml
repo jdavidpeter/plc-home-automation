@@ -360,7 +360,7 @@
 				<edit variable="NILAN_ACTUAL_VENTILLATION[C_NILAN_ACTUALL_VENTILLATION_FAN_LEVEL_INDEX]" type="INT" intf="0" timf="" align="left" zero="false" prec="0" size="2" global="true" border="true" width="28" height="22" tabindex="8" />
 			</object>
 		</page>
-		<page caption="Fûtés" name="HEATING.XML" background="" bgcolor="16777215" repeat="false" hidden="false" ajax="true" pause="1000" level="0" ucid="1635877985" width="341" height="832" Uid="11328">
+		<page caption="Fûtés" name="HEATING.XML" background="" bgcolor="16777215" repeat="false" hidden="false" ajax="true" pause="1000" level="0" ucid="1638262194" width="345" height="832" Uid="11328">
 			<object caption="" X="3" Y="7" xoff="3" yoff="2" level="0" readonly="false" front="0" back="33023" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="11161">
 				<block width="70" height="70" border="true" />
 			</object>
@@ -368,7 +368,7 @@
 				<block width="140" height="140" border="true" />
 			</object>
 			<object caption="" X="15" Y="47" xoff="7" yoff="2" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="11133">
-				<edit variable="LIVING_ROOM_DESIRED_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="50" height="22" tabindex="1" />
+				<edit variable="LIVING_ROOM_DESIRED_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="55" height="22" tabindex="1" />
 			</object>
 			<object caption="Kívánt és valós hõmérsékletek" X="3" Y="44" xoff="4" yoff="1" level="0" readonly="false" front="0" back="16777215" strong="true" italic="false" size="13" transparent="true" visneg="false" Uid="11134">
 				<label />
@@ -380,13 +380,13 @@
 				<image optcap="Kazán bekapcsolva" variable="VAILANT_BURNER_ON" type="BOOL" on="HEAT1__2.PNG" off="HEAT1__1.PNG" />
 			</object>
 			<object caption="" X="38" Y="9" xoff="3" yoff="6" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="11141" hint="Kazán moduláció">
-				<edit variable="VAILLANT_MODULATION_LEVEL" type="USINT" intf="0" timf="" align="left" zero="false" prec="2" size="4" global="true" border="true" width="42" height="22" tabindex="3" />
+				<edit variable="VAILLANT_MODULATION_LEVEL" type="USINT" intf="0" timf="" align="left" zero="false" prec="2" size="4" global="true" border="true" width="46" height="22" tabindex="3" />
 			</object>
 			<object caption="Moduláció" X="25" Y="10" xoff="7" yoff="3" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="11142">
 				<label />
 			</object>
 			<object caption="" X="38" Y="6" xoff="3" yoff="0" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="11145" hint="Eredõ hõmérséklet igény">
-				<edit variable="SUM_HEATING_WATER_TEMPERATURE_REQUIREMENT" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="4" global="true" border="true" width="42" height="22" tabindex="4" />
+				<edit variable="SUM_HEATING_WATER_TEMPERATURE_REQUIREMENT" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="4" global="true" border="true" width="46" height="22" tabindex="4" />
 			</object>
 			<object caption="Nappali" X="3" Y="47" xoff="4" yoff="5" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="11148">
 				<label />
@@ -395,7 +395,7 @@
 				<block width="280" height="2" border="true" />
 			</object>
 			<object caption="" X="15" Y="51" xoff="7" yoff="0" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="11150">
-				<edit variable="DOWNSTAIRS_BATH_DESIRED_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="50" height="22" tabindex="5" />
+				<edit variable="DOWNSTAIRS_BATH_DESIRED_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="55" height="22" tabindex="5" />
 			</object>
 			<object caption="" X="27" Y="51" xoff="6" yoff="0" level="0" readonly="false" front="32768" back="16777215" strong="true" italic="false" size="13" transparent="false" visneg="false" Uid="11151">
 				<edit variable="DOWNSTAIRS_BATH_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="true" border="true" width="55" height="22" tabindex="6" />
@@ -404,7 +404,7 @@
 				<label />
 			</object>
 			<object caption="" X="15" Y="54" xoff="7" yoff="6" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="11153">
-				<edit variable="GARAGE_DESIRED_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="50" height="22" tabindex="7" />
+				<edit variable="GARAGE_DESIRED_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="55" height="22" tabindex="7" />
 			</object>
 			<object caption="" X="27" Y="54" xoff="6" yoff="6" level="0" readonly="false" front="32768" back="16777215" strong="true" italic="false" size="13" transparent="false" visneg="false" Uid="11154">
 				<edit variable="GARAGE_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="true" border="true" width="55" height="22" tabindex="8" />
@@ -416,7 +416,7 @@
 				<label />
 			</object>
 			<object caption="" X="38" Y="13" xoff="3" yoff="4" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="11157" hint="Eredõ hõmérséklet igény">
-				<edit variable="VAILLANT_HEATING_TEMP" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="4" global="true" border="true" width="42" height="22" tabindex="9" />
+				<edit variable="VAILLANT_HEATING_TEMP" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="4" global="true" border="true" width="46" height="22" tabindex="9" />
 			</object>
 			<object caption="Elõremenõ T" X="25" Y="13" xoff="7" yoff="7" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="11158">
 				<label />
@@ -449,13 +449,13 @@
 				<label />
 			</object>
 			<object caption="" X="38" Y="17" xoff="3" yoff="0" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="11170" hint="Eredõ hõmérséklet igény">
-				<edit variable="VAILLANT_RETURN_WATER_TEMP" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="4" global="true" border="true" width="42" height="22" tabindex="10" />
+				<edit variable="VAILLANT_RETURN_WATER_TEMP" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="4" global="true" border="true" width="46" height="22" tabindex="10" />
 			</object>
 			<object caption="Visszatérõ T" X="25" Y="17" xoff="7" yoff="3" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="11171">
 				<label />
 			</object>
 			<object caption="" X="15" Y="58" xoff="7" yoff="4" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="11246">
-				<edit variable="BEDROOM_DESIRED_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="50" height="22" tabindex="11" />
+				<edit variable="BEDROOM_DESIRED_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="55" height="22" tabindex="11" />
 			</object>
 			<object caption="" X="27" Y="58" xoff="6" yoff="4" level="0" readonly="false" front="32768" back="16777215" strong="true" italic="false" size="13" transparent="false" visneg="false" Uid="11247">
 				<edit variable="BEDROOM_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="true" border="true" width="55" height="22" tabindex="13" />
@@ -464,7 +464,7 @@
 				<label />
 			</object>
 			<object caption="" X="15" Y="66" xoff="7" yoff="0" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="11249">
-				<edit variable="CHILDRENS_ROOM_3_DESIRED_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="50" height="22" tabindex="14" />
+				<edit variable="CHILDRENS_ROOM_3_DESIRED_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="55" height="22" tabindex="14" />
 			</object>
 			<object caption="" X="27" Y="66" xoff="6" yoff="0" level="0" readonly="false" front="32768" back="16777215" strong="true" italic="false" size="13" transparent="false" visneg="false" Uid="11250">
 				<edit variable="CHILDRENS_ROOM_3_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="true" border="true" width="55" height="22" tabindex="15" />
@@ -472,31 +472,22 @@
 			<object caption="Háló" X="3" Y="66" xoff="4" yoff="3" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="11251">
 				<label />
 			</object>
-			<object caption="" X="15" Y="69" xoff="7" yoff="6" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="11252">
-				<edit variable="CHILDRENS_ROOM_2_DESIRED_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="50" height="22" tabindex="16" />
+			<object caption="" X="15" Y="73" xoff="7" yoff="4" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="11255">
+				<edit variable="CHILDRENS_ROOM_1_DESIRED_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="55" height="22" tabindex="16" />
 			</object>
-			<object caption="" X="27" Y="69" xoff="6" yoff="6" level="0" readonly="false" front="32768" back="16777215" strong="true" italic="false" size="13" transparent="false" visneg="false" Uid="11253">
-				<edit variable="CHILDRENS_ROOM_2_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="true" border="true" width="55" height="22" tabindex="17" />
+			<object caption="" X="27" Y="73" xoff="6" yoff="4" level="0" readonly="false" front="32768" back="16777215" strong="true" italic="false" size="13" transparent="false" visneg="false" Uid="11256">
+				<edit variable="CHILDRENS_ROOM_1_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="true" border="true" width="55" height="22" tabindex="19" />
 			</object>
-			<object caption="Raktárszoba" X="3" Y="70" xoff="5" yoff="1" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="11254">
+			<object caption="Gyerekszoba 1" X="3" Y="73" xoff="4" yoff="7" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="11257">
 				<label />
 			</object>
-			<object caption="" X="15" Y="77" xoff="7" yoff="2" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="11255">
-				<edit variable="CHILDRENS_ROOM_1_DESIRED_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="50" height="22" tabindex="18" />
+			<object caption="" X="15" Y="69" xoff="7" yoff="6" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="11258">
+				<edit variable="UPSTAIRS_BATH_DESIRED_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="55" height="22" tabindex="22" />
 			</object>
-			<object caption="" X="27" Y="77" xoff="6" yoff="2" level="0" readonly="false" front="32768" back="16777215" strong="true" italic="false" size="13" transparent="false" visneg="false" Uid="11256">
-				<edit variable="CHILDRENS_ROOM_1_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="true" border="true" width="55" height="22" tabindex="21" />
+			<object caption="" X="27" Y="69" xoff="6" yoff="6" level="0" readonly="false" front="32768" back="16777215" strong="true" italic="false" size="13" transparent="false" visneg="false" Uid="11259">
+				<edit variable="UPSTAIRS_BATH_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="true" border="true" width="55" height="22" tabindex="23" />
 			</object>
-			<object caption="Gyerekszoba 1" X="3" Y="77" xoff="4" yoff="5" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="11257">
-				<label />
-			</object>
-			<object caption="" X="15" Y="73" xoff="7" yoff="4" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="11258">
-				<edit variable="UPSTAIRS_BATH_DESIRED_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="50" height="22" tabindex="24" />
-			</object>
-			<object caption="" X="27" Y="73" xoff="6" yoff="4" level="0" readonly="false" front="32768" back="16777215" strong="true" italic="false" size="13" transparent="false" visneg="false" Uid="11259">
-				<edit variable="UPSTAIRS_BATH_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="true" border="true" width="55" height="22" tabindex="25" />
-			</object>
-			<object caption="Felsõ fürdõ" X="3" Y="73" xoff="5" yoff="7" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="11260">
+			<object caption="Felsõ fürdõ" X="3" Y="70" xoff="5" yoff="1" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="11260">
 				<label />
 			</object>
 			<object caption="" X="36" Y="47" xoff="2" yoff="1" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="heatingRequests[C_LIVING_ROOM_1_INDEX]" vistype="BOOL" visneg="false" Uid="11263">
@@ -514,29 +505,26 @@
 			<object caption="" X="36" Y="66" xoff="2" yoff="0" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="heatingRequests[C_CHILDRENS_ROOM_3_INDEX]" vistype="BOOL" visneg="false" Uid="11267">
 				<picture href="" img="HEAT1__4.PNG" />
 			</object>
-			<object caption="" X="36" Y="69" xoff="2" yoff="7" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="heatingRequests[C_CHILDRENS_ROOM_2_INDEX]" vistype="BOOL" visneg="false" Uid="11268">
+			<object caption="" X="36" Y="73" xoff="2" yoff="5" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="heatingRequests[C_CHILDRENS_ROOM_1_INDEX]" vistype="BOOL" visneg="false" Uid="11269">
 				<picture href="" img="HEAT1__4.PNG" />
 			</object>
-			<object caption="" X="36" Y="77" xoff="2" yoff="3" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="heatingRequests[C_CHILDRENS_ROOM_1_INDEX]" vistype="BOOL" visneg="false" Uid="11269">
-				<picture href="" img="HEAT1__4.PNG" />
-			</object>
-			<object caption="" X="36" Y="73" xoff="2" yoff="3" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="heatingRequests[C_UPSTAIRS_BATH_INDEX]" vistype="BOOL" visneg="false" Uid="11270">
+			<object caption="" X="36" Y="69" xoff="2" yoff="5" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="heatingRequests[C_UPSTAIRS_BATH_INDEX]" vistype="BOOL" visneg="false" Uid="11270">
 				<picture href="" img="HEAT1__4.PNG" />
 			</object>
 			<object caption="" X="15" Y="94" xoff="0" yoff="3" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="11286">
-				<edit variable="WC_DESIRED_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="50" height="22" tabindex="26" />
+				<edit variable="WC_DESIRED_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="55" height="22" tabindex="24" />
 			</object>
 			<object caption="WC" X="3" Y="94" xoff="4" yoff="6" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="11288">
 				<label />
 			</object>
 			<object caption="" X="15" Y="98" xoff="0" yoff="1" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="11289">
-				<edit variable="HALLWAY_DESIRED_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="50" height="22" tabindex="27" />
+				<edit variable="HALLWAY_DESIRED_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="55" height="22" tabindex="25" />
 			</object>
 			<object caption="Folyosó" X="3" Y="98" xoff="5" yoff="4" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="11291">
 				<label />
 			</object>
 			<object caption="" X="15" Y="101" xoff="0" yoff="7" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="11292" hint="Living room kívánt hõmérséklet">
-				<edit variable="BOILER_DESIRED_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="50" height="22" tabindex="28" />
+				<edit variable="BOILER_DESIRED_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="55" height="22" tabindex="26" />
 			</object>
 			<object caption="Kazán" X="3" Y="102" xoff="4" yoff="2" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="11294">
 				<label />
@@ -557,19 +545,19 @@
 				<block width="280" height="2" border="true" />
 			</object>
 			<object caption="" X="26" Y="94" xoff="7" yoff="3" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="11305">
-				<edit variable="WC_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="50" height="22" tabindex="29" />
+				<edit variable="WC_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="55" height="22" tabindex="27" />
 			</object>
 			<object caption="" X="26" Y="98" xoff="7" yoff="1" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="11306">
-				<edit variable="HALLWAY_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="50" height="22" tabindex="30" />
+				<edit variable="HALLWAY_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="55" height="22" tabindex="28" />
 			</object>
 			<object caption="" X="26" Y="101" xoff="7" yoff="7" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="11307" hint="Living room kívánt hõmérséklet">
-				<edit variable="BOILER_ROOM_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="50" height="22" tabindex="31" />
+				<edit variable="BOILER_ROOM_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="55" height="22" tabindex="29" />
 			</object>
 			<object caption="" X="15" Y="62" xoff="7" yoff="2" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="11309">
-				<edit variable="HALL_DESIRED_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="50" height="22" tabindex="32" />
+				<edit variable="HALL_DESIRED_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="55" height="22" tabindex="30" />
 			</object>
 			<object caption="" X="27" Y="62" xoff="6" yoff="2" level="0" readonly="false" front="32768" back="16777215" strong="true" italic="false" size="13" transparent="false" visneg="false" Uid="11310">
-				<edit variable="HALL_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="true" border="true" width="55" height="22" tabindex="33" />
+				<edit variable="HALL_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="true" border="true" width="55" height="22" tabindex="31" />
 			</object>
 			<object caption="Elõszoba" X="3" Y="62" xoff="5" yoff="5" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="11311">
 				<label />
@@ -578,7 +566,7 @@
 				<picture href="" img="HEAT1__4.PNG" />
 			</object>
 			<object caption="" X="14" Y="19" xoff="3" yoff="4" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="11408">
-				<edit variable="HOT_WATER_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="50" height="22" tabindex="12" />
+				<edit variable="HOT_WATER_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="55" height="22" tabindex="12" />
 			</object>
 			<object caption="Meleg víz hõ" X="2" Y="19" xoff="7" yoff="7" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="11409">
 				<label />
@@ -613,28 +601,28 @@
 			<object caption="Meleg víz" X="13" Y="37" xoff="6" yoff="2" level="0" readonly="false" front="0" back="16777215" strong="true" italic="false" size="13" transparent="true" visneg="false" Uid="11419">
 				<label />
 			</object>
-			<object caption="" X="15" Y="81" xoff="7" yoff="0" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="11484">
-				<edit variable="CHILDRENS_ROOM_2_DESIRED_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="50" height="22" tabindex="19" />
+			<object caption="" X="15" Y="77" xoff="7" yoff="2" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="11484">
+				<edit variable="CHILDRENS_ROOM_2_DESIRED_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="55" height="22" tabindex="17" />
 			</object>
-			<object caption="" X="27" Y="81" xoff="6" yoff="0" level="0" readonly="false" front="32768" back="16777215" strong="true" italic="false" size="13" transparent="false" visneg="false" Uid="11485">
-				<edit variable="CHILDRENS_ROOM_2_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="true" border="true" width="55" height="22" tabindex="22" />
+			<object caption="" X="27" Y="77" xoff="6" yoff="2" level="0" readonly="false" front="32768" back="16777215" strong="true" italic="false" size="13" transparent="false" visneg="false" Uid="11485">
+				<edit variable="CHILDRENS_ROOM_2_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="true" border="true" width="55" height="22" tabindex="20" />
 			</object>
-			<object caption="Gyerekszoba 2" X="3" Y="81" xoff="4" yoff="3" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="11486">
+			<object caption="Gyerekszoba 2" X="3" Y="77" xoff="4" yoff="5" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="11486">
 				<label />
 			</object>
-			<object caption="" X="36" Y="81" xoff="2" yoff="1" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="heatingRequests[C_CHILDRENS_ROOM_1_INDEX]" vistype="BOOL" visneg="false" Uid="11487">
+			<object caption="" X="36" Y="77" xoff="2" yoff="3" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="heatingRequests[C_CHILDRENS_ROOM_2_INDEX]" vistype="BOOL" visneg="false" Uid="11487">
 				<picture href="" img="HEAT1__4.PNG" />
 			</object>
-			<object caption="" X="15" Y="84" xoff="7" yoff="6" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="11488">
-				<edit variable="CHILDRENS_ROOM_3_DESIRED_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="50" height="22" tabindex="20" />
+			<object caption="" X="15" Y="81" xoff="7" yoff="0" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="11488">
+				<edit variable="CHILDRENS_ROOM_3_DESIRED_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="false" border="true" width="55" height="22" tabindex="18" />
 			</object>
-			<object caption="" X="27" Y="84" xoff="6" yoff="6" level="0" readonly="false" front="32768" back="16777215" strong="true" italic="false" size="13" transparent="false" visneg="false" Uid="11489">
-				<edit variable="CHILDRENS_ROOM_3_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="true" border="true" width="55" height="22" tabindex="23" />
+			<object caption="" X="27" Y="81" xoff="6" yoff="0" level="0" readonly="false" front="32768" back="16777215" strong="true" italic="false" size="13" transparent="false" visneg="false" Uid="11489">
+				<edit variable="CHILDRENS_ROOM_3_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="true" border="true" width="55" height="22" tabindex="21" />
 			</object>
-			<object caption="Gyerekszoba 3" X="3" Y="85" xoff="4" yoff="1" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="11490">
+			<object caption="Gyerekszoba 3" X="3" Y="81" xoff="4" yoff="3" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="11490">
 				<label />
 			</object>
-			<object caption="" X="36" Y="84" xoff="2" yoff="7" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="heatingRequests[C_CHILDRENS_ROOM_1_INDEX]" vistype="BOOL" visneg="false" Uid="11491">
+			<object caption="" X="36" Y="81" xoff="2" yoff="1" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="heatingRequests[C_CHILDRENS_ROOM_3_INDEX]" vistype="BOOL" visneg="false" Uid="11491">
 				<picture href="" img="HEAT1__4.PNG" />
 			</object>
 		</page>
