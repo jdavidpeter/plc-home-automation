@@ -30,17 +30,17 @@ Program LightingControl
     domesticHotWaterCirculation_in : OnThenOffPulse;
     garageGate_in : OnThenOffPulse;
     
-    exhaustRequest: BOOL := false;
-    wcExhaustDelay : TON;
+    exhaustRequest     : BOOL := false;
+    wcExhaustDelay     : TON;
     wcExhaustDelayTime : TIME := T#4m;
-    upstairsBathroomExhaustDelay : TON;
+    upstairsBathroomExhaustDelay     : TON;
     upstairsBathroomExhaustDelayTime : TIME := T#8m;
-    upstairsShowerExhaustDelay : TON;
-    upstairsShowerExhaustDelayTime : TIME := T#3m;
-    exhaustFan_in : BathroomFanOnOff;
+    upstairsShowerExhaustDelay       : TON;
+    upstairsShowerExhaustDelayTime   : TIME := T#3m;
+    exhaustFan_in     : BathroomFanOnOff;
     exhaustFanRuntime : TIME := T#10m;
     
-    lightsKapcsolok : ControllerArray;
+    lightsSwitches : ControllerArray;
     lightsControlBasedOnOccupancy : TurnOffLightsHelper;
     
     i : INT := 0;
@@ -70,12 +70,12 @@ Program LightingControl
     HALLWAY_LIGHTS_COMBINED_IN := HALLWAY_LIGHTS_IN OR STAIRS_LIGHTS_IN;
   
     FOR i := 0 TO C_LIGHTS_ZONES_COUNT - 1 DO
-        lightsKapcsolok[i]( requestChange := (LIGHTS_INPUTS[i]^ OR VIRTUAL_LIGHTS_INPUTS[i]^) );
-        LIGHTS_OUTPUTS[i]^ := lightsKapcsolok[i].output;
+        lightsSwitches[i]( requestChange := (LIGHTS_INPUTS[i]^ OR VIRTUAL_LIGHTS_INPUTS[i]^) );
+        LIGHTS_OUTPUTS[i]^ := lightsSwitches[i].output;
         VIRTUAL_LIGHTS_INPUTS[i]^ := FALSE;
     END_FOR;
     
-    lightsControlBasedOnOccupancy( offSignal := (ALARM_ACTIVE AND GONE_FOR_SHORT_TIME), controllers := lightsKapcsolok );
+    lightsControlBasedOnOccupancy( offSignal := (ALARM_ACTIVE AND GONE_FOR_SHORT_TIME), controllers := lightsSwitches );
   
 END_PROGRAM
 
