@@ -3,10 +3,10 @@ Version="xPRO","4.3.00"
 [/desktop]
 
 [dockinfo]
-centralpc=52348540,1,1,1
-leftpane=52342868,0,0,1,374,0
-bottompane=52313180,1,298
-rightpane=52315448,1,415,0
+centralpc=53397116,1,1,1
+leftpane=53391416,0,0,1,374,0
+bottompane=53361444,1,298
+rightpane=53363692,1,415,0
 [/dockinfo]
 
 [closedtextpaneleditors]
@@ -35,6 +35,11 @@ maskhistory=""
 [/txtextsyneditor]
 
 [closedtextsyneditors]
+txsyned="SRC\UTILS\IO\InPlaceOnOff.st",20,26,1,1,1,1,2892930304,30926276,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+txsyned="src\alarm\Alarm.st",36,72,1,1,1,1,1105313792,30932923,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+txsyned="SRC\ALARM\AlarmGlobals.st",40,5,1,1,1,1,3353458176,30921094,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+txsyned="src\heating\HeatingInint.st",52,59,1,1,1,1,1158127616,30914204,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+txsyned="src\heating\Heating.st",41,58,1,1,1,1,3353458176,30921094,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 txsyned="SRC\VENTILLATION\VENTILLATIONINIT.ST",52,1,1,1,1,1,3353458176,30921094,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 txsyned="src\heating\HeatingGlobals.st",1,1,1,1,1,1,3353458176,30921094,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 txsyned="LOCALLIB\StdLib_V22_20180619.mlb",1,1,1,1,1,1,252988160,30826290,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
@@ -48,7 +53,6 @@ txsyned="src\persist\PersistGlobals.st",11,5,1,1,1,1,3548617984,30920946,0,0,0,0
 txsyned="src\utils\persist\PersistFramework.st",316,38,1,1,1,1,3428617984,30920946,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 txsyned="lighting_heating_updated.mcf",14,59,1,1,1,1,812019200,30921050,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 txsyned="SRC\LIGHTING\LightingGlobals.st",37,5,1,1,1,1,2647309824,30920906,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-txsyned="src\lighting\Lighting.st",1,1,1,1,1,1,952011776,30920744,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 txsyned="src\heating\VaillantGlobals.st",1,1,1,1,1,1,252988160,30826290,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 txsyned="src\ventillation\Ventillation_Control.st",1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 txsyned="IOCONFIGURATOR\CONFIG.HWC",686,1,1,1,1,1,1633036032,30919858,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
@@ -135,25 +139,25 @@ nodeplus="PlcIde"
 [/prjmngr]
 
 [msgwin2]
-window=52313180,1,0,0,268,1699,39,429,268,850,0,0,1
+window=53361444,1,0,0,268,1699,39,429,268,850,0,0,1
 [/msgwin2]
 
 [msgwin1]
-window=52313180,1,0,0,268,1699,39,429,268,850,0,0,0
+window=53361444,1,0,0,268,1699,39,429,268,850,0,0,0
 [/msgwin1]
 
 [symbwin]
-window=52313180,1,0,0,268,1699,39,429,268,850,0,0,2
+window=53361444,1,0,0,268,1699,39,429,268,850,0,0,2
 hdrwidth2=100
 hdrwidth3=100
 [/symbwin]
 
 [openfileswin]
-window=52342868,1,0,0,504,366,676,100,676,366,0,0,2
+window=53391416,1,0,0,504,366,676,100,676,366,0,0,2
 [/openfileswin]
 
 [prjfileswin]
-window=52342868,1,0,0,504,366,676,100,676,366,0,0,1
+window=53391416,1,0,0,504,366,676,100,676,366,0,0,1
 filesheight=217
 relatedcnt=3
 relfile0="Sysgen\lighting_heating_updated.map"
@@ -162,7 +166,7 @@ relfile2="SendRoot\TecoApi.pub"
 [/prjfileswin]
 
 [ctrlswin]
-window=52342868,1,0,0,504,366,600,42,600,366,0,0,0
+window=53391416,1,0,0,504,366,600,42,600,366,0,0,0
 [/ctrlswin]
 
 [accwin]
@@ -196,7 +200,7 @@ font="Consolas",1,0,10,-13,-2147483640,0,0
 [/memwin2]
 
 [watch2win]
-window=52313180,1,0,0,268,1699,39,429,268,850,0,0,4
+window=53361444,1,0,0,268,1699,39,429,268,850,0,0,4
 hdrnamew=447,210,0
 font96dpi="Courier New",10
 fonthires="Consolas",10
@@ -207,7 +211,7 @@ alignnumbers=0
 showanalyserr=0
 accsvisible=0
 accsw=152
-mem1w=199
+mem1w=191
 mem1visible=1
 mem2w=190
 mem2visible=0
@@ -226,20 +230,20 @@ window=0,0,0,0,420,638,336,227,549,960,0,1,-1
 [/evalmodifdlg]
 
 [paneltexted]
-editor="XClip-Panel",1,0,1,1,1,1,5145490,1700388,202645484,1700780,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+editor="XClip-Panel",1,0,1,1,1,1,5145490,1700388,178527876,1700780,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 window=0,0,0,94,313,483,313,463,313,483,0,1,-1
 font="Lucida Console",11
 [/paneltexted]
 
 [Datalogger]
-window=52348540,0,0,0,615,1528,187,259,517,1109,0,0,0
+window=53397116,0,0,0,615,1528,187,259,517,1109,0,0,0
 [/Datalogger]
 
 [CFC_Editors]
 [/CFC_Editors]
 
 [IOConfigurator]
-window=52315448,1,0,0,504,407,534,136,551,407,0,0,0
+window=53363692,1,0,0,504,407,534,136,551,407,0,0,0
 [/IOConfigurator]
 
 [PanelSIM_1]
@@ -256,57 +260,9 @@ SortPlcs=1
 window=0,0,0,0,420,272,642,134,642,272,0,0,-1
 [/PlcNetManager]
 
-[FormDesign1]
-window=52348540,1,0,0,504,902,654,1123,654,1123,0,0,6
-[/FormDesign1]
-
 [textsyneditor]
-editor="src\heating\Heating.st",1,0,0,41,58,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=52348540,1,0,0,504,902,836,1707,654,1123,0,0,1
-localparams=0,1,1,1,1,30,0,80,1,2,1,0
-font="Courier New",10
-fonthires="Lucida Console",11
-relay=0,0,0,0,0,"",0,0
-inspectorctx="Heating_Control"
-debugparams=1,0,1
-[/textsyneditor]
-
-[textsyneditor]
-editor="src\heating\HeatingInint.st",1,0,0,52,59,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=52348540,1,0,0,504,902,836,1707,654,1123,0,0,2
-localparams=0,1,1,1,1,30,0,80,1,2,1,0
-font="Courier New",10
-fonthires="Lucida Console",11
-relay=0,0,0,0,0,"",0,0
-inspectorctx=""
-debugparams=1,0,1
-[/textsyneditor]
-
-[textsyneditor]
-editor="SRC\ALARM\AlarmGlobals.st",1,0,0,40,5,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=52348540,1,0,0,504,902,654,1123,654,1123,0,0,3
-localparams=0,1,1,1,1,30,0,80,1,2,1,0
-font="Courier New",10
-fonthires="Lucida Console",11
-relay=0,0,0,0,0,"",0,0
-inspectorctx=""
-debugparams=1,0,1
-[/textsyneditor]
-
-[textsyneditor]
-editor="src\alarm\Alarm.st",1,0,0,36,72,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=52348540,1,0,0,504,902,654,1123,654,1123,0,0,4
-localparams=0,1,1,1,1,30,0,80,1,2,1,0
-font="Courier New",10
-fonthires="Lucida Console",11
-relay=0,0,0,0,0,"",0,0
-inspectorctx="Alarm_Control"
-debugparams=1,0,1
-[/textsyneditor]
-
-[textsyneditor]
-editor="SRC\UTILS\IO\ChangeOnOff.st",1,0,0,21,29,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=52348540,1,0,0,504,902,654,1123,654,1123,0,0,5
+editor="SRC\UTILS\IO\ChangeOnOff.st",1,0,0,7,19,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
+window=53397116,1,0,0,504,902,836,1707,654,1123,0,0,1
 localparams=0,1,1,1,1,30,0,80,1,2,1,0
 font="Courier New",10
 fonthires="Lucida Console",11
@@ -316,13 +272,13 @@ debugparams=1,0,1
 [/textsyneditor]
 
 [textsyneditor]
-editor="SRC\UTILS\IO\InPlaceOnOff.st",1,0,0,20,26,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=52348540,1,0,0,504,902,654,1123,654,1123,0,0,7
+editor="src\lighting\Lighting.st",1,1,0,73,51,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
+window=53397116,1,0,0,504,902,836,1707,534,910,0,0,2
 localparams=0,1,1,1,1,30,0,80,1,2,1,0
 font="Courier New",10
 fonthires="Lucida Console",11
 relay=0,0,0,0,0,"",0,0
-inspectorctx="presenceBasedHeatingControl : InPlaceOnOff{1}Heating_Control"
+inspectorctx=""
 debugparams=1,0,1
 [/textsyneditor]
 
