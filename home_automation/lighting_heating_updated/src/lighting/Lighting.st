@@ -70,7 +70,8 @@ Program LightingControl
     HALLWAY_LIGHTS_COMBINED_IN := HALLWAY_LIGHTS_IN OR STAIRS_LIGHTS_IN;
   
     FOR i := 0 TO C_LIGHTS_ZONES_COUNT - 1 DO
-        lightsSwitches[i]( requestChange := (LIGHTS_INPUTS[i]^ OR VIRTUAL_LIGHTS_INPUTS[i]^) );
+        lightsSwitches[i]( requestChange := (LIGHTS_INPUTS[i]^ OR VIRTUAL_LIGHTS_INPUTS[i]^) ); // This line works just fine
+        lightsSwitches[i]( name := 'Dummy' ); // Error: Unexpected character
         LIGHTS_OUTPUTS[i]^ := lightsSwitches[i].output;
         VIRTUAL_LIGHTS_INPUTS[i]^ := FALSE;
     END_FOR;
