@@ -27,6 +27,7 @@ END_FUNCTION_BLOCK // Helper function block
 Program LightingControl
 
   VAR
+    temp : PTR_TO ChangeOnOff;
     domesticHotWaterCirculation_in : OnThenOffPulse;
     garageGate_in : OnThenOffPulse;
     
@@ -71,6 +72,8 @@ Program LightingControl
   
     FOR i := 0 TO C_LIGHTS_ZONES_COUNT - 1 DO
         lightsSwitches[i]( requestChange := (LIGHTS_INPUTS[i]^ OR VIRTUAL_LIGHTS_INPUTS[i]^) );
+        temp := ADR(lightsSwitches[i]);
+        temp(requestChange := TRUE); // This line crashes mosaic
         LIGHTS_OUTPUTS[i]^ := lightsSwitches[i].output;
         VIRTUAL_LIGHTS_INPUTS[i]^ := FALSE;
     END_FOR;
