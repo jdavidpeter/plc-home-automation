@@ -49,7 +49,11 @@ Program LightingControl
 
     KITCHEN_FURNITURE_LIGHTS_OUT := TRUE; // We have the door bell in that socket for now.
 
-    domesticHotWaterCirculation_in(timeOn := T#2m, timeOff := T#20m, onSignal := (KERINTGETES_SWITCH_IN OR KITCHEN_FURNITURE_LIGHTS_IN OR VIRTUAL_CIRCULATION_SWITCH_IN));
+    domesticHotWaterCirculation_in(
+        timeOn := T#2m,
+        timeOff := T#20m,
+        onSignal := (KERINTGETES_SWITCH_IN OR KITCHEN_FURNITURE_LIGHTS_IN OR VIRTUAL_CIRCULATION_SWITCH_IN),
+        name := 'Domestic hot water circulation');
     BOILER_PUMP_PLUG_RIGHT := domesticHotWaterCirculation_in.active;
     VIRTUAL_CIRCULATION_SWITCH_IN := FALSE;
 
@@ -63,7 +67,7 @@ Program LightingControl
     EXHAUST_FAN_OUT := exhaustFan_in.out;
     VIRTUAL_EXHAUST_FAN_IN := FALSE;
   
-    garageGate_in(onSignal := GARAGE_GATE_IN OR VIRTUAL_GARAGE_DOOR_OPENER, timeOn := T#0.2s, timeOff := T#0.2s);
+    garageGate_in(onSignal := GARAGE_GATE_IN OR VIRTUAL_GARAGE_DOOR_OPENER, timeOn := T#0.2s, timeOff := T#0.2s, name := 'Garage gate');
     GARAGE_GATE_OUT := garageGate_in.active;
     VIRTUAL_GARAGE_DOOR_OPENER := FALSE;
   
@@ -71,7 +75,8 @@ Program LightingControl
   
     FOR i := 0 TO C_LIGHTS_ZONES_COUNT - 1 DO
         lightsSwitches[i].name := LIGHTS_NAMES[i];
-        lightsSwitches[i]( requestChange := (LIGHTS_INPUTS[i]^ OR VIRTUAL_LIGHTS_INPUTS[i]^) );
+        lightsSwitches[i].requestChange := LIGHTS_INPUTS[i]^ OR VIRTUAL_LIGHTS_INPUTS[i]^;
+        lightsSwitches[i]();
         LIGHTS_OUTPUTS[i]^ := lightsSwitches[i].output;
         VIRTUAL_LIGHTS_INPUTS[i]^ := FALSE;
     END_FOR;

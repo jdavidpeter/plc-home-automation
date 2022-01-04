@@ -1,8 +1,13 @@
 FUNCTION_BLOCK OnThenOffPulse
+  VAR_INPUT CONSTANT
+     name : STRING;
+  END_VAR
+
   VAR_INPUT
      timeOn   : TIME;
      timeOff  : TIME;
      onSignal : BOOL R_EDGE;
+     sentence : STRING;
   END_VAR
 
   VAR_OUTPUT
@@ -28,6 +33,8 @@ FUNCTION_BLOCK OnThenOffPulse
      active := true;
   END_IF;
 
-  out(onSignal := outTrigger, duration := timeOn);
-  idle(onSignal := idleTrigger, duration := timeOff);
+  sentence := concat(name, ' out');
+  out(onSignal := outTrigger, duration := timeOn, name := sentence);
+  sentence := concat(name, ' idle');
+  idle(onSignal := idleTrigger, duration := timeOff, name := sentence);
 END_FUNCTION_BLOCK
