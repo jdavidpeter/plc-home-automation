@@ -60,9 +60,13 @@ PROGRAM PersistInit
     BOOLS_TO_PERSIST_DIRS[4]  := boilerControlPath;
     BOOLS_TO_PERSIST_NAMES[4] := 'HOTWPC';
 
-    INTS_TO_PERSIST[1]        := ADR(DESIRED_VENTILLATION_LEVEL);
+    INTS_TO_PERSIST[1]        := ADR(NILAN_DESIRED_VENTILLATION_LEVEL);
     INTS_TO_PERSIST_DIRS[1]   := ventillationControlPath;
     INTS_TO_PERSIST_NAMES[1]  := 'FANLEVEL';
+    INTS_TO_PERSIST[2]        := ADR(NILAN_DESIRED_TEMPERATURE);
+    INTS_TO_PERSIST_DIRS[2]   := ventillationControlPath;
+    INTS_TO_PERSIST_NAMES[2]  := 'NILANTEMP';
+
     init := TRUE;
 
   ELSE

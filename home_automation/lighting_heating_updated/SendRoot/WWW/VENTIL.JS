@@ -45,28 +45,80 @@ if(xmlhttpGET.status != 200){
 alert('Problem retrieving XML data ' + xmlhttpGET.statusText + '(' + xmlhttpGET.status + ')');
 document.location.reload(true)
 return;}
-var access = xmlhttpGET.responseXML.documentElement.getElementsByTagName('ACCESS')[0]; if(!access || access.getAttribute('UCID') != 1649500570) {document.location.reload(true); return;}
+var access = xmlhttpGET.responseXML.documentElement.getElementsByTagName('ACCESS')[0]; if(!access || access.getAttribute('UCID') != 1649619556) {document.location.reload(true); return;}
 var pd = '';
 var x=xmlhttpGET.responseXML.documentElement.getElementsByTagName('INPUT');
 if(x[0]) {
 var Input1 = document.getElementById('INPUT1');
 if(!InputEdited[0]) {
-UpdateValue(Input1, x[0], '#000000');}
+UpdateValue(Input1, x[0], '#008000');}
 var Input2 = document.getElementById('INPUT2');
 if(!InputEdited[1]) {
-UpdateValue(Input2, x[1], '#000000');}
+UpdateValue(Input2, x[1], '#008000');}
 var Input3 = document.getElementById('INPUT3');
 if(!InputEdited[2]) {
-UpdateValue(Input3, x[2], '#000000');}
+UpdateValue(Input3, x[2], '#008000');}
 var Input4 = document.getElementById('INPUT4');
 if(!InputEdited[3]) {
-UpdateValue(Input4, x[3], '#000000');}
+UpdateValue(Input4, x[3], '#008000');}
 var Input5 = document.getElementById('INPUT5');
 if(!InputEdited[4]) {
-UpdateValue(Input5, x[4], '#000000');}
+UpdateValue(Input5, x[4], '#008000');}
+var Input6 = document.getElementById('INPUT6');
+if(!InputEdited[5]) {
+UpdateValue(Input6, x[5], '#0080FF');}
+var Input7 = document.getElementById('INPUT7');
+if(x[6].getAttribute('VALUE') == '0') {
+Input7.style.visibility = 'hidden';
+} else {
+Input7.style.visibility = 'visible';
+}
+var Input8 = document.getElementById('INPUT8');
+if(!InputEdited[7]) {
+UpdateValue(Input8, x[7], '#008000');}
+var Input9 = document.getElementById('INPUT9');
+if(!InputEdited[8]) {
+UpdateValue(Input9, x[8], '#FF0000');}
+var Input10 = document.getElementById('INPUT10');
+if(!InputEdited[9]) {
+UpdateValue(Input10, x[9], '#008000');}
+var Input11 = document.getElementById('INPUT11');
+if(!InputEdited[10]) {
+UpdateValue(Input11, x[10], '#000000');}
+var Input12 = document.getElementById('INPUT12');
+var Input12h = document.getElementById('INPUT12h');
+if(Input12h) { vz = x[11].getAttribute('VALUE') == '0'; iz = Input12h.value == '0';
+if(vz == iz) {
+if(vz) {
+Input12h.value = '1';
+Input12.style.backgroundImage = 'url("IMAGES/FAN1_O_2.PNG")';
+if(Input12.getAttribute('value') != null) {Input12.value = '';} else {}
+} else {
+Input12h.value = '0';
+Input12.style.backgroundImage = 'url("IMAGES/FAN1_O_1.PNG")';
+if(Input12.getAttribute('value') != null) {Input12.value = '';
+} else {}
+}}} else {
+if(x[11].getAttribute('VALUE') == '0') {
+SetBg('INPUT12', 'FAN1_O_2.PNG');
+} else {
+SetBg('INPUT12', 'FAN1_O_1.PNG');
+}}
+var Input13 = document.getElementById('INPUT13');
+if(!InputEdited[12]) {
+UpdateValue(Input13, x[12], '#000000');}
+var Input14 = document.getElementById('INPUT14');
+if(!InputEdited[13]) {
+UpdateValue(Input14, x[11], '#008000');}
+var Input15 = document.getElementById('INPUT15');
+if(x[13].getAttribute('VALUE') == '0') {
+Input15.style.visibility = 'hidden';
+} else {
+Input15.style.visibility = 'visible';
+}
 } else {document.location.reload(true); return;}
 } catch(err) {console.log(err.message)}
-if(pd!=''){setTimeout("GetXML('TUNING.XML','"+pd+"')",1);}else{setTimeout("GetXML('TUNING.XML')",1000);}}
+if(pd!=''){setTimeout("GetXML('VENTIL.XML','"+pd+"')",1);}else{setTimeout("GetXML('VENTIL.XML')",1000);}}
 function FunWatchDog() {
 if(gWatchDog > 0 || g_postInProgress) {
 gWatchDog = 0;
@@ -76,36 +128,43 @@ document.location.reload(true);
 setTimeout("FunWatchDog()", 20000);
 }
 
-function PostXML1() {
-var Input1 = document.getElementById('INPUT1');
-document.getElementById('INPUT1x').style.visibility = 'hidden';if(InputEdited[0]) {
-PostXML('TUNING.XML', encodeURIComponent(Input1.name+'='+Input1.value)); InputEdited[0] = 0;
+function PostXML11() {
+var Input11 = document.getElementById('INPUT11');
+document.getElementById('INPUT11x').style.visibility = 'hidden';if(InputEdited[10]) {
+PostXML('VENTIL.XML', encodeURIComponent(Input11.name+'='+Input11.value)); InputEdited[10] = 0;
 }
 }
-function PostXML2() {
-var Input2 = document.getElementById('INPUT2');
-document.getElementById('INPUT2x').style.visibility = 'hidden';if(InputEdited[1]) {
-PostXML('TUNING.XML', encodeURIComponent(Input2.name+'='+Input2.value)); InputEdited[1] = 0;
+function PostXML12() {
+var Input12h = document.getElementById('INPUT12h');
+PostXML('VENTIL.XML', encodeURIComponent(Input12h.name+'='+Input12h.value));
 }
-}
-function PostXML3() {
-var Input3 = document.getElementById('INPUT3');
-document.getElementById('INPUT3x').style.visibility = 'hidden';if(InputEdited[2]) {
-PostXML('TUNING.XML', encodeURIComponent(Input3.name+'='+Input3.value)); InputEdited[2] = 0;
-}
-}
-function PostXML4() {
-var Input4 = document.getElementById('INPUT4');
-document.getElementById('INPUT4x').style.visibility = 'hidden';if(InputEdited[3]) {
-PostXML('TUNING.XML', encodeURIComponent(Input4.name+'='+Input4.value)); InputEdited[3] = 0;
-}
-}
-function PostXML5() {
-var Input5 = document.getElementById('INPUT5');
-document.getElementById('INPUT5x').style.visibility = 'hidden';if(InputEdited[4]) {
-PostXML('TUNING.XML', encodeURIComponent(Input5.name+'='+Input5.value)); InputEdited[4] = 0;
+function PostXML13() {
+var Input13 = document.getElementById('INPUT13');
+document.getElementById('INPUT13x').style.visibility = 'hidden';if(InputEdited[12]) {
+PostXML('VENTIL.XML', encodeURIComponent(Input13.name+'='+Input13.value)); InputEdited[12] = 0;
 }
 }
 
 function PostGlobal() {
+var Input1 = document.getElementById('INPUT1');
+var Input2 = document.getElementById('INPUT2');
+var Input3 = document.getElementById('INPUT3');
+var Input4 = document.getElementById('INPUT4');
+var Input5 = document.getElementById('INPUT5');
+var Input6 = document.getElementById('INPUT6');
+var Input8 = document.getElementById('INPUT8');
+var Input9 = document.getElementById('INPUT9');
+var Input10 = document.getElementById('INPUT10');
+var Input14 = document.getElementById('INPUT14');
+PostXML('VENTIL.XML', (InputEdited[0] ? encodeURIComponent(Input1.name)+'='+encodeURIComponent(Input1.value)+'&' : '')+(InputEdited[1] ? encodeURIComponent(Input2.name)+'='+encodeURIComponent(Input2.value)+'&' : '')+(InputEdited[2] ? encodeURIComponent(Input3.name)+'='+encodeURIComponent(Input3.value)+'&' : '')+(InputEdited[3] ? encodeURIComponent(Input4.name)+'='+encodeURIComponent(Input4.value)+'&' : '')+(InputEdited[4] ? encodeURIComponent(Input5.name)+'='+encodeURIComponent(Input5.value)+'&' : '')+(InputEdited[5] ? encodeURIComponent(Input6.name)+'='+encodeURIComponent(Input6.value)+'&' : '')+(InputEdited[7] ? encodeURIComponent(Input8.name)+'='+encodeURIComponent(Input8.value)+'&' : '')+(InputEdited[8] ? encodeURIComponent(Input9.name)+'='+encodeURIComponent(Input9.value)+'&' : '')+(InputEdited[9] ? encodeURIComponent(Input10.name)+'='+encodeURIComponent(Input10.value)+'&' : '')+(InputEdited[13] ? encodeURIComponent(Input14.name)+'='+encodeURIComponent(Input14.value)+'&' : ''));
+InputEdited[0]=0;
+InputEdited[1]=0;
+InputEdited[2]=0;
+InputEdited[3]=0;
+InputEdited[4]=0;
+InputEdited[5]=0;
+InputEdited[7]=0;
+InputEdited[8]=0;
+InputEdited[9]=0;
+InputEdited[13]=0;
 }

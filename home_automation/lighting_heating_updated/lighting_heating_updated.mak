@@ -62,7 +62,6 @@
 #usefile "src\utils\control\PidHeatController.st"
 #usefile "src\heating\HeatingInint.st"
 #usefile "src\heating\Heating.st"
-#usefile "src\ventillation\VentillationInit.st"
 #usefile "src\alarm\AlarmInit.st"
 #usefile "src\alarm\AlarmRead.st"
 #usefile "src\alarm\Alarm.st"
@@ -70,5 +69,6 @@
 #usefile "src\persist\PersistGlobals.st"
 #usefile "src\persist\PersistInit.st"
 #usefile "src\persist\Persist.st"
+#usefile "src\ventillation\VentillationInit.st"
 #usefile "src\ventillation\Ventillation.st"
 #usefile "lighting_heating_updated.mcf", 'auto'

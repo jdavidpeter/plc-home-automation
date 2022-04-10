@@ -1,7 +1,7 @@
 VAR_GLOBAL CONSTANT
     C_REALS_TO_PERSIST : INT      := 18;
     C_BOOLS_TO_PERSIST : INT      := 4;
-    C_INTS_TO_PERSIST  : INT      := 1;
+    C_INTS_TO_PERSIST  : INT      := 2;
 
     C_PERSIST_DIRECTORY_ROOT : STRING           := 'PST';
     C_PERSIST_HEATING_IPID_SUBDIR : STRING      := '';

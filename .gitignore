@@ -1,5 +1,6 @@
 home_automation/lighting_heating_updated/Sysgen/**
 home_automation/lighting_heating_updated/**/*.bak
+home_automation/lighting_heating_updated/**/*.bak.big
 home_automation/lighting_heating_updated/ROOT/**
 home_automation/lighting_heating_updated/LocalLib/**
 home_automation/lighting_heating_updated/IOConfigurator/Backup/**
