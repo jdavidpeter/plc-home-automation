@@ -8,13 +8,18 @@ PROGRAM VentillationControl
      commUnit: fbModbusRTUmas2;
      modbusErrorMessage: String;
      
-     setPresenceBasedVentillationToZero : R_TRIG;
-     setPresenceBasedVentillationToACtive : F_TRIG;
-     presenceBasedActivity              : BOOL := FALSE;
+     presenceBasedActivity                : BOOL := FALSE;
+     coolingNeeded                        : BOOL := FALSE;
+
+     setPresenceBasedVentillationToZero   : R_TRIG;
+     setPresenceBasedVentillationToActive : F_TRIG;
+     setCoolingBasedVentillationToZero    : F_TRIG;
+     setCoolingBasedVentillationToActive  : R_TRIG;
+
      
      formerNilanDesiredVentillationLevel : INT := 0;
      formerNilanDesiredTemperature       : INT := 0;
-     actualModbusCommandGroup : USINT := C_NILAN_READ_COMMAND_GROUP;
+     actualModbusCommandGroup            : USINT := C_NILAN_READ_COMMAND_GROUP;
   END_VAR
   VAR_TEMP
   END_VAR
@@ -22,13 +27,19 @@ PROGRAM VentillationControl
   NILAN_DESIRED_TEMPERATURE_SCALED := NILAN_DESIRED_TEMPERATURE*100;
   
   presenceBasedActivity := GONE_FOR_5_HOURS OR (ALARM_ACTIVE AND GONE_FOR_LONG_TIME);
+  coolingNeeded := INT_TO_REAL(NILAN_DESIRED_TEMPERATURE) < NILAN_ACTUAL_CONTROLLED_TEMPERATURE;
   
   setPresenceBasedVentillationToZero(CLK := presenceBasedActivity);
   setPresenceBasedVentillationToACtive(CLK := presenceBasedActivity);
+
+  setCoolingBasedVentillationToZero(CLK := coolingNeeded);
+  setCoolingBasedVentillationToActive(CLK := coolingNeeded);
   
-  IF setPresenceBasedVentillationToZero.Q THEN
+  // Turn off ventillation when no cooling is required and we're not at home
+  IF setPresenceBasedVentillationToZero.Q AND setCoolingBasedVentillationToZero.Q THEN
     NILAN_DESIRED_VENTILLATION_LEVEL := 0;
-  ELSIF setPresenceBasedVentillationToACtive.Q THEN
+  // Turn on ventillation someone is at home or we need cooling
+  ELSIF setPresenceBasedVentillationToActive.Q OR setCoolingBasedVentillationToActive.Q THEN
     NILAN_DESIRED_VENTILLATION_LEVEL := 1;
   END_IF;
   
@@ -98,7 +109,7 @@ PROGRAM VentillationControl
 
   NILAN_DAYS_SINCE_LAST_FILTER_CHANGE := NILAN_ACTUAL_VENTILLATION[4];
   
-  NILAN_ACTUAL_VALUE_FOR_CONTROLLED_TEMPERATURE := INT_TO_REAL(NILAN_CONTROLLED_TEMPARATURES[3])/100;
+  NILAN_ACTUAL_CONTROLLED_TEMPERATURE := INT_TO_REAL(NILAN_CONTROLLED_TEMPARATURES[3])/100;
   
   // This should by scaled by 100 according to the docs, but then I have 100%+ efficiency
   NILAN_PASSIVE_HEAT_EXCHANGER_EFFICIENCY := INT_TO_REAL(NILAN_CONTROLLED_TEMPARATURES[5])/1000;

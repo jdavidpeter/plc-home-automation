@@ -15,18 +15,18 @@
 <title>
 <xsl:value-of select="/PAGE/@TITLE" />
 Szellőztetés</title>
-<script src="VENTIL.JS?U=1649619556" language="JavaScript" charset="utf-8" />
+<script src="VENTIL.JS?U=1655141216" language="JavaScript" charset="utf-8" />
 <style type="text/css">.mono {font-family: Verdana, Arial, FreeSans, sans-serif;}</style>
 </head>
 <body onload="GetXML('VENTIL.XML'); FunWatchDog();">
-<xsl:if test="1649619556 != ACCESS/@UCID">
+<xsl:if test="1655141216 != ACCESS/@UCID">
 <xsl:attribute name="onload">
 null;
 </xsl:attribute>
 <div id="cachewarning" style="text-align: left;"></div>
 <script src="REFCLR.JS" language="JavaScript" charset="utf-8"></script>
 </xsl:if>
-<xsl:if test="1649619556 = ACCESS/@UCID">
+<xsl:if test="1655141216 = ACCESS/@UCID">
 <table cellpadding="0" cellspacing="0">
 <tr style="height: 40px;">
 <!--logo-->
@@ -98,7 +98,7 @@ Szellőztetés</span>
 <div title="%" style="position: absolute; top: 220px; left: 145px; z-index: 23;">%</div>
 <div title="Páratartalom" style="position: absolute; top: 260px; left: 13px; z-index: 26;">Kívánt hőmérséklet</div>
 <form action="javascript:PostXML11()" style="position: absolute; top: 255px; left: 150px; z-index: 27; font-size: 13px;">
-<input title="Kívánt szellőztetési hőmérséklet" id="INPUT11" onfocus="document.getElementById('INPUT11x').style.visibility='visible';SetInputEdited(11, event);" onblur="InputFocused[10]=0" onkeydown="SetInputEdited(11, event);" class="mono" tabindex="10" type="text" style="width: 20px; background-color: #FFFFFF;" name="{INPUT[11]/@NAME}" value="{INPUT[11]/@VALUE}" />
+<input title="Kívánt szellőztetési hőmérséklet" id="INPUT11" onfocus="document.getElementById('INPUT11x').style.visibility='visible';SetInputEdited(11, event);" onblur="InputFocused[10]=0" onkeydown="SetInputEdited(11, event);" class="mono" tabindex="10" type="text" style="width: 22px; background-color: #FFFFFF;" name="{INPUT[11]/@NAME}" value="{INPUT[11]/@VALUE}" />
 <input type="submit" id="INPUT11x" style="position: absolute; top: 0px; height: 22px; width: 22px; visibility: hidden;" value="&gt;" />
 </form>
 <form style="position: absolute; top: 11px; left: 49px; z-index: 28;">
@@ -112,7 +112,7 @@ Szellőztetés</span>
 </xsl:if>
 </form>
 <form action="javascript:PostXML13()" style="position: absolute; top: 14px; left: 81px; z-index: 29; font-size: 13px;">
-<input title="Kívánt szellőztetési szint" id="INPUT13" onfocus="document.getElementById('INPUT13x').style.visibility='visible';SetInputEdited(13, event);" onblur="InputFocused[12]=0" onkeydown="SetInputEdited(13, event);" class="mono" tabindex="12" type="text" style="width: 20px; background-color: #FFFFFF;" name="{INPUT[13]/@NAME}" value="{INPUT[13]/@VALUE}" />
+<input title="Kívánt szellőztetési szint" id="INPUT13" onfocus="document.getElementById('INPUT13x').style.visibility='visible';SetInputEdited(13, event);" onblur="InputFocused[12]=0" onkeydown="SetInputEdited(13, event);" class="mono" tabindex="12" type="text" style="width: 22px; background-color: #FFFFFF;" name="{INPUT[13]/@NAME}" value="{INPUT[13]/@VALUE}" />
 <input type="submit" id="INPUT13x" style="position: absolute; top: 0px; height: 22px; width: 22px; visibility: hidden;" value="&gt;" />
 </form>
 <xsl:if test="INPUT[14]/@VALUE = 0">

@@ -3,10 +3,10 @@ Version="xPRO","4.3.00"
 [/desktop]
 
 [dockinfo]
-centralpc=53003900,1,1,1
-leftpane=52998200,0,0,1,374,0
-bottompane=52968288,1,298
-rightpane=52970556,1,415,0
+centralpc=53724760,1,1,1
+leftpane=53719224,0,0,1,374,0
+bottompane=53689460,1,298
+rightpane=53691748,1,415,0
 [/dockinfo]
 
 [closedtextpaneleditors]
@@ -28,7 +28,7 @@ fifwhere=0
 fifsubdirs=0
 fif2ndmsg=1
 fif2ndmsg=1
-findhistory="DESIRED_VENTILLATION_LEVEL"
+findhistory="NILAN_ACTUAL_VALUE_FOR_CONTROLLED_TEMPERATURE"
 replacehistory=""
 dirhistory=""
 maskhistory=""
@@ -79,7 +79,7 @@ sprompt=0
 iecoperands=1
 ieccomments=1
 implicitseltext=0
-findhistory="DESIRED_VENTILLATION_LEVEL","room","domesticHotWaterCirculation_in","OnThenOffPulse","DurationOut","ReentrantDurationOut"," off","InterruptableReentrantDurationOut","StringRecorder","PRESENCE_BASED_HEATING_CONTROL","GONE_FOR_LONG_TIME","TIME_AWAY_LONG","heatingControl","GONE_FOR_5_MINUTES","ADR","POINTER"
+findhistory="NILAN_ACTUAL_VALUE_FOR_CONTROLLED_TEMPERATURE","NILAN_ACTUAL_CONTROLLED_TEMPERATURE","DESIRED_VENTILLATION_LEVEL","room","domesticHotWaterCirculation_in","OnThenOffPulse","DurationOut","ReentrantDurationOut"," off","InterruptableReentrantDurationOut","StringRecorder","PRESENCE_BASED_HEATING_CONTROL","GONE_FOR_LONG_TIME","TIME_AWAY_LONG","heatingControl","GONE_FOR_5_MINUTES"
 fifmatchcase=0
 fifwholewords=0
 fifoutinstr=0
@@ -134,25 +134,25 @@ nodeplus="PlcIde"
 [/prjmngr]
 
 [msgwin2]
-window=52968288,1,0,0,268,1912,39,429,268,850,0,0,1
+window=53689460,1,0,0,268,1699,39,429,268,850,0,0,1
 [/msgwin2]
 
 [msgwin1]
-window=52968288,1,0,0,268,1912,39,429,268,850,0,0,0
+window=53689460,1,0,0,268,1699,39,429,268,850,0,0,0
 [/msgwin1]
 
 [symbwin]
-window=52968288,1,0,0,268,1912,39,429,268,850,0,0,2
+window=53689460,1,0,0,268,1699,39,429,268,850,0,0,2
 hdrwidth2=100
 hdrwidth3=100
 [/symbwin]
 
 [openfileswin]
-window=52998200,1,0,0,624,366,676,100,676,366,0,0,2
+window=53719224,1,0,0,504,366,676,100,676,366,0,0,2
 [/openfileswin]
 
 [prjfileswin]
-window=52998200,1,0,0,624,366,676,100,676,366,0,0,1
+window=53719224,1,0,0,504,366,676,100,676,366,0,0,1
 filesheight=217
 relatedcnt=3
 relfile0="Sysgen\lighting_heating_updated.map"
@@ -161,7 +161,7 @@ relfile2="SendRoot\TecoApi.pub"
 [/prjfileswin]
 
 [ctrlswin]
-window=52998200,1,0,0,624,366,600,42,600,366,0,0,0
+window=53719224,1,0,0,504,366,600,42,600,366,0,0,0
 [/ctrlswin]
 
 [accwin]
@@ -179,7 +179,7 @@ fixed=0
 cols=2
 byteoffs=3
 decaddr=1
-font="Courier New",1,0,10,-13,-2147483640,0,0
+font="Consolas",1,0,10,-13,-2147483640,0,0
 [/memwin1]
 
 [memwin2]
@@ -188,14 +188,14 @@ regmod=66
 format=2
 context=0
 fixed=0
-cols=5
+cols=6
 byteoffs=0
 decaddr=1
-font="Courier New",1,0,10,-13,-2147483640,0,0
+font="Consolas",1,0,10,-13,-2147483640,0,0
 [/memwin2]
 
 [watch2win]
-window=52968288,1,0,0,268,1912,39,429,268,850,0,0,4
+window=53689460,1,0,0,268,1699,39,429,268,850,0,0,4
 hdrnamew=447,210,0
 font96dpi="Courier New",10
 fonthires="Consolas",10
@@ -206,7 +206,7 @@ alignnumbers=0
 showanalyserr=0
 accsvisible=0
 accsw=152
-mem1w=175
+mem1w=163
 mem1visible=1
 mem2w=190
 mem2visible=0
@@ -225,20 +225,20 @@ window=0,0,0,0,420,638,336,227,549,960,0,1,-1
 [/evalmodifdlg]
 
 [paneltexted]
-editor="XClip-Panel",1,0,1,1,1,1,5145490,1694232,94314052,1694624,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-window=0,0,-601,-986,313,483,313,463,313,483,0,1,-1
+editor="XClip-Panel",1,0,1,1,1,1,5145490,1700388,178535460,1700780,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+window=0,0,0,94,313,483,313,463,313,483,0,1,-1
 font="Lucida Console",11
 [/paneltexted]
 
 [Datalogger]
-window=53003900,0,0,0,615,1528,187,259,517,1109,0,0,0
+window=53724760,0,0,0,615,1528,187,259,517,1109,0,0,0
 [/Datalogger]
 
 [CFC_Editors]
 [/CFC_Editors]
 
 [IOConfigurator]
-window=52970556,1,0,0,624,407,534,136,551,407,0,0,0
+window=53691748,1,0,0,504,407,534,136,551,407,0,0,0
 [/IOConfigurator]
 
 [PanelSIM_1]
@@ -256,12 +256,12 @@ window=0,0,0,0,420,272,642,134,642,272,0,0,-1
 [/PlcNetManager]
 
 [FormDesign1]
-window=53003900,1,0,0,624,1115,836,1707,534,910,0,0,4
+window=53724760,1,0,0,504,902,836,1707,534,910,0,0,4
 [/FormDesign1]
 
 [textsyneditor]
 editor="src\heating\HeatingGlobals.st",1,0,0,36,27,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=53003900,1,0,0,624,1115,836,1707,534,910,0,0,1
+window=53724760,1,0,0,504,902,836,1707,534,910,0,0,1
 localparams=0,1,1,1,1,30,0,80,1,2,1,0
 font="Courier New",10
 fonthires="Lucida Console",11
@@ -271,8 +271,8 @@ debugparams=1,0,1
 [/textsyneditor]
 
 [textsyneditor]
-editor="src\ventillation\Ventillation.st",1,0,0,22,64,22,39,22,64,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=0,1,1311,-1088,1056,1936,836,1707,534,910,0,1,-1
+editor="src\ventillation\Ventillation.st",1,1,0,17,51,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
+window=53724760,1,0,0,504,902,836,1707,534,910,0,1,5
 localparams=0,1,1,1,1,30,0,80,1,2,1,0
 font="Courier New",10
 fonthires="Lucida Console",11
@@ -282,8 +282,8 @@ debugparams=1,0,1
 [/textsyneditor]
 
 [textsyneditor]
-editor="SRC\VENTILLATION\VentillationGlobals.st",1,0,0,47,28,47,3,47,28,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=53003900,1,0,0,624,1115,836,1707,534,910,0,0,2
+editor="SRC\VENTILLATION\VentillationGlobals.st",1,0,0,47,3,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
+window=53724760,1,0,0,504,902,836,1707,534,910,0,0,2
 localparams=0,1,1,1,1,30,0,80,1,2,1,0
 font="Courier New",10
 fonthires="Lucida Console",11
@@ -294,7 +294,7 @@ debugparams=1,0,1
 
 [textsyneditor]
 editor="src\ventillation\VentillationInit.st",1,0,0,55,111,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=53003900,1,0,0,624,1115,836,1707,534,910,0,0,3
+window=53724760,1,0,0,504,902,836,1707,534,910,0,0,3
 localparams=0,1,1,1,1,30,0,80,1,2,1,0
 font="Courier New",10
 fonthires="Lucida Console",11
@@ -305,7 +305,7 @@ debugparams=1,0,1
 
 [textsyneditor]
 editor="SRC\PERSIST\PersistInit.st",1,0,0,68,46,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=53003900,1,0,0,624,1115,836,1707,534,910,0,0,5
+window=53724760,1,0,0,504,902,836,1707,534,910,0,0,6
 localparams=0,1,1,1,1,30,0,80,1,2,1,0
 font="Courier New",10
 fonthires="Lucida Console",11
@@ -316,7 +316,7 @@ debugparams=1,0,1
 
 [textsyneditor]
 editor="src\persist\PersistGlobals.st",1,0,0,4,39,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=53003900,1,0,0,624,1115,836,1707,534,910,0,0,6
+window=53724760,1,0,0,504,902,836,1707,534,910,0,0,7
 localparams=0,1,1,1,1,30,0,80,1,2,1,0
 font="Courier New",10
 fonthires="Lucida Console",11
