@@ -1,8 +1,0 @@
-[PlcNetGroupConfig]
-Version="xPRO","4.3.00"
-[/PlcNetGroupConfig]
-
-[projects]
-project1="lighting_heating\lighting_heating.nex",0,"",4294967295
-[/projects]
-
