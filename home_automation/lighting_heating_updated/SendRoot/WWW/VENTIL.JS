@@ -45,7 +45,7 @@ if(xmlhttpGET.status != 200){
 alert('Problem retrieving XML data ' + xmlhttpGET.statusText + '(' + xmlhttpGET.status + ')');
 document.location.reload(true)
 return;}
-var access = xmlhttpGET.responseXML.documentElement.getElementsByTagName('ACCESS')[0]; if(!access || access.getAttribute('UCID') != 1655141216) {document.location.reload(true); return;}
+var access = xmlhttpGET.responseXML.documentElement.getElementsByTagName('ACCESS')[0]; if(!access || access.getAttribute('UCID') != 1656865715) {document.location.reload(true); return;}
 var pd = '';
 var x=xmlhttpGET.responseXML.documentElement.getElementsByTagName('INPUT');
 if(x[0]) {
@@ -115,6 +115,18 @@ if(x[13].getAttribute('VALUE') == '0') {
 Input15.style.visibility = 'hidden';
 } else {
 Input15.style.visibility = 'visible';
+}
+var Input16 = document.getElementById('INPUT16');
+if(x[14].getAttribute('VALUE') != '0') {
+Input16.style.visibility = 'hidden';
+} else {
+Input16.style.visibility = 'visible';
+}
+var Input17 = document.getElementById('INPUT17');
+if(x[14].getAttribute('VALUE') == '0') {
+Input17.style.visibility = 'hidden';
+} else {
+Input17.style.visibility = 'visible';
 }
 } else {document.location.reload(true); return;}
 } catch(err) {console.log(err.message)}

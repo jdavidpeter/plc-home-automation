@@ -13,13 +13,19 @@ PROGRAM VentillationControl
 
      setPresenceBasedVentillationToZero   : R_TRIG;
      setPresenceBasedVentillationToActive : F_TRIG;
+     
      setCoolingBasedVentillationToZero    : F_TRIG;
      setCoolingBasedVentillationToActive  : R_TRIG;
-
+     
+     activateBypassVentialltionLevel      : R_TRIG;
+     deactivateBypassVentialltionLevel    : F_TRIG;
      
      formerNilanDesiredVentillationLevel : INT := 0;
      formerNilanDesiredTemperature       : INT := 0;
      actualModbusCommandGroup            : USINT := C_NILAN_READ_COMMAND_GROUP;
+     
+     normalVentillationLevel             : INT := 1;
+     bypassVentillationLevel             : INT := 3;
   END_VAR
   VAR_TEMP
   END_VAR
@@ -35,12 +41,27 @@ PROGRAM VentillationControl
   setCoolingBasedVentillationToZero(CLK := coolingNeeded);
   setCoolingBasedVentillationToActive(CLK := coolingNeeded);
   
+  activateBypassVentialltionLevel(CLK := NILAN_BYPASS_IS_ENABLED);
+  deactivateBypassVentialltionLevel(CLK := NILAN_BYPASS_IS_ENABLED);
+  
   // Turn off ventillation when no cooling is required and we're not at home
   IF setPresenceBasedVentillationToZero.Q AND setCoolingBasedVentillationToZero.Q THEN
     NILAN_DESIRED_VENTILLATION_LEVEL := 0;
   // Turn on ventillation someone is at home or we need cooling
   ELSIF setPresenceBasedVentillationToActive.Q OR setCoolingBasedVentillationToActive.Q THEN
-    NILAN_DESIRED_VENTILLATION_LEVEL := 1;
+    NILAN_DESIRED_VENTILLATION_LEVEL := normalVentillationLevel;
+  END_IF;
+  
+  IF activateBypassVentialltionLevel.Q THEN
+    IF NILAN_DESIRED_VENTILLATION_LEVEL < bypassVentillationLevel THEN
+      NILAN_DESIRED_VENTILLATION_LEVEL := bypassVentillationLevel;
+    END_IF;
+  END_IF;
+  
+  IF deactivateBypassVentialltionLevel.Q THEN
+    IF NILAN_DESIRED_VENTILLATION_LEVEL > normalVentillationLevel THEN
+      NILAN_DESIRED_VENTILLATION_LEVEL := normalVentillationLevel;
+    END_IF;
   END_IF;
   
   IF NOT formerNilanDesiredVentillationLevel = NILAN_DESIRED_VENTILLATION_LEVEL THEN
@@ -107,7 +128,8 @@ PROGRAM VentillationControl
   NILAN_HUMIDITY_SENSOR_VALUE := INT_TO_REAL(NILAN_CORE_DIAGNOSTICS[22])/100;
   NILAN_CARBON_DIOXIDE_SENSOR_VALUE := NILAN_CORE_DIAGNOSTICS[23];
 
-  NILAN_DAYS_SINCE_LAST_FILTER_CHANGE := NILAN_ACTUAL_VENTILLATION[4];
+  NILAN_DAYS_SINCE_LAST_FILTER_CHANGE := NILAN_ACTUAL_DISPLAY_GROUP_01[7];
+  NILAN_BYPASS_IS_ENABLED := INT_TO_BOOL(NILAN_ACTUAL_DISPLAY_GROUP_01[1]);
   
   NILAN_ACTUAL_CONTROLLED_TEMPERATURE := INT_TO_REAL(NILAN_CONTROLLED_TEMPARATURES[3])/100;
   
