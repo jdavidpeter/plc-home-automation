@@ -629,7 +629,7 @@
 				<picture href="" img="HEAT1__4.PNG" />
 			</object>
 		</page>
-		<page caption="Szellõztetés" name="VENTIL.XML" background="" bgcolor="16777215" repeat="false" hidden="false" ajax="true" pause="1000" level="0" ucid="1656865715" width="363" height="455" Uid="11560">
+		<page caption="Szellõztetés" name="VENTIL.XML" background="" bgcolor="16777215" repeat="false" hidden="false" ajax="true" pause="1000" level="0" ucid="1656932748" width="363" height="455" Uid="11560">
 			<object caption="" X="34" Y="12" xoff="6" yoff="6" level="0" readonly="false" front="0" back="16711680" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="11563">
 				<block width="70" height="70" border="true" />
 			</object>
@@ -726,7 +726,7 @@
 			<object caption="" X="2" Y="1" xoff="6" yoff="7" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="NILAN_ACTIVE_ERROR" vistype="BOOL" visneg="false" Uid="11552" hint="Szellõztetõ hiba">
 				<picture href="" img="ALARM1_1.PNG" />
 			</object>
-			<object caption="" X="35" Y="13" xoff="1" yoff="0" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="NILAN_BYPASS_IS_ENABLED" vistype="BOOL" visneg="true" Uid="11562" hint="Bypass kikapcsolva">
+			<object caption="" X="35" Y="13" xoff="1" yoff="1" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="NILAN_BYPASS_IS_ENABLED" vistype="BOOL" visneg="true" Uid="11562" hint="Bypass kikapcsolva">
 				<picture href="" img="SW7D18_1.PNG" />
 			</object>
 			<object caption="Bypass" X="35" Y="22" xoff="5" yoff="2" level="0" readonly="false" front="0" back="16777215" strong="true" italic="false" size="13" transparent="true" visneg="false" Uid="11566">

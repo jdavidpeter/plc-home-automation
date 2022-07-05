@@ -3,10 +3,10 @@ Version="xPRO","4.3.00"
 [/desktop]
 
 [dockinfo]
-centralpc=52282968,1,1,1
-leftpane=52277432,0,0,1,374,0
-bottompane=52247668,1,298
-rightpane=52249956,1,415,0
+centralpc=52545440,1,1,1
+leftpane=52539628,0,0,1,374,0
+bottompane=52509840,1,298
+rightpane=52512120,1,415,0
 [/dockinfo]
 
 [closedtextpaneleditors]
@@ -136,25 +136,25 @@ nodeplus="PlcIde"
 [/prjmngr]
 
 [msgwin2]
-window=52247668,1,0,0,268,1699,39,429,268,850,0,0,1
+window=52509840,1,0,0,268,1699,39,429,268,850,0,0,1
 [/msgwin2]
 
 [msgwin1]
-window=52247668,1,0,0,268,1699,39,429,268,850,0,0,0
+window=52509840,1,0,0,268,1699,39,429,268,850,0,0,0
 [/msgwin1]
 
 [symbwin]
-window=52247668,1,0,0,268,1699,39,429,268,850,0,0,2
+window=52509840,1,0,0,268,1699,39,429,268,850,0,0,2
 hdrwidth2=100
 hdrwidth3=100
 [/symbwin]
 
 [openfileswin]
-window=52277432,1,0,0,504,366,676,100,676,366,0,0,2
+window=52539628,1,0,0,504,366,676,100,676,366,0,0,2
 [/openfileswin]
 
 [prjfileswin]
-window=52277432,1,0,0,504,366,676,100,676,366,0,0,1
+window=52539628,1,0,0,504,366,676,100,676,366,0,0,1
 filesheight=217
 relatedcnt=3
 relfile0="Sysgen\lighting_heating_updated.map"
@@ -163,7 +163,7 @@ relfile2="SendRoot\TecoApi.pub"
 [/prjfileswin]
 
 [ctrlswin]
-window=52277432,1,0,0,504,366,600,42,600,366,0,0,0
+window=52539628,1,0,0,504,366,600,42,600,366,0,0,0
 [/ctrlswin]
 
 [accwin]
@@ -197,7 +197,7 @@ font="Consolas",1,0,10,-13,-2147483640,0,0
 [/memwin2]
 
 [watch2win]
-window=52247668,1,0,0,268,1699,39,429,268,850,0,0,4
+window=52509840,1,0,0,268,1699,39,429,268,850,0,0,4
 hdrnamew=447,210,0
 font96dpi="Courier New",10
 fonthires="Consolas",10
@@ -208,7 +208,7 @@ alignnumbers=0
 showanalyserr=0
 accsvisible=0
 accsw=152
-mem1w=159
+mem1w=151
 mem1visible=1
 mem2w=190
 mem2visible=0
@@ -227,20 +227,20 @@ window=0,0,0,0,420,638,336,227,549,960,0,1,-1
 [/evalmodifdlg]
 
 [paneltexted]
-editor="XClip-Panel",1,0,1,1,1,1,5145490,1700388,178535460,1700780,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+editor="XClip-Panel",1,0,1,1,1,1,5145490,1700388,202514404,1700780,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 window=0,0,0,94,313,483,313,463,313,483,0,1,-1
 font="Lucida Console",11
 [/paneltexted]
 
 [Datalogger]
-window=52282968,0,0,0,615,1528,187,259,517,1109,0,0,0
+window=52545440,0,0,0,615,1528,187,259,517,1109,0,0,0
 [/Datalogger]
 
 [CFC_Editors]
 [/CFC_Editors]
 
 [IOConfigurator]
-window=52249956,1,0,0,504,407,534,136,551,407,0,0,0
+window=52512120,1,0,0,504,407,534,136,551,407,0,0,0
 [/IOConfigurator]
 
 [PanelSIM_1]
@@ -258,12 +258,12 @@ window=0,0,0,0,420,272,642,134,642,272,0,0,-1
 [/PlcNetManager]
 
 [FormDesign1]
-window=52282968,1,0,0,504,902,836,1707,534,910,0,0,3
+window=52545440,1,0,0,504,902,836,1707,534,910,0,0,3
 [/FormDesign1]
 
 [textsyneditor]
 editor="SRC\VENTILLATION\VentillationGlobals.st",1,0,0,86,19,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=52282968,1,0,0,504,902,836,1707,534,910,0,0,1
+window=52545440,1,0,0,504,902,836,1707,534,910,0,0,1
 localparams=0,1,1,1,1,30,0,80,1,2,1,0
 font="Courier New",10
 fonthires="Lucida Console",11
@@ -274,18 +274,18 @@ debugparams=1,0,1
 
 [textsyneditor]
 editor="src\ventillation\VentillationInit.st",1,0,0,61,61,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=52282968,1,0,0,504,902,836,1707,534,910,0,0,2
+window=52545440,1,0,0,504,902,836,1707,534,910,0,0,2
 localparams=0,1,1,1,1,30,0,80,1,2,1,0
 font="Courier New",10
 fonthires="Lucida Console",11
 relay=0,0,0,0,0,"",0,0
-inspectorctx="Ventillation_Init"
+inspectorctx=""
 debugparams=1,0,1
 [/textsyneditor]
 
 [textsyneditor]
-editor="src\ventillation\Ventillation.st",1,1,0,63,67,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=52282968,1,0,0,504,902,534,910,534,910,0,0,4
+editor="src\ventillation\Ventillation.st",1,1,0,56,12,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
+window=52545440,1,0,0,504,902,836,1707,534,910,0,0,4
 localparams=0,1,1,1,1,30,0,80,1,2,1,0
 font="Courier New",10
 fonthires="Lucida Console",11
@@ -295,8 +295,8 @@ debugparams=1,0,1
 [/textsyneditor]
 
 [textsyneditor]
-editor="LOCALLIB\StdLib_V22_20180619.mlb",1,0,0,37,8,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=52282968,1,0,0,504,902,534,910,534,910,0,0,5
+editor="LOCALLIB\StdLib_V22_20180619.mlb",1,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
+window=52545440,1,0,0,504,902,836,1707,534,910,0,0,5
 localparams=0,1,1,1,1,30,0,80,1,2,1,0
 font="Courier New",10
 fonthires="Lucida Console",11

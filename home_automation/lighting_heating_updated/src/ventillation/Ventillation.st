@@ -49,7 +49,11 @@ PROGRAM VentillationControl
     NILAN_DESIRED_VENTILLATION_LEVEL := 0;
   // Turn on ventillation someone is at home or we need cooling
   ELSIF setPresenceBasedVentillationToActive.Q OR setCoolingBasedVentillationToActive.Q THEN
-    NILAN_DESIRED_VENTILLATION_LEVEL := normalVentillationLevel;
+    IF NILAN_BYPASS_IS_ENABLED THEN
+      NILAN_DESIRED_VENTILLATION_LEVEL := bypassVentillationLevel;
+    ELSE
+      NILAN_DESIRED_VENTILLATION_LEVEL := normalVentillationLevel;
+    END_IF;
   END_IF;
   
   IF activateBypassVentialltionLevel.Q THEN

@@ -15,18 +15,18 @@
 <title>
 <xsl:value-of select="/PAGE/@TITLE" />
 Szellőztetés</title>
-<script src="VENTIL.JS?U=1656865715" language="JavaScript" charset="utf-8" />
+<script src="VENTIL.JS?U=1656932748" language="JavaScript" charset="utf-8" />
 <style type="text/css">.mono {font-family: Verdana, Arial, FreeSans, sans-serif;}</style>
 </head>
 <body onload="GetXML('VENTIL.XML'); FunWatchDog();">
-<xsl:if test="1656865715 != ACCESS/@UCID">
+<xsl:if test="1656932748 != ACCESS/@UCID">
 <xsl:attribute name="onload">
 null;
 </xsl:attribute>
 <div id="cachewarning" style="text-align: left;"></div>
 <script src="REFCLR.JS" language="JavaScript" charset="utf-8"></script>
 </xsl:if>
-<xsl:if test="1656865715 = ACCESS/@UCID">
+<xsl:if test="1656932748 = ACCESS/@UCID">
 <table cellpadding="0" cellspacing="0">
 <tr style="height: 40px;">
 <!--logo-->
@@ -123,10 +123,10 @@ Szellőztetés</span>
 <div title="Szellőztető hiba" style="position: absolute; top: 7px; left: 14px; z-index: 32; background-image: url(IMAGES/ALARM1_1.PNG); line-height: 32px; height: 32px; width: 32px;" id="INPUT15"></div>
 </xsl:if>
 <xsl:if test="INPUT[15]/@VALUE != 0">
-<div title="Bypass kikapcsolva" style="position: absolute; top: 96px; left: 273px; z-index: 33; background-image: url(IMAGES/SW7D18_1.PNG); line-height: 64px; height: 64px; width: 64px; visibility: hidden;" id="INPUT16"></div>
+<div title="Bypass kikapcsolva" style="position: absolute; top: 97px; left: 273px; z-index: 33; background-image: url(IMAGES/SW7D18_1.PNG); line-height: 64px; height: 64px; width: 64px; visibility: hidden;" id="INPUT16"></div>
 </xsl:if>
 <xsl:if test="INPUT[15]/@VALUE = 0">
-<div title="Bypass kikapcsolva" style="position: absolute; top: 96px; left: 273px; z-index: 33; background-image: url(IMAGES/SW7D18_1.PNG); line-height: 64px; height: 64px; width: 64px;" id="INPUT16"></div>
+<div title="Bypass kikapcsolva" style="position: absolute; top: 97px; left: 273px; z-index: 33; background-image: url(IMAGES/SW7D18_1.PNG); line-height: 64px; height: 64px; width: 64px;" id="INPUT16"></div>
 </xsl:if>
 <div style="position: absolute; top: 170px; left: 277px; z-index: 34; font-weight: bold;">Bypass</div>
 <xsl:if test="INPUT[15]/@VALUE = 0">
