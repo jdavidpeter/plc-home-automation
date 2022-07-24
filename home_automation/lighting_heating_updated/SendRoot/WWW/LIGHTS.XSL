@@ -15,18 +15,18 @@
 <title>
 <xsl:value-of select="/PAGE/@TITLE" />
 Világítás</title>
-<script src="LIGHTS.JS?U=1649619699" language="JavaScript" charset="utf-8" />
+<script src="LIGHTS.JS?U=1658653953" language="JavaScript" charset="utf-8" />
 <style type="text/css">.mono {font-family: Verdana, Arial, FreeSans, sans-serif;}</style>
 </head>
 <body onload="GetXML('LIGHTS.XML'); FunWatchDog();">
-<xsl:if test="1649619699 != ACCESS/@UCID">
+<xsl:if test="1658653953 != ACCESS/@UCID">
 <xsl:attribute name="onload">
 null;
 </xsl:attribute>
 <div id="cachewarning" style="text-align: left;"></div>
 <script src="REFCLR.JS" language="JavaScript" charset="utf-8"></script>
 </xsl:if>
-<xsl:if test="1649619699 = ACCESS/@UCID">
+<xsl:if test="1658653953 = ACCESS/@UCID">
 <table cellpadding="0" cellspacing="0">
 <tr style="height: 40px;">
 <!--logo-->
@@ -74,7 +74,7 @@ Világítás</span>
 <input class="mono" tabindex="19" type="text" id="INPUT95" style="position: absolute; top: 700px; left: 52px; width: 49px; z-index: 97; color: #008000; background-color: #FFFFFF; font-weight: bold;" value="{INPUT[56]/@VALUE}" name="{INPUT[56]/@NAME}" onfocus="SetInputEdited(95, event);" onblur="InputFocused[94]=0" onkeydown="SetInputEdited(95, event);"></input>
 <input class="mono" tabindex="21" type="text" id="INPUT98" style="position: absolute; top: 709px; left: 239px; width: 49px; z-index: 100; color: #008000; background-color: #FFFFFF; font-weight: bold;" value="{INPUT[59]/@VALUE}" name="{INPUT[59]/@NAME}" onfocus="SetInputEdited(98, event);" onblur="InputFocused[97]=0" onkeydown="SetInputEdited(98, event);"></input>
 <input title="External temperature" class="mono" tabindex="7" type="text" id="INPUT110" style="position: absolute; top: 19px; left: 130px; width: 49px; z-index: 115; color: #008000; background-color: #FFFFFF; font-weight: bold;" value="{INPUT[71]/@VALUE}" name="{INPUT[71]/@NAME}" onfocus="SetInputEdited(110, event);" onblur="InputFocused[109]=0" onkeydown="SetInputEdited(110, event);"></input>
-<input title="Szellőztetési szint" class="mono" tabindex="8" type="text" id="INPUT113" style="position: absolute; top: 19px; left: 312px; width: 22px; z-index: 118; color: #008000; background-color: #FFFFFF; font-weight: bold;" value="{INPUT[72]/@VALUE}" name="{INPUT[72]/@NAME}" onfocus="SetInputEdited(113, event);" onblur="InputFocused[112]=0" onkeydown="SetInputEdited(113, event);"></input>
+<input title="Szellőztetési szint" class="mono" tabindex="8" type="text" id="INPUT113" style="position: absolute; top: 19px; left: 312px; width: 31px; z-index: 118; color: #008000; background-color: #FFFFFF; font-weight: bold;" value="{INPUT[74]/@VALUE}" name="{INPUT[74]/@NAME}" onfocus="SetInputEdited(113, event);" onblur="InputFocused[112]=0" onkeydown="SetInputEdited(113, event);"></input>
 </form>
 <div style="position: absolute; top: 55px; left: 10px; z-index: 1; background-image: url(IMAGES/BR_44__4.PNG); line-height: 513px; height: 513px; width: 334px;"></div>
 <xsl:if test="INPUT[1]/@VALUE = 0">
@@ -921,10 +921,10 @@ Világítás</span>
 <input title="Kívánt szellőztetési szint" id="INPUT112" onfocus="document.getElementById('INPUT112x').style.visibility='visible';SetInputEdited(112, event);" onblur="InputFocused[111]=0" onkeydown="SetInputEdited(112, event);" class="mono" tabindex="10" type="text" style="width: 22px; background-color: #FFFFFF;" name="{INPUT[73]/@NAME}" value="{INPUT[73]/@VALUE}" />
 <input type="submit" id="INPUT112x" style="position: absolute; top: 0px; height: 22px; width: 22px; visibility: hidden;" value="&gt;" />
 </form>
-<xsl:if test="INPUT[74]/@VALUE = 0">
+<xsl:if test="INPUT[75]/@VALUE = 0">
 <div title="Szellőztető hiba" style="position: absolute; top: 11px; left: 195px; z-index: 119; background-image: url(IMAGES/ALARM1_1.PNG); line-height: 32px; height: 32px; width: 32px; visibility: hidden;" id="INPUT114"></div>
 </xsl:if>
-<xsl:if test="INPUT[74]/@VALUE != 0">
+<xsl:if test="INPUT[75]/@VALUE != 0">
 <div title="Szellőztető hiba" style="position: absolute; top: 11px; left: 195px; z-index: 119; background-image: url(IMAGES/ALARM1_1.PNG); line-height: 32px; height: 32px; width: 32px;" id="INPUT114"></div>
 </xsl:if>
 </div>

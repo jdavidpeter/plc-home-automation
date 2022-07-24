@@ -45,7 +45,7 @@ if(xmlhttpGET.status != 200){
 alert('Problem retrieving XML data ' + xmlhttpGET.statusText + '(' + xmlhttpGET.status + ')');
 document.location.reload(true)
 return;}
-var access = xmlhttpGET.responseXML.documentElement.getElementsByTagName('ACCESS')[0]; if(!access || access.getAttribute('UCID') != 1649619699) {document.location.reload(true); return;}
+var access = xmlhttpGET.responseXML.documentElement.getElementsByTagName('ACCESS')[0]; if(!access || access.getAttribute('UCID') != 1658653953) {document.location.reload(true); return;}
 var pd = '';
 var x=xmlhttpGET.responseXML.documentElement.getElementsByTagName('INPUT');
 if(x[0]) {
@@ -676,9 +676,9 @@ if(!InputEdited[111]) {
 UpdateValue(Input112, x[72], '#000000');}
 var Input113 = document.getElementById('INPUT113');
 if(!InputEdited[112]) {
-UpdateValue(Input113, x[71], '#008000');}
+UpdateValue(Input113, x[73], '#008000');}
 var Input114 = document.getElementById('INPUT114');
-if(x[73].getAttribute('VALUE') == '0') {
+if(x[74].getAttribute('VALUE') == '0') {
 Input114.style.visibility = 'hidden';
 } else {
 Input114.style.visibility = 'visible';

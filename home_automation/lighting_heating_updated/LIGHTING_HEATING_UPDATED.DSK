@@ -3,10 +3,10 @@ Version="xPRO","4.3.00"
 [/desktop]
 
 [dockinfo]
-centralpc=52545440,1,1,1
-leftpane=52539628,0,0,1,374,0
-bottompane=52509840,1,298
-rightpane=52512120,1,415,0
+centralpc=53725088,1,1,1
+leftpane=53719276,0,0,1,374,0
+bottompane=53689488,1,298
+rightpane=53691768,1,415,0
 [/dockinfo]
 
 [closedtextpaneleditors]
@@ -16,8 +16,8 @@ rightpane=52512120,1,415,0
 smatchcase=1
 swholewords=0
 sbackword=0
-sseltext=1
-sglobal=1
+sseltext=0
+sglobal=0
 sprompt=0
 iecoperands=0
 ieccomments=0
@@ -28,8 +28,8 @@ fifwhere=0
 fifsubdirs=0
 fif2ndmsg=1
 fif2ndmsg=1
-findhistory="NILAN_DESIRED_TEMPERATURE"
-replacehistory=""
+findhistory="NILAN_ACTUAL_VENTILLATION_FAN_LEVEL"
+replacehistory="NILAN_ACTUAL_VENTILLATION_SET_POINT"
 dirhistory=""
 maskhistory=""
 [/txtextsyneditor]
@@ -54,7 +54,6 @@ txsyned="SRC\ALARM\AlarmGlobals.st",40,5,1,1,1,1,3353458176,30921094,0,0,0,0,0,0
 txsyned="src\heating\HeatingInint.st",52,59,1,1,1,1,1158127616,30914204,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 txsyned="src\heating\Heating.st",41,58,1,1,1,1,3353458176,30921094,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 txsyned="src\persist\Persist.st",1,1,1,1,1,1,3353458176,30921094,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-txsyned="LOCALLIB\ModbusRTU_V40_20210826.mlb",1,1,1,1,1,1,3353458176,30921094,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 txsyned="SRC\LIGHTING\LightingInit.st",1,1,1,1,1,1,1158127616,30914204,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 txsyned="src\utils\persist\PersistFramework.st",316,38,1,1,1,1,3428617984,30920946,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 txsyned="lighting_heating_updated.mcf",14,59,1,1,1,1,812019200,30921050,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
@@ -70,8 +69,8 @@ txsyned="VentillationInit.ST",1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 matchcase=1
 wholewords=0
 backword=0
-seltext=1
-global=1
+seltext=0
+global=0
 smatchcase=1
 swholewords=0
 sbackword=0
@@ -81,7 +80,7 @@ sprompt=0
 iecoperands=1
 ieccomments=1
 implicitseltext=0
-findhistory="NILAN_DESIRED_TEMPERATURE","desired","NILAN_ACTUAL_VALUE_FOR_CONTROLLED_TEMPERATURE","NILAN_ACTUAL_CONTROLLED_TEMPERATURE","DESIRED_VENTILLATION_LEVEL","room","domesticHotWaterCirculation_in","OnThenOffPulse","DurationOut","ReentrantDurationOut"," off","InterruptableReentrantDurationOut","StringRecorder","PRESENCE_BASED_HEATING_CONTROL","GONE_FOR_LONG_TIME","TIME_AWAY_LONG"
+findhistory="NILAN_COMMANDS","commUnit","NILAN_ACTUAL_VENTILLATION","C_NILAN_READ_COMMAND_GROUP","NILAN_DESIRED_TEMPERATURE","desired","NILAN_ACTUAL_VALUE_FOR_CONTROLLED_TEMPERATURE","NILAN_ACTUAL_CONTROLLED_TEMPERATURE","DESIRED_VENTILLATION_LEVEL","room","domesticHotWaterCirculation_in","OnThenOffPulse","DurationOut","ReentrantDurationOut"," off","InterruptableReentrantDurationOut"
 fifmatchcase=0
 fifwholewords=0
 fifoutinstr=0
@@ -120,7 +119,8 @@ sprompt=0
 iecoperands=1
 ieccomments=1
 promptonreplace=0
-findhistory="CORE_DIAGNOSTICS","PRESENCE_BASED_HOT_WATER_ENABLE","datasize","dummy","variableToPersist","C_GARAGE_DOOR_NYITAS","C_FRONT_DOOR_NYITAS","INT","ROVID_IDEJE_ELMENTEK_OTTHONROL","HOSSZU_IDEJE_ELMENTEK_OTTHONROL","goneFor5Minutes","writeEdge","variableToWrite","RIASZTO_ZONAK_AKTIVITAS"
+findhistory="NILAN_ACTUAL_VENTILLATION_FAN_LEVEL","CORE_DIAGNOSTICS","PRESENCE_BASED_HOT_WATER_ENABLE","datasize","dummy","variableToPersist","C_GARAGE_DOOR_NYITAS","C_FRONT_DOOR_NYITAS","INT","ROVID_IDEJE_ELMENTEK_OTTHONROL","HOSSZU_IDEJE_ELMENTEK_OTTHONROL","goneFor5Minutes","writeEdge","variableToWrite","RIASZTO_ZONAK_AKTIVITAS"
+findhistory="NILAN_ACTUAL_VENTILLATION_SET_POINT"
 [/replacedialog]
 
 [plcdiskdlg]
@@ -136,25 +136,25 @@ nodeplus="PlcIde"
 [/prjmngr]
 
 [msgwin2]
-window=52509840,1,0,0,268,1699,39,429,268,850,0,0,1
+window=53689488,1,0,0,268,1699,39,429,268,850,0,0,1
 [/msgwin2]
 
 [msgwin1]
-window=52509840,1,0,0,268,1699,39,429,268,850,0,0,0
+window=53689488,1,0,0,268,1699,39,429,268,850,0,0,0
 [/msgwin1]
 
 [symbwin]
-window=52509840,1,0,0,268,1699,39,429,268,850,0,0,2
+window=53689488,1,0,0,268,1699,39,429,268,850,0,0,2
 hdrwidth2=100
 hdrwidth3=100
 [/symbwin]
 
 [openfileswin]
-window=52539628,1,0,0,504,366,676,100,676,366,0,0,2
+window=53719276,1,0,0,504,366,676,100,676,366,0,0,2
 [/openfileswin]
 
 [prjfileswin]
-window=52539628,1,0,0,504,366,676,100,676,366,0,0,1
+window=53719276,1,0,0,504,366,676,100,676,366,0,0,1
 filesheight=217
 relatedcnt=3
 relfile0="Sysgen\lighting_heating_updated.map"
@@ -163,7 +163,7 @@ relfile2="SendRoot\TecoApi.pub"
 [/prjfileswin]
 
 [ctrlswin]
-window=52539628,1,0,0,504,366,600,42,600,366,0,0,0
+window=53719276,1,0,0,504,366,600,42,600,366,0,0,0
 [/ctrlswin]
 
 [accwin]
@@ -174,12 +174,12 @@ opbase=10
 
 [memwin1]
 regname=82
-regmod=76
-format=12
+regmod=87
+format=8
 context=0
 fixed=0
-cols=2
-byteoffs=3
+cols=5
+byteoffs=0
 decaddr=1
 font="Consolas",1,0,10,-13,-2147483640,0,0
 [/memwin1]
@@ -197,7 +197,7 @@ font="Consolas",1,0,10,-13,-2147483640,0,0
 [/memwin2]
 
 [watch2win]
-window=52509840,1,0,0,268,1699,39,429,268,850,0,0,4
+window=53689488,1,0,0,268,1699,39,429,268,850,0,0,4
 hdrnamew=447,210,0
 font96dpi="Courier New",10
 fonthires="Consolas",10
@@ -208,11 +208,11 @@ alignnumbers=0
 showanalyserr=0
 accsvisible=0
 accsw=152
-mem1w=151
+mem1w=318
 mem1visible=1
 mem2w=190
 mem2visible=0
-storednames="C_NILAN_SET_VENTILLATION_LEVEL_COMMAND_GROUP","Ventillation_Control.modbusErrorMessage","Ventillation_Control.commUnit","Ventillation_Control.commUnit.LastCmd","Ventillation_Control.actualModbusCommandGroup","NILAN_PASSIVE_HEAT_EXCHANGER_EFFICIENCY","NILAN_CORE_DIAGNOSTICS","NILAN_CORE_DIAGNOSTICS[1]","NILAN_STATUS","IO_LOGGER","FILE_PROBLEM_TRACKER","SWITCH_TRACKER","SWITCH_TRACKER.whoTouchedMe","Alarm_Control.requestOffA","ALARM_ACTIVE","GONE_FOR_5_MINUTES"
+storednames="NILAN_ACTUAL_VENTILLATION","Ventillation_Control.commUnit.LastCmd","Ventillation_Control.actualModbusCommandGroup","NILAN_ACTUAL_VENTILLATION[1]","Ventillation_Control.modbusErrorMessage","C_NILAN_SET_VENTILLATION_LEVEL_COMMAND_GROUP","Ventillation_Control.commUnit","NILAN_PASSIVE_HEAT_EXCHANGER_EFFICIENCY","NILAN_CORE_DIAGNOSTICS","NILAN_CORE_DIAGNOSTICS[1]","NILAN_STATUS","IO_LOGGER","FILE_PROBLEM_TRACKER","SWITCH_TRACKER","SWITCH_TRACKER.whoTouchedMe","Alarm_Control.requestOffA"
 [/watch2win]
 
 [weblc]
@@ -227,20 +227,20 @@ window=0,0,0,0,420,638,336,227,549,960,0,1,-1
 [/evalmodifdlg]
 
 [paneltexted]
-editor="XClip-Panel",1,0,1,1,1,1,5145490,1700388,202514404,1700780,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+editor="XClip-Panel",1,0,1,1,1,1,5145490,1700388,202711012,1700780,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 window=0,0,0,94,313,483,313,463,313,483,0,1,-1
 font="Lucida Console",11
 [/paneltexted]
 
 [Datalogger]
-window=52545440,0,0,0,615,1528,187,259,517,1109,0,0,0
+window=53725088,0,0,0,615,1528,187,259,517,1109,0,0,0
 [/Datalogger]
 
 [CFC_Editors]
 [/CFC_Editors]
 
 [IOConfigurator]
-window=52512120,1,0,0,504,407,534,136,551,407,0,0,0
+window=53691768,1,0,0,504,407,534,136,551,407,0,0,0
 [/IOConfigurator]
 
 [PanelSIM_1]
@@ -258,12 +258,12 @@ window=0,0,0,0,420,272,642,134,642,272,0,0,-1
 [/PlcNetManager]
 
 [FormDesign1]
-window=52545440,1,0,0,504,902,836,1707,534,910,0,0,3
+window=53725088,1,0,0,504,902,836,1707,534,910,0,0,3
 [/FormDesign1]
 
 [textsyneditor]
-editor="SRC\VENTILLATION\VentillationGlobals.st",1,0,0,86,19,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=52545440,1,0,0,504,902,836,1707,534,910,0,0,1
+editor="SRC\VENTILLATION\VentillationGlobals.st",1,0,0,63,46,63,3,63,46,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
+window=53725088,1,0,0,504,902,836,1707,534,910,0,0,1
 localparams=0,1,1,1,1,30,0,80,1,2,1,0
 font="Courier New",10
 fonthires="Lucida Console",11
@@ -273,19 +273,19 @@ debugparams=1,0,1
 [/textsyneditor]
 
 [textsyneditor]
-editor="src\ventillation\VentillationInit.st",1,0,0,61,61,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=52545440,1,0,0,504,902,836,1707,534,910,0,0,2
+editor="src\ventillation\VentillationInit.st",1,0,0,64,19,64,10,64,19,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
+window=53725088,1,0,0,504,902,836,1707,534,910,0,0,2
 localparams=0,1,1,1,1,30,0,80,1,2,1,0
 font="Courier New",10
 fonthires="Lucida Console",11
 relay=0,0,0,0,0,"",0,0
-inspectorctx=""
+inspectorctx="Ventillation_Init"
 debugparams=1,0,1
 [/textsyneditor]
 
 [textsyneditor]
-editor="src\ventillation\Ventillation.st",1,1,0,56,12,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=52545440,1,0,0,504,902,836,1707,534,910,0,0,4
+editor="src\ventillation\Ventillation.st",1,0,0,122,99,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
+window=53725088,1,0,0,504,902,836,1707,534,910,0,0,4
 localparams=0,1,1,1,1,30,0,80,1,2,1,0
 font="Courier New",10
 fonthires="Lucida Console",11
@@ -296,7 +296,18 @@ debugparams=1,0,1
 
 [textsyneditor]
 editor="LOCALLIB\StdLib_V22_20180619.mlb",1,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=52545440,1,0,0,504,902,836,1707,534,910,0,0,5
+window=53725088,1,0,0,504,902,836,1707,534,910,0,0,5
+localparams=0,1,1,1,1,30,0,80,1,2,1,0
+font="Courier New",10
+fonthires="Lucida Console",11
+relay=0,0,0,0,0,"",0,0
+inspectorctx=""
+debugparams=1,0,1
+[/textsyneditor]
+
+[textsyneditor]
+editor="LOCALLIB\ModbusRTU_V40_20210826.mlb",1,0,0,311,36,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
+window=53725088,1,0,0,504,902,534,910,534,910,0,0,6
 localparams=0,1,1,1,1,30,0,80,1,2,1,0
 font="Courier New",10
 fonthires="Lucida Console",11
