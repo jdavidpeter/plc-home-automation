@@ -29,6 +29,7 @@ PROGRAM AlarmControl
      sumActivity := sumActivity OR (NOT ALARM_ZONES_INACTIVITY[i]);
   END_FOR;
   AWAY_TIMER(IN := NOT sumActivity, PT := T#20d);
+  GONE_FOR_5_SECONDS  := awayFromHomeFor(awayFor := T#5s);
   GONE_FOR_5_MINUTES  := awayFromHomeFor(awayFor := T#5m);
   GONE_FOR_5_HOURS    := awayFromHomeFor(awayFor := T#5h);
   GONE_FOR_SHORT_TIME := awayFromHomeFor(TIME_AWAY_SHORT);

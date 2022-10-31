@@ -38,6 +38,7 @@ VAR_GLOBAL
 
     TIME_AWAY_SHORT : TIME     := T#20m;
     TIME_AWAY_LONG : TIME      := T#60m;
+    GONE_FOR_5_SECONDS : BOOL  := FALSE; // for debugging purposes
     GONE_FOR_5_MINUTES : BOOL  := FALSE;
     GONE_FOR_5_HOURS : BOOL    := FALSE;
     GONE_FOR_SHORT_TIME : BOOL := FALSE;

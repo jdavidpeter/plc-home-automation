@@ -23,18 +23,15 @@ PROGRAM VentillationControl
      formerNilanDesiredVentillationLevel : INT := 0;
      formerNilanDesiredTemperature       : INT := 0;
      actualModbusCommandGroup            : USINT := C_NILAN_READ_COMMAND_GROUP;
-     
-     normalVentillationLevel             : INT := 1;
-     bypassVentillationLevel             : INT := 3;
   END_VAR
   VAR_TEMP
   END_VAR
   
   NILAN_DESIRED_TEMPERATURE_SCALED := NILAN_DESIRED_TEMPERATURE*100;
   
-  presenceBasedDisable := GONE_FOR_5_HOURS OR (ALARM_ACTIVE AND GONE_FOR_LONG_TIME);
   coolingNeeded := INT_TO_REAL(NILAN_DESIRED_TEMPERATURE) < NILAN_ACTUAL_CONTROLLED_TEMPERATURE;
-  
+  presenceBasedDisable := (GONE_FOR_5_HOURS OR (ALARM_ACTIVE AND GONE_FOR_5_HOURS)) AND NOT coolingNeeded;
+
   setPresenceBasedVentillationToZero(CLK := presenceBasedDisable);
   setPresenceBasedVentillationToACtive(CLK := presenceBasedDisable);
 
@@ -45,26 +42,26 @@ PROGRAM VentillationControl
   deactivateBypassVentialltionLevel(CLK := NILAN_BYPASS_IS_ENABLED);
   
   // Turn off ventillation when no cooling is required and we're not at home
-  IF setPresenceBasedVentillationToZero.Q AND setCoolingBasedVentillationToZero.Q THEN
+  IF setPresenceBasedVentillationToZero.Q THEN
     NILAN_DESIRED_VENTILLATION_LEVEL := 0;
   // Turn on ventillation someone is at home or we need cooling
   ELSIF setPresenceBasedVentillationToActive.Q OR setCoolingBasedVentillationToActive.Q THEN
     IF NILAN_BYPASS_IS_ENABLED THEN
-      NILAN_DESIRED_VENTILLATION_LEVEL := bypassVentillationLevel;
+      NILAN_DESIRED_VENTILLATION_LEVEL := C_BYPASS_VENTILLATION_LEVEL;
     ELSE
-      NILAN_DESIRED_VENTILLATION_LEVEL := normalVentillationLevel;
+      NILAN_DESIRED_VENTILLATION_LEVEL := C_NORMAL_VENTILLATION_LEVEL;
     END_IF;
   END_IF;
   
   IF activateBypassVentialltionLevel.Q THEN
-    IF NILAN_DESIRED_VENTILLATION_LEVEL < bypassVentillationLevel THEN
-      NILAN_DESIRED_VENTILLATION_LEVEL := bypassVentillationLevel;
+    IF NILAN_DESIRED_VENTILLATION_LEVEL < C_BYPASS_VENTILLATION_LEVEL THEN
+      NILAN_DESIRED_VENTILLATION_LEVEL := C_BYPASS_VENTILLATION_LEVEL;
     END_IF;
   END_IF;
   
   IF deactivateBypassVentialltionLevel.Q THEN
-    IF NILAN_DESIRED_VENTILLATION_LEVEL > normalVentillationLevel THEN
-      NILAN_DESIRED_VENTILLATION_LEVEL := normalVentillationLevel;
+    IF NILAN_DESIRED_VENTILLATION_LEVEL > C_NORMAL_VENTILLATION_LEVEL THEN
+      NILAN_DESIRED_VENTILLATION_LEVEL := C_NORMAL_VENTILLATION_LEVEL;
     END_IF;
   END_IF;
   

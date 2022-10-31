@@ -28,20 +28,17 @@ fifwhere=0
 fifsubdirs=0
 fif2ndmsg=1
 fif2ndmsg=1
-findhistory="presenceBasedActivity"
-replacehistory="presenceBasedDisable"
+findhistory="coolingNeeded"
+replacehistory=""
 dirhistory=""
 maskhistory=""
 [/txtextsyneditor]
 
 [closedtextsyneditors]
-txsyned="SRC\ALARM\Alarm.st",35,47,1,1,1,1,1541820160,30993665,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-txsyned="SRC\ALARM\AlarmGlobals.st",40,5,1,1,1,1,1541820160,30993665,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 txsyned="SYSGEN\LIGHTING_HEATING_UPDATED.mlh",1561,77,1,1,1,1,1376918272,30993668,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 txsyned="LOCALLIB\ModbusRTU_V40_20210826.mlb",1,1,1,1,1,1,1541820160,30993665,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 txsyned="LOCALLIB\StdLib_V22_20180619.mlb",1,1,1,1,1,1,1541820160,30993665,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 txsyned="src\ventillation\VentillationInit.st",64,19,1,1,1,1,1541820160,30993665,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-txsyned="SRC\VENTILLATION\VentillationGlobals.st",63,46,1,1,1,1,1541820160,30993665,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 txsyned="src\heating\HeatingGlobals.st",36,27,1,1,1,1,3353458176,30921094,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 txsyned="src\persist\PersistGlobals.st",4,39,1,1,1,1,1445919744,30952511,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 txsyned="SRC\PERSIST\PersistInit.st",68,46,1,1,1,1,1445919744,30952511,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
@@ -83,7 +80,7 @@ sprompt=0
 iecoperands=1
 ieccomments=1
 implicitseltext=0
-findhistory="GONE_FOR_LONG_TIME","NILAN_COMMANDS","commUnit","NILAN_ACTUAL_VENTILLATION","C_NILAN_READ_COMMAND_GROUP","NILAN_DESIRED_TEMPERATURE","desired","NILAN_ACTUAL_VALUE_FOR_CONTROLLED_TEMPERATURE","NILAN_ACTUAL_CONTROLLED_TEMPERATURE","DESIRED_VENTILLATION_LEVEL","room","domesticHotWaterCirculation_in","OnThenOffPulse","DurationOut","ReentrantDurationOut"," off"
+findhistory="coolingNeeded","cooling","GONE_FOR_5_MINUTES","GONE_FOR_LONG_TIME","NILAN_COMMANDS","commUnit","NILAN_ACTUAL_VENTILLATION","C_NILAN_READ_COMMAND_GROUP","NILAN_DESIRED_TEMPERATURE","desired","NILAN_ACTUAL_VALUE_FOR_CONTROLLED_TEMPERATURE","NILAN_ACTUAL_CONTROLLED_TEMPERATURE","DESIRED_VENTILLATION_LEVEL","room","domesticHotWaterCirculation_in","OnThenOffPulse"
 fifmatchcase=0
 fifwholewords=0
 fifoutinstr=0
@@ -211,7 +208,7 @@ mem1w=298
 mem1visible=1
 mem2w=190
 mem2visible=0
-storednames="NILAN_ACTUAL_VENTILLATION","Ventillation_Control.commUnit.LastCmd","Ventillation_Control.actualModbusCommandGroup","NILAN_ACTUAL_VENTILLATION[1]","Ventillation_Control.modbusErrorMessage","C_NILAN_SET_VENTILLATION_LEVEL_COMMAND_GROUP","Ventillation_Control.commUnit","NILAN_PASSIVE_HEAT_EXCHANGER_EFFICIENCY","NILAN_CORE_DIAGNOSTICS","NILAN_CORE_DIAGNOSTICS[1]","NILAN_STATUS","IO_LOGGER","FILE_PROBLEM_TRACKER","SWITCH_TRACKER","SWITCH_TRACKER.whoTouchedMe","Alarm_Control.requestOffA"
+storednames="Ventillation_Control.presenceBasedDisable","awayFromHomeFor","GONE_FOR_5_SECONDS","Ventillation_Control.setCoolingBasedVentillationToZero.Q","Ventillation_Control.setPresenceBasedVentillationToZero.Q","Ventillation_Control.setCoolingBasedVentillationToActive.Q","Ventillation_Control.setPresenceBasedVentillationToActive.Q","NILAN_BYPASS_IS_ENABLED","Ventillation_Control.deactivateBypassVentialltionLevel.Q","NILAN_DESIRED_VENTILLATION_LEVEL","NILAN_ACTUAL_VENTILLATION","Ventillation_Control.commUnit.LastCmd","Ventillation_Control.actualModbusCommandGroup","NILAN_ACTUAL_VENTILLATION[1]","Ventillation_Control.modbusErrorMessage","C_NILAN_SET_VENTILLATION_LEVEL_COMMAND_GROUP"
 [/watch2win]
 
 [weblc]
@@ -265,7 +262,7 @@ window=52965916,1,0,0,504,902,836,1707,534,910,0,0,1
 [/FormDesign1]
 
 [textsyneditor]
-editor="src\ventillation\Ventillation.st",1,1,0,11,37,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
+editor="src\ventillation\Ventillation.st",1,1,0,50,70,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
 window=52965916,1,0,0,504,902,836,1707,534,910,0,0,2
 localparams=0,1,1,1,1,30,0,80,1,2,1,0,0
 font="Courier New",10
@@ -279,6 +276,39 @@ debugparams=1,0,1
 editor="IOCONFIGURATOR\CONFIG.HWC",1,0,0,686,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
 window=52965916,1,0,0,504,902,534,910,534,910,0,0,3
 localparams=0,1,1,1,1,30,0,80,1,4,0,0,0
+font="Courier New",10
+fonthires="Lucida Console",11
+relay=0,0,0,0,0,"",0,0
+inspectorctx=""
+debugparams=1,0,1
+[/textsyneditor]
+
+[textsyneditor]
+editor="SRC\ALARM\AlarmGlobals.st",1,0,0,42,23,42,5,42,23,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
+window=52965916,1,0,0,504,902,534,910,534,910,0,0,4
+localparams=0,1,1,1,1,30,0,80,1,2,1,0,0
+font="Courier New",10
+fonthires="Lucida Console",11
+relay=0,0,0,0,0,"",0,0
+inspectorctx=""
+debugparams=1,0,1
+[/textsyneditor]
+
+[textsyneditor]
+editor="SRC\ALARM\Alarm.st",1,0,0,32,32,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
+window=52965916,1,0,0,504,902,534,910,534,910,0,0,5
+localparams=0,1,1,1,1,30,0,80,1,2,1,0,0
+font="Courier New",10
+fonthires="Lucida Console",11
+relay=0,0,0,0,0,"",0,0
+inspectorctx="Alarm_Control"
+debugparams=1,0,1
+[/textsyneditor]
+
+[textsyneditor]
+editor="SRC\VENTILLATION\VentillationGlobals.st",1,0,0,29,30,29,3,29,30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
+window=52965916,1,0,0,504,902,534,910,534,910,0,0,6
+localparams=0,1,1,1,1,30,0,80,1,2,1,0,0
 font="Courier New",10
 fonthires="Lucida Console",11
 relay=0,0,0,0,0,"",0,0
