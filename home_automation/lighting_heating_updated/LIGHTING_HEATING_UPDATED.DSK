@@ -28,13 +28,21 @@ fifwhere=0
 fifsubdirs=0
 fif2ndmsg=1
 fif2ndmsg=1
-findhistory="DESIRED_TEMPERATURES"
+findhistory="ventillationControlPath"
 replacehistory=""
 dirhistory=""
 maskhistory=""
 [/txtextsyneditor]
 
 [closedtextsyneditors]
+txsyned="SRC\HEATING\HeatingInint.st",31,61,1,1,1,1,1541820160,30993665,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+txsyned="src\heating\HeatingGlobals.st",43,19,1,1,1,1,2128815104,30993726,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+txsyned="src\ventillation\VentillationInit.st",13,17,1,1,1,1,1541820160,30993665,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+txsyned="src\utils\persist\PersistFramework.st",223,22,1,1,1,1,1541820160,30993665,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+txsyned="SRC\ALARM\Alarm.st",32,32,1,1,1,1,528553472,30993718,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+txsyned="SRC\ALARM\AlarmGlobals.st",42,23,42,5,42,23,528553472,30993718,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+txsyned="IOCONFIGURATOR\CONFIG.HWC",686,1,1,1,1,1,1541820160,30993665,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+txsyned="src\ventillation\Ventillation.st",5,83,1,1,1,1,4068684288,30993722,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 txsyned="SYSGEN\LIGHTING_HEATING_UPDATED.mlh",1561,77,1,1,1,1,1376918272,30993668,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 txsyned="LOCALLIB\ModbusRTU_V40_20210826.mlb",1,1,1,1,1,1,1541820160,30993665,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 txsyned="LOCALLIB\StdLib_V22_20180619.mlb",1,1,1,1,1,1,1541820160,30993665,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
@@ -73,7 +81,7 @@ sprompt=0
 iecoperands=1
 ieccomments=1
 implicitseltext=0
-findhistory="DESIRED_TEMPERATURES","LIVING_ROOM_DESIRED_TEMPERATURE","HOT_WATER_TEMPERATURE","FUTOVIZ_TEMPERATURE","NILAN_DESIRED_TEMPERATURE","NILAN_DESIRED_TEMPERATURE_SCALED","coolingNeeded","cooling","GONE_FOR_5_MINUTES","GONE_FOR_LONG_TIME","NILAN_COMMANDS","commUnit","NILAN_ACTUAL_VENTILLATION","C_NILAN_READ_COMMAND_GROUP","desired","NILAN_ACTUAL_VALUE_FOR_CONTROLLED_TEMPERATURE"
+findhistory="ventillationControlPath","DESIRED_TEMPERATURES","LIVING_ROOM_DESIRED_TEMPERATURE","HOT_WATER_TEMPERATURE","FUTOVIZ_TEMPERATURE","NILAN_DESIRED_TEMPERATURE","NILAN_DESIRED_TEMPERATURE_SCALED","coolingNeeded","cooling","GONE_FOR_5_MINUTES","GONE_FOR_LONG_TIME","NILAN_COMMANDS","commUnit","NILAN_ACTUAL_VENTILLATION","C_NILAN_READ_COMMAND_GROUP","desired"
 fifmatchcase=0
 fifwholewords=0
 fifoutinstr=0
@@ -117,7 +125,7 @@ findhistory="presenceBasedDisable"
 [/replacedialog]
 
 [plcdiskdlg]
-lastdir="//PST/VENT/"
+lastdir="//PST/HEATING/BOILER/"
 showdetails=1
 [/plcdiskdlg]
 
@@ -148,7 +156,7 @@ window=68115944,1,0,0,624,366,676,100,676,366,0,0,2
 
 [prjfileswin]
 window=68115944,1,0,0,624,366,676,100,676,366,0,0,1
-filesheight=110
+filesheight=219
 relatedcnt=3
 relfile0="Sysgen\lighting_heating_updated.map"
 relfile1="SendRoot\iFoxtrot.pub"
@@ -251,12 +259,12 @@ window=0,0,0,0,420,272,642,134,642,272,0,0,-1
 [/PlcNetManager]
 
 [FormDesign1]
-window=52965916,1,0,0,624,1115,836,1707,534,910,0,0,1
+window=52965916,0,0,0,624,1115,836,1707,534,910,0,0,1
 [/FormDesign1]
 
 [textsyneditor]
-editor="src\ventillation\Ventillation.st",1,0,0,5,83,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=52965916,1,0,0,624,1115,836,1707,534,910,0,0,2
+editor="src\persist\PersistInit.st",1,1,0,59,45,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
+window=52965916,1,0,0,624,1115,534,910,534,910,0,0,2
 localparams=0,1,1,1,1,30,0,80,1,2,1,0,0
 font="Courier New",10
 fonthires="Lucida Console",11
@@ -266,19 +274,8 @@ debugparams=1,0,1
 [/textsyneditor]
 
 [textsyneditor]
-editor="IOCONFIGURATOR\CONFIG.HWC",1,0,0,686,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=52965916,1,0,0,624,1115,534,910,534,910,0,0,3
-localparams=0,1,1,1,1,30,0,80,1,4,0,0,0
-font="Lucida Console",11
-fonthires="Lucida Console",11
-relay=0,0,0,0,0,"",0,0
-inspectorctx=""
-debugparams=1,0,1
-[/textsyneditor]
-
-[textsyneditor]
-editor="SRC\ALARM\AlarmGlobals.st",1,0,0,42,23,42,5,42,23,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=52965916,1,0,0,624,1115,534,910,534,910,0,0,4
+editor="SRC\VENTILLATION\VentillationGlobals.st",1,0,0,56,3,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
+window=52965916,1,0,0,624,1115,654,1123,654,1123,0,0,3
 localparams=0,1,1,1,1,30,0,80,1,2,1,0,0
 font="Courier New",10
 fonthires="Lucida Console",11
@@ -288,8 +285,8 @@ debugparams=1,0,1
 [/textsyneditor]
 
 [textsyneditor]
-editor="SRC\ALARM\Alarm.st",1,0,0,32,32,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=52965916,1,0,0,624,1115,534,910,534,910,0,0,5
+editor="src\persist\PersistGlobals.st",1,0,0,25,51,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
+window=52965916,1,0,0,624,1115,654,1123,654,1123,0,0,4
 localparams=0,1,1,1,1,30,0,80,1,2,1,0,0
 font="Courier New",10
 fonthires="Lucida Console",11
@@ -299,85 +296,8 @@ debugparams=1,0,1
 [/textsyneditor]
 
 [textsyneditor]
-editor="SRC\VENTILLATION\VentillationGlobals.st",1,0,0,56,36,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=52965916,1,0,0,624,1115,534,910,534,910,0,0,6
-localparams=0,1,1,1,1,30,0,80,1,2,1,0,0
-font="Courier New",10
-fonthires="Lucida Console",11
-relay=0,0,0,0,0,"",0,0
-inspectorctx=""
-debugparams=1,0,1
-[/textsyneditor]
-
-[textsyneditor]
-editor="src\utils\persist\PersistFramework.st",1,0,0,223,22,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=52965916,1,0,0,624,1115,534,910,534,910,0,0,7
-localparams=0,1,1,1,1,30,0,80,1,2,1,0,0
-font="Courier New",10
-fonthires="Lucida Console",11
-relay=0,0,0,0,0,"",0,0
-inspectorctx=""
-debugparams=1,0,1
-[/textsyneditor]
-
-[textsyneditor]
-editor="src\persist\PersistGlobals.st",1,0,0,2,57,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=52965916,1,0,0,624,1115,534,910,534,910,0,0,8
-localparams=0,1,1,1,1,30,0,80,1,2,1,0,0
-font="Courier New",10
-fonthires="Lucida Console",11
-relay=0,0,0,0,0,"",0,0
-inspectorctx=""
-debugparams=1,0,1
-[/textsyneditor]
-
-[textsyneditor]
-editor="src\persist\PersistInit.st",1,0,0,34,59,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=52965916,1,0,0,624,1115,534,910,534,910,0,0,9
-localparams=0,1,1,1,1,30,0,80,1,2,1,0,0
-font="Courier New",10
-fonthires="Lucida Console",11
-relay=0,0,0,0,0,"",0,0
-inspectorctx="Persist_Init"
-debugparams=1,0,1
-[/textsyneditor]
-
-[textsyneditor]
-editor="src\ventillation\VentillationInit.st",1,0,0,13,17,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=52965916,1,0,0,624,1115,534,910,534,910,0,0,10
-localparams=0,1,1,1,1,30,0,80,1,2,1,0,0
-font="Courier New",10
-fonthires="Lucida Console",11
-relay=0,0,0,0,0,"",0,0
-inspectorctx="Ventillation_Init"
-debugparams=1,0,1
-[/textsyneditor]
-
-[textsyneditor]
-editor="src\persist\Persist.st",1,0,0,34,21,34,5,34,21,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=52965916,1,0,0,624,1115,534,910,534,910,0,0,11
-localparams=0,1,1,1,1,30,0,80,1,2,1,0,0
-font="Courier New",10
-fonthires="Lucida Console",11
-relay=0,0,0,0,0,"",0,0
-inspectorctx="Persist_Data"
-debugparams=1,0,1
-[/textsyneditor]
-
-[textsyneditor]
-editor="src\heating\HeatingGlobals.st",1,0,0,43,19,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=52965916,1,0,0,624,1115,534,910,534,910,0,0,12
-localparams=0,1,1,1,1,30,0,80,1,2,1,0,0
-font="Courier New",10
-fonthires="Lucida Console",11
-relay=0,0,0,0,0,"",0,0
-inspectorctx=""
-debugparams=1,0,1
-[/textsyneditor]
-
-[textsyneditor]
-editor="SRC\HEATING\HeatingInint.st",1,0,0,31,61,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=52965916,1,0,0,624,1115,534,910,534,910,0,0,13
+editor="src\persist\Persist.st",1,0,0,38,18,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
+window=52965916,1,0,0,624,1115,654,1123,654,1123,0,0,5
 localparams=0,1,1,1,1,30,0,80,1,2,1,0,0
 font="Courier New",10
 fonthires="Lucida Console",11

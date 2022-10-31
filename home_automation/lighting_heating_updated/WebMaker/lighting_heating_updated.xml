@@ -703,13 +703,13 @@
 				<label />
 			</object>
 			<object caption="" X="19" Y="32" xoff="6" yoff="7" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="11547" hint="Kívánt szellõztetési hõmérséklet">
-				<edit variable="NILAN_DESIRED_TEMPERATURE" type="INT" intf="0" timf="" align="left" zero="false" prec="0" size="2" global="false" border="true" width="28" height="22" tabindex="11" />
+				<edit variable="NILAN_DESIRED_TEMPERATURE" type="INT" intf="0" timf="" align="left" zero="false" prec="0" size="2" global="false" border="true" width="26" height="22" tabindex="11" />
 			</object>
 			<object caption="" X="7" Y="2" xoff="1" yoff="3" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="11549" hint="Szellõztetõ">
 				<image optcap="" variable="NILAN_ACTUAL_VENTILLATION_SETPOINT" type="INT" on="FAN1_O_1.PNG" off="FAN1_O_2.PNG" />
 			</object>
 			<object caption="" X="11" Y="2" xoff="1" yoff="6" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="11550" hint="Kívánt szellõztetési szint">
-				<edit variable="NILAN_DESIRED_VENTILLATION_LEVEL" type="INT" intf="0" timf="" align="left" zero="false" prec="0" size="2" global="false" border="true" width="28" height="22" tabindex="13" />
+				<edit variable="NILAN_DESIRED_VENTILLATION_LEVEL" type="INT" intf="0" timf="" align="left" zero="false" prec="0" size="2" global="false" border="true" width="26" height="22" tabindex="13" />
 			</object>
 			<object caption="" X="17" Y="2" xoff="3" yoff="7" level="0" readonly="false" front="32768" back="16777215" strong="true" italic="false" size="13" transparent="false" visneg="false" Uid="11551" hint="Szellõztetési szint">
 				<edit variable="NILAN_ACTUAL_VENTILLATION_AVERAGE_FAN_LEVEL" type="REAL" intf="0" timf="" align="left" zero="false" prec="1" size="3" global="true" border="true" width="37" height="22" tabindex="8" />
