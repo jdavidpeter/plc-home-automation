@@ -20,20 +20,20 @@
 #useoption RestartOnError = 0   ; PLC will not be restarted after hard error
 
 #uselib "LocalLib\StdLib_V22_20180619.mlb"
-#uselib "LocalLib\SysLib_V44_20200302.mlb"
-#uselib "LocalLib\OpenThermLib_V13_20150819.mlb"
-#uselib "LocalLib\ComLib_V33_20200327.mlb"
+#uselib "LocalLib\SysLib_V48_20220608.mlb"
+#uselib "LocalLib\OpenThermLib_V14_20220324.mlb"
 #uselib "LocalLib\ToStringLib_V13_20110203.mlb"
+#uselib "LocalLib\FileLib_V29_20220201.mlb"
+#uselib "LocalLib\ComLib_V36_20211110.mlb"
 #uselib "LocalLib\ParadoxLib_V17_20141014.mlb"
-#uselib "LocalLib\FileLib_V28_20200709.mlb"
 #uselib "LocalLib\TimeLib_V15_20170216.mlb"
 #uselib "LocalLib\EncryptLib_V13_20160923.mlb"
-#uselib "LocalLib\DataBoxLib_V16_20160713.mlb"
-#uselib "LocalLib\ConvertLib_V21_20170222.mlb"
-#uselib "LocalLib\InternetLib_V56_20200402.mlb"
-#uselib "LocalLib\MQTTLib_V14_20200528.mlb"
+#uselib "LocalLib\DataBoxLib_V17_20201109.mlb"
+#uselib "LocalLib\ConvertLib_V25_20220831.mlb"
+#uselib "LocalLib\InternetLib_V59_20220620.mlb"
+#uselib "LocalLib\MQTTLib_V15_20210218.mlb"
 #uselib "LocalLib\CrcLib_V13_20170224.mlb"
-#uselib "LocalLib\ModbusRTU_V40_20210826.mlb"
+#uselib "LocalLib\ModbusRTU_V41_20220406.mlb"
 #endlibs
 
 ;**************************************

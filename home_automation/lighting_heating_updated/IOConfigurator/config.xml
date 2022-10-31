@@ -1,5 +1,5 @@
 <TecoConfiguration xmlns="http://www.tecomat.com">
-  <Configuration version="2020.2a" system="FOXTROT">
+  <Configuration version="2022.2" system="FOXTROT">
     <Device xmlns="http://www.tecomat.com" alias="Central Unit" rack="0" position="0" expanded="true" statLoc="%S100" validStat="A2">
       <Info>
         <ProductCode>1000</ProductCode>

@@ -8,12 +8,12 @@ PROGRAM VentillationControl
      commUnit: fbModbusRTUmas2;
      modbusErrorMessage: String;
      
-     presenceBasedActivity                : BOOL := FALSE;
+     presenceBasedDisable                 : BOOL := FALSE;
      coolingNeeded                        : BOOL := FALSE;
 
      setPresenceBasedVentillationToZero   : R_TRIG;
      setPresenceBasedVentillationToActive : F_TRIG;
-     
+
      setCoolingBasedVentillationToZero    : F_TRIG;
      setCoolingBasedVentillationToActive  : R_TRIG;
      
@@ -32,11 +32,11 @@ PROGRAM VentillationControl
   
   NILAN_DESIRED_TEMPERATURE_SCALED := NILAN_DESIRED_TEMPERATURE*100;
   
-  presenceBasedActivity := GONE_FOR_5_HOURS OR (ALARM_ACTIVE AND GONE_FOR_LONG_TIME);
+  presenceBasedDisable := GONE_FOR_5_HOURS OR (ALARM_ACTIVE AND GONE_FOR_LONG_TIME);
   coolingNeeded := INT_TO_REAL(NILAN_DESIRED_TEMPERATURE) < NILAN_ACTUAL_CONTROLLED_TEMPERATURE;
   
-  setPresenceBasedVentillationToZero(CLK := presenceBasedActivity);
-  setPresenceBasedVentillationToACtive(CLK := presenceBasedActivity);
+  setPresenceBasedVentillationToZero(CLK := presenceBasedDisable);
+  setPresenceBasedVentillationToACtive(CLK := presenceBasedDisable);
 
   setCoolingBasedVentillationToZero(CLK := coolingNeeded);
   setCoolingBasedVentillationToActive(CLK := coolingNeeded);

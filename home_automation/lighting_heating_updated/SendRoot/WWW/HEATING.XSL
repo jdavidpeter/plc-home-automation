@@ -15,18 +15,18 @@
 <title>
 <xsl:value-of select="/PAGE/@TITLE" />
 Fűtés</title>
-<script src="HEATING.JS?U=1649500570" language="JavaScript" charset="utf-8" />
+<script src="HEATING.JS?U=1667205620" language="JavaScript" charset="utf-8" />
 <style type="text/css">.mono {font-family: Verdana, Arial, FreeSans, sans-serif;}</style>
 </head>
 <body onload="GetXML('HEATING.XML'); FunWatchDog();">
-<xsl:if test="1649500570 != ACCESS/@UCID">
+<xsl:if test="1667205620 != ACCESS/@UCID">
 <xsl:attribute name="onload">
 null;
 </xsl:attribute>
 <div id="cachewarning" style="text-align: left;"></div>
 <script src="REFCLR.JS" language="JavaScript" charset="utf-8"></script>
 </xsl:if>
-<xsl:if test="1649500570 = ACCESS/@UCID">
+<xsl:if test="1667205620 = ACCESS/@UCID">
 <table cellpadding="0" cellspacing="0">
 <tr style="height: 40px;">
 <!--logo-->
@@ -155,7 +155,7 @@ Fűtés</span>
 </div>
 </xsl:if>
 <div style="position: absolute; top: 126px; left: 35px; z-index: 28; font-weight: bold;">Fűtés</div>
-<div style="position: absolute; top: 126px; left: 101px; z-index: 29; font-weight: bold;">Meleg víz</div>
+<div style="position: absolute; top: 126px; left: 100px; z-index: 29; font-weight: bold;">Meleg víz</div>
 <div style="position: absolute; top: 131px; left: 199px; z-index: 31;">Visszatérő T</div>
 <form action="javascript:PostXML16()" style="position: absolute; top: 460px; left: 119px; z-index: 32; font-size: 13px;">
 <input id="INPUT16" onfocus="document.getElementById('INPUT16x').style.visibility='visible';SetInputEdited(16, event);" onblur="InputFocused[15]=0" onkeydown="SetInputEdited(16, event);" class="mono" tabindex="11" type="text" style="width: 49px; background-color: #FFFFFF;" name="{INPUT[14]/@NAME}" value="{INPUT[14]/@VALUE}" />
@@ -327,7 +327,7 @@ Fűtés</span>
 </div>
 </xsl:if>
 <div style="position: absolute; top: 290px; left: 36px; z-index: 79; font-weight: bold;">Fűtés</div>
-<div style="position: absolute; top: 290px; left: 102px; z-index: 80; font-weight: bold;">Meleg víz</div>
+<div style="position: absolute; top: 290px; left: 101px; z-index: 80; font-weight: bold;">Meleg víz</div>
 <form action="javascript:PostXML48()" style="position: absolute; top: 610px; left: 119px; z-index: 81; font-size: 13px;">
 <input id="INPUT48" onfocus="document.getElementById('INPUT48x').style.visibility='visible';SetInputEdited(48, event);" onblur="InputFocused[47]=0" onkeydown="SetInputEdited(48, event);" class="mono" tabindex="17" type="text" style="width: 49px; background-color: #FFFFFF;" name="{INPUT[44]/@NAME}" value="{INPUT[44]/@VALUE}" />
 <input type="submit" id="INPUT48x" style="position: absolute; top: 0px; height: 22px; width: 22px; visibility: hidden;" value="&gt;" />

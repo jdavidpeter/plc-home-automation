@@ -363,7 +363,7 @@
 				<picture href="" img="ALARM1_1.PNG" />
 			</object>
 		</page>
-		<page caption="Fûtés" name="HEATING.XML" background="" bgcolor="16777215" repeat="false" hidden="false" ajax="true" pause="1000" level="0" ucid="1649500570" width="345" height="832" Uid="11328">
+		<page caption="Fûtés" name="HEATING.XML" background="" bgcolor="16777215" repeat="false" hidden="false" ajax="true" pause="1000" level="0" ucid="1667205620" width="345" height="832" Uid="11328">
 			<object caption="" X="3" Y="7" xoff="3" yoff="2" level="0" readonly="false" front="0" back="33023" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="11161">
 				<block width="70" height="70" border="true" />
 			</object>
@@ -448,7 +448,7 @@
 			<object caption="Fûtés" X="5" Y="16" xoff="3" yoff="6" level="0" readonly="false" front="0" back="16777215" strong="true" italic="false" size="13" transparent="true" visneg="false" Uid="11167">
 				<label />
 			</object>
-			<object caption="Meleg víz" X="13" Y="16" xoff="5" yoff="6" level="0" readonly="false" front="0" back="16777215" strong="true" italic="false" size="13" transparent="true" visneg="false" Uid="11168">
+			<object caption="Meleg víz" X="13" Y="16" xoff="4" yoff="6" level="0" readonly="false" front="0" back="16777215" strong="true" italic="false" size="13" transparent="true" visneg="false" Uid="11168">
 				<label />
 			</object>
 			<object caption="" X="38" Y="17" xoff="3" yoff="0" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="11170" hint="Eredõ hõmérséklet igény">
@@ -601,7 +601,7 @@
 			<object caption="Fûtés" X="5" Y="37" xoff="4" yoff="2" level="0" readonly="false" front="0" back="16777215" strong="true" italic="false" size="13" transparent="true" visneg="false" Uid="11418">
 				<label />
 			</object>
-			<object caption="Meleg víz" X="13" Y="37" xoff="6" yoff="2" level="0" readonly="false" front="0" back="16777215" strong="true" italic="false" size="13" transparent="true" visneg="false" Uid="11419">
+			<object caption="Meleg víz" X="13" Y="37" xoff="5" yoff="2" level="0" readonly="false" front="0" back="16777215" strong="true" italic="false" size="13" transparent="true" visneg="false" Uid="11419">
 				<label />
 			</object>
 			<object caption="" X="15" Y="77" xoff="7" yoff="2" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="11484">
@@ -629,7 +629,7 @@
 				<picture href="" img="HEAT1__4.PNG" />
 			</object>
 		</page>
-		<page caption="Szellõztetés" name="VENTIL.XML" background="" bgcolor="16777215" repeat="false" hidden="false" ajax="true" pause="1000" level="0" ucid="1658653968" width="363" height="455" Uid="11560">
+		<page caption="Szellõztetés" name="VENTIL.XML" background="" bgcolor="16777215" repeat="false" hidden="false" ajax="true" pause="1000" level="0" ucid="1667205603" width="363" height="455" Uid="11560">
 			<object caption="" X="34" Y="12" xoff="6" yoff="6" level="0" readonly="false" front="0" back="16711680" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="11563">
 				<block width="70" height="70" border="true" />
 			</object>
@@ -720,7 +720,7 @@
 			<object caption="" X="35" Y="13" xoff="1" yoff="1" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="NILAN_BYPASS_IS_ENABLED" vistype="BOOL" visneg="true" Uid="11562" hint="Bypass kikapcsolva">
 				<picture href="" img="SW7D18_1.PNG" />
 			</object>
-			<object caption="Bypass" X="35" Y="22" xoff="5" yoff="2" level="0" readonly="false" front="0" back="16777215" strong="true" italic="false" size="13" transparent="true" visneg="false" Uid="11566">
+			<object caption="Bypass" X="35" Y="22" xoff="7" yoff="2" level="0" readonly="false" front="0" back="16777215" strong="true" italic="false" size="13" transparent="true" visneg="false" Uid="11566">
 				<label />
 			</object>
 			<object caption="" X="35" Y="13" xoff="1" yoff="1" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visvar="NILAN_BYPASS_IS_ENABLED" vistype="BOOL" visneg="false" Uid="11567" hint="Bypass bekapcsolva">
