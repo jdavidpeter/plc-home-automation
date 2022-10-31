@@ -30,7 +30,7 @@ PROGRAM PersistData
       toWrite := init);
   END_FOR;
 
-    FOR i := 1 to C_INTS_TO_PERSIST DO
+  FOR i := 1 to C_INTS_TO_PERSIST DO
     intPersistors[i](compilerBugPlaceholder := init,
       variableToPersist := INTS_TO_PERSIST[i]^,
       dirPath := INTS_TO_PERSIST_DIRS[i],

@@ -29,7 +29,7 @@
 		</PeriodCollection>
 		<Signal Name="Mod" Enable="1" NumData="0" Note="">
 			<Header>Mod</Header>
-			<Source Name="VAILLANT_MODULATION_LEVEL" Zone="R" Offset="16036" Type="USINT" IEC="11" Format="%u"></Source>
+			<Source Name="VAILLANT_MODULATION_LEVEL" Zone="R" Offset="16032" Type="USINT" IEC="11" Format="%u"></Source>
 			<Changes Enable="0">
 				<Change Up="1" Dw="1" Val="0" Hst="0" Txt="" Add="0"></Change>
 			</Changes>
@@ -44,7 +44,7 @@
 		</Signal>
 		<Signal Name="FowWatT" Enable="1" NumData="0" Note="">
 			<Header>FowWatT</Header>
-			<Source Name="VAILLANT_HEATING_TEMP" Zone="R" Offset="16020" Type="REAL" IEC="15" Format="%f"></Source>
+			<Source Name="VAILLANT_HEATING_TEMP" Zone="R" Offset="16016" Type="REAL" IEC="15" Format="%f"></Source>
 			<Changes Enable="0">
 				<Change Up="1" Dw="1" Val="0" Hst="0" Txt="" Add="0"></Change>
 			</Changes>
@@ -59,7 +59,7 @@
 		</Signal>
 		<Signal Name="RetWatT" Enable="1" NumData="0" Note="">
 			<Header>RetWatT</Header>
-			<Source Name="VAILLANT_RETURN_WATER_TEMP" Zone="R" Offset="16032" Type="REAL" IEC="15" Format="%f"></Source>
+			<Source Name="VAILLANT_RETURN_WATER_TEMP" Zone="R" Offset="16028" Type="REAL" IEC="15" Format="%f"></Source>
 			<Changes Enable="0">
 				<Change Up="1" Dw="1" Val="0" Hst="0" Txt="" Add="0"></Change>
 			</Changes>
@@ -74,7 +74,7 @@
 		</Signal>
 		<Signal Name="SumTReq" Enable="1" NumData="0" Note="Eredõ fûtõvíz hõ igény">
 			<Header>SumTReq</Header>
-			<Source Name="SUM_HEATING_WATER_TEMPERATURE_REQUIREMENT" Zone="R" Offset="15839" Type="REAL" IEC="15" Format="%f"></Source>
+			<Source Name="SUM_HEATING_WATER_TEMPERATURE_REQUIREMENT" Zone="R" Offset="15835" Type="REAL" IEC="15" Format="%f"></Source>
 			<Changes Enable="0">
 				<Change Up="1" Dw="1" Val="0" Hst="0" Txt="" Add="0"></Change>
 			</Changes>

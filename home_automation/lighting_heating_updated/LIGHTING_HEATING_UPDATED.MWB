@@ -6,7 +6,7 @@ contentversion=1
 [Watch2Bank0]
 bankname="Bank1"
 shortcut=1
-watchcnt=11
+watchcnt=14
 bindfile=""
 watchobjEx0=0,"NILAN_DESIRED_VENTILLATION_LEVEL|"
 watchobj0="NILAN_DESIRED_VENTILLATION_LEVEL",1,0,0,""
@@ -30,5 +30,11 @@ watchobjEx9=0,"GONE_FOR_5_SECONDS|"
 watchobj9="GONE_FOR_5_SECONDS",1,0,0,""
 watchobjEx10=0,"Ventillation_Control.presenceBasedDisable|"
 watchobj10="Ventillation_Control.presenceBasedDisable",1,0,0,""
+watchobjEx11=0,"Persist_Data.realPersistors.current|"
+watchobj11="Persist_Data.realPersistors.current",1,0,0,""
+watchobjEx12=0,"Persist_Data.realPersistors.variableToPersist|"
+watchobj12="Persist_Data.realPersistors.variableToPersist",1,0,0,""
+watchobjEx13=0,"HOT_WATER_TEMPERATURE|"
+watchobj13="HOT_WATER_TEMPERATURE",1,0,0,""
 [/Watch2Bank0]
 

@@ -1,6 +1,6 @@
 VAR_GLOBAL CONSTANT
-    C_REALS_TO_PERSIST : INT      := 18;
-    C_BOOLS_TO_PERSIST : INT      := 4;
+    C_REALS_TO_PERSIST : INT      := C_HEATING_ZONES + 5;
+    C_BOOLS_TO_PERSIST : INT      := 6;
     C_INTS_TO_PERSIST  : INT      := 2;
 
     C_PERSIST_DIRECTORY_ROOT : STRING           := 'PST';

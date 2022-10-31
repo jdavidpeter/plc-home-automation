@@ -40,7 +40,6 @@ VAR_GLOBAL
    HEATING_ENABLE : BOOL := true;
    HOT_WATER_ENABLE : BOOL := true;
 
-   FUTOVIZ_TEMPERATURE : REAL                   := 30.0;
    HOT_WATER_TEMPERATURE : REAL                 := 42.0;
 
    LIVING_ROOM_DESIRED_TEMPERATURE : REAL       := 22.0;

@@ -15,18 +15,18 @@
 <title>
 <xsl:value-of select="/PAGE/@TITLE" />
 Szellőztetés</title>
-<script src="VENTIL.JS?U=1667205603" language="JavaScript" charset="utf-8" />
+<script src="VENTIL.JS?U=1667230568" language="JavaScript" charset="utf-8" />
 <style type="text/css">.mono {font-family: Verdana, Arial, FreeSans, sans-serif;}</style>
 </head>
 <body onload="GetXML('VENTIL.XML'); FunWatchDog();">
-<xsl:if test="1667205603 != ACCESS/@UCID">
+<xsl:if test="1667230568 != ACCESS/@UCID">
 <xsl:attribute name="onload">
 null;
 </xsl:attribute>
 <div id="cachewarning" style="text-align: left;"></div>
 <script src="REFCLR.JS" language="JavaScript" charset="utf-8"></script>
 </xsl:if>
-<xsl:if test="1667205603 = ACCESS/@UCID">
+<xsl:if test="1667230568 = ACCESS/@UCID">
 <table cellpadding="0" cellspacing="0">
 <tr style="height: 40px;">
 <!--logo-->
@@ -66,7 +66,7 @@ Szellőztetés</span>
 <form action="javascript:PostGlobal();">
 <input title="Beszívott levegő hőmérséklet" class="mono" tabindex="1" type="text" id="INPUT1" style="position: absolute; top: 98px; left: 15px; width: 49px; z-index: 8; color: #008000; background-color: #FFFFFF; font-weight: bold;" value="{INPUT[1]/@VALUE}" name="{INPUT[1]/@NAME}" onfocus="SetInputEdited(1, event);" onblur="InputFocused[0]=0" onkeydown="SetInputEdited(1, event);"></input>
 <input title="Kidobott levegő hőmérséklet" class="mono" tabindex="7" type="text" id="INPUT2" style="position: absolute; top: 138px; left: 15px; width: 49px; z-index: 10; color: #008000; background-color: #FFFFFF; font-weight: bold;" value="{INPUT[2]/@VALUE}" name="{INPUT[2]/@NAME}" onfocus="SetInputEdited(2, event);" onblur="InputFocused[1]=0" onkeydown="SetInputEdited(2, event);"></input>
-<input title="Controller board temperature" class="mono" tabindex="6" type="text" id="INPUT3" style="position: absolute; top: 433px; left: 230px; width: 49px; z-index: 11; color: #008000; background-color: #FFFFFF; font-weight: bold;" value="{INPUT[3]/@VALUE}" name="{INPUT[3]/@NAME}" onfocus="SetInputEdited(3, event);" onblur="InputFocused[2]=0" onkeydown="SetInputEdited(3, event);"></input>
+<input title="Controller board temperature" class="mono" tabindex="6" type="text" id="INPUT3" style="position: absolute; top: 463px; left: 230px; width: 49px; z-index: 11; color: #008000; background-color: #FFFFFF; font-weight: bold;" value="{INPUT[3]/@VALUE}" name="{INPUT[3]/@NAME}" onfocus="SetInputEdited(3, event);" onblur="InputFocused[2]=0" onkeydown="SetInputEdited(3, event);"></input>
 <input title="Szobába fújt levegő hőmérséklet" class="mono" tabindex="2" type="text" id="INPUT4" style="position: absolute; top: 98px; left: 182px; width: 49px; z-index: 14; color: #008000; background-color: #FFFFFF; font-weight: bold;" value="{INPUT[4]/@VALUE}" name="{INPUT[4]/@NAME}" onfocus="SetInputEdited(4, event);" onblur="InputFocused[3]=0" onkeydown="SetInputEdited(4, event);"></input>
 <input title="Szobából elszívott levegő hőmérséklet" class="mono" tabindex="12" type="text" id="INPUT5" style="position: absolute; top: 138px; left: 182px; width: 49px; z-index: 16; color: #008000; background-color: #FFFFFF; font-weight: bold;" value="{INPUT[5]/@VALUE}" name="{INPUT[5]/@NAME}" onfocus="SetInputEdited(5, event);" onblur="InputFocused[4]=0" onkeydown="SetInputEdited(5, event);"></input>
 <input title="Szobába fújt levegő hőmérséklet" class="mono" tabindex="4" type="text" id="INPUT6" style="position: absolute; top: 218px; left: 112px; width: 22px; z-index: 18; color: #0080FF; background-color: #FFFFFF; font-weight: bold;" value="{INPUT[6]/@VALUE}" name="{INPUT[6]/@NAME}" onfocus="SetInputEdited(6, event);" onblur="InputFocused[5]=0" onkeydown="SetInputEdited(6, event);"></input>
@@ -76,7 +76,7 @@ Szellőztetés</span>
 <input title="Beszívó ventillátor fokozat" class="mono" tabindex="9" type="text" id="INPUT19" style="position: absolute; top: 57px; left: 51px; width: 22px; z-index: 35; color: #008000; background-color: #FFFFFF; font-weight: bold; text-align: center;" value="{INPUT[16]/@VALUE}" name="{INPUT[16]/@NAME}" onfocus="SetInputEdited(19, event);" onblur="InputFocused[18]=0" onkeydown="SetInputEdited(19, event);"></input>
 <input title="Kifújó vetillátor fokozat" class="mono" tabindex="10" type="text" id="INPUT20" style="position: absolute; top: 172px; left: 51px; width: 22px; z-index: 36; color: #008000; background-color: #FFFFFF; font-weight: bold; text-align: center;" value="{INPUT[17]/@VALUE}" name="{INPUT[17]/@NAME}" onfocus="SetInputEdited(20, event);" onblur="InputFocused[19]=0" onkeydown="SetInputEdited(20, event);"></input>
 </form>
-<div style="position: absolute; top: 94px; left: 270px; z-index: 1;height: 68px; width: 68px; border: 1px solid #000000; background-color: #0000FF;"></div>
+<div style="position: absolute; top: 94px; left: 270px; z-index: 1;height: 68px; width: 68px; border: 1px solid #000000; background-color: #22B14C;"></div>
 <div style="position: absolute; top: 133px; left: 75px; z-index: 2;height: 30px; width: 30px; border: 1px solid #FFFFFF; background-color: #3EA73A;"></div>
 <div style="position: absolute; top: 94px; left: 75px; z-index: 3;height: 30px; width: 30px; border: 1px solid #FFFFFF; background-color: #3EA73A;"></div>
 <div style="position: absolute; top: 133px; left: 144px; z-index: 4;height: 30px; width: 30px; border: 1px solid #FFFFFF; background-color: #0080FF;"></div>
@@ -84,7 +84,7 @@ Szellőztetés</span>
 <div title="Ház" style="position: absolute; top: 80px; left: 113px; z-index: 6;height: 98px; width: 23px; border: 1px solid #FFC20E; background-color: #FF8000;"></div>
 <div title="Beáramlő levegő" style="position: absolute; top: 94px; left: 75px; z-index: 7; background-image: url(IMAGES/ARROW1_3.PNG); line-height: 32px; height: 32px; width: 32px;"></div>
 <div title="Kiáramló levegő" style="position: absolute; top: 133px; left: 75px; z-index: 9; background-image: url(IMAGES/ARROW1_2.PNG); line-height: 32px; height: 32px; width: 32px;"></div>
-<div title="Szellőztető alaplap hőmérséklet" style="position: absolute; top: 435px; left: 10px; z-index: 12;">Szellőztető alaplap hőmérséklet</div>
+<div title="Szellőztető alaplap hőmérséklet" style="position: absolute; top: 465px; left: 10px; z-index: 12;">Szellőztető alaplap hőmérséklet</div>
 <div title="Beáramlő levegő" style="position: absolute; top: 93px; left: 144px; z-index: 13; background-image: url(IMAGES/ARROW1_3.PNG); line-height: 32px; height: 32px; width: 32px;"></div>
 <div title="Kiáramló levegő" style="position: absolute; top: 133px; left: 144px; z-index: 15; background-image: url(IMAGES/ARROW1_2.PNG); line-height: 32px; height: 32px; width: 32px;"></div>
 <div title="%" style="position: absolute; top: 220px; left: 145px; z-index: 17;">%</div>
@@ -98,7 +98,7 @@ Szellőztetés</span>
 <div title="Páratartalom" style="position: absolute; top: 220px; left: 13px; z-index: 22;">Páratartalom</div>
 <div title="Páratartalom" style="position: absolute; top: 260px; left: 13px; z-index: 24;">Kívánt hőmérséklet</div>
 <form action="javascript:PostXML10()" style="position: absolute; top: 255px; left: 150px; z-index: 25; font-size: 13px;">
-<input title="Kívánt szellőztetési hőmérséklet" id="INPUT10" onfocus="document.getElementById('INPUT10x').style.visibility='visible';SetInputEdited(10, event);" onblur="InputFocused[9]=0" onkeydown="SetInputEdited(10, event);" class="mono" tabindex="11" type="text" style="width: 22px; background-color: #FFFFFF;" name="{INPUT[10]/@NAME}" value="{INPUT[10]/@VALUE}" />
+<input title="Kívánt szellőztetési hőmérséklet" id="INPUT10" onfocus="document.getElementById('INPUT10x').style.visibility='visible';SetInputEdited(10, event);" onblur="InputFocused[9]=0" onkeydown="SetInputEdited(10, event);" class="mono" tabindex="11" type="text" style="width: 20px; background-color: #FFFFFF;" name="{INPUT[10]/@NAME}" value="{INPUT[10]/@VALUE}" />
 <input type="submit" id="INPUT10x" style="position: absolute; top: 0px; height: 22px; width: 22px; visibility: hidden;" value="&gt;" />
 </form>
 <form style="position: absolute; top: 11px; left: 49px; z-index: 26;">
@@ -112,7 +112,7 @@ Szellőztetés</span>
 </xsl:if>
 </form>
 <form action="javascript:PostXML12()" style="position: absolute; top: 14px; left: 81px; z-index: 27; font-size: 13px;">
-<input title="Kívánt szellőztetési szint" id="INPUT12" onfocus="document.getElementById('INPUT12x').style.visibility='visible';SetInputEdited(12, event);" onblur="InputFocused[11]=0" onkeydown="SetInputEdited(12, event);" class="mono" tabindex="13" type="text" style="width: 22px; background-color: #FFFFFF;" name="{INPUT[12]/@NAME}" value="{INPUT[12]/@VALUE}" />
+<input title="Kívánt szellőztetési szint" id="INPUT12" onfocus="document.getElementById('INPUT12x').style.visibility='visible';SetInputEdited(12, event);" onblur="InputFocused[11]=0" onkeydown="SetInputEdited(12, event);" class="mono" tabindex="13" type="text" style="width: 20px; background-color: #FFFFFF;" name="{INPUT[12]/@NAME}" value="{INPUT[12]/@VALUE}" />
 <input type="submit" id="INPUT12x" style="position: absolute; top: 0px; height: 22px; width: 22px; visibility: hidden;" value="&gt;" />
 </form>
 <xsl:if test="INPUT[14]/@VALUE = 0">
@@ -154,6 +154,54 @@ Szellőztetés</span>
 <div title="Kifújó ventillátor" id="INPUT18" class="imgsub" onclick="PostXML18()" style="background-image: url(IMAGES/FAN1_O_1.PNG); line-height: 24px; height: 24px; width: 24px;"></div>
 </xsl:if>
 </form>
+<div style="position: absolute; top: 324px; left: 12px; z-index: 37;height: 68px; width: 68px; border: 1px solid #000000; background-color: #0000FF;"></div>
+<xsl:if test="INPUT[18]/@VALUE = 0">
+<div style="position: absolute; top: 327px; left: 15px; z-index: 38;">
+<div onclick="PostXML21()" id="INPUT21" class="imgsub" style="background-image: url(IMAGES/SW747C_1.PNG); height: 64px; width: 64px; line-height: 64px; display: none;"></div>
+</div>
+</xsl:if>
+<xsl:if test="INPUT[18]/@VALUE != 0">
+<div style="position: absolute; top: 327px; left: 15px; z-index: 38;">
+<div onclick="PostXML21()" id="INPUT21" class="imgsub" style="background-image: url(IMAGES/SW747C_1.PNG); height: 64px; width: 64px; line-height: 64px;"></div>
+</div>
+</xsl:if>
+<xsl:if test="INPUT[18]/@VALUE != 0">
+<div style="position: absolute; top: 327px; left: 15px; z-index: 39;">
+<div onclick="PostXML22()" id="INPUT22" class="imgsub" style="background-image: url(IMAGES/SW7D18_1.PNG); height: 64px; width: 64px; line-height: 64px; display: none;"></div>
+</div>
+</xsl:if>
+<xsl:if test="INPUT[18]/@VALUE = 0">
+<div style="position: absolute; top: 327px; left: 15px; z-index: 39;">
+<div onclick="PostXML22()" id="INPUT22" class="imgsub" style="background-image: url(IMAGES/SW7D18_1.PNG); height: 64px; width: 64px; line-height: 64px;"></div>
+</div>
+</xsl:if>
+<div style="position: absolute; top: 289px; left: 12px; z-index: 40; font-weight: bold;">Intelligens vezérlés</div>
+<div style="position: absolute; top: 307px; left: 12px; z-index: 41;height: 0px; width: 158px; border: 1px solid #000000; background-color: #000000;"></div>
+<div style="position: absolute; top: 324px; left: 92px; z-index: 42;height: 68px; width: 68px; border: 1px solid #000000; background-color: #0000FF;"></div>
+<xsl:if test="INPUT[19]/@VALUE = 0">
+<div style="position: absolute; top: 327px; left: 95px; z-index: 43;">
+<div onclick="PostXML23()" id="INPUT23" class="imgsub" style="background-image: url(IMAGES/SW747C_1.PNG); height: 64px; width: 64px; line-height: 64px; display: none;"></div>
+</div>
+</xsl:if>
+<xsl:if test="INPUT[19]/@VALUE != 0">
+<div style="position: absolute; top: 327px; left: 95px; z-index: 43;">
+<div onclick="PostXML23()" id="INPUT23" class="imgsub" style="background-image: url(IMAGES/SW747C_1.PNG); height: 64px; width: 64px; line-height: 64px;"></div>
+</div>
+</xsl:if>
+<xsl:if test="INPUT[19]/@VALUE != 0">
+<div style="position: absolute; top: 327px; left: 95px; z-index: 44;">
+<div onclick="PostXML24()" id="INPUT24" class="imgsub" style="background-image: url(IMAGES/SW7D18_1.PNG); height: 64px; width: 64px; line-height: 64px; display: none;"></div>
+</div>
+</xsl:if>
+<xsl:if test="INPUT[19]/@VALUE = 0">
+<div style="position: absolute; top: 327px; left: 95px; z-index: 44;">
+<div onclick="PostXML24()" id="INPUT24" class="imgsub" style="background-image: url(IMAGES/SW7D18_1.PNG); height: 64px; width: 64px; line-height: 64px;"></div>
+</div>
+</xsl:if>
+<div style="position: absolute; top: 400px; left: 18px; z-index: 45; font-weight: bold;">Jelenlét</div>
+<div style="position: absolute; top: 400px; left: 106px; z-index: 46; font-weight: bold;">Hűtés</div>
+<div style="position: absolute; top: 417px; left: 27px; z-index: 47; font-weight: bold;">Alapú</div>
+<div style="position: absolute; top: 417px; left: 92px; z-index: 48; font-weight: bold;">Elsőbbség</div>
 </div>
 </td>
 </tr>

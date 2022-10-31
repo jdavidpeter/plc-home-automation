@@ -45,7 +45,7 @@ if(xmlhttpGET.status != 200){
 alert('Problem retrieving XML data ' + xmlhttpGET.statusText + '(' + xmlhttpGET.status + ')');
 document.location.reload(true)
 return;}
-var access = xmlhttpGET.responseXML.documentElement.getElementsByTagName('ACCESS')[0]; if(!access || access.getAttribute('UCID') != 1667205603) {document.location.reload(true); return;}
+var access = xmlhttpGET.responseXML.documentElement.getElementsByTagName('ACCESS')[0]; if(!access || access.getAttribute('UCID') != 1667230568) {document.location.reload(true); return;}
 var pd = '';
 var x=xmlhttpGET.responseXML.documentElement.getElementsByTagName('INPUT');
 if(x[0]) {
@@ -169,6 +169,30 @@ UpdateValue(Input19, x[15], '#008000');}
 var Input20 = document.getElementById('INPUT20');
 if(!InputEdited[19]) {
 UpdateValue(Input20, x[16], '#008000');}
+var Input21 = document.getElementById('INPUT21');
+if(x[17].getAttribute('VALUE') == '0') {
+Input21.style.display = 'none';
+} else {
+Input21.style.display = 'block';
+}
+var Input22 = document.getElementById('INPUT22');
+if(x[17].getAttribute('VALUE') != '0') {
+Input22.style.display = 'none';
+} else {
+Input22.style.display = 'block';
+}
+var Input23 = document.getElementById('INPUT23');
+if(x[18].getAttribute('VALUE') == '0') {
+Input23.style.display = 'none';
+} else {
+Input23.style.display = 'block';
+}
+var Input24 = document.getElementById('INPUT24');
+if(x[18].getAttribute('VALUE') != '0') {
+Input24.style.display = 'none';
+} else {
+Input24.style.display = 'block';
+}
 } else {document.location.reload(true); return;}
 } catch(err) {console.log(err.message)}
 if(pd!=''){setTimeout("GetXML('VENTIL.XML','"+pd+"')",1);}else{setTimeout("GetXML('VENTIL.XML')",1000);}}
@@ -204,6 +228,26 @@ PostXML('VENTIL.XML', encodeURIComponent(Input17h.name+'='+Input17h.value));
 function PostXML18() {
 var Input18h = document.getElementById('INPUT18h');
 PostXML('VENTIL.XML', encodeURIComponent(Input18h.name+'='+Input18h.value));
+}
+function PostXML21() {
+PostXML('VENTIL.XML', encodeURIComponent('__R18185.3_BOOL_i=0')); 
+SetBg('INPUT21', '');
+setTimeout("SetBg('INPUT21', 'SW747C_1.PNG');",500);
+}
+function PostXML22() {
+PostXML('VENTIL.XML', encodeURIComponent('__R18185.3_BOOL_i=1')); 
+SetBg('INPUT22', '');
+setTimeout("SetBg('INPUT22', 'SW7D18_1.PNG');",500);
+}
+function PostXML23() {
+PostXML('VENTIL.XML', encodeURIComponent('__R18185.4_BOOL_i=0')); 
+SetBg('INPUT23', '');
+setTimeout("SetBg('INPUT23', 'SW747C_1.PNG');",500);
+}
+function PostXML24() {
+PostXML('VENTIL.XML', encodeURIComponent('__R18185.4_BOOL_i=1')); 
+SetBg('INPUT24', '');
+setTimeout("SetBg('INPUT24', 'SW7D18_1.PNG');",500);
 }
 
 function PostGlobal() {
