@@ -92,6 +92,12 @@ PROGRAM HeatingControl
         END_IF;
     END_FOR;
     
+    // Enable hall heating as an extra heatsink when downstairs bathroom heating is enabled.
+    // This will help the boiler to struggle less when only 1 small room would be heated
+    IF heatingRequests[C_DOWNSTAIRS_BATH_INDEX] THEN
+       heatingRequests[C_HALL_INDEX] := TRUE;
+    END_IF;
+    
     IF activeZones > 0 THEN
        SUM_HEATING_WATER_TEMPERATURE_REQUIREMENT := SUM_HEATING_WATER_TEMPERATURE_REQUIREMENT / activeZones;
     END_IF;

@@ -36,7 +36,7 @@ VAR_GLOBAL
 
     AWAY_TIMER: TON;
 
-    TIME_AWAY_SHORT : TIME     := T#20m;
+    TIME_AWAY_SHORT : TIME     := T#10m;
     TIME_AWAY_LONG : TIME      := T#60m;
     GONE_FOR_5_SECONDS : BOOL  := FALSE; // for debugging purposes
     GONE_FOR_5_MINUTES : BOOL  := FALSE;
