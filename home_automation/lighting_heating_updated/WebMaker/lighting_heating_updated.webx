@@ -1,5 +1,5 @@
 [Settings]
-Show=0
+Show=1
 Ask=0
 PicturesPath=d:\projektek\programozas\mosaic\projects\brA1\github\home_automation\lighting_heating_updated\WebMaker\Images\
 [FormPasswords_1]
@@ -31,7 +31,7 @@ Top=-301
 Left=-1175
 [TimeStamps]
 SaveTD=1667229496
-CompileTD=1667236406
+CompileTD=1671388448
 [FormObjectList]
 Height=410
 Width=640

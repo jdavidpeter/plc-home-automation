@@ -98,7 +98,7 @@ Szellőztetés</span>
 <div title="Páratartalom" style="position: absolute; top: 220px; left: 13px; z-index: 22;">Páratartalom</div>
 <div title="Páratartalom" style="position: absolute; top: 260px; left: 13px; z-index: 24;">Kívánt hőmérséklet</div>
 <form action="javascript:PostXML10()" style="position: absolute; top: 255px; left: 150px; z-index: 25; font-size: 13px;">
-<input title="Kívánt szellőztetési hőmérséklet" id="INPUT10" onfocus="document.getElementById('INPUT10x').style.visibility='visible';SetInputEdited(10, event);" onblur="InputFocused[9]=0" onkeydown="SetInputEdited(10, event);" class="mono" tabindex="11" type="text" style="width: 20px; background-color: #FFFFFF;" name="{INPUT[10]/@NAME}" value="{INPUT[10]/@VALUE}" />
+<input title="Kívánt szellőztetési hőmérséklet" id="INPUT10" onfocus="document.getElementById('INPUT10x').style.visibility='visible';SetInputEdited(10, event);" onblur="InputFocused[9]=0" onkeydown="SetInputEdited(10, event);" class="mono" tabindex="11" type="text" style="width: 22px; background-color: #FFFFFF;" name="{INPUT[10]/@NAME}" value="{INPUT[10]/@VALUE}" />
 <input type="submit" id="INPUT10x" style="position: absolute; top: 0px; height: 22px; width: 22px; visibility: hidden;" value="&gt;" />
 </form>
 <form style="position: absolute; top: 11px; left: 49px; z-index: 26;">
@@ -112,7 +112,7 @@ Szellőztetés</span>
 </xsl:if>
 </form>
 <form action="javascript:PostXML12()" style="position: absolute; top: 14px; left: 81px; z-index: 27; font-size: 13px;">
-<input title="Kívánt szellőztetési szint" id="INPUT12" onfocus="document.getElementById('INPUT12x').style.visibility='visible';SetInputEdited(12, event);" onblur="InputFocused[11]=0" onkeydown="SetInputEdited(12, event);" class="mono" tabindex="13" type="text" style="width: 20px; background-color: #FFFFFF;" name="{INPUT[12]/@NAME}" value="{INPUT[12]/@VALUE}" />
+<input title="Kívánt szellőztetési szint" id="INPUT12" onfocus="document.getElementById('INPUT12x').style.visibility='visible';SetInputEdited(12, event);" onblur="InputFocused[11]=0" onkeydown="SetInputEdited(12, event);" class="mono" tabindex="13" type="text" style="width: 22px; background-color: #FFFFFF;" name="{INPUT[12]/@NAME}" value="{INPUT[12]/@VALUE}" />
 <input type="submit" id="INPUT12x" style="position: absolute; top: 0px; height: 22px; width: 22px; visibility: hidden;" value="&gt;" />
 </form>
 <xsl:if test="INPUT[14]/@VALUE = 0">
