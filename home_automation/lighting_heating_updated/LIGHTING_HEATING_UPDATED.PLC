@@ -29,6 +29,8 @@ iptout=1000
 iptcp=0
 altport=0
 udpport=61682
+altsecureport=0
+secureport=61643
 excltchdr=0
 onemsgpckt=0
 ipaddr2="127.0.0.1"
@@ -38,6 +40,8 @@ iptout2=1000
 iptcp2=0
 altport2=0
 udpport2=61682
+altsecureport2=0
+secureport2=61643
 excltchdr2=0
 onemsgpckt2=0
 noisyether1=1
@@ -70,6 +74,7 @@ genhltp=9
 mode=2
 plcn=0
 checkprgname=1
+verifyiocfg=1
 onlinechngs=0
 mustcompile=0
 [/plcwusb]
@@ -143,15 +148,15 @@ GLadderShowGLadderutter=0
 GLadderLeftMargin=18
 [/LadderEditor]
 
-[projectfiles]
-initiallibtestpassed=1
-[/projectfiles]
-
 [weblc]
 lcifile=""
 maymod=""
 modlock=1
 [/weblc]
+
+[projectfiles]
+initiallibtestpassed=1
+[/projectfiles]
 
 [compileropts]
 autosavebincode=0
@@ -234,16 +239,6 @@ User6=255,"",""
 User7=255,"",""
 User8=255,"",""
 User9=255,"",""
-MAC0=255,"00:00:00:00:00:00"
-MAC1=255,"00:00:00:00:00:00"
-MAC2=255,"00:00:00:00:00:00"
-MAC3=255,"00:00:00:00:00:00"
-MAC4=255,"00:00:00:00:00:00"
-MAC5=255,"00:00:00:00:00:00"
-MAC6=255,"00:00:00:00:00:00"
-MAC7=255,"00:00:00:00:00:00"
-MAC8=255,"00:00:00:00:00:00"
-MAC9=255,"00:00:00:00:00:00"
 AutoLogin="",""
 [/PlcAccessPasswords]
 

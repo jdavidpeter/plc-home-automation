@@ -3,10 +3,10 @@ Version="xPRO","4.3.00"
 [/desktop]
 
 [dockinfo]
-centralpc=68073476,1,0,0
-leftpane=68064956,0,0,1,374,0
-bottompane=68072192,1,298
-rightpane=53296420,1,415,0
+centralpc=53640840,1,0,0
+leftpane=53927424,0,0,1,374,0
+bottompane=53934660,1,298
+rightpane=53639704,1,415,0
 [/dockinfo]
 
 [closedtextpaneleditors]
@@ -118,7 +118,7 @@ findhistory="presenceBasedActivity","NILAN_ACTUAL_VENTILLATION_FAN_LEVEL","CORE_
 [/replacedialog]
 
 [plcdiskdlg]
-lastdir="//PST/HEATING/BOILER/"
+lastdir="//BRA1/RIASZTO/2023/"
 showdetails=1
 [/plcdiskdlg]
 
@@ -130,31 +130,20 @@ nodeplus="PlcIde"
 [/prjmngr]
 
 [msgwin2]
-window=68072192,1,0,0,268,1699,39,429,268,850,0,0,1
+window=53934660,1,0,0,268,1699,39,429,268,850,0,0,1
 [/msgwin2]
 
 [msgwin1]
-window=68072192,1,0,0,268,1699,39,429,268,850,0,0,0
+window=53934660,1,0,0,268,1699,39,429,268,850,0,0,0
 [/msgwin1]
 
-[symbwin]
-window=68072192,1,0,0,268,1699,39,429,268,850,0,0,2
-hdrwidth2=100
-hdrwidth3=100
-[/symbwin]
-
-[openfileswin]
-window=68064956,1,0,0,504,366,676,100,676,366,0,0,2
-[/openfileswin]
-
-[prjfileswin]
-window=68064956,1,0,0,504,366,676,100,676,366,0,0,1
-filesheight=219
-relatedcnt=3
-relfile0="Sysgen\lighting_heating_updated.map"
-relfile1="SendRoot\iFoxtrot.pub"
-relfile2="SendRoot\TecoApi.pub"
-[/prjfileswin]
+[breakswin]
+window=53934660,1,0,0,268,1699,39,668,268,1134,0,0,2
+hdrwidth0=200
+hdrwidth1=30
+hdrwidth2=80
+hdrwidth3=150
+[/breakswin]
 
 [accwin]
 base=0,1,1,0,0
@@ -168,7 +157,7 @@ regmod=87
 format=8
 context=0
 fixed=0
-cols=5
+cols=4
 byteoffs=0
 decaddr=1
 font="Consolas",1,0,10,-13,-2147483640,0,0
@@ -187,10 +176,9 @@ font="Consolas",1,0,10,-13,-2147483640,0,0
 [/memwin2]
 
 [watch2win]
-window=68072192,1,0,0,268,1699,39,429,268,850,0,0,4
+window=53934660,1,0,0,268,1699,39,429,268,850,0,0,3
 hdrnamew=447,210,0
-font96dpi="Courier New",10
-fonthires="Consolas",10
+font="Consolas",10
 hiresreadability=0
 defbank="Bank1"
 toolbvis=1
@@ -198,7 +186,7 @@ alignnumbers=0
 showanalyserr=0
 accsvisible=0
 accsw=152
-mem1w=294
+mem1w=266
 mem1visible=1
 mem2w=190
 mem2visible=0
@@ -210,31 +198,41 @@ lastfile=""
 listwidth=121
 findhistory=""
 replacehistory=""
-window=0,0,-319,-468,420,638,336,227,549,960,0,1,-1
+window=0,0,0,0,420,638,336,227,549,960,0,1,-1
 [/weblc]
 
 [evalmodifdlg]
 [/evalmodifdlg]
 
 [paneltexted]
-editor="XClip-Panel",1,0,1,1,1,1,5167030,1700360,118606196,1700752,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+editor="XClip-Panel",1,0,1,1,1,1,5095806,1694084,208434760,1694476,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 window=0,0,0,94,313,483,313,463,313,483,0,1,-1
 font="Lucida Console",11
 [/paneltexted]
 
 [ctrlswin]
-window=68064956,1,0,0,504,366,600,42,600,366,0,0,0
+window=53927424,1,0,0,504,366,600,42,600,366,0,0,0
 [/ctrlswin]
 
+[prjfileswin]
+window=53927424,1,0,0,504,366,676,100,676,366,0,0,1
+filesheight=219
+relatedheight=238
+relatedcnt=3
+relfile0="Sysgen\lighting_heating_updated.map"
+relfile1="SendRoot\iFoxtrot.pub"
+relfile2="SendRoot\TecoApi.pub"
+[/prjfileswin]
+
 [Datalogger]
-window=68073476,0,0,0,615,1528,187,259,517,1109,0,0,0
+window=53640840,0,0,0,615,1528,187,259,517,1109,0,0,0
 [/Datalogger]
 
 [CFC_Editors]
 [/CFC_Editors]
 
 [IOConfigurator]
-window=53296420,1,0,0,504,407,534,136,551,407,0,0,0
+window=53639704,1,0,0,504,407,534,136,551,407,0,0,0
 [/IOConfigurator]
 
 [PanelSIM_1]
@@ -248,19 +246,18 @@ window=0,0,695,273,317,233,317,233,317,233,0,0,-1
 [PlcNetManager]
 SortItems=1
 SortPlcs=1
-window=0,0,-136,-468,420,272,642,134,642,272,0,0,-1
+window=0,0,0,0,420,272,642,134,642,272,0,0,-1
 [/PlcNetManager]
 
 [FormDesign1]
-window=68073476,1,0,0,504,902,534,910,534,910,0,0,8
+window=53640840,1,0,0,504,902,836,1707,534,910,0,0,8
 [/FormDesign1]
 
 [textsyneditor]
 editor="src\persist\PersistInit.st",1,0,0,20,33,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=68073476,1,0,0,504,902,836,1707,534,910,0,0,1
+window=53640840,1,0,0,504,902,836,1707,534,910,0,0,1
 localparams=0,1,1,1,1,30,0,80,1,2,1,0,0
 font="Courier New",10
-fonthires="Lucida Console",11
 relay=0,0,0,0,0,"",0,0
 inspectorctx="Persist_Init"
 debugparams=1,0,1
@@ -268,10 +265,9 @@ debugparams=1,0,1
 
 [textsyneditor]
 editor="SRC\VENTILLATION\VentillationGlobals.st",1,0,0,56,3,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=68073476,1,0,0,504,902,836,1707,654,1123,0,0,2
+window=53640840,1,0,0,504,902,836,1707,654,1123,0,0,2
 localparams=0,1,1,1,1,30,0,80,1,2,1,0,0
 font="Courier New",10
-fonthires="Lucida Console",11
 relay=0,0,0,0,0,"",0,0
 inspectorctx="Persist_Init"
 debugparams=1,0,1
@@ -279,10 +275,9 @@ debugparams=1,0,1
 
 [textsyneditor]
 editor="src\persist\PersistGlobals.st",1,0,0,25,51,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=68073476,1,0,0,504,902,836,1707,654,1123,0,0,3
+window=53640840,1,0,0,504,902,836,1707,654,1123,0,0,3
 localparams=0,1,1,1,1,30,0,80,1,2,1,0,0
 font="Courier New",10
-fonthires="Lucida Console",11
 relay=0,0,0,0,0,"",0,0
 inspectorctx="Persist_Init"
 debugparams=1,0,1
@@ -290,10 +285,9 @@ debugparams=1,0,1
 
 [textsyneditor]
 editor="src\persist\Persist.st",1,0,0,38,18,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=68073476,1,0,0,504,902,836,1707,654,1123,0,0,4
+window=53640840,1,0,0,504,902,836,1707,654,1123,0,0,4
 localparams=0,1,1,1,1,30,0,80,1,2,1,0,0
 font="Courier New",10
-fonthires="Lucida Console",11
 relay=0,0,0,0,0,"",0,0
 inspectorctx="Persist_Init"
 debugparams=1,0,1
@@ -301,10 +295,9 @@ debugparams=1,0,1
 
 [textsyneditor]
 editor="src\lighting\Lighting.st",1,0,0,84,67,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=68073476,1,0,0,504,902,534,910,534,910,0,0,5
+window=53640840,1,0,0,504,902,836,1707,534,910,0,0,5
 localparams=0,1,1,1,1,30,0,80,1,2,1,0,0
 font="Courier New",10
-fonthires="Lucida Console",11
 relay=0,0,0,0,0,"",0,0
 inspectorctx=""
 debugparams=1,0,1
@@ -312,21 +305,19 @@ debugparams=1,0,1
 
 [textsyneditor]
 editor="SRC\ALARM\AlarmGlobals.st",1,0,0,32,68,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=68073476,1,0,0,504,902,534,910,534,910,0,0,6
+window=53640840,1,0,0,504,902,836,1707,534,910,0,0,6
 localparams=0,1,1,1,1,30,0,80,1,2,1,0,0
 font="Courier New",10
-fonthires="Lucida Console",11
 relay=0,0,0,0,0,"",0,0
 inspectorctx=""
 debugparams=1,0,1
 [/textsyneditor]
 
 [textsyneditor]
-editor="SRC\ALARM\Alarm.st",1,0,0,35,57,35,42,35,57,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=68073476,1,0,0,504,902,534,910,534,910,0,0,7
+editor="SRC\ALARM\Alarm.st",1,0,0,35,57,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
+window=53640840,1,0,0,504,902,836,1707,534,910,0,0,7
 localparams=0,1,1,1,1,30,0,80,1,2,1,0,0
 font="Courier New",10
-fonthires="Lucida Console",11
 relay=0,0,0,0,0,"",0,0
 inspectorctx=""
 debugparams=1,0,1
@@ -334,21 +325,19 @@ debugparams=1,0,1
 
 [textsyneditor]
 editor="src\heating\heating.st",1,0,0,98,29,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=68073476,1,0,0,504,902,534,910,534,910,0,0,9
+window=53640840,1,0,0,504,902,836,1707,534,910,0,0,9
 localparams=0,1,1,1,1,30,0,80,1,2,1,0,0
 font="Courier New",10
-fonthires="Lucida Console",11
 relay=0,0,0,0,0,"",0,0
 inspectorctx="Heating_Control"
 debugparams=1,0,1
 [/textsyneditor]
 
 [textsyneditor]
-editor="SRC\HEATING\HeatingGlobals.st",1,1,0,13,36,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=68073476,1,0,0,504,902,534,910,534,910,0,0,10
+editor="SRC\HEATING\HeatingGlobals.st",1,0,0,13,36,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
+window=53640840,1,0,0,504,902,836,1707,534,910,0,0,10
 localparams=0,1,1,1,1,30,0,80,1,2,1,0,0
 font="Courier New",10
-fonthires="Lucida Console",11
 relay=0,0,0,0,0,"",0,0
 inspectorctx=""
 debugparams=1,0,1
@@ -356,10 +345,9 @@ debugparams=1,0,1
 
 [textsyneditor]
 editor="SRC\HEATING\HeatingInint.st",1,0,0,19,53,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=68073476,1,0,0,504,902,534,910,534,910,0,0,11
+window=53640840,1,0,0,504,902,836,1707,534,910,0,0,11
 localparams=0,1,1,1,1,30,0,80,1,2,1,0,0
 font="Courier New",10
-fonthires="Lucida Console",11
 relay=0,0,0,0,0,"",0,0
 inspectorctx=""
 debugparams=1,0,1
