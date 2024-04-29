@@ -135,7 +135,7 @@
               <Interfaces>
                 <Interface Class="CIB" SubClass="UNDEF" rackOffset="0" busID="8" Icon="cib_interface" expanded="true">
                   <Peripheries>
-                    <Device xmlns="http://www.tecomat.com" physAddr="9FD9" rack="8" position="0" logAddr="3" default="false" sw="1.1" tfw="1.1" hw="0.1" alias="C-IR-0303M-9FD9" statLoc="r0_p2_CIB_STAT[0]" validStat="87" errLoc="r0_p2_CIB_ERR[0]">
+                    <Device xmlns="http://www.tecomat.com" physAddr="9FD9" rack="8" position="0" logAddr="3" default="false" sw="1.1" tfw="1.1" hw="0.1" alias="C-IR-0303M-9FD9" statLoc="r0_p2_CIB_STAT[0]" validStat="87" errLoc="r0_p2_CIB_ERR[0]" enabled="true">
                       <Info>
                         <ProductCode>3360</ProductCode>
                         <ProductName>C-IR-0303M</ProductName>
@@ -144,37 +144,38 @@
                         <Descriptor>3360_C-IR-0303M.tdd</Descriptor>
                       </Info>
                       <Objects xmlns="http://www.tecomat.com" inputsAddr="r0_p2_CIB_IN" outputsAddr="r0_p2_CIB_OUT" inputsLen="15" outputsLen="1">
+                        <Data>
+                          <ObjectData name="Devices.BinaryInputsOutputsDevice.DO1.HaltingState">01</ObjectData>
+                          <ObjectData name="Devices.AnalogInput1Device.Enabled">01</ObjectData>
+                          <ObjectData name="Devices.AnalogInput2Device.Enabled">01</ObjectData>
+                          <ObjectData name="Devices.AnalogInput3Device.Enabled">01</ObjectData>
+                          <ObjectData name="r{RACK}_p{POSITION}_C_IR_0303M_init.Dev[0].typdev">83</ObjectData>
+                          <ObjectData name="r{RACK}_p{POSITION}_C_IR_0303M_init.Dev[0].bloko">01</ObjectData>
+                          <ObjectData name="r{RACK}_p{POSITION}_C_IR_0303M_init.Dev[1].typdev">80</ObjectData>
+                          <ObjectData name="r{RACK}_p{POSITION}_C_IR_0303M_init.Dev[2].typdev">80</ObjectData>
+                          <ObjectData name="r{RACK}_p{POSITION}_C_IR_0303M_init.Dev[3].typdev">80</ObjectData>
+                          <ObjectData name="r{RACK}_p{POSITION}_C_IR_0303M_init.Dev[4].typdev">80</ObjectData>
+                          <ObjectData name="r{RACK}_p{POSITION}_C_IR_0303M_init.tPress">46</ObjectData>
+                          <ObjectData name="r{RACK}_p{POSITION}_C_IR_0303M_init.ai1type">22</ObjectData>
+                          <ObjectData name="r{RACK}_p{POSITION}_C_IR_0303M_init.ai2type">22</ObjectData>
+                          <ObjectData name="r{RACK}_p{POSITION}_C_IR_0303M_init.ai3type">22</ObjectData>
+                        </Data>
                         <Aliases>
                           <ObjectAlias name="r{RACK}_p{POSITION}_IN" public="false" publicAPI="false" userDef="false">C_IR_0303M_9FD9_IN</ObjectAlias>
+                          <ObjectAlias name="r{RACK}_p{POSITION}_IN.AI1" public="false" publicAPI="false" userDef="true">WC_TEMPERATURE</ObjectAlias>
+                          <ObjectAlias name="r{RACK}_p{POSITION}_IN.AI2" public="false" publicAPI="false" userDef="true">HALL_TEMPERATURE</ObjectAlias>
                           <ObjectAlias name="r{RACK}_p{POSITION}_OUT" public="false" publicAPI="false" userDef="false">C_IR_0303M_9FD9_OUT</ObjectAlias>
                         </Aliases>
-                        <Data>
-                          <ObjectData name="Devices.AnalogInput1Device.Enabled">01</ObjectData>
-                          <ObjectData name="Devices.AnalogInput2Device.Enabled">01</ObjectData>
-                          <ObjectData name="Devices.AnalogInput3Device.Enabled">01</ObjectData>
-                          <ObjectData name="r{RACK}_p{POSITION}_C_IR_0303M_init.Dev[0].typdev">83</ObjectData>
-                          <ObjectData name="r{RACK}_p{POSITION}_C_IR_0303M_init.Dev[1].typdev">80</ObjectData>
-                          <ObjectData name="r{RACK}_p{POSITION}_C_IR_0303M_init.Dev[2].typdev">80</ObjectData>
-                          <ObjectData name="r{RACK}_p{POSITION}_C_IR_0303M_init.Dev[3].typdev">80</ObjectData>
-                          <ObjectData name="r{RACK}_p{POSITION}_C_IR_0303M_init.Dev[4].typdev">80</ObjectData>
-                          <ObjectData name="r{RACK}_p{POSITION}_C_IR_0303M_init.tPress">46</ObjectData>
-                          <ObjectData name="r{RACK}_p{POSITION}_C_IR_0303M_init.ai1type">22</ObjectData>
-                          <ObjectData name="r{RACK}_p{POSITION}_C_IR_0303M_init.ai2type">22</ObjectData>
-                          <ObjectData name="r{RACK}_p{POSITION}_C_IR_0303M_init.ai3type">22</ObjectData>
-                        </Data>
+                        <Notes/>
                         <Tags xmlns="http://www.tecomat.com"/>
                       </Objects>
                       <SerialChannels/>
                       <Ethernets/>
                       <Piggybacks/>
                       <Interfaces/>
-                      <Editor xmlns="http://www.tecomat.com">
-                        <ExpansionMaps>
-                          <ExpansionMap name="r8_p3_IN">111</ExpansionMap>
-                        </ExpansionMaps>
-                      </Editor>
+                      <Editor xmlns="http://www.tecomat.com"/>
                     </Device>
-                    <Device xmlns="http://www.tecomat.com" physAddr="9FDA" rack="8" position="1" logAddr="4" default="false" sw="1.1" tfw="1.1" hw="0.1" alias="C-IR-0303M-9FDA" statLoc="r0_p2_CIB_STAT[1]" validStat="87" errLoc="r0_p2_CIB_ERR[1]">
+                    <Device xmlns="http://www.tecomat.com" physAddr="9FDA" rack="8" position="1" logAddr="4" default="false" sw="1.1" tfw="1.1" hw="0.1" alias="C-IR-0303M-9FDA" statLoc="r0_p2_CIB_STAT[1]" validStat="87" errLoc="r0_p2_CIB_ERR[1]" enabled="true">
                       <Info>
                         <ProductCode>3360</ProductCode>
                         <ProductName>C-IR-0303M</ProductName>
@@ -183,36 +184,30 @@
                         <Descriptor>3360_C-IR-0303M.tdd</Descriptor>
                       </Info>
                       <Objects xmlns="http://www.tecomat.com" inputsAddr="r0_p2_CIB_IN" outputsAddr="r0_p2_CIB_OUT" inputsLen="15" outputsLen="1">
-                        <Aliases>
-                          <ObjectAlias name="r{RACK}_p{POSITION}_IN" public="false" publicAPI="false" userDef="false">C_IR_0303M_9FDA_IN</ObjectAlias>
-                          <ObjectAlias name="r{RACK}_p{POSITION}_IN.AI1" public="true" publicAPI="false" userDef="true">HALL_TEMPERATURE</ObjectAlias>
-                          <ObjectAlias name="r{RACK}_p{POSITION}_OUT" public="false" publicAPI="false" userDef="false">C_IR_0303M_9FDA_OUT</ObjectAlias>
-                        </Aliases>
                         <Data>
-                          <ObjectData name="Devices.AnalogInput1Device.Enabled">01</ObjectData>
-                          <ObjectData name="Devices.AnalogInput2Device.Enabled">01</ObjectData>
-                          <ObjectData name="Devices.AnalogInput3Device.Enabled">01</ObjectData>
                           <ObjectData name="r{RACK}_p{POSITION}_C_IR_0303M_init.Dev[0].typdev">83</ObjectData>
                           <ObjectData name="r{RACK}_p{POSITION}_C_IR_0303M_init.Dev[1].typdev">80</ObjectData>
-                          <ObjectData name="r{RACK}_p{POSITION}_C_IR_0303M_init.Dev[2].typdev">80</ObjectData>
-                          <ObjectData name="r{RACK}_p{POSITION}_C_IR_0303M_init.Dev[3].typdev">80</ObjectData>
-                          <ObjectData name="r{RACK}_p{POSITION}_C_IR_0303M_init.Dev[4].typdev">80</ObjectData>
                           <ObjectData name="r{RACK}_p{POSITION}_C_IR_0303M_init.tPress">46</ObjectData>
                           <ObjectData name="r{RACK}_p{POSITION}_C_IR_0303M_init.ai1type">22</ObjectData>
                           <ObjectData name="r{RACK}_p{POSITION}_C_IR_0303M_init.ai2type">22</ObjectData>
                           <ObjectData name="r{RACK}_p{POSITION}_C_IR_0303M_init.ai3type">22</ObjectData>
                         </Data>
+                        <Aliases>
+                          <ObjectAlias name="r{RACK}_p{POSITION}_IN" public="false" publicAPI="false" userDef="false">C_IR_0303M_9FDA_IN</ObjectAlias>
+                          <ObjectAlias name="r{RACK}_p{POSITION}_IN.DI.DI1" public="false" publicAPI="false" userDef="true">RAIN_DETECTOR_IN</ObjectAlias>
+                          <ObjectAlias name="r{RACK}_p{POSITION}_OUT" public="false" publicAPI="false" userDef="false">C_IR_0303M_9FDA_OUT</ObjectAlias>
+                          <ObjectAlias name="r{RACK}_p{POSITION}_OUT.DOs.DO1" public="false" publicAPI="false" userDef="true">BUSHES_WATERING_OUT</ObjectAlias>
+                          <ObjectAlias name="r{RACK}_p{POSITION}_OUT.DOs.DO2" public="false" publicAPI="false" userDef="true">FRONT_GRASS_WATERING_OUT</ObjectAlias>
+                          <ObjectAlias name="r{RACK}_p{POSITION}_OUT.DOs.DO3" public="false" publicAPI="false" userDef="true">REAR_GRASS_WATERING_OUT</ObjectAlias>
+                        </Aliases>
+                        <Notes/>
                         <Tags xmlns="http://www.tecomat.com"/>
                       </Objects>
                       <SerialChannels/>
                       <Ethernets/>
                       <Piggybacks/>
                       <Interfaces/>
-                      <Editor xmlns="http://www.tecomat.com">
-                        <ExpansionMaps>
-                          <ExpansionMap name="r8_p4_IN">100</ExpansionMap>
-                        </ExpansionMaps>
-                      </Editor>
+                      <Editor xmlns="http://www.tecomat.com"/>
                     </Device>
                     <Device xmlns="http://www.tecomat.com" physAddr="9FDC" rack="8" position="2" logAddr="0" default="false" sw="1.1" tfw="1.1" hw="0.1" enabled="true" alias="C-IR-0303M-9FDC" statLoc="r0_p2_CIB_STAT[2]" validStat="87" errLoc="r0_p2_CIB_ERR[2]">
                       <Info>
@@ -223,10 +218,6 @@
                         <Descriptor>3360_C-IR-0303M.tdd</Descriptor>
                       </Info>
                       <Objects xmlns="http://www.tecomat.com" inputsAddr="r0_p2_CIB_IN" outputsAddr="r0_p2_CIB_OUT" inputsLen="15" outputsLen="1">
-                        <Aliases>
-                          <ObjectAlias name="r{RACK}_p{POSITION}_IN" public="false" publicAPI="false" userDef="false">C_IR_0303M_9FDC_IN</ObjectAlias>
-                          <ObjectAlias name="r{RACK}_p{POSITION}_OUT" public="false" publicAPI="false" userDef="false">C_IR_0303M_9FDC_OUT</ObjectAlias>
-                        </Aliases>
                         <Data>
                           <ObjectData name="r{RACK}_p{POSITION}_C_IR_0303M_init.Dev[0].typdev">83</ObjectData>
                           <ObjectData name="r{RACK}_p{POSITION}_C_IR_0303M_init.Dev[1].typdev">80</ObjectData>
@@ -235,6 +226,11 @@
                           <ObjectData name="r{RACK}_p{POSITION}_C_IR_0303M_init.ai2type">22</ObjectData>
                           <ObjectData name="r{RACK}_p{POSITION}_C_IR_0303M_init.ai3type">22</ObjectData>
                         </Data>
+                        <Aliases>
+                          <ObjectAlias name="r{RACK}_p{POSITION}_IN" public="false" publicAPI="false" userDef="false">C_IR_0303M_9FDC_IN</ObjectAlias>
+                          <ObjectAlias name="r{RACK}_p{POSITION}_OUT" public="false" publicAPI="false" userDef="false">C_IR_0303M_9FDC_OUT</ObjectAlias>
+                        </Aliases>
+                        <Notes/>
                         <Tags xmlns="http://www.tecomat.com"/>
                       </Objects>
                       <SerialChannels/>
@@ -416,7 +412,7 @@
               </Interfaces>
               <Editor/>
             </Device>
-            <Device xmlns="http://www.tecomat.com" rack="0" position="5" default="true" sw="1.3" tfw="1.3" hw="0.1" statLoc="%S105" validStat="A2">
+            <Device xmlns="http://www.tecomat.com" rack="0" position="5" default="true" sw="1.3" tfw="1.3" hw="0.1" statLoc="%S105" validStat="A2" enabled="true">
               <Info>
                 <ProductCode>1061</ProductCode>
                 <ProductName>IR-1061</ProductName>
@@ -425,10 +421,6 @@
                 <Descriptor>1061_IR-1061.tdd</Descriptor>
               </Info>
               <Objects xmlns="http://www.tecomat.com">
-                <Aliases>
-                  <ObjectAlias name="r{RACK}_p{POSITION}_AI0.ENG" public="false" publicAPI="false" userDef="true">EXTERNAL_TEMPERATURE</ObjectAlias>
-                  <ObjectAlias name="r{RACK}_p{POSITION}_DO.DO0" public="false" publicAPI="false" userDef="true">GARAGE_GATE_OUT</ObjectAlias>
-                </Aliases>
                 <Data>
                   <ObjectData name="Analog_Inputs.AI0.Enabled">01</ObjectData>
                   <ObjectData name="Analog_Inputs.AI0.Mode">22</ObjectData>
@@ -447,6 +439,10 @@
                   <ObjectData name="r{RACK}_p{POSITION}_Table.SetAI[0].Mode">22</ObjectData>
                   <ObjectData name="r{RACK}_p{POSITION}_Table.SetAI[0].Filter">0A</ObjectData>
                 </Data>
+                <Aliases>
+                  <ObjectAlias name="r{RACK}_p{POSITION}_AI0.ENG" public="false" publicAPI="false" userDef="true">EXTERNAL_TEMPERATURE</ObjectAlias>
+                  <ObjectAlias name="r{RACK}_p{POSITION}_DO.DO0" public="false" publicAPI="false" userDef="true">GARAGE_GATE_OUT</ObjectAlias>
+                </Aliases>
                 <Notes>
                   <ObjectNote name="r{RACK}_p{POSITION}_Table">Initialization table of IR-1061 device</ObjectNote>
                   <ObjectNote name="r{RACK}_p{POSITION}_Module">IR-1061 device declaration</ObjectNote>
@@ -457,7 +453,11 @@
               <Ethernets/>
               <Piggybacks/>
               <Interfaces/>
-              <Editor/>
+              <Editor xmlns="http://www.tecomat.com">
+                <ExpansionMaps>
+                  <ExpansionMap name="Analog_Inputs">11000</ExpansionMap>
+                </ExpansionMaps>
+              </Editor>
             </Device>
           </Peripheries>
         </Interface>
@@ -598,8 +598,8 @@
       <Editor/>
     </Device>
     <Global>
-      <Editor left="208" top="70" width="1290" height="780" maximized="false">
-        <ProcessData AliasColWidth="120" NoteColWidth="170"/>
+      <Editor left="862" top="-878" width="1290" height="780" maximized="false">
+        <ProcessData AliasColWidth="222" NoteColWidth="170"/>
       </Editor>
       <Selector left="-85" top="-916" width="1003" height="713" maximized="false" params="0"/>
     </Global>

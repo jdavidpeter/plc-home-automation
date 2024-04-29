@@ -45,7 +45,7 @@ if(xmlhttpGET.status != 200){
 alert('Problem retrieving XML data ' + xmlhttpGET.statusText + '(' + xmlhttpGET.status + ')');
 document.location.reload(true)
 return;}
-var access = xmlhttpGET.responseXML.documentElement.getElementsByTagName('ACCESS')[0]; if(!access || access.getAttribute('UCID') != 1667227718) {document.location.reload(true); return;}
+var access = xmlhttpGET.responseXML.documentElement.getElementsByTagName('ACCESS')[0]; if(!access || access.getAttribute('UCID') != 1714410740) {document.location.reload(true); return;}
 var pd = '';
 var x=xmlhttpGET.responseXML.documentElement.getElementsByTagName('INPUT');
 if(x[0]) {
@@ -98,25 +98,25 @@ var Input10 = document.getElementById('INPUT10');
 if(!InputEdited[9]) {
 UpdateValue(Input10, x[9], '#000000');}
 var Input11 = document.getElementById('INPUT11');
-if(x[10].getAttribute('VALUE') == '0') {
+if(x[10].getAttribute('VALUE') == 0) {
 Input11.style.display = 'none';
 } else {
 Input11.style.display = 'block';
 }
 var Input12 = document.getElementById('INPUT12');
-if(x[10].getAttribute('VALUE') != '0') {
+if(x[10].getAttribute('VALUE') != 0) {
 Input12.style.display = 'none';
 } else {
 Input12.style.display = 'block';
 }
 var Input13 = document.getElementById('INPUT13');
-if(x[11].getAttribute('VALUE') == '0') {
+if(x[11].getAttribute('VALUE') == 0) {
 Input13.style.display = 'none';
 } else {
 Input13.style.display = 'block';
 }
 var Input14 = document.getElementById('INPUT14');
-if(x[11].getAttribute('VALUE') != '0') {
+if(x[11].getAttribute('VALUE') != 0) {
 Input14.style.display = 'none';
 } else {
 Input14.style.display = 'block';
@@ -149,43 +149,43 @@ var Input23 = document.getElementById('INPUT23');
 if(!InputEdited[22]) {
 UpdateValue(Input23, x[20], '#008000');}
 var Input24 = document.getElementById('INPUT24');
-if(x[21].getAttribute('VALUE') == '0') {
+if(x[21].getAttribute('VALUE') == 0) {
 Input24.style.visibility = 'hidden';
 } else {
 Input24.style.visibility = 'visible';
 }
 var Input25 = document.getElementById('INPUT25');
-if(x[22].getAttribute('VALUE') == '0') {
+if(x[22].getAttribute('VALUE') == 0) {
 Input25.style.visibility = 'hidden';
 } else {
 Input25.style.visibility = 'visible';
 }
 var Input26 = document.getElementById('INPUT26');
-if(x[23].getAttribute('VALUE') == '0') {
+if(x[23].getAttribute('VALUE') == 0) {
 Input26.style.visibility = 'hidden';
 } else {
 Input26.style.visibility = 'visible';
 }
 var Input27 = document.getElementById('INPUT27');
-if(x[24].getAttribute('VALUE') == '0') {
+if(x[24].getAttribute('VALUE') == 0) {
 Input27.style.visibility = 'hidden';
 } else {
 Input27.style.visibility = 'visible';
 }
 var Input28 = document.getElementById('INPUT28');
-if(x[25].getAttribute('VALUE') == '0') {
+if(x[25].getAttribute('VALUE') == 0) {
 Input28.style.visibility = 'hidden';
 } else {
 Input28.style.visibility = 'visible';
 }
 var Input29 = document.getElementById('INPUT29');
-if(x[26].getAttribute('VALUE') == '0') {
+if(x[26].getAttribute('VALUE') == 0) {
 Input29.style.visibility = 'hidden';
 } else {
 Input29.style.visibility = 'visible';
 }
 var Input30 = document.getElementById('INPUT30');
-if(x[27].getAttribute('VALUE') == '0') {
+if(x[27].getAttribute('VALUE') == 0) {
 Input30.style.visibility = 'hidden';
 } else {
 Input30.style.visibility = 'visible';
@@ -200,19 +200,19 @@ var Input33 = document.getElementById('INPUT33');
 if(!InputEdited[32]) {
 UpdateValue(Input33, x[30], '#000000');}
 var Input34 = document.getElementById('INPUT34');
-if(x[31].getAttribute('VALUE') == '0') {
+if(x[31].getAttribute('VALUE') == 0) {
 Input34.style.visibility = 'hidden';
 } else {
 Input34.style.visibility = 'visible';
 }
 var Input35 = document.getElementById('INPUT35');
-if(x[32].getAttribute('VALUE') == '0') {
+if(x[32].getAttribute('VALUE') == 0) {
 Input35.style.visibility = 'hidden';
 } else {
 Input35.style.visibility = 'visible';
 }
 var Input36 = document.getElementById('INPUT36');
-if(x[33].getAttribute('VALUE') == '0') {
+if(x[33].getAttribute('VALUE') == 0) {
 Input36.style.visibility = 'hidden';
 } else {
 Input36.style.visibility = 'visible';
@@ -233,7 +233,7 @@ var Input41 = document.getElementById('INPUT41');
 if(!InputEdited[40]) {
 UpdateValue(Input41, x[38], '#008000');}
 var Input42 = document.getElementById('INPUT42');
-if(x[39].getAttribute('VALUE') == '0') {
+if(x[39].getAttribute('VALUE') == 0) {
 Input42.style.visibility = 'hidden';
 } else {
 Input42.style.visibility = 'visible';
@@ -242,25 +242,25 @@ var Input43 = document.getElementById('INPUT43');
 if(!InputEdited[42]) {
 UpdateValue(Input43, x[40], '#000000');}
 var Input44 = document.getElementById('INPUT44');
-if(x[41].getAttribute('VALUE') == '0') {
+if(x[41].getAttribute('VALUE') == 0) {
 Input44.style.display = 'none';
 } else {
 Input44.style.display = 'block';
 }
 var Input45 = document.getElementById('INPUT45');
-if(x[41].getAttribute('VALUE') != '0') {
+if(x[41].getAttribute('VALUE') != 0) {
 Input45.style.display = 'none';
 } else {
 Input45.style.display = 'block';
 }
 var Input46 = document.getElementById('INPUT46');
-if(x[42].getAttribute('VALUE') == '0') {
+if(x[42].getAttribute('VALUE') == 0) {
 Input46.style.display = 'none';
 } else {
 Input46.style.display = 'block';
 }
 var Input47 = document.getElementById('INPUT47');
-if(x[42].getAttribute('VALUE') != '0') {
+if(x[42].getAttribute('VALUE') != 0) {
 Input47.style.display = 'none';
 } else {
 Input47.style.display = 'block';
@@ -272,7 +272,7 @@ var Input49 = document.getElementById('INPUT49');
 if(!InputEdited[48]) {
 UpdateValue(Input49, x[44], '#008000');}
 var Input50 = document.getElementById('INPUT50');
-if(x[45].getAttribute('VALUE') == '0') {
+if(x[45].getAttribute('VALUE') == 0) {
 Input50.style.visibility = 'hidden';
 } else {
 Input50.style.visibility = 'visible';
@@ -284,10 +284,22 @@ var Input52 = document.getElementById('INPUT52');
 if(!InputEdited[51]) {
 UpdateValue(Input52, x[16], '#008000');}
 var Input53 = document.getElementById('INPUT53');
-if(x[25].getAttribute('VALUE') == '0') {
+if(x[25].getAttribute('VALUE') == 0) {
 Input53.style.visibility = 'hidden';
 } else {
 Input53.style.visibility = 'visible';
+}
+var Input54 = document.getElementById('INPUT54');
+if(!InputEdited[53]) {
+UpdateValue(Input54, x[28], '#000000');}
+var Input55 = document.getElementById('INPUT55');
+if(!InputEdited[54]) {
+UpdateValue(Input55, x[34], '#008000');}
+var Input56 = document.getElementById('INPUT56');
+if(x[27].getAttribute('VALUE') == 0) {
+Input56.style.visibility = 'hidden';
+} else {
+Input56.style.visibility = 'visible';
 }
 } else {document.location.reload(true); return;}
 } catch(err) {console.log(err.message)}
@@ -324,22 +336,22 @@ PostXML('HEATING.XML', encodeURIComponent(Input8.name+'='+Input8.value)); InputE
 }
 }
 function PostXML11() {
-PostXML('HEATING.XML', encodeURIComponent('__R15769.0_BOOL_i=0')); 
+PostXML('HEATING.XML', encodeURIComponent('__R15773.0_BOOL_i=0')); 
 SetBg('INPUT11', '');
 setTimeout("SetBg('INPUT11', 'SW747C_1.PNG');",500);
 }
 function PostXML12() {
-PostXML('HEATING.XML', encodeURIComponent('__R15769.0_BOOL_i=1')); 
+PostXML('HEATING.XML', encodeURIComponent('__R15773.0_BOOL_i=1')); 
 SetBg('INPUT12', '');
 setTimeout("SetBg('INPUT12', 'SW7D18_1.PNG');",500);
 }
 function PostXML13() {
-PostXML('HEATING.XML', encodeURIComponent('__R15769.1_BOOL_i=0')); 
+PostXML('HEATING.XML', encodeURIComponent('__R15773.1_BOOL_i=0')); 
 SetBg('INPUT13', '');
 setTimeout("SetBg('INPUT13', 'SW747C_1.PNG');",500);
 }
 function PostXML14() {
-PostXML('HEATING.XML', encodeURIComponent('__R15769.1_BOOL_i=1')); 
+PostXML('HEATING.XML', encodeURIComponent('__R15773.1_BOOL_i=1')); 
 SetBg('INPUT14', '');
 setTimeout("SetBg('INPUT14', 'SW7D18_1.PNG');",500);
 }
@@ -416,22 +428,22 @@ PostXML('HEATING.XML', encodeURIComponent(Input43.name+'='+Input43.value)); Inpu
 }
 }
 function PostXML44() {
-PostXML('HEATING.XML', encodeURIComponent('__R15717.1_BOOL_i=0')); 
+PostXML('HEATING.XML', encodeURIComponent('__R15721.1_BOOL_i=0')); 
 SetBg('INPUT44', '');
 setTimeout("SetBg('INPUT44', 'SW747C_1.PNG');",500);
 }
 function PostXML45() {
-PostXML('HEATING.XML', encodeURIComponent('__R15717.1_BOOL_i=1')); 
+PostXML('HEATING.XML', encodeURIComponent('__R15721.1_BOOL_i=1')); 
 SetBg('INPUT45', '');
 setTimeout("SetBg('INPUT45', 'SW7D18_1.PNG');",500);
 }
 function PostXML46() {
-PostXML('HEATING.XML', encodeURIComponent('__R15717.2_BOOL_i=0')); 
+PostXML('HEATING.XML', encodeURIComponent('__R15721.2_BOOL_i=0')); 
 SetBg('INPUT46', '');
 setTimeout("SetBg('INPUT46', 'SW747C_1.PNG');",500);
 }
 function PostXML47() {
-PostXML('HEATING.XML', encodeURIComponent('__R15717.2_BOOL_i=1')); 
+PostXML('HEATING.XML', encodeURIComponent('__R15721.2_BOOL_i=1')); 
 SetBg('INPUT47', '');
 setTimeout("SetBg('INPUT47', 'SW7D18_1.PNG');",500);
 }
@@ -445,6 +457,12 @@ function PostXML51() {
 var Input51 = document.getElementById('INPUT51');
 document.getElementById('INPUT51x').style.visibility = 'hidden';if(InputEdited[50]) {
 PostXML('HEATING.XML', encodeURIComponent(Input51.name+'='+Input51.value)); InputEdited[50] = 0;
+}
+}
+function PostXML54() {
+var Input54 = document.getElementById('INPUT54');
+document.getElementById('INPUT54x').style.visibility = 'hidden';if(InputEdited[53]) {
+PostXML('HEATING.XML', encodeURIComponent(Input54.name+'='+Input54.value)); InputEdited[53] = 0;
 }
 }
 
@@ -463,7 +481,8 @@ var Input23 = document.getElementById('INPUT23');
 var Input41 = document.getElementById('INPUT41');
 var Input49 = document.getElementById('INPUT49');
 var Input52 = document.getElementById('INPUT52');
-PostXML('HEATING.XML', (InputEdited[1] ? encodeURIComponent(Input2.name)+'='+encodeURIComponent(Input2.value)+'&' : '')+(InputEdited[3] ? encodeURIComponent(Input4.name)+'='+encodeURIComponent(Input4.value)+'&' : '')+(InputEdited[4] ? encodeURIComponent(Input5.name)+'='+encodeURIComponent(Input5.value)+'&' : '')+(InputEdited[6] ? encodeURIComponent(Input7.name)+'='+encodeURIComponent(Input7.value)+'&' : '')+(InputEdited[8] ? encodeURIComponent(Input9.name)+'='+encodeURIComponent(Input9.value)+'&' : '')+(InputEdited[9] ? encodeURIComponent(Input10.name)+'='+encodeURIComponent(Input10.value)+'&' : '')+(InputEdited[14] ? encodeURIComponent(Input15.name)+'='+encodeURIComponent(Input15.value)+'&' : '')+(InputEdited[16] ? encodeURIComponent(Input17.name)+'='+encodeURIComponent(Input17.value)+'&' : '')+(InputEdited[18] ? encodeURIComponent(Input19.name)+'='+encodeURIComponent(Input19.value)+'&' : '')+(InputEdited[20] ? encodeURIComponent(Input21.name)+'='+encodeURIComponent(Input21.value)+'&' : '')+(InputEdited[22] ? encodeURIComponent(Input23.name)+'='+encodeURIComponent(Input23.value)+'&' : '')+(InputEdited[40] ? encodeURIComponent(Input41.name)+'='+encodeURIComponent(Input41.value)+'&' : '')+(InputEdited[48] ? encodeURIComponent(Input49.name)+'='+encodeURIComponent(Input49.value)+'&' : '')+(InputEdited[51] ? encodeURIComponent(Input52.name)+'='+encodeURIComponent(Input52.value)+'&' : ''));
+var Input55 = document.getElementById('INPUT55');
+PostXML('HEATING.XML', (InputEdited[1] ? encodeURIComponent(Input2.name)+'='+encodeURIComponent(Input2.value)+'&' : '')+(InputEdited[3] ? encodeURIComponent(Input4.name)+'='+encodeURIComponent(Input4.value)+'&' : '')+(InputEdited[4] ? encodeURIComponent(Input5.name)+'='+encodeURIComponent(Input5.value)+'&' : '')+(InputEdited[6] ? encodeURIComponent(Input7.name)+'='+encodeURIComponent(Input7.value)+'&' : '')+(InputEdited[8] ? encodeURIComponent(Input9.name)+'='+encodeURIComponent(Input9.value)+'&' : '')+(InputEdited[9] ? encodeURIComponent(Input10.name)+'='+encodeURIComponent(Input10.value)+'&' : '')+(InputEdited[14] ? encodeURIComponent(Input15.name)+'='+encodeURIComponent(Input15.value)+'&' : '')+(InputEdited[16] ? encodeURIComponent(Input17.name)+'='+encodeURIComponent(Input17.value)+'&' : '')+(InputEdited[18] ? encodeURIComponent(Input19.name)+'='+encodeURIComponent(Input19.value)+'&' : '')+(InputEdited[20] ? encodeURIComponent(Input21.name)+'='+encodeURIComponent(Input21.value)+'&' : '')+(InputEdited[22] ? encodeURIComponent(Input23.name)+'='+encodeURIComponent(Input23.value)+'&' : '')+(InputEdited[40] ? encodeURIComponent(Input41.name)+'='+encodeURIComponent(Input41.value)+'&' : '')+(InputEdited[48] ? encodeURIComponent(Input49.name)+'='+encodeURIComponent(Input49.value)+'&' : '')+(InputEdited[51] ? encodeURIComponent(Input52.name)+'='+encodeURIComponent(Input52.value)+'&' : '')+(InputEdited[54] ? encodeURIComponent(Input55.name)+'='+encodeURIComponent(Input55.value)+'&' : ''));
 InputEdited[1]=0;
 InputEdited[3]=0;
 InputEdited[4]=0;
@@ -478,4 +497,5 @@ InputEdited[22]=0;
 InputEdited[40]=0;
 InputEdited[48]=0;
 InputEdited[51]=0;
+InputEdited[54]=0;
 }

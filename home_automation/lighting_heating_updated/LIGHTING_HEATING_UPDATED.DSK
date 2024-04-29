@@ -3,10 +3,10 @@ Version="xPRO","4.3.00"
 [/desktop]
 
 [dockinfo]
-centralpc=53837340,1,0,0
-leftpane=54124032,0,0,1,374,0
-bottompane=54131268,1,298
-rightpane=53836204,1,415,0
+centralpc=28886300,1,0,0
+leftpane=68247304,0,0,1,374,0
+bottompane=68254416,1,298
+rightpane=28885164,1,415,0
 [/dockinfo]
 
 [closedtextpaneleditors]
@@ -28,20 +28,32 @@ fifwhere=0
 fifsubdirs=0
 fif2ndmsg=1
 fif2ndmsg=1
-findhistory="TIME_AWAY_SHORT"
+findhistory="WC"
 replacehistory=""
 dirhistory=""
 maskhistory=""
 [/txtextsyneditor]
 
 [closedtextsyneditors]
-txsyned="src\ventillation\VentillationInit.st",13,17,1,1,1,1,1541820160,30993665,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-txsyned="src\utils\persist\PersistFramework.st",223,22,1,1,1,1,1541820160,30993665,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+txsyned="LIGHTING_HEATING_UPDATED.ST",1,1,1,1,1,1,3651443232,31103533,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+txsyned="src\utils\globals\UtilsGlobals.st",9,1,1,1,1,1,774943232,31103533,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+txsyned="SRC\WATERING\WATERING.ST",24,1,1,1,1,1,3395204864,31103541,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+txsyned="src\lighting\Lighting.st",1,1,1,1,1,1,1280219136,31046209,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+txsyned="LOCALLIB\StdLib_V22_20180619.mlb",182,18,182,10,182,18,1541820160,30993665,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+txsyned="lighting_heating_updated.mcf",20,92,1,1,1,1,2384354560,31103515,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+txsyned="src\utils\logging\StringRecorder.st",1,1,1,1,1,1,1541820160,30993665,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+txsyned="Datalogger\Datalogger.ST",1,1,1,1,1,1,1824092928,31103507,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+txsyned="src\lighting\LightingInit.st",1,1,1,1,1,1,1541820160,30993665,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+txsyned="src\ventillation\VentillationInit.st",1,1,1,1,1,1,1541820160,30993665,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+txsyned="SRC\ALARM\AlarmRead.st",12,12,1,1,1,1,382170112,31102378,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+txsyned="SRC\ALARM\Alarm.st",1,1,1,9,1,21,645389824,31003406,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+txsyned="WateringInit.ST",1,1,1,1,1,1,2484354560,31103515,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+txsyned="SRC\ALARM\AlarmGlobals.st",32,68,1,1,1,1,1280219136,31046209,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+txsyned="SRC\VENTILLATION\VentillationGlobals.st",56,3,1,1,1,1,1280219136,31046209,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 txsyned="IOCONFIGURATOR\CONFIG.HWC",686,1,1,1,1,1,1541820160,30993665,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 txsyned="src\ventillation\Ventillation.st",5,83,1,1,1,1,4068684288,30993722,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 txsyned="SYSGEN\LIGHTING_HEATING_UPDATED.mlh",1561,77,1,1,1,1,1376918272,30993668,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 txsyned="LOCALLIB\ModbusRTU_V40_20210826.mlb",1,1,1,1,1,1,1541820160,30993665,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-txsyned="LOCALLIB\StdLib_V22_20180619.mlb",1,1,1,1,1,1,1541820160,30993665,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 txsyned="src\utils\control\PidHeatController.st",1,1,1,1,1,1,252988160,30826290,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 txsyned="src\utils\control\PidController.st",1,1,1,1,1,1,91505920,30883730,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 txsyned="src\utils\control\LinearHeatController.st",1,1,1,1,1,1,252988160,30826290,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
@@ -49,15 +61,8 @@ txsyned="src\heating\VaillantGlobals.st",1,1,1,1,1,1,252988160,30826290,0,0,0,0,
 txsyned="IOCONFIGURATOR\CONFIG.ST",582,4,1,1,1,1,2335510016,30932929,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 txsyned="SRC\UTILS\IO\OnThenOffPulse.st",38,34,1,1,1,1,1613101056,30933314,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 txsyned="SRC\UTILS\IO\DurationOut.st",80,27,1,1,1,1,252988160,30826290,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-txsyned="src\utils\logging\StringRecorder.st",15,33,1,1,1,1,2432007424,30890931,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 txsyned="SRC\UTILS\IO\ChangeOnOff.st",25,33,1,1,1,1,4195771648,30932937,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 txsyned="SRC\UTILS\IO\InPlaceOnOff.st",20,26,1,1,1,1,2892930304,30926276,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-txsyned="SRC\LIGHTING\LightingInit.st",1,1,1,1,1,1,1158127616,30914204,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-txsyned="lighting_heating_updated.mcf",14,59,1,1,1,1,812019200,30921050,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-txsyned="SRC\LIGHTING\LightingGlobals.st",37,5,1,1,1,1,2647309824,30920906,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-txsyned="src\ventillation\Ventillation_Control.st",1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-txsyned="lighting_heating_updated.mak",48,30,1,1,1,1,1787087616,30919829,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-txsyned="Ventillation_Control.ST",1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 [/closedtextsyneditors]
 
 [finddialog]
@@ -75,7 +80,7 @@ sprompt=0
 iecoperands=1
 ieccomments=1
 implicitseltext=0
-findhistory="TIME_AWAY_SHORT","GONE_FOR_15_MINuteS","ventillationControlPath","DESIRED_TEMPERATURES","LIVING_ROOM_DESIRED_TEMPERATURE","HOT_WATER_TEMPERATURE","FUTOVIZ_TEMPERATURE","NILAN_DESIRED_TEMPERATURE","NILAN_DESIRED_TEMPERATURE_SCALED","coolingNeeded","cooling","GONE_FOR_5_MINUTES","GONE_FOR_LONG_TIME","NILAN_COMMANDS","commUnit","NILAN_ACTUAL_VENTILLATION"
+findhistory="WC","FRONT_GRASS_WATERING_ON","create","actionIsWrite","ventillationControlPath","TIME_AWAY_SHORT","GONE_FOR_15_MINuteS","DESIRED_TEMPERATURES","LIVING_ROOM_DESIRED_TEMPERATURE","HOT_WATER_TEMPERATURE","FUTOVIZ_TEMPERATURE","NILAN_DESIRED_TEMPERATURE","NILAN_DESIRED_TEMPERATURE_SCALED","coolingNeeded","cooling","GONE_FOR_5_MINUTES"
 fifmatchcase=0
 fifwholewords=0
 fifoutinstr=0
@@ -114,11 +119,12 @@ sprompt=0
 iecoperands=1
 ieccomments=1
 promptonreplace=0
-findhistory="presenceBasedActivity","NILAN_ACTUAL_VENTILLATION_FAN_LEVEL","CORE_DIAGNOSTICS","PRESENCE_BASED_HOT_WATER_ENABLE","datasize","dummy","variableToPersist","C_GARAGE_DOOR_NYITAS","C_FRONT_DOOR_NYITAS","INT","ROVID_IDEJE_ELMENTEK_OTTHONROL","HOSSZU_IDEJE_ELMENTEK_OTTHONROL","goneFor5Minutes","writeEdge","variableToWrite","RIASZTO_ZONAK_AKTIVITAS"
+findhistory="..2","presenceBasedActivity","NILAN_ACTUAL_VENTILLATION_FAN_LEVEL","CORE_DIAGNOSTICS","PRESENCE_BASED_HOT_WATER_ENABLE","datasize","dummy","variableToPersist","C_GARAGE_DOOR_NYITAS","C_FRONT_DOOR_NYITAS","INT","ROVID_IDEJE_ELMENTEK_OTTHONROL","HOSSZU_IDEJE_ELMENTEK_OTTHONROL","goneFor5Minutes","writeEdge","variableToWrite","RIASZTO_ZONAK_AKTIVITAS"
+findhistory="..C_WATERING_TIME_SLOTS"
 [/replacedialog]
 
 [plcdiskdlg]
-lastdir="//BRA1/RIASZTO/2023/"
+lastdir="//PST/WATER/"
 showdetails=1
 [/plcdiskdlg]
 
@@ -130,15 +136,15 @@ nodeplus="PlcIde"
 [/prjmngr]
 
 [msgwin2]
-window=54131268,1,0,0,268,1699,39,429,268,850,0,0,1
+window=68254416,1,0,0,268,1912,39,429,268,850,0,0,1
 [/msgwin2]
 
 [msgwin1]
-window=54131268,1,0,0,268,1699,39,429,268,850,0,0,0
+window=68254416,1,0,0,268,1912,39,429,268,850,0,0,0
 [/msgwin1]
 
 [breakswin]
-window=54131268,1,0,0,268,1699,39,668,268,1134,0,0,2
+window=68254416,1,0,0,268,1912,39,668,268,1134,0,0,2
 hdrwidth0=200
 hdrwidth1=30
 hdrwidth2=80
@@ -176,7 +182,7 @@ font="Consolas",1,0,10,-13,-2147483640,0,0
 [/memwin2]
 
 [watch2win]
-window=54131268,1,0,0,268,1699,39,429,268,850,0,0,3
+window=68254416,1,0,0,268,1912,39,429,268,850,0,0,3
 hdrnamew=447,210,0
 font="Consolas",10
 hiresreadability=0
@@ -186,11 +192,11 @@ alignnumbers=0
 showanalyserr=0
 accsvisible=0
 accsw=152
-mem1w=262
+mem1w=246
 mem1visible=1
 mem2w=190
 mem2visible=0
-storednames="HOT_WATER_TEMPERATURE","Persist_Data.realPersistors.variableToPersist","Persist_Data.realPersistors.current","Ventillation_Control.presenceBasedDisable","awayFromHomeFor","GONE_FOR_5_SECONDS","Ventillation_Control.setCoolingBasedVentillationToZero.Q","Ventillation_Control.setPresenceBasedVentillationToZero.Q","Ventillation_Control.setCoolingBasedVentillationToActive.Q","Ventillation_Control.setPresenceBasedVentillationToActive.Q","NILAN_BYPASS_IS_ENABLED","Ventillation_Control.deactivateBypassVentialltionLevel.Q","NILAN_DESIRED_VENTILLATION_LEVEL","NILAN_ACTUAL_VENTILLATION","Ventillation_Control.commUnit.LastCmd","Ventillation_Control.actualModbusCommandGroup"
+storednames="RAIN_DETECTOR_IN_A","WATERING_ENABLE","FRONT_GRASS_WATERING_ON","FRONT_GRASS_WATERING_IN_PROGRESS","BOOLS_TO_PERSIST_NAMES","Persist_Data.boolPersistors.fileName","^Persist_Data.boolPersistors.fileName","Persist_Data.boolPersistors.current","Persist_Data.boolPersistors.variableToPersist","IO_LOGGER","ALARM_ZONES_INACTIVITY[C_HALLWAY_ZONE]","ALARM_ZONES_SABOTAGE[C_HALLWAY_ZONE]","ALARM_ZONES_ERROR[C_HALLWAY_ZONE]","ALARM_ZONES_ERROR[C_BEDROOM_ZONE]","HOT_WATER_TEMPERATURE","Persist_Data.realPersistors.variableToPersist"
 [/watch2win]
 
 [weblc]
@@ -205,19 +211,19 @@ window=0,0,0,0,420,638,336,227,549,960,0,1,-1
 [/evalmodifdlg]
 
 [paneltexted]
-editor="XClip-Panel",1,0,1,1,1,1,5095806,1700308,185136448,1700700,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-window=0,0,0,94,313,483,313,463,313,483,0,1,-1
+editor="XClip-Panel",1,0,1,1,1,1,5149714,1694072,92721644,1694464,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+window=0,0,352,-986,313,483,313,463,313,483,0,1,-1
 font="Lucida Console",11
 [/paneltexted]
 
 [ctrlswin]
-window=54124032,1,0,0,504,366,600,42,600,366,0,0,0
+window=68247304,1,0,0,624,366,600,42,600,366,0,0,0
 [/ctrlswin]
 
 [prjfileswin]
-window=54124032,1,0,0,504,366,676,100,676,366,0,0,1
-filesheight=219
-relatedheight=238
+window=68247304,1,0,0,624,366,676,100,676,366,0,0,1
+filesheight=156
+relatedheight=423
 relatedcnt=3
 relfile0="Sysgen\lighting_heating_updated.map"
 relfile1="SendRoot\iFoxtrot.pub"
@@ -225,14 +231,14 @@ relfile2="SendRoot\TecoApi.pub"
 [/prjfileswin]
 
 [Datalogger]
-window=53837340,0,0,0,615,1528,187,259,517,1109,0,0,0
+window=28886300,0,0,0,615,1528,187,259,517,1109,0,0,0
 [/Datalogger]
 
 [CFC_Editors]
 [/CFC_Editors]
 
 [IOConfigurator]
-window=53836204,1,0,0,504,407,534,136,551,407,0,0,0
+window=28885164,1,0,0,624,407,534,136,551,407,0,0,0
 [/IOConfigurator]
 
 [PanelSIM_1]
@@ -250,52 +256,22 @@ window=0,0,0,0,420,272,642,134,642,272,0,0,-1
 [/PlcNetManager]
 
 [FormDesign1]
-window=53837340,1,0,0,504,902,836,1707,534,910,0,0,8
+window=28886300,1,0,0,624,1115,654,1123,654,1123,0,0,1
 [/FormDesign1]
 
 [textsyneditor]
-editor="src\persist\PersistInit.st",1,0,0,20,33,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=53837340,1,0,0,504,902,836,1707,534,910,0,0,1
+editor="src\watering\Watering.st",1,0,0,68,14,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
+window=28886300,1,0,0,624,1115,654,1123,654,1123,0,0,3
 localparams=0,1,1,1,1,30,0,80,1,2,1,0,0
 font="Courier New",10
 relay=0,0,0,0,0,"",0,0
-inspectorctx="Persist_Init"
+inspectorctx="Watering_Control"
 debugparams=1,0,1
 [/textsyneditor]
 
 [textsyneditor]
-editor="SRC\VENTILLATION\VentillationGlobals.st",1,0,0,56,3,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=53837340,1,0,0,504,902,836,1707,654,1123,0,0,2
-localparams=0,1,1,1,1,30,0,80,1,2,1,0,0
-font="Courier New",10
-relay=0,0,0,0,0,"",0,0
-inspectorctx="Persist_Init"
-debugparams=1,0,1
-[/textsyneditor]
-
-[textsyneditor]
-editor="src\persist\PersistGlobals.st",1,0,0,25,51,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=53837340,1,0,0,504,902,836,1707,654,1123,0,0,3
-localparams=0,1,1,1,1,30,0,80,1,2,1,0,0
-font="Courier New",10
-relay=0,0,0,0,0,"",0,0
-inspectorctx="Persist_Init"
-debugparams=1,0,1
-[/textsyneditor]
-
-[textsyneditor]
-editor="src\persist\Persist.st",1,0,0,38,18,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=53837340,1,0,0,504,902,836,1707,654,1123,0,0,4
-localparams=0,1,1,1,1,30,0,80,1,2,1,0,0
-font="Courier New",10
-relay=0,0,0,0,0,"",0,0
-inspectorctx="Persist_Init"
-debugparams=1,0,1
-[/textsyneditor]
-
-[textsyneditor]
-editor="src\lighting\Lighting.st",1,0,0,84,67,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=53837340,1,0,0,504,902,836,1707,534,910,0,0,5
+editor="src\watering\WateringGlobals.st",1,0,0,25,42,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
+window=28886300,1,0,0,624,1115,654,1123,654,1123,0,0,2
 localparams=0,1,1,1,1,30,0,80,1,2,1,0,0
 font="Courier New",10
 relay=0,0,0,0,0,"",0,0
@@ -304,8 +280,8 @@ debugparams=1,0,1
 [/textsyneditor]
 
 [textsyneditor]
-editor="SRC\ALARM\AlarmGlobals.st",1,0,0,32,68,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=53837340,1,0,0,504,902,836,1707,534,910,0,0,6
+editor="src\watering\WateringInit.st",1,0,0,41,10,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
+window=28886300,1,0,0,624,1115,654,1123,654,1123,0,0,4
 localparams=0,1,1,1,1,30,0,80,1,2,1,0,0
 font="Courier New",10
 relay=0,0,0,0,0,"",0,0
@@ -314,8 +290,8 @@ debugparams=1,0,1
 [/textsyneditor]
 
 [textsyneditor]
-editor="SRC\ALARM\Alarm.st",1,0,0,35,57,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=53837340,1,0,0,504,902,836,1707,534,910,0,0,7
+editor="LOCALLIB\TimeLib_V16_20230504.mlb",1,0,0,304,32,304,24,304,32,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
+window=28886300,1,0,0,624,1115,654,1123,654,1123,0,0,5
 localparams=0,1,1,1,1,30,0,80,1,2,1,0,0
 font="Courier New",10
 relay=0,0,0,0,0,"",0,0
@@ -324,32 +300,72 @@ debugparams=1,0,1
 [/textsyneditor]
 
 [textsyneditor]
-editor="src\heating\heating.st",1,0,0,98,29,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=53837340,1,0,0,504,902,836,1707,534,910,0,0,9
+editor="src\persist\Persist.st",1,0,0,18,3,18,3,18,38,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
+window=28886300,1,0,0,624,1115,654,1123,654,1123,0,0,6
+localparams=0,1,1,1,1,30,0,80,1,2,1,0,0
+font="Courier New",10
+relay=0,0,0,0,0,"",0,0
+inspectorctx=""
+debugparams=1,0,1
+[/textsyneditor]
+
+[textsyneditor]
+editor="src\utils\persist\PersistFramework.st",1,0,0,136,11,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
+window=28886300,1,0,0,624,1115,654,1123,654,1123,0,0,7
+localparams=0,1,1,1,1,30,0,80,1,2,1,0,0
+font="Courier New",10
+relay=0,0,0,0,0,"",0,0
+inspectorctx=""
+debugparams=1,0,1
+[/textsyneditor]
+
+[textsyneditor]
+editor="src\persist\PersistGlobals.st",1,0,0,5,39,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
+window=28886300,1,0,0,624,1115,654,1123,654,1123,0,0,8
+localparams=0,1,1,1,1,30,0,80,1,2,1,0,0
+font="Courier New",10
+relay=0,0,0,0,0,"",0,0
+inspectorctx=""
+debugparams=1,0,1
+[/textsyneditor]
+
+[textsyneditor]
+editor="src\persist\PersistInit.st",1,0,0,117,29,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
+window=28886300,1,0,0,624,1115,654,1123,654,1123,0,0,9
+localparams=0,1,1,1,1,30,0,80,1,2,1,0,0
+font="Courier New",10
+relay=0,0,0,0,0,"",0,0
+inspectorctx="Persist_Init"
+debugparams=1,0,1
+[/textsyneditor]
+
+[textsyneditor]
+editor="src\heating\HeatingGlobals.st",1,0,0,52,30,52,4,52,30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
+window=28886300,1,0,0,624,1115,654,1123,654,1123,0,0,10
+localparams=0,1,1,1,1,30,0,80,1,2,1,0,0
+font="Courier New",10
+relay=0,0,0,0,0,"",0,0
+inspectorctx=""
+debugparams=1,0,1
+[/textsyneditor]
+
+[textsyneditor]
+editor="SRC\HEATING\HeatingInint.st",1,0,0,21,50,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
+window=28886300,1,0,0,624,1115,654,1123,654,1123,0,0,11
+localparams=0,1,1,1,1,30,0,80,1,2,1,0,0
+font="Courier New",10
+relay=0,0,0,0,0,"",0,0
+inspectorctx="Heating_Init"
+debugparams=1,0,1
+[/textsyneditor]
+
+[textsyneditor]
+editor="src\heating\heating.st",1,0,0,116,45,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
+window=28886300,1,0,0,624,1115,654,1123,654,1123,0,0,12
 localparams=0,1,1,1,1,30,0,80,1,2,1,0,0
 font="Courier New",10
 relay=0,0,0,0,0,"",0,0
 inspectorctx="Heating_Control"
-debugparams=1,0,1
-[/textsyneditor]
-
-[textsyneditor]
-editor="SRC\HEATING\HeatingGlobals.st",1,0,0,13,36,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=53837340,1,0,0,504,902,836,1707,534,910,0,0,10
-localparams=0,1,1,1,1,30,0,80,1,2,1,0,0
-font="Courier New",10
-relay=0,0,0,0,0,"",0,0
-inspectorctx=""
-debugparams=1,0,1
-[/textsyneditor]
-
-[textsyneditor]
-editor="SRC\HEATING\HeatingInint.st",1,0,0,19,53,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=53837340,1,0,0,504,902,836,1707,534,910,0,0,11
-localparams=0,1,1,1,1,30,0,80,1,2,1,0,0
-font="Courier New",10
-relay=0,0,0,0,0,"",0,0
-inspectorctx=""
 debugparams=1,0,1
 [/textsyneditor]
 

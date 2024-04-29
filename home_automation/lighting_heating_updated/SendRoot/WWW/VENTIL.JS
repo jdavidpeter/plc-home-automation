@@ -45,7 +45,7 @@ if(xmlhttpGET.status != 200){
 alert('Problem retrieving XML data ' + xmlhttpGET.statusText + '(' + xmlhttpGET.status + ')');
 document.location.reload(true)
 return;}
-var access = xmlhttpGET.responseXML.documentElement.getElementsByTagName('ACCESS')[0]; if(!access || access.getAttribute('UCID') != 1667230568) {document.location.reload(true); return;}
+var access = xmlhttpGET.responseXML.documentElement.getElementsByTagName('ACCESS')[0]; if(!access || access.getAttribute('UCID') != 1714410417) {document.location.reload(true); return;}
 var pd = '';
 var x=xmlhttpGET.responseXML.documentElement.getElementsByTagName('INPUT');
 if(x[0]) {
@@ -68,7 +68,7 @@ var Input6 = document.getElementById('INPUT6');
 if(!InputEdited[5]) {
 UpdateValue(Input6, x[5], '#0080FF');}
 var Input7 = document.getElementById('INPUT7');
-if(x[6].getAttribute('VALUE') == '0') {
+if(x[6].getAttribute('VALUE') == 0) {
 Input7.style.visibility = 'hidden';
 } else {
 Input7.style.visibility = 'visible';
@@ -108,19 +108,19 @@ var Input13 = document.getElementById('INPUT13');
 if(!InputEdited[12]) {
 UpdateValue(Input13, x[12], '#008000');}
 var Input14 = document.getElementById('INPUT14');
-if(x[13].getAttribute('VALUE') == '0') {
+if(x[13].getAttribute('VALUE') == 0) {
 Input14.style.visibility = 'hidden';
 } else {
 Input14.style.visibility = 'visible';
 }
 var Input15 = document.getElementById('INPUT15');
-if(x[14].getAttribute('VALUE') != '0') {
+if(x[14].getAttribute('VALUE') != 0) {
 Input15.style.visibility = 'hidden';
 } else {
 Input15.style.visibility = 'visible';
 }
 var Input16 = document.getElementById('INPUT16');
-if(x[14].getAttribute('VALUE') == '0') {
+if(x[14].getAttribute('VALUE') == 0) {
 Input16.style.visibility = 'hidden';
 } else {
 Input16.style.visibility = 'visible';
@@ -170,25 +170,25 @@ var Input20 = document.getElementById('INPUT20');
 if(!InputEdited[19]) {
 UpdateValue(Input20, x[16], '#008000');}
 var Input21 = document.getElementById('INPUT21');
-if(x[17].getAttribute('VALUE') == '0') {
+if(x[17].getAttribute('VALUE') == 0) {
 Input21.style.display = 'none';
 } else {
 Input21.style.display = 'block';
 }
 var Input22 = document.getElementById('INPUT22');
-if(x[17].getAttribute('VALUE') != '0') {
+if(x[17].getAttribute('VALUE') != 0) {
 Input22.style.display = 'none';
 } else {
 Input22.style.display = 'block';
 }
 var Input23 = document.getElementById('INPUT23');
-if(x[18].getAttribute('VALUE') == '0') {
+if(x[18].getAttribute('VALUE') == 0) {
 Input23.style.display = 'none';
 } else {
 Input23.style.display = 'block';
 }
 var Input24 = document.getElementById('INPUT24');
-if(x[18].getAttribute('VALUE') != '0') {
+if(x[18].getAttribute('VALUE') != 0) {
 Input24.style.display = 'none';
 } else {
 Input24.style.display = 'block';

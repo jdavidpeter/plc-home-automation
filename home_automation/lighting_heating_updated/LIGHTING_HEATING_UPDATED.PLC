@@ -33,6 +33,7 @@ altsecureport=0
 secureport=61643
 excltchdr=0
 onemsgpckt=0
+nosecurecommun=0
 ipaddr2="127.0.0.1"
 isdyn2=0
 dynip2=""
@@ -44,6 +45,7 @@ altsecureport2=0
 secureport2=61643
 excltchdr2=0
 onemsgpckt2=0
+nosecurecommun2=0
 noisyether1=1
 noisyetherrepeat1=2
 noisyether2=1
@@ -167,6 +169,9 @@ abszonesize=0
 abszonexsize=0
 abszoneysize=0
 genbin=0
+libdir=1
+bothlibdirs=0
+crypt=0
 [/compileropts]
 
 [filesystem]
@@ -214,7 +219,7 @@ ShowHWAddrsChecked=1
 SortByLogAddrChecked=1
 SortByHWAddrChecked=0
 SortByNameChecked=0
-SplitterPosition=201
+SplitterPosition=342
 [/IOConfigurator]
 
 [KnxImport]

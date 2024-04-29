@@ -322,3 +322,68 @@ END_IF;
 
 
 END_FUNCTION_BLOCK // PersistInt
+
+// -------------------------------------------------------------------------------------
+
+FUNCTION_BLOCK PersistTime
+
+VAR_IN_OUT
+    compilerBugPlaceholder: BOOL;
+    variableToPersist : TIME;
+    dirPath : STRING;
+    fileName : STRING;
+END_VAR
+VAR_INPUT
+    toWrite : BOOL;
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+    persistImpl: Persistor;
+    current: TIME;
+    previous: TIME;
+    actionIsWrite : BOOL;
+
+    variableAsString : STRING;
+END_VAR
+
+// Workaround for a compiler bug which renders the address of the first VAR_IN_OUT to the unusable %X0.0 no matter what.
+IF FALSE THEN compilerBugPlaceholder := compilerBugPlaceholder; END_IF;
+
+IF NOT persistImpl.busy THEN
+  previous := current;
+  current := variableToPersist;
+  actionIsWrite := toWrite;
+END_IF;
+
+IF actionIsWrite THEN
+  IF NOT (current = previous) THEN
+    variableAsString := TIME_TO_STRING(current);
+    persistImpl(compilerBugPlaceholder := compilerBugPlaceholder,
+       dirPath := dirPath,
+       fileName := fileName,
+       data := void(current),
+       dataSize := SIZEOF(current),
+       toWrite := toWrite);
+    IF NOT persistImpl.busy THEN
+      IO_LOGGER(name := 'Wrote value as binary:');
+      IO_LOGGER(name := variableAsString);
+    END_IF;
+  END_IF;
+ELSE
+  persistImpl(compilerBugPlaceholder := compilerBugPlaceholder,
+     dirPath := dirPath,
+     fileName := fileName,
+     data := void(current),
+     dataSize := SIZEOF(current),
+     toWrite := toWrite);
+  IF NOT persistImpl.busy THEN
+    variableAsString := TIME_TO_STRING(current);
+    IO_LOGGER(name := 'Read value from binary:');
+    IO_LOGGER(name := variableAsString);
+    variableToPersist := current;
+  END_IF;
+END_IF;
+
+
+END_FUNCTION_BLOCK // PersistTime

@@ -15,18 +15,18 @@
 <title>
 <xsl:value-of select="/PAGE/@TITLE" />
 Világítás</title>
-<script src="LIGHTS.JS?U=1667230568" language="JavaScript" charset="utf-8" />
+<script src="LIGHTS.JS?U=1714410853" language="JavaScript" charset="utf-8" />
 <style type="text/css">.mono {font-family: Verdana, Arial, FreeSans, sans-serif;}</style>
 </head>
 <body onload="GetXML('LIGHTS.XML'); FunWatchDog();">
-<xsl:if test="1667230568 != ACCESS/@UCID">
+<xsl:if test="1714410853 != ACCESS/@UCID">
 <xsl:attribute name="onload">
 null;
 </xsl:attribute>
 <div id="cachewarning" style="text-align: left;"></div>
 <script src="REFCLR.JS" language="JavaScript" charset="utf-8"></script>
 </xsl:if>
-<xsl:if test="1667230568 = ACCESS/@UCID">
+<xsl:if test="1714410853 = ACCESS/@UCID">
 <table cellpadding="0" cellspacing="0">
 <tr style="height: 40px;">
 <!--logo-->
@@ -52,6 +52,8 @@ Világítás</span>
 <br />
 <a href="VENTIL.XML">Szellőztetés</a>
 <br />
+<a href="WATERING.XML">Öntözés</a>
+<br />
 <a href="TUNING.XML">Finomhangolás</a>
 <br />
 </div>
@@ -69,12 +71,13 @@ Világítás</span>
 <input class="mono" tabindex="6" type="text" id="INPUT34" style="position: absolute; top: 384px; left: 242px; width: 49px; z-index: 35; color: #008000; background-color: #FFFFFF; font-weight: bold;" value="{INPUT[19]/@VALUE}" name="{INPUT[19]/@NAME}" onfocus="SetInputEdited(34, event);" onblur="InputFocused[33]=0" onkeydown="SetInputEdited(34, event);"></input>
 <input class="mono" tabindex="11" type="text" id="INPUT38" style="position: absolute; top: 178px; left: 242px; width: 49px; z-index: 39; color: #008000; background-color: #FFFFFF; font-weight: bold;" value="{INPUT[22]/@VALUE}" name="{INPUT[22]/@NAME}" onfocus="SetInputEdited(38, event);" onblur="InputFocused[37]=0" onkeydown="SetInputEdited(38, event);"></input>
 <input class="mono" tabindex="13" type="text" id="INPUT41" style="position: absolute; top: 510px; left: 147px; width: 34px; z-index: 42; font-size: 8px; color: #008000; background-color: #FFFFFF; font-weight: bold;" value="{INPUT[25]/@VALUE}" name="{INPUT[25]/@NAME}" onfocus="SetInputEdited(41, event);" onblur="InputFocused[40]=0" onkeydown="SetInputEdited(41, event);"></input>
-<input class="mono" tabindex="15" type="text" id="INPUT89" style="position: absolute; top: 975px; left: 267px; width: 34px; z-index: 91; font-size: 8px; color: #008000; background-color: #FFFFFF; font-weight: bold;" value="{INPUT[50]/@VALUE}" name="{INPUT[50]/@NAME}" onfocus="SetInputEdited(89, event);" onblur="InputFocused[88]=0" onkeydown="SetInputEdited(89, event);"></input>
-<input class="mono" tabindex="17" type="text" id="INPUT92" style="position: absolute; top: 890px; left: 37px; width: 49px; z-index: 94; color: #008000; background-color: #FFFFFF; font-weight: bold;" value="{INPUT[53]/@VALUE}" name="{INPUT[53]/@NAME}" onfocus="SetInputEdited(92, event);" onblur="InputFocused[91]=0" onkeydown="SetInputEdited(92, event);"></input>
-<input class="mono" tabindex="19" type="text" id="INPUT95" style="position: absolute; top: 700px; left: 52px; width: 49px; z-index: 97; color: #008000; background-color: #FFFFFF; font-weight: bold;" value="{INPUT[56]/@VALUE}" name="{INPUT[56]/@NAME}" onfocus="SetInputEdited(95, event);" onblur="InputFocused[94]=0" onkeydown="SetInputEdited(95, event);"></input>
-<input class="mono" tabindex="21" type="text" id="INPUT98" style="position: absolute; top: 709px; left: 239px; width: 49px; z-index: 100; color: #008000; background-color: #FFFFFF; font-weight: bold;" value="{INPUT[59]/@VALUE}" name="{INPUT[59]/@NAME}" onfocus="SetInputEdited(98, event);" onblur="InputFocused[97]=0" onkeydown="SetInputEdited(98, event);"></input>
+<input class="mono" tabindex="16" type="text" id="INPUT89" style="position: absolute; top: 975px; left: 267px; width: 34px; z-index: 91; font-size: 8px; color: #008000; background-color: #FFFFFF; font-weight: bold;" value="{INPUT[50]/@VALUE}" name="{INPUT[50]/@NAME}" onfocus="SetInputEdited(89, event);" onblur="InputFocused[88]=0" onkeydown="SetInputEdited(89, event);"></input>
+<input class="mono" tabindex="19" type="text" id="INPUT92" style="position: absolute; top: 890px; left: 37px; width: 49px; z-index: 94; color: #008000; background-color: #FFFFFF; font-weight: bold;" value="{INPUT[53]/@VALUE}" name="{INPUT[53]/@NAME}" onfocus="SetInputEdited(92, event);" onblur="InputFocused[91]=0" onkeydown="SetInputEdited(92, event);"></input>
+<input class="mono" tabindex="21" type="text" id="INPUT95" style="position: absolute; top: 700px; left: 52px; width: 49px; z-index: 97; color: #008000; background-color: #FFFFFF; font-weight: bold;" value="{INPUT[56]/@VALUE}" name="{INPUT[56]/@NAME}" onfocus="SetInputEdited(95, event);" onblur="InputFocused[94]=0" onkeydown="SetInputEdited(95, event);"></input>
+<input class="mono" tabindex="23" type="text" id="INPUT98" style="position: absolute; top: 709px; left: 239px; width: 49px; z-index: 100; color: #008000; background-color: #FFFFFF; font-weight: bold;" value="{INPUT[59]/@VALUE}" name="{INPUT[59]/@NAME}" onfocus="SetInputEdited(98, event);" onblur="InputFocused[97]=0" onkeydown="SetInputEdited(98, event);"></input>
 <input title="External temperature" class="mono" tabindex="7" type="text" id="INPUT110" style="position: absolute; top: 19px; left: 130px; width: 49px; z-index: 115; color: #008000; background-color: #FFFFFF; font-weight: bold;" value="{INPUT[71]/@VALUE}" name="{INPUT[71]/@NAME}" onfocus="SetInputEdited(110, event);" onblur="InputFocused[109]=0" onkeydown="SetInputEdited(110, event);"></input>
 <input title="Szellőztetési szint" class="mono" tabindex="8" type="text" id="INPUT113" style="position: absolute; top: 19px; left: 312px; width: 31px; z-index: 118; color: #008000; background-color: #FFFFFF; font-weight: bold;" value="{INPUT[74]/@VALUE}" name="{INPUT[74]/@NAME}" onfocus="SetInputEdited(113, event);" onblur="InputFocused[112]=0" onkeydown="SetInputEdited(113, event);"></input>
+<input class="mono" tabindex="17" type="text" id="INPUT116" style="position: absolute; top: 904px; left: 292px; width: 24px; z-index: 121; font-size: 6px; color: #008000; background-color: #FFFFFF; font-weight: bold;" value="{INPUT[77]/@VALUE}" name="{INPUT[77]/@NAME}" onfocus="SetInputEdited(116, event);" onblur="InputFocused[115]=0" onkeydown="SetInputEdited(116, event);"></input>
 </form>
 <div style="position: absolute; top: 55px; left: 10px; z-index: 1; background-image: url(IMAGES/BR_44__4.PNG); line-height: 513px; height: 513px; width: 334px;"></div>
 <xsl:if test="INPUT[1]/@VALUE = 0">
@@ -338,7 +341,7 @@ Világítás</span>
 </div>
 </xsl:if>
 <form action="javascript:PostXML27()" style="position: absolute; top: 290px; left: 74px; z-index: 28; font-size: 13px;">
-<input id="INPUT27" onfocus="document.getElementById('INPUT27x').style.visibility='visible';SetInputEdited(27, event);" onblur="InputFocused[26]=0" onkeydown="SetInputEdited(27, event);" class="mono" tabindex="1" type="text" style="width: 49px; background-color: #FFFFFF;" name="{INPUT[12]/@NAME}" value="{INPUT[12]/@VALUE}" />
+<input id="INPUT27" onfocus="document.getElementById('INPUT27x').style.visibility='visible';SetInputEdited(27, event);" onblur="InputFocused[26]=0" onkeydown="SetInputEdited(27, event);" class="mono" tabindex="1" type="text" style="width: 44px; background-color: #FFFFFF;" name="{INPUT[12]/@NAME}" value="{INPUT[12]/@VALUE}" />
 <input type="submit" id="INPUT27x" style="position: absolute; top: 0px; height: 22px; width: 22px; visibility: hidden;" value="&gt;" />
 </form>
 <xsl:if test="INPUT[14]/@VALUE = 0">
@@ -349,7 +352,7 @@ Világítás</span>
 </xsl:if>
 <form action="javascript:PostXML30()" style="position: absolute; top: 530px; left: 31px; z-index: 31; font-size: 8px;">
 <input id="INPUT30" onfocus="document.getElementById('INPUT30x').style.visibility='visible';SetInputEdited(30, event);" onblur="InputFocused[29]=0" onkeydown="SetInputEdited(30, event);" class="mono" tabindex="3" type="text" style="width: 29px; background-color: #FFFFFF;" name="{INPUT[15]/@NAME}" value="{INPUT[15]/@VALUE}" />
-<input type="submit" id="INPUT30x" style="position: absolute; top: 0px; height: 15px; width: 15px; visibility: hidden;" value="&gt;" />
+<input type="submit" id="INPUT30x" style="position: absolute; top: 0px; height: 16px; width: 16px; visibility: hidden;" value="&gt;" />
 </form>
 <xsl:if test="INPUT[17]/@VALUE = 0">
 <div style="position: absolute; top: 503px; left: 73px; z-index: 33; background-image: url(IMAGES/HEAT1__5.PNG); line-height: 20px; height: 20px; width: 20px; visibility: hidden;" id="INPUT32"></div>
@@ -358,7 +361,7 @@ Világítás</span>
 <div style="position: absolute; top: 503px; left: 73px; z-index: 33; background-image: url(IMAGES/HEAT1__5.PNG); line-height: 20px; height: 20px; width: 20px;" id="INPUT32"></div>
 </xsl:if>
 <form action="javascript:PostXML33()" style="position: absolute; top: 409px; left: 242px; z-index: 34; font-size: 13px;">
-<input id="INPUT33" onfocus="document.getElementById('INPUT33x').style.visibility='visible';SetInputEdited(33, event);" onblur="InputFocused[32]=0" onkeydown="SetInputEdited(33, event);" class="mono" tabindex="5" type="text" style="width: 49px; background-color: #FFFFFF;" name="{INPUT[18]/@NAME}" value="{INPUT[18]/@VALUE}" />
+<input id="INPUT33" onfocus="document.getElementById('INPUT33x').style.visibility='visible';SetInputEdited(33, event);" onblur="InputFocused[32]=0" onkeydown="SetInputEdited(33, event);" class="mono" tabindex="5" type="text" style="width: 44px; background-color: #FFFFFF;" name="{INPUT[18]/@NAME}" value="{INPUT[18]/@VALUE}" />
 <input type="submit" id="INPUT33x" style="position: absolute; top: 0px; height: 22px; width: 22px; visibility: hidden;" value="&gt;" />
 </form>
 <xsl:if test="INPUT[20]/@VALUE = 0">
@@ -374,7 +377,7 @@ Világítás</span>
 <div style="position: absolute; top: 444px; left: 96px; z-index: 37; background-image: url(IMAGES/HEAT1__4.PNG); line-height: 24px; height: 24px; width: 24px;" id="INPUT36"></div>
 </xsl:if>
 <form action="javascript:PostXML37()" style="position: absolute; top: 203px; left: 242px; z-index: 38; font-size: 13px;">
-<input id="INPUT37" onfocus="document.getElementById('INPUT37x').style.visibility='visible';SetInputEdited(37, event);" onblur="InputFocused[36]=0" onkeydown="SetInputEdited(37, event);" class="mono" tabindex="9" type="text" style="width: 49px; background-color: #FFFFFF;" name="{INPUT[21]/@NAME}" value="{INPUT[21]/@VALUE}" />
+<input id="INPUT37" onfocus="document.getElementById('INPUT37x').style.visibility='visible';SetInputEdited(37, event);" onblur="InputFocused[36]=0" onkeydown="SetInputEdited(37, event);" class="mono" tabindex="9" type="text" style="width: 44px; background-color: #FFFFFF;" name="{INPUT[21]/@NAME}" value="{INPUT[21]/@VALUE}" />
 <input type="submit" id="INPUT37x" style="position: absolute; top: 0px; height: 22px; width: 22px; visibility: hidden;" value="&gt;" />
 </form>
 <xsl:if test="INPUT[23]/@VALUE = 0">
@@ -385,7 +388,7 @@ Világítás</span>
 </xsl:if>
 <form action="javascript:PostXML40()" style="position: absolute; top: 530px; left: 147px; z-index: 41; font-size: 8px;">
 <input id="INPUT40" onfocus="document.getElementById('INPUT40x').style.visibility='visible';SetInputEdited(40, event);" onblur="InputFocused[39]=0" onkeydown="SetInputEdited(40, event);" class="mono" tabindex="12" type="text" style="width: 29px; background-color: #FFFFFF;" name="{INPUT[24]/@NAME}" value="{INPUT[24]/@VALUE}" />
-<input type="submit" id="INPUT40x" style="position: absolute; top: 0px; height: 15px; width: 15px; visibility: hidden;" value="&gt;" />
+<input type="submit" id="INPUT40x" style="position: absolute; top: 0px; height: 16px; width: 16px; visibility: hidden;" value="&gt;" />
 </form>
 <xsl:if test="INPUT[14]/@VALUE = 0">
 <div style="position: absolute; top: 191px; left: 130px; z-index: 43; background-image: url(IMAGES/HEAT1__4.PNG); line-height: 24px; height: 24px; width: 24px; visibility: hidden;" id="INPUT42"></div>
@@ -806,7 +809,7 @@ Világítás</span>
 </xsl:if>
 <form action="javascript:PostXML88()" style="position: absolute; top: 1015px; left: 267px; z-index: 90; font-size: 8px;">
 <input id="INPUT88" onfocus="document.getElementById('INPUT88x').style.visibility='visible';SetInputEdited(88, event);" onblur="InputFocused[87]=0" onkeydown="SetInputEdited(88, event);" class="mono" tabindex="14" type="text" style="width: 29px; background-color: #FFFFFF;" name="{INPUT[49]/@NAME}" value="{INPUT[49]/@VALUE}" />
-<input type="submit" id="INPUT88x" style="position: absolute; top: 0px; height: 15px; width: 15px; visibility: hidden;" value="&gt;" />
+<input type="submit" id="INPUT88x" style="position: absolute; top: 0px; height: 16px; width: 16px; visibility: hidden;" value="&gt;" />
 </form>
 <xsl:if test="INPUT[51]/@VALUE = 0">
 <div style="position: absolute; top: 947px; left: 300px; z-index: 92; background-image: url(IMAGES/HEAT1__5.PNG); line-height: 20px; height: 20px; width: 20px; visibility: hidden;" id="INPUT90"></div>
@@ -815,7 +818,7 @@ Világítás</span>
 <div style="position: absolute; top: 947px; left: 300px; z-index: 92; background-image: url(IMAGES/HEAT1__5.PNG); line-height: 20px; height: 20px; width: 20px;" id="INPUT90"></div>
 </xsl:if>
 <form action="javascript:PostXML91()" style="position: absolute; top: 916px; left: 37px; z-index: 93; font-size: 13px;">
-<input id="INPUT91" onfocus="document.getElementById('INPUT91x').style.visibility='visible';SetInputEdited(91, event);" onblur="InputFocused[90]=0" onkeydown="SetInputEdited(91, event);" class="mono" tabindex="16" type="text" style="width: 49px; background-color: #FFFFFF;" name="{INPUT[52]/@NAME}" value="{INPUT[52]/@VALUE}" />
+<input id="INPUT91" onfocus="document.getElementById('INPUT91x').style.visibility='visible';SetInputEdited(91, event);" onblur="InputFocused[90]=0" onkeydown="SetInputEdited(91, event);" class="mono" tabindex="18" type="text" style="width: 44px; background-color: #FFFFFF;" name="{INPUT[52]/@NAME}" value="{INPUT[52]/@VALUE}" />
 <input type="submit" id="INPUT91x" style="position: absolute; top: 0px; height: 22px; width: 22px; visibility: hidden;" value="&gt;" />
 </form>
 <xsl:if test="INPUT[54]/@VALUE = 0">
@@ -825,7 +828,7 @@ Világítás</span>
 <div style="position: absolute; top: 945px; left: 100px; z-index: 95; background-image: url(IMAGES/HEAT1__4.PNG); line-height: 24px; height: 24px; width: 24px;" id="INPUT93"></div>
 </xsl:if>
 <form action="javascript:PostXML94()" style="position: absolute; top: 765px; left: 52px; z-index: 96; font-size: 13px;">
-<input id="INPUT94" onfocus="document.getElementById('INPUT94x').style.visibility='visible';SetInputEdited(94, event);" onblur="InputFocused[93]=0" onkeydown="SetInputEdited(94, event);" class="mono" tabindex="18" type="text" style="width: 49px; background-color: #FFFFFF;" name="{INPUT[55]/@NAME}" value="{INPUT[55]/@VALUE}" />
+<input id="INPUT94" onfocus="document.getElementById('INPUT94x').style.visibility='visible';SetInputEdited(94, event);" onblur="InputFocused[93]=0" onkeydown="SetInputEdited(94, event);" class="mono" tabindex="20" type="text" style="width: 44px; background-color: #FFFFFF;" name="{INPUT[55]/@NAME}" value="{INPUT[55]/@VALUE}" />
 <input type="submit" id="INPUT94x" style="position: absolute; top: 0px; height: 22px; width: 22px; visibility: hidden;" value="&gt;" />
 </form>
 <xsl:if test="INPUT[57]/@VALUE = 0">
@@ -835,7 +838,7 @@ Világítás</span>
 <div style="position: absolute; top: 731px; left: 115px; z-index: 98; background-image: url(IMAGES/HEAT1__4.PNG); line-height: 24px; height: 24px; width: 24px;" id="INPUT96"></div>
 </xsl:if>
 <form action="javascript:PostXML97()" style="position: absolute; top: 734px; left: 239px; z-index: 99; font-size: 13px;">
-<input id="INPUT97" onfocus="document.getElementById('INPUT97x').style.visibility='visible';SetInputEdited(97, event);" onblur="InputFocused[96]=0" onkeydown="SetInputEdited(97, event);" class="mono" tabindex="20" type="text" style="width: 49px; background-color: #FFFFFF;" name="{INPUT[58]/@NAME}" value="{INPUT[58]/@VALUE}" />
+<input id="INPUT97" onfocus="document.getElementById('INPUT97x').style.visibility='visible';SetInputEdited(97, event);" onblur="InputFocused[96]=0" onkeydown="SetInputEdited(97, event);" class="mono" tabindex="22" type="text" style="width: 44px; background-color: #FFFFFF;" name="{INPUT[58]/@NAME}" value="{INPUT[58]/@VALUE}" />
 <input type="submit" id="INPUT97x" style="position: absolute; top: 0px; height: 22px; width: 22px; visibility: hidden;" value="&gt;" />
 </form>
 <xsl:if test="INPUT[60]/@VALUE = 0">
@@ -918,7 +921,7 @@ Világítás</span>
 </xsl:if>
 </form>
 <form action="javascript:PostXML112()" style="position: absolute; top: 18px; left: 262px; z-index: 117; font-size: 13px;">
-<input title="Kívánt szellőztetési szint" id="INPUT112" onfocus="document.getElementById('INPUT112x').style.visibility='visible';SetInputEdited(112, event);" onblur="InputFocused[111]=0" onkeydown="SetInputEdited(112, event);" class="mono" tabindex="10" type="text" style="width: 22px; background-color: #FFFFFF;" name="{INPUT[73]/@NAME}" value="{INPUT[73]/@VALUE}" />
+<input title="Kívánt szellőztetési szint" id="INPUT112" onfocus="document.getElementById('INPUT112x').style.visibility='visible';SetInputEdited(112, event);" onblur="InputFocused[111]=0" onkeydown="SetInputEdited(112, event);" class="mono" tabindex="10" type="text" style="width: 20px; background-color: #FFFFFF;" name="{INPUT[73]/@NAME}" value="{INPUT[73]/@VALUE}" />
 <input type="submit" id="INPUT112x" style="position: absolute; top: 0px; height: 22px; width: 22px; visibility: hidden;" value="&gt;" />
 </form>
 <xsl:if test="INPUT[75]/@VALUE = 0">
@@ -927,6 +930,10 @@ Világítás</span>
 <xsl:if test="INPUT[75]/@VALUE != 0">
 <div title="Szellőztető hiba" style="position: absolute; top: 11px; left: 195px; z-index: 119; background-image: url(IMAGES/ALARM1_1.PNG); line-height: 32px; height: 32px; width: 32px;" id="INPUT114"></div>
 </xsl:if>
+<form action="javascript:PostXML115()" style="position: absolute; top: 904px; left: 245px; z-index: 120; font-size: 6px;">
+<input id="INPUT115" onfocus="document.getElementById('INPUT115x').style.visibility='visible';SetInputEdited(115, event);" onblur="InputFocused[114]=0" onkeydown="SetInputEdited(115, event);" class="mono" tabindex="15" type="text" style="width: 24px; background-color: #FFFFFF;" name="{INPUT[76]/@NAME}" value="{INPUT[76]/@VALUE}" />
+<input type="submit" id="INPUT115x" style="position: absolute; top: 0px; height: 13px; width: 13px; visibility: hidden;" value="&gt;" />
+</form>
 </div>
 </td>
 </tr>

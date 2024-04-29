@@ -8,6 +8,7 @@ PROGRAM PersistData
     realPersistors : ARRAY [1 .. C_REALS_TO_PERSIST] OF PersistReal;
     boolPersistors : ARRAY [1 .. C_BOOLS_TO_PERSIST] OF PersistBool;
     intPersistors : ARRAY [1 .. C_INTS_TO_PERSIST]  OF PersistInt;
+    timePersistors : ARRAY [1 .. C_TIMES_TO_PERSIST]  OF PersistTime;
     
     i: INT := 0;
   END_VAR
@@ -38,6 +39,14 @@ PROGRAM PersistData
       toWrite := init);
   END_FOR;
 
+  FOR i := 1 to C_TIMES_TO_PERSIST DO
+    timePersistors[i](compilerBugPlaceholder := init,
+      variableToPersist := TIMES_TO_PERSIST[i]^,
+      dirPath := TIMES_TO_PERSIST_DIRS[i],
+      fileName := TIMES_TO_PERSIST_NAMES[i],
+      toWrite := init);
+  END_FOR;
+  
   init := TRUE;
 
 END_PROGRAM

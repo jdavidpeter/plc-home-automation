@@ -6,7 +6,15 @@ contentversion=1
 [Watch2Bank0]
 bankname="Bank1"
 shortcut=1
-watchcnt=0
+watchcnt=4
 bindfile=""
+watchobjEx0=0,"FRONT_GRASS_WATERING_IN_PROGRESS|"
+watchobj0="FRONT_GRASS_WATERING_IN_PROGRESS",1,0,0,""
+watchobjEx1=0,"FRONT_GRASS_WATERING_ON|"
+watchobj1="FRONT_GRASS_WATERING_ON",1,0,0,""
+watchobjEx2=0,"WATERING_ENABLE|"
+watchobj2="WATERING_ENABLE",1,0,0,""
+watchobjEx3=0,"RAIN_DETECTOR_IN_A|"
+watchobj3="RAIN_DETECTOR_IN_A",1,0,0,""
 [/Watch2Bank0]
 

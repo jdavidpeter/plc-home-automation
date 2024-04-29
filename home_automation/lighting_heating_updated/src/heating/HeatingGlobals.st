@@ -56,7 +56,7 @@ VAR_GLOBAL
    HALL_DESIRED_TEMPERATURE : REAL              := 21;
    
    // For testing purposes only
-   WC_TEMPERATURE : REAL              := 30.0;
+   // WC_TEMPERATURE : REAL              := 30.0;
    HALLWAY_TEMPERATURE : REAL         := 30.0;
    BOILER_ROOM_TEMPERATURE : REAL     := 30.0;
 

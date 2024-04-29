@@ -11,6 +11,7 @@ PROGRAM PersistInit
     roomTempPath : STRING;
     boilerControlPath : STRING;
     ventillationControlPath : STRING;
+    wateringControlPath : STRING;
   END_VAR
   VAR_TEMP
   END_VAR
@@ -20,13 +21,16 @@ PROGRAM PersistInit
   roomTempPath := CONCAT(heatingRootPath, C_PERSIST_ROOM_TEMPERATURE_SUBDIR);
   boilerControlPath := CONCAT(heatingRootPath, C_PERSIST_BOILER_CONTROL_SUBDIR);
   ventillationControlPath := CONCAT(C_PERSIST_DIRECTORY_ROOT, C_VENTILLATION_SUBDIR);
+  wateringControlPath := CONCAT(C_PERSIST_DIRECTORY_ROOT, C_WATERING_SUBDIR);
   
   createDirectory(dirPath := C_PERSIST_DIRECTORY_ROOT);
     createDirectory(dirPath := ipidPath);
     createDirectory(dirPath := heatingRootPath);
         createDirectory(dirPath := roomTempPath);
         createDirectory(dirPath := boilerControlPath);
-
+    createDirectory(dirPath := ventillationControlPath);
+    createDirectory(dirPath := wateringControlPath);
+    
   IF NOT init THEN
     FOR i := 1 TO C_HEATING_ZONES DO
       REALS_TO_PERSIST[i] := DESIRED_TEMPERATURES[i-1];
@@ -69,8 +73,17 @@ PROGRAM PersistInit
     BOOLS_TO_PERSIST[6]       := ADR(COOLING_PRIORITY_VENTILLATION_CONTROL);
     BOOLS_TO_PERSIST_DIRS[6]  := ventillationControlPath;
     BOOLS_TO_PERSIST_NAMES[6] := 'VENTCC';
+    //
+    BOOLS_TO_PERSIST[7]       := ADR(WATERING_ENABLE);
+    BOOLS_TO_PERSIST_DIRS[7]  := wateringControlPath;
+    BOOLS_TO_PERSIST_NAMES[7] := 'WATON';
+    BOOLS_TO_PERSIST[8]       := ADR(TEMPERATURE_BASED_WATERING_CONTROL);
+    BOOLS_TO_PERSIST_DIRS[8]  := wateringControlPath;
+    BOOLS_TO_PERSIST_NAMES[8] := 'RAINON';
+    BOOLS_TO_PERSIST[9]       := ADR(RAIN_BASED_WATERING_CONTROL);
+    BOOLS_TO_PERSIST_DIRS[9]  := wateringControlPath;
+    BOOLS_TO_PERSIST_NAMES[9] := 'TEMPON';
 
-    
     INTS_TO_PERSIST[1]        := ADR(NILAN_DESIRED_VENTILLATION_LEVEL);
     INTS_TO_PERSIST_DIRS[1]   := ventillationControlPath;
     INTS_TO_PERSIST_NAMES[1]  := 'FANLEVEL';
@@ -78,6 +91,31 @@ PROGRAM PersistInit
     INTS_TO_PERSIST_DIRS[2]   := ventillationControlPath;
     INTS_TO_PERSIST_NAMES[2]  := 'VENTTEMP';
 
+    TIMES_TO_PERSIST[1]        := ADR(WATERING_START_TIME[1]);
+    TIMES_TO_PERSIST_DIRS[1]   := wateringControlPath;
+    TIMES_TO_PERSIST_NAMES[1]  := 'START1';
+    TIMES_TO_PERSIST[2]        := ADR(FRONT_GRASS_WATERING_TIME[1]);
+    TIMES_TO_PERSIST_DIRS[2]   := wateringControlPath;
+    TIMES_TO_PERSIST_NAMES[2]  := 'FRONT1';
+    TIMES_TO_PERSIST[3]        := ADR(REAR_GRASS_WATERING_TIME[1]);
+    TIMES_TO_PERSIST_DIRS[3]   := wateringControlPath;
+    TIMES_TO_PERSIST_NAMES[3]  := 'REAR1';
+    TIMES_TO_PERSIST[4]        := ADR(BUSHES_WATRING_TIME[1]);
+    TIMES_TO_PERSIST_DIRS[4]   := wateringControlPath;
+    TIMES_TO_PERSIST_NAMES[4]  := 'BUSH1';
+    TIMES_TO_PERSIST[5]        := ADR(WATERING_START_TIME[2]);
+    TIMES_TO_PERSIST_DIRS[5]   := wateringControlPath;
+    TIMES_TO_PERSIST_NAMES[5]  := 'START2';
+    TIMES_TO_PERSIST[6]        := ADR(FRONT_GRASS_WATERING_TIME[2]);
+    TIMES_TO_PERSIST_DIRS[6]   := wateringControlPath;
+    TIMES_TO_PERSIST_NAMES[6]  := 'FRONT2';
+    TIMES_TO_PERSIST[7]        := ADR(REAR_GRASS_WATERING_TIME[2]);
+    TIMES_TO_PERSIST_DIRS[7]   := wateringControlPath;
+    TIMES_TO_PERSIST_NAMES[7]  := 'REAR2';
+    TIMES_TO_PERSIST[8]        := ADR(BUSHES_WATRING_TIME[2]);
+    TIMES_TO_PERSIST_DIRS[8]   := wateringControlPath;
+    TIMES_TO_PERSIST_NAMES[8]  := 'BUSH2';
+    
     init := TRUE;
 
   ELSE

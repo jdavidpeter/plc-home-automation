@@ -275,7 +275,6 @@
           <BitSize>1</BitSize>
           <BitOffs>0</BitOffs>
           <SubIdx>0</SubIdx>
-          <Xml/>
         </SubItem>
         <SubItem>
           <Name>DI2</Name>
@@ -283,7 +282,6 @@
           <BitSize>1</BitSize>
           <BitOffs>1</BitOffs>
           <SubIdx>1</SubIdx>
-          <Xml/>
         </SubItem>
         <SubItem>
           <Name>DI3</Name>
@@ -291,7 +289,6 @@
           <BitSize>1</BitSize>
           <BitOffs>2</BitOffs>
           <SubIdx>2</SubIdx>
-          <Xml/>
         </SubItem>
         <SubItem>
           <Name>CLICK1</Name>
@@ -299,7 +296,6 @@
           <BitOffs>4</BitOffs>
           <BitSize>1</BitSize>
           <SubIdx>3</SubIdx>
-          <Xml/>
         </SubItem>
         <SubItem>
           <Name>CLICK2</Name>
@@ -307,7 +303,6 @@
           <BitSize>1</BitSize>
           <BitOffs>5</BitOffs>
           <SubIdx>4</SubIdx>
-          <Xml/>
         </SubItem>
         <SubItem>
           <Name>CLICK3</Name>
@@ -315,7 +310,6 @@
           <BitSize>1</BitSize>
           <BitOffs>6</BitOffs>
           <SubIdx>5</SubIdx>
-          <Xml/>
         </SubItem>
         <SubItem>
           <Name>PRESS1</Name>
@@ -323,7 +317,6 @@
           <BitOffs>8</BitOffs>
           <BitSize>1</BitSize>
           <SubIdx>6</SubIdx>
-          <Xml/>
         </SubItem>
         <SubItem>
           <Name>PRESS2</Name>
@@ -331,7 +324,6 @@
           <BitSize>1</BitSize>
           <BitOffs>9</BitOffs>
           <SubIdx>7</SubIdx>
-          <Xml/>
         </SubItem>
         <SubItem>
           <Name>PRESS3</Name>
@@ -339,7 +331,6 @@
           <BitSize>1</BitSize>
           <BitOffs>10</BitOffs>
           <SubIdx>8</SubIdx>
-          <Xml/>
         </SubItem>
         <SubItem>
           <Name>TAMPER1</Name>
@@ -347,7 +338,6 @@
           <BitOffs>12</BitOffs>
           <BitSize>1</BitSize>
           <SubIdx>9</SubIdx>
-          <Xml/>
         </SubItem>
         <SubItem>
           <Name>TAMPER2</Name>
@@ -355,7 +345,6 @@
           <BitSize>1</BitSize>
           <BitOffs>13</BitOffs>
           <SubIdx>10</SubIdx>
-          <Xml/>
         </SubItem>
         <SubItem>
           <Name>TAMPER3</Name>
@@ -363,7 +352,6 @@
           <BitSize>1</BitSize>
           <BitOffs>14</BitOffs>
           <SubIdx>11</SubIdx>
-          <Xml/>
         </SubItem>
       </SubItems>
       <BitSize>16</BitSize>
@@ -379,7 +367,6 @@
           <BitSize>1</BitSize>
           <BitOffs>0</BitOffs>
           <SubIdx>0</SubIdx>
-          <Xml/>
         </SubItem>
         <SubItem>
           <Name>VLD1</Name>
@@ -387,7 +374,6 @@
           <BitSize>1</BitSize>
           <BitOffs>1</BitOffs>
           <SubIdx>1</SubIdx>
-          <Xml/>
         </SubItem>
         <SubItem>
           <Name>OUF2</Name>
@@ -395,7 +381,6 @@
           <BitSize>1</BitSize>
           <BitOffs>2</BitOffs>
           <SubIdx>2</SubIdx>
-          <Xml/>
         </SubItem>
         <SubItem>
           <Name>VLD2</Name>
@@ -403,7 +388,6 @@
           <BitSize>1</BitSize>
           <BitOffs>3</BitOffs>
           <SubIdx>3</SubIdx>
-          <Xml/>
         </SubItem>
         <SubItem>
           <Name>OUF3</Name>
@@ -411,7 +395,6 @@
           <BitSize>1</BitSize>
           <BitOffs>4</BitOffs>
           <SubIdx>4</SubIdx>
-          <Xml/>
         </SubItem>
         <SubItem>
           <Name>VLD3</Name>
@@ -419,7 +402,6 @@
           <BitSize>1</BitSize>
           <BitOffs>5</BitOffs>
           <SubIdx>5</SubIdx>
-          <Xml/>
         </SubItem>
         <SubItem>
           <Name>MAN</Name>
@@ -427,7 +409,6 @@
           <BitSize>1</BitSize>
           <BitOffs>6</BitOffs>
           <SubIdx>6</SubIdx>
-          <Xml/>
         </SubItem>
       </SubItems>
       <BitSize>8</BitSize>
@@ -505,7 +486,6 @@
           <BitSize>1</BitSize>
           <BitOffs>0</BitOffs>
           <SubIdx>0</SubIdx>
-          <Xml/>
         </SubItem>
         <SubItem>
           <Name>DO2</Name>
@@ -513,7 +493,6 @@
           <BitSize>1</BitSize>
           <BitOffs>1</BitOffs>
           <SubIdx>1</SubIdx>
-          <Xml/>
         </SubItem>
         <SubItem>
           <Name>DO3</Name>
@@ -521,7 +500,6 @@
           <BitSize>1</BitSize>
           <BitOffs>2</BitOffs>
           <SubIdx>2</SubIdx>
-          <Xml/>
         </SubItem>
       </SubItems>
       <BitSize>8</BitSize>
@@ -569,7 +547,6 @@
           <BitSize>1</BitSize>
           <BitOffs>0</BitOffs>
           <SubIdx>0</SubIdx>
-          <Xml/>
         </SubItem>
         <SubItem>
           <Name>VLD1</Name>
@@ -577,7 +554,6 @@
           <BitSize>1</BitSize>
           <BitOffs>1</BitOffs>
           <SubIdx>1</SubIdx>
-          <Xml/>
         </SubItem>
         <SubItem>
           <Name>OUF2</Name>
@@ -585,7 +561,6 @@
           <BitSize>1</BitSize>
           <BitOffs>2</BitOffs>
           <SubIdx>2</SubIdx>
-          <Xml/>
         </SubItem>
         <SubItem>
           <Name>VLD2</Name>
@@ -593,7 +568,6 @@
           <BitSize>1</BitSize>
           <BitOffs>3</BitOffs>
           <SubIdx>3</SubIdx>
-          <Xml/>
         </SubItem>
         <SubItem>
           <Name>OUF3</Name>
@@ -601,7 +575,6 @@
           <BitSize>1</BitSize>
           <BitOffs>4</BitOffs>
           <SubIdx>4</SubIdx>
-          <Xml/>
         </SubItem>
         <SubItem>
           <Name>VLD3</Name>
@@ -609,7 +582,6 @@
           <BitSize>1</BitSize>
           <BitOffs>5</BitOffs>
           <SubIdx>5</SubIdx>
-          <Xml/>
         </SubItem>
         <SubItem>
           <Name>ManMode</Name>
@@ -625,7 +597,6 @@
           <BitSize>1</BitSize>
           <BitOffs>7</BitOffs>
           <SubIdx>7</SubIdx>
-          <Xml/>
         </SubItem>
       </SubItems>
       <BitSize>8</BitSize>
@@ -671,7 +642,6 @@
           <BitSize>1</BitSize>
           <BitOffs>0</BitOffs>
           <SubIdx>0</SubIdx>
-          <Xml/>
         </SubItem>
         <SubItem>
           <Name>DI2</Name>
@@ -679,7 +649,6 @@
           <BitSize>1</BitSize>
           <BitOffs>1</BitOffs>
           <SubIdx>1</SubIdx>
-          <Xml/>
         </SubItem>
         <SubItem>
           <Name>DI3</Name>
@@ -687,7 +656,6 @@
           <BitSize>1</BitSize>
           <BitOffs>2</BitOffs>
           <SubIdx>2</SubIdx>
-          <Xml/>
         </SubItem>
         <SubItem>
           <Name>DI4</Name>
@@ -695,7 +663,6 @@
           <BitSize>1</BitSize>
           <BitOffs>3</BitOffs>
           <SubIdx>3</SubIdx>
-          <Xml/>
         </SubItem>
         <SubItem>
           <Name>DI5</Name>
@@ -703,7 +670,6 @@
           <BitSize>1</BitSize>
           <BitOffs>4</BitOffs>
           <SubIdx>4</SubIdx>
-          <Xml/>
         </SubItem>
         <SubItem>
           <Name>DI6</Name>
@@ -711,7 +677,6 @@
           <BitSize>1</BitSize>
           <BitOffs>5</BitOffs>
           <SubIdx>5</SubIdx>
-          <Xml/>
         </SubItem>
         <SubItem>
           <Name>DI7</Name>
@@ -719,7 +684,6 @@
           <BitSize>1</BitSize>
           <BitOffs>6</BitOffs>
           <SubIdx>6</SubIdx>
-          <Xml/>
         </SubItem>
         <SubItem>
           <Name>DI8</Name>
@@ -727,7 +691,6 @@
           <BitSize>1</BitSize>
           <BitOffs>7</BitOffs>
           <SubIdx>7</SubIdx>
-          <Xml/>
         </SubItem>
       </SubItems>
       <BitSize>8</BitSize>
@@ -791,7 +754,6 @@
           <BitSize>1</BitSize>
           <BitOffs>0</BitOffs>
           <SubIdx>0</SubIdx>
-          <Xml/>
         </SubItem>
         <SubItem>
           <Name>DO2</Name>
@@ -799,7 +761,6 @@
           <BitSize>1</BitSize>
           <BitOffs>1</BitOffs>
           <SubIdx>1</SubIdx>
-          <Xml/>
         </SubItem>
         <SubItem>
           <Name>DO3</Name>
@@ -807,7 +768,6 @@
           <BitSize>1</BitSize>
           <BitOffs>2</BitOffs>
           <SubIdx>2</SubIdx>
-          <Xml/>
         </SubItem>
         <SubItem>
           <Name>DO4</Name>
@@ -815,7 +775,6 @@
           <BitSize>1</BitSize>
           <BitOffs>3</BitOffs>
           <SubIdx>3</SubIdx>
-          <Xml/>
         </SubItem>
         <SubItem>
           <Name>DO5</Name>
@@ -823,7 +782,6 @@
           <BitSize>1</BitSize>
           <BitOffs>4</BitOffs>
           <SubIdx>4</SubIdx>
-          <Xml/>
         </SubItem>
         <SubItem>
           <Name>DO6</Name>
@@ -831,7 +789,6 @@
           <BitSize>1</BitSize>
           <BitOffs>5</BitOffs>
           <SubIdx>5</SubIdx>
-          <Xml/>
         </SubItem>
         <SubItem>
           <Name>DO7</Name>
@@ -839,7 +796,6 @@
           <BitSize>1</BitSize>
           <BitOffs>6</BitOffs>
           <SubIdx>6</SubIdx>
-          <Xml/>
         </SubItem>
         <SubItem>
           <Name>DO8</Name>
@@ -847,7 +803,6 @@
           <BitSize>1</BitSize>
           <BitOffs>7</BitOffs>
           <SubIdx>7</SubIdx>
-          <Xml/>
         </SubItem>
         <SubItem>
           <Name>DO9</Name>
@@ -855,7 +810,6 @@
           <BitSize>1</BitSize>
           <BitOffs>8</BitOffs>
           <SubIdx>8</SubIdx>
-          <Xml/>
         </SubItem>
         <SubItem>
           <Name>DO10</Name>
@@ -863,7 +817,6 @@
           <BitSize>1</BitSize>
           <BitOffs>9</BitOffs>
           <SubIdx>9</SubIdx>
-          <Xml/>
         </SubItem>
         <SubItem>
           <Name>DO11</Name>
@@ -871,7 +824,6 @@
           <BitSize>1</BitSize>
           <BitOffs>10</BitOffs>
           <SubIdx>10</SubIdx>
-          <Xml/>
         </SubItem>
       </SubItems>
       <BitSize>16</BitSize>
@@ -1204,6 +1156,19 @@
   <Objects>
     <Object index="#x6FFF" name="r{RACK}_p{POSITION}_CIB_IN" type="r{RACK}_p{POSITION}_TCIB_IN" access="rw" use="Master">
       <SubObjects>
+        <SubObject name="r8_p1_IN">
+          <SubObjects>
+            <SubObject name="AI1">
+              <Enabled>0</Enabled>
+            </SubObject>
+            <SubObject name="AI2">
+              <Enabled>0</Enabled>
+            </SubObject>
+            <SubObject name="AI3">
+              <Enabled>0</Enabled>
+            </SubObject>
+          </SubObjects>
+        </SubObject>
         <SubObject name="r8_p2_IN">
           <SubObjects>
             <SubObject name="AI1">
@@ -1314,7 +1279,7 @@
                   <MacroValue>__indx(r8_p1_C_IR_0303M_init)</MacroValue>
                 </SubObject>
                 <SubObject subIndex="3">
-                  <DefaultValue>9</DefaultValue>
+                  <DefaultValue>3</DefaultValue>
                 </SubObject>
                 <SubObject subIndex="4">
                   <DefaultValue>1</DefaultValue>
@@ -1404,7 +1369,7 @@
           </Comment>
         </SubObject>
         <SubObject name="ID2">
-          <DefaultData>03939393</DefaultData>
+          <DefaultData>03444444</DefaultData>
           <Comment>
             <label>p1, 9FDA, C-IR-0303M</label>
           </Comment>

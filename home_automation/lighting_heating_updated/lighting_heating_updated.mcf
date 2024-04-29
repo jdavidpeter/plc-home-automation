@@ -14,5 +14,7 @@ CONFIGURATION lighting_heating_updated
     PROGRAM Persist_Init WITH InitialisationBlock : PersistInit ();
     PROGRAM Ventillation_Init WITH InitialisationBlock : VentillationInit ();
     PROGRAM Ventillation_Control WITH FreeWheeling : VentillationControl ();
+    PROGRAM Watering_Init WITH InitialisationBlock : WateringInit ();
+    PROGRAM Watering_Control WITH FreeWheeling : WateringControl ();
   END_RESOURCE
 END_CONFIGURATION
