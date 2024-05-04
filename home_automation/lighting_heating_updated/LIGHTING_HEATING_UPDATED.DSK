@@ -3,10 +3,10 @@ Version="xPRO","4.3.00"
 [/desktop]
 
 [dockinfo]
-centralpc=28886300,1,0,0
-leftpane=68247304,0,0,1,374,0
-bottompane=68254416,1,298
-rightpane=28885164,1,415,0
+centralpc=68711724,1,0,0
+leftpane=54697128,0,0,1,374,0
+bottompane=54704240,1,298
+rightpane=68710588,1,415,0
 [/dockinfo]
 
 [closedtextpaneleditors]
@@ -37,7 +37,6 @@ maskhistory=""
 [closedtextsyneditors]
 txsyned="LIGHTING_HEATING_UPDATED.ST",1,1,1,1,1,1,3651443232,31103533,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 txsyned="src\utils\globals\UtilsGlobals.st",9,1,1,1,1,1,774943232,31103533,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-txsyned="SRC\WATERING\WATERING.ST",24,1,1,1,1,1,3395204864,31103541,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 txsyned="src\lighting\Lighting.st",1,1,1,1,1,1,1280219136,31046209,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 txsyned="LOCALLIB\StdLib_V22_20180619.mlb",182,18,182,10,182,18,1541820160,30993665,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 txsyned="lighting_heating_updated.mcf",20,92,1,1,1,1,2384354560,31103515,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
@@ -120,7 +119,6 @@ iecoperands=1
 ieccomments=1
 promptonreplace=0
 findhistory="..2","presenceBasedActivity","NILAN_ACTUAL_VENTILLATION_FAN_LEVEL","CORE_DIAGNOSTICS","PRESENCE_BASED_HOT_WATER_ENABLE","datasize","dummy","variableToPersist","C_GARAGE_DOOR_NYITAS","C_FRONT_DOOR_NYITAS","INT","ROVID_IDEJE_ELMENTEK_OTTHONROL","HOSSZU_IDEJE_ELMENTEK_OTTHONROL","goneFor5Minutes","writeEdge","variableToWrite","RIASZTO_ZONAK_AKTIVITAS"
-findhistory="..C_WATERING_TIME_SLOTS"
 [/replacedialog]
 
 [plcdiskdlg]
@@ -136,15 +134,15 @@ nodeplus="PlcIde"
 [/prjmngr]
 
 [msgwin2]
-window=68254416,1,0,0,268,1912,39,429,268,850,0,0,1
+window=54704240,1,0,0,268,1912,39,429,268,850,0,0,1
 [/msgwin2]
 
 [msgwin1]
-window=68254416,1,0,0,268,1912,39,429,268,850,0,0,0
+window=54704240,1,0,0,268,1912,39,429,268,850,0,0,0
 [/msgwin1]
 
 [breakswin]
-window=68254416,1,0,0,268,1912,39,668,268,1134,0,0,2
+window=54704240,1,0,0,268,1912,39,668,268,1134,0,0,2
 hdrwidth0=200
 hdrwidth1=30
 hdrwidth2=80
@@ -182,7 +180,7 @@ font="Consolas",1,0,10,-13,-2147483640,0,0
 [/memwin2]
 
 [watch2win]
-window=68254416,1,0,0,268,1912,39,429,268,850,0,0,3
+window=54704240,1,0,0,268,1912,39,429,268,850,0,0,3
 hdrnamew=447,210,0
 font="Consolas",10
 hiresreadability=0
@@ -192,7 +190,7 @@ alignnumbers=0
 showanalyserr=0
 accsvisible=0
 accsw=152
-mem1w=246
+mem1w=238
 mem1visible=1
 mem2w=190
 mem2visible=0
@@ -211,17 +209,17 @@ window=0,0,0,0,420,638,336,227,549,960,0,1,-1
 [/evalmodifdlg]
 
 [paneltexted]
-editor="XClip-Panel",1,0,1,1,1,1,5149714,1694072,92721644,1694464,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-window=0,0,352,-986,313,483,313,463,313,483,0,1,-1
+editor="XClip-Panel",1,0,1,1,1,1,5149714,1700296,230642128,1700688,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+window=0,0,0,94,313,483,313,463,313,483,0,1,-1
 font="Lucida Console",11
 [/paneltexted]
 
 [ctrlswin]
-window=68247304,1,0,0,624,366,600,42,600,366,0,0,0
+window=54697128,1,0,0,624,366,600,42,600,366,0,0,0
 [/ctrlswin]
 
 [prjfileswin]
-window=68247304,1,0,0,624,366,676,100,676,366,0,0,1
+window=54697128,1,0,0,624,366,676,100,676,366,0,0,1
 filesheight=156
 relatedheight=423
 relatedcnt=3
@@ -231,14 +229,14 @@ relfile2="SendRoot\TecoApi.pub"
 [/prjfileswin]
 
 [Datalogger]
-window=28886300,0,0,0,615,1528,187,259,517,1109,0,0,0
+window=68711724,1,0,0,624,1115,187,259,517,1109,0,0,0
 [/Datalogger]
 
 [CFC_Editors]
 [/CFC_Editors]
 
 [IOConfigurator]
-window=28885164,1,0,0,624,407,534,136,551,407,0,0,0
+window=68710588,1,0,0,624,407,654,136,551,407,0,0,0
 [/IOConfigurator]
 
 [PanelSIM_1]
@@ -256,12 +254,12 @@ window=0,0,0,0,420,272,642,134,642,272,0,0,-1
 [/PlcNetManager]
 
 [FormDesign1]
-window=28886300,1,0,0,624,1115,654,1123,654,1123,0,0,1
+window=68711724,1,0,0,624,1115,956,1920,654,1123,0,0,1
 [/FormDesign1]
 
 [textsyneditor]
 editor="src\watering\Watering.st",1,0,0,68,14,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=28886300,1,0,0,624,1115,654,1123,654,1123,0,0,3
+window=68711724,1,0,0,624,1115,956,1920,654,1123,0,0,2
 localparams=0,1,1,1,1,30,0,80,1,2,1,0,0
 font="Courier New",10
 relay=0,0,0,0,0,"",0,0
@@ -271,7 +269,7 @@ debugparams=1,0,1
 
 [textsyneditor]
 editor="src\watering\WateringGlobals.st",1,0,0,25,42,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=28886300,1,0,0,624,1115,654,1123,654,1123,0,0,2
+window=68711724,1,0,0,624,1115,956,1920,654,1123,0,0,3
 localparams=0,1,1,1,1,30,0,80,1,2,1,0,0
 font="Courier New",10
 relay=0,0,0,0,0,"",0,0
@@ -281,7 +279,7 @@ debugparams=1,0,1
 
 [textsyneditor]
 editor="src\watering\WateringInit.st",1,0,0,41,10,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=28886300,1,0,0,624,1115,654,1123,654,1123,0,0,4
+window=68711724,1,0,0,624,1115,956,1920,654,1123,0,0,4
 localparams=0,1,1,1,1,30,0,80,1,2,1,0,0
 font="Courier New",10
 relay=0,0,0,0,0,"",0,0
@@ -290,8 +288,8 @@ debugparams=1,0,1
 [/textsyneditor]
 
 [textsyneditor]
-editor="LOCALLIB\TimeLib_V16_20230504.mlb",1,0,0,304,32,304,24,304,32,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=28886300,1,0,0,624,1115,654,1123,654,1123,0,0,5
+editor="LOCALLIB\TimeLib_V16_20230504.mlb",1,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
+window=68711724,1,0,0,624,1115,956,1920,654,1123,0,0,5
 localparams=0,1,1,1,1,30,0,80,1,2,1,0,0
 font="Courier New",10
 relay=0,0,0,0,0,"",0,0
@@ -300,8 +298,8 @@ debugparams=1,0,1
 [/textsyneditor]
 
 [textsyneditor]
-editor="src\persist\Persist.st",1,0,0,18,3,18,3,18,38,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=28886300,1,0,0,624,1115,654,1123,654,1123,0,0,6
+editor="src\persist\Persist.st",1,0,0,18,3,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
+window=68711724,1,0,0,624,1115,956,1920,654,1123,0,0,6
 localparams=0,1,1,1,1,30,0,80,1,2,1,0,0
 font="Courier New",10
 relay=0,0,0,0,0,"",0,0
@@ -311,7 +309,7 @@ debugparams=1,0,1
 
 [textsyneditor]
 editor="src\utils\persist\PersistFramework.st",1,0,0,136,11,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=28886300,1,0,0,624,1115,654,1123,654,1123,0,0,7
+window=68711724,1,0,0,624,1115,956,1920,654,1123,0,0,7
 localparams=0,1,1,1,1,30,0,80,1,2,1,0,0
 font="Courier New",10
 relay=0,0,0,0,0,"",0,0
@@ -321,7 +319,7 @@ debugparams=1,0,1
 
 [textsyneditor]
 editor="src\persist\PersistGlobals.st",1,0,0,5,39,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=28886300,1,0,0,624,1115,654,1123,654,1123,0,0,8
+window=68711724,1,0,0,624,1115,956,1920,654,1123,0,0,8
 localparams=0,1,1,1,1,30,0,80,1,2,1,0,0
 font="Courier New",10
 relay=0,0,0,0,0,"",0,0
@@ -331,7 +329,7 @@ debugparams=1,0,1
 
 [textsyneditor]
 editor="src\persist\PersistInit.st",1,0,0,117,29,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=28886300,1,0,0,624,1115,654,1123,654,1123,0,0,9
+window=68711724,1,0,0,624,1115,956,1920,654,1123,0,0,9
 localparams=0,1,1,1,1,30,0,80,1,2,1,0,0
 font="Courier New",10
 relay=0,0,0,0,0,"",0,0
@@ -340,8 +338,8 @@ debugparams=1,0,1
 [/textsyneditor]
 
 [textsyneditor]
-editor="src\heating\HeatingGlobals.st",1,0,0,52,30,52,4,52,30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=28886300,1,0,0,624,1115,654,1123,654,1123,0,0,10
+editor="src\heating\HeatingGlobals.st",1,0,0,52,30,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
+window=68711724,1,0,0,624,1115,956,1920,654,1123,0,0,10
 localparams=0,1,1,1,1,30,0,80,1,2,1,0,0
 font="Courier New",10
 relay=0,0,0,0,0,"",0,0
@@ -351,7 +349,7 @@ debugparams=1,0,1
 
 [textsyneditor]
 editor="SRC\HEATING\HeatingInint.st",1,0,0,21,50,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=28886300,1,0,0,624,1115,654,1123,654,1123,0,0,11
+window=68711724,1,0,0,624,1115,956,1920,654,1123,0,0,11
 localparams=0,1,1,1,1,30,0,80,1,2,1,0,0
 font="Courier New",10
 relay=0,0,0,0,0,"",0,0
@@ -361,7 +359,7 @@ debugparams=1,0,1
 
 [textsyneditor]
 editor="src\heating\heating.st",1,0,0,116,45,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=28886300,1,0,0,624,1115,654,1123,654,1123,0,0,12
+window=68711724,1,0,0,624,1115,956,1920,654,1123,0,0,12
 localparams=0,1,1,1,1,30,0,80,1,2,1,0,0
 font="Courier New",10
 relay=0,0,0,0,0,"",0,0

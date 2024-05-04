@@ -598,7 +598,7 @@
       <Editor/>
     </Device>
     <Global>
-      <Editor left="862" top="-878" width="1290" height="780" maximized="false">
+      <Editor left="208" top="70" width="1290" height="780" maximized="false">
         <ProcessData AliasColWidth="222" NoteColWidth="170"/>
       </Editor>
       <Selector left="-85" top="-916" width="1003" height="713" maximized="false" params="0"/>

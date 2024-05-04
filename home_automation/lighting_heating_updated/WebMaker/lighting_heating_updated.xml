@@ -369,7 +369,7 @@
 				<edit variable="WC_TEMPERATURE" type="REAL" intf="0" timf="" align="left" zero="false" prec="2" size="5" global="true" border="true" width="30" height="13" tabindex="17" />
 			</object>
 		</page>
-		<page caption="Fûtés" name="HEATING.XML" background="" bgcolor="16777215" repeat="false" hidden="false" ajax="true" pause="1000" level="0" ucid="1714410740" width="341" height="832">
+		<page caption="Fûtés" name="HEATING.XML" background="" bgcolor="16777215" repeat="false" hidden="false" ajax="true" pause="1000" level="0" ucid="1714410740" width="341" height="832" Uid="11652">
 			<object caption="" X="3" Y="7" xoff="3" yoff="2" level="0" readonly="false" front="0" back="33023" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="11161">
 				<block width="70" height="70" border="true" />
 			</object>
@@ -647,7 +647,7 @@
 				<picture href="" img="HEAT1__4.PNG" />
 			</object>
 		</page>
-		<page caption="Szellõztetés" name="VENTIL.XML" background="" bgcolor="16777215" repeat="false" hidden="false" ajax="true" pause="1000" level="0" ucid="1714410417" width="363" height="485">
+		<page caption="Szellõztetés" name="VENTIL.XML" background="" bgcolor="16777215" repeat="false" hidden="false" ajax="true" pause="1000" level="0" ucid="1714410417" width="363" height="485" Uid="11653">
 			<object caption="" X="34" Y="12" xoff="6" yoff="6" level="0" readonly="false" front="0" back="5026082" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="11563">
 				<block width="70" height="70" border="true" />
 			</object>
@@ -793,7 +793,7 @@
 				<label />
 			</object>
 		</page>
-		<page caption="Öntözés" name="WATERING.XML" background="" bgcolor="16777215" repeat="false" hidden="false" ajax="true" pause="1000" level="0" ucid="1714410417" width="364" height="548">
+		<page caption="Öntözés" name="WATERING.XML" background="" bgcolor="16777215" repeat="false" hidden="false" ajax="true" pause="1000" level="0" ucid="1714410417" width="364" height="548" Uid="11654">
 			<object caption="" X="20" Y="6" xoff="7" yoff="5" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="11584" hint="Öntözés kezdete">
 				<edit variable="WATERING_START_TIME[1]" type="TIME" intf="0" timf="hh:mm" align="left" zero="false" prec="-1" size="5" global="false" border="true" width="50" height="22" tabindex="1" />
 			</object>

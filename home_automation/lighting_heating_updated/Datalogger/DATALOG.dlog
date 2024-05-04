@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <Locked>0</Locked>
-<Datalogger Version="1.0" Name="brA1" Enable="1" Author="Teco" MaxCollections="4" MaxSignalsInCollection="16" MaxDataInSignal="4" SumCollections="4" SumSignals="48" SumData="8" Directory="brA1" WWW="0" Note="Home telemetry" FullIntf="0">
+<Datalogger Version="1.0" Name="brA1" Enable="1" Author="Teco" MaxCollections="4" MaxSignalsInCollection="16" MaxDataInSignal="4" SumCollections="4" SumSignals="41" SumData="0" Directory="brA1" WWW="0" Note="Home telemetry" FullIntf="0">
 	<Collection Name="Heater" Enable="1" NumSignals="8" Note="" Debug="0">
 		<FileInfo>
 			<Dir>Heater</Dir>
@@ -672,12 +672,12 @@
 			</Levels>
 		</Signal>
 	</Collection>
-	<Collection Name="AlarmDeb" Enable="1" NumSignals="8" Note="Alarm Debug" Debug="1">
+	<Collection Name="Garden" Enable="1" NumSignals="1" Note="" Debug="1">
 		<FileInfo>
-			<Dir>AlarmDeb</Dir>
+			<Dir>Garden</Dir>
 			<Separator>;</Separator>
 			<DecimalPoint>,</DecimalPoint>
-			<DirForDays>1</DirForDays>
+			<DirForDays>0</DirForDays>
 			<Simulation>0</Simulation>
 			<NewFileConditions>
 				<MaxSize Enable="0" Value="1"></MaxSize>
@@ -693,9 +693,9 @@
 		<SignalCollection>
 			<DataInColumns>1</DataInColumns>
 		</SignalCollection>
-		<Signal Name="Gyerekszoba_3" Enable="1" NumData="4" Note="">
-			<Header>Gyerekszoba_3</Header>
-			<Source Name="PARADOX_DATA.zone[11].state" Zone="R" Offset="15445" Type="BIT0" IEC="0" Format="%b"></Source>
+		<Signal Name="Rain sensor" Enable="1" NumData="0" Note="">
+			<Header>Rain sensor</Header>
+			<Source Name="RAIN_DETECTOR_IN" Zone="X" Offset="93" Type="BIT0" IEC="0" Format="%b"></Source>
 			<Changes Enable="0">
 				<Change Up="1" Dw="1" Val="0" Hst="0" Txt="" Add="0"></Change>
 			</Changes>
@@ -707,143 +707,6 @@
 				<Lo2 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Lo2>
 				<Lo3 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Lo3>
 			</Levels>
-			<Data Name="Zone_state" Enable="1" Note="">
-				<Label>Zone_state</Label>
-				<Source Name="PARADOX_DATA.zone[11].state" Zone="R" Offset="15445" Type="BIT0" IEC="0" Format="%b"></Source>
-			</Data>
-			<Data Name="Zone_alarm" Enable="1" Note="">
-				<Label>Zone_alarm</Label>
-				<Source Name="PARADOX_DATA.zone[11].alarm" Zone="R" Offset="15445" Type="BIT4" IEC="0" Format="%b"></Source>
-			</Data>
-			<Data Name="Zone_fault" Enable="1" Note="">
-				<Label>Zone_fault</Label>
-				<Source Name="PARADOX_DATA.zone[11].fault" Zone="R" Offset="15445" Type="BIT2" IEC="0" Format="%b"></Source>
-			</Data>
-			<Data Name="LastMessage" Enable="1" Note="">
-				<Label>LastMessage</Label>
-				<Source Name="PARADOX_COM.last_mes" Zone="R" Offset="14691" Type="STRING[80]" IEC="21" Format="%s"></Source>
-			</Data>
-		</Signal>
-		<Signal Name="Fault" Enable="1" NumData="0" Note="Gyerekszoba 3">
-			<Header>Fault</Header>
-			<Source Name="PARADOX_DATA.zone[11].fault" Zone="R" Offset="15445" Type="BIT2" IEC="0" Format="%b"></Source>
-			<Changes Enable="0">
-				<Change Up="1" Dw="1" Val="0" Hst="0" Txt="" Add="0"></Change>
-			</Changes>
-			<Levels Enable="1">
-				<Hi3 Up="1" Dw="1" Val="0" Hst="0" Txt="" Add="0"></Hi3>
-				<Hi2 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Hi2>
-				<Hi1 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Hi1>
-				<Lo1 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Lo1>
-				<Lo2 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Lo2>
-				<Lo3 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Lo3>
-			</Levels>
-		</Signal>
-		<Signal Name="Tamper" Enable="1" NumData="0" Note="Gyerekszoba 3">
-			<Header>Tamper</Header>
-			<Source Name="PARADOX_DATA.zone[11].tamper" Zone="R" Offset="15445" Type="BIT1" IEC="0" Format="%b"></Source>
-			<Changes Enable="0">
-				<Change Up="1" Dw="1" Val="0" Hst="0" Txt="" Add="0"></Change>
-			</Changes>
-			<Levels Enable="1">
-				<Hi3 Up="1" Dw="1" Val="0" Hst="0" Txt="" Add="0"></Hi3>
-				<Hi2 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Hi2>
-				<Hi1 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Hi1>
-				<Lo1 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Lo1>
-				<Lo2 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Lo2>
-				<Lo3 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Lo3>
-			</Levels>
-		</Signal>
-		<Signal Name="Fire loop" Enable="1" NumData="0" Note="Gyerekszoba 3">
-			<Header>Fire loop</Header>
-			<Source Name="PARADOX_DATA.zone[11].fire_loop_trouble" Zone="R" Offset="15445" Type="BIT3" IEC="0" Format="%b"></Source>
-			<Changes Enable="0">
-				<Change Up="1" Dw="1" Val="0" Hst="0" Txt="" Add="0"></Change>
-			</Changes>
-			<Levels Enable="1">
-				<Hi3 Up="1" Dw="1" Val="0" Hst="0" Txt="" Add="0"></Hi3>
-				<Hi2 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Hi2>
-				<Hi1 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Hi1>
-				<Lo1 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Lo1>
-				<Lo2 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Lo2>
-				<Lo3 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Lo3>
-			</Levels>
-		</Signal>
-		<Signal Name="Alarm" Enable="1" NumData="0" Note="Gyerekszoba 3">
-			<Header>Alarm</Header>
-			<Source Name="PARADOX_DATA.zone[11].alarm" Zone="R" Offset="15445" Type="BIT4" IEC="0" Format="%b"></Source>
-			<Changes Enable="0">
-				<Change Up="1" Dw="1" Val="0" Hst="0" Txt="" Add="0"></Change>
-			</Changes>
-			<Levels Enable="1">
-				<Hi3 Up="1" Dw="1" Val="0" Hst="0" Txt="" Add="0"></Hi3>
-				<Hi2 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Hi2>
-				<Hi1 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Hi1>
-				<Lo1 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Lo1>
-				<Lo2 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Lo2>
-				<Lo3 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Lo3>
-			</Levels>
-		</Signal>
-		<Signal Name="Fire alarm" Enable="1" NumData="0" Note="Gyerekszoba 3">
-			<Header>Fire alarm</Header>
-			<Source Name="PARADOX_DATA.zone[11].fire_alarm" Zone="R" Offset="15445" Type="BIT5" IEC="0" Format="%b"></Source>
-			<Changes Enable="0">
-				<Change Up="1" Dw="1" Val="0" Hst="0" Txt="" Add="0"></Change>
-			</Changes>
-			<Levels Enable="1">
-				<Hi3 Up="1" Dw="1" Val="0" Hst="0" Txt="" Add="0"></Hi3>
-				<Hi2 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Hi2>
-				<Hi1 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Hi1>
-				<Lo1 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Lo1>
-				<Lo2 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Lo2>
-				<Lo3 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Lo3>
-			</Levels>
-		</Signal>
-		<Signal Name="Low battery" Enable="1" NumData="0" Note="Gyerekszoba 3">
-			<Header>Low battery</Header>
-			<Source Name="PARADOX_DATA.zone[11].low_battery" Zone="R" Offset="15445" Type="BIT6" IEC="0" Format="%b"></Source>
-			<Changes Enable="0">
-				<Change Up="1" Dw="1" Val="0" Hst="0" Txt="" Add="0"></Change>
-			</Changes>
-			<Levels Enable="1">
-				<Hi3 Up="1" Dw="1" Val="0" Hst="0" Txt="" Add="0"></Hi3>
-				<Hi2 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Hi2>
-				<Hi1 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Hi1>
-				<Lo1 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Lo1>
-				<Lo2 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Lo2>
-				<Lo3 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Lo3>
-			</Levels>
-		</Signal>
-		<Signal Name="ParadoxError" Enable="1" NumData="4" Note="">
-			<Header>ParadoxError</Header>
-			<Source Name="PARADOX_COM.err" Zone="R" Offset="14607" Type="BIT1" IEC="0" Format="%b"></Source>
-			<Changes Enable="0">
-				<Change Up="1" Dw="1" Val="0" Hst="0" Txt="" Add="0"></Change>
-			</Changes>
-			<Levels Enable="1">
-				<Hi3 Up="1" Dw="1" Val="0" Hst="0" Txt="" Add="0"></Hi3>
-				<Hi2 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Hi2>
-				<Hi1 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Hi1>
-				<Lo1 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Lo1>
-				<Lo2 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Lo2>
-				<Lo3 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Lo3>
-			</Levels>
-			<Data Name="ErrID" Enable="1" Note="">
-				<Label>ErrID</Label>
-				<Source Name="PARADOX_COM.err_ID" Zone="R" Offset="14608" Type="USINT" IEC="11" Format="%u"></Source>
-			</Data>
-			<Data Name="ErrTxt" Enable="1" Note="">
-				<Label>ErrTxt</Label>
-				<Source Name="PARADOX_COM.err_txt" Zone="R" Offset="14609" Type="STRING[80]" IEC="21" Format="%s"></Source>
-			</Data>
-			<Data Name="LastMes" Enable="1" Note="">
-				<Label>LastMes</Label>
-				<Source Name="PARADOX_COM.last_mes" Zone="R" Offset="14691" Type="STRING[80]" IEC="21" Format="%s"></Source>
-			</Data>
-			<Data Name="ZoneUpdated" Enable="1" Note="">
-				<Label>ZoneUpdated</Label>
-				<Source Name="PARADOX_COM.zone_updated" Zone="R" Offset="14690" Type="BIT1" IEC="0" Format="%b"></Source>
-			</Data>
 		</Signal>
 	</Collection>
 </Datalogger>
