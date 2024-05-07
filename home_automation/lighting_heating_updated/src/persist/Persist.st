@@ -7,8 +7,8 @@ PROGRAM PersistData
     init : BOOL := FALSE;
     realPersistors : ARRAY [1 .. C_REALS_TO_PERSIST] OF PersistReal;
     boolPersistors : ARRAY [1 .. C_BOOLS_TO_PERSIST] OF PersistBool;
-    intPersistors : ARRAY [1 .. C_INTS_TO_PERSIST]  OF PersistInt;
-    timePersistors : ARRAY [1 .. C_TIMES_TO_PERSIST]  OF PersistTime;
+    intPersistors : ARRAY  [1 .. C_INTS_TO_PERSIST]  OF PersistInt;
+    timePersistors : ARRAY [1 .. C_TIMES_TO_PERSIST] OF PersistTime;
     
     i: INT := 0;
   END_VAR

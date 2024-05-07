@@ -45,7 +45,7 @@ if(xmlhttpGET.status != 200){
 alert('Problem retrieving XML data ' + xmlhttpGET.statusText + '(' + xmlhttpGET.status + ')');
 document.location.reload(true)
 return;}
-var access = xmlhttpGET.responseXML.documentElement.getElementsByTagName('ACCESS')[0]; if(!access || access.getAttribute('UCID') != 1714410417) {document.location.reload(true); return;}
+var access = xmlhttpGET.responseXML.documentElement.getElementsByTagName('ACCESS')[0]; if(!access || access.getAttribute('UCID') != 1715071916) {document.location.reload(true); return;}
 var pd = '';
 var x=xmlhttpGET.responseXML.documentElement.getElementsByTagName('INPUT');
 if(x[0]) {
@@ -230,22 +230,22 @@ var Input18h = document.getElementById('INPUT18h');
 PostXML('VENTIL.XML', encodeURIComponent(Input18h.name+'='+Input18h.value));
 }
 function PostXML21() {
-PostXML('VENTIL.XML', encodeURIComponent('__R18185.3_BOOL_i=0')); 
+PostXML('VENTIL.XML', encodeURIComponent('__R18189.3_BOOL_i=0')); 
 SetBg('INPUT21', '');
 setTimeout("SetBg('INPUT21', 'SW747C_1.PNG');",500);
 }
 function PostXML22() {
-PostXML('VENTIL.XML', encodeURIComponent('__R18185.3_BOOL_i=1')); 
+PostXML('VENTIL.XML', encodeURIComponent('__R18189.3_BOOL_i=1')); 
 SetBg('INPUT22', '');
 setTimeout("SetBg('INPUT22', 'SW7D18_1.PNG');",500);
 }
 function PostXML23() {
-PostXML('VENTIL.XML', encodeURIComponent('__R18185.4_BOOL_i=0')); 
+PostXML('VENTIL.XML', encodeURIComponent('__R18189.4_BOOL_i=0')); 
 SetBg('INPUT23', '');
 setTimeout("SetBg('INPUT23', 'SW747C_1.PNG');",500);
 }
 function PostXML24() {
-PostXML('VENTIL.XML', encodeURIComponent('__R18185.4_BOOL_i=1')); 
+PostXML('VENTIL.XML', encodeURIComponent('__R18189.4_BOOL_i=1')); 
 SetBg('INPUT24', '');
 setTimeout("SetBg('INPUT24', 'SW7D18_1.PNG');",500);
 }

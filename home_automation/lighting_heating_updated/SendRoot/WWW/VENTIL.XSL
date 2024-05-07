@@ -15,18 +15,18 @@
 <title>
 <xsl:value-of select="/PAGE/@TITLE" />
 Szellőztetés</title>
-<script src="VENTIL.JS?U=1714410417" language="JavaScript" charset="utf-8" />
+<script src="VENTIL.JS?U=1715071916" language="JavaScript" charset="utf-8" />
 <style type="text/css">.mono {font-family: Verdana, Arial, FreeSans, sans-serif;}</style>
 </head>
 <body onload="GetXML('VENTIL.XML'); FunWatchDog();">
-<xsl:if test="1714410417 != ACCESS/@UCID">
+<xsl:if test="1715071916 != ACCESS/@UCID">
 <xsl:attribute name="onload">
 null;
 </xsl:attribute>
 <div id="cachewarning" style="text-align: left;"></div>
 <script src="REFCLR.JS" language="JavaScript" charset="utf-8"></script>
 </xsl:if>
-<xsl:if test="1714410417 = ACCESS/@UCID">
+<xsl:if test="1715071916 = ACCESS/@UCID">
 <table cellpadding="0" cellspacing="0">
 <tr style="height: 40px;">
 <!--logo-->

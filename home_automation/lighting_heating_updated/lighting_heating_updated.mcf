@@ -3,7 +3,7 @@ CONFIGURATION lighting_heating_updated
     TASK FreeWheeling(Number := 0);
     TASK InitialisationBlock(Number := 63);
     TASK FileIO(Number := 6);
-    TASK LazyDigitalIO(Number := 5);
+    TASK Every27Minutes(Number := 9);
     PROGRAM Lighting_Init WITH InitialisationBlock : LightingInit ();
     PROGRAM Ligting_Control WITH FreeWheeling : LightingControl ();
     PROGRAM Heating_Init WITH InitialisationBlock : HeatingInint ();
@@ -16,5 +16,6 @@ CONFIGURATION lighting_heating_updated
     PROGRAM Ventillation_Control WITH FreeWheeling : VentillationControl ();
     PROGRAM Watering_Init WITH InitialisationBlock : WateringInit ();
     PROGRAM Watering_Control WITH FreeWheeling : WateringControl ();
+    PROGRAM Slow_Averaging WITH Every27Minutes : SlowAveraging ();
   END_RESOURCE
 END_CONFIGURATION

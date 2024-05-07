@@ -45,7 +45,7 @@ if(xmlhttpGET.status != 200){
 alert('Problem retrieving XML data ' + xmlhttpGET.statusText + '(' + xmlhttpGET.status + ')');
 document.location.reload(true)
 return;}
-var access = xmlhttpGET.responseXML.documentElement.getElementsByTagName('ACCESS')[0]; if(!access || access.getAttribute('UCID') != 1714410417) {document.location.reload(true); return;}
+var access = xmlhttpGET.responseXML.documentElement.getElementsByTagName('ACCESS')[0]; if(!access || access.getAttribute('UCID') != 1715075874) {document.location.reload(true); return;}
 var pd = '';
 var x=xmlhttpGET.responseXML.documentElement.getElementsByTagName('INPUT');
 if(x[0]) {
@@ -196,6 +196,24 @@ UpdateValue(Input34, x[26], '#000000');}
 var Input35 = document.getElementById('INPUT35');
 if(!InputEdited[34]) {
 UpdateValue(Input35, x[27], '#000000');}
+var Input36 = document.getElementById('INPUT36');
+if(!InputEdited[35]) {
+UpdateValue(Input36, x[28], '#000000');}
+var Input37 = document.getElementById('INPUT37');
+if(!InputEdited[36]) {
+UpdateValue(Input37, x[29], '#000000');}
+var Input38 = document.getElementById('INPUT38');
+if(!InputEdited[37]) {
+UpdateValue(Input38, x[30], '#000000');}
+var Input39 = document.getElementById('INPUT39');
+if(!InputEdited[38]) {
+UpdateValue(Input39, x[31], '#000000');}
+var Input40 = document.getElementById('INPUT40');
+if(!InputEdited[39]) {
+UpdateValue(Input40, x[32], '#000000');}
+var Input41 = document.getElementById('INPUT41');
+if(!InputEdited[40]) {
+UpdateValue(Input41, x[33], '#000000');}
 } else {document.location.reload(true); return;}
 } catch(err) {console.log(err.message)}
 if(pd!=''){setTimeout("GetXML('WATERING.XML','"+pd+"')",1);}else{setTimeout("GetXML('WATERING.XML')",1000);}}
@@ -233,62 +251,62 @@ PostXML('WATERING.XML', encodeURIComponent(Input4.name+'='+Input4.value)); Input
 }
 }
 function PostXML5() {
-PostXML('WATERING.XML', encodeURIComponent('__R18580.1_BOOL_i=0')); 
+PostXML('WATERING.XML', encodeURIComponent('__R18584.1_BOOL_i=0')); 
 SetBg('INPUT5', '');
 setTimeout("SetBg('INPUT5', 'SW747C_1.PNG');",500);
 }
 function PostXML6() {
-PostXML('WATERING.XML', encodeURIComponent('__R18580.1_BOOL_i=1')); 
+PostXML('WATERING.XML', encodeURIComponent('__R18584.1_BOOL_i=1')); 
 SetBg('INPUT6', '');
 setTimeout("SetBg('INPUT6', 'SW7D18_1.PNG');",500);
 }
 function PostXML7() {
-PostXML('WATERING.XML', encodeURIComponent('__R18664.0_BOOL_i=0')); 
+PostXML('WATERING.XML', encodeURIComponent('__R18688.0_BOOL_i=0')); 
 SetBg('INPUT7', '');
 setTimeout("SetBg('INPUT7', 'SW747C_1.PNG');",500);
 }
 function PostXML8() {
-PostXML('WATERING.XML', encodeURIComponent('__R18664.0_BOOL_i=1')); 
+PostXML('WATERING.XML', encodeURIComponent('__R18688.0_BOOL_i=1')); 
 SetBg('INPUT8', '');
 setTimeout("SetBg('INPUT8', 'SW7D18_1.PNG');",500);
 }
 function PostXML9() {
-PostXML('WATERING.XML', encodeURIComponent('__R18664.1_BOOL_i=0')); 
+PostXML('WATERING.XML', encodeURIComponent('__R18688.1_BOOL_i=0')); 
 SetBg('INPUT9', '');
 setTimeout("SetBg('INPUT9', 'SW747C_1.PNG');",500);
 }
 function PostXML10() {
-PostXML('WATERING.XML', encodeURIComponent('__R18664.1_BOOL_i=1')); 
+PostXML('WATERING.XML', encodeURIComponent('__R18688.1_BOOL_i=1')); 
 SetBg('INPUT10', '');
 setTimeout("SetBg('INPUT10', 'SW7D18_1.PNG');",500);
 }
 function PostXML11() {
-PostXML('WATERING.XML', encodeURIComponent('__R18664.2_BOOL_i=0')); 
+PostXML('WATERING.XML', encodeURIComponent('__R18688.2_BOOL_i=0')); 
 SetBg('INPUT11', '');
 setTimeout("SetBg('INPUT11', 'SW747C_1.PNG');",500);
 }
 function PostXML12() {
-PostXML('WATERING.XML', encodeURIComponent('__R18664.2_BOOL_i=1')); 
+PostXML('WATERING.XML', encodeURIComponent('__R18688.2_BOOL_i=1')); 
 SetBg('INPUT12', '');
 setTimeout("SetBg('INPUT12', 'SW7D18_1.PNG');",500);
 }
 function PostXML13() {
-PostXML('WATERING.XML', encodeURIComponent('__R18580.0_BOOL_i=0')); 
+PostXML('WATERING.XML', encodeURIComponent('__R18584.0_BOOL_i=0')); 
 SetBg('INPUT13', '');
 setTimeout("SetBg('INPUT13', 'SW747C_1.PNG');",500);
 }
 function PostXML14() {
-PostXML('WATERING.XML', encodeURIComponent('__R18580.0_BOOL_i=1')); 
+PostXML('WATERING.XML', encodeURIComponent('__R18584.0_BOOL_i=1')); 
 SetBg('INPUT14', '');
 setTimeout("SetBg('INPUT14', 'SW7D18_1.PNG');",500);
 }
 function PostXML17() {
-PostXML('WATERING.XML', encodeURIComponent('__R18580.2_BOOL_i=0')); 
+PostXML('WATERING.XML', encodeURIComponent('__R18584.2_BOOL_i=0')); 
 SetBg('INPUT17', '');
 setTimeout("SetBg('INPUT17', 'SW747C_1.PNG');",500);
 }
 function PostXML18() {
-PostXML('WATERING.XML', encodeURIComponent('__R18580.2_BOOL_i=1')); 
+PostXML('WATERING.XML', encodeURIComponent('__R18584.2_BOOL_i=1')); 
 SetBg('INPUT18', '');
 setTimeout("SetBg('INPUT18', 'SW7D18_1.PNG');",500);
 }
@@ -316,6 +334,36 @@ document.getElementById('INPUT29x').style.visibility = 'hidden';if(InputEdited[2
 PostXML('WATERING.XML', encodeURIComponent(Input29.name+'='+Input29.value)); InputEdited[28] = 0;
 }
 }
+function PostXML36() {
+var Input36 = document.getElementById('INPUT36');
+document.getElementById('INPUT36x').style.visibility = 'hidden';if(InputEdited[35]) {
+PostXML('WATERING.XML', encodeURIComponent(Input36.name+'='+Input36.value)); InputEdited[35] = 0;
+}
+}
+function PostXML37() {
+var Input37 = document.getElementById('INPUT37');
+document.getElementById('INPUT37x').style.visibility = 'hidden';if(InputEdited[36]) {
+PostXML('WATERING.XML', encodeURIComponent(Input37.name+'='+Input37.value)); InputEdited[36] = 0;
+}
+}
+function PostXML38() {
+var Input38 = document.getElementById('INPUT38');
+document.getElementById('INPUT38x').style.visibility = 'hidden';if(InputEdited[37]) {
+PostXML('WATERING.XML', encodeURIComponent(Input38.name+'='+Input38.value)); InputEdited[37] = 0;
+}
+}
+function PostXML39() {
+var Input39 = document.getElementById('INPUT39');
+document.getElementById('INPUT39x').style.visibility = 'hidden';if(InputEdited[38]) {
+PostXML('WATERING.XML', encodeURIComponent(Input39.name+'='+Input39.value)); InputEdited[38] = 0;
+}
+}
+function PostXML40() {
+var Input40 = document.getElementById('INPUT40');
+document.getElementById('INPUT40x').style.visibility = 'hidden';if(InputEdited[39]) {
+PostXML('WATERING.XML', encodeURIComponent(Input40.name+'='+Input40.value)); InputEdited[39] = 0;
+}
+}
 
 function PostGlobal() {
 var Input19 = document.getElementById('INPUT19');
@@ -331,7 +379,8 @@ var Input32 = document.getElementById('INPUT32');
 var Input33 = document.getElementById('INPUT33');
 var Input34 = document.getElementById('INPUT34');
 var Input35 = document.getElementById('INPUT35');
-PostXML('WATERING.XML', (InputEdited[18] ? encodeURIComponent(Input19.name)+'='+encodeURIComponent(Input19.value)+'&' : '')+(InputEdited[19] ? encodeURIComponent(Input20.name)+'='+encodeURIComponent(Input20.value)+'&' : '')+(InputEdited[20] ? encodeURIComponent(Input21.name)+'='+encodeURIComponent(Input21.value)+'&' : '')+(InputEdited[21] ? encodeURIComponent(Input22.name)+'='+encodeURIComponent(Input22.value)+'&' : '')+(InputEdited[22] ? encodeURIComponent(Input23.name)+'='+encodeURIComponent(Input23.value)+'&' : '')+(InputEdited[23] ? encodeURIComponent(Input24.name)+'='+encodeURIComponent(Input24.value)+'&' : '')+(InputEdited[24] ? encodeURIComponent(Input25.name)+'='+encodeURIComponent(Input25.value)+'&' : '')+(InputEdited[29] ? encodeURIComponent(Input30.name)+'='+encodeURIComponent(Input30.value)+'&' : '')+(InputEdited[30] ? encodeURIComponent(Input31.name)+'='+encodeURIComponent(Input31.value)+'&' : '')+(InputEdited[31] ? encodeURIComponent(Input32.name)+'='+encodeURIComponent(Input32.value)+'&' : '')+(InputEdited[32] ? encodeURIComponent(Input33.name)+'='+encodeURIComponent(Input33.value)+'&' : '')+(InputEdited[33] ? encodeURIComponent(Input34.name)+'='+encodeURIComponent(Input34.value)+'&' : '')+(InputEdited[34] ? encodeURIComponent(Input35.name)+'='+encodeURIComponent(Input35.value)+'&' : ''));
+var Input41 = document.getElementById('INPUT41');
+PostXML('WATERING.XML', (InputEdited[18] ? encodeURIComponent(Input19.name)+'='+encodeURIComponent(Input19.value)+'&' : '')+(InputEdited[19] ? encodeURIComponent(Input20.name)+'='+encodeURIComponent(Input20.value)+'&' : '')+(InputEdited[20] ? encodeURIComponent(Input21.name)+'='+encodeURIComponent(Input21.value)+'&' : '')+(InputEdited[21] ? encodeURIComponent(Input22.name)+'='+encodeURIComponent(Input22.value)+'&' : '')+(InputEdited[22] ? encodeURIComponent(Input23.name)+'='+encodeURIComponent(Input23.value)+'&' : '')+(InputEdited[23] ? encodeURIComponent(Input24.name)+'='+encodeURIComponent(Input24.value)+'&' : '')+(InputEdited[24] ? encodeURIComponent(Input25.name)+'='+encodeURIComponent(Input25.value)+'&' : '')+(InputEdited[29] ? encodeURIComponent(Input30.name)+'='+encodeURIComponent(Input30.value)+'&' : '')+(InputEdited[30] ? encodeURIComponent(Input31.name)+'='+encodeURIComponent(Input31.value)+'&' : '')+(InputEdited[31] ? encodeURIComponent(Input32.name)+'='+encodeURIComponent(Input32.value)+'&' : '')+(InputEdited[32] ? encodeURIComponent(Input33.name)+'='+encodeURIComponent(Input33.value)+'&' : '')+(InputEdited[33] ? encodeURIComponent(Input34.name)+'='+encodeURIComponent(Input34.value)+'&' : '')+(InputEdited[34] ? encodeURIComponent(Input35.name)+'='+encodeURIComponent(Input35.value)+'&' : '')+(InputEdited[40] ? encodeURIComponent(Input41.name)+'='+encodeURIComponent(Input41.value)+'&' : ''));
 InputEdited[18]=0;
 InputEdited[19]=0;
 InputEdited[20]=0;
@@ -345,4 +394,5 @@ InputEdited[31]=0;
 InputEdited[32]=0;
 InputEdited[33]=0;
 InputEdited[34]=0;
+InputEdited[40]=0;
 }

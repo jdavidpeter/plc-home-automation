@@ -1,0 +1,17 @@
+PROGRAM SlowAveraging
+  VAR_INPUT
+  END_VAR
+  VAR_OUTPUT
+  END_VAR
+  VAR
+    window_width : REAL := 150;
+  END_VAR
+  VAR_TEMP
+  END_VAR
+
+
+  EXTERNAL_AVERAGE_TEMPERATURE := (EXTERNAL_AVERAGE_TEMPERATURE * (window_width - 1) + EXTERNAL_TEMPERATURE) / window_width;
+
+END_PROGRAM
+
+

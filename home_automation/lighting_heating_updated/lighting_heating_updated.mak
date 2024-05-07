@@ -41,6 +41,7 @@
 #usefile "IOConfigurator\CONFIG.HWC", 'auto'
 #usefile "Datalogger\Datalogger.ST", 'auto'
 #usefile "Datalogger\Datalogger.mos", 'auto'
+#usefile "LIGHTING_HEATING_UPDATED.ST"
 #usefile "src\utils\globals\UtilsGlobals.st"
 #usefile "src\utils\logging\StringRecorder.st"
 #usefile "src\utils\io\RoomSwitch.st"
@@ -75,4 +76,5 @@
 #usefile "src\ventillation\Ventillation.st"
 #usefile "src\watering\WateringInit.st"
 #usefile "src\watering\Watering.st"
+#usefile "src\utils\slowavg\SlowAvg.st"
 #usefile "lighting_heating_updated.mcf", 'auto'

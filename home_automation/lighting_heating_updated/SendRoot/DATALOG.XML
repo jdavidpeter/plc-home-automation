@@ -19,19 +19,19 @@
 		</PeriodCollection>
 		<Signal Name="Mod" Enable="1" NumData="0" Note="">
 			<Header>Mod</Header>
-			<Source Name="VAILLANT_MODULATION_LEVEL" Zone="R" Offset="16032" Type="USINT" IEC="11" Format="%u"></Source>
+			<Source Name="VAILLANT_MODULATION_LEVEL" Zone="R" Offset="16036" Type="USINT" IEC="11" Format="%u"></Source>
 		</Signal>
 		<Signal Name="FowWatT" Enable="1" NumData="0" Note="">
 			<Header>FowWatT</Header>
-			<Source Name="VAILLANT_HEATING_TEMP" Zone="R" Offset="16016" Type="REAL" IEC="15" Format="%f"></Source>
+			<Source Name="VAILLANT_HEATING_TEMP" Zone="R" Offset="16020" Type="REAL" IEC="15" Format="%f"></Source>
 		</Signal>
 		<Signal Name="RetWatT" Enable="1" NumData="0" Note="">
 			<Header>RetWatT</Header>
-			<Source Name="VAILLANT_RETURN_WATER_TEMP" Zone="R" Offset="16028" Type="REAL" IEC="15" Format="%f"></Source>
+			<Source Name="VAILLANT_RETURN_WATER_TEMP" Zone="R" Offset="16032" Type="REAL" IEC="15" Format="%f"></Source>
 		</Signal>
 		<Signal Name="SumTReq" Enable="1" NumData="0" Note="Eredõ fûtõvíz hõ igény">
 			<Header>SumTReq</Header>
-			<Source Name="SUM_HEATING_WATER_TEMPERATURE_REQUIREMENT" Zone="R" Offset="15835" Type="REAL" IEC="15" Format="%f"></Source>
+			<Source Name="SUM_HEATING_WATER_TEMPERATURE_REQUIREMENT" Zone="R" Offset="15839" Type="REAL" IEC="15" Format="%f"></Source>
 		</Signal>
 		<Signal Name="ExternalT" Enable="1" NumData="0" Note="External temperature">
 			<Header>ExternalT</Header>
@@ -70,7 +70,7 @@
 		</SignalCollection>
 		<Signal Name="Bejarati ajto" Enable="1" NumData="0" Note="">
 			<Header>Bejarati ajto</Header>
-			<Source Name="PARADOX_DATA.zone[1].state" Zone="R" Offset="15435" Type="BIT0" IEC="0" Format="%b"></Source>
+			<Source Name="PARADOX_DATA.zone[1].state" Zone="R" Offset="15439" Type="BIT0" IEC="0" Format="%b"></Source>
 			<Levels Enable="1">
 				<Hi3 Up="1" Dw="1" Val="0" Hst="0" Txt="" Add="0"></Hi3>
 				<Hi2 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Hi2>
@@ -82,7 +82,7 @@
 		</Signal>
 		<Signal Name="Garazs ajto" Enable="1" NumData="0" Note="">
 			<Header>Garazs ajto</Header>
-			<Source Name="PARADOX_DATA.zone[2].state" Zone="R" Offset="15436" Type="BIT0" IEC="0" Format="%b"></Source>
+			<Source Name="PARADOX_DATA.zone[2].state" Zone="R" Offset="15440" Type="BIT0" IEC="0" Format="%b"></Source>
 			<Levels Enable="1">
 				<Hi3 Up="1" Dw="1" Val="0" Hst="0" Txt="" Add="0"></Hi3>
 				<Hi2 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Hi2>
@@ -94,7 +94,7 @@
 		</Signal>
 		<Signal Name="Ures" Enable="1" NumData="0" Note="">
 			<Header>Ures</Header>
-			<Source Name="PARADOX_DATA.zone[3].state" Zone="R" Offset="15437" Type="BIT0" IEC="0" Format="%b"></Source>
+			<Source Name="PARADOX_DATA.zone[3].state" Zone="R" Offset="15441" Type="BIT0" IEC="0" Format="%b"></Source>
 			<Levels Enable="1">
 				<Hi3 Up="0" Dw="1" Val="0" Hst="0" Txt="" Add="0"></Hi3>
 				<Hi2 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Hi2>
@@ -106,7 +106,7 @@
 		</Signal>
 		<Signal Name="Eloszoba" Enable="1" NumData="0" Note="">
 			<Header>Eloszoba</Header>
-			<Source Name="PARADOX_DATA.zone[4].state" Zone="R" Offset="15438" Type="BIT0" IEC="0" Format="%b"></Source>
+			<Source Name="PARADOX_DATA.zone[4].state" Zone="R" Offset="15442" Type="BIT0" IEC="0" Format="%b"></Source>
 			<Levels Enable="1">
 				<Hi3 Up="0" Dw="1" Val="0" Hst="0" Txt="" Add="0"></Hi3>
 				<Hi2 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Hi2>
@@ -118,7 +118,7 @@
 		</Signal>
 		<Signal Name="Garazs" Enable="1" NumData="0" Note="">
 			<Header>Garazs</Header>
-			<Source Name="PARADOX_DATA.zone[5].state" Zone="R" Offset="15439" Type="BIT0" IEC="0" Format="%b"></Source>
+			<Source Name="PARADOX_DATA.zone[5].state" Zone="R" Offset="15443" Type="BIT0" IEC="0" Format="%b"></Source>
 			<Levels Enable="1">
 				<Hi3 Up="0" Dw="1" Val="0" Hst="0" Txt="" Add="0"></Hi3>
 				<Hi2 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Hi2>
@@ -130,7 +130,7 @@
 		</Signal>
 		<Signal Name="Konyha" Enable="1" NumData="0" Note="">
 			<Header>Konyha</Header>
-			<Source Name="PARADOX_DATA.zone[6].state" Zone="R" Offset="15440" Type="BIT0" IEC="0" Format="%b"></Source>
+			<Source Name="PARADOX_DATA.zone[6].state" Zone="R" Offset="15444" Type="BIT0" IEC="0" Format="%b"></Source>
 			<Levels Enable="1">
 				<Hi3 Up="0" Dw="1" Val="0" Hst="0" Txt="" Add="0"></Hi3>
 				<Hi2 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Hi2>
@@ -142,7 +142,7 @@
 		</Signal>
 		<Signal Name="Nappali" Enable="1" NumData="0" Note="">
 			<Header>Nappali</Header>
-			<Source Name="PARADOX_DATA.zone[7].state" Zone="R" Offset="15441" Type="BIT0" IEC="0" Format="%b"></Source>
+			<Source Name="PARADOX_DATA.zone[7].state" Zone="R" Offset="15445" Type="BIT0" IEC="0" Format="%b"></Source>
 			<Levels Enable="1">
 				<Hi3 Up="0" Dw="1" Val="0" Hst="0" Txt="" Add="0"></Hi3>
 				<Hi2 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Hi2>
@@ -154,7 +154,7 @@
 		</Signal>
 		<Signal Name="Halo" Enable="1" NumData="0" Note="">
 			<Header>Halo</Header>
-			<Source Name="PARADOX_DATA.zone[8].state" Zone="R" Offset="15442" Type="BIT0" IEC="0" Format="%b"></Source>
+			<Source Name="PARADOX_DATA.zone[8].state" Zone="R" Offset="15446" Type="BIT0" IEC="0" Format="%b"></Source>
 			<Levels Enable="1">
 				<Hi3 Up="0" Dw="1" Val="0" Hst="0" Txt="" Add="0"></Hi3>
 				<Hi2 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Hi2>
@@ -166,7 +166,7 @@
 		</Signal>
 		<Signal Name="Also furdo" Enable="1" NumData="0" Note="">
 			<Header>Also furdo</Header>
-			<Source Name="PARADOX_DATA.zone[9].state" Zone="R" Offset="15443" Type="BIT0" IEC="0" Format="%b"></Source>
+			<Source Name="PARADOX_DATA.zone[9].state" Zone="R" Offset="15447" Type="BIT0" IEC="0" Format="%b"></Source>
 			<Levels Enable="1">
 				<Hi3 Up="0" Dw="1" Val="0" Hst="0" Txt="" Add="0"></Hi3>
 				<Hi2 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Hi2>
@@ -178,7 +178,7 @@
 		</Signal>
 		<Signal Name="Folyoso" Enable="1" NumData="0" Note="">
 			<Header>Folyoso</Header>
-			<Source Name="PARADOX_DATA.zone[10].state" Zone="R" Offset="15444" Type="BIT0" IEC="0" Format="%b"></Source>
+			<Source Name="PARADOX_DATA.zone[10].state" Zone="R" Offset="15448" Type="BIT0" IEC="0" Format="%b"></Source>
 			<Levels Enable="1">
 				<Hi3 Up="0" Dw="1" Val="0" Hst="0" Txt="" Add="0"></Hi3>
 				<Hi2 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Hi2>
@@ -190,7 +190,7 @@
 		</Signal>
 		<Signal Name="Gyerekszoba 3" Enable="1" NumData="0" Note="">
 			<Header>Gyerekszoba 3</Header>
-			<Source Name="PARADOX_DATA.zone[11].state" Zone="R" Offset="15445" Type="BIT0" IEC="0" Format="%b"></Source>
+			<Source Name="PARADOX_DATA.zone[11].state" Zone="R" Offset="15449" Type="BIT0" IEC="0" Format="%b"></Source>
 			<Levels Enable="1">
 				<Hi3 Up="0" Dw="1" Val="0" Hst="0" Txt="" Add="0"></Hi3>
 				<Hi2 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Hi2>
@@ -202,7 +202,7 @@
 		</Signal>
 		<Signal Name="Gyerekszoba 1" Enable="1" NumData="0" Note="">
 			<Header>Gyerekszoba 1</Header>
-			<Source Name="PARADOX_DATA.zone[12].state" Zone="R" Offset="15446" Type="BIT0" IEC="0" Format="%b"></Source>
+			<Source Name="PARADOX_DATA.zone[12].state" Zone="R" Offset="15450" Type="BIT0" IEC="0" Format="%b"></Source>
 			<Levels Enable="1">
 				<Hi3 Up="0" Dw="1" Val="0" Hst="0" Txt="" Add="0"></Hi3>
 				<Hi2 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Hi2>
@@ -214,7 +214,7 @@
 		</Signal>
 		<Signal Name="Gyerekszoba 2" Enable="1" NumData="0" Note="">
 			<Header>Gyerekszoba 2</Header>
-			<Source Name="PARADOX_DATA.zone[13].state" Zone="R" Offset="15447" Type="BIT0" IEC="0" Format="%b"></Source>
+			<Source Name="PARADOX_DATA.zone[13].state" Zone="R" Offset="15451" Type="BIT0" IEC="0" Format="%b"></Source>
 			<Levels Enable="1">
 				<Hi3 Up="0" Dw="1" Val="0" Hst="0" Txt="" Add="0"></Hi3>
 				<Hi2 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Hi2>
@@ -226,7 +226,7 @@
 		</Signal>
 		<Signal Name="Felso furdo" Enable="1" NumData="0" Note="">
 			<Header>Felso furdo</Header>
-			<Source Name="PARADOX_DATA.zone[14].state" Zone="R" Offset="15448" Type="BIT0" IEC="0" Format="%b"></Source>
+			<Source Name="PARADOX_DATA.zone[14].state" Zone="R" Offset="15452" Type="BIT0" IEC="0" Format="%b"></Source>
 			<Levels Enable="1">
 				<Hi3 Up="0" Dw="1" Val="0" Hst="0" Txt="" Add="0"></Hi3>
 				<Hi2 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Hi2>
@@ -238,7 +238,7 @@
 		</Signal>
 		<Signal Name="WC" Enable="1" NumData="0" Note="">
 			<Header>WC</Header>
-			<Source Name="PARADOX_DATA.zone[15].state" Zone="R" Offset="15449" Type="BIT0" IEC="0" Format="%b"></Source>
+			<Source Name="PARADOX_DATA.zone[15].state" Zone="R" Offset="15453" Type="BIT0" IEC="0" Format="%b"></Source>
 			<Levels Enable="1">
 				<Hi3 Up="0" Dw="1" Val="0" Hst="0" Txt="" Add="0"></Hi3>
 				<Hi2 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Hi2>
@@ -250,7 +250,7 @@
 		</Signal>
 		<Signal Name="Kazan" Enable="1" NumData="0" Note="">
 			<Header>Kazan</Header>
-			<Source Name="PARADOX_DATA.zone[16].state" Zone="R" Offset="15450" Type="BIT0" IEC="0" Format="%b"></Source>
+			<Source Name="PARADOX_DATA.zone[16].state" Zone="R" Offset="15454" Type="BIT0" IEC="0" Format="%b"></Source>
 			<Levels Enable="1">
 				<Hi3 Up="0" Dw="1" Val="0" Hst="0" Txt="" Add="0"></Hi3>
 				<Hi2 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Hi2>
@@ -278,7 +278,7 @@
 		</SignalCollection>
 		<Signal Name="Bejarati ajto T" Enable="1" NumData="0" Note="">
 			<Header>Bejarati ajto T</Header>
-			<Source Name="PARADOX_DATA.zone[1].tamper" Zone="R" Offset="15435" Type="BIT1" IEC="0" Format="%b"></Source>
+			<Source Name="PARADOX_DATA.zone[1].tamper" Zone="R" Offset="15439" Type="BIT1" IEC="0" Format="%b"></Source>
 			<Levels Enable="1">
 				<Hi3 Up="0" Dw="1" Val="0" Hst="0" Txt="" Add="0"></Hi3>
 				<Hi2 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Hi2>
@@ -290,7 +290,7 @@
 		</Signal>
 		<Signal Name="Garazs ajto T" Enable="1" NumData="0" Note="">
 			<Header>Garazs ajto T</Header>
-			<Source Name="PARADOX_DATA.zone[2].tamper" Zone="R" Offset="15436" Type="BIT1" IEC="0" Format="%b"></Source>
+			<Source Name="PARADOX_DATA.zone[2].tamper" Zone="R" Offset="15440" Type="BIT1" IEC="0" Format="%b"></Source>
 			<Levels Enable="1">
 				<Hi3 Up="0" Dw="1" Val="0" Hst="0" Txt="" Add="0"></Hi3>
 				<Hi2 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Hi2>
@@ -302,7 +302,7 @@
 		</Signal>
 		<Signal Name="Ures T" Enable="1" NumData="0" Note="">
 			<Header>Ures T</Header>
-			<Source Name="PARADOX_DATA.zone[3].tamper" Zone="R" Offset="15437" Type="BIT1" IEC="0" Format="%b"></Source>
+			<Source Name="PARADOX_DATA.zone[3].tamper" Zone="R" Offset="15441" Type="BIT1" IEC="0" Format="%b"></Source>
 			<Levels Enable="1">
 				<Hi3 Up="0" Dw="1" Val="0" Hst="0" Txt="" Add="0"></Hi3>
 				<Hi2 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Hi2>
@@ -314,7 +314,7 @@
 		</Signal>
 		<Signal Name="Eloszoba T" Enable="1" NumData="0" Note="">
 			<Header>Eloszoba T</Header>
-			<Source Name="PARADOX_DATA.zone[4].tamper" Zone="R" Offset="15438" Type="BIT1" IEC="0" Format="%b"></Source>
+			<Source Name="PARADOX_DATA.zone[4].tamper" Zone="R" Offset="15442" Type="BIT1" IEC="0" Format="%b"></Source>
 			<Levels Enable="1">
 				<Hi3 Up="0" Dw="1" Val="0" Hst="0" Txt="" Add="0"></Hi3>
 				<Hi2 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Hi2>
@@ -326,7 +326,7 @@
 		</Signal>
 		<Signal Name="Garazs T" Enable="1" NumData="0" Note="">
 			<Header>Garazs T</Header>
-			<Source Name="PARADOX_DATA.zone[5].tamper" Zone="R" Offset="15439" Type="BIT1" IEC="0" Format="%b"></Source>
+			<Source Name="PARADOX_DATA.zone[5].tamper" Zone="R" Offset="15443" Type="BIT1" IEC="0" Format="%b"></Source>
 			<Levels Enable="1">
 				<Hi3 Up="0" Dw="1" Val="0" Hst="0" Txt="" Add="0"></Hi3>
 				<Hi2 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Hi2>
@@ -338,7 +338,7 @@
 		</Signal>
 		<Signal Name="Konyha T" Enable="1" NumData="0" Note="">
 			<Header>Konyha T</Header>
-			<Source Name="PARADOX_DATA.zone[6].tamper" Zone="R" Offset="15440" Type="BIT1" IEC="0" Format="%b"></Source>
+			<Source Name="PARADOX_DATA.zone[6].tamper" Zone="R" Offset="15444" Type="BIT1" IEC="0" Format="%b"></Source>
 			<Levels Enable="1">
 				<Hi3 Up="0" Dw="1" Val="0" Hst="0" Txt="" Add="0"></Hi3>
 				<Hi2 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Hi2>
@@ -350,7 +350,7 @@
 		</Signal>
 		<Signal Name="Nappali T" Enable="1" NumData="0" Note="">
 			<Header>Nappali T</Header>
-			<Source Name="PARADOX_DATA.zone[7].tamper" Zone="R" Offset="15441" Type="BIT1" IEC="0" Format="%b"></Source>
+			<Source Name="PARADOX_DATA.zone[7].tamper" Zone="R" Offset="15445" Type="BIT1" IEC="0" Format="%b"></Source>
 			<Levels Enable="1">
 				<Hi3 Up="0" Dw="1" Val="0" Hst="0" Txt="" Add="0"></Hi3>
 				<Hi2 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Hi2>
@@ -362,7 +362,7 @@
 		</Signal>
 		<Signal Name="Halo T" Enable="1" NumData="0" Note="">
 			<Header>Halo T</Header>
-			<Source Name="PARADOX_DATA.zone[8].tamper" Zone="R" Offset="15442" Type="BIT1" IEC="0" Format="%b"></Source>
+			<Source Name="PARADOX_DATA.zone[8].tamper" Zone="R" Offset="15446" Type="BIT1" IEC="0" Format="%b"></Source>
 			<Levels Enable="1">
 				<Hi3 Up="0" Dw="1" Val="0" Hst="0" Txt="" Add="0"></Hi3>
 				<Hi2 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Hi2>
@@ -374,7 +374,7 @@
 		</Signal>
 		<Signal Name="Also furdo T" Enable="1" NumData="0" Note="">
 			<Header>Also furdo T</Header>
-			<Source Name="PARADOX_DATA.zone[9].tamper" Zone="R" Offset="15443" Type="BIT1" IEC="0" Format="%b"></Source>
+			<Source Name="PARADOX_DATA.zone[9].tamper" Zone="R" Offset="15447" Type="BIT1" IEC="0" Format="%b"></Source>
 			<Levels Enable="1">
 				<Hi3 Up="0" Dw="1" Val="0" Hst="0" Txt="" Add="0"></Hi3>
 				<Hi2 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Hi2>
@@ -386,7 +386,7 @@
 		</Signal>
 		<Signal Name="Folyoso T" Enable="1" NumData="0" Note="">
 			<Header>Folyoso T</Header>
-			<Source Name="PARADOX_DATA.zone[10].tamper" Zone="R" Offset="15444" Type="BIT1" IEC="0" Format="%b"></Source>
+			<Source Name="PARADOX_DATA.zone[10].tamper" Zone="R" Offset="15448" Type="BIT1" IEC="0" Format="%b"></Source>
 			<Levels Enable="1">
 				<Hi3 Up="0" Dw="1" Val="0" Hst="0" Txt="" Add="0"></Hi3>
 				<Hi2 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Hi2>
@@ -398,7 +398,7 @@
 		</Signal>
 		<Signal Name="Gyerekszoba 3 T" Enable="1" NumData="0" Note="">
 			<Header>Gyerekszoba 3 T</Header>
-			<Source Name="PARADOX_DATA.zone[11].tamper" Zone="R" Offset="15445" Type="BIT1" IEC="0" Format="%b"></Source>
+			<Source Name="PARADOX_DATA.zone[11].tamper" Zone="R" Offset="15449" Type="BIT1" IEC="0" Format="%b"></Source>
 			<Levels Enable="1">
 				<Hi3 Up="0" Dw="1" Val="0" Hst="0" Txt="" Add="0"></Hi3>
 				<Hi2 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Hi2>
@@ -410,7 +410,7 @@
 		</Signal>
 		<Signal Name="Gyerekszoba 1 T" Enable="1" NumData="0" Note="">
 			<Header>Gyerekszoba 1 T</Header>
-			<Source Name="PARADOX_DATA.zone[12].tamper" Zone="R" Offset="15446" Type="BIT1" IEC="0" Format="%b"></Source>
+			<Source Name="PARADOX_DATA.zone[12].tamper" Zone="R" Offset="15450" Type="BIT1" IEC="0" Format="%b"></Source>
 			<Levels Enable="1">
 				<Hi3 Up="0" Dw="1" Val="0" Hst="0" Txt="" Add="0"></Hi3>
 				<Hi2 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Hi2>
@@ -422,7 +422,7 @@
 		</Signal>
 		<Signal Name="Gyerekszoba 2 T" Enable="1" NumData="0" Note="">
 			<Header>Gyerekszoba 2 T</Header>
-			<Source Name="PARADOX_DATA.zone[13].tamper" Zone="R" Offset="15447" Type="BIT1" IEC="0" Format="%b"></Source>
+			<Source Name="PARADOX_DATA.zone[13].tamper" Zone="R" Offset="15451" Type="BIT1" IEC="0" Format="%b"></Source>
 			<Levels Enable="1">
 				<Hi3 Up="0" Dw="1" Val="0" Hst="0" Txt="" Add="0"></Hi3>
 				<Hi2 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Hi2>
@@ -434,7 +434,7 @@
 		</Signal>
 		<Signal Name="Felso furdo T" Enable="1" NumData="0" Note="">
 			<Header>Felso furdo T</Header>
-			<Source Name="PARADOX_DATA.zone[14].tamper" Zone="R" Offset="15448" Type="BIT1" IEC="0" Format="%b"></Source>
+			<Source Name="PARADOX_DATA.zone[14].tamper" Zone="R" Offset="15452" Type="BIT1" IEC="0" Format="%b"></Source>
 			<Levels Enable="1">
 				<Hi3 Up="0" Dw="1" Val="0" Hst="0" Txt="" Add="0"></Hi3>
 				<Hi2 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Hi2>
@@ -446,7 +446,7 @@
 		</Signal>
 		<Signal Name="WC T" Enable="1" NumData="0" Note="">
 			<Header>WC T</Header>
-			<Source Name="PARADOX_DATA.zone[15].tamper" Zone="R" Offset="15449" Type="BIT1" IEC="0" Format="%b"></Source>
+			<Source Name="PARADOX_DATA.zone[15].tamper" Zone="R" Offset="15453" Type="BIT1" IEC="0" Format="%b"></Source>
 			<Levels Enable="1">
 				<Hi3 Up="0" Dw="1" Val="0" Hst="0" Txt="" Add="0"></Hi3>
 				<Hi2 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Hi2>
@@ -458,7 +458,7 @@
 		</Signal>
 		<Signal Name="Kazan T" Enable="1" NumData="0" Note="">
 			<Header>Kazan T</Header>
-			<Source Name="PARADOX_DATA.zone[16].tamper" Zone="R" Offset="15450" Type="BIT1" IEC="0" Format="%b"></Source>
+			<Source Name="PARADOX_DATA.zone[16].tamper" Zone="R" Offset="15454" Type="BIT1" IEC="0" Format="%b"></Source>
 			<Levels Enable="1">
 				<Hi3 Up="0" Dw="1" Val="0" Hst="0" Txt="" Add="0"></Hi3>
 				<Hi2 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Hi2>

@@ -45,7 +45,7 @@ if(xmlhttpGET.status != 200){
 alert('Problem retrieving XML data ' + xmlhttpGET.statusText + '(' + xmlhttpGET.status + ')');
 document.location.reload(true)
 return;}
-var access = xmlhttpGET.responseXML.documentElement.getElementsByTagName('ACCESS')[0]; if(!access || access.getAttribute('UCID') != 1714410853) {document.location.reload(true); return;}
+var access = xmlhttpGET.responseXML.documentElement.getElementsByTagName('ACCESS')[0]; if(!access || access.getAttribute('UCID') != 1715071915) {document.location.reload(true); return;}
 var pd = '';
 var x=xmlhttpGET.responseXML.documentElement.getElementsByTagName('INPUT');
 if(x[0]) {
@@ -702,132 +702,132 @@ setTimeout("FunWatchDog()", 20000);
 }
 
 function PostXML1() {
-PostXML('LIGHTS.XML', encodeURIComponent('__R18184.4_BOOL_i=1')); 
+PostXML('LIGHTS.XML', encodeURIComponent('__R18188.4_BOOL_i=1')); 
 SetBg('INPUT1', '');
 setTimeout("SetBg('INPUT1', 'LIGHT1_2.PNG');",500);
 }
 function PostXML2() {
-PostXML('LIGHTS.XML', encodeURIComponent('__R18184.4_BOOL_i=1')); 
+PostXML('LIGHTS.XML', encodeURIComponent('__R18188.4_BOOL_i=1')); 
 SetBg('INPUT2', '');
 setTimeout("SetBg('INPUT2', 'LIGHT1_1.PNG');",500);
 }
 function PostXML3() {
-PostXML('LIGHTS.XML', encodeURIComponent('__R18184.2_BOOL_i=1')); 
+PostXML('LIGHTS.XML', encodeURIComponent('__R18188.2_BOOL_i=1')); 
 SetBg('INPUT3', '');
 setTimeout("SetBg('INPUT3', 'LIGHT1_2.PNG');",500);
 }
 function PostXML4() {
-PostXML('LIGHTS.XML', encodeURIComponent('__R18184.2_BOOL_i=1')); 
+PostXML('LIGHTS.XML', encodeURIComponent('__R18188.2_BOOL_i=1')); 
 SetBg('INPUT4', '');
 setTimeout("SetBg('INPUT4', 'LIGHT1_1.PNG');",500);
 }
 function PostXML5() {
-PostXML('LIGHTS.XML', encodeURIComponent('__R18184.5_BOOL_i=1')); 
+PostXML('LIGHTS.XML', encodeURIComponent('__R18188.5_BOOL_i=1')); 
 SetBg('INPUT5', '');
 setTimeout("SetBg('INPUT5', 'LIGHT1_2.PNG');",500);
 }
 function PostXML6() {
-PostXML('LIGHTS.XML', encodeURIComponent('__R18184.5_BOOL_i=1')); 
+PostXML('LIGHTS.XML', encodeURIComponent('__R18188.5_BOOL_i=1')); 
 SetBg('INPUT6', '');
 setTimeout("SetBg('INPUT6', 'LIGHT1_1.PNG');",500);
 }
 function PostXML7() {
-PostXML('LIGHTS.XML', encodeURIComponent('__R18182.6_BOOL_i=1')); 
+PostXML('LIGHTS.XML', encodeURIComponent('__R18186.6_BOOL_i=1')); 
 SetBg('INPUT7', '');
 setTimeout("SetBg('INPUT7', 'LIGHT1_2.PNG');",500);
 }
 function PostXML8() {
-PostXML('LIGHTS.XML', encodeURIComponent('__R18182.6_BOOL_i=1')); 
+PostXML('LIGHTS.XML', encodeURIComponent('__R18186.6_BOOL_i=1')); 
 SetBg('INPUT8', '');
 setTimeout("SetBg('INPUT8', 'LIGHT1_1.PNG');",500);
 }
 function PostXML9() {
-PostXML('LIGHTS.XML', encodeURIComponent('__R18183.1_BOOL_i=1')); 
+PostXML('LIGHTS.XML', encodeURIComponent('__R18187.1_BOOL_i=1')); 
 SetBg('INPUT9', '');
 setTimeout("SetBg('INPUT9', 'LIGHT1_2.PNG');",500);
 }
 function PostXML10() {
-PostXML('LIGHTS.XML', encodeURIComponent('__R18183.1_BOOL_i=1')); 
+PostXML('LIGHTS.XML', encodeURIComponent('__R18187.1_BOOL_i=1')); 
 SetBg('INPUT10', '');
 setTimeout("SetBg('INPUT10', 'LIGHT1_1.PNG');",500);
 }
 function PostXML11() {
-PostXML('LIGHTS.XML', encodeURIComponent('__R18182.2_BOOL_i=1')); 
+PostXML('LIGHTS.XML', encodeURIComponent('__R18186.2_BOOL_i=1')); 
 SetBg('INPUT11', '');
 setTimeout("SetBg('INPUT11', 'LIGHT1_2.PNG');",500);
 }
 function PostXML12() {
-PostXML('LIGHTS.XML', encodeURIComponent('__R18182.2_BOOL_i=1')); 
+PostXML('LIGHTS.XML', encodeURIComponent('__R18186.2_BOOL_i=1')); 
 SetBg('INPUT12', '');
 setTimeout("SetBg('INPUT12', 'LIGHT1_1.PNG');",500);
 }
 function PostXML13() {
-PostXML('LIGHTS.XML', encodeURIComponent('__R18184.1_BOOL_i=1')); 
+PostXML('LIGHTS.XML', encodeURIComponent('__R18188.1_BOOL_i=1')); 
 SetBg('INPUT13', '');
 setTimeout("SetBg('INPUT13', 'LIGHT1_2.PNG');",500);
 }
 function PostXML14() {
-PostXML('LIGHTS.XML', encodeURIComponent('__R18184.1_BOOL_i=1')); 
+PostXML('LIGHTS.XML', encodeURIComponent('__R18188.1_BOOL_i=1')); 
 SetBg('INPUT14', '');
 setTimeout("SetBg('INPUT14', 'LIGHT1_1.PNG');",500);
 }
 function PostXML15() {
-PostXML('LIGHTS.XML', encodeURIComponent('__R18183.0_BOOL_i=1')); 
+PostXML('LIGHTS.XML', encodeURIComponent('__R18187.0_BOOL_i=1')); 
 SetBg('INPUT15', '');
 setTimeout("SetBg('INPUT15', 'LIGHT1_2.PNG');",500);
 }
 function PostXML16() {
-PostXML('LIGHTS.XML', encodeURIComponent('__R18183.0_BOOL_i=1')); 
+PostXML('LIGHTS.XML', encodeURIComponent('__R18187.0_BOOL_i=1')); 
 SetBg('INPUT16', '');
 setTimeout("SetBg('INPUT16', 'LIGHT1_1.PNG');",500);
 }
 function PostXML17() {
-PostXML('LIGHTS.XML', encodeURIComponent('__R18182.7_BOOL_i=1')); 
+PostXML('LIGHTS.XML', encodeURIComponent('__R18186.7_BOOL_i=1')); 
 SetBg('INPUT17', '');
 setTimeout("SetBg('INPUT17', 'LIGHT1_2.PNG');",500);
 }
 function PostXML18() {
-PostXML('LIGHTS.XML', encodeURIComponent('__R18182.7_BOOL_i=1')); 
+PostXML('LIGHTS.XML', encodeURIComponent('__R18186.7_BOOL_i=1')); 
 SetBg('INPUT18', '');
 setTimeout("SetBg('INPUT18', 'LIGHT1_1.PNG');",500);
 }
 function PostXML19() {
-PostXML('LIGHTS.XML', encodeURIComponent('__R18182.1_BOOL_i=1')); 
+PostXML('LIGHTS.XML', encodeURIComponent('__R18186.1_BOOL_i=1')); 
 SetBg('INPUT19', '');
 setTimeout("SetBg('INPUT19', 'LIGHT1_2.PNG');",500);
 }
 function PostXML20() {
-PostXML('LIGHTS.XML', encodeURIComponent('__R18182.1_BOOL_i=1')); 
+PostXML('LIGHTS.XML', encodeURIComponent('__R18186.1_BOOL_i=1')); 
 SetBg('INPUT20', '');
 setTimeout("SetBg('INPUT20', 'LIGHT1_1.PNG');",500);
 }
 function PostXML21() {
-PostXML('LIGHTS.XML', encodeURIComponent('__R18184.3_BOOL_i=1')); 
+PostXML('LIGHTS.XML', encodeURIComponent('__R18188.3_BOOL_i=1')); 
 SetBg('INPUT21', '');
 setTimeout("SetBg('INPUT21', 'LIGHT1_2.PNG');",500);
 }
 function PostXML22() {
-PostXML('LIGHTS.XML', encodeURIComponent('__R18184.3_BOOL_i=1')); 
+PostXML('LIGHTS.XML', encodeURIComponent('__R18188.3_BOOL_i=1')); 
 SetBg('INPUT22', '');
 setTimeout("SetBg('INPUT22', 'LIGHT1_1.PNG');",500);
 }
 function PostXML23() {
-PostXML('LIGHTS.XML', encodeURIComponent('__R18184.5_BOOL_i=1')); 
+PostXML('LIGHTS.XML', encodeURIComponent('__R18188.5_BOOL_i=1')); 
 SetBg('INPUT23', '');
 setTimeout("SetBg('INPUT23', 'LIGHT1_2.PNG');",500);
 }
 function PostXML24() {
-PostXML('LIGHTS.XML', encodeURIComponent('__R18184.5_BOOL_i=1')); 
+PostXML('LIGHTS.XML', encodeURIComponent('__R18188.5_BOOL_i=1')); 
 SetBg('INPUT24', '');
 setTimeout("SetBg('INPUT24', 'LIGHT1_1.PNG');",500);
 }
 function PostXML25() {
-PostXML('LIGHTS.XML', encodeURIComponent('__R18182.6_BOOL_i=1')); 
+PostXML('LIGHTS.XML', encodeURIComponent('__R18186.6_BOOL_i=1')); 
 SetBg('INPUT25', '');
 setTimeout("SetBg('INPUT25', 'LIGHT1_2.PNG');",500);
 }
 function PostXML26() {
-PostXML('LIGHTS.XML', encodeURIComponent('__R18182.6_BOOL_i=1')); 
+PostXML('LIGHTS.XML', encodeURIComponent('__R18186.6_BOOL_i=1')); 
 SetBg('INPUT26', '');
 setTimeout("SetBg('INPUT26', 'LIGHT1_1.PNG');",500);
 }
@@ -862,177 +862,177 @@ PostXML('LIGHTS.XML', encodeURIComponent(Input40.name+'='+Input40.value)); Input
 }
 }
 function PostXML46() {
-PostXML('LIGHTS.XML', encodeURIComponent('__R18185.2_BOOL_i=1')); 
+PostXML('LIGHTS.XML', encodeURIComponent('__R18189.2_BOOL_i=1')); 
 SetBg('INPUT46', '');
 setTimeout("SetBg('INPUT46', 'DOOR1__2.PNG');",500);
 }
 function PostXML47() {
-PostXML('LIGHTS.XML', encodeURIComponent('__R18185.2_BOOL_i=1')); 
+PostXML('LIGHTS.XML', encodeURIComponent('__R18189.2_BOOL_i=1')); 
 SetBg('INPUT47', '');
 setTimeout("SetBg('INPUT47', 'DOOR1__1.PNG');",500);
 }
 function PostXML48() {
-PostXML('LIGHTS.XML', encodeURIComponent('__R18185.1_BOOL_i=1')); 
+PostXML('LIGHTS.XML', encodeURIComponent('__R18189.1_BOOL_i=1')); 
 SetBg('INPUT48', '');
 setTimeout("SetBg('INPUT48', 'LED_RE_1.PNG');",500);
 }
 function PostXML56() {
-PostXML('LIGHTS.XML', encodeURIComponent('__R18183.6_BOOL_i=1')); 
+PostXML('LIGHTS.XML', encodeURIComponent('__R18187.6_BOOL_i=1')); 
 SetBg('INPUT56', '');
 setTimeout("SetBg('INPUT56', 'LIGHT1_2.PNG');",500);
 }
 function PostXML57() {
-PostXML('LIGHTS.XML', encodeURIComponent('__R18183.6_BOOL_i=1')); 
+PostXML('LIGHTS.XML', encodeURIComponent('__R18187.6_BOOL_i=1')); 
 SetBg('INPUT57', '');
 setTimeout("SetBg('INPUT57', 'LIGHT1_1.PNG');",500);
 }
 function PostXML58() {
-PostXML('LIGHTS.XML', encodeURIComponent('__R18184.7_BOOL_i=1')); 
+PostXML('LIGHTS.XML', encodeURIComponent('__R18188.7_BOOL_i=1')); 
 SetBg('INPUT58', '');
 setTimeout("SetBg('INPUT58', 'LIGHT1_2.PNG');",500);
 }
 function PostXML59() {
-PostXML('LIGHTS.XML', encodeURIComponent('__R18184.7_BOOL_i=1')); 
+PostXML('LIGHTS.XML', encodeURIComponent('__R18188.7_BOOL_i=1')); 
 SetBg('INPUT59', '');
 setTimeout("SetBg('INPUT59', 'LIGHT1_1.PNG');",500);
 }
 function PostXML60() {
-PostXML('LIGHTS.XML', encodeURIComponent('__R18184.6_BOOL_i=1')); 
+PostXML('LIGHTS.XML', encodeURIComponent('__R18188.6_BOOL_i=1')); 
 SetBg('INPUT60', '');
 setTimeout("SetBg('INPUT60', 'LIGHT1_2.PNG');",500);
 }
 function PostXML61() {
-PostXML('LIGHTS.XML', encodeURIComponent('__R18184.6_BOOL_i=1')); 
+PostXML('LIGHTS.XML', encodeURIComponent('__R18188.6_BOOL_i=1')); 
 SetBg('INPUT61', '');
 setTimeout("SetBg('INPUT61', 'LIGHT1_1.PNG');",500);
 }
 function PostXML62() {
-PostXML('LIGHTS.XML', encodeURIComponent('__R18183.5_BOOL_i=1')); 
+PostXML('LIGHTS.XML', encodeURIComponent('__R18187.5_BOOL_i=1')); 
 SetBg('INPUT62', '');
 setTimeout("SetBg('INPUT62', 'LIGHT1_2.PNG');",500);
 }
 function PostXML63() {
-PostXML('LIGHTS.XML', encodeURIComponent('__R18183.5_BOOL_i=1')); 
+PostXML('LIGHTS.XML', encodeURIComponent('__R18187.5_BOOL_i=1')); 
 SetBg('INPUT63', '');
 setTimeout("SetBg('INPUT63', 'LIGHT1_1.PNG');",500);
 }
 function PostXML64() {
-PostXML('LIGHTS.XML', encodeURIComponent('__R18184.6_BOOL_i=1')); 
+PostXML('LIGHTS.XML', encodeURIComponent('__R18188.6_BOOL_i=1')); 
 SetBg('INPUT64', '');
 setTimeout("SetBg('INPUT64', 'LIGHT1_2.PNG');",500);
 }
 function PostXML65() {
-PostXML('LIGHTS.XML', encodeURIComponent('__R18184.6_BOOL_i=1')); 
+PostXML('LIGHTS.XML', encodeURIComponent('__R18188.6_BOOL_i=1')); 
 SetBg('INPUT65', '');
 setTimeout("SetBg('INPUT65', 'LIGHT1_1.PNG');",500);
 }
 function PostXML66() {
-PostXML('LIGHTS.XML', encodeURIComponent('__R18182.4_BOOL_i=1')); 
+PostXML('LIGHTS.XML', encodeURIComponent('__R18186.4_BOOL_i=1')); 
 SetBg('INPUT66', '');
 setTimeout("SetBg('INPUT66', 'LIGHT1_2.PNG');",500);
 }
 function PostXML67() {
-PostXML('LIGHTS.XML', encodeURIComponent('__R18182.4_BOOL_i=1')); 
+PostXML('LIGHTS.XML', encodeURIComponent('__R18186.4_BOOL_i=1')); 
 SetBg('INPUT67', '');
 setTimeout("SetBg('INPUT67', 'LIGHT1_1.PNG');",500);
 }
 function PostXML68() {
-PostXML('LIGHTS.XML', encodeURIComponent('__R18182.3_BOOL_i=1')); 
+PostXML('LIGHTS.XML', encodeURIComponent('__R18186.3_BOOL_i=1')); 
 SetBg('INPUT68', '');
 setTimeout("SetBg('INPUT68', 'LIGHT1_2.PNG');",500);
 }
 function PostXML69() {
-PostXML('LIGHTS.XML', encodeURIComponent('__R18182.3_BOOL_i=1')); 
+PostXML('LIGHTS.XML', encodeURIComponent('__R18186.3_BOOL_i=1')); 
 SetBg('INPUT69', '');
 setTimeout("SetBg('INPUT69', 'LIGHT1_1.PNG');",500);
 }
 function PostXML70() {
-PostXML('LIGHTS.XML', encodeURIComponent('__R18182.5_BOOL_i=1')); 
+PostXML('LIGHTS.XML', encodeURIComponent('__R18186.5_BOOL_i=1')); 
 SetBg('INPUT70', '');
 setTimeout("SetBg('INPUT70', 'LIGHT1_2.PNG');",500);
 }
 function PostXML71() {
-PostXML('LIGHTS.XML', encodeURIComponent('__R18182.5_BOOL_i=1')); 
+PostXML('LIGHTS.XML', encodeURIComponent('__R18186.5_BOOL_i=1')); 
 SetBg('INPUT71', '');
 setTimeout("SetBg('INPUT71', 'LIGHT1_1.PNG');",500);
 }
 function PostXML72() {
-PostXML('LIGHTS.XML', encodeURIComponent('__R18183.2_BOOL_i=1')); 
+PostXML('LIGHTS.XML', encodeURIComponent('__R18187.2_BOOL_i=1')); 
 SetBg('INPUT72', '');
 setTimeout("SetBg('INPUT72', 'LIGHT1_2.PNG');",500);
 }
 function PostXML73() {
-PostXML('LIGHTS.XML', encodeURIComponent('__R18183.2_BOOL_i=1')); 
+PostXML('LIGHTS.XML', encodeURIComponent('__R18187.2_BOOL_i=1')); 
 SetBg('INPUT73', '');
 setTimeout("SetBg('INPUT73', 'LIGHT1_1.PNG');",500);
 }
 function PostXML74() {
-PostXML('LIGHTS.XML', encodeURIComponent('__R18183.4_BOOL_i=1')); 
+PostXML('LIGHTS.XML', encodeURIComponent('__R18187.4_BOOL_i=1')); 
 SetBg('INPUT74', '');
 setTimeout("SetBg('INPUT74', 'LIGHT1_2.PNG');",500);
 }
 function PostXML75() {
-PostXML('LIGHTS.XML', encodeURIComponent('__R18183.4_BOOL_i=1')); 
+PostXML('LIGHTS.XML', encodeURIComponent('__R18187.4_BOOL_i=1')); 
 SetBg('INPUT75', '');
 setTimeout("SetBg('INPUT75', 'LIGHT1_1.PNG');",500);
 }
 function PostXML76() {
-PostXML('LIGHTS.XML', encodeURIComponent('__R18183.7_BOOL_i=1')); 
+PostXML('LIGHTS.XML', encodeURIComponent('__R18187.7_BOOL_i=1')); 
 SetBg('INPUT76', '');
 setTimeout("SetBg('INPUT76', 'LIGHT1_2.PNG');",500);
 }
 function PostXML77() {
-PostXML('LIGHTS.XML', encodeURIComponent('__R18183.7_BOOL_i=1')); 
+PostXML('LIGHTS.XML', encodeURIComponent('__R18187.7_BOOL_i=1')); 
 SetBg('INPUT77', '');
 setTimeout("SetBg('INPUT77', 'LIGHT1_1.PNG');",500);
 }
 function PostXML78() {
-PostXML('LIGHTS.XML', encodeURIComponent('__R18184.0_BOOL_i=1')); 
+PostXML('LIGHTS.XML', encodeURIComponent('__R18188.0_BOOL_i=1')); 
 SetBg('INPUT78', '');
 setTimeout("SetBg('INPUT78', 'LIGHT1_2.PNG');",500);
 }
 function PostXML79() {
-PostXML('LIGHTS.XML', encodeURIComponent('__R18184.0_BOOL_i=1')); 
+PostXML('LIGHTS.XML', encodeURIComponent('__R18188.0_BOOL_i=1')); 
 SetBg('INPUT79', '');
 setTimeout("SetBg('INPUT79', 'LIGHT1_1.PNG');",500);
 }
 function PostXML80() {
-PostXML('LIGHTS.XML', encodeURIComponent('__R18184.0_BOOL_i=1')); 
+PostXML('LIGHTS.XML', encodeURIComponent('__R18188.0_BOOL_i=1')); 
 SetBg('INPUT80', '');
 setTimeout("SetBg('INPUT80', 'LIGHT1_2.PNG');",500);
 }
 function PostXML81() {
-PostXML('LIGHTS.XML', encodeURIComponent('__R18184.0_BOOL_i=1')); 
+PostXML('LIGHTS.XML', encodeURIComponent('__R18188.0_BOOL_i=1')); 
 SetBg('INPUT81', '');
 setTimeout("SetBg('INPUT81', 'LIGHT1_1.PNG');",500);
 }
 function PostXML82() {
-PostXML('LIGHTS.XML', encodeURIComponent('__R18183.3_BOOL_i=1')); 
+PostXML('LIGHTS.XML', encodeURIComponent('__R18187.3_BOOL_i=1')); 
 SetBg('INPUT82', '');
 setTimeout("SetBg('INPUT82', 'LIGHT1_2.PNG');",500);
 }
 function PostXML83() {
-PostXML('LIGHTS.XML', encodeURIComponent('__R18183.3_BOOL_i=1')); 
+PostXML('LIGHTS.XML', encodeURIComponent('__R18187.3_BOOL_i=1')); 
 SetBg('INPUT83', '');
 setTimeout("SetBg('INPUT83', 'LIGHT1_1.PNG');",500);
 }
 function PostXML84() {
-PostXML('LIGHTS.XML', encodeURIComponent('__R18183.3_BOOL_i=1')); 
+PostXML('LIGHTS.XML', encodeURIComponent('__R18187.3_BOOL_i=1')); 
 SetBg('INPUT84', '');
 setTimeout("SetBg('INPUT84', 'LIGHT1_2.PNG');",500);
 }
 function PostXML85() {
-PostXML('LIGHTS.XML', encodeURIComponent('__R18183.3_BOOL_i=1')); 
+PostXML('LIGHTS.XML', encodeURIComponent('__R18187.3_BOOL_i=1')); 
 SetBg('INPUT85', '');
 setTimeout("SetBg('INPUT85', 'LIGHT1_1.PNG');",500);
 }
 function PostXML86() {
-PostXML('LIGHTS.XML', encodeURIComponent('__R18185.0_BOOL_i=1')); 
+PostXML('LIGHTS.XML', encodeURIComponent('__R18189.0_BOOL_i=1')); 
 SetBg('INPUT86', '');
 setTimeout("SetBg('INPUT86', 'FAN1_O_1.PNG');",500);
 }
 function PostXML87() {
-PostXML('LIGHTS.XML', encodeURIComponent('__R18185.0_BOOL_i=1')); 
+PostXML('LIGHTS.XML', encodeURIComponent('__R18189.0_BOOL_i=1')); 
 SetBg('INPUT87', '');
 setTimeout("SetBg('INPUT87', 'FAN1_O_2.PNG');",500);
 }
