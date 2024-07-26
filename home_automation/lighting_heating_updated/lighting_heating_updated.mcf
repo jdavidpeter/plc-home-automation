@@ -17,5 +17,6 @@ CONFIGURATION lighting_heating_updated
     PROGRAM Watering_Init WITH InitialisationBlock : WateringInit ();
     PROGRAM Watering_Control WITH FreeWheeling : WateringControl ();
     PROGRAM Slow_Averaging WITH Every27Minutes : SlowAveraging ();
+    PROGRAM Slow_Averaging_Init WITH InitialisationBlock : SlowAveragingInit ();
   END_RESOURCE
 END_CONFIGURATION

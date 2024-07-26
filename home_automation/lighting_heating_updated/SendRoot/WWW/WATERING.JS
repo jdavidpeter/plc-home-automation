@@ -45,7 +45,7 @@ if(xmlhttpGET.status != 200){
 alert('Problem retrieving XML data ' + xmlhttpGET.statusText + '(' + xmlhttpGET.status + ')');
 document.location.reload(true)
 return;}
-var access = xmlhttpGET.responseXML.documentElement.getElementsByTagName('ACCESS')[0]; if(!access || access.getAttribute('UCID') != 1715075874) {document.location.reload(true); return;}
+var access = xmlhttpGET.responseXML.documentElement.getElementsByTagName('ACCESS')[0]; if(!access || access.getAttribute('UCID') != 1718974848) {document.location.reload(true); return;}
 var pd = '';
 var x=xmlhttpGET.responseXML.documentElement.getElementsByTagName('INPUT');
 if(x[0]) {
@@ -251,62 +251,62 @@ PostXML('WATERING.XML', encodeURIComponent(Input4.name+'='+Input4.value)); Input
 }
 }
 function PostXML5() {
-PostXML('WATERING.XML', encodeURIComponent('__R18584.1_BOOL_i=0')); 
+PostXML('WATERING.XML', encodeURIComponent('__R19184.1_BOOL_i=0')); 
 SetBg('INPUT5', '');
 setTimeout("SetBg('INPUT5', 'SW747C_1.PNG');",500);
 }
 function PostXML6() {
-PostXML('WATERING.XML', encodeURIComponent('__R18584.1_BOOL_i=1')); 
+PostXML('WATERING.XML', encodeURIComponent('__R19184.1_BOOL_i=1')); 
 SetBg('INPUT6', '');
 setTimeout("SetBg('INPUT6', 'SW7D18_1.PNG');",500);
 }
 function PostXML7() {
-PostXML('WATERING.XML', encodeURIComponent('__R18688.0_BOOL_i=0')); 
+PostXML('WATERING.XML', encodeURIComponent('__R19288.0_BOOL_i=0')); 
 SetBg('INPUT7', '');
 setTimeout("SetBg('INPUT7', 'SW747C_1.PNG');",500);
 }
 function PostXML8() {
-PostXML('WATERING.XML', encodeURIComponent('__R18688.0_BOOL_i=1')); 
+PostXML('WATERING.XML', encodeURIComponent('__R19288.0_BOOL_i=1')); 
 SetBg('INPUT8', '');
 setTimeout("SetBg('INPUT8', 'SW7D18_1.PNG');",500);
 }
 function PostXML9() {
-PostXML('WATERING.XML', encodeURIComponent('__R18688.1_BOOL_i=0')); 
+PostXML('WATERING.XML', encodeURIComponent('__R19288.1_BOOL_i=0')); 
 SetBg('INPUT9', '');
 setTimeout("SetBg('INPUT9', 'SW747C_1.PNG');",500);
 }
 function PostXML10() {
-PostXML('WATERING.XML', encodeURIComponent('__R18688.1_BOOL_i=1')); 
+PostXML('WATERING.XML', encodeURIComponent('__R19288.1_BOOL_i=1')); 
 SetBg('INPUT10', '');
 setTimeout("SetBg('INPUT10', 'SW7D18_1.PNG');",500);
 }
 function PostXML11() {
-PostXML('WATERING.XML', encodeURIComponent('__R18688.2_BOOL_i=0')); 
+PostXML('WATERING.XML', encodeURIComponent('__R19288.2_BOOL_i=0')); 
 SetBg('INPUT11', '');
 setTimeout("SetBg('INPUT11', 'SW747C_1.PNG');",500);
 }
 function PostXML12() {
-PostXML('WATERING.XML', encodeURIComponent('__R18688.2_BOOL_i=1')); 
+PostXML('WATERING.XML', encodeURIComponent('__R19288.2_BOOL_i=1')); 
 SetBg('INPUT12', '');
 setTimeout("SetBg('INPUT12', 'SW7D18_1.PNG');",500);
 }
 function PostXML13() {
-PostXML('WATERING.XML', encodeURIComponent('__R18584.0_BOOL_i=0')); 
+PostXML('WATERING.XML', encodeURIComponent('__R19184.0_BOOL_i=0')); 
 SetBg('INPUT13', '');
 setTimeout("SetBg('INPUT13', 'SW747C_1.PNG');",500);
 }
 function PostXML14() {
-PostXML('WATERING.XML', encodeURIComponent('__R18584.0_BOOL_i=1')); 
+PostXML('WATERING.XML', encodeURIComponent('__R19184.0_BOOL_i=1')); 
 SetBg('INPUT14', '');
 setTimeout("SetBg('INPUT14', 'SW7D18_1.PNG');",500);
 }
 function PostXML17() {
-PostXML('WATERING.XML', encodeURIComponent('__R18584.2_BOOL_i=0')); 
+PostXML('WATERING.XML', encodeURIComponent('__R19184.2_BOOL_i=0')); 
 SetBg('INPUT17', '');
 setTimeout("SetBg('INPUT17', 'SW747C_1.PNG');",500);
 }
 function PostXML18() {
-PostXML('WATERING.XML', encodeURIComponent('__R18584.2_BOOL_i=1')); 
+PostXML('WATERING.XML', encodeURIComponent('__R19184.2_BOOL_i=1')); 
 SetBg('INPUT18', '');
 setTimeout("SetBg('INPUT18', 'SW7D18_1.PNG');",500);
 }

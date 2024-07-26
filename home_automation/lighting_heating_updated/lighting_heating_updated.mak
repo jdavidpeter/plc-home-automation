@@ -77,4 +77,5 @@
 #usefile "src\watering\WateringInit.st"
 #usefile "src\watering\Watering.st"
 #usefile "src\utils\slowavg\SlowAvg.st"
+#usefile "src\utils\slowavg\SlowAvgInit.st"
 #usefile "lighting_heating_updated.mcf", 'auto'
