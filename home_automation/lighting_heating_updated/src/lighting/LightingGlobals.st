@@ -64,8 +64,8 @@ VAR_GLOBAL
 //    VIRTUAL_STAIRS_LIGHTS_IN : BOOL                       := FALSE;
 
 
-    VIRTUAL_EXHAUST_FAN_IN : BOOL                    := FALSE;
-    VIRTUAL_CIRCULATION_SWITCH_IN : BOOL             := FALSE;
-    VIRTUAL_GARAGE_DOOR_OPENER       : BOOL          := FALSE;
+    VIRTUAL_EXHAUST_FAN_IN : BOOL                 := FALSE;
+    VIRTUAL_CIRCULATION_SWITCH_IN : BOOL          := FALSE;
+    VIRTUAL_GARAGE_DOOR_OPENER    : BOOL          := FALSE;
     
 END_VAR
