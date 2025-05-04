@@ -409,6 +409,7 @@
           <BitSize>1</BitSize>
           <BitOffs>6</BitOffs>
           <SubIdx>6</SubIdx>
+          <Xml/>
         </SubItem>
       </SubItems>
       <BitSize>8</BitSize>

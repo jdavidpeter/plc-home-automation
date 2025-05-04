@@ -20,19 +20,19 @@
 #useoption RestartOnError = 0   ; PLC will not be restarted after hard error
 
 #uselib "LocalLib\StdLib_V22_20180619.mlb"
-#uselib "LocalLib\SysLib_V50_20230202.mlb"
+#uselib "LocalLib\SysLib_V52_20241212.mlb"
 #uselib "LocalLib\OpenThermLib_V14_20220324.mlb"
 #uselib "LocalLib\ToStringLib_V13_20110203.mlb"
-#uselib "LocalLib\FileLib_V31_20231122.mlb"
+#uselib "LocalLib\FileLib_V32_20240426.mlb"
 #uselib "LocalLib\ComLib_V38_20230420.mlb"
 #uselib "LocalLib\ParadoxLib_V17_20141014.mlb"
 #uselib "LocalLib\TimeLib_V16_20230504.mlb"
 #uselib "LocalLib\EncryptLib_V14_20231018.mlb"
-#uselib "LocalLib\DataBoxLib_V17_20201109.mlb"
 #uselib "LocalLib\ConvertLib_V26_20240105.mlb"
-#uselib "LocalLib\InternetLib_V65_20240222.mlb"
+#uselib "LocalLib\DataBoxLib_V18_20250410.mlb"
+#uselib "LocalLib\InternetLib_V70_20241220.mlb"
 #uselib "LocalLib\MQTTLib_V16_20230117.mlb"
-#uselib "LocalLib\CrcLib_V13_20170224.mlb"
+#uselib "LocalLib\CrcLib_V14_20250128.mlb"
 #uselib "LocalLib\ModbusRTU_V47_20231206.mlb"
 #endlibs
 

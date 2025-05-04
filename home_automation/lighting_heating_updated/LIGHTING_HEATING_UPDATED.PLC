@@ -69,7 +69,7 @@ slTRportnum=61682
 
 [plcwusb]
 type=17
-genrst=0
+genrst=2
 askrst=1
 genrunp=1
 genhltp=9
@@ -78,7 +78,7 @@ plcn=0
 checkprgname=1
 verifyiocfg=1
 onlinechngs=0
-mustcompile=0
+mustcompile=1
 [/plcwusb]
 
 [txtextsyneditor]
