@@ -25,4 +25,5 @@ VAR_GLOBAL
   SWITCH_TRACKER : StringRecorder;
   FILE_PROBLEM_TRACKER : StringRecorder;
   IO_LOGGER : StringRecorder;
+  ALARM_LOGGER : StringRecorder;
 END_VAR

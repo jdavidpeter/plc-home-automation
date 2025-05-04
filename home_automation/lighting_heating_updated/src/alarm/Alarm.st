@@ -15,9 +15,66 @@ PROGRAM AlarmControl
 
      heatingControllerName : STRING := 'Alarm heating control';
      hotWaterControllerName : STRING := 'Alarm hot water control';
+     
+     sentence  : STRING;
+     logChange : BOOL := FALSE;
   END_VAR
   
+  IF ALARM_ARM_REQUEST THEN
+     sentence := CONCAT('ALARM_ARM_REQUEST', BOOL_TO_STRING(ALARM_ARM_REQUEST));
+     ALARM_LOGGER(name := sentence);
+     sentence := CONCAT('ALARM_ARM_REQUEST_armRegular', BOOL_TO_STRING(PARADOX_DATA.part[C_ALARM_USED_PARTITION].control.armRegular));
+     ALARM_LOGGER(name := sentence);
+     sentence := CONCAT('ALARM_ARM_REQUEST_armWithCode', BOOL_TO_STRING(PARADOX_DATA.part[C_ALARM_USED_PARTITION].control.armWithCode));
+     ALARM_LOGGER(name := sentence);
+     
+     ALARM_LOGGER(name := ALARM_USER_CODE);
+     logChange := TRUE;
+     
+     PARADOX_DATA.part[C_ALARM_USED_PARTITION].control.userCode       := ALARM_USER_CODE;
+     PARADOX_DATA.part[C_ALARM_USED_PARTITION].control.armRegular     := TRUE;
+     PARADOX_DATA.part[C_ALARM_USED_PARTITION].control.armWithCode    := TRUE;
+     PARADOX_DATA.part[C_ALARM_USED_PARTITION].control.disarmWithCode := FALSE;
+     ALARM_USER_CODE := '';
+     ALARM_ARM_REQUEST := FALSE;
+     
+  END_IF
+  
+  IF ALARM_DISARM_REQUEST THEN
+     sentence := CONCAT('ALARM_DISARM_REQUEST', BOOL_TO_STRING(ALARM_ARM_REQUEST));
+     ALARM_LOGGER(name := sentence);
+     sentence := CONCAT('ALARM_DISARM_REQUEST_armRegular', BOOL_TO_STRING(PARADOX_DATA.part[C_ALARM_USED_PARTITION].control.armRegular));
+     ALARM_LOGGER(name := sentence);
+     sentence := CONCAT('ALARM_DISARM_REQUEST_armWithCode', BOOL_TO_STRING(PARADOX_DATA.part[C_ALARM_USED_PARTITION].control.armWithCode));
+     ALARM_LOGGER(name := sentence);
+     
+     ALARM_LOGGER(name := ALARM_USER_CODE);
+     logChange := TRUE;
+
+     PARADOX_DATA.part[C_ALARM_USED_PARTITION].control.userCode       := ALARM_USER_CODE;
+     PARADOX_DATA.part[C_ALARM_USED_PARTITION].control.disarmWithCode := TRUE;
+     PARADOX_DATA.part[C_ALARM_USED_PARTITION].control.armRegular     := FALSE;
+     PARADOX_DATA.part[C_ALARM_USED_PARTITION].control.armWithCode    := FALSE;
+     ALARM_USER_CODE := '';
+     ALARM_DISARM_REQUEST := FALSE;
+  END_IF;
+
   alarmRead();
+  
+  IF logChange THEN
+    sentence := CONCAT('ALARM_ARM_REQUEST', BOOL_TO_STRING(ALARM_ARM_REQUEST));
+    ALARM_LOGGER(name := sentence);
+    sentence := CONCAT('ALARM_DISARM_REQUEST', BOOL_TO_STRING(ALARM_ARM_REQUEST));
+    ALARM_LOGGER(name := sentence);
+    sentence := CONCAT('armRegular', BOOL_TO_STRING(PARADOX_DATA.part[C_ALARM_USED_PARTITION].control.armRegular));
+    ALARM_LOGGER(name := sentence);
+    sentence := CONCAT('armWithCode', BOOL_TO_STRING(PARADOX_DATA.part[C_ALARM_USED_PARTITION].control.armWithCode));
+    ALARM_LOGGER(name := sentence);
+    sentence := CONCAT('disarmWithCode', BOOL_TO_STRING(PARADOX_DATA.part[C_ALARM_USED_PARTITION].control.disarmWithCode));
+    ALARM_LOGGER(name := sentence);
+    
+    logChange := FALSE;
+  END_IF;
   
   // Turn on warm water circulation when someone enters through the entrance doors after the alarm cooldown time.
   VIRTUAL_CIRCULATION_SWITCH_IN := GONE_FOR_SHORT_TIME AND
