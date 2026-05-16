@@ -69,7 +69,7 @@ slTRportnum=61682
 
 [plcwusb]
 type=17
-genrst=2
+genrst=0
 askrst=1
 genrunp=1
 genhltp=9
@@ -78,7 +78,7 @@ plcn=0
 checkprgname=1
 verifyiocfg=1
 onlinechngs=0
-mustcompile=1
+mustcompile=0
 [/plcwusb]
 
 [txtextsyneditor]
@@ -219,7 +219,7 @@ ShowHWAddrsChecked=1
 SortByLogAddrChecked=1
 SortByHWAddrChecked=0
 SortByNameChecked=0
-SplitterPosition=342
+SplitterPosition=415
 [/IOConfigurator]
 
 [KnxImport]

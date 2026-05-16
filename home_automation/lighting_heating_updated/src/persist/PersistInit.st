@@ -125,6 +125,7 @@ PROGRAM PersistInit
     TIMES_TO_PERSIST[4]        := ADR(BUSHES_WATERING_TIME[1]);
     TIMES_TO_PERSIST_DIRS[4]   := wateringControlPath;
     TIMES_TO_PERSIST_NAMES[4]  := 'BUSH1';
+
     TIMES_TO_PERSIST[5]        := ADR(WATERING_START_TIME[2]);
     TIMES_TO_PERSIST_DIRS[5]   := wateringControlPath;
     TIMES_TO_PERSIST_NAMES[5]  := 'START2';
@@ -138,6 +139,19 @@ PROGRAM PersistInit
     TIMES_TO_PERSIST_DIRS[8]   := wateringControlPath;
     TIMES_TO_PERSIST_NAMES[8]  := 'BUSH2';
     
+    TIMES_TO_PERSIST[9]         := ADR(WATERING_START_TIME[3]);
+    TIMES_TO_PERSIST_DIRS[9]    := wateringControlPath;
+    TIMES_TO_PERSIST_NAMES[9]   := 'START3';
+    TIMES_TO_PERSIST[10]        := ADR(FRONT_GRASS_WATERING_TIME[3]);
+    TIMES_TO_PERSIST_DIRS[10]   := wateringControlPath;
+    TIMES_TO_PERSIST_NAMES[10]  := 'FRONT3';
+    TIMES_TO_PERSIST[11]        := ADR(REAR_GRASS_WATERING_TIME[3]);
+    TIMES_TO_PERSIST_DIRS[11]   := wateringControlPath;
+    TIMES_TO_PERSIST_NAMES[11]  := 'REAR3';
+    TIMES_TO_PERSIST[12]        := ADR(BUSHES_WATERING_TIME[3]);
+    TIMES_TO_PERSIST_DIRS[12]   := wateringControlPath;
+    TIMES_TO_PERSIST_NAMES[12]  := 'BUSH3';
+
     init := TRUE;
 
   ELSE

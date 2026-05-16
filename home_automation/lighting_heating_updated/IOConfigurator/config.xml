@@ -61,7 +61,7 @@
           <Channel Options="UNI" Name="SOCK11"/>
         </Ethernet>
       </Ethernets>
-      <Piggybacks>
+      <Piggybacks expanded="true">
         <Piggyback xmlns="http://www.tecomat.com" slot="0" expanded="true">
           <Info>
             <ProductCode>114</ProductCode>
@@ -239,6 +239,7 @@
                         <Aliases>
                           <ObjectAlias name="r{RACK}_p{POSITION}_IN" public="false" publicAPI="false" userDef="false">C_IR_0303M_9FDC_IN</ObjectAlias>
                           <ObjectAlias name="r{RACK}_p{POSITION}_OUT" public="false" publicAPI="false" userDef="false">C_IR_0303M_9FDC_OUT</ObjectAlias>
+                          <ObjectAlias name="r{RACK}_p{POSITION}_OUT.DOs.DO3" public="false" publicAPI="false" userDef="true">STREET_GATE_OUT</ObjectAlias>
                         </Aliases>
                         <Notes/>
                         <Tags xmlns="http://www.tecomat.com">
@@ -260,11 +261,12 @@
                         <Descriptor>3310_C-HM-1113M.tdd</Descriptor>
                       </Info>
                       <Objects xmlns="http://www.tecomat.com" inputsAddr="r0_p2_CIB_IN" outputsAddr="r0_p2_CIB_OUT" inputsLen="14" outputsLen="10">
+                        <Data/>
                         <Aliases>
                           <ObjectAlias name="r{RACK}_p{POSITION}_IN" public="false" publicAPI="false" userDef="true">C_HM_1113M_F62C_IN</ObjectAlias>
                           <ObjectAlias name="r{RACK}_p{POSITION}_IN.AI.AI1" public="false" publicAPI="false" userDef="true">UPSTAIRS_BATH_TEMPERATURE</ObjectAlias>
                           <ObjectAlias name="r{RACK}_p{POSITION}_IN.AI.AI2" public="false" publicAPI="false" userDef="true">CHILDRENS_ROOM_1_TEMPERATURE</ObjectAlias>
-                          <ObjectAlias name="r{RACK}_p{POSITION}_IN.DI.DI1" public="false" publicAPI="false" userDef="true">GARAGE_GATE_IN</ObjectAlias>
+                          <ObjectAlias name="r{RACK}_p{POSITION}_IN.DI.DI1" public="false" publicAPI="false" userDef="true">GARAGE_DOOR_IN</ObjectAlias>
                           <ObjectAlias name="r{RACK}_p{POSITION}_IN.DI.DI2" public="false" publicAPI="false" userDef="true">MAJOR_STORAGE_LIGHTS_IN</ObjectAlias>
                           <ObjectAlias name="r{RACK}_p{POSITION}_IN.DI.DI3" public="false" publicAPI="false" userDef="true">MINOR_STORAGE_LIGHTS_IN</ObjectAlias>
                           <ObjectAlias name="r{RACK}_p{POSITION}_IN.DI.DI4" public="false" publicAPI="false" userDef="true">DOWNSTAIRS_BEDROOM_LIGHTS_IN</ObjectAlias>
@@ -287,7 +289,6 @@
                         <Notes>
                           <ObjectNote name="r{RACK}_p{POSITION}_C_HM_1113M_init">Initialization table of C-HM-1113M unit</ObjectNote>
                         </Notes>
-                        <Data/>
                         <Tags xmlns="http://www.tecomat.com">
                           <Tag name="manual_mode">r8_p3_IN.STAT.ManMode</Tag>
                         </Tags>
@@ -296,7 +297,7 @@
                       <Ethernets/>
                       <Piggybacks/>
                       <Interfaces/>
-                      <Editor/>
+                      <Editor xmlns="http://www.tecomat.com"/>
                     </Device>
                     <Device xmlns="http://www.tecomat.com" physAddr="F62D" enabled="true" rack="8" position="4" default="false" alias="C-HM-1113M-F62D" statLoc="r0_p2_CIB_STAT[4]" validStat="87" errLoc="r0_p2_CIB_ERR[4]">
                       <Info>
@@ -453,7 +454,7 @@
                 </Data>
                 <Aliases>
                   <ObjectAlias name="r{RACK}_p{POSITION}_AI0.ENG" public="false" publicAPI="false" userDef="true">EXTERNAL_TEMPERATURE</ObjectAlias>
-                  <ObjectAlias name="r{RACK}_p{POSITION}_DO.DO0" public="false" publicAPI="false" userDef="true">GARAGE_GATE_OUT</ObjectAlias>
+                  <ObjectAlias name="r{RACK}_p{POSITION}_DO.DO0" public="false" publicAPI="false" userDef="true">GARAGE_DOOR_OUT</ObjectAlias>
                 </Aliases>
                 <Notes>
                   <ObjectNote name="r{RACK}_p{POSITION}_Table">Initialization table of IR-1061 device</ObjectNote>

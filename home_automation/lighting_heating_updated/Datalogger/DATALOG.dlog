@@ -581,7 +581,7 @@
 				<Lo3 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Lo3>
 			</Levels>
 		</Signal>
-		<Signal Name="Gyerekszoba 3 T" Enable="1" NumData="0" Note="">
+		<Signal Name="Gyerekszoba 3 T" Enable="0" NumData="0" Note="">
 			<Header>Gyerekszoba 3 T</Header>
 			<Source Name="PARADOX_DATA.zone[11].tamper" Zone="R" Offset="20152" Type="BIT1" IEC="0" Format="%b"></Source>
 			<Changes Enable="0">
@@ -695,12 +695,12 @@
 		</SignalCollection>
 		<Signal Name="Esõ" Enable="1" NumData="0" Note="">
 			<Header>Esõ</Header>
-			<Source Name="RAIN_DETECTOR_IN" Zone="X" Offset="93" Type="BIT0" IEC="0" Format="%b"></Source>
+			<Source Name="WATERING_RECENT_RAIN" Zone="R" Offset="23441" Type="BIT3" IEC="0" Format="%b"></Source>
 			<Changes Enable="0">
 				<Change Up="1" Dw="1" Val="0" Hst="0" Txt="" Add="0"></Change>
 			</Changes>
 			<Levels Enable="1">
-				<Hi3 Up="1" Dw="1" Val="0" Hst="0" Txt="" Add="0"></Hi3>
+				<Hi3 Up="1" Dw="1" Val="0" Hst="0" Txt="" Add="1"></Hi3>
 				<Hi2 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Hi2>
 				<Hi1 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Hi1>
 				<Lo1 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Lo1>
@@ -715,7 +715,7 @@
 				<Change Up="1" Dw="1" Val="0" Hst="0" Txt="" Add="0"></Change>
 			</Changes>
 			<Levels Enable="1">
-				<Hi3 Up="1" Dw="1" Val="0" Hst="0" Txt="" Add="0"></Hi3>
+				<Hi3 Up="1" Dw="1" Val="0" Hst="0" Txt="" Add="1"></Hi3>
 				<Hi2 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Hi2>
 				<Hi1 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Hi1>
 				<Lo1 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Lo1>
@@ -730,7 +730,7 @@
 				<Change Up="1" Dw="1" Val="0" Hst="0" Txt="" Add="0"></Change>
 			</Changes>
 			<Levels Enable="1">
-				<Hi3 Up="1" Dw="1" Val="0" Hst="0" Txt="" Add="0"></Hi3>
+				<Hi3 Up="1" Dw="1" Val="0" Hst="0" Txt="" Add="1"></Hi3>
 				<Hi2 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Hi2>
 				<Hi1 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Hi1>
 				<Lo1 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Lo1>
@@ -745,7 +745,7 @@
 				<Change Up="1" Dw="1" Val="0" Hst="0" Txt="" Add="0"></Change>
 			</Changes>
 			<Levels Enable="1">
-				<Hi3 Up="1" Dw="1" Val="0" Hst="0" Txt="" Add="0"></Hi3>
+				<Hi3 Up="1" Dw="1" Val="0" Hst="0" Txt="" Add="1"></Hi3>
 				<Hi2 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Hi2>
 				<Hi1 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Hi1>
 				<Lo1 Up="0" Dw="0" Val="0" Hst="0" Txt="" Add="0"></Lo1>

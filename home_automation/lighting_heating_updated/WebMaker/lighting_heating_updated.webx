@@ -14,8 +14,8 @@ Left=753
 DockPos=1
 StayOnTop=0
 CanDock=0
-Height=504
-Width=1134
+Height=624
+Width=1260
 Top=0
 Left=0
 LeftPanel=145
@@ -30,8 +30,8 @@ Width=429
 Top=-301
 Left=-1175
 [TimeStamps]
-SaveTD=1737033536
-CompileTD=1746362801
+SaveTD=1778917563
+CompileTD=1778923365
 [FormObjectList]
 Height=410
 Width=640

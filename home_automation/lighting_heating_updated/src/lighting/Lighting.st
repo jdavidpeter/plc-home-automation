@@ -29,6 +29,7 @@ Program LightingControl
   VAR
     domesticHotWaterCirculation_in : OnThenOffPulse;
     garageGate_in : OnThenOffPulse;
+    streetGate_in : OnThenOffPulse;
     
     exhaustRequest     : BOOL := false;
     wcExhaustDelay     : TON;
@@ -67,10 +68,14 @@ Program LightingControl
     EXHAUST_FAN_OUT := exhaustFan_in.out;
     VIRTUAL_EXHAUST_FAN_IN := FALSE;
   
-    garageGate_in(onSignal := GARAGE_GATE_IN OR VIRTUAL_GARAGE_DOOR_OPENER, timeOn := T#0.2s, timeOff := T#0.2s, name := 'Garage gate');
-    GARAGE_GATE_OUT := garageGate_in.active;
+    garageGate_in(onSignal := GARAGE_DOOR_IN OR VIRTUAL_GARAGE_DOOR_OPENER, timeOn := T#0.2s, timeOff := T#0.2s, name := 'Garage door');
+    GARAGE_DOOR_OUT := garageGate_in.active;
     VIRTUAL_GARAGE_DOOR_OPENER := FALSE;
-  
+
+    streetGate_in(onSignal := VIRTUAL_STREET_GATE_OPENER, timeOn := T#0.7s, timeOff := T#0.7s, name := 'Street gate');
+    STREET_GATE_OUT := streetGate_in.active;
+    VIRTUAL_STREET_GATE_OPENER := FALSE;
+    
     HALLWAY_LIGHTS_COMBINED_IN := HALLWAY_LIGHTS_IN OR STAIRS_LIGHTS_IN;
   
     FOR i := 0 TO C_LIGHTS_ZONES_COUNT - 1 DO
